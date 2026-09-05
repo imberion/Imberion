@@ -1,0 +1,13 @@
+/* Contacto: hero con el botón grande a la agenda + bloque alterno por correo. */
+
+.contacto-hero .cta-btn-grande {
+  margin-top: 38px;
+  padding: 18px 34px;
+  font-size: 15px;
+}
+.contacto-alt { padding: 104px 0; }
+.contacto-alt-inner { max-width: 620px; }
+.contacto-alt h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); }
+.contacto-alt p { margin-top: 18px; font-size: clamp(1.02rem, 1.4vw, 1.15rem); color: var(--navy-72); line-height: 1.72; }
+.contacto-alt .btn { margin-top: 30px; }
+@media (max-width: 600px) { .contacto-alt { padding: 76px 0; } }

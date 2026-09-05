@@ -1,0 +1,197 @@
+{
+  "es": {
+    "__title": "Imberion — Qué resolvemos",
+    "hero_eyebrow": "Qué resolvemos",
+    "hero_h1": "Las decisiones comerciales<br>que Imberion habilita.",
+    "hero_lead": "Revenue Growth Management (RGM) es la disciplina que gobierna precio, portafolio, promociones, política comercial y canales, junto con la operación que los sostiene. Imberion trabaja sobre esas decisiones y sobre lo que pasa después de tomarlas.",
+    "dec_eyebrow": "Decisión por decisión",
+    "dec_h2": "Dónde entra la señal<br>en la decisión.",
+    "dec_intro": "La información no está repartida parejo. El canal que más factura suele ser el menos instrumentado, así que la decisión de mayor impacto se toma con la data más pobre. Cada decisión de esta lista cambia según la señal disponible en el momento en que se toma.",
+    "decisiones": [
+      {
+        "t": "Precio",
+        "q": "¿Dónde se puede subir precio sin perder volumen?",
+        "p": "La elasticidad se estima por SKU, canal y región, y se contrasta con el precio observado de la competencia en el punto de venta. La lista se mueve celda por celda, no con un aumento parejo aplicado a todo el catálogo.",
+        "sowhat": "Define qué celdas se mueven en la próxima lista de precios y cuáles se dejan quietas."
+      },
+      {
+        "t": "Surtido y portafolio",
+        "q": "¿Qué referencias merecen el espacio que ocupan?",
+        "p": "La rotación por punto de venta se cruza con margen, costo de complejidad y canibalización entre presentaciones. Ahí aparecen los SKUs que se sostienen por inercia y los que solo funcionan en un formato o en una plaza.",
+        "sowhat": "Define qué se descontinúa, qué entra al catálogo y qué se limita a ciertos formatos."
+      },
+      {
+        "t": "Promociones",
+        "q": "¿Cuáles promociones dejaron margen y cuáles regalaron volumen que ya estaba comprado?",
+        "p": "El incremental se mide contra baseline por mecánica, cadena y semana, separando el volumen nuevo de la compra adelantada que solo mueve la venta de un mes al anterior. El calendario deja de discutirse por percepción del equipo de trade.",
+        "sowhat": "Define qué mecánicas se repiten en el siguiente calendario y cuáles se retiran."
+      },
+      {
+        "t": "Condiciones comerciales y política",
+        "q": "¿Cuánto cuesta la lista de excepciones acumuladas?",
+        "p": "Descuentos, rebates, plazos de pago, apoyos y devoluciones se agregan por cliente hasta el precio neto realizado, que casi nunca coincide con el de la política escrita. Con esa base se fijan reglas de aprobación y umbrales por nivel.",
+        "sowhat": "Define qué condiciones se estandarizan y cuáles quedan como excepción con dueño y vigencia."
+      },
+      {
+        "t": "Canales y ruta al mercado",
+        "q": "¿Qué se atiende directo y qué conviene por distribuidor?",
+        "p": "El costo de servir se calcula por cliente y por canal, y se compara contra cobertura efectiva, frecuencia de visita y venta por visita. En el canal fragmentado esa comparación exige capturar la señal que hoy no llega: precio en anaquel, presencia y ejecución en tienda.",
+        "sowhat": "Define a qué clientes se visita en el próximo ciclo, con qué frecuencia y quién los atiende."
+      },
+      {
+        "t": "Clientes y retención",
+        "q": "¿Qué clientes se están yendo antes de dejar de comprar?",
+        "p": "La fuga se detecta en la frecuencia de pedido y en las líneas por pedido, que caen semanas antes que la facturación. La cartera queda ordenada por valor y por riesgo, con el motivo probable de cada caída visible para quien atiende la cuenta.",
+        "sowhat": "Define sobre qué cuentas se actúa esta semana y con qué oferta."
+      },
+      {
+        "t": "Inversión de marketing",
+        "q": "¿Qué parte del gasto comercial produce venta?",
+        "p": "La inversión se ata al periodo y al territorio donde ocurrió la venta, separando marca, trade y material de punto de venta. El retorno se lee por vehículo, no como una bolsa única de gasto que se aprueba por costumbre.",
+        "sowhat": "Define cómo se reparte el presupuesto del siguiente ciclo entre marca, trade y piso de tienda."
+      },
+      {
+        "t": "Capacidad del equipo",
+        "q": "¿Qué sostiene la decisión cuando el análisis deja de llegar de afuera?",
+        "p": "Las reglas de decisión quedan escritas, los tableros tienen dueño y el comité que las revisa opera con cadencia fija. El equipo comercial ensaya la negociación y el pitch antes de llevarlos al cliente, con retroalimentación sobre lo que dijo, no sobre lo que recuerda haber dicho.",
+        "sowhat": "Define qué capacidad queda instalada adentro y qué se sigue operando desde afuera."
+      }
+    ],
+    "pil_eyebrow": "Cómo se resuelve",
+    "pil_h2": "Información, inteligencia<br>y ejecución en un mismo loop.",
+    "pil_p": "Ninguna de estas decisiones mejora con otro reporte. Cambia cuando la información que falta se captura en la fuente, cuando esa información se convierte en una decisión priorizada con sus trade-offs explícitos, y cuando la decisión llega al campo y se mide contra baseline para alimentar la siguiente vuelta. Ese recorrido es el motor de Imberion y está detallado en Cómo funciona.",
+    "ctastrip_h2": "¿Cuál de estas decisiones se está tomando a ciegas?",
+    "ctastrip_p": "Una llamada de treinta minutos alcanza para ubicar dónde está la brecha de señal y qué se necesita para cerrarla.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — What We Solve",
+    "hero_eyebrow": "What we solve",
+    "hero_h1": "The commercial decisions<br>Imberion enables.",
+    "hero_lead": "Revenue Growth Management (RGM) is the discipline that governs price, portfolio, promotions, commercial policy and channels, along with the operation that sustains them. Imberion works on those decisions and on what happens after they are made.",
+    "dec_eyebrow": "Decision by decision",
+    "dec_h2": "Where signal enters<br>the decision.",
+    "dec_intro": "Information is not spread evenly. The channel that bills the most is usually the least instrumented, so the highest-impact decision gets made on the poorest data. Every decision below changes with the signal available at the moment it is made.",
+    "decisiones": [
+      {
+        "t": "Price",
+        "q": "Where can price go up without losing volume?",
+        "p": "Elasticity is estimated by SKU, channel and region, then checked against competitor prices observed at the point of sale. The price list moves cell by cell instead of taking a flat increase across the catalog.",
+        "sowhat": "Sets which cells move in the next price list and which stay untouched."
+      },
+      {
+        "t": "Assortment and portfolio",
+        "q": "Which items earn the space they take?",
+        "p": "Rotation per point of sale is crossed with margin, complexity cost and cannibalization between pack sizes. That is where the SKUs kept alive by inertia show up, along with the ones that only work in one format or one region.",
+        "sowhat": "Sets what gets delisted, what enters the catalog and what stays limited to specific formats."
+      },
+      {
+        "t": "Promotions",
+        "q": "Which promotions left margin and which gave away volume that was already bought?",
+        "p": "Incremental volume is measured against baseline by mechanic, chain and week, separating new demand from forward buying that only pulls sales from one month into the previous one. The calendar stops being argued from the trade team's recollection.",
+        "sowhat": "Sets which mechanics repeat in the next calendar and which come off it."
+      },
+      {
+        "t": "Commercial terms and policy",
+        "q": "What does the accumulated list of exceptions cost?",
+        "p": "Discounts, rebates, payment terms, allowances and returns are aggregated per customer down to realized net price, which rarely matches the written policy. That base is what approval rules and thresholds by level are set on.",
+        "sowhat": "Sets which terms become standard and which stay as exceptions with an owner and an expiry date."
+      },
+      {
+        "t": "Channels and route to market",
+        "q": "What is served direct and what belongs with a distributor?",
+        "p": "Cost to serve is calculated per customer and per channel, then compared against effective coverage, visit frequency and sales per visit. In the fragmented channel that comparison requires capturing signal that does not arrive today: shelf price, presence and in-store execution.",
+        "sowhat": "Sets which customers get visited next cycle, how often, and who covers them."
+      },
+      {
+        "t": "Customers and retention",
+        "q": "Which customers are leaving before they stop buying?",
+        "p": "Churn shows up in order frequency and lines per order, both of which drop weeks before billing does. The customer base ends up sorted by value and by risk, with the likely cause of each drop visible to whoever owns the account.",
+        "sowhat": "Sets which accounts get worked this week and with what offer."
+      },
+      {
+        "t": "Marketing investment",
+        "q": "Which part of commercial spend produces sales?",
+        "p": "Investment is tied to the period and the territory where the sale happened, keeping brand, trade and point-of-sale material apart. Return is read per vehicle rather than as a single pool approved out of habit.",
+        "sowhat": "Sets how next cycle's budget splits between brand, trade and the store floor."
+      },
+      {
+        "t": "Team capability",
+        "q": "What holds a decision up once the analysis stops arriving from outside?",
+        "p": "Decision rules get written down, dashboards get an owner, and the committee that reviews them runs on a fixed cadence. The commercial team rehearses the negotiation and the pitch before taking either to a customer, with feedback on what was actually said.",
+        "sowhat": "Sets which capability stays installed inside and which keeps being operated from outside."
+      }
+    ],
+    "pil_eyebrow": "How it gets solved",
+    "pil_h2": "Information, intelligence<br>and execution in one loop.",
+    "pil_p": "None of these decisions improves with another report. They change when the missing information is captured at the source, when that information becomes a prioritized decision with explicit trade-offs, and when the decision reaches the field and is measured against baseline to feed the next round. That path is the Imberion engine, laid out in How It Works.",
+    "ctastrip_h2": "Which of these decisions is being made blind?",
+    "ctastrip_p": "Thirty minutes on a call are enough to locate where signal is missing and what it takes to close the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — O que resolvemos",
+    "hero_eyebrow": "O que resolvemos",
+    "hero_h1": "As decisões comerciais<br>que a Imberion habilita.",
+    "hero_lead": "Revenue Growth Management (RGM) é a disciplina que governa preço, portfólio, promoções, política comercial e canais, junto com a operação que os sustenta. A Imberion trabalha sobre essas decisões e sobre o que acontece depois que elas são tomadas.",
+    "dec_eyebrow": "Decisão por decisão",
+    "dec_h2": "Onde o sinal entra<br>na decisão.",
+    "dec_intro": "A informação não está distribuída de forma pareja. O canal que mais fatura costuma ser o menos instrumentado, então a decisão de maior impacto é tomada com os dados mais pobres. Cada decisão desta lista muda conforme o sinal disponível no momento em que é tomada.",
+    "decisiones": [
+      {
+        "t": "Preço",
+        "q": "Onde dá para subir preço sem perder volume?",
+        "p": "A elasticidade é estimada por SKU, canal e região, e comparada com o preço da concorrência observado no ponto de venda. A tabela se move célula a célula, em vez de um aumento linear aplicado a todo o catálogo.",
+        "sowhat": "Define quais células se movem na próxima tabela de preços e quais ficam paradas."
+      },
+      {
+        "t": "Sortimento e portfólio",
+        "q": "Quais itens merecem o espaço que ocupam?",
+        "p": "O giro por ponto de venda é cruzado com margem, custo de complexidade e canibalização entre embalagens. É aí que aparecem os SKUs mantidos por inércia e os que só funcionam em um formato ou em uma praça.",
+        "sowhat": "Define o que sai do catálogo, o que entra e o que fica restrito a certos formatos."
+      },
+      {
+        "t": "Promoções",
+        "q": "Quais promoções deixaram margem e quais deram de graça um volume que já estava comprado?",
+        "p": "O incremental é medido contra baseline por mecânica, rede e semana, separando a demanda nova da compra antecipada que apenas puxa a venda de um mês para o anterior. O calendário deixa de ser discutido pela lembrança do time de trade.",
+        "sowhat": "Define quais mecânicas se repetem no próximo calendário e quais saem dele."
+      },
+      {
+        "t": "Condições comerciais e política",
+        "q": "Quanto custa a lista de exceções acumuladas?",
+        "p": "Descontos, rebates, prazos de pagamento, verbas e devoluções são agregados por cliente até o preço líquido realizado, que quase nunca coincide com a política escrita. É sobre essa base que se fixam regras de aprovação e limites por alçada.",
+        "sowhat": "Define quais condições viram padrão e quais ficam como exceção com dono e prazo de validade."
+      },
+      {
+        "t": "Canais e rota ao mercado",
+        "q": "O que é atendido direto e o que cabe a um distribuidor?",
+        "p": "O custo de servir é calculado por cliente e por canal, e comparado com cobertura efetiva, frequência de visita e venda por visita. No canal fragmentado essa comparação exige capturar o sinal que hoje não chega: preço na gôndola, presença e execução na loja.",
+        "sowhat": "Define quais clientes são visitados no próximo ciclo, com que frequência e por quem."
+      },
+      {
+        "t": "Clientes e retenção",
+        "q": "Quais clientes estão saindo antes de parar de comprar?",
+        "p": "A perda aparece na frequência de pedido e nas linhas por pedido, que caem semanas antes do faturamento. A carteira fica ordenada por valor e por risco, com a causa provável de cada queda visível para quem atende a conta.",
+        "sowhat": "Define em quais contas se age nesta semana e com qual oferta."
+      },
+      {
+        "t": "Investimento de marketing",
+        "q": "Que parte do gasto comercial produz venda?",
+        "p": "O investimento é amarrado ao período e ao território onde a venda aconteceu, mantendo marca, trade e material de ponto de venda separados. O retorno é lido por veículo, e não como uma verba única aprovada por costume.",
+        "sowhat": "Define como o orçamento do próximo ciclo se divide entre marca, trade e piso de loja."
+      },
+      {
+        "t": "Capacidade do time",
+        "q": "O que sustenta a decisão quando a análise para de chegar de fora?",
+        "p": "As regras de decisão ficam escritas, os painéis ganham dono e o comitê que os revisa opera em cadência fixa. O time comercial ensaia a negociação e o pitch antes de levá-los ao cliente, com retorno sobre o que foi dito de fato.",
+        "sowhat": "Define qual capacidade fica instalada dentro de casa e qual segue sendo operada de fora."
+      }
+    ],
+    "pil_eyebrow": "Como se resolve",
+    "pil_h2": "Informação, inteligência<br>e execução em um mesmo loop.",
+    "pil_p": "Nenhuma dessas decisões melhora com mais um relatório. Elas mudam quando a informação que falta é capturada na fonte, quando essa informação vira uma decisão priorizada com trade-offs explícitos, e quando a decisão chega ao campo e é medida contra baseline para alimentar a volta seguinte. Esse percurso é o motor da Imberion e está detalhado em Como funciona.",
+    "ctastrip_h2": "Qual dessas decisões está sendo tomada às cegas?",
+    "ctastrip_p": "Trinta minutos de conversa bastam para localizar onde falta sinal e o que é preciso para fechar essa lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

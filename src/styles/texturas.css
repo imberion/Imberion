@@ -1,0 +1,32 @@
+/* ============================================================
+   Imberion — sistema de texturas (port de assets/css/imberion-textures-v2.css)
+
+   Los PNG viven en public/texturas/ y se sirven desde /texturas/. Son los
+   mismos archivos que hoy sirve el sitio en /assets/textures/, sin recomprimir:
+   el objetivo de CP6 es paridad visual. Sacarles peso es trabajo aparte.
+
+   Solo se portan las clases que usan las cinco rutas del núcleo. Las tres que
+   no usa nadie (section-focus, section-left-panel, section-right-panel) y el
+   divisor diagonal quedan fuera: site.css ya apaga el fondo de .imb-divider.
+   ============================================================ */
+
+:root {
+  --texture-hero-dust: url('/texturas/01_hero_dust_navy.png');
+  --texture-paper: url('/texturas/02_paper_grain_visible.png');
+  --texture-white: url('/texturas/03_white_editorial_grain.png');
+  --texture-signal-light: url('/texturas/04_directional_signal_light.png');
+  --texture-dark-flow: url('/texturas/06_dark_editorial_flow.png');
+  --texture-dark-signal: url('/texturas/07_dark_signal_field.png');
+  --texture-data-haze: url('/texturas/10_gridless_data_haze.png');
+  --texture-cta-dust: url('/texturas/11_cta_dust_navy.png');
+}
+
+.hero,
+.hero-section { background-image: var(--texture-hero-dust); background-size: cover; background-position: center; }
+.section-paper { background-image: var(--texture-paper); background-size: cover; background-position: center; }
+.section-white { background-color: #fff; background-image: var(--texture-white); background-size: cover; background-position: center; }
+.section-signal-light { background-image: var(--texture-signal-light); background-size: cover; background-position: center; }
+.section-dark-flow { background-image: var(--texture-dark-flow); background-size: cover; background-position: center; }
+.section-dark-signal { background-image: var(--texture-dark-signal); background-size: cover; background-position: center; }
+.section-data-haze { background-image: var(--texture-data-haze); background-size: cover; background-position: center; }
+.section-cta-dust { background-image: var(--texture-cta-dust); background-size: cover; background-position: center; }

@@ -1,0 +1,275 @@
+{
+  "en": {
+    "lang": "en",
+    "page_title": "How We Operate — Imberion",
+    "nav_how": "How It Works",
+    "nav_estrat": "Strategy",
+    "nav_who": "Who It's For",
+    "nav_dist": "For Distributors",
+    "nav_operate": "How We Operate",
+    "nav_cta": "Book a Call",
+    "hero_back": "← Imberion",
+    "hero_h1": "How we operate.",
+    "hero_sub": "Principles that shape how we build, decide, and execute.",
+    "principles_eyebrow": "Our principles",
+    "principles": [
+      [
+        "Impact",
+        "We exist to elevate outcomes",
+        "We are not here to deliver reports, models, or recommendations. We are here to make something better: a decision the client wouldn't have made, an approach they wouldn't have considered, growth where there was none. If nothing improves, we did nothing."
+      ],
+      [
+        "Candor",
+        "The full truth, delivered with judgment",
+        "We present what we find, not what is convenient. We don't shape conclusions to protect relationships, fees, or egos. But we choose carefully how and when to say it. Truth without judgment can cause as much damage as silence. Trust is built this way: delivery after delivery, without a single act of dishonesty."
+      ],
+      [
+        "Integrity",
+        "We do the right thing, even when it costs us",
+        "When ethics and business conflict, ethics wins. We reject work that contradicts our values. We point out what others prefer to ignore. We don't participate in decisions that harm third parties, even when they are legal and profitable. Our reputation is built on the decisions no one sees."
+      ],
+      [
+        "Alignment",
+        "Challenge without ego, execute without reservation",
+        "The best idea wins, regardless of who it comes from. Debate is rigorous, open, and without hierarchy. But once a decision is made, alignment is total and execution is immediate. There is no such thing as half-commitment."
+      ],
+      [
+        "Bias for Action",
+        "We move with what we have",
+        "We distinguish between decisions that deserve rigor and those that require speed. When it's irreversible, we think deeply and understand the implications before deciding. When it's reversible, we move with imperfect information and adjust along the way. Analysis paralysis is as costly as recklessness. The default is to act."
+      ],
+      [
+        "Focus",
+        "We know where we play",
+        "We know what we're good at and we stay there. Our value comes from depth, not breadth. We can support, connect, or manage on adjacent topics, but we don't pretend to be experts in what we're not. Taking on everything is the fastest path to irrelevance. When something is not our game, we say so, even when there is money on the table."
+      ],
+      [
+        "Excellence",
+        "The highest standard is the internal one",
+        "We demand more of ourselves than any client ever would. We give direct feedback, assume good intent, and hold each other to a level we don't negotiate. We are selective about who joins the team and who we partner with. Mistakes are expected and used: do a quick postmortem, learn, move on. But when the pattern is clear and the fit isn't there, we act fast. Every person who passes through Imberion should leave a better professional than they arrived, in judgment, in rigor, and in capability. Internal mediocrity destroys external credibility."
+      ],
+      [
+        "Continuous Improvement",
+        "We compete with our last version",
+        "We don't compete against others. Every project is an opportunity to raise what we consider good enough. The ambition is not to win a market, it is to build a firm that becomes increasingly difficult to match. That is achieved through a passion for improving, not comfort with what has been accomplished."
+      ]
+    ],
+    "practical_h2": "What this means in practice",
+    "practical": [
+      "We don't stop at recommendations, we stay until value is captured",
+      "We say what others won't, and stand behind it",
+      "We don't overextend, we partner where needed",
+      "We move fast, but never blindly",
+      "We improve every engagement, systematically"
+    ],
+    "footer_copy": "© 2026 Imberion. All rights reserved.",
+    "footer_links": [
+      [
+        "How It Works",
+        "index.html#how-it-works"
+      ],
+      [
+        "Who It's For",
+        "index.html#who"
+      ],
+      [
+        "For Distributors",
+        "distribuidores.html"
+      ],
+      [
+        "How We Operate",
+        "how-we-operate.html"
+      ],
+      [
+        "Book a Call",
+        "https://zcal.co/rodrigoimberion/30min"
+      ],
+      [
+        "Contact",
+        "mailto:hola@imberion.com"
+      ]
+    ]
+  },
+  "es": {
+    "lang": "es",
+    "page_title": "Cómo Operamos, Imberion",
+    "nav_how": "Cómo Funciona",
+    "nav_estrat": "Estrategia",
+    "nav_who": "Para Quién",
+    "nav_dist": "Para Distribuidores",
+    "nav_operate": "Cómo operamos",
+    "nav_cta": "Agendar llamada",
+    "hero_back": "← Imberion",
+    "hero_h1": "Cómo operamos.",
+    "hero_sub": "Principios que definen cómo construimos, decidimos y ejecutamos.",
+    "principles_eyebrow": "Nuestros principios",
+    "principles": [
+      [
+        "Impacto",
+        "Existimos para elevar resultados",
+        "No estamos aquí para entregar reportes, modelos o recomendaciones. Estamos para que algo mejore: que el cliente tome una decisión que no habría tomado, que opere de una forma que no habría considerado, que crezca donde no estaba creciendo. Si nada mejora, nada hicimos."
+      ],
+      [
+        "Candor",
+        "La verdad completa, dicha con prudencia",
+        "Presentamos lo que encontramos, no lo que conviene. No moldeamos conclusiones para proteger relaciones, fees o egos. Pero elegimos bien cómo y cuándo decirlo. La verdad sin juicio puede dañar tanto como el silencio. Así se construye confianza: entrega tras entrega, sin un solo acto de deshonestidad."
+      ],
+      [
+        "Integridad",
+        "Hacemos lo correcto, aunque cueste",
+        "Cuando la ética y el negocio entran en conflicto, la ética gana. Rechazamos trabajo que contradiga nuestros valores. Señalamos lo que otros prefieren ignorar. No participamos en decisiones que perjudiquen a terceros, incluso cuando son legales y rentables. Nuestra reputación se construye en las decisiones que nadie ve."
+      ],
+      [
+        "Alineación",
+        "Cuestiona sin ego, ejecuta sin reserva",
+        "La mejor idea gana, sin importar de quién venga. El debate es riguroso, abierto y sin jerarquía. Pero una vez tomada la decisión, la alineación es total y la ejecución es inmediata. No existe el compromiso a medias."
+      ],
+      [
+        "Sesgo hacia la acción",
+        "Avanzamos con lo que tenemos",
+        "Diferenciamos entre decisiones que merecen rigor y las que merecen velocidad. Cuando es irreversible, pensamos con profundidad y entendemos bien sus implicaciones. Cuando es reversible, avanzamos con información imperfecta y corregimos en el camino. La parálisis por análisis es tan costosa como la imprudencia. El default es actuar."
+      ],
+      [
+        "Enfoque",
+        "Sabemos dónde jugamos",
+        "Sabemos en qué somos buenos y nos mantenemos ahí. Nuestro valor está en la profundidad, no en la amplitud. Podemos acompañar, conectar o gestionar en temas adyacentes, pero no pretendemos ser expertos en lo que no somos. Entrarle a todo es el camino más rápido a la irrelevancia. Cuando algo no es nuestro juego, lo decimos, aunque haya dinero en la mesa."
+      ],
+      [
+        "Excelencia",
+        "El estándar más alto es el interno",
+        "Nos exigimos más de lo que cualquier cliente nos exigiría. Damos retroalimentación directa, asumimos buena intención, y nos sostenemos mutuamente a un nivel que no negociamos. Somos selectivos con quién entra al equipo y con quién nos asociamos. Los errores se esperan y se aprovechan: se hace un postmortem rápido, se aprende, y se avanza. Pero cuando el patrón es claro y el fit no está, actuamos rápido. Cada persona que pase por Imberion debe salir siendo mejor profesional de lo que llegó, en criterio, en rigor y en capacidad. La mediocridad interna destruye la credibilidad externa."
+      ],
+      [
+        "Mejora continua",
+        "Competimos con nuestra última versión",
+        "No competimos contra otros. Cada proyecto es una oportunidad de elevar lo que consideramos suficiente. La ambición no es ganar un mercado, es construir una firma cada vez más difícil de igualar. Eso se logra con pasión por mejorar, no con conformidad con lo logrado."
+      ]
+    ],
+    "practical_h2": "Lo que esto significa en la práctica",
+    "practical": [
+      "No nos detenemos en recomendaciones, nos quedamos hasta capturar valor",
+      "Decimos lo que otros no dirían, y lo sostenemos",
+      "No nos sobreextendemos, nos apoyamos en partners cuando hace falta",
+      "Nos movemos rápido, pero nunca a ciegas",
+      "Mejoramos cada engagement, de forma sistemática"
+    ],
+    "footer_copy": "© 2026 Imberion. Todos los derechos reservados.",
+    "footer_links": [
+      [
+        "Cómo Funciona",
+        "index.html#how-it-works"
+      ],
+      [
+        "Para Quién",
+        "index.html#who"
+      ],
+      [
+        "Para Distribuidores",
+        "distribuidores.html"
+      ],
+      [
+        "Cómo operamos",
+        "how-we-operate.html"
+      ],
+      [
+        "Agendar llamada",
+        "https://zcal.co/rodrigoimberion/30min"
+      ],
+      [
+        "Contacto",
+        "mailto:hola@imberion.com"
+      ]
+    ]
+  },
+  "pt": {
+    "lang": "pt",
+    "page_title": "Como Operamos, Imberion",
+    "nav_how": "Como Funciona",
+    "nav_estrat": "Estratégia",
+    "nav_who": "Para Quem",
+    "nav_dist": "Para Distribuidores",
+    "nav_operate": "Como operamos",
+    "nav_cta": "Agendar chamada",
+    "hero_back": "← Imberion",
+    "hero_h1": "Como operamos.",
+    "hero_sub": "Princípios que definem como construímos, decidimos e executamos.",
+    "principles_eyebrow": "Nossos princípios",
+    "principles": [
+      [
+        "Impacto",
+        "Existimos para elevar resultados",
+        "Não estamos aqui para entregar relatórios, modelos ou recomendações. Estamos aqui para que algo melhore: uma decisão que o cliente não teria tomado, uma abordagem que não teria considerado, crescimento onde não havia. Se nada melhorar, nada fizemos."
+      ],
+      [
+        "Candor",
+        "A verdade completa, dita com prudência",
+        "Apresentamos o que encontramos, não o que é conveniente. Não moldamos conclusões para proteger relacionamentos, fees ou egos. Mas escolhemos bem como e quando dizê-la. A verdade sem julgamento pode causar tanto dano quanto o silêncio. É assim que se constrói confiança: entrega após entrega, sem um único ato de desonestidade."
+      ],
+      [
+        "Integridade",
+        "Fazemos o que é certo, mesmo que custe",
+        "Quando ética e negócio entram em conflito, a ética vence. Recusamos trabalho que contradiga nossos valores. Apontamos o que outros preferem ignorar. Não participamos de decisões que prejudiquem terceiros, mesmo quando são legais e rentáveis. Nossa reputação se constrói nas decisões que ninguém vê."
+      ],
+      [
+        "Alinhamento",
+        "Questione sem ego, execute sem reservas",
+        "A melhor ideia vence, independentemente de quem ela venha. O debate é rigoroso, aberto e sem hierarquia. Mas uma vez tomada a decisão, o alinhamento é total e a execução é imediata. Não existe meio comprometimento."
+      ],
+      [
+        "Viés para Ação",
+        "Avançamos com o que temos",
+        "Distinguimos entre decisões que merecem rigor e as que requerem velocidade. Quando é irreversível, pensamos profundamente e entendemos as implicações antes de decidir. Quando é reversível, avançamos com informação imperfeita e ajustamos no caminho. A paralisia por análise é tão custosa quanto a imprudência. O padrão é agir."
+      ],
+      [
+        "Foco",
+        "Sabemos onde jogamos",
+        "Sabemos no que somos bons e nos mantemos nisso. Nosso valor vem da profundidade, não da amplitude. Podemos apoiar, conectar ou gerenciar em tópicos adjacentes, mas não fingimos ser especialistas no que não somos. Entrar em tudo é o caminho mais rápido para a irrelevância. Quando algo não é nosso jogo, dizemos isso, mesmo quando há dinheiro na mesa."
+      ],
+      [
+        "Excelência",
+        "O padrão mais alto é o interno",
+        "Exigimos mais de nós mesmos do que qualquer cliente jamais exigiria. Damos feedback direto, assumimos boa intenção e nos mantemos mutuamente em um nível que não negociamos. Somos seletivos quanto a quem entra na equipe e com quem nos associamos. Erros são esperados e aproveitados: faz-se um postmortem rápido, aprende-se e segue-se em frente. Mas quando o padrão é claro e o fit não está lá, agimos rápido. Cada pessoa que passe pela Imberion deve sair sendo um profissional melhor do que chegou, em julgamento, em rigor e em capacidade. A mediocridade interna destrói a credibilidade externa."
+      ],
+      [
+        "Melhoria Contínua",
+        "Competimos com nossa última versão",
+        "Não competimos contra outros. Cada projeto é uma oportunidade de elevar o que consideramos suficiente. A ambição não é ganhar um mercado, é construir uma firma cada vez mais difícil de igualar. Isso se alcança com paixão por melhorar, não com conformidade com o que foi conquistado."
+      ]
+    ],
+    "practical_h2": "O que isso significa na prática",
+    "practical": [
+      "Não paramos em recomendações, seguimos até capturar valor",
+      "Dizemos o que outros não diriam, e sustentamos isso",
+      "Não nos estendemos além do necessário, trabalhamos com parceiros quando faz sentido",
+      "Nos movemos rápido, mas nunca às cegas",
+      "Melhoramos cada engagement, de forma sistemática"
+    ],
+    "footer_copy": "© 2026 Imberion. Todos os direitos reservados.",
+    "footer_links": [
+      [
+        "Como Funciona",
+        "index.html#how-it-works"
+      ],
+      [
+        "Para Quem",
+        "index.html#who"
+      ],
+      [
+        "Para Distribuidores",
+        "distribuidores.html"
+      ],
+      [
+        "Como operamos",
+        "how-we-operate.html"
+      ],
+      [
+        "Agendar chamada",
+        "https://zcal.co/rodrigoimberion/30min"
+      ],
+      [
+        "Contato",
+        "mailto:hola@imberion.com"
+      ]
+    ]
+  }
+}

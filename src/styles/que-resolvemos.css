@@ -1,0 +1,77 @@
+/* Qué resolvemos: rejilla de decisiones + bloque de pilares. */
+
+.dec-section { padding: 118px 0; }
+.dec-section .lead { margin-top: 20px; max-width: 720px; }
+.dec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 64px;
+  background: var(--navy-12);
+  border: 1px solid var(--navy-12);
+}
+.dec-card {
+  background: var(--paper);
+  padding: 40px 34px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background .35s var(--ease);
+}
+.dec-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gray-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .5s var(--ease);
+}
+.dec-card:hover::before { transform: scaleX(1); }
+.dec-card:hover { background: var(--white); }
+.dec-num {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--navy-40);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 14px;
+}
+.dec-card h3 { font-size: clamp(1.25rem, 1.7vw, 1.5rem); line-height: 1.15; margin-bottom: 14px; }
+.dec-q {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--navy);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--navy-12);
+}
+.dec-p { font-family: var(--font-sans); font-size: 14.5px; color: var(--navy-72); line-height: 1.72; margin-bottom: 20px; }
+.dec-sowhat {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-blue);
+  line-height: 1.55;
+  letter-spacing: .01em;
+  padding-left: 14px;
+  border-left: 2px solid var(--gray-blue);
+}
+
+.pil-section { padding: 118px 0; }
+.pil-inner { max-width: 780px; }
+.pil-inner h2 { margin-top: 16px; }
+.pil-p { margin-top: 26px; font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--white-65); line-height: 1.75; }
+.pil-cta { margin-top: 34px; }
+
+@media (max-width: 860px) {
+  .dec-grid { grid-template-columns: 1fr; }
+  .dec-section, .pil-section { padding: 88px 0; }
+}

@@ -1,0 +1,311 @@
+---
+// Cómo funciona. Port de how-it-works.html: hero con el flujo A/B/C, la tira de
+// navegación pegajosa, las tres secciones de brazo con sus id (#arm-a, #arm-b,
+// #arm-c, que la home enlaza) y el cierre del loop.
+import { Image } from 'astro:assets';
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN } from '../lib/enlaces';
+import { contenido } from '../lib/meta';
+import catalogoData from '../data/catalogo.json';
+
+import mockupBrazoA from '../assets/como-funciona/arm-a-mockup.png';
+import simuladorBrazoB from '../assets/como-funciona/arm-b-simulator.png';
+import mapaClientes from '../assets/como-funciona/client_map.png';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/como-funciona.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('como-funciona', locale);
+
+const FICHAS = new Set((catalogoData.herramientas as { slug: string }[]).map((h) => h.slug));
+const fichaHref = (slug: string) => (FICHAS.has(slug) ? ruta(locale, `catalogo/${slug}`) : null);
+
+// Dos claves del copy traen enlaces embebidos a los HTML del sitio viejo. Se
+// reescriben a la ficha de catálogo equivalente; si la ficha no existe, el
+// enlace se convierte en texto plano en vez de quedar apuntando a un 404.
+const REESCRITURAS: Record<string, string> = {
+  'concierge.html': 'concierge',
+  'market-signal.html': 'market-signal',
+  'floor-signal.html': 'floor-signal',
+};
+function reescribeEnlaces(html: string): string {
+  return html.replace(/<a href="([^"]+)">(.*?)<\/a>/g, (completo, destino, texto) => {
+    const slug = REESCRITURAS[destino];
+    const href = slug ? fichaHref(slug) : null;
+    return href ? `<a href="${href}">${texto}</a>` : texto;
+  });
+}
+
+const brazosHero = [
+  { letra: 'A', ancla: 'arm-a', titulo: c.hf_a_title, sub: c.hf_a_sub, snav: c.snav_a },
+  { letra: 'B', ancla: 'arm-b', titulo: c.hf_b_title, sub: c.hf_b_sub, snav: c.snav_b },
+  { letra: 'C', ancla: 'arm-c', titulo: c.hf_c_title, sub: c.hf_c_sub, snav: c.snav_c },
+];
+
+// Iconos de línea de las fuentes de datos. Van en el mismo orden que el copy y
+// son independientes del idioma.
+const ICONOS_ESTRUCTURADAS = [
+  "<ellipse cx=\"12\" cy=\"6\" rx=\"8\" ry=\"2.5\"/><path d=\"M4 6v12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V6\"/><path d=\"M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5\"/>",
+  "<path d=\"M4 20V10l5 3V10l5 3V10l5 3v7z\"/><line x1=\"4\" y1=\"20\" x2=\"20\" y2=\"20\"/>",
+  "<path d=\"M5 8h14l-1.5 11h-11z\"/><path d=\"M9 8V5a3 3 0 0 1 6 0v3\"/>",
+  "<path d=\"M20 12a8 8 0 1 1-3-6.2\"/><path d=\"M20 4v4h-4\"/>",
+  "<line x1=\"4\" y1=\"12\" x2=\"20\" y2=\"12\"/><path d=\"M8 8v8\"/><path d=\"M14 6v12\"/>",
+  "<line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"21\"/><path d=\"M17 7.5c0-2-2-3.5-5-3.5s-5 1.5-5 3.5S9 11 12 11s5 1.5 5 3.5s-2 3.5-5 3.5s-5-1.5-5-3.5\"/>"
+];
+const ICONOS_NO_ESTRUCTURADAS = [
+  "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M5 12c1.8 0 1.8-4 3.5-4S10.3 16 12 16s1.8-8 3.5-8S17.2 12 19 12\"/>",
+  "<circle cx=\"12\" cy=\"9\" r=\"3.5\"/><path d=\"M5 20c0-3.5 3-6 7-6s7 2.5 7 6\"/>",
+  "<rect x=\"4\" y=\"4\" width=\"7\" height=\"7\"/><rect x=\"13\" y=\"4\" width=\"7\" height=\"7\"/><rect x=\"4\" y=\"13\" width=\"7\" height=\"7\"/><rect x=\"13\" y=\"13\" width=\"7\" height=\"7\"/>",
+  "<line x1=\"19\" y1=\"5\" x2=\"5\" y2=\"19\"/><circle cx=\"7.5\" cy=\"7.5\" r=\"2.8\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"2.8\"/>",
+  "<path d=\"M4 18l5-5 3 3 8-8\"/><path d=\"M15 8h5v5\"/>",
+  "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 3v18\"/><path d=\"M12 12l8-4.5\"/>"
+];
+
+const fuentesEstructuradas = [1, 2, 3, 4, 5, 6].map((n, i) => ({
+  titulo: c[`a_s${n}_title`], cuerpo: c[`a_s${n}_body`], icono: ICONOS_ESTRUCTURADAS[i],
+}));
+const fuentesNoEstructuradas = [1, 2, 3, 4, 5, 6].map((n, i) => ({
+  titulo: c[`a_u${n}_title`], cuerpo: c[`a_u${n}_body`], icono: ICONOS_NO_ESTRUCTURADAS[i],
+}));
+const pasos = [1, 2, 3, 4, 5].map((n) => ({ titulo: c[`a_p${n}_title`], cuerpo: c[`a_p${n}_body`] }));
+const itemsC = [1, 2, 3, 4, 5, 6].map((n) => ({
+  eyebrow: c[`c_i${n}_eyebrow`], h3: c[`c_i${n}_h3`], cuerpo: c[`c_i${n}_body`],
+}));
+const familias = c.b_families as { label: string; mods: string[][] }[];
+const nodosLoop = [
+  { sim: 'A', titulo: c.ln_a_title, cuerpo: c.ln_a_body, clase: '' },
+  { sim: 'B', titulo: c.ln_b_title, cuerpo: c.ln_b_body, clase: '' },
+  { sim: 'C', titulo: c.ln_c_title, cuerpo: c.ln_c_body, clase: '' },
+  { sim: '\u21BA', titulo: c.ln_l_title, cuerpo: c.ln_l_body, clase: 'loop-learning' },
+];
+
+const hrefMarketSignal = fichaHref('market-signal');
+const hrefFloorSignal = fichaHref('floor-signal');
+---
+
+<section class="page-hero hero-section como-funciona-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <a href={ruta(locale, '')} class="back">{c.hero_back}</a>
+    <div class="eyebrow">{c.hero_eyebrow}</div>
+    <h1 set:html={c.hero_h1} />
+    <p class="lead">{c.hero_lead}</p>
+    <div class="hero-flow">
+      {brazosHero.map((b) => (
+        <a href={`#${b.ancla}`} class="hero-flow-item">
+          <span class="hf-letter" aria-hidden="true">{b.letra}</span>
+          <span class="hf-label"><strong>{b.titulo}</strong><span>{b.sub}</span></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="section-nav">
+  <div class="section-nav-inner">
+    {brazosHero.map((b) => (
+      <a href={`#${b.ancla}`}><span class="section-nav-letter" aria-hidden="true">{b.letra}</span> <span>{b.snav}</span></a>
+    ))}
+  </div>
+</div>
+
+<!-- BRAZO A -->
+<section id="arm-a" class="deep-section section-a section-paper">
+  <div class="container">
+    <div class="section-arm-header">
+      <div class="arm-letter-bg" aria-hidden="true">A</div>
+      <div>
+        <div class="eyebrow">{c.a_eyebrow}</div>
+        <h2 set:html={c.a_h2} />
+        <p class="lead">{c.a_lead}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signals-head">
+      <div class="eyebrow">{c.a_signals_eyebrow}</div>
+      <h3 set:html={c.a_signals_h2} />
+      <p class="lead">{c.a_signals_lead}</p>
+    </div>
+    <div class="signals-cards">
+      <div class="signal-card"><h4>{c.a_consol_h}</h4><p>{c.a_consol_p}</p></div>
+      {hrefMarketSignal
+        ? <a class="signal-card slink" href={hrefMarketSignal}><h4>{c.a_sig_market_h}</h4><p>{c.a_sig_market_p}</p></a>
+        : <div class="signal-card"><h4>{c.a_sig_market_h}</h4><p>{c.a_sig_market_p}</p></div>}
+      {hrefFloorSignal
+        ? <a class="signal-card slink" href={hrefFloorSignal}><h4>{c.a_sig_floor_h}</h4><p>{c.a_sig_floor_p}</p></a>
+        : <div class="signal-card"><h4>{c.a_sig_floor_h}</h4><p>{c.a_sig_floor_p}</p></div>}
+    </div>
+  </div>
+
+  <div class="cf-ancho cf-mockup">
+    <Image src={mockupBrazoA} alt={c.a_signals_h2.replace(/<[^>]*>/g, ' ')} widths={[720, 1140, 2280]} sizes="(max-width: 1180px) 100vw, 1140px" loading="lazy" />
+  </div>
+
+  <div class="cf-ancho">
+    <div class="sources-grid">
+      <div class="source-col">
+        <div class="source-col-label">{c.a_struct_label}</div>
+        <div class="source-list">
+          {fuentesEstructuradas.map((f) => (
+            <div class="source-item">
+              <div class="source-icon"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true" set:html={f.icono} /></div>
+              <div class="source-body"><h4>{f.titulo}</h4><p>{f.cuerpo}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="source-col-tint">
+        <div class="source-col-label">{c.a_unstruct_label}</div>
+        <div class="source-list">
+          {fuentesNoEstructuradas.map((f) => (
+            <div class="source-item">
+              <div class="source-icon"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true" set:html={f.icono} /></div>
+              <div class="source-body"><h4>{f.titulo}</h4><p>{f.cuerpo}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="process-flow">
+      {pasos.map((p, i) => (
+        <div class="process-step">
+          <div class="step-num" aria-hidden="true">{i + 1}</div>
+          <h4>{p.titulo}</h4>
+          <p>{p.cuerpo}</p>
+        </div>
+      ))}
+    </div>
+    <div class="process-footer">{c.a_process_footer}</div>
+  </div>
+</section>
+
+<div class="arm-connector">
+  <div class="arm-connector-inner">
+    <span class="ac-label">{c.conn_ab_left}</span>
+    <div class="ac-line" aria-hidden="true"></div>
+    <span class="ac-arrow" aria-hidden="true">&#8594;</span>
+    <div class="ac-line" aria-hidden="true"></div>
+    <span class="ac-label">{c.conn_ab_right}</span>
+  </div>
+</div>
+
+<!-- BRAZO B -->
+<section id="arm-b" class="deep-section section-b section-white">
+  <div class="container">
+    <div class="section-arm-header">
+      <div class="arm-letter-bg" aria-hidden="true">B</div>
+      <div>
+        <div class="eyebrow">{c.b_eyebrow}</div>
+        <h2 set:html={c.b_h2} />
+        <p class="lead">{c.b_lead}</p>
+      </div>
+    </div>
+
+    <div class="fam-grid">
+      {familias.map((f) => (
+        <div class="fam-block">
+          <div class="fam-label">{f.label}</div>
+          {f.mods.map((m) => <div class="fam-mod"><h5>{m[0]}</h5><p>{m[1]}</p></div>)}
+        </div>
+      ))}
+    </div>
+
+    <div class="screenshot-zone">
+      <figure class="screenshot-frame">
+        <Image src={simuladorBrazoB} alt={c.b_screenshot_caption} widths={[560, 1120]} sizes="(max-width: 780px) 100vw, 560px" loading="lazy" />
+        <figcaption>{c.b_screenshot_caption}</figcaption>
+      </figure>
+      <figure class="screenshot-frame">
+        <Image src={mapaClientes} alt={c.b_ph_label} widths={[560, 1120]} sizes="(max-width: 780px) 100vw, 560px" loading="lazy" />
+        <figcaption>{c.b_ph_label}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="arm-connector">
+  <div class="arm-connector-inner">
+    <span class="ac-label">{c.conn_bc_left}</span>
+    <div class="ac-line" aria-hidden="true"></div>
+    <span class="ac-arrow" aria-hidden="true">&#8594;</span>
+    <div class="ac-line" aria-hidden="true"></div>
+    <span class="ac-label">{c.conn_bc_right}</span>
+  </div>
+</div>
+
+<!-- BRAZO C -->
+<section id="arm-c" class="deep-section section-c section-dark-flow">
+  <div class="container">
+    <div class="section-arm-header">
+      <div class="arm-letter-bg" aria-hidden="true">C</div>
+      <div>
+        <div class="eyebrow">{c.c_eyebrow}</div>
+        <h2 set:html={c.c_h2} />
+        <p class="lead">{c.c_lead}</p>
+      </div>
+    </div>
+
+    <p class="c-gap-note">{c.c_gap_note}</p>
+
+    <div class="modes-row">
+      <div class="modes-head">
+        <div class="eyebrow">{c.modes_eyebrow}</div>
+        <h3>{c.modes_h2}</h3>
+        <p class="lead">{c.modes_lead}</p>
+      </div>
+      <div class="modes-cols">
+        <div class="mode-col">
+          <div class="eyebrow">{c.modes_operators_eyebrow}</div>
+          <h4>{c.modes_operators_h}</h4>
+          <p set:html={reescribeEnlaces(c.modes_operators_p)} />
+        </div>
+        <div class="mode-col">
+          <div class="eyebrow">{c.modes_enablers_eyebrow}</div>
+          <h4>{c.modes_enablers_h}</h4>
+          <p set:html={reescribeEnlaces(c.modes_enablers_p)} />
+        </div>
+      </div>
+    </div>
+
+    <div class="c-items">
+      {itemsC.map((item) => (
+        <div class="c-item">
+          <div class="c-head">
+            <div class="eyebrow">{item.eyebrow}</div>
+            <h3>{item.h3}</h3>
+          </div>
+          <div class="c-body"><p>{item.cuerpo}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE DEL LOOP -->
+<section class="closing-loop section-cta-dust">
+  <div class="container">
+    <div class="eyebrow">{c.loop_eyebrow}</div>
+    <h2 set:html={c.loop_h2} />
+    <p class="lead">{c.loop_lead}</p>
+    <div class="loop-flow">
+      {nodosLoop.map((n) => (
+        <div class:list={['loop-node', n.clase]}>
+          <div class="loop-node-sym" aria-hidden="true">{n.sim}</div>
+          <h4>{n.titulo}</h4>
+          <p>{n.cuerpo}</p>
+        </div>
+      ))}
+    </div>
+    <div class="loop-cta">
+      <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.loop_cta_btn}</a>
+      <a href={ruta(locale, '')} class="back-link">{c.loop_back_link}</a>
+    </div>
+  </div>
+</section>

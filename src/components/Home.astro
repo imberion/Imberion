@@ -1,0 +1,462 @@
+---
+// Home. Port de index.html del root: mismas secciones, mismos id (hay deep
+// links vivos apuntando a #how-it-works, #who, #estrategia, #perspectivas) y
+// el mismo orden. Fuera queda el muro de logos de cliente, que en index.html
+// está oculto por instrucción desde 2026-06-01.
+import { Image } from 'astro:assets';
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
+import { contenido } from '../lib/meta';
+import catalogoData from '../data/catalogo.json';
+import industriasData from '../data/industrias.json';
+
+import whoFabricantes from '../assets/home/who-manufacturers.png';
+import whoDistribuidores from '../assets/home/who-distributors.png';
+import whoRetailers from '../assets/home/who-retailers.png';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/home.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('home', locale);
+
+// Lista blanca del catálogo: un tag solo se vuelve enlace si su ficha existe.
+const FICHAS = new Set((catalogoData.herramientas as { slug: string }[]).map((h) => h.slug));
+const INDUSTRIAS = new Set((industriasData.industrias as { slug: string }[]).map((i) => i.slug));
+
+// El mapeo es por posición, no por nombre: los arreglos son paralelos en los
+// tres idiomas y los nombres de los tags no lo son. null = sin ficha, sin enlace.
+const SLUGS_TAGS: Record<'a' | 'b' | 'c', (string | null)[]> = {
+  a: ['market-signal', 'floor-signal', 'integracion-de-datos', null],
+  b: [
+    'value-attribute-compass', 'price-value-compass', 'whitespace-compass',
+    'growth-bridge-analysis', null, 'pricing-y-surtido', 'promociones', 'politica-comercial',
+  ],
+  c: ['concierge', null, null, null, 'habilitadores', null, null, null],
+};
+// Mismo criterio para los chips de sector. e-Commerce y Logística todavía no
+// tienen página de industria publicada, así que van sin enlace.
+const SLUGS_SECTORES: (string | null)[] = [
+  'cpg', 'retail', null, 'b2b', null, 'construccion', 'farma',
+];
+
+function hrefFicha(slug: string | null): string | null {
+  return slug && FICHAS.has(slug) ? ruta(locale, `catalogo/${slug}`) : null;
+}
+function hrefIndustria(slug: string | null): string | null {
+  return slug && INDUSTRIAS.has(slug) ? ruta(locale, `industrias/${slug}`) : null;
+}
+
+const tags = (llave: string, mapa: (string | null)[]) =>
+  (c[llave] as string[]).map((texto, i) => ({ texto, href: hrefFicha(mapa[i] ?? null) }));
+
+const brazos = [
+  { letra: 'A', k: 'arm_a', ancla: 'arm-a', tags: tags('arm_a_tags', SLUGS_TAGS.a), parrafos: ['arm_a_p'] },
+  { letra: 'B', k: 'arm_b', ancla: 'arm-b', tags: tags('arm_b_tags', SLUGS_TAGS.b), parrafos: ['arm_b_p', 'arm_b_p2'] },
+  { letra: 'C', k: 'arm_c', ancla: 'arm-c', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
+];
+
+const imagenesWho = [whoFabricantes, whoDistribuidores, whoRetailers];
+
+// Iconos del índice de decisiones. Son independientes del idioma.
+const ICONOS_SOLVE = [
+  '<ellipse cx="12" cy="6" rx="8" ry="2.5"/><path d="M4 6v12c0 1.4 3.6 2.5 8 2.5s8 -1.1 8 -2.5V6"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8 -1.1 8 -2.5"/>',
+  '<path d="M4 18l5-5 3 3 8-8"/><path d="M15 8h5v5"/>',
+  '<line x1="12" y1="3" x2="12" y2="21"/><path d="M17 7.5c0 -2 -2 -3.5 -5 -3.5s-5 1.5 -5 3.5S9 11 12 11s5 1.5 5 3.5s-2 3.5 -5 3.5s-5 -1.5 -5 -3.5"/>',
+  '<rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/>',
+  '<path d="M5 8h14l-1.5 11h-11z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>',
+  '<path d="M4 19V9"/><path d="M9 19V5"/><path d="M14 19v-8"/><path d="M19 19v-12"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="M5 12c1.8 0 1.8 -4 3.5 -4S10.3 16 12 16s1.8 -8 3.5 -8S17.2 12 19 12"/>',
+];
+---
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="noiseCanvas" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-label"><span class="line" aria-hidden="true"></span><span>{c.hero_eyebrow}</span></div>
+      <h1 set:html={c.hero_h1} />
+      <p class="hero-sub"><span>{c.hero_p1}</span><span>{c.hero_p2}</span></p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-close">{c.hero_close}</p>
+      <div class="hero-actions">
+        <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.hero_btn1}</a>
+        <a href="#how-it-works" class="btn btn-outline">{c.hero_btn2}</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div><span>scroll</span></div>
+</section>
+
+<div class="imb-divider" aria-hidden="true"></div>
+
+<!-- LO QUE RESOLVEMOS -->
+<section class="solve-section section-paper" id="what-we-solve">
+  <div class="container">
+    <div class="solve-inner">
+      <div class="eyebrow">{c.solve_eyebrow}</div>
+      <h2 set:html={c.solve_h2} />
+      <p class="solve-body" set:html={c.solve_body} />
+      <div class="q-list">
+        {(c.solve_bullets as string[]).map((b, i) => (
+          <div class="q-row">
+            <span class="q-num">{`0${i + 1}`}</span>
+            <span class="q-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" set:html={ICONOS_SOLVE[i] ?? ''} /></span>
+            <span class="q-txt">{b}</span>
+          </div>
+        ))}
+      </div>
+      <p class="solve-bridge">{c.solve_bridge}</p>
+      <p class="solve-close">{c.solve_close}</p>
+    </div>
+    <div class="loop-panel" aria-hidden="true">
+      <span class="lp-eyebrow">{c.loop_eyebrow}</span>
+      <svg class="loop-svg" viewBox="0 0 300 300">
+        <defs>
+          <path id="ring-path" d="M150,40 a110,110 0 1,1 -0.01,0"></path>
+          <marker id="loop-ah" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6" fill="none" stroke="#8FA3B8" stroke-width="1.2"></path>
+          </marker>
+        </defs>
+        <circle cx="150" cy="150" r="132" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3" stroke-dasharray="1.1 12.3"></circle>
+        <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.4"></circle>
+        <path d="M150,40 a110,110 0 0,1 0,220" fill="none" stroke="#8FA3B8" stroke-width="1.6" marker-end="url(#loop-ah)"></path>
+        <path d="M150,260 a110,110 0 0,1 0,-220" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.2" stroke-dasharray="4 5"></path>
+        <circle r="5" fill="#fff">
+          <animateMotion dur="3.6s" repeatCount="indefinite" rotate="auto"><mpath href="#ring-path"></mpath></animateMotion>
+          <animate attributeName="opacity" values="0.35;1;0.35" dur="3.6s" repeatCount="indefinite"></animate>
+        </circle>
+        <circle cx="150" cy="40" r="22" fill="#0A1828" stroke="#fff" stroke-width="1.2"></circle>
+        <g transform="translate(138,28)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 24 24" style="color:#fff">
+            <path d="M12 3v7"></path><path d="M5 21l7-11 7 11"></path>
+            <circle cx="12" cy="10" r="1.1" fill="#fff" stroke="none"></circle>
+          </svg>
+        </g>
+        <text x="150" y="14" text-anchor="middle" class="loop-node-label">{c.loop_decision}</text>
+        <circle cx="150" cy="260" r="22" fill="#0A1828" stroke="#fff" stroke-width="1.2"></circle>
+        <g transform="translate(138,248)">
+          <svg class="ic" width="24" height="24" viewBox="0 0 24 24" style="color:#fff">
+            <path d="M5 12h10"></path><path d="M12 7l4 5 -4 5"></path><circle cx="19" cy="12" r="1.4"></circle>
+          </svg>
+        </g>
+        <text x="150" y="294" text-anchor="middle" class="loop-node-label">{c.loop_execution}</text>
+      </svg>
+      <span class="lp-cap">{c.loop_cap}</span>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRATEGIA DE CRECIMIENTO -->
+<section class="section section--dark" id="estrategia">
+  <div class="container">
+    <div class="eyebrow">{c.estrat_eyebrow}</div>
+    <h2 set:html={c.estrat_h2} />
+    <p class="lead estrat-lead">{c.estrat_lead}</p>
+    <div class="estrat-grid">
+      {(c.estrat_cards as string[][]).map((e) => (
+        <div class="estrat-card"><h4>{e[0]}</h4><p>{e[1]}</p></div>
+      ))}
+    </div>
+    <div class="estrat-cta">
+      <a href={ruta(locale, 'catalogo')} class="inline-cta white">{c.estrat_link}</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRES BRAZOS -->
+<section class="arms-section section-signal-light" id="how-it-works">
+  <div class="container">
+    <div class="eyebrow">{c.arms_eyebrow}</div>
+    <h2 set:html={c.arms_h2} />
+    <p class="lead" style="margin-top:20px;">{c.arms_lead}</p>
+    <div class="three-arms">
+      {brazos.map((b) => (
+        <div class="arm-card">
+          <div class="arm-letter" aria-hidden="true">{b.letra}</div>
+          <div class="eyebrow">{c[`${b.k}_eyebrow`]}</div>
+          <h3 set:html={c[`${b.k}_h3`]} />
+          {b.parrafos.map((p) => (c[p] ? <p>{c[p]}</p> : null))}
+          <div class="arm-tags">
+            {b.tags.map((t) => (t.href ? <a class="tag" href={t.href}>{t.texto}</a> : <span class="tag">{t.texto}</span>))}
+          </div>
+          <a href={`${ruta(locale, 'como-funciona')}#${b.ancla}`} class="arm-cta-link">{c[`${b.k}_cta`]}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section class="section section--dark section-dark-flow">
+  <div class="container">
+    <div class="eyebrow">{c.impact_eyebrow}</div>
+    <h2>{c.impact_h2}</h2>
+    <div class="impact-grid">
+      {(c.impact_stats as string[][]).map((s) => (
+        <div class="impact-card">
+          <div class="impact-num">{s[0]}<span class="impact-unit">{s[1]}</span></div>
+          <div class="impact-label">{s[2]}<span class="impact-label-sub">{s[3]}</span></div>
+        </div>
+      ))}
+    </div>
+    <p class="impact-foot">{c.impact_foot}</p>
+    <div class="impact-mid-cta">
+      <a href={ZCAL_30MIN} class="inline-cta white" target="_blank" rel="noopener">{c.impact_cta}</a>
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- PARA QUIÉN -->
+<section class="section section-white" id="who">
+  <div class="container">
+    <div class="eyebrow">{c.who_eyebrow}</div>
+    <h2 set:html={c.who_h2} />
+    <p class="lead" style="margin-top:16px;">{c.who_lead}</p>
+    <div class="serve-grid">
+      {(c.who_cards as (string | null)[][]).map((card, i) => (
+        <div class="serve-card-wrapper">
+          <div class="serve-card-image">
+            <Image src={imagenesWho[i]} alt={card[0] ?? ''} widths={[420, 840]} sizes="(max-width: 960px) 100vw, 360px" loading="lazy" />
+          </div>
+          <div class="serve-card">
+            <h3>{card[0]}</h3>
+            <p>{card[1]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- MADUREZ -->
+<section class="mat-section section-dark-signal" id="maturity">
+  <div class="container">
+    <div class="mat-inner">
+      <div>
+        <div class="eyebrow">{c.mat_eyebrow}</div>
+        <h2 set:html={c.mat_h2} />
+      </div>
+      <div class="mat-body">
+        <div class="mat-setup"><p>{c.mat_p1}</p><p>{c.mat_p2}</p></div>
+        <div class="mat-resolution-block"><p class="mat-resolution">{c.mat_p3}</p></div>
+        <div class="mat-evidence"><p>{c.mat_p4}</p><p>{c.mat_p5}</p><p>{c.mat_p6}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- CHECKUP -->
+<section class="section section-paper" id="checkup">
+  <div class="container">
+    <div class="checkup-inner">
+      <div class="eyebrow">{c.checkup_eyebrow}</div>
+      <h2>{c.checkup_h2}</h2>
+      <p class="lead">{c.checkup_lead}</p>
+      <div class="checkup-actions">
+        <a href={ZCAL_30MIN} class="btn btn-dark" target="_blank" rel="noopener">{c.checkup_cta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section class="section section-data-haze" id="sectors">
+  <div class="container">
+    <div class="eyebrow">{c.sect_eyebrow}</div>
+    <h2>{c.sect_h2}</h2>
+    <p class="lead" style="margin-top:16px;">{c.sect_lead}</p>
+    <div class="sectors-list">
+      {(c.sect_chips as string[]).map((s, i) => {
+        const href = hrefIndustria(SLUGS_SECTORES[i] ?? null);
+        return href ? <a href={href} class="sector-chip">{s} →</a> : <span class="sector-chip">{s}</span>;
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="section section-paper" id="team">
+  <div class="container">
+    <div class="eyebrow">{c.team_eyebrow}</div>
+    <h2 set:html={c.team_h2} />
+    <div class="team-inner">
+      <div class="team-text"><p>{c.team_p1}</p><p>{c.team_p2}</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- PERSPECTIVAS -->
+<section class="persp-section section-paper" id="perspectivas">
+  <div class="container">
+    <div class="eyebrow">{c.persp_eyebrow}</div>
+    <h2 set:html={c.persp_h2} />
+    <p class="lead" style="margin-top:16px;">{c.persp_lead}</p>
+    <div class="persp-grid">
+      {(c.persp_cards as string[][]).map((p) => (
+        <article class="persp-card">
+          <div class="persp-pillar">{p[0]}</div>
+          <h3>{p[1]}</h3>
+          <p>{p[2]}</p>
+          <a href={p[4]} target="_blank" rel="noopener" class="persp-link">{p[3]} <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </article>
+      ))}
+    </div>
+    <div class="persp-follow">
+      <a href="https://www.linkedin.com/company/imberion/" target="_blank" rel="noopener" class="btn btn-dark">{c.persp_cta}</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section-cta-dust">
+  <div class="container">
+    <div class="eyebrow">{c.cta_eyebrow}</div>
+    <h2 set:html={c.cta_h2} />
+    <p class="lead">{c.cta_lead}</p>
+    <div class="cta-actions">
+      <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.cta_btn1}</a>
+      <a href={CONTACTO_MAIL} class="btn btn-outline">{c.cta_btn2}</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  /* Lienzo del hero: la nube de ruido converge en una senoidal y se dispersa.
+     Portado tal cual de index.html; lo unico que se agrega es el corte por
+     prefers-reduced-motion, que el original no traia. */
+(function(){
+  if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const canvas = document.getElementById("noiseCanvas");
+  if(!canvas) return;
+  if(window.matchMedia('(max-width:960px)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, pts, frame = 0, cx0 = 0, cy0 = 0;
+  const N = 380;
+
+  // Gap center = horizontal midpoint of .hero-content (symmetric 1fr 1fr grid)
+  function updateCenter(){
+    const content = document.querySelector('.hero-content');
+    if(content){
+      const hR = canvas.getBoundingClientRect(), cR = content.getBoundingClientRect();
+      cx0 = cR.left - hR.left + cR.width * 0.5;
+      cy0 = cR.top  - hR.top  + cR.height * 0.5;
+    } else {
+      cx0 = W * 0.5; cy0 = H * 0.48;
+    }
+  }
+
+  function resize(){
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    updateCenter();
+    init();
+  }
+
+  function init(){
+    pts = [];
+    for(let i = 0; i < N; i++){
+      // Noise position: organic oval cloud around the gap center
+      const angle = Math.random() * Math.PI * 2;
+      const dist  = Math.pow(Math.random(), 0.45) * 420;
+      // Signal position: one sine-wave cycle across ~210px width
+      const u  = i / N;                         // 0 → 1
+      const sx = cx0 - (u - 0.5) * 210;
+      const sy = cy0 + Math.sin(u * Math.PI * 2) * 18;
+      pts.push({
+        nx:    cx0 + Math.cos(angle) * dist,
+        ny:    cy0 + Math.sin(angle) * dist * 0.78,
+        sx:    sx,
+        sy:    sy,
+        r:     Math.random() * 1.9 + 0.4,
+        alpha: Math.random() * 0.55 + 0.22,
+        phase: Math.random() * Math.PI * 2,
+        da:    (Math.random() - 0.5) * 2,       // drift direction x
+        db:    (Math.random() - 0.5) * 2,       // drift direction y
+      });
+    }
+    // Pre-sort by signal x so the connecting path is drawn in order
+    pts.sort((a, b) => a.sx - b.sx);
+  }
+
+  function ease(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+
+  function draw(){
+    frame++;
+    ctx.clearRect(0, 0, W, H);
+
+    // One full cycle ≈ 10 s at 60 fps
+    // 0–20 %  → noise held
+    // 20–55 % → converge
+    // 55–75 % → signal held
+    // 75–100% → disperse
+    const CYCLE = 600;
+    const ph = (frame % CYCLE) / CYCLE;
+    let conv;
+    if     (ph < 0.20) conv = 0;
+    else if(ph < 0.55) conv = ease((ph - 0.20) / 0.35);
+    else if(ph < 0.75) conv = 1;
+    else               conv = 1 - ease((ph - 0.75) / 0.25);
+
+    const t = frame * 0.009;
+
+    for(let i = 0; i < N; i++){
+      const p = pts[i];
+
+      // Noise: slow, multi-frequency organic drift
+      const ndx = p.nx + Math.sin(t * 0.65 + p.phase)           * 24
+                       + Math.sin(t * 0.28 + p.phase * 0.7)     * 10;
+      const ndy = p.ny + Math.cos(t * 0.80 + p.phase * 1.15)    * 16
+                       + Math.cos(t * 0.35 + p.phase)           *  7;
+
+      // Signal: visible breathing
+      const sdx = p.sx + Math.sin(t * 0.28 + p.phase) * 3.5;
+      const sdy = p.sy + Math.cos(t * 0.28 + p.phase) * 3.5;
+
+      const rx = ndx + (sdx - ndx) * conv;
+      const ry = ndy + (sdy - ndy) * conv;
+
+      const alpha  = p.alpha * (0.85 - conv * 0.25);
+      const radius = p.r    * (1.6  - conv * 0.55);
+      ctx.beginPath();
+      ctx.arc(rx, ry, radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + alpha.toFixed(2) + ')';
+      ctx.fill();
+    }
+
+    // Signal line: fades in as particles converge, traces the sine-wave path
+    if(conv > 0.38){
+      const lineAlpha = Math.min((conv - 0.38) / 0.28, 1) * 0.38;
+      ctx.beginPath();
+      let first = true;
+      for(let i = 0; i < N; i++){
+        const p = pts[i];
+        const px = p.sx + Math.sin(t * 0.28 + p.phase) * 3.5;
+        const py = p.sy + Math.cos(t * 0.28 + p.phase) * 3.5;
+        if(first){ ctx.moveTo(px, py); first = false; }
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,' + lineAlpha.toFixed(3) + ')';
+      ctx.lineWidth   = 1.2;
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize(); draw();
+})();
+</script>

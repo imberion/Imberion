@@ -1,0 +1,38 @@
+---
+// Contacto. Dos caminos y nada más: la agenda de Zcal y el buzón de la firma.
+import type { Locale } from '../i18n/index';
+import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
+import { contenido } from '../lib/meta';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/contacto.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('contacto', locale);
+---
+
+<section class="page-hero hero-section contacto-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="eyebrow">{c.hero_eyebrow}</div>
+    <h1 set:html={c.hero_h1} />
+    <p class="lead">{c.hero_lead}</p>
+    <a href={ZCAL_30MIN} class="btn btn-primary cta-btn-grande" target="_blank" rel="noopener">
+      {c.cta_btn} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<section class="contacto-alt section-paper">
+  <div class="container">
+    <div class="contacto-alt-inner">
+      <h2>{c.alt_h2}</h2>
+      <p>{c.alt_p}</p>
+      <a href={CONTACTO_MAIL} class="btn btn-dark">
+        {c.alt_btn} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+  </div>
+</section>

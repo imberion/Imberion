@@ -1,19 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import { meta } from '../../lib/meta';
+
+const locale = 'en' as const;
+const m = meta('home', locale);
 ---
 
-<Base
-  title="Imberion — From Noise to Signal"
-  description="Imberion. AI-enabled commercial strategy, intelligence and execution."
-  locale="en"
-  rutaEs=""
->
-  <section class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="page-hero-content">
-      <div class="eyebrow">Imberion</div>
-      <h1>From <em>noise</em><br />to signal.</h1>
-      <p class="lead">Site under construction. The shell (nav, footer and language switch) already runs on the new routing architecture.</p>
-    </div>
-  </section>
+<Base title={m.title} description={m.description} locale={locale} rutaEs="">
+  <Home locale={locale} />
 </Base>
