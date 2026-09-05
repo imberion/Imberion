@@ -1,0 +1,258 @@
+---
+// Matriz de madurez interactiva de las páginas de industria.
+//
+// Markup, clases y motor portados de retail.html (bloque .diag y el <script>
+// del final). Recibe niveles y dimensiones ya resueltos, así que no sabe nada
+// de i18n ni de qué industria está pintando.
+//
+// Las celdas son <button> y no <div>: es la misma retícula en pantalla y a
+// cambio se pueden marcar con teclado.
+
+import type { Nivel, Dimension } from '../lib/industrias';
+
+interface Props {
+  niveles: Nivel[];
+  dimensiones: Dimension[];
+  /** Encabezado de la primera columna. */
+  corner: string;
+  /** Nota al pie de la matriz. */
+  nota: string;
+  /** Etiqueta del contador ("Dimensiones marcadas"). */
+  contadorLabel: string;
+  ctaTexto: string;
+  ctaHref: string;
+}
+
+const { niveles, dimensiones, corner, nota, contadorLabel, ctaTexto, ctaHref } = Astro.props;
+
+const primero = niveles[0];
+const ultimo = niveles[niveles.length - 1];
+---
+
+<div class="diag-block" data-diag-block>
+  <div class="diag-wrap">
+    <div class="diag" data-diag>
+      <div class="diag-head">
+        <div class="diag-head-corner">{corner}</div>
+        {
+          niveles.map((lv) => (
+            <div>
+              <div class="diag-lv">{lv.titulo}</div>
+              <div class="diag-lv-d">{lv.descripcion}</div>
+            </div>
+          ))
+        }
+      </div>
+      {
+        dimensiones.map((dim) => (
+          <div class="diag-row" role="group" aria-label={dim.nombre}>
+            <div class="diag-dim">{dim.nombre}</div>
+            {dim.celdas.map((celda) => (
+              <button type="button" class="diag-cell" data-lv={celda.nivel} aria-pressed="false">
+                {celda.texto}
+              </button>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="diag-result">
+    <div class="diag-scale-wrap">
+      <div class="diag-scale"><span class="diag-marker" data-diag-marker></span></div>
+      <div class="diag-scale-labels">
+        <span>{primero.titulo}</span><span>{ultimo.titulo}</span>
+      </div>
+    </div>
+    <div class="diag-res-cta">
+      <div class="diag-count" aria-live="polite">
+        <b data-diag-count>0</b> / {dimensiones.length} · <span>{contadorLabel}</span>
+      </div>
+      <a href={ctaHref} class="btn btn-primary" target="_blank" rel="noopener">{ctaTexto}</a>
+    </div>
+  </div>
+
+  <p class="diag-note">{nota}</p>
+</div>
+
+<style>
+  .diag-wrap { margin-top: 52px; overflow-x: auto; }
+  .diag { min-width: 880px; border: 1px solid var(--navy-12); background: var(--white); }
+
+  .diag-head,
+  .diag-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; }
+
+  .diag-head { background: var(--paper-alt); border-bottom: 1px solid var(--navy-12); }
+  .diag-head > div { padding: 16px; border-left: 1px solid var(--navy-12); }
+  .diag-head > div:first-child { border-left: none; }
+
+  .diag-lv {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 5px;
+  }
+  .diag-lv-d {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--navy-72);
+    line-height: 1.45;
+  }
+  .diag-head-corner {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .diag-row { border-bottom: 1px solid var(--navy-12); }
+  .diag-row:last-child { border-bottom: none; }
+
+  .diag-dim {
+    padding: 16px;
+    background: var(--paper);
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--navy);
+    line-height: 1.15;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  /* Reset del <button> para que la celda se lea como celda y no como control. */
+  .diag-cell {
+    appearance: none;
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--navy-12);
+    border-radius: 0;
+    text-align: left;
+    padding: 15px;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    color: var(--navy-72);
+    line-height: 1.45;
+    cursor: pointer;
+    position: relative;
+    transition:
+      background .2s var(--ease),
+      color .2s var(--ease),
+      opacity .2s var(--ease);
+  }
+  .diag-cell:hover { background: var(--paper-alt); color: var(--navy); }
+  .diag-cell.sel { background: var(--navy); color: #fff; }
+  .diag-cell.sel::before {
+    content: "✓";
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 10px;
+    color: var(--slate-soft);
+  }
+  .diag-row.answered .diag-cell:not(.sel) { opacity: .4; }
+
+  .diag-result {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 28px 32px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 4px;
+  }
+  .diag-scale-wrap { flex: 1; min-width: 260px; }
+  .diag-scale { position: relative; height: 3px; background: var(--white-12); margin: 30px 0 10px; }
+  .diag-marker {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--slate-soft);
+    border: 2px solid #fff;
+    transform: translate(-50%, -50%);
+    transition: left .5s var(--ease);
+    box-shadow: 0 0 0 4px rgba(143, 163, 184, .25);
+  }
+  .diag-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--white-45);
+  }
+  .diag-res-cta { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .diag-count { font-family: var(--font-sans); font-size: 13px; color: var(--white-65); }
+  .diag-count b { color: #fff; font-variant-numeric: tabular-nums; }
+  .diag-note {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--navy-72);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-top: 16px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .diag-marker { transition: none; }
+    .diag-cell { transition: none; }
+  }
+</style>
+
+<script>
+  // Motor del mini-diagnóstico. Sin dependencias: una selección por fila y el
+  // marcador se para en el promedio de los niveles marcados.
+  document.querySelectorAll<HTMLElement>('[data-diag]').forEach((diag) => {
+    const raiz = diag.closest<HTMLElement>('[data-diag-block]');
+    if (!raiz) return;
+
+    const filas = Array.from(diag.querySelectorAll<HTMLElement>('.diag-row'));
+    const marcador = raiz.querySelector<HTMLElement>('[data-diag-marker]');
+    const contador = raiz.querySelector<HTMLElement>('[data-diag-count]');
+    if (!filas.length || !marcador || !contador) return;
+
+    const marcado = new Map<number, number>();
+
+    function actualizar() {
+      const valores = Array.from(marcado.values());
+      contador!.textContent = String(valores.length);
+      if (!valores.length) {
+        marcador!.style.left = '0%';
+        return;
+      }
+      const promedio = valores.reduce((a, b) => a + b, 0) / valores.length;
+      marcador!.style.left = `${(((promedio - 1) / 3) * 100).toFixed(1)}%`;
+    }
+
+    filas.forEach((fila, i) => {
+      const celdas = Array.from(fila.querySelectorAll<HTMLElement>('.diag-cell'));
+      celdas.forEach((celda) => {
+        celda.addEventListener('click', () => {
+          celdas.forEach((c) => {
+            c.classList.remove('sel');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          celda.classList.add('sel');
+          celda.setAttribute('aria-pressed', 'true');
+          fila.classList.add('answered');
+          marcado.set(i, Number(celda.dataset.lv));
+          actualizar();
+        });
+      });
+    });
+  });
+</script>

@@ -16,7 +16,11 @@
     "lang_label": "Idioma",
     "lang_es": "ES",
     "lang_en": "EN",
-    "lang_pt": "PT"
+    "lang_pt": "PT",
+    "industrias_title": "Imberion — Industrias",
+    "industrias_h1": "Industrias",
+    "industrias_lead": "Nueve industrias con framework de madurez comercial construido. Cada una trae su matriz de diagnóstico y las capacidades de mayor tracción.",
+    "ver_industria": "Ver industria"
   },
   "en": {
     "skip_to_content": "Skip to content",
@@ -35,7 +39,11 @@
     "lang_label": "Language",
     "lang_es": "ES",
     "lang_en": "EN",
-    "lang_pt": "PT"
+    "lang_pt": "PT",
+    "industrias_title": "Imberion — Industries",
+    "industrias_h1": "Industries",
+    "industrias_lead": "Nine industries with a commercial maturity framework already built. Each one comes with its diagnostic matrix and the capabilities with the most traction.",
+    "ver_industria": "View industry"
   },
   "pt": {
     "skip_to_content": "Ir para o conteúdo",
@@ -54,6 +62,10 @@
     "lang_label": "Idioma",
     "lang_es": "ES",
     "lang_en": "EN",
-    "lang_pt": "PT"
+    "lang_pt": "PT",
+    "industrias_title": "Imberion — Indústrias",
+    "industrias_h1": "Indústrias",
+    "industrias_lead": "Nove indústrias com framework de maturidade comercial construído. Cada uma traz sua matriz de diagnóstico e as capacidades de maior tração.",
+    "ver_industria": "Ver indústria"
   }
 }

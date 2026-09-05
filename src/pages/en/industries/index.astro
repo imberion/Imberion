@@ -1,0 +1,20 @@
+---
+// Índice de industrias.
+
+import Base from '../../../layouts/Base.astro';
+import IndiceIndustrias from '../../../components/IndiceIndustrias.astro';
+import type { Locale } from '../../../i18n/index';
+import comun from '../../../i18n/content/common.json';
+
+const locale: Locale = 'en';
+const c = comun[locale];
+---
+
+<Base
+  title={c.industrias_title}
+  description={c.industrias_lead}
+  locale={locale}
+  rutaEs="industrias"
+>
+  <IndiceIndustrias locale={locale} />
+</Base>

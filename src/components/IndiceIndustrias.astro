@@ -1,0 +1,131 @@
+---
+// Índice de industrias: el hero de página interior y las nueve tarjetas.
+// Cada tarjeta toma su bajada del hero_lead de la industria, así que el índice
+// no mantiene una segunda copia de esos textos.
+
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+import { INDUSTRIAS, contenido, titulo } from '../lib/industrias';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = comun[locale];
+
+const iconos = import.meta.glob<string>('../assets/iconos/industrias/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+const tarjetas = INDUSTRIAS.map((ind) => {
+  const clave = `../assets/iconos/industrias/${ind.icono}`;
+  const svg = iconos[clave];
+  if (!svg) {
+    throw new Error(
+      `industrias: falta el icono "${ind.icono}" de ${ind.slug} en src/assets/iconos/industrias/.`
+    );
+  }
+  return {
+    slug: ind.slug,
+    nombre: titulo(ind, locale),
+    bajada: contenido(ind, locale).txt.hero_lead,
+    href: ruta(locale, `industrias/${ind.slug}`),
+    svg,
+  };
+});
+---
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="eyebrow">Imberion</div>
+    <h1>{c.industrias_h1}</h1>
+    <p class="lead">{c.industrias_lead}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="ind-grid">
+      {
+        tarjetas.map((tj) => (
+          <a class="ind-card" href={tj.href}>
+            <span class="ind-icono" aria-hidden="true" set:html={tj.svg} />
+            <h2 class="ind-nombre">{tj.nombre}</h2>
+            <p class="ind-bajada">{tj.bajada}</p>
+            <span class="ind-cta">
+              {c.ver_industria} <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .section { padding: 96px 0; }
+  .page-hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.7; }
+  .page-hero .eyebrow { text-transform: uppercase; }
+
+  /* Misma retícula de hairline que la de capacidades de una página de industria. */
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--navy-12);
+    border: 1px solid var(--navy-12);
+  }
+  .ind-card {
+    background: var(--white);
+    padding: 32px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: background .25s var(--ease);
+  }
+  .ind-card:hover { background: var(--paper); }
+
+  .ind-icono { display: block; color: var(--gray-blue); margin-bottom: 18px; }
+  /* El SVG viene en 24x24 con viewBox: se escala sin deformarse. */
+  .ind-icono :global(svg) { width: 28px; height: 28px; display: block; }
+
+  .ind-nombre {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .ind-bajada {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--navy-72);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .ind-cta {
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--gray-blue);
+    display: inline-flex;
+    gap: 6px;
+    transition: gap .25s var(--ease), color .2s var(--ease);
+  }
+  .ind-card:hover .ind-cta { color: var(--navy); gap: 9px; }
+
+  @media (max-width: 860px) { .ind-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) {
+    .ind-grid { grid-template-columns: 1fr; }
+    .section { padding: 68px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ind-card, .ind-cta { transition: none; }
+  }
+</style>
