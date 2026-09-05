@@ -72,8 +72,8 @@ Medición para el gate de CP3: extraje los dos mecanismos de i18n de las 13 pág
 
 Estado (2026-09-05 ~22:00 CDMX). Los tres documentos viven en el Brain porque su razonamiento nombra clientes; en este repo solo entra la lista blanca resultante (`src/data/catalogo.json`, sin estados internos ni nombres). Rama `worktree-sitio-v2-spec` del Brain, carpeta `00_imberion/tooling/sitio/`:
 
-- `_proyeccion_publica_sitio_v2.md`: 32 decisiones. 15 salen, 4 salen con corte, 3 quedan como línea de familia sin ficha, 10 no salen. Resultado: 19 fichas. Seis decisiones para Rodrigo al final (Twin sin fichas, Training Signal, Price Value Compass y Scenario Engine, el MOCA, `distribuidores`, `logistics`).
-- `_cruce_industria_herramienta_sitio_v2.md`: 9 industrias × 19 herramientas. 113 celdas con evidencia `archivo:línea` en los frameworks, 18 celdas marcadas como propuesta del arquitecto. Cinco decisiones para Rodrigo.
+- `_proyeccion_publica_sitio_v2.md`: 32 decisiones. 19 salen, 4 salen con corte, 4 quedan como línea de familia sin ficha, 5 no salen. Resultado: 23 fichas (la primera versión decía 19 por error de suma; corregido 2026-09-05 ~22:20 CDMX; queda arriba del rango 18-20 del spec porque el censo dejó menos fail-closed que el `Estado:` sugería). Seis decisiones para Rodrigo al final (Twin sin fichas, Training Signal, Price Value Compass y Scenario Engine, el MOCA, `distribuidores`, `logistics`).
+- `_cruce_industria_herramienta_sitio_v2.md`: 9 industrias × 19 herramientas del motor RGM (las 4 de estrategia van como fila transversal). 113 celdas con evidencia `archivo:línea` en los frameworks, 18 celdas marcadas como propuesta del arquitecto. Cinco decisiones para Rodrigo.
 - `_slugs_sitio_v2.md`: vocabulario canónico (Brain, icono, sitio actual, URL v2), rutas del núcleo por locale y el censo de redirects que CP9 debe cubrir.
 
 Gate del spec: ninguna herramienta sin decisión (32 de 32) y cero nombre de cliente ni estado interno en lo que entra al repo del sitio (grep en `src/data/catalogo.json`: 0). Hasta que Rodrigo apruebe, CP4 construye el template y las fichas sobre esta lista como borrador; quitar una ficha es borrar una entrada del JSON.
