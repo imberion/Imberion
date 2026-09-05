@@ -121,7 +121,7 @@ a.lang-btn { display: inline-block; }
   text-transform: uppercase;
   margin-bottom: 14px;
 }
-.page-hero .lead { margin-top: 24px; max-width: 640px; }
+.page-hero .lead { margin-top: 24px; max-width: 640px; color: var(--white-65); } /* site.css lo pinta navy-72; sobre el hero navy era ilegible */
 
 /* ---------- FOOTER ---------- */
 footer .container { position: relative; z-index: 1; }
