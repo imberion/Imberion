@@ -4,6 +4,8 @@ Convención: 🔴 bloqueante · 🟡 sugerencia · ✅ resuelto. Claude (revisor
 
 Contrato: `imberion-brain/.claude/worktrees/sitio-v2-spec/00_imberion/tooling/sitio/_spec_sitio_v2.md` (§7 invariantes, §9 riesgos, §10 checkpoints) y el handoff `_handoff_fable_sitio_v2.md` en la misma carpeta.
 
+> 🔴 **NO MERGEAR ESTA RAMA A `main` ANTES DE CP9.** Hallazgo del verificador fresco (2026-09-05 ~21:50 CDMX): `vercel.json` publica solo `dist/`, y hasta que CP4-CP9 porten todas las rutas, `dist/` es un andamio. Un merge hoy reemplaza imberion.com por tres páginas de "sitio en construcción" con el smoke test en verde, porque el smoke verifica que se sirvió la carpeta correcta, no que se sirvió el sitio completo. CP9 cierra ese hueco con el censo de rutas (cero 404 contra las 13 URLs actuales) dentro del smoke. La descripción del PR debe repetir este aviso.
+
 ## Decisiones que necesitan a Rodrigo
 
 ### CP0 · Higiene bloqueada por permisos (medido 2026-09-05 ~20:10 CDMX)
@@ -66,6 +68,25 @@ Decisiones tomadas en CP1, por si el revisor las quiere voltear:
 
 Medición para el gate de CP3: extraje los dos mecanismos de i18n de las 13 páginas vivas (`const T` en `index`, `how-it-works`, `how-we-operate`; `window.IMB_I18N` en las otras 10). **3,261 strings hoja** (ES+EN+PT), no 2,799 como dice el spec; la diferencia es de método de conteo (el spec contó claves, aquí cuento hojas dentro de arrays anidados). El gate de CP3 diffea contra esta extracción, guardada como JSON por página.
 
+## CP2 · Artefactos de decisión (propuesta, NO aprobada)
+
+Estado (2026-09-05 ~22:00 CDMX). Los tres documentos viven en el Brain porque su razonamiento nombra clientes; en este repo solo entra la lista blanca resultante (`src/data/catalogo.json`, sin estados internos ni nombres). Rama `worktree-sitio-v2-spec` del Brain, carpeta `00_imberion/tooling/sitio/`:
+
+- `_proyeccion_publica_sitio_v2.md`: 32 decisiones. 15 salen, 4 salen con corte, 3 quedan como línea de familia sin ficha, 10 no salen. Resultado: 19 fichas. Seis decisiones para Rodrigo al final (Twin sin fichas, Training Signal, Price Value Compass y Scenario Engine, el MOCA, `distribuidores`, `logistics`).
+- `_cruce_industria_herramienta_sitio_v2.md`: 9 industrias × 19 herramientas. 113 celdas con evidencia `archivo:línea` en los frameworks, 18 celdas marcadas como propuesta del arquitecto. Cinco decisiones para Rodrigo.
+- `_slugs_sitio_v2.md`: vocabulario canónico (Brain, icono, sitio actual, URL v2), rutas del núcleo por locale y el censo de redirects que CP9 debe cubrir.
+
+Gate del spec: ninguna herramienta sin decisión (32 de 32) y cero nombre de cliente ni estado interno en lo que entra al repo del sitio (grep en `src/data/catalogo.json`: 0). Hasta que Rodrigo apruebe, CP4 construye el template y las fichas sobre esta lista como borrador; quitar una ficha es borrar una entrada del JSON.
+
+Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
+
+- ✅ Reprodujo build desde el commit limpio, el smoke test contra `public/` (falla) y contra `dist/` (pasa), e invariantes 5, 7, 14 y 15.
+- 🔴 El aviso de no mergear, arriba.
+- 🟡 "Brand kit clavado a un tag" se sustituyó por vendorizar; queda como desviación del gate de CP1 para que Rodrigo la ratifique.
+- 🟡 `src/styles/site.css` y `assets/css/imberion-site.css` conviven sin sincronía hasta CP9, que retira la vieja.
+- 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
+- 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
+
 ## CP3 · Migración del i18n existente
 
 Estado (2026-09-05 ~21:45 CDMX):
@@ -86,4 +107,5 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 |---|---|---|---|
 | CP0 | parcial (2 🔴 para Rodrigo) | 244917a | 2026-09-05 ~20:10 CDMX |
 | CP1 | ✅ | 1563849 | 2026-09-05 ~20:40 CDMX |
-| CP3 | ✅ | este commit | 2026-09-05 ~21:45 CDMX |
+| CP2 | propuesta, pendiente de Rodrigo | este commit (sitio) + Brain `worktree-sitio-v2-spec` | 2026-09-05 ~22:00 CDMX |
+| CP3 | ✅ | 46c2965 | 2026-09-05 ~21:45 CDMX |
