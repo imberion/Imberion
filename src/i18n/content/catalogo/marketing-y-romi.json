@@ -15,7 +15,7 @@
       "Asignación óptima de presupuesto por escenario"
     ],
     "valor_h2": "Inversión asignada por retorno real",
-    "valor_p": "El engagement premia al medio fácil de medir y no al que mueve venta, así que el presupuesto se concentra donde ya hay saturación. Al medir el aporte incremental de cada medio, el dinero se mueve al que todavía tiene retorno por capturar.",
+    "valor_p": "Medir por alcance e interacción premia al medio fácil de medir y no al que mueve venta, así que el presupuesto se concentra donde ya hay saturación. Al medir el aporte incremental de cada medio, el dinero se mueve al que todavía tiene retorno por capturar.",
     "sowhat": "Dice qué medio recibe la siguiente unidad de inversión y cuál ya llegó a su techo.",
     "industrias": [
       "retail"
@@ -43,7 +43,7 @@
       "Optimal budget allocation by scenario"
     ],
     "valor_h2": "Investment allocated by real return",
-    "valor_p": "Engagement rewards the medium that is easy to measure rather than the one that moves sales, so budget concentrates where saturation has already set in. Measuring each medium's incremental contribution moves money to the one with return still to capture.",
+    "valor_p": "Measuring by reach and interaction rewards the medium that is easy to measure rather than the one that moves sales, so budget concentrates where saturation has already set in. Measuring each medium's incremental contribution moves money to the one with return still to capture.",
     "sowhat": "It says which medium gets the next unit of investment and which one has hit its ceiling.",
     "industrias": [
       "retail"
@@ -71,7 +71,7 @@
       "Alocação ótima de orçamento por cenário"
     ],
     "valor_h2": "Investimento alocado por retorno real",
-    "valor_p": "O engajamento premia o meio fácil de medir e não o que move venda, então o orçamento se concentra onde já há saturação. Ao medir a contribuição incremental de cada meio, o dinheiro migra para o que ainda tem retorno a capturar.",
+    "valor_p": "Medir por alcance e interação premia o meio fácil de medir e não o que move venda, então o orçamento se concentra onde já há saturação. Ao medir a contribuição incremental de cada meio, o dinheiro migra para o que ainda tem retorno a capturar.",
     "sowhat": "Diz que meio recebe a próxima unidade de investimento e qual já chegou ao teto.",
     "industrias": [
       "retail"

@@ -4,9 +4,9 @@
     "nombre": "Floor Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Floor Signal · Familia Signal",
-    "hero_h1": "La tienda física, con la medición que el comercio digital ya tiene.",
+    "hero_h1": "Tráfico, recorrido y anaquel, medidos con las cámaras que ya están instaladas.",
     "hero_lead": "Floor Signal instrumenta el piso con las cámaras existentes e inteligencia artificial que corre en el propio sitio: tráfico, recorrido, atención al anaquel, prueba de producto, venta acompañante y disponibilidad. Sale dato anonimizado; no se guarda imagen.",
-    "que_hace_h2": "Lo que ocurre en el piso y hoy nadie mide",
+    "que_hace_h2": "Lo que ocurre en el piso y no llega al reporte",
     "que_hace_p": "El modelo corre sobre el video en el sitio y emite atributos y trayectorias, nunca imágenes. La tienda deja de ver solo el resultado de la caja y ve la composición del tráfico que lo produjo.",
     "que_hace_items": [
       "Composición del tráfico por hora y por tienda",
@@ -26,7 +26,7 @@
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Alimenta a Canales & Tiendas para surtido por cluster y estándares de ejecución, y a Pricing & Surtido cuando la duda del comprador se concentra en un rango de precio.",
     "ctastrip_h2": "¿Qué pasa en la tienda que el reporte de ventas no explica?",
-    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué señal existe hoy, cuál falta y qué decisión desbloquea.",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué señal existe hoy, cuál falta y qué decisión permite tomar.",
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
@@ -34,9 +34,9 @@
     "nombre": "Floor Signal",
     "familia_label": "Signal · sense",
     "hero_eyebrow": "Floor Signal · Signal family",
-    "hero_h1": "The physical store, with the measurement digital commerce already has.",
+    "hero_h1": "Traffic, path and shelf, measured with the cameras already installed.",
     "hero_lead": "Floor Signal instruments the sales floor with existing cameras and artificial intelligence running on site: traffic, path, shelf attention, product trial, attach rate and availability. The output is anonymized data; no image is stored.",
-    "que_hace_h2": "What happens on the floor and nobody measures today",
+    "que_hace_h2": "What happens on the floor and never reaches the report",
     "que_hace_p": "The model runs on the video on site and emits attributes and paths, never images. The store stops seeing only the checkout result and starts seeing the traffic composition that produced it.",
     "que_hace_items": [
       "Traffic composition by hour and by store",
@@ -56,7 +56,7 @@
     "relacion_h2": "What it connects to",
     "relacion_p": "It feeds Canales & Tiendas for cluster assortment and execution standards, and Pricing & Surtido when shopper hesitation concentrates in one price range.",
     "ctastrip_h2": "What happens in the store that the sales report does not explain?",
-    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it unlocks.",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it makes possible.",
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
@@ -64,9 +64,9 @@
     "nombre": "Floor Signal",
     "familia_label": "Signal · sentir",
     "hero_eyebrow": "Floor Signal · Família Signal",
-    "hero_h1": "A loja física, com a medição que o comércio digital já tem.",
+    "hero_h1": "Tráfego, percurso e gôndola, medidos com as câmeras já instaladas.",
     "hero_lead": "Floor Signal instrumenta o piso com as câmeras existentes e inteligência artificial rodando no próprio local: tráfego, percurso, atenção à gôndola, experimentação de produto, venda casada e disponibilidade. A saída é dado anonimizado; nenhuma imagem é guardada.",
-    "que_hace_h2": "O que acontece no piso e hoje ninguém mede",
+    "que_hace_h2": "O que acontece no piso e não chega ao relatório",
     "que_hace_p": "O modelo roda sobre o vídeo no local e emite atributos e trajetórias, nunca imagens. A loja deixa de ver só o resultado do caixa e passa a ver a composição do tráfego que o produziu.",
     "que_hace_items": [
       "Composição do tráfego por hora e por loja",
@@ -86,7 +86,7 @@
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Alimenta Canales & Tiendas para sortimento por cluster e padrões de execução, e Pricing & Surtido quando a dúvida do comprador se concentra em uma faixa de preço.",
     "ctastrip_h2": "O que acontece na loja que o relatório de vendas não explica?",
-    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso destrava.",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso permite tomar.",
     "ctastrip_btn": "Agendar chamada"
   }
 }

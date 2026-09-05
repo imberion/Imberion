@@ -4,7 +4,7 @@
     "nombre": "Market Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Market Signal · Familia Signal",
-    "hero_h1": "Información del mercado que antes era inaccesible.",
+    "hero_h1": "Precio, promoción y discurso del canal, leídos en el punto de venta.",
     "hero_lead": "Market Signal lee el punto de venta real: precios y promociones en piso, el discurso con el que el canal recomienda, competidores y entrantes, y los espacios de mercado sin cubrir. Imberion opera el levantamiento; del lado del cliente no hay operación que montar.",
     "que_hace_h2": "Cuatro lecturas del piso, vivas y por geografía",
     "que_hace_p": "El radar recorre cientos de puntos de venta y devuelve lo que ocurre en el anaquel y en el mostrador, con una frecuencia que ningún equipo de campo sostiene. La data se levanta, se depura y se mantiene viva sin conectarse a los sistemas internos del cliente, así que se habilita rápido.",
@@ -33,7 +33,7 @@
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Alimenta a Pricing & Surtido y a Política Comercial con precio y condiciones observadas en campo. Su lectura de espacios sin cubrir se profundiza en Whitespace Compass.",
     "ctastrip_h2": "¿Qué está pasando en el piso que el reporte no muestra?",
-    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué señal existe hoy, cuál falta y qué decisión desbloquea.",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué señal existe hoy, cuál falta y qué decisión permite tomar.",
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
@@ -41,7 +41,7 @@
     "nombre": "Market Signal",
     "familia_label": "Signal · sense",
     "hero_eyebrow": "Market Signal · Signal family",
-    "hero_h1": "Market information that used to be out of reach.",
+    "hero_h1": "Price, promotion and channel pitch, read at the point of sale.",
     "hero_lead": "Market Signal reads the real point of sale: in-store prices and promotions, the pitch the channel uses to recommend, competitors and new entrants, and uncovered market space. Imberion runs the collection; there is no operation to stand up on the client side.",
     "que_hace_h2": "Four readings of the sales floor, live and by geography",
     "que_hace_p": "The radar covers hundreds of points of sale and returns what happens on the shelf and at the counter, at a frequency no field team sustains. Data is collected, cleaned and kept live without connecting to the client's internal systems, so it goes live fast.",
@@ -70,7 +70,7 @@
     "relacion_h2": "What it connects to",
     "relacion_p": "It feeds Pricing & Surtido and Política Comercial with prices and terms observed in the field. Its reading of uncovered space is taken further by Whitespace Compass.",
     "ctastrip_h2": "What is happening on the floor that the report never shows?",
-    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it unlocks.",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it makes possible.",
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
@@ -78,7 +78,7 @@
     "nombre": "Market Signal",
     "familia_label": "Signal · sentir",
     "hero_eyebrow": "Market Signal · Família Signal",
-    "hero_h1": "Informação de mercado que antes era inacessível.",
+    "hero_h1": "Preço, promoção e discurso do canal, lidos no ponto de venda.",
     "hero_lead": "Market Signal lê o ponto de venda real: preços e promoções no piso, o discurso com que o canal recomenda, concorrentes e entrantes, e os espaços de mercado não cobertos. A Imberion opera o levantamento; do lado do cliente não há operação a montar.",
     "que_hace_h2": "Quatro leituras do piso de venda, vivas e por geografia",
     "que_hace_p": "O radar percorre centenas de pontos de venda e devolve o que acontece na gôndola e no balcão, com uma frequência que nenhum time de campo sustenta. O dado é levantado, depurado e mantido vivo sem conexão com os sistemas internos do cliente, então entra no ar rápido.",
@@ -107,7 +107,7 @@
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Alimenta Pricing & Surtido e Política Comercial com preços e condições observados em campo. A leitura de espaços não cobertos é aprofundada em Whitespace Compass.",
     "ctastrip_h2": "O que acontece no piso que o relatório não mostra?",
-    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso destrava.",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso permite tomar.",
     "ctastrip_btn": "Agendar chamada"
   }
 }
