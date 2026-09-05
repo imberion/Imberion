@@ -66,9 +66,24 @@ Decisiones tomadas en CP1, por si el revisor las quiere voltear:
 
 Medición para el gate de CP3: extraje los dos mecanismos de i18n de las 13 páginas vivas (`const T` en `index`, `how-it-works`, `how-we-operate`; `window.IMB_I18N` en las otras 10). **3,261 strings hoja** (ES+EN+PT), no 2,799 como dice el spec; la diferencia es de método de conteo (el spec contó claves, aquí cuento hojas dentro de arrays anidados). El gate de CP3 diffea contra esta extracción, guardada como JSON por página.
 
+## CP3 · Migración del i18n existente
+
+Estado (2026-09-05 ~21:45 CDMX):
+
+- ✅ Los dos mecanismos (`const T` en 3 páginas, `window.IMB_I18N` en 10) extraídos a `src/i18n/pages/<slug>.json` con claves, orden y valores byte a byte (HTML inline y entidades incluidos).
+- ✅ Gate `npm run i18n:gate` reproducido en esta sesión: 3,261 hojas en origen, 3,261 en destino, 0 faltantes, 0 distintas, 0 páginas sin JSON, 0 JSON huérfanos. El gate re-extrae desde los HTML viejos (que siguen en el root hasta CP9) y compara; falla con código 1 ante una sola diferencia.
+- ✅ Riesgo 🟡 §9 (clave faltante rinde español bajo `/en/`): 0 claves de ES sin equivalente en EN o PT en las 13 páginas. El cargador `t(page, locale)` hace fallback a ES **por clave** y avisa en DEV con la ruta exacta, para que un hueco futuro no pase en silencio.
+- ✅ Extractor determinista (mismo SHA agregado en dos corridas); el gate importa el mismo parser en vez de duplicarlo. `npm run build` limpio.
+- 🟡 `astro check` no corrió: pide `@astrojs/check` y `typescript`, que no se instalaron para no ampliar el árbol. `index.ts` compila dentro del build. Se puede agregar en CP4 si el template lo necesita.
+
+Regla registrada en `src/i18n/README.md`: los JSON de `pages/` son la migración literal y no se editan a mano mientras existan los HTML de origen; el contenido nuevo (CP4-CP6) va en `src/i18n/content/`.
+
+Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artefactos de decisión) está redactado como propuesta en el Brain y se registra abajo cuando cierre.
+
 ## Registro de checkpoints
 
 | CP | Estado | Commit | Medido |
 |---|---|---|---|
 | CP0 | parcial (2 🔴 para Rodrigo) | 244917a | 2026-09-05 ~20:10 CDMX |
-| CP1 | ✅ | este commit | 2026-09-05 ~20:40 CDMX |
+| CP1 | ✅ | 1563849 | 2026-09-05 ~20:40 CDMX |
+| CP3 | ✅ | este commit | 2026-09-05 ~21:45 CDMX |

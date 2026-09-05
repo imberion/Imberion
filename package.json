@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "i18n:extraer": "node scripts/i18n_extraer.mjs",
+    "i18n:gate": "node scripts/i18n_gate.mjs"
   },
   "dependencies": {
     "astro": "^7.3.1"
