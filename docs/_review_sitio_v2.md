@@ -87,6 +87,20 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
 
+## CP4 · Template de catálogo y fichas
+
+Estado (2026-09-05 ~23:15 CDMX):
+
+- ✅ `/catalogo` + 23 fichas × 3 locales (72 rutas) construyen limpio; verificado en un checkout detached del commit, sin el trabajo en curso de otros agentes: 75 páginas.
+- ✅ Shell compartido (CP4a): nav y pie portados con las mismas clases, selector de idioma que navega a la página equivalente, canonical y hreflang por locale, helper de rutas con 9 casos verdes.
+- ✅ Gate de la lista blanca: `src/lib/catalogo.ts` tumba el build si a un slug le falta JSON o clave (probado borrando `promociones.json`). Gate i18n verde sin cambios. Grep de `temisa|flexi|axo|presales|Estado:|04_skills` sobre `dist/`: 0.
+- ✅ Copy de las 23 fichas redactado desde el catálogo canónico con el filtro del §7.1 y sin cifras (las fichas viejas de Market Signal, Floor Signal y Concierge traían números de ejemplo; se sustituyeron por el mecanismo). Segunda persona: 0 en 24 archivos × 3 locales. Screenshots vistos: índice completo, ficha ES/EN/PT.
+- 🟡 Defecto del shell hallado por el agente de catálogo: `.lead` sale navy sobre navy en cualquier `page-hero` (el CSS vendorizado lo pinta en `navy-72` y los HTML viejos lo corregían por página). El catálogo lo corrige localmente; el arreglo de fondo va en `shell.css` y se aplica al cerrar CP5/CP6, cuando nadie más edite ese archivo.
+- 🟡 La intro de la familia Twin y la línea de familia sin ficha son idénticas; el índice omite la repetición con un guardia. Al aprobar CP2, decidir si se diferencian.
+- 🟡 Growth Hacking y Marketing & ROMI solo aplican a retail según el cruce; en la ficha se ven con un solo chip de industria. Es dato del cruce, no error de template.
+
+Decisión tomada: cada template lleva su CSS con scope de Astro (secciones, franja CTA, rejillas) en vez de crecer `shell.css`, para no chocar entre agentes en paralelo. CP7 puede consolidarlo.
+
 ## CP3 · Migración del i18n existente
 
 Estado (2026-09-05 ~21:45 CDMX):
@@ -109,3 +123,4 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP1 | ✅ | 1563849 | 2026-09-05 ~20:40 CDMX |
 | CP2 | propuesta, pendiente de Rodrigo | este commit (sitio) + Brain `worktree-sitio-v2-spec` | 2026-09-05 ~22:00 CDMX |
 | CP3 | ✅ | 46c2965 | 2026-09-05 ~21:45 CDMX |
+| CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
