@@ -3,7 +3,7 @@
 ## De dónde salen los JSON
 
 `pages/<slug>.json` es la migración literal de las traducciones que el sitio
-viejo llevaba embebidas en cada HTML del root, con dos mecanismos:
+viejo llevaba embebidas en cada HTML, con dos mecanismos:
 
 - `const T = { ... }` en `index.html`, `how-it-works.html` y `how-we-operate.html`.
 - `window.IMB_I18N = { ... }` en las otras 10 páginas.
@@ -20,8 +20,9 @@ Total migrado: 13 páginas, 3261 strings hoja.
 npm run i18n:extraer
 ```
 
-`scripts/i18n_extraer.mjs` vuelve a leer los HTML del root y reescribe los 13
-JSON. Es determinista: dos corridas seguidas producen el mismo output.
+`scripts/i18n_extraer.mjs` vuelve a leer los HTML congelados en
+`scripts/i18n_origen/` y reescribe los 13 JSON. Es determinista: dos corridas
+seguidas producen el mismo output.
 
 ## Qué hace el gate
 
@@ -29,8 +30,8 @@ JSON. Es determinista: dos corridas seguidas producen el mismo output.
 npm run i18n:gate
 ```
 
-`scripts/i18n_gate.mjs` re-extrae las traducciones desde los HTML viejos en
-memoria y las compara contra `pages/*.json`. Por página y locale, cada hoja
+`scripts/i18n_gate.mjs` re-extrae las traducciones desde los HTML congelados
+en `scripts/i18n_origen/`, en memoria, y las compara contra `pages/*.json`. Por página y locale, cada hoja
 (ruta de clave completa, con índices de array) tiene que existir con el mismo
 valor. Reporta hojas en origen, hojas en destino, faltantes y distintas, y sale
 con código 1 si aparece una sola. Perder strings en esta migración es el peor
@@ -43,11 +44,14 @@ faltan en inglés o portugués: una clave así rendiría texto en español bajo
 ## Regla de edición
 
 Los JSON de `pages/` no se editan a mano. Son la copia fiel del sitio viejo y
-solo cambian regenerándolos, hasta que CP9 retire los HTML del root. Mientras
-tanto el gate protege esa equivalencia y una edición manual lo pone en rojo.
+solo cambian regenerándolos desde `scripts/i18n_origen/`. El gate protege esa
+equivalencia y una edición manual lo pone en rojo.
 
-El contenido nuevo de CP4 a CP6 vive en `content/`, carpeta que todavía no
-existe y que el gate no toca.
+CP9b retiró el sitio viejo del root del repo. Los 13 HTML sobreviven congelados
+en `scripts/i18n_origen/` para que el gate siga teniendo contra qué comparar,
+con su propio README: no se sirven y no se editan.
+
+El contenido nuevo vive en `content/`, carpeta que el gate no toca.
 
 ## Cargador
 

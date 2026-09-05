@@ -4,7 +4,7 @@ Convención: 🔴 bloqueante · 🟡 sugerencia · ✅ resuelto. Claude (revisor
 
 Contrato: `imberion-brain/.claude/worktrees/sitio-v2-spec/00_imberion/tooling/sitio/_spec_sitio_v2.md` (§7 invariantes, §9 riesgos, §10 checkpoints) y el handoff `_handoff_fable_sitio_v2.md` en la misma carpeta.
 
-> 🔴 **NO MERGEAR ESTA RAMA A `main` ANTES DE CP9.** Hallazgo del verificador fresco (2026-09-05 ~21:50 CDMX): `vercel.json` publica solo `dist/`, y hasta que CP4-CP9 porten todas las rutas, `dist/` es un andamio. Un merge hoy reemplaza imberion.com por tres páginas de "sitio en construcción" con el smoke test en verde, porque el smoke verifica que se sirvió la carpeta correcta, no que se sirvió el sitio completo. CP9 cierra ese hueco con el censo de rutas (cero 404 contra las 13 URLs actuales) dentro del smoke. La descripción del PR debe repetir este aviso.
+> 🔴 **NO MERGEAR ESTA RAMA A `main` HASTA QUE RODRIGO APRUEBE CP2 Y CP9 CIERRE.** Desde CP9a el smoke recorre el censo de 51 rutas, así que el andamio ya no pasaría en verde; el aviso sigue porque la lista blanca y el copy nuevo siguen sin aprobación. Hallazgo del verificador fresco (2026-09-05 ~21:50 CDMX): `vercel.json` publica solo `dist/`, y hasta que CP4-CP9 porten todas las rutas, `dist/` es un andamio. Un merge hoy reemplaza imberion.com por tres páginas de "sitio en construcción" con el smoke test en verde, porque el smoke verifica que se sirvió la carpeta correcta, no que se sirvió el sitio completo. CP9 cierra ese hueco con el censo de rutas (cero 404 contra las 13 URLs actuales) dentro del smoke. La descripción del PR debe repetir este aviso.
 
 ## Decisiones que necesitan a Rodrigo
 
@@ -87,6 +87,34 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
 
+## CP9 · Corte
+
+Estado (2026-09-06 ~01:00 CDMX):
+
+- ✅ Redirects de las 16 URLs viejas en `vercel.json` (CP9a) y smoke test de producción y de preview contra `scripts/censo_rutas.txt` (51 rutas). `robots.txt` apunta a `sitemap-index.xml`.
+- ✅ `sitemap-index.xml` + `sitemap-0.xml` con las 117 URLs vía `@astrojs/sitemap`, sin la opción `i18n` de la integración: empareja alternates por prefijo de ruta y los segmentos EN van traducidos, así que emitía hreflang incompletos (3 `en` contra 75 `es`). Los hreflang correctos ya salen de `Base.astro` en cada página.
+- ✅ `og:` (type, site_name, title, description, url, locale, image) y `twitter:card` en todas las páginas. `og.png` provisional: el lockup blanco sobre navy a 1200×630. Un banner de marca lo sustituye cuando Rodrigo elija uno de `04_marca` en Drive.
+- ✅ HubSpot (portal 51273309, el mismo que tenía solo el home) y el script de Vercel Web Analytics en las 117 páginas desde el layout.
+- ✅ Sitio viejo retirado del repo: los 13 HTML vivos quedan congelados en `scripts/i18n_origen/` (origen del gate de i18n, no se sirven); one-pagers, `serve.mjs`, `logo.png`, `assets/css`, `assets/js`, texturas no usadas y el `.pptx` de 6 MB fuera (existe en Drive `04_marca/identidad_visual/`). Worktree de 51 MB a 25 MB. Gate i18n sigue en 3261/3261.
+- ✅ `README.md` del repo reescrito para el stack nuevo.
+- 🟡 Se conservan sin tocar `assets/logos-clientes/` (39 PNG), `assets/logos-clientes-dark/` (15) y `assets/logos no en web/` (4): logos de clientes reales bajo la instrucción del 2026-06-01. Ninguno se referencia desde v2. Rodrigo decide si se quedan en el repo o van a Drive.
+- 🟡 `brand_assets/` se queda (1.7 MB: banner, logo azul, guías en markdown que el `CLAUDE.md` del repo manda leer).
+- Pendiente de CP9 que no está en esta rama: el paso 1 y 2 de la línea base de Analytics (arriba) y el secret de bypass para el smoke de preview.
+
+## CP6 · Núcleo, contenido
+
+Estado (2026-09-06 ~00:40 CDMX):
+
+- ✅ Las 5 rutas × 3 locales (15 páginas): home, qué resolvemos (nueva: ocho decisiones comerciales con pregunta, mecanismo y so-what), cómo funciona y cómo operamos (heredan su copy aprobado), contacto (nueva, corta). Build 117 páginas.
+- ✅ Segunda persona en las 15 páginas emitidas: 0. En los tres JSON heredados se reescribieron 44 strings (30 home, 11 cómo funciona, 3 cómo operamos) y todo lo demás quedó byte a byte; se reconstruye con un diff contra `src/i18n/pages/`.
+- ✅ `valida_cierre.sh` del Brain sobre los `index.html` ES de `dist/`: sin bloqueantes. Avisos: el em-dash del `<title>` (lockup permitido) y tres frases con forma de cita en el home, que son el hero ya aprobado ("No es una herramienta. No es un proyecto puntual."), donde la memoria de marca permite la excepción.
+- ✅ Invariante 5: cero referencias a `logos-clientes` en `src/`, `public/` y `dist/`; la sección de logos no se portó.
+- ✅ Pasada de edición del copy nuevo por instrucción de Rodrigo (claro, conciso, sin frases marketeras, sin tells): 54 strings en 13 archivos; registro antes/después en el Brain (`_edicion_copy_sitio_v2_2026-09-05.md`).
+- ✅ Correo de contacto: `hola@imberion.com` (el Brain lo usa 6 veces contra 1 de `hello@`, que era lo que inyectaba el JS viejo). Rodrigo confirma.
+- 🟡 El home conserva la franja de porcentajes heredada en registro de "rangos de referencia" (invariante 2, igual que el sitio actual). Es copy aprobado; no se tocó.
+- 🟡 Enlace "Ver propuesta completa" de la tarjeta Distribuidores retirado del home: no existe la ruta y `distribuidores.html` se retira con redirect (decisión 5 de la proyección).
+- 🟡 Texturas movidas a `public/texturas/` tal cual (11 MB, mismo peso que hoy); optimizarlas es CP8.
+
 ## CP5 · Template de industria
 
 Estado (2026-09-05 ~23:40 CDMX):
@@ -136,3 +164,7 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP3 | ✅ | 46c2965 | 2026-09-05 ~21:45 CDMX |
 | CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
 | CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
+| CP6 | ✅ (copy pendiente de aprobación) | 1994c33 + ad2114b | 2026-09-06 ~00:40 CDMX |
+| CP7 | bloqueado (referencia visual) | | |
+| CP8 | pendiente (video de producto: decisión de Rodrigo; texturas sin optimizar) | | |
+| CP9 | ✅ salvo lo que depende de Rodrigo | 9e102c3 + este commit | 2026-09-06 ~01:00 CDMX |

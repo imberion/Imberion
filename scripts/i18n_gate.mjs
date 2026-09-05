@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Gate de CP3: verifica que src/i18n/pages/*.json sea una copia byte a byte
-// de las traducciones embebidas en los HTML del sitio viejo.
+// de las traducciones embebidas en los HTML del sitio viejo, congelados en
+// scripts/i18n_origen/ (ver el README de esa carpeta).
 //
 // Re-extrae desde los HTML en memoria y compara hoja por hoja (ruta de clave
 // completa, con índices de array). Falla si hay una sola hoja faltante o distinta.

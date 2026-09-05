@@ -27,6 +27,7 @@ const {
 } = Astro.props;
 
 const c = comun[locale];
+const OG_LOCALE: Record<Locale, string> = { es: 'es_MX', en: 'en_US', pt: 'pt_BR' };
 const origen = Astro.site?.origin ?? 'https://imberion.com';
 const canonical = urlAbsoluta(origen, ruta(locale, rutaEs));
 const alternas = LOCALES_RUTA.map((l) => ({
@@ -45,6 +46,14 @@ const alternas = LOCALES_RUTA.map((l) => ({
     <link rel="canonical" href={canonical} />
     {alternas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
     <link rel="alternate" hreflang="x-default" href={urlAbsoluta(origen, ruta(LOCALE_RAIZ, rutaEs))} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Imberion" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    <meta property="og:image" content={urlAbsoluta(origen, '/brand/og.png')} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -60,5 +69,8 @@ const alternas = LOCALES_RUTA.map((l) => ({
     </main>
     <Footer locale={locale} />
     <SiteScript />
+    {/* Tracking. HubSpot es el portal de Imberion (51273309), el mismo que usaba el home viejo; ahora va en todas las páginas. El script de Vercel Web Analytics devuelve 404 en silencio hasta que se encienda en el proyecto. */}
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51273309.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
   </body>
 </html>

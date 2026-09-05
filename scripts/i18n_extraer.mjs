@@ -2,6 +2,10 @@
 // Extrae las traducciones ES/EN/PT embebidas en los HTML del sitio viejo
 // y las escribe como JSON en src/i18n/pages/<slug>.json.
 //
+// El origen es la copia congelada en scripts/i18n_origen/, no el root del repo:
+// el sitio viejo se retiró en CP9b y esos HTML solo sobreviven ahí para que el
+// gate pueda seguir comprobando que la migración es fiel.
+//
 // Dos mecanismos conviven en el sitio viejo:
 //   const T = { es: {...}, en: {...}, pt: {...} }        (index, how-it-works, how-we-operate)
 //   window.IMB_I18N = { es: {...}, en: {...}, pt: {...} } (las otras 10 páginas)
@@ -14,7 +18,9 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
-const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const SCRIPTS = path.dirname(fileURLToPath(import.meta.url));
+const RAIZ = path.resolve(SCRIPTS, '..');
+const ORIGEN = path.join(SCRIPTS, 'i18n_origen');
 const DESTINO = path.join(RAIZ, 'src', 'i18n', 'pages');
 
 const MECANISMOS = [
@@ -25,7 +31,7 @@ const MECANISMOS = [
 // Las 3 one-pagers son artefactos sueltos, no páginas del sitio.
 export function paginas() {
   return fs
-    .readdirSync(RAIZ)
+    .readdirSync(ORIGEN)
     .filter((f) => f.endsWith('.html') && !f.startsWith('imberion-one-pager'))
     .sort();
 }
@@ -52,9 +58,9 @@ function recortarObjeto(s, inicio) {
   throw new Error(`objeto sin cerrar a partir del índice ${inicio}`);
 }
 
-// Devuelve { slug, mecanismo, datos } para un archivo HTML del root.
+// Devuelve { slug, mecanismo, datos } para un archivo HTML del origen congelado.
 export function extraerArchivo(archivo) {
-  const s = fs.readFileSync(path.join(RAIZ, archivo), 'utf8');
+  const s = fs.readFileSync(path.join(ORIGEN, archivo), 'utf8');
   let mecanismo = null;
   let inicio = -1;
   for (const [nombre, re] of MECANISMOS) {
