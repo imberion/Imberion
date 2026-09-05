@@ -1,0 +1,110 @@
+{
+  "es": {
+    "__title": "Imberion — Market Sizing & Right-to-Win",
+    "nombre": "Market Sizing & Right-to-Win",
+    "familia_label": "Estrategia de Crecimiento",
+    "hero_eyebrow": "Market Sizing & Right-to-Win · Estrategia de Crecimiento",
+    "hero_h1": "El premio, cuantificado, y el derecho a ganarlo.",
+    "hero_lead": "Market Sizing & Right-to-Win dimensiona la oportunidad direccionable (mercado total, TAM; mercado servible, SAM; mercado alcanzable, SOM) por triangulación de arriba hacia abajo y de abajo hacia arriba, y evalúa el derecho a ganar en cada segmento.",
+    "que_hace_h2": "Dimensionamiento y derecho a ganar",
+    "que_hace_p": "Las dos rutas de dimensionamiento se corren por separado y se contrastan; cuando no coinciden, la diferencia se explica antes de seguir. El derecho a ganar se evalúa contra capacidades y posición actuales, no contra la ambición declarada.",
+    "que_hace_items": [
+      "Dimensionamiento de arriba hacia abajo y de abajo hacia arriba",
+      "Mercado total, servible y alcanzable",
+      "Evaluación del derecho a ganar por segmento",
+      "Mapa de dónde competir y apuestas priorizadas"
+    ],
+    "valor_h2": "Capital comprometido donde hay ventaja",
+    "valor_p": "Un mercado grande donde no hay ventaja estructural consume capital sin devolverlo, y el tamaño bruto no lo advierte. Separar el premio direccionable del premio total, y cruzarlo con capacidades reales, deja una lista corta de segmentos donde la inversión tiene defensa.",
+    "sowhat": "Dice en qué segmentos vale la pena competir antes de comprometer capital o foco.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Antecede a Market Entry & Go-to-Market, y su prioridad de segmentos se lleva a Commercial & Operating Model.",
+    "ctastrip_h2": "¿De qué tamaño es el premio que sí se puede ganar?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Mapeamos el premio, el derecho a ganar y la mejor ruta.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Market Sizing & Right-to-Win",
+    "nombre": "Market Sizing & Right-to-Win",
+    "familia_label": "Growth Strategy",
+    "hero_eyebrow": "Market Sizing & Right-to-Win · Growth Strategy",
+    "hero_h1": "The prize, quantified, and the right to win it.",
+    "hero_lead": "Market Sizing & Right-to-Win sizes the addressable opportunity (total addressable market, TAM; serviceable available market, SAM; serviceable obtainable market, SOM) through top-down and bottom-up triangulation, and assesses the right to win in each segment.",
+    "que_hace_h2": "Sizing and right to win",
+    "que_hace_p": "Both sizing routes are run separately and contrasted; when they disagree, the difference is explained before anything moves on. The right to win is assessed against current capabilities and position, not against stated ambition.",
+    "que_hace_items": [
+      "Top-down and bottom-up sizing",
+      "Total, serviceable and obtainable market",
+      "Right-to-win assessment by segment",
+      "Where-to-play map and prioritized bets"
+    ],
+    "valor_h2": "Capital committed where advantage exists",
+    "valor_p": "A large market with no structural advantage absorbs capital without returning it, and gross size never warns of that. Separating the addressable prize from the total prize, and crossing it with real capabilities, leaves a short list of segments where the investment can be defended.",
+    "sowhat": "It says which segments are worth competing in before capital or focus is committed.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It precedes Market Entry & Go-to-Market, and its segment priorities carry into Commercial & Operating Model.",
+    "ctastrip_h2": "How big is the prize that can actually be won?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We map the prize, the right to win, and the best route.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Market Sizing & Right-to-Win",
+    "nombre": "Market Sizing & Right-to-Win",
+    "familia_label": "Estratégia de Crescimento",
+    "hero_eyebrow": "Market Sizing & Right-to-Win · Estratégia de Crescimento",
+    "hero_h1": "O prêmio, quantificado, e o direito de ganhá-lo.",
+    "hero_lead": "Market Sizing & Right-to-Win dimensiona a oportunidade endereçável (mercado total, TAM; mercado servível, SAM; mercado alcançável, SOM) por triangulação de cima para baixo e de baixo para cima, e avalia o direito de ganhar em cada segmento.",
+    "que_hace_h2": "Dimensionamento e direito de ganhar",
+    "que_hace_p": "As duas rotas de dimensionamento rodam separadamente e são contrastadas; quando não coincidem, a diferença é explicada antes de seguir. O direito de ganhar é avaliado contra capacidades e posição atuais, não contra a ambição declarada.",
+    "que_hace_items": [
+      "Dimensionamento de cima para baixo e de baixo para cima",
+      "Mercado total, servível e alcançável",
+      "Avaliação do direito de ganhar por segmento",
+      "Mapa de onde competir e apostas priorizadas"
+    ],
+    "valor_h2": "Capital comprometido onde há vantagem",
+    "valor_p": "Um mercado grande sem vantagem estrutural consome capital sem devolvê-lo, e o tamanho bruto não avisa. Separar o prêmio endereçável do prêmio total, e cruzá-lo com capacidades reais, deixa uma lista curta de segmentos onde o investimento tem defesa.",
+    "sowhat": "Diz em que segmentos vale a pena competir antes de comprometer capital ou foco.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Antecede Market Entry & Go-to-Market, e a prioridade de segmentos segue para Commercial & Operating Model.",
+    "ctastrip_h2": "De que tamanho é o prêmio que dá para ganhar?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Mapeamos o prêmio, o direito de ganhar e a melhor rota.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

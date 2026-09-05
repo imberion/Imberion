@@ -1,0 +1,110 @@
+{
+  "es": {
+    "__title": "Imberion — Value-Attribute Compass",
+    "nombre": "Value-Attribute Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Value-Attribute Compass · Familia Compass",
+    "hero_h1": "En qué atributos se compite de verdad, y cuánto vale cada uno.",
+    "hero_lead": "Value-Attribute Compass mapea los atributos de valor de un producto en importancia para el cliente contra desempeño percibido por jugador, e identifica la disposición a pagar (WTP, willingness to pay) por atributo. Es la adaptación de Imberion del MOCA (Matrix of Competitive Advantage).",
+    "que_hace_h2": "El mapa de atributos y su disposición a pagar",
+    "que_hace_p": "Cada atributo se ubica en la matriz y se contrasta con el desempeño percibido de cada competidor. Sobre ese mapa se estima cuánto está dispuesto a pagar el cliente por moverse un escalón en cada atributo.",
+    "que_hace_items": [
+      "Matriz de importancia contra desempeño percibido por jugador",
+      "Disposición a pagar por atributo",
+      "Atributos sobre-invertidos y sub-invertidos",
+      "Cruce con elasticidad observada en transacciones"
+    ],
+    "valor_h2": "La base del precio a valor",
+    "valor_p": "Un atributo caro de sostener y poco importante para el cliente se puede bajar sin perder venta. Uno importante donde la marca ya gana sostiene un premio de precio explícito y defendible frente al comprador.",
+    "sowhat": "Dice dónde dejar de invertir, dónde cobrar más y con qué argumento se sostiene el precio.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Su salida alimenta a Pricing & Surtido y se agrega en un índice dentro de Price Value Compass.",
+    "ctastrip_h2": "¿Por qué atributo paga más el cliente hoy?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Value-Attribute Compass",
+    "nombre": "Value-Attribute Compass",
+    "familia_label": "Compass · orient",
+    "hero_eyebrow": "Value-Attribute Compass · Compass family",
+    "hero_h1": "Which attributes the competition is really about, and what each one is worth.",
+    "hero_lead": "Value-Attribute Compass maps a product's value attributes on customer importance versus perceived performance by player, and identifies willingness to pay (WTP) per attribute. It is Imberion's adaptation of the MOCA (Matrix of Competitive Advantage).",
+    "que_hace_h2": "The attribute map and its willingness to pay",
+    "que_hace_p": "Each attribute is placed on the matrix and contrasted with every competitor's perceived performance. On that map, the analysis estimates how much the customer will pay to move one step up on each attribute.",
+    "que_hace_items": [
+      "Importance versus perceived performance matrix, by player",
+      "Willingness to pay per attribute",
+      "Over-invested and under-invested attributes",
+      "Cross-check with elasticity observed in transactions"
+    ],
+    "valor_h2": "The basis of value pricing",
+    "valor_p": "An attribute that is expensive to sustain and marginal to the customer can be dialed down without losing sales. One that matters, and where the brand already wins, sustains an explicit price premium that holds up in front of the buyer.",
+    "sowhat": "It says where to stop investing, where to charge more, and on what argument the price holds.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "Its output feeds Pricing & Surtido and is aggregated into an index inside Price Value Compass.",
+    "ctastrip_h2": "Which attribute does the customer actually pay more for?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Value-Attribute Compass",
+    "nombre": "Value-Attribute Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Value-Attribute Compass · Família Compass",
+    "hero_h1": "Em que atributos a concorrência realmente acontece, e quanto cada um vale.",
+    "hero_lead": "Value-Attribute Compass mapeia os atributos de valor de um produto em importância para o cliente contra desempenho percebido por player, e identifica a disposição a pagar (WTP, willingness to pay) por atributo. É a adaptação da Imberion do MOCA (Matrix of Competitive Advantage).",
+    "que_hace_h2": "O mapa de atributos e a disposição a pagar",
+    "que_hace_p": "Cada atributo é posicionado na matriz e contrastado com o desempenho percebido de cada concorrente. Sobre esse mapa se estima quanto o cliente aceita pagar para subir um degrau em cada atributo.",
+    "que_hace_items": [
+      "Matriz de importância contra desempenho percebido, por player",
+      "Disposição a pagar por atributo",
+      "Atributos com investimento excessivo e insuficiente",
+      "Cruzamento com elasticidade observada em transações"
+    ],
+    "valor_h2": "A base do preço a valor",
+    "valor_p": "Um atributo caro de sustentar e pouco importante para o cliente pode ser reduzido sem perder venda. Um atributo importante em que a marca já ganha sustenta um prêmio de preço explícito e defensável diante do comprador.",
+    "sowhat": "Diz onde parar de investir, onde cobrar mais e com que argumento o preço se sustenta.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "A saída alimenta Pricing & Surtido e é agregada em um índice dentro de Price Value Compass.",
+    "ctastrip_h2": "Por qual atributo o cliente paga mais hoje?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "es": {
+    "__title": "Imberion — Market Entry & Go-to-Market",
+    "nombre": "Market Entry & Go-to-Market",
+    "familia_label": "Estrategia de Crecimiento",
+    "hero_eyebrow": "Market Entry & Go-to-Market · Estrategia de Crecimiento",
+    "hero_h1": "Entrar, esperar o descartar, con la economía de cada ruta.",
+    "hero_lead": "Market Entry & Go-to-Market evalúa el atractivo por ocasión y segmento, la ruta al mercado, el riesgo fiscal, regulatorio y cambiario, y el modelo operativo, para una decisión de grado directivo.",
+    "que_hace_h2": "Atractivo, ruta al mercado y riesgo",
+    "que_hace_p": "El atractivo se mide dentro de cada ocasión de consumo y no sobre el mercado en bloque. Cada ruta (importación, coempaque o capacidad propia) se compara por su economía unitaria y su capital de trabajo, con el riesgo cambiario y regulatorio ya incorporado en la cifra.",
+    "que_hace_items": [
+      "Atractivo por ocasión de consumo y segmento",
+      "Comparación de rutas al mercado y su economía",
+      "Riesgo fiscal, regulatorio y cambiario en la economía unitaria",
+      "Modelo operativo de entrada",
+      "Caso de decisión: entrar, esperar o descartar"
+    ],
+    "valor_h2": "Una decisión de grado directivo",
+    "valor_p": "Un mercado atractivo en volumen puede ser inviable por la ruta de suministro disponible, y eso solo se ve al costear la ruta y no el mercado. Incorporar el riesgo cambiario a la economía unitaria evita entradas que dependen de un tipo de cambio que nadie garantizó.",
+    "sowhat": "Convierte una intención de expansión en una decisión de entrar, esperar o descartar, con su costo.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Parte del premio que cuantifica Market Sizing & Right-to-Win y entrega la ejecución a Commercial & Operating Model.",
+    "ctastrip_h2": "¿La ruta al mercado sostiene la economía del negocio?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Mapeamos el premio, el derecho a ganar y la mejor ruta.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Market Entry & Go-to-Market",
+    "nombre": "Market Entry & Go-to-Market",
+    "familia_label": "Growth Strategy",
+    "hero_eyebrow": "Market Entry & Go-to-Market · Growth Strategy",
+    "hero_h1": "Enter, wait or walk away, with the economics of each route.",
+    "hero_lead": "Market Entry & Go-to-Market assesses attractiveness by occasion and segment, route to market, fiscal, regulatory and currency risk, and the operating model, for a decision-grade call.",
+    "que_hace_h2": "Attractiveness, route to market, and risk",
+    "que_hace_p": "Attractiveness is measured inside each consumption occasion rather than over the market in bulk. Each route (import, co-packing or owned capacity) is compared on unit economics and working capital, with currency and regulatory risk already built into the figure.",
+    "que_hace_items": [
+      "Attractiveness by consumption occasion and segment",
+      "Comparison of routes to market and their economics",
+      "Fiscal, regulatory and currency risk inside unit economics",
+      "Entry operating model",
+      "Decision case: enter, wait or walk away"
+    ],
+    "valor_h2": "A decision-grade case",
+    "valor_p": "A market that looks attractive in volume can be unviable given the available supply route, and that only shows up when the route is costed rather than the market. Building currency risk into unit economics avoids entries that depend on an exchange rate nobody guaranteed.",
+    "sowhat": "It turns an expansion intent into a decision to enter, wait or walk away, with its cost attached.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It starts from the prize quantified by Market Sizing & Right-to-Win and hands execution to Commercial & Operating Model.",
+    "ctastrip_h2": "Does the route to market hold the economics of the business?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We map the prize, the right to win, and the best route.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Market Entry & Go-to-Market",
+    "nombre": "Market Entry & Go-to-Market",
+    "familia_label": "Estratégia de Crescimento",
+    "hero_eyebrow": "Market Entry & Go-to-Market · Estratégia de Crescimento",
+    "hero_h1": "Entrar, esperar ou descartar, com a economia de cada rota.",
+    "hero_lead": "Market Entry & Go-to-Market avalia a atratividade por ocasião e segmento, a rota ao mercado, o risco fiscal, regulatório e cambial, e o modelo operacional, para uma decisão de nível diretivo.",
+    "que_hace_h2": "Atratividade, rota ao mercado e risco",
+    "que_hace_p": "A atratividade é medida dentro de cada ocasião de consumo e não sobre o mercado em bloco. Cada rota (importação, coempacotamento ou capacidade própria) é comparada por economia unitária e capital de giro, com o risco cambial e regulatório já incorporado ao número.",
+    "que_hace_items": [
+      "Atratividade por ocasião de consumo e segmento",
+      "Comparação de rotas ao mercado e da economia de cada uma",
+      "Risco fiscal, regulatório e cambial na economia unitária",
+      "Modelo operacional de entrada",
+      "Caso de decisão: entrar, esperar ou descartar"
+    ],
+    "valor_h2": "Uma decisão de nível diretivo",
+    "valor_p": "Um mercado atraente em volume pode ser inviável pela rota de suprimento disponível, e isso só aparece ao custear a rota e não o mercado. Incorporar o risco cambial à economia unitária evita entradas que dependem de um câmbio que ninguém garantiu.",
+    "sowhat": "Converte uma intenção de expansão em decisão de entrar, esperar ou descartar, com o custo junto.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Parte do prêmio quantificado por Market Sizing & Right-to-Win e entrega a execução a Commercial & Operating Model.",
+    "ctastrip_h2": "A rota ao mercado sustenta a economia do negócio?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Mapeamos o prêmio, o direito de ganhar e a melhor rota.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

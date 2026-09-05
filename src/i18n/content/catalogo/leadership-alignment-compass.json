@@ -1,0 +1,95 @@
+{
+  "es": {
+    "__title": "Imberion — Leadership Alignment Compass",
+    "nombre": "Leadership Alignment Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Leadership Alignment Compass · Familia Compass",
+    "hero_h1": "Qué tanto coincide el liderazgo antes de invertir en ejecución.",
+    "hero_lead": "Leadership Alignment Compass mide el grado de alineación del equipo de liderazgo en estrategia, prioridades y dirección, y desagrega el resultado por subgrupo para ubicar dónde está la brecha.",
+    "que_hace_h2": "La medición del alineamiento, por subgrupo",
+    "que_hace_p": "El levantamiento cubre a todo el liderazgo y no a una muestra, y la lectura se corta por función, nivel y geografía. El resultado distingue las afirmaciones donde hay acuerdo real de aquellas donde el acuerdo solo existe en la junta.",
+    "que_hace_items": [
+      "Levantamiento a todo el equipo de liderazgo",
+      "Lectura por función, nivel y geografía",
+      "Brechas de prioridad y de dirección estratégica",
+      "Puntos de acuerdo aprovechables como base"
+    ],
+    "valor_h2": "La brecha resuelta antes de la ejecución",
+    "valor_p": "Un plan comercial se degrada cuando dos funciones creen que la prioridad es distinta y cada una asigna su gente en consecuencia. Ver la brecha por subgrupo permite resolverla en el foro correcto antes de comprometer presupuesto de ejecución.",
+    "sowhat": "Dice si la organización puede ejecutar el plan tal como está escrito, y con quién hay que cerrarlo antes.",
+    "industrias": [
+      "b2b",
+      "cpg",
+      "farma",
+      "retail"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Es componente de Imberion Checkup y también se toma suelto. Su lectura orienta el rediseño que hace Commercial & Operating Model.",
+    "ctastrip_h2": "¿El equipo directivo describiría la misma prioridad?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Leadership Alignment Compass",
+    "nombre": "Leadership Alignment Compass",
+    "familia_label": "Compass · orient",
+    "hero_eyebrow": "Leadership Alignment Compass · Compass family",
+    "hero_h1": "How far leadership agrees, before investing in execution.",
+    "hero_lead": "Leadership Alignment Compass measures how aligned the leadership team is on strategy, priorities and direction, and breaks the result down by subgroup to locate the gap.",
+    "que_hace_h2": "Alignment measured, by subgroup",
+    "que_hace_p": "The survey covers the whole leadership team rather than a sample, and the reading is cut by function, level and geography. The result separates statements with real agreement from those where agreement exists only in the meeting room.",
+    "que_hace_items": [
+      "Survey across the entire leadership team",
+      "Reading by function, level and geography",
+      "Gaps in priority and in strategic direction",
+      "Points of agreement usable as a base"
+    ],
+    "valor_h2": "The gap closed before execution",
+    "valor_p": "A commercial plan decays when two functions believe the priority is different and each staffs accordingly. Seeing the gap by subgroup allows it to be settled in the right forum before execution budget is committed.",
+    "sowhat": "It says whether the organization can execute the plan as written, and with whom it must be settled first.",
+    "industrias": [
+      "b2b",
+      "cpg",
+      "farma",
+      "retail"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It is a component of Imberion Checkup and is also taken on its own. Its reading guides the redesign done by Commercial & Operating Model.",
+    "ctastrip_h2": "Would the leadership team describe the same priority?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Leadership Alignment Compass",
+    "nombre": "Leadership Alignment Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Leadership Alignment Compass · Família Compass",
+    "hero_h1": "O quanto a liderança coincide, antes de investir em execução.",
+    "hero_lead": "Leadership Alignment Compass mede o grau de alinhamento do time de liderança em estratégia, prioridades e direção, e abre o resultado por subgrupo para localizar a lacuna.",
+    "que_hace_h2": "A medição do alinhamento, por subgrupo",
+    "que_hace_p": "O levantamento cobre toda a liderança e não uma amostra, e a leitura é cortada por função, nível e geografia. O resultado distingue as afirmações com acordo real daquelas em que o acordo só existe na reunião.",
+    "que_hace_items": [
+      "Levantamento com todo o time de liderança",
+      "Leitura por função, nível e geografia",
+      "Lacunas de prioridade e de direção estratégica",
+      "Pontos de acordo aproveitáveis como base"
+    ],
+    "valor_h2": "A lacuna resolvida antes da execução",
+    "valor_p": "Um plano comercial se degrada quando duas funções acreditam em prioridades diferentes e cada uma aloca gente de acordo. Ver a lacuna por subgrupo permite resolvê-la no fórum certo antes de comprometer orçamento de execução.",
+    "sowhat": "Diz se a organização consegue executar o plano como está escrito, e com quem é preciso fechá-lo antes.",
+    "industrias": [
+      "b2b",
+      "cpg",
+      "farma",
+      "retail"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "É componente do Imberion Checkup e também é contratado sozinho. A leitura orienta o redesenho feito por Commercial & Operating Model.",
+    "ctastrip_h2": "O time de liderança descreveria a mesma prioridade?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

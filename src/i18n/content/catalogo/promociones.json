@@ -1,0 +1,95 @@
+{
+  "es": {
+    "__title": "Imberion — Promociones",
+    "nombre": "Promociones",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Promociones · Familia Engine",
+    "hero_h1": "Qué promoción genera valor y cuál lo destruye.",
+    "hero_lead": "Promociones separa el volumen incremental de la canibalización antes de lanzar, y evalúa lo ya ejecutado para clasificar cada mecánica como generadora o destructora de valor.",
+    "que_hace_h2": "Incremental y canibalización, antes y después",
+    "que_hace_p": "El modelo estima qué parte del volumen promocional habría ocurrido de todos modos, qué parte se le quitó a otro producto propio y qué parte es demanda nueva. La misma lectura se aplica hacia atrás sobre el calendario ya ejecutado.",
+    "que_hace_items": [
+      "Predicción previa de incremental contra canibalización",
+      "Evaluación posterior por mecánica y por canal",
+      "Clasificación de cada promoción por valor generado",
+      "Calendario depurado y reasignación de inversión"
+    ],
+    "valor_h2": "El calendario depurado",
+    "valor_p": "Una mecánica que mueve mucho volumen puede estar comprando compras que ya iban a ocurrir, y el reporte de venta al consumidor no lo distingue. Al separarlo, la inversión sale de esa mecánica y entra en la que sí trae demanda nueva.",
+    "sowhat": "Dice qué promoción se repite, cuál se corta y cuánto presupuesto se libera al cortarla.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Su lectura previa se apoya en Scenario Engine y su resultado se verifica en Growth Bridge Analysis.",
+    "ctastrip_h2": "¿Cuántas promociones del calendario están comprando volumen que ya iba a ocurrir?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Promociones",
+    "nombre": "Promociones",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Promociones · Engine family",
+    "hero_h1": "Which promotion creates value and which destroys it.",
+    "hero_lead": "Promociones separates incremental volume from cannibalization before launch, and evaluates what has already run to classify each mechanic as value creating or value destroying.",
+    "que_hace_h2": "Incremental and cannibalization, before and after",
+    "que_hace_p": "The model estimates what share of promotional volume would have happened anyway, what share was taken from another own product, and what share is new demand. The same reading is applied backwards over the calendar already executed.",
+    "que_hace_items": [
+      "Ex-ante prediction of incremental versus cannibalization",
+      "Post-evaluation by mechanic and by channel",
+      "Classification of each promotion by value created",
+      "Cleaned calendar and reallocation of investment"
+    ],
+    "valor_h2": "A cleaned-up calendar",
+    "valor_p": "A mechanic that moves a lot of volume may be buying purchases that were going to happen anyway, and the sell-out report does not tell the difference. Once separated, investment leaves that mechanic and moves to the one that brings new demand.",
+    "sowhat": "It says which promotion repeats, which one is cut, and how much budget the cut releases.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "Its ex-ante reading leans on Scenario Engine, and its result is verified in Growth Bridge Analysis.",
+    "ctastrip_h2": "How many promotions on the calendar buy volume that was coming anyway?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Promociones",
+    "nombre": "Promociones",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Promociones · Família Engine",
+    "hero_h1": "Que promoção gera valor e qual destrói.",
+    "hero_lead": "Promociones separa o volume incremental da canibalização antes do lançamento, e avalia o que já rodou para classificar cada mecânica como geradora ou destruidora de valor.",
+    "que_hace_h2": "Incremental e canibalização, antes e depois",
+    "que_hace_p": "O modelo estima que parte do volume promocional teria acontecido de qualquer forma, que parte foi tirada de outro produto próprio e que parte é demanda nova. A mesma leitura é aplicada para trás sobre o calendário já executado.",
+    "que_hace_items": [
+      "Previsão prévia de incremental contra canibalização",
+      "Avaliação posterior por mecânica e por canal",
+      "Classificação de cada promoção pelo valor gerado",
+      "Calendário depurado e realocação de investimento"
+    ],
+    "valor_h2": "O calendário depurado",
+    "valor_p": "Uma mecânica que move muito volume pode estar comprando compras que já iriam acontecer, e o relatório de sell-out não distingue isso. Depois de separado, o investimento sai dessa mecânica e entra na que traz demanda nova.",
+    "sowhat": "Diz que promoção se repete, qual é cortada e quanto orçamento o corte libera.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "A leitura prévia se apoia no Scenario Engine e o resultado é verificado em Growth Bridge Analysis.",
+    "ctastrip_h2": "Quantas promoções do calendário compram volume que já viria?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

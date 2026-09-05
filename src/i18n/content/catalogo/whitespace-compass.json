@@ -1,0 +1,107 @@
+{
+  "es": {
+    "__title": "Imberion — Whitespace Compass",
+    "nombre": "Whitespace Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Whitespace Compass · Familia Compass",
+    "hero_h1": "Dónde hay demanda y no hay oferta propia.",
+    "hero_lead": "Whitespace Compass identifica combinaciones de ocasión, segmento, canal, precio y producto donde existe demanda y no hay oferta propia, o donde no hay oferta de nadie.",
+    "que_hace_h2": "El mapa de espacios sin cubrir",
+    "que_hace_p": "El análisis cruza la demanda observada con el portafolio y la cobertura actuales, y marca las celdas vacías. Cada espacio se califica por tamaño, fricción de entrada y ajuste con lo que la empresa ya sabe hacer.",
+    "que_hace_items": [
+      "Mapa de ocasión, segmento, canal y rango de precio",
+      "Celdas con demanda y sin oferta propia",
+      "Celdas sin oferta de ningún jugador",
+      "Prioridad por tamaño y fricción de entrada"
+    ],
+    "valor_h2": "Crecer por donde hay menos fricción",
+    "valor_p": "Un espacio donde el mercado ya compra a otro se cubre extendiendo surtido, que es barato y rápido. Un espacio que nadie atiende exige producto nuevo, que es caro. Separar los dos evita gastar en el segundo mientras el primero sigue abierto.",
+    "sowhat": "Ordena las apuestas de crecimiento por lo que cuesta ocuparlas, no por su tamaño bruto.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Toma la lectura de mercado de Market Signal y entrega su prioridad a Pricing & Surtido y a Canales & Tiendas.",
+    "ctastrip_h2": "¿Dónde está la demanda que hoy nadie atiende?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Whitespace Compass",
+    "nombre": "Whitespace Compass",
+    "familia_label": "Compass · orient",
+    "hero_eyebrow": "Whitespace Compass · Compass family",
+    "hero_h1": "Where demand exists and own supply does not.",
+    "hero_lead": "Whitespace Compass identifies combinations of occasion, segment, channel, price and product where demand exists and there is no own offer, or no offer from anyone.",
+    "que_hace_h2": "The map of uncovered space",
+    "que_hace_p": "The analysis crosses observed demand with current portfolio and coverage, and marks the empty cells. Each space is scored by size, entry friction and fit with what the company already knows how to do.",
+    "que_hace_items": [
+      "Map of occasion, segment, channel and price range",
+      "Cells with demand and no own offer",
+      "Cells with no offer from any player",
+      "Priority by size and entry friction"
+    ],
+    "valor_h2": "Growing where friction is lowest",
+    "valor_p": "A space where the market already buys from someone else is covered by extending assortment, which is cheap and fast. A space nobody serves demands a new product, which is expensive. Telling the two apart avoids spending on the second while the first is still open.",
+    "sowhat": "It ranks growth bets by what it costs to occupy them, not by their gross size.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It takes the market reading from Market Signal and hands its priorities to Pricing & Surtido and Canales & Tiendas.",
+    "ctastrip_h2": "Where is the demand that nobody serves today?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Whitespace Compass",
+    "nombre": "Whitespace Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Whitespace Compass · Família Compass",
+    "hero_h1": "Onde há demanda e não há oferta própria.",
+    "hero_lead": "Whitespace Compass identifica combinações de ocasião, segmento, canal, preço e produto onde existe demanda e não há oferta própria, ou onde não há oferta de ninguém.",
+    "que_hace_h2": "O mapa dos espaços não cobertos",
+    "que_hace_p": "A análise cruza a demanda observada com o portfólio e a cobertura atuais, e marca as células vazias. Cada espaço é qualificado por tamanho, fricção de entrada e aderência ao que a empresa já sabe fazer.",
+    "que_hace_items": [
+      "Mapa de ocasião, segmento, canal e faixa de preço",
+      "Células com demanda e sem oferta própria",
+      "Células sem oferta de nenhum player",
+      "Prioridade por tamanho e fricção de entrada"
+    ],
+    "valor_h2": "Crescer por onde há menos fricção",
+    "valor_p": "Um espaço onde o mercado já compra de outro se cobre estendendo o sortimento, o que é barato e rápido. Um espaço que ninguém atende exige produto novo, o que é caro. Separar os dois evita gastar no segundo enquanto o primeiro segue aberto.",
+    "sowhat": "Ordena as apostas de crescimento pelo que custa ocupá-las, não pelo tamanho bruto.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Toma a leitura de mercado de Market Signal e entrega a prioridade a Pricing & Surtido e Canales & Tiendas.",
+    "ctastrip_h2": "Onde está a demanda que hoje ninguém atende?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

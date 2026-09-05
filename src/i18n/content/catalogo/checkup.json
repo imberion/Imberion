@@ -1,0 +1,110 @@
+{
+  "es": {
+    "__title": "Imberion — Imberion Checkup",
+    "nombre": "Imberion Checkup",
+    "familia_label": "Puerta de entrada",
+    "hero_eyebrow": "Imberion Checkup · Puerta de entrada",
+    "hero_h1": "El diagnóstico que ordena por dónde empezar.",
+    "hero_lead": "Imberion Checkup es la puerta de entrada: radiografía la operación comercial (estrategia, embudo, precios, gobierno y formas de trabajo), arma una matriz de iniciativas con caso de negocio y deja un manual de ejecución.",
+    "que_hace_h2": "Radiografía, matriz de iniciativas y manual",
+    "que_hace_p": "El diagnóstico cubre la operación comercial completa y termina en una matriz donde cada iniciativa lleva su costo, su retorno estimado y su dificultad de ejecución. La alineación del liderazgo se mide como parte del ejercicio, porque determina qué iniciativas pueden ejecutarse.",
+    "que_hace_items": [
+      "Radiografía de estrategia, embudo, precios, gobierno y formas de trabajo",
+      "Medición de la alineación del liderazgo",
+      "Matriz de iniciativas con caso de negocio por iniciativa",
+      "Manual de ejecución accionable"
+    ],
+    "valor_h2": "Un diagnóstico que se puede aprobar",
+    "valor_p": "Una lista de hallazgos no mueve nada mientras no diga cuál iniciativa va primero y cuánto cuesta. Poner costo y retorno a cada una convierte el diagnóstico en una secuencia que un comité puede aprobar en una sesión.",
+    "sowhat": "Entrega el orden de las iniciativas y el caso de negocio de cada una, con una entrada de bajo riesgo.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Incluye Leadership Alignment Compass y suele derivar en Pricing & Surtido, Política Comercial o Habilitadores, según lo que muestre la matriz.",
+    "ctastrip_h2": "¿Cuál es la primera iniciativa que hay que ejecutar?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos la operación comercial actual y por dónde conviene empezar.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Imberion Checkup",
+    "nombre": "Imberion Checkup",
+    "familia_label": "Entry point",
+    "hero_eyebrow": "Imberion Checkup · Entry point",
+    "hero_h1": "The diagnosis that sets the order of what comes first.",
+    "hero_lead": "Imberion Checkup is the entry point: it x-rays the commercial operation (strategy, funnel, pricing, governance and ways of working), builds an initiative matrix with a business case, and leaves an actionable playbook.",
+    "que_hace_h2": "X-ray, initiative matrix, and playbook",
+    "que_hace_p": "The diagnosis covers the whole commercial operation and ends in a matrix where each initiative carries its cost, its estimated return and its execution difficulty. Leadership alignment is measured as part of the exercise, because it determines which initiatives can be executed at all.",
+    "que_hace_items": [
+      "X-ray of strategy, funnel, pricing, governance and ways of working",
+      "Measurement of leadership alignment",
+      "Initiative matrix with a business case per initiative",
+      "Actionable execution playbook"
+    ],
+    "valor_h2": "A diagnosis that can be approved",
+    "valor_p": "A list of findings moves nothing until it says which initiative goes first and what it costs. Putting cost and return on each one turns the diagnosis into a sequence a committee can approve in one session.",
+    "sowhat": "It delivers the order of initiatives and the business case for each, through a low-risk entry.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It includes Leadership Alignment Compass and usually leads into Pricing & Surtido, Política Comercial or Habilitadores, depending on what the matrix shows.",
+    "ctastrip_h2": "Which initiative should be executed first?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review the current commercial operation and where it makes sense to start.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Imberion Checkup",
+    "nombre": "Imberion Checkup",
+    "familia_label": "Porta de entrada",
+    "hero_eyebrow": "Imberion Checkup · Porta de entrada",
+    "hero_h1": "O diagnóstico que define por onde começar.",
+    "hero_lead": "Imberion Checkup é a porta de entrada: faz a radiografia da operação comercial (estratégia, funil, preços, governança e formas de trabalho), monta uma matriz de iniciativas com business case e deixa um manual de execução.",
+    "que_hace_h2": "Radiografia, matriz de iniciativas e manual",
+    "que_hace_p": "O diagnóstico cobre a operação comercial completa e termina em uma matriz onde cada iniciativa carrega custo, retorno estimado e dificuldade de execução. O alinhamento da liderança é medido como parte do exercício, porque determina que iniciativas conseguem ser executadas.",
+    "que_hace_items": [
+      "Radiografia de estratégia, funil, preços, governança e formas de trabalho",
+      "Medição do alinhamento da liderança",
+      "Matriz de iniciativas com business case por iniciativa",
+      "Manual de execução acionável"
+    ],
+    "valor_h2": "Um diagnóstico que dá para aprovar",
+    "valor_p": "Uma lista de achados não move nada enquanto não disser que iniciativa vem primeiro e quanto custa. Colocar custo e retorno em cada uma transforma o diagnóstico em uma sequência que um comitê aprova em uma sessão.",
+    "sowhat": "Entrega a ordem das iniciativas e o business case de cada uma, com uma entrada de baixo risco.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Inclui Leadership Alignment Compass e costuma desdobrar em Pricing & Surtido, Política Comercial ou Habilitadores, conforme o que a matriz mostrar.",
+    "ctastrip_h2": "Qual é a primeira iniciativa a executar?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos a operação comercial atual e por onde convém começar.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

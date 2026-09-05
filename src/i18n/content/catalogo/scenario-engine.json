@@ -1,0 +1,110 @@
+{
+  "es": {
+    "__title": "Imberion — Scenario Engine",
+    "nombre": "Scenario Engine",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Scenario Engine · Familia Engine",
+    "hero_h1": "El trade-off completo antes de comprometer la jugada.",
+    "hero_lead": "Scenario Engine simula combinaciones de jugadas a través de varias palancas (precio, promoción, surtido, inversión) y compara escenarios completos, no palanca por palanca.",
+    "que_hace_h2": "Escenarios completos, no palanca por palanca",
+    "que_hace_p": "Cada escenario reúne los supuestos de las palancas que se moverían juntas y devuelve su efecto en volumen, ingreso y margen. La comparación ocurre entre escenarios completos, así que la ganancia de una palanca nunca se lee sin el costo que provoca en otra.",
+    "que_hace_items": [
+      "Escenarios que combinan precio, promoción, surtido e inversión",
+      "Efecto en volumen, ingreso y margen por escenario",
+      "Comparación contra el escenario de no mover nada",
+      "Rango de sensibilidad sobre los supuestos críticos"
+    ],
+    "valor_h2": "El trade-off visible antes de aprobar",
+    "valor_p": "Subir precio y recortar promoción se ven bien por separado y pueden restarse entre sí cuando ocurren el mismo trimestre. Correr la combinación completa muestra qué escenario gana margen sin poner en riesgo el volumen ya comprometido.",
+    "sowhat": "Dice qué combinación de jugadas se aprueba, y qué se arriesga al aprobarla.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se monta sobre Pricing & Surtido y Promociones, y sus supuestos de mix se calibran con Growth Bridge Analysis.",
+    "ctastrip_h2": "¿Qué se arriesga con la combinación de jugadas del próximo plan?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Scenario Engine",
+    "nombre": "Scenario Engine",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Scenario Engine · Engine family",
+    "hero_h1": "The full trade-off before the play is committed.",
+    "hero_lead": "Scenario Engine simulates combinations of plays across several levers (price, promotion, assortment, investment) and compares complete scenarios rather than one lever at a time.",
+    "que_hace_h2": "Full scenarios, not lever by lever",
+    "que_hace_p": "Each scenario gathers the assumptions of the levers that would move together and returns their effect on volume, revenue and margin. Comparison happens between complete scenarios, so one lever's gain is never read without the cost it creates elsewhere.",
+    "que_hace_items": [
+      "Scenarios combining price, promotion, assortment and investment",
+      "Effect on volume, revenue and margin by scenario",
+      "Comparison against the do-nothing scenario",
+      "Sensitivity range on the critical assumptions"
+    ],
+    "valor_h2": "The trade-off visible before approval",
+    "valor_p": "Raising price and cutting promotion each look good in isolation and can cancel each other out when they land in the same quarter. Running the full combination shows which scenario gains margin without putting committed volume at risk.",
+    "sowhat": "It says which combination of plays gets approved, and what is being risked by approving it.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It sits on top of Pricing & Surtido and Promociones, and its mix assumptions are calibrated with Growth Bridge Analysis.",
+    "ctastrip_h2": "What is at risk in the next plan's combination of plays?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Scenario Engine",
+    "nombre": "Scenario Engine",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Scenario Engine · Família Engine",
+    "hero_h1": "O trade-off completo antes de comprometer a jogada.",
+    "hero_lead": "Scenario Engine simula combinações de jogadas em várias alavancas (preço, promoção, sortimento, investimento) e compara cenários completos, não alavanca por alavanca.",
+    "que_hace_h2": "Cenários completos, não alavanca por alavanca",
+    "que_hace_p": "Cada cenário reúne as premissas das alavancas que se moveriam juntas e devolve o efeito em volume, receita e margem. A comparação acontece entre cenários completos, então o ganho de uma alavanca nunca é lido sem o custo que provoca em outra.",
+    "que_hace_items": [
+      "Cenários que combinam preço, promoção, sortimento e investimento",
+      "Efeito em volume, receita e margem por cenário",
+      "Comparação contra o cenário de não mexer em nada",
+      "Faixa de sensibilidade sobre as premissas críticas"
+    ],
+    "valor_h2": "O trade-off visível antes de aprovar",
+    "valor_p": "Subir preço e cortar promoção parecem bons separadamente e podem se anular quando caem no mesmo trimestre. Rodar a combinação completa mostra que cenário ganha margem sem colocar em risco o volume já comprometido.",
+    "sowhat": "Diz que combinação de jogadas é aprovada, e o que se arrisca ao aprová-la.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Monta-se sobre Pricing & Surtido e Promociones, e as premissas de mix são calibradas com Growth Bridge Analysis.",
+    "ctastrip_h2": "O que está em risco na combinação de jogadas do próximo plano?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

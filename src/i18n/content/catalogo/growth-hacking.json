@@ -1,0 +1,86 @@
+{
+  "es": {
+    "__title": "Imberion — Growth Hacking",
+    "nombre": "Growth Hacking",
+    "familia_label": "Método transversal",
+    "hero_eyebrow": "Growth Hacking · Método transversal",
+    "hero_h1": "Evidencia en dos semanas, antes de comprometer el plan.",
+    "hero_lead": "Growth Hacking es experimentación rápida: cada hipótesis se convierte en una prueba acotada que se valida en alrededor de dos semanas, sobre adquisición, monetización o retención.",
+    "que_hace_h2": "Pruebas acotadas de dos semanas",
+    "que_hace_p": "La hipótesis se escribe con su criterio de éxito antes de correr la prueba, y la prueba se diseña al tamaño mínimo que permite decidir. Es un método que cruza etapas, así que se aplica igual a una jugada de precio que a un cambio en el flujo de compra.",
+    "que_hace_items": [
+      "Hipótesis con criterio de éxito escrito antes de la prueba",
+      "Prueba acotada a cerca de dos semanas",
+      "Lectura sobre adquisición, monetización o retención",
+      "Decisión de escalar, ajustar o descartar"
+    ],
+    "valor_h2": "Decisión con evidencia, no por jerarquía",
+    "valor_p": "Una discusión de opinión entre áreas se cierra en dos semanas con una prueba pequeña, en lugar de resolverse por jerarquía o por un estudio de tres meses. El criterio de éxito escrito de antemano evita que el resultado se reinterprete cuando incomoda.",
+    "sowhat": "Convierte una discusión abierta en una decisión con evidencia dentro del mismo mes.",
+    "industrias": [
+      "retail"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se usa para probar jugadas de Pricing & Surtido y de Promociones antes de llevarlas a toda la red.",
+    "ctastrip_h2": "¿Qué discusión lleva meses abierta sin evidencia?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos la operación comercial actual y por dónde conviene empezar.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Growth Hacking",
+    "nombre": "Growth Hacking",
+    "familia_label": "Cross-cutting method",
+    "hero_eyebrow": "Growth Hacking · Cross-cutting method",
+    "hero_h1": "Evidence in two weeks, before the plan is committed.",
+    "hero_lead": "Growth Hacking is fast experimentation: each hypothesis becomes a bounded test validated in about two weeks, on acquisition, monetization or retention.",
+    "que_hace_h2": "Two-week bounded tests",
+    "que_hace_p": "The hypothesis is written with its success criterion before the test runs, and the test is designed at the smallest size that still allows a decision. It is a method that cuts across stages, so it applies equally to a pricing play and to a change in the purchase flow.",
+    "que_hace_items": [
+      "Hypothesis with a success criterion written before the test",
+      "Test bounded to roughly two weeks",
+      "Reading on acquisition, monetization or retention",
+      "Decision to scale, adjust or drop"
+    ],
+    "valor_h2": "Decisions on evidence, not hierarchy",
+    "valor_p": "An opinion argument between functions closes in two weeks with a small test, instead of being settled by hierarchy or by a three-month study. The success criterion written in advance keeps the result from being reinterpreted when it is inconvenient.",
+    "sowhat": "It turns an open argument into an evidence-based decision within the same month.",
+    "industrias": [
+      "retail"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It is used to test plays from Pricing & Surtido and Promociones before taking them to the whole network.",
+    "ctastrip_h2": "Which argument has been open for months without evidence?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review the current commercial operation and where it makes sense to start.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Growth Hacking",
+    "nombre": "Growth Hacking",
+    "familia_label": "Método transversal",
+    "hero_eyebrow": "Growth Hacking · Método transversal",
+    "hero_h1": "Evidência em duas semanas, antes de comprometer o plano.",
+    "hero_lead": "Growth Hacking é experimentação rápida: cada hipótese vira um teste delimitado, validado em cerca de duas semanas, sobre aquisição, monetização ou retenção.",
+    "que_hace_h2": "Testes delimitados de duas semanas",
+    "que_hace_p": "A hipótese é escrita com o critério de sucesso antes de o teste rodar, e o teste é desenhado no menor tamanho que ainda permite decidir. É um método que cruza etapas, então se aplica igualmente a uma jogada de preço e a uma mudança no fluxo de compra.",
+    "que_hace_items": [
+      "Hipótese com critério de sucesso escrito antes do teste",
+      "Teste delimitado a cerca de duas semanas",
+      "Leitura sobre aquisição, monetização ou retenção",
+      "Decisão de escalar, ajustar ou descartar"
+    ],
+    "valor_h2": "Decisão com evidência, não por hierarquia",
+    "valor_p": "Uma discussão de opinião entre áreas se fecha em duas semanas com um teste pequeno, em vez de ser resolvida por hierarquia ou por um estudo de três meses. O critério de sucesso escrito de antemão evita que o resultado seja reinterpretado quando incomoda.",
+    "sowhat": "Converte uma discussão aberta em decisão com evidência dentro do mesmo mês.",
+    "industrias": [
+      "retail"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "É usado para testar jogadas de Pricing & Surtido e de Promociones antes de levá-las para toda a rede.",
+    "ctastrip_h2": "Que discussão está aberta há meses sem evidência?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos a operação comercial atual e por onde convém começar.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

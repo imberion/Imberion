@@ -1,0 +1,12 @@
+---
+import FichaCatalogo from '../../components/FichaCatalogo.astro';
+import { HERRAMIENTAS } from '../../lib/catalogo';
+
+export function getStaticPaths() {
+  return HERRAMIENTAS.map((h) => ({ params: { slug: h.slug } }));
+}
+
+const { slug } = Astro.params;
+---
+
+<FichaCatalogo locale="es" slug={slug!} />
