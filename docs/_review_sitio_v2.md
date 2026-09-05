@@ -87,6 +87,17 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
 
+## CP5 · Template de industria
+
+Estado (2026-09-05 ~23:40 CDMX):
+
+- ✅ `/industrias` + 9 industrias × 3 locales (30 rutas). Las 5 migradas rinden su contenido literal de `src/i18n/pages`; las 4 nuevas (automotriz, telco, servicios-b2b, servicios-b2c) tienen JSON con el esquema exacto de `b2b.json` (81 claves), redactadas desde los frameworks del Brain sin proveedores, cifras ni clientes. Commit verificado en checkout detached: 105 páginas.
+- ✅ Mini-diagnóstico portado del sitio actual: 7 dimensiones en retail y 8 en el resto, con celdas `<button>` accesibles por teclado y `prefers-reduced-motion`. Prueba estructural sobre `dist/`: filas y celdas correctas en retail y b2b, motor inline.
+- ✅ Gate de esquema: `src/lib/industrias.ts` tumba el build ante un slug sin JSON o una clave faltante (probado en los dos casos). Gate i18n verde. Grep interno (`temisa|flexi|axo|presales|Estado:|manhattan`) sobre las rutas de industria: 0.
+- ✅ Fidelidad contra `retail.html` comparada en screenshot: misma retícula y tipografía. Una desviación deliberada: la nota bajo la matriz era casi invisible en el original (blanco al 65% sobre papel) y ahora va en navy.
+- ✅ Corregido en el shell el lead del hero navy sobre navy (una regla en `shell.css`), que afectaba a industrias, catálogo y núcleo.
+- 🟡 Los destinos de las tarjetas con enlace (`capN_l`) no vienen en el JSON viejo; viven en un mapa dentro de `src/lib/industrias.ts` leído de los HTML originales. Si una tarjeta nueva trae etiqueta sin destino, el build falla.
+
 ## CP4 · Template de catálogo y fichas
 
 Estado (2026-09-05 ~23:15 CDMX):
@@ -124,3 +135,4 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP2 | propuesta, pendiente de Rodrigo | este commit (sitio) + Brain `worktree-sitio-v2-spec` | 2026-09-05 ~22:00 CDMX |
 | CP3 | ✅ | 46c2965 | 2026-09-05 ~21:45 CDMX |
 | CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
+| CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
