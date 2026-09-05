@@ -1,0 +1,167 @@
+name: Preview
+
+# Deploy de preview por PR, dueño en el repo.
+#
+# Existe porque el auto-deploy de Git de Vercel está apagado en este proyecto:
+# el plan Hobby no soporta la integración Git de repos privados que pertenecen a
+# una organización, así que Vercel no genera previews nativas por PR. Este
+# workflow las genera por CLI con token y deja la URL comentada en el PR.
+#
+# Requisitos:
+#   - Secret VERCEL_TOKEN (org imberion o este repo), scope team.
+#   - Opcional VERCEL_AUTOMATION_BYPASS_SECRET: solo hace falta si el proyecto
+#     tiene Deployment Protection (Vercel Authentication) activa. Con protección
+#     activa y sin ese secret, el smoke test recibe 401 en vez del HTML y falla.
+#     El header va cableado abajo y es inofensivo si el secret está vacío.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  VERCEL_ORG_ID: team_UYWR7twVYoZBypU2N07jGOWH
+  VERCEL_PROJECT_ID: prj_YQAmIkivLzGLfgG9HnQzjjeNYSxW
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Instalar Vercel CLI
+        run: npm i -g vercel@latest
+
+      - name: Pull de settings + env de preview
+        run: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build de preview
+        run: vercel build --token=$VERCEL_TOKEN
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      # El CLI manda el progreso a stderr y la URL del deployment a stdout, así
+      # que capturarla es leer stdout tal cual.
+      - name: Deploy de preview
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)
+          url=$(echo "$url" | tr -d '[:space:]')
+          case "$url" in
+            https://*) ;;
+            *)
+              echo "::error::El deploy de preview no devolvió una URL usable (salida: '$url')."
+              exit 1
+              ;;
+          esac
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Preview desplegado en $url"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      # Mismo criterio que el smoke test de producción: no basta el 200. El
+      # proyecto de Vercel tiene framework: null y el andamio declara
+      # outputDirectory: "dist" en vercel.json; si esa configuración no toma,
+      # Vercel sirve `public/` (solo assets) y el deploy sale verde sin una sola
+      # página. Un listado de directorio o un 404 personalizado también devuelven
+      # 200, por eso se exige el marcador `data-imberion-site="v2"` que el layout
+      # de Astro estampa en <html>.
+      #
+      # `curl -sL` sigue redirects. El header de bypass solo importa si el
+      # proyecto tiene Deployment Protection activa; con el secret vacío el
+      # header no se manda.
+      - name: Smoke test del preview
+        run: |
+          marcador='data-imberion-site="v2"'
+          cuerpo="$RUNNER_TEMP/smoke.html"
+          base="${PREVIEW_URL%/}"
+          extra=()
+          if [ -n "${BYPASS:-}" ]; then
+            extra=(-H "x-vercel-protection-bypass: $BYPASS")
+          fi
+          fallo=0
+          for ruta in "/" "/en/" "/pt/"; do
+            url="${base}${ruta}"
+            ok=0
+            code="000"
+            for i in 1 2 3 4 5 6; do
+              code=$(curl -sL --max-time 30 "${extra[@]}" -o "$cuerpo" -w "%{http_code}" "$url" || echo "000")
+              if [ "$code" = "200" ] && grep -qF -- "$marcador" "$cuerpo"; then
+                echo "intento $i: GET $ruta -> 200 con marcador, OK"
+                ok=1
+                break
+              fi
+              marca="no"
+              grep -qF -- "$marcador" "$cuerpo" 2>/dev/null && marca="si" || true
+              echo "intento $i: GET $ruta -> $code (marcador: $marca)"
+              sleep 10
+            done
+            if [ "$ok" != "1" ]; then
+              fallo=1
+              if [ "$code" = "401" ] || [ "$code" = "403" ]; then
+                echo "::error::Smoke test falló en $url: código $code. Casi seguro el proyecto tiene Deployment Protection (Vercel Authentication) activa y falta el secret VERCEL_AUTOMATION_BYPASS_SECRET."
+              elif [ "$code" = "200" ]; then
+                echo "::error::Smoke test falló en $url: responde 200 pero el HTML no trae $marcador. Señal típica de que Vercel publicó la carpeta equivocada (public/, solo assets) en vez de dist/. Revisar outputDirectory en vercel.json y el framework del proyecto."
+              else
+                echo "::error::Smoke test falló en $url: no devolvió 200 (código $code)."
+              fi
+            fi
+          done
+          if [ "$fallo" != "0" ]; then
+            exit 1
+          fi
+          echo "Preview en vivo en las tres rutas, con marcador de v2. Smoke test OK"
+        env:
+          PREVIEW_URL: ${{ steps.deploy.outputs.url }}
+          BYPASS: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
+      # Un solo comentario por PR: se busca el que trae la marca oculta
+      # <!-- imberion-preview --> y se actualiza en vez de agregar uno nuevo.
+      - name: Comentar la URL de preview en el PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ steps.deploy.outputs.url }}
+        with:
+          script: |
+            const marca = '<!-- imberion-preview -->';
+            const url = process.env.PREVIEW_URL;
+            const cuerpo = [
+              marca,
+              '### Preview de este PR',
+              '',
+              `${url}`,
+              '',
+              `- Español: ${url}/`,
+              `- Inglés: ${url}/en/`,
+              `- Portugués: ${url}/pt/`,
+              '',
+              'Este comentario existe porque el auto-deploy de Git de Vercel está apagado en el proyecto (el plan Hobby no soporta repos privados de una organización), así que no hay previews nativas por PR. La genera el workflow `preview.yml` por CLI y verifica que las tres rutas respondan 200 con el marcador del layout de Astro.',
+            ].join('\n');
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comentarios = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number, per_page: 100 }
+            );
+            const previo = comentarios.find((c) => c.body && c.body.includes(marca));
+            if (previo) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: previo.id, body: cuerpo });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body: cuerpo });
+            }

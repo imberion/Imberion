@@ -49,3 +49,51 @@ jobs:
         run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      # El deploy puede salir verde y publicar la carpeta equivocada. El proyecto
+      # de Vercel tiene framework: null y el andamio nuevo declara
+      # outputDirectory: "dist" en vercel.json; si esa configuración no toma,
+      # Vercel sirve `public/` (solo assets) y el sitio queda sin una sola página
+      # renderizada, con el workflow en verde.
+      #
+      # Por eso no basta con exigir 200: un listado de directorio, un asset o una
+      # página 404 personalizada también devuelven 200. El check real es que el
+      # HTML traiga el marcador `data-imberion-site="v2"` que el layout de Astro
+      # estampa en <html>. Si sirviera `public/`, no habría HTML con ese marcador.
+      #
+      # Reintenta porque el alias de producción tarda unos segundos en apuntar al
+      # deploy nuevo. `curl -sL` sigue redirects (www -> apex).
+      - name: Smoke test de producción
+        run: |
+          marcador='data-imberion-site="v2"'
+          cuerpo="$RUNNER_TEMP/smoke.html"
+          fallo=0
+          for ruta in "/" "/en/" "/pt/"; do
+            url="https://imberion.com${ruta}"
+            ok=0
+            code="000"
+            for i in 1 2 3 4 5 6; do
+              code=$(curl -sL --max-time 30 -o "$cuerpo" -w "%{http_code}" "$url" || echo "000")
+              if [ "$code" = "200" ] && grep -qF -- "$marcador" "$cuerpo"; then
+                echo "intento $i: GET $ruta -> 200 con marcador, OK"
+                ok=1
+                break
+              fi
+              marca="no"
+              grep -qF -- "$marcador" "$cuerpo" 2>/dev/null && marca="si" || true
+              echo "intento $i: GET $ruta -> $code (marcador: $marca)"
+              sleep 10
+            done
+            if [ "$ok" != "1" ]; then
+              fallo=1
+              if [ "$code" = "200" ]; then
+                echo "::error::Smoke test falló en $url: responde 200 pero el HTML no trae $marcador. Señal típica de que Vercel publicó la carpeta equivocada (public/, solo assets) en vez de dist/. Revisar outputDirectory en vercel.json y el framework del proyecto."
+              else
+                echo "::error::Smoke test falló en $url: no devolvió 200 tras el deploy (código $code). El deploy pudo quedar roto."
+              fi
+            fi
+          done
+          if [ "$fallo" != "0" ]; then
+            exit 1
+          fi
+          echo "Sitio en vivo en las tres rutas, con marcador de v2. Smoke test OK"
