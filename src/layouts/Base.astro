@@ -28,6 +28,8 @@ const {
 
 const c = comun[locale];
 const OG_LOCALE: Record<Locale, string> = { es: 'es_MX', en: 'en_US', pt: 'pt_BR' };
+// El atributo lang lleva región donde el copy la tiene (español de México, portugués de Brasil).
+const LANG_HTML: Record<Locale, string> = { es: 'es-MX', en: 'en', pt: 'pt-BR' };
 const origen = Astro.site?.origin ?? 'https://imberion.com';
 const canonical = urlAbsoluta(origen, ruta(locale, rutaEs));
 const alternas = LOCALES_RUTA.map((l) => ({
@@ -36,7 +38,7 @@ const alternas = LOCALES_RUTA.map((l) => ({
 }));
 ---
 
-<html lang={locale} data-imberion-site="v2">
+<html lang={LANG_HTML[locale]} data-imberion-site="v2">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />

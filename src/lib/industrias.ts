@@ -1,18 +1,17 @@
 // Resolución de contenido de las páginas de industria.
 //
-// El contenido viene de dos orígenes según la industria:
-//   - Las 5 que ya tenían página en el sitio viejo leen su JSON migrado de
-//     src/i18n/pages/<pagina_vieja>.json, vía t(). Ese archivo lo custodia el
-//     gate de i18n y no se toca.
-//   - Las 4 nuevas leen src/i18n/content/industrias/<slug>.json, que sigue
-//     exactamente el mismo esquema de claves.
+// Las 9 industrias leen su contenido de src/i18n/content/industrias/<slug>.json.
+// Las 5 que ya tenían página en el sitio viejo arrancaron como copia literal de
+// src/i18n/pages/<pagina_vieja>.json (ese archivo lo custodia el gate de i18n y
+// no se toca) y desde ahí se corrigen los strings que la revisión editorial
+// rechace, igual que hace el home con src/i18n/content/home.json.
 //
-// El único contrato es ese esquema. Este módulo lo valida y REVIENTA el build
-// con el slug, el locale y la clave exacta cuando falta algo: una página de
+// El único contrato es el esquema de claves. Este módulo lo valida y REVIENTA el
+// build con el slug, el locale y la clave exacta cuando falta algo: una página de
 // industria con un hueco silencioso es peor que un build rojo.
 
 import type { Locale } from '../i18n/index';
-import { t, DEFAULT_LOCALE } from '../i18n/index';
+import { DEFAULT_LOCALE } from '../i18n/index';
 import datos from '../data/industrias.json';
 
 export interface Industria {
@@ -35,18 +34,18 @@ export function titulo(ind: Industria, locale: Locale): string {
 
 type Dicc = Record<string, string>;
 
-const NUEVAS = import.meta.glob<Record<string, Dicc>>('../i18n/content/industrias/*.json', {
+const CONTENIDO = import.meta.glob<Record<string, Dicc>>('../i18n/content/industrias/*.json', {
   eager: true,
   import: 'default',
 });
 
-function contenidoNuevo(slug: string, locale: Locale): Dicc {
+function contenidoIndustria(slug: string, locale: Locale): Dicc {
   const clave = `../i18n/content/industrias/${slug}.json`;
-  const archivo = NUEVAS[clave];
+  const archivo = CONTENIDO[clave];
   if (!archivo) {
     throw new Error(
       `industrias: falta el contenido de "${slug}". Se esperaba src/i18n/content/industrias/${slug}.json ` +
-        `(disponibles: ${Object.keys(NUEVAS).map((k) => k.split('/').pop()).join(', ') || 'ninguno'}).`
+        `(disponibles: ${Object.keys(CONTENIDO).map((k) => k.split('/').pop()).join(', ') || 'ninguno'}).`
     );
   }
   const base = archivo[DEFAULT_LOCALE];
@@ -148,7 +147,7 @@ function exigir(txt: Dicc, clave: string, slug: string, locale: Locale): string 
 
 export function contenido(ind: Industria, locale: Locale): ContenidoIndustria {
   const { slug } = ind;
-  const txt = (ind.pagina_vieja ? t(ind.pagina_vieja, locale) : contenidoNuevo(slug, locale)) as Dicc;
+  const txt = contenidoIndustria(slug, locale);
 
   for (const k of CLAVES_BASE) exigir(txt, k, slug, locale);
 

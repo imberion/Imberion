@@ -87,6 +87,21 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
 
+## Verificación fresca de CP4 a CP6 (medida 2026-09-05 ~14:40 CDMX contra 1994c33)
+
+Confirmó con evidencia: 23 fichas × 3 locales exactas a la proyección; 9 industrias con retail a 7 dimensiones y las otras a 8; segunda persona en cero en las 15 páginas del núcleo; 117/117 con hreflang y canonical autorreferencial correctos; cero enlaces internos rotos; cero nombres de cliente, cero `logos-clientes`, cero estado interno en `dist/`; `valida_cierre.sh` sin bloqueantes.
+
+Encontró cuatro 🔴, todos con la misma raíz: el contenido migrado byte a byte en CP3 nunca se reauditó contra los invariantes; los gates de CP4-CP6 solo miraban lo nuevo.
+
+1. 🔴 El home nombraba Virtual Buyer Personas, Training Signal y Account Twin (chips y `arm_c_p`), que la proyección clasifica como familia sin nombre de producto.
+2. 🔴 Farma titulaba una capacidad "Training Signal al mostrador".
+3. 🔴 Retail traía cuatro cifras sin fuente, una atribuida a "la mayoría de los proyectos" (invariante 2).
+4. 🔴 97 casos de segunda persona en EN y PT de las 5 industrias migradas (ES en cero).
+
+Corrección (commit siguiente): las 5 industrias migradas pasan a leer de `src/i18n/content/industrias/`, como ya hace el home, con solo los strings que fallan reescritos; `src/i18n/pages/` sigue intacto y el gate de i18n en 3261. Registro antes/después en el Brain.
+
+🟡 que quedan anotados: 11 MB de texturas PNG entran por CSS en el home (CP8); el token `--ochre` viaja en el CSS sin pintarse (invariante 7 documentado, a un `var()` de romperse); tres negación-contraste en copy heredado (`como-operamos`: "La ambición no es ganar un mercado, es construir una firma..."; `index`: la de madurez, en zona de hero; floor-signal: tiene contenido); el MOCA ya sale en la ficha del VAC aunque la decisión 4 sigue pendiente; `lang` pasa a `es-MX` y `pt-BR`.
+
 ## CP9 · Corte
 
 Estado (2026-09-06 ~01:00 CDMX):

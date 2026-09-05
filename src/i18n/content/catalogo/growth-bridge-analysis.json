@@ -77,8 +77,8 @@
     "familia_label": "Bridge · explicar",
     "hero_eyebrow": "Growth Bridge Analysis · Família Bridge",
     "hero_h1": "De onde veio o crescimento, e de onde veio a queda.",
-    "hero_lead": "Growth Bridge Analysis decompõe a variação de receita, volume ou margem em seus drivers reais: preço, volume, mix, distribuição e base instalada contra clientes novos.",
-    "que_hace_h2": "A variação decomposta em seus drivers",
+    "hero_lead": "Growth Bridge Analysis decompõe a variação de receita, volume ou margem nos drivers reais: preço, volume, mix, distribuição e base instalada contra clientes novos.",
+    "que_hace_h2": "A variação decomposta nos drivers",
     "que_hace_p": "A ponte reconstrói o período peça por peça até que a soma dos efeitos iguale a variação observada. Cada efeito é aberto por produto, canal ou geografia até o nível em que alguém consegue agir.",
     "que_hace_items": [
       "Ponte de receita, volume ou margem entre dois períodos",
