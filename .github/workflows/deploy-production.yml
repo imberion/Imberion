@@ -68,7 +68,12 @@ jobs:
           marcador='data-imberion-site="v2"'
           cuerpo="$RUNNER_TEMP/smoke.html"
           fallo=0
-          for ruta in "/" "/en/" "/pt/"; do
+          # El censo vive en scripts/censo_rutas.txt: rutas v2 en los tres locales
+          # y las .html viejas, que deben resolver por redirect. Así el smoke
+          # verifica que se publicó el sitio completo, no solo la carpeta correcta
+          # (un andamio de tres páginas con marcador también pasaría el check de "/").
+          rutas=$(grep -vE '^\s*(#|$)' scripts/censo_rutas.txt)
+          for ruta in $rutas; do
             url="https://imberion.com${ruta}"
             ok=0
             code="000"

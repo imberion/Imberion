@@ -95,7 +95,8 @@ jobs:
             extra=(-H "x-vercel-protection-bypass: $BYPASS")
           fi
           fallo=0
-          for ruta in "/" "/en/" "/pt/"; do
+          rutas=$(grep -vE '^\s*(#|$)' scripts/censo_rutas.txt)
+          for ruta in $rutas; do
             url="${base}${ruta}"
             ok=0
             code="000"
