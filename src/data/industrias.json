@@ -1,0 +1,15 @@
+{
+  "_nota": "Vocabulario canónico de industrias (CP2, propuesta del 2026-09-05). brain = carpeta framework_* del Brain; icono = archivo en src/assets/iconos/industrias/; pagina_vieja = HTML del sitio actual cuyo i18n vive en src/i18n/pages/; slug = URL /industrias/<slug>, igual en los tres locales. Solo entran las 9 con framework construido.",
+  "industrias": [
+    { "slug": "retail",        "brain": "retail",             "icono": "retail.svg",             "pagina_vieja": "retail",       "titulo_es": "Retail",                     "titulo_en": "Retail",                     "titulo_pt": "Varejo" },
+    { "slug": "cpg",           "brain": "cpg",                "icono": "cpg.svg",                "pagina_vieja": "cpg",          "titulo_es": "Consumo Masivo (CPG)",       "titulo_en": "Consumer Goods (CPG)",       "titulo_pt": "Bens de Consumo (CPG)" },
+    { "slug": "farma",         "brain": "farma_otc",          "icono": "farma.svg",              "pagina_vieja": "farma",        "titulo_es": "Salud y Farma",              "titulo_en": "Health and Pharma",          "titulo_pt": "Saúde e Farma" },
+    { "slug": "b2b",           "brain": "b2b",                "icono": "b2b_industrial.svg",     "pagina_vieja": "b2b",          "titulo_es": "B2B Industrial",             "titulo_en": "Industrial B2B",             "titulo_pt": "B2B Industrial" },
+    { "slug": "construccion",  "brain": "building_materials", "icono": "building_materials.svg", "pagina_vieja": "construccion", "titulo_es": "Construcción y Materiales",  "titulo_en": "Construction and Materials", "titulo_pt": "Construção e Materiais" },
+    { "slug": "automotriz",    "brain": "automotriz",         "icono": "automotriz.svg",                                         "titulo_es": "Automotriz",                 "titulo_en": "Automotive",                 "titulo_pt": "Automotivo" },
+    { "slug": "telco",         "brain": "telco",              "icono": "telco.svg",                                              "titulo_es": "Telecomunicaciones",         "titulo_en": "Telecommunications",         "titulo_pt": "Telecomunicações" },
+    { "slug": "servicios-b2b", "brain": "servicios_b2b",      "icono": "servicios_b2b.svg",                                      "titulo_es": "Servicios B2B",              "titulo_en": "B2B Services",               "titulo_pt": "Serviços B2B" },
+    { "slug": "servicios-b2c", "brain": "servicios_b2c",      "icono": "servicios_b2c.svg",                                      "titulo_es": "Servicios al Consumidor",    "titulo_en": "Consumer Services",          "titulo_pt": "Serviços ao Consumidor" }
+  ],
+  "reservadas": [ { "slug": "logistica", "brain": "logistics", "icono": "logistics.svg", "publicada": false } ]
+}

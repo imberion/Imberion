@@ -1,0 +1,64 @@
+---
+// Nav del shell. Markup y clases portados del nav de index.html / retail.html.
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+import { ZCAL_30MIN, LOGO } from '../lib/enlaces';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+  locale: Locale;
+  /** Segmento canónico en español de la página activa. '' es el home. */
+  rutaEs?: string;
+}
+
+const { locale, rutaEs } = Astro.props;
+const c = comun[locale];
+
+const enlaces = [
+  { seg: 'que-resolvemos', texto: c.nav_que_resolvemos },
+  { seg: 'como-funciona', texto: c.nav_como_funciona },
+  { seg: 'como-operamos', texto: c.nav_como_operamos },
+  { seg: 'industrias', texto: c.nav_industrias },
+  { seg: 'catalogo', texto: c.nav_catalogo },
+].map((e) => ({
+  ...e,
+  href: ruta(locale, e.seg),
+  // Activo también en las páginas hijas: /industrias/retail/ marca Industrias.
+  activo: rutaEs !== undefined && (rutaEs === e.seg || rutaEs.startsWith(`${e.seg}/`)),
+}));
+---
+
+<nav id="top" aria-label={c.nav_principal}>
+  <div class="nav-inner">
+    <div class="nav-progress" aria-hidden="true"></div>
+    <a class="nav-logo" href={ruta(locale, '')} aria-label="Imberion">
+      <img src={LOGO.src} alt="Imberion" width={LOGO.ancho} height={LOGO.alto} />
+    </a>
+    <div class="nav-links">
+      {
+        enlaces.map((e) => (
+          <a
+            href={e.href}
+            class:list={{ 'imb-active': e.activo }}
+            aria-current={e.activo ? 'page' : undefined}
+          >
+            {e.texto}
+          </a>
+        ))
+      }
+    </div>
+    <div class="nav-right">
+      <LangSwitch locale={locale} rutaEs={rutaEs} />
+      <a
+        href={ZCAL_30MIN}
+        class="btn btn-primary"
+        id="nav-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        {c.nav_cta}
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,13 +1,38 @@
 ---
+import type { Locale } from '../i18n/index';
+import { LOCALES_RUTA, LOCALE_RAIZ, ruta, urlAbsoluta } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SiteScript from '../components/SiteScript.astro';
+
+// shell.css trae el layout (reset, .container, nav fijo, pie) y site.css el
+// skin vendorizado del sitio actual. El orden importa: el skin va después.
+import '../styles/shell.css';
+import '../styles/site.css';
+
 interface Props {
   title: string;
   description: string;
-  locale?: string;
+  locale?: Locale;
+  /** Segmento canónico en español de esta página. '' es el home. */
+  rutaEs?: string;
 }
 
-const { title, description, locale = Astro.currentLocale ?? 'es' } = Astro.props;
+const {
+  title,
+  description,
+  locale = (Astro.currentLocale as Locale) ?? LOCALE_RAIZ,
+  rutaEs = '',
+} = Astro.props;
 
-import '../styles/site.css';
+const c = comun[locale];
+const origen = Astro.site?.origin ?? 'https://imberion.com';
+const canonical = urlAbsoluta(origen, ruta(locale, rutaEs));
+const alternas = LOCALES_RUTA.map((l) => ({
+  hreflang: l,
+  href: urlAbsoluta(origen, ruta(l, rutaEs)),
+}));
 ---
 
 <html lang={locale} data-imberion-site="v2">
@@ -17,6 +42,9 @@ import '../styles/site.css';
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={urlAbsoluta(origen, ruta(LOCALE_RAIZ, rutaEs))} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +53,12 @@ import '../styles/site.css';
     />
   </head>
   <body>
-    <slot />
+    <a class="skip-link" href="#contenido">{c.skip_to_content}</a>
+    <Nav locale={locale} rutaEs={rutaEs} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <SiteScript />
   </body>
 </html>
