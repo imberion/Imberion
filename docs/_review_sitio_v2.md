@@ -119,7 +119,7 @@ Lo hecho:
 - ✅ Dos defectos cazados de paso: la textura del hero tapaba las partículas; una caja blanca fantasma en las familias de dos fichas del catálogo; el nav se partía en teléfono (logo a 26 px bajo 600).
 - ✅ Gates completos: build 126, i18n 3261, terceros 0, acentos 0, rutas 9/9, segunda persona 0 de 126, censo 54 sin faltantes.
 - 🟡 **Cormorant Garamond 300 separa la tilde** en display grande ("decisión", "operación"): preexistente y de todo el sitio, incluido el actual. Subir el display a 400 lo resuelve; es decisión de Rodrigo porque cambia el color tipográfico del hero.
-- 🟡 Índice del catálogo en 2560: las familias de dos fichas dejan medio ancho vacío; ajuste en curso.
+- ✅ Índice del catálogo en 2560: cada familia es fila de dos columnas (cabecera pegajosa + rejilla auto-fit), commit `4abbe61`.
 - 🟡 Gancho de QA `?columna=0.55` en el script de la columna, para capturar cualquier punto del arco; inerte sin el parámetro.
 
 ## Verificación fresca de CP7 (medida 2026-09-06 ~14:55 CDMX contra e7173f8)
@@ -129,8 +129,8 @@ Confirmó con evidencia propia: un solo canvas continuo con el progreso ligado a
 Tres 🔴:
 
 1. Catálogo con el tope por número de fichas (8 de 11 rejillas dejaban 42 % o más vacío). **Cerrado en `4abbe61`** (fila de dos columnas; el verificador midió el commit anterior).
-2. Sin menú de navegación bajo 900 px: los enlaces solo vivían en el pie, igual que en el sitio actual. **En corrección.**
-3. El home descargaba 12 MB, 11.2 de texturas PNG por CSS. **En corrección** (conversión a WebP con `sharp`, adelanto de CP8).
+2. Sin menú de navegación bajo 900 px: los enlaces solo vivían en el pie, igual que en el sitio actual. **Cerrado en `13ae01b`**: botón accesible (`aria-expanded`, `aria-controls`), panel navy con los cinco enlaces, idioma y CTA; Escape, velo y foco gestionados; sin animación con `prefers-reduced-motion`.
+3. El home descargaba 12 MB, 11.2 de texturas PNG por CSS. **Cerrado en `4c26860`**: las 8 texturas en WebP con calidad medida por textura (grano conservado 82 a 94 %; a calidad uniforme 60-70 el grano fino desaparecía), 11.3 MB a 1.0 MB; el home pasa de 12 MB a 1.4 MB. `npm run texturas:optimizar` regenera desde los PNG del sitio viejo en `origin/main`. Nota de historial: el commit del menú (`13ae01b`) se llevó las bajas de los PNG porque ya estaban en el índice; el siguiente agrega los WebP.
 
 🟡 que quedan anotados: el techo de 1800 px deja 30 % de papel a los lados en 2560 (convención declarada; se cambia en un número si Rodrigo lo quiere más ancho); las adaptaciones `≥1600` solo existen en home y cómo funciona; el `page-hero` compartido deja la mitad derecha vacía en cinco rutas (fondo full-bleed, bloque a la izquierda: puede ser el vacío como material de §8.3, Rodrigo decide en monitor); la tira de pilares de cómo funciona mide 766 px de 1800; `alt` vacío en las fotos de industria (decorativas, con el nombre adyacente); el gancho `?columna=` congela el progreso pero no el scroll, así que las etapas 2 y 3 no se capturaron en su composición real.
 
@@ -227,6 +227,7 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
 | CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
 | CP6 | ✅ (copy pendiente de aprobación) | 1994c33 + ad2114b | 2026-09-06 ~00:40 CDMX |
-| CP7 | ✅ primera pasada | este commit | 2026-09-06 ~14:30 CDMX |
+| CP7 | ✅ (pendientes de Rodrigo: mini-demos, KPI propios, §8.5) | e7173f8 + 4abbe61 + 13ae01b | 2026-09-06 ~15:10 CDMX |
+| CP8 (imagen) | ✅ texturas e industrias en WebP; video pendiente de decisión | 4c26860 | 2026-09-06 ~15:10 CDMX |
 | CP8 | pendiente (video de producto: decisión de Rodrigo; texturas sin optimizar) | | |
 | CP9 | ✅ salvo lo que depende de Rodrigo | 9e102c3 + este commit | 2026-09-06 ~01:00 CDMX |
