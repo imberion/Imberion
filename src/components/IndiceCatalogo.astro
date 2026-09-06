@@ -108,34 +108,40 @@ SECCIONES_EXTRA.forEach((s, i) => {
         id={g.id}
       >
         <div class="container">
-          <div class="sec-head">
-            <span class="sec-num">{g.num}</span>
-            {g.etiqueta && <span class="eyebrow">{g.etiqueta}</span>}
-          </div>
-          <h2>{g.titulo}</h2>
-          <p class="intro" set:html={g.intro} />
-
-          {g.tarjetas.length > 0 && (
-            <div
-              class:list={['rejilla', { 'rejilla--parejas': g.parejas }]}
-              style={`--n:${g.tarjetas.length}`}
-            >
-              {g.tarjetas.map((t) => (
-                <a class="tarjeta" href={t.href}>
-                  <h3>{t.nombre}</h3>
-                  <p set:html={t.lead} />
-                  <span class="ver">
-                    {c.ver_ficha}
-                    <span class="btn-arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </span>
-                </a>
-              ))}
+          <div class="fila">
+            <div class="cabecera">
+              <div class="sec-head">
+                <span class="sec-num">{g.num}</span>
+                {g.etiqueta && <span class="eyebrow">{g.etiqueta}</span>}
+              </div>
+              <h2>{g.titulo}</h2>
+              <p class="intro" set:html={g.intro} />
             </div>
-          )}
 
-          {g.nota && <p class="nota" set:html={g.nota} />}
+            <div class="cuerpo">
+              {g.tarjetas.length > 0 && (
+                <div
+                  class:list={['rejilla', { 'rejilla--parejas': g.parejas }]}
+                  style={`--n:${g.tarjetas.length}`}
+                >
+                  {g.tarjetas.map((t) => (
+                    <a class="tarjeta" href={t.href}>
+                      <h3>{t.nombre}</h3>
+                      <p set:html={t.lead} />
+                      <span class="ver">
+                        {c.ver_ficha}
+                        <span class="btn-arrow" aria-hidden="true">
+                          →
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {g.nota && <p class="nota" set:html={g.nota} />}
+            </div>
+          </div>
         </div>
       </section>
     ))
@@ -191,22 +197,49 @@ SECCIONES_EXTRA.forEach((s, i) => {
   /* Rejilla de hairlines: el contenedor pinta el borde superior e izquierdo y
      cada tarjeta el derecho e inferior, así cada línea se dibuja una sola vez
      y una fila incompleta no deja huecos de color. */
-  /* La rejilla suma columnas al crecer la ventana, pero nunca más de las que
-     hay tarjetas: --n lo pone la plantilla y acota el ancho del bloque. Sin ese
-     tope, una familia de dos herramientas estiraba cada tarjeta a 900px en
-     monitor grande, o dejaba tracks vacíos con fondo a la derecha.
+  /* La rejilla llena siempre el ancho de su columna: ya no hay tope por número
+     de tarjetas, porque la columna derecha es la que acota. Una ficha ocupa la
+     columna completa, dos la parten a la mitad, cuatro se reparten según quepa.
      Sin background propio: las celdas sobrantes de la última fila muestran el
      papel de la sección en vez de un hueco blanco. */
   .rejilla {
     margin-top: 36px;
     display: grid;
-    width: min(100%, calc(var(--n, 4) * 520px));
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     border-top: 1px solid var(--navy-12);
     border-left: 1px solid var(--navy-12);
   }
+  /* Estrategia de Crecimiento se lee en pares: tarjetas más anchas, dos por
+     hilera en monitor grande. */
   .rejilla--parejas {
-    width: min(100%, calc(var(--n, 2) * 620px));
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  }
+
+  /* La familia es una fila, no un bloque apilado: cabecera a la izquierda y
+     fichas a la derecha, el mismo patrón del índice de industrias. Apilada,
+     una familia de dos fichas dejaba más de medio monitor vacío a la derecha
+     (invariante 16). Debajo de 1100px no hay ancho para dos columnas y vuelve
+     al apilado. */
+  @media (min-width: 1100px) {
+    .fila {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+      gap: clamp(40px, 3.6vw, 88px);
+      align-items: start;
+    }
+    /* La columna de fichas puede ser mucho más alta que la cabecera; pegada,
+       el nombre de la familia sigue visible mientras se recorren sus fichas.
+       El 70px del nav fijo más aire. */
+    .cabecera {
+      position: sticky;
+      top: 104px;
+    }
+    .intro {
+      max-width: 42ch;
+    }
+    .rejilla {
+      margin-top: 0;
+    }
   }
 
   .tarjeta {
@@ -315,6 +348,18 @@ SECCIONES_EXTRA.forEach((s, i) => {
   }
   .grupo--dark .tarjeta:hover .ver {
     color: #fff;
+  }
+
+  /* Apilada (por debajo de 1100px) la rejilla no tiene columna que la acote,
+     así que conserva el tope por número de tarjetas: sin él, una familia de una
+     sola herramienta estiraba esa tarjeta a todo el ancho del contenedor. */
+  @media (max-width: 1099.98px) {
+    .rejilla {
+      width: min(100%, calc(var(--n, 4) * 520px));
+    }
+    .rejilla--parejas {
+      width: min(100%, calc(var(--n, 2) * 620px));
+    }
   }
 
   @media (max-width: 600px) {
