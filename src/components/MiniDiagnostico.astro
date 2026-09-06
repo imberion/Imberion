@@ -81,7 +81,7 @@ const ultimo = niveles[niveles.length - 1];
   .diag { min-width: 880px; border: 1px solid var(--navy-12); background: var(--white); }
 
   .diag-head,
-  .diag-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; }
+  .diag-row { display: grid; grid-template-columns: minmax(190px, 1.05fr) repeat(4, minmax(0, 1fr)); }
 
   .diag-head { background: var(--paper-alt); border-bottom: 1px solid var(--navy-12); }
   .diag-head > div { padding: 16px; border-left: 1px solid var(--navy-12); }

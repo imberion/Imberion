@@ -52,13 +52,17 @@ const etiquetaComoFunciona = comun[locale].nav_como_funciona;
 <section class="pil-section section--dark section-dark-signal">
   <div class="container">
     <div class="pil-inner">
-      <div class="eyebrow">{c.pil_eyebrow}</div>
-      <h2 set:html={c.pil_h2} />
-      <p class="pil-p">{c.pil_p}</p>
-      <div class="pil-cta">
-        <a href={ruta(locale, 'como-funciona')} class="inline-cta white">
-          {etiquetaComoFunciona} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
-        </a>
+      <div class="pil-titulo">
+        <div class="eyebrow">{c.pil_eyebrow}</div>
+        <h2 set:html={c.pil_h2} />
+      </div>
+      <div class="pil-texto">
+        <p class="pil-p">{c.pil_p}</p>
+        <div class="pil-cta">
+          <a href={ruta(locale, 'como-funciona')} class="inline-cta white">
+            {etiquetaComoFunciona} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

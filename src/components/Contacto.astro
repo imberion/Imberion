@@ -29,10 +29,12 @@ const c = contenido('contacto', locale);
   <div class="container">
     <div class="contacto-alt-inner">
       <h2>{c.alt_h2}</h2>
-      <p>{c.alt_p}</p>
-      <a href={CONTACTO_MAIL} class="btn btn-dark">
-        {c.alt_btn} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
-      </a>
+      <div class="contacto-alt-texto">
+        <p>{c.alt_p}</p>
+        <a href={CONTACTO_MAIL} class="btn btn-dark">
+          {c.alt_btn} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>

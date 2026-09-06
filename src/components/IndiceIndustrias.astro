@@ -1,8 +1,13 @@
 ---
-// Índice de industrias: el hero de página interior y las nueve tarjetas.
-// Cada tarjeta toma su bajada del hero_lead de la industria, así que el índice
-// no mantiene una segunda copia de esos textos.
+// Índice de industrias: el hero de página interior y las nueve industrias como
+// una lista numerada a todo el ancho, cada una con su foto de sector.
+//
+// Cada fila toma su bajada del hero_lead de la industria, así que el índice no
+// mantiene una segunda copia de esos textos. Las industrias en borrador no
+// entran: INDUSTRIAS ya las filtra.
 
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import comun from '../i18n/content/common.json';
@@ -15,26 +20,27 @@ interface Props {
 const { locale } = Astro.props;
 const c = comun[locale];
 
-const iconos = import.meta.glob<string>('../assets/iconos/industrias/*.svg', {
-  query: '?raw',
+// Fotos de sector (1600x1000, motion blur horizontal). Ver el README de la carpeta.
+const fotos = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
   import: 'default',
   eager: true,
 });
 
-const tarjetas = INDUSTRIAS.map((ind) => {
-  const clave = `../assets/iconos/industrias/${ind.icono}`;
-  const svg = iconos[clave];
-  if (!svg) {
+const filas = INDUSTRIAS.map((ind, i) => {
+  const clave = `../assets/industrias/${ind.slug}.jpg`;
+  const foto = fotos[clave];
+  if (!foto) {
     throw new Error(
-      `industrias: falta el icono "${ind.icono}" de ${ind.slug} en src/assets/iconos/industrias/.`
+      `industrias: falta la foto de sector de ${ind.slug}. Se esperaba src/assets/industrias/${ind.slug}.jpg.`
     );
   }
   return {
     slug: ind.slug,
+    num: String(i + 1).padStart(2, '0'),
     nombre: titulo(ind, locale),
     bajada: contenido(ind, locale).txt.hero_lead,
     href: ruta(locale, `industrias/${ind.slug}`),
-    svg,
+    foto,
   };
 });
 ---
@@ -48,84 +54,178 @@ const tarjetas = INDUSTRIAS.map((ind) => {
   </div>
 </section>
 
-<section class="section">
+<section class="ind-seccion">
   <div class="container">
-    <div class="ind-grid">
+    <ol class="ind-lista">
       {
-        tarjetas.map((tj) => (
-          <a class="ind-card" href={tj.href}>
-            <span class="ind-icono" aria-hidden="true" set:html={tj.svg} />
-            <h2 class="ind-nombre">{tj.nombre}</h2>
-            <p class="ind-bajada">{tj.bajada}</p>
-            <span class="ind-cta">
-              {c.ver_industria} <span aria-hidden="true">→</span>
-            </span>
-          </a>
+        filas.map((f, i) => (
+          <li class="ind-item">
+            <a class="ind-fila" href={f.href}>
+              <span class="ind-num" aria-hidden="true">
+                {f.num}
+              </span>
+              <h2 class="ind-nombre">{f.nombre}</h2>
+              <span class="ind-bajada">
+                <span class="ind-linea">{f.bajada}</span>
+                <span class="ind-cta">
+                  {c.ver_industria} <span aria-hidden="true">→</span>
+                </span>
+              </span>
+              <span class="ind-foto">
+                <Image
+                  src={f.foto}
+                  alt=""
+                  widths={[420, 840]}
+                  sizes="(max-width: 600px) 92vw, (max-width: 1080px) 260px, 420px"
+                  format="webp"
+                  quality={70}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding={i === 0 ? 'sync' : 'async'}
+                />
+              </span>
+            </a>
+          </li>
         ))
       }
-    </div>
+    </ol>
   </div>
 </section>
 
 <style>
-  .section { padding: 96px 0; }
+  .ind-seccion { padding: 96px 0 120px; }
   .page-hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.7; }
   .page-hero .eyebrow { text-transform: uppercase; }
 
-  /* Misma retícula de hairline que la de capacidades de una página de industria. */
-  .ind-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--navy-12);
-    border: 1px solid var(--navy-12);
-  }
-  .ind-card {
-    background: var(--white);
-    padding: 32px 28px 30px;
-    display: flex;
-    flex-direction: column;
-    transition: background .25s var(--ease);
-  }
-  .ind-card:hover { background: var(--paper); }
+  .ind-lista { list-style: none; border-top: 1px solid var(--navy-12); }
+  .ind-item { border-bottom: 1px solid var(--navy-12); }
 
-  .ind-icono { display: block; color: var(--gray-blue); margin-bottom: 18px; }
-  /* El SVG viene en 24x24 con viewBox: se escala sin deformarse. */
-  .ind-icono :global(svg) { width: 28px; height: 28px; display: block; }
+  /* La fila es la unidad: número, nombre, la línea de casos de uso y la foto
+     del sector. En monitor grande la foto crece con la ventana en vez de dejar
+     un costado vacío. */
+  .ind-fila {
+    display: grid;
+    grid-template-columns:
+      5rem
+      minmax(220px, 1fr)
+      minmax(0, 1.5fr)
+      clamp(240px, 22vw, 420px);
+    align-items: center;
+    gap: clamp(20px, 2.4vw, 56px);
+    padding: clamp(20px, 1.8vw, 30px) 0;
+    transition: background 0.35s var(--ease), padding-left 0.35s var(--ease);
+  }
+  .ind-fila:hover { background: var(--white); padding-left: clamp(0px, 1vw, 20px); }
+
+  /* Cifra suelta: DM Sans, tabular. Una letra no dice nada; el índice sí. */
+  .ind-num {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--navy-40);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.25s var(--ease);
+  }
+  .ind-fila:hover .ind-num { color: var(--navy); }
 
   .ind-nombre {
     font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    line-height: 1.12;
+    font-size: clamp(1.7rem, 2.3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
     color: var(--navy);
-    margin-bottom: 10px;
   }
-  .ind-bajada {
+
+  .ind-bajada { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .ind-linea {
     font-family: var(--font-sans);
-    font-size: 13.5px;
+    font-size: clamp(13.5px, 0.85vw, 15.5px);
+    line-height: 1.65;
     color: var(--navy-72);
-    line-height: 1.6;
-    margin-bottom: 18px;
   }
   .ind-cta {
-    margin-top: auto;
     font-family: var(--font-sans);
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--gray-blue);
     display: inline-flex;
-    gap: 6px;
-    transition: gap .25s var(--ease), color .2s var(--ease);
+    gap: 8px;
+    transition: gap 0.3s var(--ease), color 0.25s var(--ease);
   }
-  .ind-card:hover .ind-cta { color: var(--navy); gap: 9px; }
+  .ind-fila:hover .ind-cta { color: var(--navy); gap: 12px; }
 
-  @media (max-width: 860px) { .ind-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) {
-    .ind-grid { grid-template-columns: 1fr; }
-    .section { padding: 68px 0; }
+  /* Proporción fija 16:10, la misma del archivo: object-fit cover recorta pero
+     nunca deforma. El navy encima une las nueve fotos en una sola familia y se
+     retira al pasar el cursor. */
+  .ind-foto {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--paper-alt);
   }
+  .ind-foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Las nueve fotos llegan con exposiciones distintas; el mismo filtro y el
+       mismo velo navy las dejan leyéndose como una sola familia. */
+    filter: saturate(0.62) contrast(1.06) brightness(0.94);
+    transform: scale(1.01);
+    transition: transform 0.7s var(--ease), filter 0.5s var(--ease);
+  }
+  .ind-foto::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--navy);
+    opacity: 0.24;
+    mix-blend-mode: multiply;
+    transition: opacity 0.5s var(--ease);
+  }
+  .ind-fila:hover .ind-foto :global(img) { transform: scale(1.05); filter: saturate(0.95) contrast(1.02) brightness(1); }
+  .ind-fila:hover .ind-foto::after { opacity: 0.05; }
+
+  @media (max-width: 1080px) {
+    .ind-fila {
+      grid-template-columns: 3rem minmax(0, 1fr) clamp(150px, 24vw, 260px);
+      grid-template-areas:
+        "num nombre foto"
+        "num bajada foto";
+      align-items: start;
+      row-gap: 12px;
+    }
+    .ind-num { grid-area: num; padding-top: 0.5em; }
+    .ind-nombre { grid-area: nombre; }
+    .ind-bajada { grid-area: bajada; }
+    .ind-foto { grid-area: foto; align-self: center; }
+  }
+
+  @media (max-width: 600px) {
+    .ind-seccion { padding: 60px 0 76px; }
+    .ind-fila {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "foto"
+        "num"
+        "nombre"
+        "bajada";
+      gap: 12px;
+      padding: 26px 0 30px;
+    }
+    .ind-num { padding-top: 8px; }
+    .ind-fila:hover { padding-left: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .ind-card, .ind-cta { transition: none; }
+    .ind-fila,
+    .ind-num,
+    .ind-cta,
+    .ind-foto::after,
+    .ind-foto :global(img) { transition: none; }
+    .ind-fila:hover .ind-foto :global(img) { transform: scale(1.01); }
   }
 </style>

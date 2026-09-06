@@ -3,6 +3,8 @@
 // y b2b.html: hero navy, matriz de madurez, retícula de capacidades y franja
 // de cierre. El nav y el pie los pone Base.astro.
 
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import { ZCAL_30MIN } from '../lib/enlaces';
@@ -16,9 +18,35 @@ interface Props {
 
 const { locale, industria } = Astro.props;
 const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
+
+// La misma foto de sector del índice, aquí a todo el ancho detrás del hero. El
+// navy encima no es decoración: es lo que deja el texto en contraste AA.
+const fotos = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
+  import: 'default',
+  eager: true,
+});
+const foto = fotos[`../assets/industrias/${industria.slug}.jpg`];
+if (!foto) {
+  throw new Error(
+    `industrias: falta la foto de sector de ${industria.slug}. Se esperaba src/assets/industrias/${industria.slug}.jpg.`
+  );
+}
 ---
 
-<section class="page-hero">
+<section class="page-hero page-hero--foto">
+  <div class="hero-foto" aria-hidden="true">
+    <Image
+      src={foto}
+      alt=""
+      widths={[900, 1600]}
+      sizes="100vw"
+      format="webp"
+      quality={58}
+      loading="eager"
+      decoding="sync"
+    />
+  </div>
+  <div class="hero-velo" aria-hidden="true"></div>
   <div class="page-hero-bg"></div>
   <div class="page-hero-content">
     <a href={ruta(locale, '')} class="back">{txt.back}</a>
@@ -79,6 +107,33 @@ const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
 </div>
 
 <style>
+  /* ---------- foto de sector del hero ---------- */
+  /* Va a todo el ancho del viewport, no del contenedor: el fondo es full-bleed
+     y quien lleva el ancho es .page-hero-content. */
+  .page-hero--foto { background: var(--navy-deep); }
+  .hero-foto { position: absolute; inset: 0; }
+  .hero-foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Proporción intacta: cover recorta, nunca deforma. */
+    object-position: center 42%;
+    filter: saturate(.6);
+  }
+  /* El texto vive en el tercio izquierdo, así que ahí el velo es casi opaco y
+     se abre hacia la derecha, donde no hay nada que leer. */
+  .hero-velo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(100deg,
+        rgba(6, 16, 28, .97) 0%,
+        rgba(6, 16, 28, .95) 40%,
+        rgba(10, 24, 40, .78) 74%,
+        rgba(10, 24, 40, .62) 100%),
+      linear-gradient(to top, rgba(6, 16, 28, .85) 0%, transparent 46%);
+  }
+
   /* Los HTML del root traían este layout en su <style> por página. En v2 no
      existe ese bloque, así que vive aquí, calificado por clase para que gane
      sobre las reglas de elemento de site.css sin depender del orden. */
@@ -99,7 +154,7 @@ const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
   .section .lead {
     font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     line-height: 1.7;
-    max-width: 680px;
+    max-width: 70ch;
   }
   /* El ancho del lead del hero lo fija shell.css (640px). Aquí solo el tamaño. */
   .page-hero .lead {
@@ -131,7 +186,7 @@ const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
   }
   .cap-card {
     background: var(--white);
-    padding: 32px 28px;
+    padding: clamp(30px, 2.2vw, 46px) clamp(26px, 2vw, 42px);
     display: flex;
     flex-direction: column;
     transition: background .25s var(--ease);
@@ -139,7 +194,7 @@ const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
   .cap-card:hover { background: var(--paper); }
   .cap-card h4 {
     font-family: var(--font-serif);
-    font-size: 1.35rem;
+    font-size: clamp(1.3rem, 1.3vw, 1.7rem);
     font-weight: 400;
     color: var(--navy);
     margin-bottom: 10px;
@@ -147,7 +202,7 @@ const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
   }
   .cap-card p {
     font-family: var(--font-sans);
-    font-size: 13.5px;
+    font-size: clamp(13.5px, 0.8vw, 15px);
     color: var(--navy-72);
     line-height: 1.6;
     margin-bottom: 14px;

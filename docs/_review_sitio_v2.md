@@ -105,9 +105,22 @@ Estado (2026-09-06 ~13:25 CDMX), commit `4b779ed`:
 - 🟡 Se dejó "cada cuatro a seis meses" en Training Signal (rotación de catálogo, mecanismo del problema, no resultado). Se cambia en una línea si se prefiere cero números.
 - 🟡 Farma `cap6` podría enlazar ahora a la ficha de Training Signal (`cap6_l`); no se agregó.
 
-## CP7 · Craft (en curso)
+## CP7 · Craft
 
-Arrancó el 2026-09-06 ~13:30 CDMX con dos agentes: home (columna de partículas ligada al scroll, de afuera hacia adentro, ruido → señal → resultado anónimo, petróleo solo en la transición; full-bleed del home; letras A/B/C fuera) y resto del sitio (convención full-bleed en `shell.css`, índice de industrias 01-09 con foto de sector, letras fuera de cómo funciona). Pendientes de decisión de Rodrigo, fuera de esta pasada: qué fichas llevan mini-demo interactiva (§12) y los números propios para el patrón de KPI (§8.4, Spark); el arco termina en resultado anónimo (§8.5, opción a) mientras no haya otra decisión.
+Estado (2026-09-06 ~14:30 CDMX): primera pasada completa, verificada en 1440, 2560 y 390. Arrancó ~13:30 con dos agentes: home (columna de partículas ligada al scroll, de afuera hacia adentro, ruido → señal → resultado anónimo, petróleo solo en la transición; full-bleed del home; letras A/B/C fuera) y resto del sitio (convención full-bleed en `shell.css`, índice de industrias 01-09 con foto de sector, letras fuera de cómo funciona). Pendientes de decisión de Rodrigo, fuera de esta pasada: qué fichas llevan mini-demo interactiva (§12) y los números propios para el patrón de KPI (§8.4, Spark); el arco termina en resultado anónimo (§8.5, opción a) mientras no haya otra decisión.
+
+Lo hecho:
+
+- ✅ **La columna (§8.1).** Un solo canvas sticky que atraviesa tres pantallas del home; el progreso sale del scroll, no de un reloj. Fases: ruido en los bordes del viewport (0 a 0.22), convergencia de afuera hacia adentro (0.22 a 0.52), señal senoidal sostenida (0.52 a 0.62), resolución en una curva ascendente con punto de decisión, plomada y marca de piso (0.62 a 0.90). El resultado es anónimo (§8.5 a). 520 partículas en escritorio, DPR capado a 2, 60 fps parejos medidos a 2560. `prefers-reduced-motion`: estado resuelto estático, sin listener. Rail 01 Ruido / 02 Señal / 03 Resultado en DM Sans.
+- ✅ **El petróleo (§8.6)** entra solo en el canvas: sube con la convergencia, se sostiene en la señal y se apaga al resolverse (`petro = conv * (1 - res)`); el resultado queda en papel neutro. Nav, barra de progreso, hover y CTAs en navy; el barrido del eyebrow del hero pasó a slate. `--ochre` sigue solo definido, no pintado. Único uso de petróleo fuera del canvas: el anillo de `:focus-visible` del CSS vendorizado (accesibilidad, preexistente en el sitio actual); se deja y se anota.
+- ✅ **Full-bleed (invariante 16).** Convención en `shell.css`: `--gutter: clamp(24px, 4vw, 96px)`, `--max-ancho: 1800px`, contenedor `min(100% - 2 * gutter, max-ancho)`; fondos y texturas a todo el ancho; en ≥1600 las rejillas suman columnas (principios a 4, checkup y equipo a 2, pilares y contacto a 2) y el display escala (h1 del home hasta 9.4rem). A 2560 quedan 380 px de papel por lado por el techo de 1800: es la convención, no descuido, y se cambia en un número.
+- ✅ **Industrias 01-09 (§8.4).** Índice reescrito: filas a todo el ancho con número en DM Sans, nombre en Cormorant, línea de casos y foto de sector 16:10 con velo navy al 24 % que unifica exposiciones; en hover la foto se aclara. La misma foto va full-bleed detrás del hero de cada industria con velo diagonal (contraste 18:1 en el texto). Peso de `/industrias/`: 143 KB a DPR 1, 332 KB a DPR 2 con las 9 fotos en webp.
+- ✅ **D7, letras.** Las A/B/C ornamentales salieron del home y de cómo funciona; donde hacía falta marcador va 01/02/03 en DM Sans.
+- ✅ Dos defectos cazados de paso: la textura del hero tapaba las partículas; una caja blanca fantasma en las familias de dos fichas del catálogo; el nav se partía en teléfono (logo a 26 px bajo 600).
+- ✅ Gates completos: build 126, i18n 3261, terceros 0, acentos 0, rutas 9/9, segunda persona 0 de 126, censo 54 sin faltantes.
+- 🟡 **Cormorant Garamond 300 separa la tilde** en display grande ("decisión", "operación"): preexistente y de todo el sitio, incluido el actual. Subir el display a 400 lo resuelve; es decisión de Rodrigo porque cambia el color tipográfico del hero.
+- 🟡 Índice del catálogo en 2560: las familias de dos fichas dejan medio ancho vacío; ajuste en curso.
+- 🟡 Gancho de QA `?columna=0.55` en el script de la columna, para capturar cualquier punto del arco; inerte sin el parámetro.
 
 ## Verificación fresca de CP4 a CP6 (medida 2026-09-05 ~14:40 CDMX contra 1994c33)
 
@@ -202,6 +215,6 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
 | CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
 | CP6 | ✅ (copy pendiente de aprobación) | 1994c33 + ad2114b | 2026-09-06 ~00:40 CDMX |
-| CP7 | en curso (desbloqueado 2026-09-06) | | |
+| CP7 | ✅ primera pasada | este commit | 2026-09-06 ~14:30 CDMX |
 | CP8 | pendiente (video de producto: decisión de Rodrigo; texturas sin optimizar) | | |
 | CP9 | ✅ salvo lo que depende de Rodrigo | 9e102c3 + este commit | 2026-09-06 ~01:00 CDMX |

@@ -2,15 +2,21 @@
    inline de how-we-operate.html. */
 
 .principles-section { padding: 96px 0; }
+/* Rejilla de hairlines: el contenedor pinta arriba e izquierda, cada celda
+   derecha y abajo. Así la línea se dibuja una sola vez y la rejilla puede
+   cambiar de número de columnas sin que ningún nth-child se desalinee. */
 .principles-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
   margin-top: 64px;
   border-top: 1px solid var(--navy-12);
+  border-left: 1px solid var(--navy-12);
 }
-.principle-item { padding: 36px 40px 36px 0; border-bottom: 1px solid var(--navy-12); }
-.principle-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid var(--navy-12); }
+.principle-item {
+  padding: clamp(28px, 2.2vw, 44px) clamp(26px, 2vw, 40px);
+  border-right: 1px solid var(--navy-12);
+  border-bottom: 1px solid var(--navy-12);
+}
 .principle-label {
   font-family: var(--font-sans);
   font-size: 10px;
@@ -28,11 +34,11 @@
   color: var(--navy);
   margin-bottom: 8px;
 }
-.principle-item p { font-size: 15px; color: var(--navy-72); line-height: 1.65; max-width: 420px; }
+.principle-item p { font-size: clamp(14.5px, 0.85vw, 16px); color: var(--navy-72); line-height: 1.65; max-width: 46ch; }
 
 .practical-section { padding: 88px 0; }
-.practical-section h2 { margin-bottom: 48px; max-width: 560px; }
-.practical-list { display: flex; flex-direction: column; max-width: 720px; }
+.practical-section h2 { margin-bottom: 48px; max-width: 18ch; }
+.practical-list { display: flex; flex-direction: column; width: min(100%, 68ch); }
 .practical-list li {
   font-size: clamp(1rem, 1.4vw, 1.1rem);
   color: var(--navy-72);
@@ -55,12 +61,17 @@
   top: -2px;
 }
 
+/* Ocho principios: en monitor grande son dos filas de cuatro, no cuatro de dos. */
+@media (min-width: 1600px) {
+  .principles-grid { grid-template-columns: repeat(4, 1fr); }
+  .principles-section { padding: 150px 0; }
+  .practical-section { padding: 140px 0; }
+}
 @media (max-width: 960px) {
   .principles-grid { grid-template-columns: 1fr; }
-  .principle-item:nth-child(even) { padding-left: 0; border-left: none; }
 }
 @media (max-width: 600px) {
   .principles-section { padding: 72px 0; }
   .practical-section { padding: 64px 0; }
-  .principle-item { padding: 28px 0; }
+  .principle-item { padding: 26px 22px; }
 }

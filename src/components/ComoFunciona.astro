@@ -40,10 +40,12 @@ function reescribeEnlaces(html: string): string {
   });
 }
 
+// Los tres brazos se marcan con 01/02/03 en DM Sans. Antes iban con A/B/C en
+// Cormorant: una letra ornamental no dice nada, un índice sí ordena la lectura.
 const brazosHero = [
-  { letra: 'A', ancla: 'informacion', titulo: c.hf_a_title, sub: c.hf_a_sub, snav: c.snav_a },
-  { letra: 'B', ancla: 'capacidades-analiticas', titulo: c.hf_b_title, sub: c.hf_b_sub, snav: c.snav_b },
-  { letra: 'C', ancla: 'ejecucion', titulo: c.hf_c_title, sub: c.hf_c_sub, snav: c.snav_c },
+  { num: '01', ancla: 'informacion', titulo: c.hf_a_title, sub: c.hf_a_sub, snav: c.snav_a },
+  { num: '02', ancla: 'capacidades-analiticas', titulo: c.hf_b_title, sub: c.hf_b_sub, snav: c.snav_b },
+  { num: '03', ancla: 'ejecucion', titulo: c.hf_c_title, sub: c.hf_c_sub, snav: c.snav_c },
 ];
 
 // Iconos de línea de las fuentes de datos. Van en el mismo orden que el copy y
@@ -77,9 +79,9 @@ const itemsC = [1, 2, 3, 4, 5, 6].map((n) => ({
 }));
 const familias = c.b_families as { label: string; mods: string[][] }[];
 const nodosLoop = [
-  { sim: 'A', titulo: c.ln_a_title, cuerpo: c.ln_a_body, clase: '' },
-  { sim: 'B', titulo: c.ln_b_title, cuerpo: c.ln_b_body, clase: '' },
-  { sim: 'C', titulo: c.ln_c_title, cuerpo: c.ln_c_body, clase: '' },
+  { sim: '01', titulo: c.ln_a_title, cuerpo: c.ln_a_body, clase: '' },
+  { sim: '02', titulo: c.ln_b_title, cuerpo: c.ln_b_body, clase: '' },
+  { sim: '03', titulo: c.ln_c_title, cuerpo: c.ln_c_body, clase: '' },
   { sim: '\u21BA', titulo: c.ln_l_title, cuerpo: c.ln_l_body, clase: 'loop-learning' },
 ];
 
@@ -97,7 +99,7 @@ const hrefFloorSignal = fichaHref('floor-signal');
     <div class="hero-flow">
       {brazosHero.map((b) => (
         <a href={`#${b.ancla}`} class="hero-flow-item">
-          <span class="hf-letter" aria-hidden="true">{b.letra}</span>
+          <span class="hf-num" aria-hidden="true">{b.num}</span>
           <span class="hf-label"><strong>{b.titulo}</strong><span>{b.sub}</span></span>
         </a>
       ))}
@@ -108,7 +110,7 @@ const hrefFloorSignal = fichaHref('floor-signal');
 <div class="section-nav">
   <div class="section-nav-inner">
     {brazosHero.map((b) => (
-      <a href={`#${b.ancla}`}><span class="section-nav-letter" aria-hidden="true">{b.letra}</span> <span>{b.snav}</span></a>
+      <a href={`#${b.ancla}`}><span class="section-nav-num" aria-hidden="true">{b.num}</span> <span>{b.snav}</span></a>
     ))}
   </div>
 </div>
@@ -117,7 +119,7 @@ const hrefFloorSignal = fichaHref('floor-signal');
 <section id="informacion" class="deep-section section-a section-paper">
   <div class="container">
     <div class="section-arm-header">
-      <div class="arm-letter-bg" aria-hidden="true">A</div>
+      <div class="arm-num" aria-hidden="true">01</div>
       <div>
         <div class="eyebrow">{c.a_eyebrow}</div>
         <h2 set:html={c.a_h2} />
@@ -200,7 +202,7 @@ const hrefFloorSignal = fichaHref('floor-signal');
 <section id="capacidades-analiticas" class="deep-section section-b section-white">
   <div class="container">
     <div class="section-arm-header">
-      <div class="arm-letter-bg" aria-hidden="true">B</div>
+      <div class="arm-num" aria-hidden="true">02</div>
       <div>
         <div class="eyebrow">{c.b_eyebrow}</div>
         <h2 set:html={c.b_h2} />
@@ -244,7 +246,7 @@ const hrefFloorSignal = fichaHref('floor-signal');
 <section id="ejecucion" class="deep-section section-c section-dark-flow">
   <div class="container">
     <div class="section-arm-header">
-      <div class="arm-letter-bg" aria-hidden="true">C</div>
+      <div class="arm-num" aria-hidden="true">03</div>
       <div>
         <div class="eyebrow">{c.c_eyebrow}</div>
         <h2 set:html={c.c_h2} />

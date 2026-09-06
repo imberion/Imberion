@@ -12,7 +12,7 @@
   border: 1px solid var(--white-12);
   border-radius: var(--r);
   overflow: hidden;
-  max-width: 680px;
+  width: min(100%, 980px);
 }
 .hero-flow-item {
   display: flex;
@@ -25,7 +25,20 @@
 }
 .hero-flow-item:hover { background: var(--white-12); }
 .hero-flow-item + .hero-flow-item { border-left: 1px solid var(--white-12); }
-.hf-letter { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 300; color: var(--white-45); line-height: 1; flex-shrink: 0; }
+/* D7: donde había una A/B/C en Cormorant ahora va el índice 01/02/03 en DM Sans.
+   El marcador ordena la lectura; la letra sólo decoraba. */
+.hf-num {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--white-45);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding-top: 3px;
+}
 .hf-label { font-size: 12px; font-weight: 500; color: var(--white-65); line-height: 1.4; }
 .hf-label strong { display: block; font-size: 13px; font-weight: 600; color: var(--white-85); margin-bottom: 2px; }
 
@@ -38,7 +51,7 @@
   z-index: 50;
   overflow-x: auto;
 }
-.section-nav-inner { display: flex; max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+.section-nav-inner { display: flex; }
 .section-nav a {
   display: inline-flex;
   align-items: center;
@@ -53,38 +66,62 @@
   transition: color .25s var(--ease), border-color .25s var(--ease);
 }
 .section-nav a:hover { color: var(--navy); border-bottom-color: var(--navy-12); }
-.section-nav-letter { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 300; opacity: .5; }
+.section-nav-num { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; font-variant-numeric: tabular-nums; color: var(--navy-40); }
+
+/* Contenedores propios de esta página. Misma fórmula que .container en
+   shell.css: el fondo va a todo el ancho y el contenido lleva el lienzo. */
+.section-nav-inner,
+.arm-connector-inner,
+.cf-ancho,
+.signals-row {
+  width: min(100% - 2 * var(--gutter), var(--max-ancho));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0;
+}
 
 /* ---------- estructura compartida de las tres secciones ---------- */
 .deep-section { padding: 96px 0; }
 .section-arm-header { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; margin-bottom: 56px; }
 .section-arm-header .lead { margin-top: 18px; }
-.arm-letter-bg {
-  font-family: var(--font-serif);
-  font-size: 8rem;
-  font-weight: 300;
+.arm-num {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
   line-height: 1;
-  color: var(--navy-12);
-  letter-spacing: .05em;
-  margin-top: -12px;
+  color: var(--navy-40);
+  font-variant-numeric: tabular-nums;
+  padding-top: .7em;
+  padding-right: 26px;
   -webkit-user-select: none;
   user-select: none;
 }
+.arm-num::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 1.05em;
+  width: 16px;
+  height: 1px;
+  background: var(--navy-20);
+}
 
 /* ---------- conector entre brazos ---------- */
-.arm-connector { background: var(--white); border-top: 1px solid var(--navy-06); border-bottom: 1px solid var(--navy-06); padding: 20px 36px; }
-.arm-connector-inner { max-width: var(--max); margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 16px; }
+.arm-connector { background: var(--white); border-top: 1px solid var(--navy-06); border-bottom: 1px solid var(--navy-06); padding: 20px 0; }
+.arm-connector-inner { display: flex; align-items: center; gap: 16px; }
 .ac-label { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--navy-40); }
 .ac-line { flex: 1; height: 1px; background: var(--navy-12); }
 .ac-arrow { color: var(--navy-40); font-size: 14px; }
 
 /* ---------- Brazo A ---------- */
 .section-a { background-color: var(--paper-alt); }
-.cf-ancho { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
+
 .cf-mockup { margin-top: 44px; }
 .cf-mockup img { display: block; width: 100%; height: auto; border-radius: var(--r); }
 
-.signals-row { max-width: var(--max); margin: 0 auto 64px; padding: 0 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.signals-row { margin-bottom: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 3vw, 72px); align-items: start; }
 .signals-head h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.15; margin: 14px 0; }
 .signals-head .lead { font-size: 14px; color: var(--navy-72); line-height: 1.7; margin: 0; max-width: none; }
 .signals-cards { display: flex; flex-direction: column; gap: 2px; }
@@ -170,7 +207,8 @@ a.signal-card:hover h4::after { transform: translateX(3px); color: var(--navy); 
 .section-c .eyebrow { color: var(--white-45); }
 .section-c h2, .section-c h3, .section-c h4 { color: #fff; }
 .section-c .lead { color: var(--white-65); }
-.section-c .arm-letter-bg { color: var(--white-06); }
+.section-c .arm-num { color: var(--white-45); }
+.section-c .arm-num::after { background: var(--white-25); }
 .c-gap-note {
   font-family: var(--font-serif);
   font-size: clamp(1.15rem, 2vw, 1.5rem);
@@ -211,12 +249,12 @@ a.signal-card:hover h4::after { transform: translateX(3px); color: var(--navy); 
 /* ---------- cierre del loop ---------- */
 .closing-loop { background-color: var(--navy); padding: 88px 0; color: var(--white); }
 .closing-loop .eyebrow { color: var(--white-45); }
-.closing-loop h2 { color: #fff; max-width: 520px; }
+.closing-loop h2 { color: #fff; max-width: 18ch; }
 .closing-loop .lead { color: var(--white-65); margin-top: 16px; }
-.loop-flow { display: flex; align-items: stretch; margin: 48px 0; max-width: 720px; }
+.loop-flow { display: flex; align-items: stretch; margin: 48px 0; width: min(100%, 980px); }
 .loop-node { flex: 1 1 0; background: var(--white-06); padding: 24px 20px; text-align: center; display: flex; flex-direction: column; }
 .loop-node + .loop-node { border-left: 1px solid var(--white-12); }
-.loop-node-sym { font-family: var(--font-serif); font-size: 2rem; font-weight: 300; color: var(--white-25); margin-bottom: 10px; line-height: 1; }
+.loop-node-sym { font-family: var(--font-sans); font-size: 12px; font-weight: 600; letter-spacing: .16em; font-variant-numeric: tabular-nums; color: var(--white-45); margin-bottom: 12px; line-height: 1; }
 .loop-node h4 { font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--white-85); margin-bottom: 6px; }
 .loop-node p { font-size: 12px; color: var(--white-45); line-height: 1.5; }
 .loop-node.loop-learning { background: var(--white-12); }
@@ -226,11 +264,17 @@ a.signal-card:hover h4::after { transform: translateX(3px); color: var(--navy); 
 .back-link:hover { color: #fff; }
 
 /* ---------- responsive ---------- */
+/* De 1600px para arriba las rejillas suman columnas: cuatro familias en una
+   fila leen mejor que dos bloques de 900px de ancho. */
+@media (min-width: 1600px) {
+  .deep-section { padding: 140px 0; }
+  .fam-grid { grid-template-columns: repeat(4, 1fr); }
+  .closing-loop { padding: 128px 0; }
+}
 @media (max-width: 960px) {
-  .hero-flow { flex-direction: column; max-width: 400px; }
+  .hero-flow { flex-direction: column; width: min(100%, 400px); }
   .hero-flow-item + .hero-flow-item { border-left: none; border-top: 1px solid var(--white-12); }
   .section-arm-header { grid-template-columns: 1fr; gap: 16px; }
-  .arm-letter-bg { font-size: 5rem; margin-top: 0; }
   .sources-grid { grid-template-columns: 1fr; }
   .process-flow { grid-template-columns: 1fr 1fr; }
   .process-step:not(:last-child)::after { display: none; }
@@ -247,5 +291,4 @@ a.signal-card:hover h4::after { transform: translateX(3px); color: var(--navy); 
 @media (max-width: 600px) {
   .deep-section { padding: 64px 0; }
   .process-flow { grid-template-columns: 1fr; }
-  .signals-row, .cf-ancho, .section-nav-inner, .arm-connector { padding-left: 20px; padding-right: 20px; }
 }

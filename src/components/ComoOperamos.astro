@@ -42,6 +42,16 @@ const practica = c.practical as string[];
 
 <div class="imb-divider" aria-hidden="true"></div>
 
+<style>
+  /* site.css le da al divisor max-width var(--max) con 36px de sangría fija.
+     Aquí se alinea con la convención de anchos del shell. */
+  .imb-divider {
+    width: min(100% - 2 * var(--gutter), var(--max-ancho));
+    max-width: none;
+  }
+  .imb-divider::before { left: 0; right: 0; }
+</style>
+
 <section class="practical-section section-white">
   <div class="container">
     <h2>{c.practical_h2}</h2>

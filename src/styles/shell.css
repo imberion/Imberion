@@ -10,8 +10,39 @@
    skin siga ganando.
    ============================================================ */
 
+/* ------------------------------------------------------------
+   CONVENCIÓN DE ANCHOS (invariante 16, full-bleed). Fuente de verdad.
+   Cualquier hoja del sitio (incluida home.css) replica ESTA fórmula.
+
+   El sitio usa el monitor completo: nada de columna angosta centrada
+   con márgenes muertos a los lados. El aire generoso va entre bloques,
+   no en los costados.
+
+     --gutter    respiro lateral mínimo, que crece con la ventana
+     --max-ancho tope del lienzo de contenido
+     contenedor  width: min(100% - 2 * var(--gutter), var(--max-ancho))
+
+   Fondos, texturas y franjas siempre van a todo el ancho del viewport:
+   quien lleva el ancho es el contenedor interior, nunca la sección.
+   De 1600px para arriba las rejillas suman columnas o crece el tipo;
+   ninguna rejilla se queda en su ancho de laptop dejando aire muerto.
+   ------------------------------------------------------------ */
 :root {
-  --max: 1140px;
+  --gutter: clamp(24px, 4vw, 96px);
+  --max-ancho: 1800px;
+  /* Alias de compatibilidad: site.css (vendorizado) y algunos bloques
+     todavía leen --max. Apunta al mismo tope, así no hay dos anchos. */
+  --max: var(--max-ancho);
+}
+
+/* El contenedor canónico. Sin padding propio: el respiro lo da el ancho. */
+.container,
+.nav-inner,
+.page-hero-content {
+  width: min(100% - 2 * var(--gutter), var(--max-ancho));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0;
 }
 
 *,
@@ -28,8 +59,6 @@ body {
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-
-.container { max-width: var(--max); margin: 0 auto; padding: 0 36px; }
 
 /* ---------- salto al contenido ---------- */
 .skip-link {
@@ -54,18 +83,16 @@ nav:not(.footer-links) {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 36px;
 }
 .nav-inner {
-  max-width: var(--max);
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   height: 70px;
 }
-.nav-logo img { height: 34px; width: auto; }
+.nav-logo { flex-shrink: 1; min-width: 0; }
+.nav-logo img { height: 34px; width: auto; max-width: 100%; }
 .nav-links { display: flex; gap: 24px; align-items: center; }
 .nav-right { display: flex; gap: 14px; align-items: center; }
 
@@ -96,7 +123,7 @@ a.lang-btn { display: inline-block; }
 /* Copiado de retail.html: es lo que despeja el nav fijo. */
 .page-hero {
   background: var(--navy);
-  padding: 150px 36px 92px;
+  padding: 150px 0 92px;
   position: relative;
   overflow: hidden;
 }
@@ -106,14 +133,14 @@ a.lang-btn { display: inline-block; }
   background: radial-gradient(ellipse at 28% 46%, rgba(111, 133, 156, .22) 0%, transparent 60%);
   pointer-events: none;
 }
-.page-hero-content { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
+.page-hero-content { position: relative; z-index: 1; }
 .page-hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  font-size: clamp(2.6rem, 4.6vw, 5.6rem);
   font-weight: 300;
   color: #fff;
   line-height: 1.06;
-  max-width: 840px;
+  max-width: 20ch;
   letter-spacing: -.02em;
 }
 .page-hero .eyebrow {
@@ -121,7 +148,7 @@ a.lang-btn { display: inline-block; }
   text-transform: uppercase;
   margin-bottom: 14px;
 }
-.page-hero .lead { margin-top: 24px; max-width: 640px; color: var(--white-65); } /* site.css lo pinta navy-72; sobre el hero navy era ilegible */
+.page-hero .lead { margin-top: 24px; max-width: 68ch; color: var(--white-65); } /* site.css lo pinta navy-72; sobre el hero navy era ilegible */
 
 /* ---------- FOOTER ---------- */
 footer .container { position: relative; z-index: 1; }
@@ -169,8 +196,17 @@ footer .container { position: relative; z-index: 1; }
   .nav-links { display: none; }
 }
 @media (max-width: 600px) {
-  .container { padding: 0 20px; }
-  nav:not(.footer-links) { padding: 0 20px; }
-  .page-hero { padding: 120px 20px 64px; }
+  /* El logotipo mide 965x205: a 34px de alto ocupa 160px, y con el selector de
+     idioma y el botón la barra sumaba ~418px sobre un ancho útil de 342. El
+     desbordamiento empujaba el ancho del documento y cortaba TODA la página por
+     la derecha en un teléfono. Aquí la barra se ajusta al ancho que hay. */
+  .nav-inner { gap: 10px; }
+  .nav-logo img { height: 26px; }
+  .nav-right { gap: 8px; }
+  .lang-toggle { padding: 2px; }
+  .lang-btn { padding: 4px 6px; font-size: 10px; }
+  nav:not(.footer-links) .btn { padding: 9px 12px; font-size: 11.5px; white-space: nowrap; }
+
+  .page-hero { padding: 120px 0 64px; }
   .footer-links, #footer-links { justify-content: flex-start; }
 }
