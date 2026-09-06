@@ -4,7 +4,7 @@ Convención: 🔴 bloqueante · 🟡 sugerencia · ✅ resuelto. Claude (revisor
 
 Contrato: `imberion-brain/.claude/worktrees/sitio-v2-spec/00_imberion/tooling/sitio/_spec_sitio_v2.md` (§7 invariantes, §9 riesgos, §10 checkpoints) y el handoff `_handoff_fable_sitio_v2.md` en la misma carpeta.
 
-> 🔴 **NO MERGEAR ESTA RAMA A `main` HASTA QUE RODRIGO APRUEBE CP2 Y CP9 CIERRE.** Desde CP9a el smoke recorre el censo de 51 rutas, así que el andamio ya no pasaría en verde; el aviso sigue porque la lista blanca y el copy nuevo siguen sin aprobación. Hallazgo del verificador fresco (2026-09-05 ~21:50 CDMX): `vercel.json` publica solo `dist/`, y hasta que CP4-CP9 porten todas las rutas, `dist/` es un andamio. Un merge hoy reemplaza imberion.com por tres páginas de "sitio en construcción" con el smoke test en verde, porque el smoke verifica que se sirvió la carpeta correcta, no que se sirvió el sitio completo. CP9 cierra ese hueco con el censo de rutas (cero 404 contra las 13 URLs actuales) dentro del smoke. La descripción del PR debe repetir este aviso.
+> 🔴 **NO MERGEAR ESTA RAMA A `main` HASTA QUE CP7 CIERRE Y RODRIGO REVISE EL COPY.** CP2 quedó aprobado el 2026-09-06 (con cuatro cambios, ya aplicados). El smoke recorre el censo de 54 rutas, así que un andamio no pasaría en verde. Hallazgo del verificador fresco (2026-09-05 ~21:50 CDMX): `vercel.json` publica solo `dist/`, y hasta que CP4-CP9 porten todas las rutas, `dist/` es un andamio. Un merge hoy reemplaza imberion.com por tres páginas de "sitio en construcción" con el smoke test en verde, porque el smoke verifica que se sirvió la carpeta correcta, no que se sirvió el sitio completo. CP9 cierra ese hueco con el censo de rutas (cero 404 contra las 13 URLs actuales) dentro del smoke. La descripción del PR debe repetir este aviso.
 
 ## Decisiones que necesitan a Rodrigo
 
@@ -86,6 +86,24 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `src/styles/site.css` y `assets/css/imberion-site.css` conviven sin sincronía hasta CP9, que retira la vieja.
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
+
+## Cambios del 2026-09-06 (spec en ruta estable, CP2 aprobado)
+
+Estado (2026-09-06 ~13:25 CDMX), commit `4b779ed`:
+
+- ✅ **Invariante 17.** La cita del MOCA salió de la ficha de Value-Attribute Compass en los 3 locales; el método se describe con lenguaje propio. Gate nuevo `npm run gate:terceros` (grep de firmas y frameworks de terceros sobre `dist/` y `src/i18n/content/`), en verde; corre en CP9 y en todo checkpoint que toque copy.
+- ✅ **D7.** Los tres pilares se nombran en home y cómo funciona (Información / Capacidades analíticas / Ejecución, 3 locales); "Brazo A/B/C" y "Motor de Inteligencia" fuera de `dist/` (grep 0). Ids nuevos `#informacion`, `#capacidades-analiticas`, `#ejecucion`; los anclajes viejos `#arm-a/b/c` se resuelven desde el home con un redirect de cliente (el hash no llega al servidor). Las letras ornamentales A/B/C se retiran en CP7.
+- ✅ **CP2 aprobado con cambios.** Virtual Buyer Personas, Account Twin y Training Signal suben a ficha (26 fichas, 126 páginas); sus chips vuelven al home y farma recupera "Training Signal al mostrador". Price Value Compass y Scenario Engine quedan como fila transversal del cruce (fuera las 18 celdas sin evidencia). Los tres artefactos del Brain registran la aprobación (rama `sitio/v2-cp2-aprobado` del Brain, sin push).
+- ✅ **Logística en el roster con `borrador: true`.** `src/data/industrias.json` la lista; `src/i18n/content/industrias/logistica.json` existe con el esquema de 81 claves vacío; `INDUSTRIAS` en `src/lib/industrias.ts` filtra los borradores, así que no hay ruta, no entra al índice ni al sitemap (verificado: 0 en `dist/`), y el home no la enlaza. Publicar es poner el booleano en false con el JSON lleno.
+- ✅ **§8.6.** Los tokens de petróleo ya existen en `site.css`; CP7 los usa solo en el instante ruido→señal de la columna del home. Nav, barra de progreso y hover siguen en navy; `--ochre` sin pintarse.
+- ✅ **Fotos de sector** para el índice de industrias (§8.4): 10 imágenes 1600×1000 (incluida logística para cuando salga del borrador), fotorrealistas con motion blur, sin marcas, texto ni caras en foco; tres se regeneraron por logos o trade dress. En `src/assets/industrias/`.
+- ✅ Gates completos tras el lote: build 126, i18n 3261, terceros 0, segunda persona 0 de 126, vetados 0, interno 0, censo de 54 rutas sin faltantes.
+- 🟡 Se dejó "cada cuatro a seis meses" en Training Signal (rotación de catálogo, mecanismo del problema, no resultado). Se cambia en una línea si se prefiere cero números.
+- 🟡 Farma `cap6` podría enlazar ahora a la ficha de Training Signal (`cap6_l`); no se agregó.
+
+## CP7 · Craft (en curso)
+
+Arrancó el 2026-09-06 ~13:30 CDMX con dos agentes: home (columna de partículas ligada al scroll, de afuera hacia adentro, ruido → señal → resultado anónimo, petróleo solo en la transición; full-bleed del home; letras A/B/C fuera) y resto del sitio (convención full-bleed en `shell.css`, índice de industrias 01-09 con foto de sector, letras fuera de cómo funciona). Pendientes de decisión de Rodrigo, fuera de esta pasada: qué fichas llevan mini-demo interactiva (§12) y los números propios para el patrón de KPI (§8.4, Spark); el arco termina en resultado anónimo (§8.5, opción a) mientras no haya otra decisión.
 
 ## Verificación fresca de CP4 a CP6 (medida 2026-09-05 ~14:40 CDMX contra 1994c33)
 
@@ -180,6 +198,6 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP4 | ✅ | f10459e (shell) + f402414 (catálogo) | 2026-09-05 ~23:15 CDMX |
 | CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
 | CP6 | ✅ (copy pendiente de aprobación) | 1994c33 + ad2114b | 2026-09-06 ~00:40 CDMX |
-| CP7 | bloqueado (referencia visual) | | |
+| CP7 | en curso (desbloqueado 2026-09-06) | | |
 | CP8 | pendiente (video de producto: decisión de Rodrigo; texturas sin optimizar) | | |
 | CP9 | ✅ salvo lo que depende de Rodrigo | 9e102c3 + este commit | 2026-09-06 ~01:00 CDMX |
