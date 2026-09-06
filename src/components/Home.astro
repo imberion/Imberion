@@ -25,7 +25,17 @@ const c = contenido('home', locale);
 
 // Lista blanca del catálogo: un tag solo se vuelve enlace si su ficha existe.
 const FICHAS = new Set((catalogoData.herramientas as { slug: string }[]).map((h) => h.slug));
-const INDUSTRIAS = new Set((industriasData.industrias as { slug: string }[]).map((i) => i.slug));
+// Solo las industrias publicadas: una en borrador no tiene página y no se enlaza.
+const INDUSTRIAS = new Set(
+  (industriasData.industrias as { slug: string; borrador?: boolean }[]).filter((i) => !i.borrador).map((i) => i.slug),
+);
+// Los anclajes viejos del home (#arm-a/b/c) son solo origen de redirect (D7): el
+// navegador conserva el hash tras el redirect de index.html, así que se resuelve aquí.
+const REDIRECT_ANCLAS = JSON.stringify({
+  '#arm-a': ruta(locale, 'como-funciona') + '#informacion',
+  '#arm-b': ruta(locale, 'como-funciona') + '#capacidades-analiticas',
+  '#arm-c': ruta(locale, 'como-funciona') + '#ejecucion',
+});
 
 // El mapeo es por posición, no por nombre: los arreglos son paralelos en los
 // tres idiomas y los nombres de los tags no lo son. null = sin ficha, sin enlace.
@@ -33,9 +43,9 @@ const SLUGS_TAGS: Record<'a' | 'b' | 'c', (string | null)[]> = {
   a: ['market-signal', 'floor-signal', 'integracion-de-datos', null],
   b: [
     'value-attribute-compass', 'price-value-compass', 'whitespace-compass',
-    'growth-bridge-analysis', null, 'pricing-y-surtido', 'promociones', 'politica-comercial',
+    'growth-bridge-analysis', 'virtual-buyer-personas', 'pricing-y-surtido', 'promociones', 'politica-comercial',
   ],
-  c: ['concierge', null, null, null, 'habilitadores', null, null, null],
+  c: ['concierge', null, 'training-signal', 'account-twin', 'habilitadores', null, null, null],
 };
 // Mismo criterio para los chips de sector. e-Commerce y Logística todavía no
 // tienen página de industria publicada, así que van sin enlace.
@@ -54,9 +64,9 @@ const tags = (llave: string, mapa: (string | null)[]) =>
   (c[llave] as string[]).map((texto, i) => ({ texto, href: hrefFicha(mapa[i] ?? null) }));
 
 const brazos = [
-  { letra: 'A', k: 'arm_a', ancla: 'arm-a', tags: tags('arm_a_tags', SLUGS_TAGS.a), parrafos: ['arm_a_p'] },
-  { letra: 'B', k: 'arm_b', ancla: 'arm-b', tags: tags('arm_b_tags', SLUGS_TAGS.b), parrafos: ['arm_b_p', 'arm_b_p2'] },
-  { letra: 'C', k: 'arm_c', ancla: 'arm-c', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
+  { letra: 'A', k: 'arm_a', ancla: 'informacion', tags: tags('arm_a_tags', SLUGS_TAGS.a), parrafos: ['arm_a_p'] },
+  { letra: 'B', k: 'arm_b', ancla: 'capacidades-analiticas', tags: tags('arm_b_tags', SLUGS_TAGS.b), parrafos: ['arm_b_p', 'arm_b_p2'] },
+  { letra: 'C', k: 'arm_c', ancla: 'ejecucion', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
 ];
 
 const imagenesWho = [whoFabricantes, whoDistribuidores, whoRetailers];
@@ -170,7 +180,7 @@ const ICONOS_SOLVE = [
   </div>
 </section>
 
-<!-- TRES BRAZOS -->
+<!-- TRES PILARES -->
 <section class="arms-section section-signal-light" id="how-it-works">
   <div class="container">
     <div class="eyebrow">{c.arms_eyebrow}</div>
@@ -459,4 +469,10 @@ const ICONOS_SOLVE = [
   window.addEventListener('resize', resize);
   resize(); draw();
 })();
+</script>
+<script is:inline define:vars={{ REDIRECT_ANCLAS }}>
+  (function () {
+    var destino = REDIRECT_ANCLAS[location.hash];
+    if (destino) location.replace(destino);
+  })();
 </script>

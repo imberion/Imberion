@@ -1,0 +1,98 @@
+{
+  "es": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "nombre": "Virtual Buyer Personas",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Virtual Buyer Personas · Familia Twin",
+    "hero_h1": "Compradores simulados que reaccionan al catálogo antes de producirlo.",
+    "hero_lead": "Virtual Buyer Personas construye decenas de avatares que se comportan como los compradores reales de la empresa, entrenados con su data transaccional y sus estudios. Se les expone catálogo o conceptos y se observa qué eligen.",
+    "que_hace_h2": "Un panel de compradores simulados",
+    "que_hace_p": "Cada persona se arma con el historial de compra, la segmentación vigente y los estudios que ya existen, y responde como el segmento que representa. La corrida se hace en horas: se muestra el concepto, el empaque o el surtido, se registra qué atrae a quién y se comparan las respuestas entre segmentos.",
+    "que_hace_items": [
+      "Avatares entrenados con data transaccional y estudios propios",
+      "Decenas de perfiles, uno por segmento relevante",
+      "Exposición a catálogo, concepto o empaque",
+      "Lectura de qué atributo mueve a qué segmento"
+    ],
+    "valor_h2": "Un filtro antes del gasto grande",
+    "valor_p": "Producir un surtido o convocar un focus group cuesta semanas y presupuesto. Correr el concepto contra las personas simuladas descarta antes lo que nadie quiere, y deja la investigación con personas reales para las opciones que sobreviven al filtro.",
+    "sowhat": "Define qué conceptos llegan a producción y cuáles se descartan antes de gastar en ellos.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c",
+      "telco"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Valida los atributos de valor que levanta Value-Attribute Compass y alimenta los argumentos que Training Signal lleva a la fuerza de ventas.",
+    "ctastrip_h2": "¿Cuánto cuesta hoy descubrir tarde que un concepto no funcionaba?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "nombre": "Virtual Buyer Personas",
+    "familia_label": "Twin · simulate",
+    "hero_eyebrow": "Virtual Buyer Personas · Twin family",
+    "hero_h1": "Simulated buyers that react to the catalog before it is produced.",
+    "hero_lead": "Virtual Buyer Personas builds dozens of avatars that behave like the company's real buyers, trained on its transactional data and its own research. Catalog or concepts are shown to them, and what they pick is observed.",
+    "que_hace_h2": "A panel of simulated buyers",
+    "que_hace_p": "Each persona is built from purchase history, the current segmentation and the research that already exists, and answers as the segment it represents. A run takes hours: the concept, pack or assortment is shown, what appeals to whom is recorded, and answers are compared across segments.",
+    "que_hace_items": [
+      "Avatars trained on transactional data and the company's own research",
+      "Dozens of profiles, one per relevant segment",
+      "Exposure to catalog, concept or packaging",
+      "A reading of which attribute moves which segment"
+    ],
+    "valor_h2": "A filter ahead of the large spend",
+    "valor_p": "Producing an assortment or convening a focus group costs weeks and budget. Running the concept against simulated personas discards early what nobody wants, and leaves research with real people for the options that survive the filter.",
+    "sowhat": "It settles which concepts reach production and which are dropped before money goes into them.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c",
+      "telco"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It validates the value attributes surfaced by Value-Attribute Compass and feeds the arguments Training Signal takes to the sales force.",
+    "ctastrip_h2": "What does it cost today to find out late that a concept did not work?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "nombre": "Virtual Buyer Personas",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Virtual Buyer Personas · Família Twin",
+    "hero_h1": "Compradores simulados que reagem ao catálogo antes de produzi-lo.",
+    "hero_lead": "Virtual Buyer Personas constrói dezenas de avatares que se comportam como os compradores reais da empresa, treinados com os dados transacionais e os estudos dela. Catálogo ou conceitos são apresentados a eles, e o que escolhem é observado.",
+    "que_hace_h2": "Um painel de compradores simulados",
+    "que_hace_p": "Cada persona é montada com o histórico de compra, a segmentação vigente e os estudos que já existem, e responde como o segmento que representa. A rodada leva horas: mostra-se o conceito, a embalagem ou o sortimento, registra-se o que atrai quem e comparam-se as respostas entre segmentos.",
+    "que_hace_items": [
+      "Avatares treinados com dados transacionais e estudos próprios",
+      "Dezenas de perfis, um por segmento relevante",
+      "Exposição a catálogo, conceito ou embalagem",
+      "Leitura de qual atributo move qual segmento"
+    ],
+    "valor_h2": "Um filtro antes do gasto grande",
+    "valor_p": "Produzir um sortimento ou convocar um focus group custa semanas e orçamento. Rodar o conceito contra as personas simuladas descarta antes o que ninguém quer, e deixa a pesquisa com pessoas reais para as opções que sobrevivem ao filtro.",
+    "sowhat": "Define quais conceitos chegam à produção e quais são descartados antes de haver gasto neles.",
+    "industrias": [
+      "cpg",
+      "farma",
+      "retail",
+      "servicios-b2c",
+      "telco"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Valida os atributos de valor que o Value-Attribute Compass levanta e alimenta os argumentos que o Training Signal leva à força de vendas.",
+    "ctastrip_h2": "Quanto custa hoje descobrir tarde que um conceito não funcionava?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

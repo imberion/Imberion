@@ -65,7 +65,7 @@
     "dim8": "Way of Working y Gobernanza",
     "cell_8_1": "Palancas en áreas que no se coordinan; nadie dueño del net revenue",
     "cell_8_2": "Procesos documentados, ejecución inconsistente; forecast solo de volumen",
-    "cell_8_3": "Función de RGM con dueño del net revenue; gross-to-net gobernado; capacitación del mostrador",
+    "cell_8_3": "Función de RGM con dueño del net revenue; gross-to-net gobernado; Training Signal al mostrador",
     "cell_8_4": "Decisiones trazables punta a punta; las palancas como un sistema que aprende",
     "cap1_t": "Trade spend gobernado",
     "cap1_p": "La bolsa más grande del OTC. Trade terms con pago por desempeño y gross-to-net visible por cliente y SKU; reasignar el gasto improductivo libera puntos de revenue neto sin recortar la inversión total.",
@@ -79,7 +79,7 @@
     "cap5_t": "Imberion Concierge",
     "cap5_p": "La recomendación que en la farmacia da el mostrador, trasladada a la conversación. Atención al canal y al shopper 24/7 que toma pedidos y empuja el mix objetivo en cada reabasto, dentro del claim permitido.",
     "cap5_l": "Ver Concierge",
-    "cap6_t": "Capacitación del mostrador",
+    "cap6_t": "Training Signal al mostrador",
     "cap6_p": "Convierte la recomendación de mostrador en capacidad instalada y medible, trazable al sell-out por farmacia. Es la palanca de sell-out propia del OTC, hoy dejada al azar o al genérico, vuelta argumento y señal continua."
   },
   "en": {
@@ -148,7 +148,7 @@
     "dim8": "Way of Working & Governance",
     "cell_8_1": "Levers sit in uncoordinated areas; no one owns net revenue",
     "cell_8_2": "Documented processes, inconsistent execution; volume-only forecast",
-    "cell_8_3": "RGM function owning net revenue; governed gross-to-net; counter capability building",
+    "cell_8_3": "RGM function owning net revenue; governed gross-to-net; Training Signal to the counter",
     "cell_8_4": "Decisions traceable end to end; the levers as a system that learns",
     "cap1_t": "Governed trade spend",
     "cap1_p": "OTC's biggest bag. Pay-for-performance trade terms and gross-to-net visible by customer and SKU; reallocating unproductive spend frees points of net revenue without cutting total investment.",
@@ -162,7 +162,7 @@
     "cap5_t": "Imberion Concierge",
     "cap5_p": "The recommendation the counter gives in the pharmacy, moved into the conversation. Channel and shopper attention 24/7 that takes orders and pushes the target mix on every restock, within the permitted claim.",
     "cap5_l": "See Concierge",
-    "cap6_t": "Counter capability building",
+    "cap6_t": "Training Signal to the counter",
     "cap6_p": "It turns the counter recommendation into an installed, measurable capability, traceable to sell-out per pharmacy. It is OTC's own sell-out lever, today left to chance or to the generic, turned into argument and continuous signal."
   },
   "pt": {
@@ -231,7 +231,7 @@
     "dim8": "Way of Working e Governança",
     "cell_8_1": "Alavancas em áreas que não se coordenam; ninguém dono do net revenue",
     "cell_8_2": "Processos documentados, execução inconsistente; forecast só de volume",
-    "cell_8_3": "Função de RGM com dono do net revenue; gross-to-net governado; capacitação do balcão",
+    "cell_8_3": "Função de RGM com dono do net revenue; gross-to-net governado; Training Signal ao balcão",
     "cell_8_4": "Decisões rastreáveis ponta a ponta; as alavancas como um sistema que aprende",
     "cap1_t": "Trade spend governado",
     "cap1_p": "A maior bolsa do OTC. Trade terms com pagamento por desempenho e gross-to-net visível por cliente e SKU; realocar o gasto improdutivo libera pontos de receita líquida sem cortar o investimento total.",
@@ -245,7 +245,7 @@
     "cap5_t": "Imberion Concierge",
     "cap5_p": "A recomendação que na farmácia o balcão dá, levada para a conversa. Atendimento ao canal e ao shopper 24/7 que tira pedidos e empurra o mix-alvo a cada reabastecimento, dentro do claim permitido.",
     "cap5_l": "Ver Concierge",
-    "cap6_t": "Capacitação do balcão",
+    "cap6_t": "Training Signal ao balcão",
     "cap6_p": "Transforma a recomendação de balcão em capacidade instalada e mensurável, rastreável ao sell-out por farmácia. É a alavanca de sell-out própria do OTC, hoje deixada ao acaso ou ao genérico, virada argumento e sinal contínuo."
   }
 }

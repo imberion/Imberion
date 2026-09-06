@@ -15,6 +15,7 @@ import { DEFAULT_LOCALE } from '../i18n/index';
 import datos from '../data/industrias.json';
 
 export interface Industria {
+  borrador?: boolean;
   slug: string;
   brain: string;
   icono: string;
@@ -24,7 +25,12 @@ export interface Industria {
   titulo_pt: string;
 }
 
-export const INDUSTRIAS: Industria[] = datos.industrias as Industria[];
+// Roster completo, incluidas las que están en borrador. Una industria en borrador
+// tiene su JSON con el esquema completo pero sin material: no se sirve, no entra al
+// índice ni al sitemap (el sitemap sale de las rutas construidas). Publicar es
+// poner borrador en false en src/data/industrias.json.
+export const ROSTER: Industria[] = datos.industrias as Industria[];
+export const INDUSTRIAS: Industria[] = ROSTER.filter((i) => !i.borrador);
 
 export function titulo(ind: Industria, locale: Locale): string {
   return ind[`titulo_${locale}` as const];

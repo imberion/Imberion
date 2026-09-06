@@ -1,0 +1,110 @@
+{
+  "es": {
+    "__title": "Imberion — Training Signal",
+    "nombre": "Training Signal",
+    "familia_label": "Operator · actuar",
+    "hero_eyebrow": "Training Signal · Familia Operator",
+    "hero_h1": "Capacitación de la fuerza de ventas construida con los argumentos que sí cierran.",
+    "hero_lead": "Training Signal opera en dos modos. Pitch de producto: se escanea un SKU y el agente entrega tecnicismos y argumentos de valor. Negociación B2B: el vendedor ensaya contra Account Twin, con objeciones, concesiones y cierres.",
+    "que_hace_h2": "Dos modos sobre la misma base",
+    "que_hace_p": "La base son los diálogos de valor: cómo abren, argumentan, manejan objeciones y cierran los mejores vendedores, capturados y anonimizados. Sobre eso se construyen los argumentos por producto y los ensayos de negociación, y un loop mide qué argumento terminó en venta y reordena lo que se enseña.",
+    "que_hace_items": [
+      "Pitch de producto: se escanea el SKU y llegan tecnicismos y argumentos de valor",
+      "Negociación B2B: ensayo contra Account Twin, con objeciones y cierres",
+      "Diálogos de valor de los mejores vendedores, capturados y anonimizados",
+      "Loop que mide qué argumento convierte y reordena el material"
+    ],
+    "valor_h2": "El catálogo rota más rápido que la rampa",
+    "valor_p": "Cuando el surtido cambia cada cuatro a seis meses, el vendedor nuevo termina de aprenderlo cuando ya cambió. Tener el argumento construido por producto acorta esa rampa, y estandarizar el del mejor vendedor sube el piso del resto en vez de dejarlo en la cabeza de cada quien.",
+    "sowhat": "Convierte el argumento del mejor vendedor en material entrenable, en lugar de conocimiento que se va con la persona.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se alimenta de los diálogos de valor que captura Floor Signal, ensaya negociación contra Account Twin y toma de Virtual Buyer Personas qué atributos mueven a cada segmento.",
+    "ctastrip_h2": "¿Cuánto tarda un vendedor nuevo en argumentar el catálogo completo?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Training Signal",
+    "nombre": "Training Signal",
+    "familia_label": "Operator · act",
+    "hero_eyebrow": "Training Signal · Operator family",
+    "hero_h1": "Sales force training built from the arguments that actually close.",
+    "hero_lead": "Training Signal runs in two modes. Product pitch: a SKU is scanned and the agent returns technical detail and value arguments. B2B negotiation: the seller rehearses against Account Twin, with objections, concessions and closes.",
+    "que_hace_h2": "Two modes on one base",
+    "que_hace_p": "The base is the value dialogues: how the best sellers open, argue, handle objections and close, captured and anonymized. Product arguments and negotiation rehearsals are built on top of that, and a loop measures which argument ended in a sale and reorders what gets taught.",
+    "que_hace_items": [
+      "Product pitch: a SKU is scanned, technical detail and value arguments come back",
+      "B2B negotiation: rehearsal against Account Twin, with objections and closes",
+      "Value dialogues from the best sellers, captured and anonymized",
+      "A loop that measures which argument converts and reorders the material"
+    ],
+    "valor_h2": "The catalog turns faster than the ramp",
+    "valor_p": "When assortment changes every four to six months, a new seller finishes learning it once it has already changed. Having the argument built per product shortens that ramp, and standardizing the best seller's argument raises the floor for everyone else instead of leaving it in each person's head.",
+    "sowhat": "It turns the best seller's argument into trainable material rather than knowledge that leaves with the person.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It feeds on the value dialogues Floor Signal captures, rehearses negotiation against Account Twin, and takes from Virtual Buyer Personas which attributes move each segment.",
+    "ctastrip_h2": "How long does a new seller take to argue the full catalog?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Training Signal",
+    "nombre": "Training Signal",
+    "familia_label": "Operator · agir",
+    "hero_eyebrow": "Training Signal · Família Operator",
+    "hero_h1": "Capacitação da força de vendas construída com os argumentos que de fato fecham.",
+    "hero_lead": "Training Signal opera em dois modos. Pitch de produto: escaneia-se um SKU e o agente entrega detalhe técnico e argumentos de valor. Negociação B2B: o vendedor ensaia contra o Account Twin, com objeções, concessões e fechamentos.",
+    "que_hace_h2": "Dois modos sobre a mesma base",
+    "que_hace_p": "A base são os diálogos de valor: como os melhores vendedores abrem, argumentam, tratam objeções e fecham, capturados e anonimizados. Sobre isso são construídos os argumentos por produto e os ensaios de negociação, e um loop mede qual argumento terminou em venda e reordena o que se ensina.",
+    "que_hace_items": [
+      "Pitch de produto: escaneia-se o SKU e chegam detalhe técnico e argumentos de valor",
+      "Negociação B2B: ensaio contra o Account Twin, com objeções e fechamentos",
+      "Diálogos de valor dos melhores vendedores, capturados e anonimizados",
+      "Loop que mede qual argumento converte e reordena o material"
+    ],
+    "valor_h2": "O catálogo gira mais rápido que a rampa",
+    "valor_p": "Quando o sortimento muda a cada quatro a seis meses, o vendedor novo termina de aprendê-lo quando ele já mudou. Ter o argumento construído por produto encurta essa rampa, e padronizar o do melhor vendedor eleva o piso dos demais em vez de deixá-lo na cabeça de cada um.",
+    "sowhat": "Transforma o argumento do melhor vendedor em material treinável, em vez de conhecimento que vai embora com a pessoa.",
+    "industrias": [
+      "retail",
+      "cpg",
+      "farma",
+      "b2b",
+      "construccion",
+      "automotriz",
+      "telco",
+      "servicios-b2b",
+      "servicios-b2c"
+    ],
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Alimenta-se dos diálogos de valor que o Floor Signal captura, ensaia negociação contra o Account Twin e toma do Virtual Buyer Personas quais atributos movem cada segmento.",
+    "ctastrip_h2": "Quanto tempo um vendedor novo leva para argumentar o catálogo inteiro?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

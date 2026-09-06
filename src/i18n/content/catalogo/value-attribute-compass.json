@@ -5,7 +5,7 @@
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Value-Attribute Compass · Familia Compass",
     "hero_h1": "En qué atributos se compite de verdad, y cuánto vale cada uno.",
-    "hero_lead": "Value-Attribute Compass mapea los atributos de valor de un producto en importancia para el cliente contra desempeño percibido por jugador, e identifica la disposición a pagar (WTP, willingness to pay) por atributo. Es la adaptación de Imberion del MOCA (Matrix of Competitive Advantage).",
+    "hero_lead": "Value-Attribute Compass mapea los atributos de valor de un producto en importancia para el cliente contra desempeño percibido por jugador, e identifica la disposición a pagar (WTP, willingness to pay) por atributo. El método cruza dos lecturas del mismo cliente: lo que declara que le importa y lo que percibe que recibe de cada marca.",
     "que_hace_h2": "El mapa de atributos y su disposición a pagar",
     "que_hace_p": "Cada atributo se ubica en la matriz y se contrasta con el desempeño percibido de cada competidor. Sobre ese mapa se estima cuánto está dispuesto a pagar el cliente por moverse un escalón en cada atributo.",
     "que_hace_items": [
@@ -41,7 +41,7 @@
     "familia_label": "Compass · orient",
     "hero_eyebrow": "Value-Attribute Compass · Compass family",
     "hero_h1": "Which attributes the competition is really about, and what each one is worth.",
-    "hero_lead": "Value-Attribute Compass maps a product's value attributes on customer importance versus perceived performance by player, and identifies willingness to pay (WTP) per attribute. It is Imberion's adaptation of the MOCA (Matrix of Competitive Advantage).",
+    "hero_lead": "Value-Attribute Compass maps a product's value attributes on customer importance versus perceived performance by player, and identifies willingness to pay (WTP) per attribute. The method crosses two readings of the same customer: what they declare matters and what they perceive they get from each brand.",
     "que_hace_h2": "The attribute map and its willingness to pay",
     "que_hace_p": "Each attribute is placed on the matrix and contrasted with every competitor's perceived performance. On that map, the analysis estimates how much the customer will pay to move one step up on each attribute.",
     "que_hace_items": [
@@ -77,7 +77,7 @@
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Value-Attribute Compass · Família Compass",
     "hero_h1": "Em que atributos a concorrência realmente acontece, e quanto cada um vale.",
-    "hero_lead": "Value-Attribute Compass mapeia os atributos de valor de um produto em importância para o cliente contra desempenho percebido por player, e identifica a disposição a pagar (WTP, willingness to pay) por atributo. É a adaptação da Imberion do MOCA (Matrix of Competitive Advantage).",
+    "hero_lead": "Value-Attribute Compass mapeia os atributos de valor de um produto em importância para o cliente contra desempenho percebido por player, e identifica a disposição a pagar (WTP, willingness to pay) por atributo. O método cruza duas leituras do mesmo cliente: o que declara que importa e o que percebe que recebe de cada marca.",
     "que_hace_h2": "O mapa de atributos e a disposição a pagar",
     "que_hace_p": "Cada atributo é posicionado na matriz e contrastado com o desempenho percebido de cada concorrente. Sobre esse mapa se estima quanto o cliente aceita pagar para subir um degrau em cada atributo.",
     "que_hace_items": [

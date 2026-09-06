@@ -1,5 +1,5 @@
 {
-  "_nota": "Lista blanca pública del catálogo (CP2, propuesta del 2026-09-05 pendiente de aprobación). Solo lo que está aquí sale al sitio. La fuente de la decisión vive en el Brain, no en este repo. Los nombres comerciales no se traducen.",
+  "_nota": "Lista blanca pública del catálogo (CP2, aprobada por Rodrigo el 2026-09-06). Solo lo que está aquí sale al sitio. La fuente de la decisión vive en el Brain, no en este repo. Los nombres comerciales no se traducen.",
   "familias": [
     { "id": "signal",   "nombre": "Signal",   "verbo_es": "sensar",   "verbo_en": "sense",   "verbo_pt": "sentir" },
     { "id": "twin",     "nombre": "Twin",     "verbo_es": "simular",  "verbo_en": "simulate","verbo_pt": "simular" },
@@ -18,6 +18,8 @@
   "herramientas": [
     { "slug": "market-signal",                "nombre": "Market Signal",                    "familia": "signal",   "pagina_vieja": "market-signal" },
     { "slug": "floor-signal",                 "nombre": "Floor Signal",                     "familia": "signal",   "pagina_vieja": "floor-signal" },
+    { "slug": "virtual-buyer-personas",       "nombre": "Virtual Buyer Personas",           "familia": "twin" },
+    { "slug": "account-twin",                 "nombre": "Account Twin",                     "familia": "twin" },
     { "slug": "whitespace-compass",           "nombre": "Whitespace Compass",               "familia": "compass" },
     { "slug": "leadership-alignment-compass", "nombre": "Leadership Alignment Compass",     "familia": "compass" },
     { "slug": "value-attribute-compass",      "nombre": "Value-Attribute Compass",          "familia": "compass" },
@@ -31,6 +33,7 @@
     { "slug": "canales-y-tiendas",            "nombre": "Canales & Tiendas",                "familia": "engine" },
     { "slug": "scenario-engine",              "nombre": "Scenario Engine",                  "familia": "engine" },
     { "slug": "concierge",                    "nombre": "Imberion Concierge",               "familia": "operator", "pagina_vieja": "concierge" },
+    { "slug": "training-signal",              "nombre": "Training Signal",                  "familia": "operator" },
     { "slug": "habilitadores",                "nombre": "Habilitadores",                    "familia": "enabler" },
     { "slug": "integracion-de-datos",         "nombre": "Integración de datos",             "seccion": "sustrato" },
     { "slug": "checkup",                      "nombre": "Imberion Checkup",                 "seccion": "entrada" },
@@ -40,8 +43,5 @@
     { "slug": "value-creation-y-capital-allocation",  "nombre": "Value Creation & Capital Allocation",  "seccion": "estrategia", "pagina_vieja": "estrategia" },
     { "slug": "commercial-y-operating-model",         "nombre": "Commercial & Operating Model",         "seccion": "estrategia", "pagina_vieja": "estrategia" }
   ],
-  "familias_sin_ficha": {
-    "twin":     { "linea_es": "Gemelos digitales del comprador y de la contraparte para ensayar antes de la mesa real.", "linea_en": "Digital twins of the buyer and of the counterpart, to rehearse before the real table.", "linea_pt": "Gêmeos digitais do comprador e da contraparte para ensaiar antes da mesa real." },
-    "operator": { "linea_es": "Capacitación de la fuerza de ventas a partir de cómo argumentan valor los mejores vendedores.", "linea_en": "Sales force training built from how the best sellers argue value.", "linea_pt": "Capacitação da força de vendas a partir de como os melhores vendedores argumentam valor." }
-  }
+  "familias_sin_ficha": {}
 }

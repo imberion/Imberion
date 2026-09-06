@@ -52,3 +52,6 @@
 /farma.html
 /construccion.html
 /distribuidores.html
+/catalogo/training-signal/
+/catalogo/account-twin/
+/catalogo/virtual-buyer-personas/

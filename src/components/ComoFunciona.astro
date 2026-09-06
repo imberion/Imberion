@@ -1,7 +1,7 @@
 ---
 // Cómo funciona. Port de how-it-works.html: hero con el flujo A/B/C, la tira de
-// navegación pegajosa, las tres secciones de brazo con sus id (#arm-a, #arm-b,
-// #arm-c, que la home enlaza) y el cierre del loop.
+// navegación pegajosa, las tres secciones de pilar con sus id (#informacion,
+// #capacidades-analiticas, #ejecucion, que la home enlaza) y el cierre del loop.
 import { Image } from 'astro:assets';
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
@@ -41,9 +41,9 @@ function reescribeEnlaces(html: string): string {
 }
 
 const brazosHero = [
-  { letra: 'A', ancla: 'arm-a', titulo: c.hf_a_title, sub: c.hf_a_sub, snav: c.snav_a },
-  { letra: 'B', ancla: 'arm-b', titulo: c.hf_b_title, sub: c.hf_b_sub, snav: c.snav_b },
-  { letra: 'C', ancla: 'arm-c', titulo: c.hf_c_title, sub: c.hf_c_sub, snav: c.snav_c },
+  { letra: 'A', ancla: 'informacion', titulo: c.hf_a_title, sub: c.hf_a_sub, snav: c.snav_a },
+  { letra: 'B', ancla: 'capacidades-analiticas', titulo: c.hf_b_title, sub: c.hf_b_sub, snav: c.snav_b },
+  { letra: 'C', ancla: 'ejecucion', titulo: c.hf_c_title, sub: c.hf_c_sub, snav: c.snav_c },
 ];
 
 // Iconos de línea de las fuentes de datos. Van en el mismo orden que el copy y
@@ -113,8 +113,8 @@ const hrefFloorSignal = fichaHref('floor-signal');
   </div>
 </div>
 
-<!-- BRAZO A -->
-<section id="arm-a" class="deep-section section-a section-paper">
+<!-- PILAR: INFORMACIÓN -->
+<section id="informacion" class="deep-section section-a section-paper">
   <div class="container">
     <div class="section-arm-header">
       <div class="arm-letter-bg" aria-hidden="true">A</div>
@@ -196,8 +196,8 @@ const hrefFloorSignal = fichaHref('floor-signal');
   </div>
 </div>
 
-<!-- BRAZO B -->
-<section id="arm-b" class="deep-section section-b section-white">
+<!-- PILAR: CAPACIDADES ANALÍTICAS -->
+<section id="capacidades-analiticas" class="deep-section section-b section-white">
   <div class="container">
     <div class="section-arm-header">
       <div class="arm-letter-bg" aria-hidden="true">B</div>
@@ -240,8 +240,8 @@ const hrefFloorSignal = fichaHref('floor-signal');
   </div>
 </div>
 
-<!-- BRAZO C -->
-<section id="arm-c" class="deep-section section-c section-dark-flow">
+<!-- PILAR: EJECUCIÓN -->
+<section id="ejecucion" class="deep-section section-c section-dark-flow">
   <div class="container">
     <div class="section-arm-header">
       <div class="arm-letter-bg" aria-hidden="true">C</div>
