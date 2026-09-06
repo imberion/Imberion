@@ -1,5 +1,12 @@
 ---
 // Nav del shell. Markup y clases portados del nav de index.html / retail.html.
+//
+// Bajo 900px los enlaces de la barra se ocultan (no caben junto al logotipo),
+// así que ahí entra el botón de menú y el panel desplegable: sin él las cinco
+// secciones solo se alcanzaban desde el pie. El panel vive FUERA del <nav>
+// porque el nav lleva backdrop-filter, y un elemento con backdrop-filter se
+// vuelve el bloque contenedor de sus descendientes position:fixed: dentro, el
+// panel se posicionaría contra la barra de 70px en vez de contra el viewport.
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import comun from '../i18n/content/common.json';
@@ -59,6 +66,151 @@ const enlaces = [
       >
         {c.nav_cta}
       </a>
+      <button
+        type="button"
+        class="nav-burger"
+        id="nav-burger"
+        aria-controls="nav-panel"
+        aria-expanded="false"
+        aria-label={c.nav_abrir}
+        data-abrir={c.nav_abrir}
+        data-cerrar={c.nav_cerrar}
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Sin role="navigation": el <nav> de arriba ya es el landmark de navegación
+     principal y un segundo landmark con el mismo nombre lo anuncia dos veces.
+     El panel es el contenido revelado por el botón (aria-controls). -->
+<div id="nav-panel" class="nav-panel" tabindex="-1" inert>
+  <div class="container nav-panel-inner">
+    <div class="nav-panel-links">
+      {
+        enlaces.map((e) => (
+          <a
+            href={e.href}
+            class:list={{ 'imb-active': e.activo }}
+            aria-current={e.activo ? 'page' : undefined}
+          >
+            {e.texto}
+          </a>
+        ))
+      }
+    </div>
+    <div class="nav-panel-pie">
+      <LangSwitch locale={locale} rutaEs={rutaEs} />
+      <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">
+        {c.nav_cta}
+      </a>
+    </div>
+  </div>
+</div>
+<div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+<script>
+  (function () {
+    var raiz = document.documentElement;
+    var btn = document.getElementById('nav-burger');
+    var panel = document.getElementById('nav-panel');
+    var scrim = document.getElementById('nav-scrim');
+    if (!btn || !panel || !scrim) return;
+
+    var ABIERTO = 'data-menu-abierto';
+
+    function estaAbierto() {
+      return raiz.hasAttribute(ABIERTO);
+    }
+
+    function fijar(abierto) {
+      if (abierto) raiz.setAttribute(ABIERTO, '');
+      else raiz.removeAttribute(ABIERTO);
+      btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      var etiqueta = abierto ? btn.getAttribute('data-cerrar') : btn.getAttribute('data-abrir');
+      if (etiqueta) btn.setAttribute('aria-label', etiqueta);
+      if (abierto) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
+    }
+
+    function abrir() {
+      fijar(true);
+      panel.focus({ preventScroll: true });
+    }
+
+    function cerrar(devolverFoco) {
+      if (!estaAbierto()) return;
+      fijar(false);
+      // Solo se devuelve el foco cuando el cierre lo pidió el teclado o el
+      // botón; al navegar, el foco se lo lleva la página que carga.
+      if (devolverFoco) btn.focus();
+    }
+
+    btn.addEventListener('click', function () {
+      if (estaAbierto()) cerrar(true);
+      else abrir();
+    });
+
+    scrim.addEventListener('click', function () {
+      cerrar(true);
+    });
+
+    panel.addEventListener('click', function (ev) {
+      var destino = ev.target;
+      while (destino && destino !== panel) {
+        if (destino.tagName === 'A') {
+          cerrar(false);
+          return;
+        }
+        destino = destino.parentElement;
+      }
+    });
+
+    document.addEventListener('keydown', function (ev) {
+      if (!estaAbierto()) return;
+      if (ev.key === 'Escape') {
+        ev.preventDefault();
+        cerrar(true);
+        return;
+      }
+      if (ev.key !== 'Tab') return;
+      // El tabulador queda dentro del panel más el botón que lo abrió: detrás
+      // del velo no hay nada accionable, y salir sin cerrar dejaría el foco en
+      // un enlace invisible.
+      var focos = [btn].concat(
+        Array.prototype.slice.call(panel.querySelectorAll('a[href], button:not([disabled])')),
+      );
+      var primero = focos[0];
+      var ultimo = focos[focos.length - 1];
+      if (ev.shiftKey && document.activeElement === primero) {
+        ev.preventDefault();
+        ultimo.focus();
+      } else if (!ev.shiftKey && document.activeElement === ultimo) {
+        ev.preventDefault();
+        primero.focus();
+      } else if (document.activeElement === panel && ev.shiftKey) {
+        ev.preventDefault();
+        ultimo.focus();
+      }
+    });
+
+    // Al pasar a escritorio el panel deja de existir visualmente: si se quedara
+    // marcado abierto, el body seguiría sin scroll.
+    var ancho = window.matchMedia('(min-width: 901px)');
+    var alCambiar = function () {
+      if (ancho.matches) cerrar(false);
+    };
+    if (ancho.addEventListener) ancho.addEventListener('change', alCambiar);
+    else if (ancho.addListener) ancho.addListener(alCambiar);
+
+    // Volver con el botón atrás restaura la página desde caché con el menú
+    // abierto y el scroll bloqueado. Solo se toca en esa restauración: en la
+    // carga normal el estado cerrado ya viene en el markup, y reescribirlo
+    // aquí borraría un data-menu-abierto puesto a mano para inspeccionarlo.
+    window.addEventListener('pageshow', function (ev) {
+      if (ev.persisted) fijar(false);
+    });
+  })();
+</script>

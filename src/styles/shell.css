@@ -191,9 +191,159 @@ footer .container { position: relative; z-index: 1; }
 .footer-back:hover { color: #fff; border-color: var(--white-45); transform: translateY(-3px); }
 .footer-back .btn-arrow { font-size: 15px; }
 
+/* ---------- menú móvil ---------- */
+/* Bajo 900px la barra no tiene lugar para los cinco enlaces, así que se
+   ocultan; sin este panel, Qué resolvemos, Cómo funciona, Cómo operamos,
+   Industrias y Catálogo solo se alcanzaban desde el pie de la página. */
+
+/* Botón: dos trazos que giran hasta cruzarse. Sin librería de iconos. */
+.nav-burger {
+  display: none;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: 1px solid var(--white-12);
+  border-radius: var(--r);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color .28s var(--ease), background-color .28s var(--ease);
+}
+.nav-burger:hover { border-color: var(--white-25); background: var(--white-06); }
+.nav-burger span {
+  position: absolute;
+  left: calc(50% - 9px);
+  top: calc(50% - 1px);
+  width: 18px;
+  height: 1.5px;
+  background: var(--white-85);
+  transition: transform .4s var(--ease), background-color .28s var(--ease);
+}
+.nav-burger:hover span { background: #fff; }
+.nav-burger span:nth-child(1) { transform: translateY(-4px); }
+.nav-burger span:nth-child(2) { transform: translateY(4px); }
+[data-menu-abierto] .nav-burger span:nth-child(1) { transform: rotate(45deg); }
+[data-menu-abierto] .nav-burger span:nth-child(2) { transform: rotate(-45deg); }
+
+/* Panel y velo: fuera del <nav> a propósito (ver Nav.astro). Existen en el DOM
+   a todo ancho, pero solo se muestran bajo 900px. */
+.nav-panel,
+.nav-scrim { display: none; }
+
+.nav-panel {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgba(8, 18, 30, .97);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--white-12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .42);
+  max-height: calc(100dvh - 70px);
+  overflow-y: auto;
+  outline: none;
+}
+.nav-panel-inner { padding: 14px 0 30px; }
+.nav-panel-links { display: flex; flex-direction: column; }
+.nav-panel-links a {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 7.6vw, 2.7rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--white-85);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--white-06);
+  transition: color .28s var(--ease), padding-left .35s var(--ease);
+}
+.nav-panel-links a:hover { color: #fff; padding-left: 8px; }
+/* La página en la que se está no se marca con color: se marca con el trazo. */
+.nav-panel-links a.imb-active { color: #fff; }
+.nav-panel-links a.imb-active::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  margin-right: 14px;
+  background: var(--white-45);
+  vertical-align: middle;
+}
+.nav-panel-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+}
+.nav-panel-pie .btn { padding: 13px 22px; font-size: 13px; }
+
+.nav-scrim {
+  position: fixed;
+  inset: 70px 0 0;
+  z-index: 98;
+  background: rgba(6, 16, 28, .58);
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .nav-links { display: none; }
+  .nav-burger { display: block; }
+  /* El idioma y el CTA se mudan al panel: en la barra dejan al logotipo sin
+     ancho, y a 485px la empujaban más allá del viewport. */
+  .nav-right > .lang-toggle,
+  #nav-cta { display: none; }
+
+  .nav-panel,
+  .nav-scrim {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s var(--ease-io), visibility 0s linear .3s;
+  }
+  .nav-panel { transform: translateY(-12px); transition: opacity .3s var(--ease-io), transform .44s var(--ease), visibility 0s linear .44s; }
+
+  [data-menu-abierto] .nav-panel,
+  [data-menu-abierto] .nav-scrim {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+  [data-menu-abierto] .nav-panel { transform: none; }
+
+  /* Nada de scroll detrás del panel abierto. */
+  html[data-menu-abierto],
+  html[data-menu-abierto] body { overflow: hidden; }
+
+  /* Entrada escalonada de los enlaces: la única floritura del panel. */
+  [data-menu-abierto] .nav-panel-links a {
+    animation: nav-panel-entra .46s var(--ease) backwards;
+  }
+  [data-menu-abierto] .nav-panel-links a:nth-child(1) { animation-delay: .04s; }
+  [data-menu-abierto] .nav-panel-links a:nth-child(2) { animation-delay: .08s; }
+  [data-menu-abierto] .nav-panel-links a:nth-child(3) { animation-delay: .12s; }
+  [data-menu-abierto] .nav-panel-links a:nth-child(4) { animation-delay: .16s; }
+  [data-menu-abierto] .nav-panel-links a:nth-child(5) { animation-delay: .2s; }
+  [data-menu-abierto] .nav-panel-pie { animation: nav-panel-entra .46s var(--ease) .24s backwards; }
+}
+
+@keyframes nav-panel-entra {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-panel,
+  .nav-scrim,
+  .nav-burger,
+  .nav-burger span,
+  .nav-panel-links a { transition: none; }
+  .nav-panel { transform: none; }
+  [data-menu-abierto] .nav-panel-links a,
+  [data-menu-abierto] .nav-panel-pie { animation: none; }
 }
 @media (max-width: 600px) {
   /* El logotipo mide 965x205: a 34px de alto ocupa 160px, y con el selector de
