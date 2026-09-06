@@ -122,6 +122,18 @@ Lo hecho:
 - 🟡 Índice del catálogo en 2560: las familias de dos fichas dejan medio ancho vacío; ajuste en curso.
 - 🟡 Gancho de QA `?columna=0.55` en el script de la columna, para capturar cualquier punto del arco; inerte sin el parámetro.
 
+## Verificación fresca de CP7 (medida 2026-09-06 ~14:55 CDMX contra e7173f8)
+
+Confirmó con evidencia propia: un solo canvas continuo con el progreso ligado al scroll, de afuera hacia adentro, con el petróleo visible solo en la fase de señal y el resultado anónimo; petróleo en CSS solo en el anillo de foco preexistente; `--ochre` sin pintarse; verde cero; D7 sin rastro de Brazo ni letras; industrias 01-09 sin deformar y sin logos; `prefers-reduced-motion` sin listener ni rAF; segunda persona 0 de 126; terceros 0; móvil sin desborde.
+
+Tres 🔴:
+
+1. Catálogo con el tope por número de fichas (8 de 11 rejillas dejaban 42 % o más vacío). **Cerrado en `4abbe61`** (fila de dos columnas; el verificador midió el commit anterior).
+2. Sin menú de navegación bajo 900 px: los enlaces solo vivían en el pie, igual que en el sitio actual. **En corrección.**
+3. El home descargaba 12 MB, 11.2 de texturas PNG por CSS. **En corrección** (conversión a WebP con `sharp`, adelanto de CP8).
+
+🟡 que quedan anotados: el techo de 1800 px deja 30 % de papel a los lados en 2560 (convención declarada; se cambia en un número si Rodrigo lo quiere más ancho); las adaptaciones `≥1600` solo existen en home y cómo funciona; el `page-hero` compartido deja la mitad derecha vacía en cinco rutas (fondo full-bleed, bloque a la izquierda: puede ser el vacío como material de §8.3, Rodrigo decide en monitor); la tira de pilares de cómo funciona mide 766 px de 1800; `alt` vacío en las fotos de industria (decorativas, con el nombre adyacente); el gancho `?columna=` congela el progreso pero no el scroll, así que las etapas 2 y 3 no se capturaron en su composición real.
+
 ## Verificación fresca de CP4 a CP6 (medida 2026-09-05 ~14:40 CDMX contra 1994c33)
 
 Confirmó con evidencia: 23 fichas × 3 locales exactas a la proyección; 9 industrias con retail a 7 dimensiones y las otras a 8; segunda persona en cero en las 15 páginas del núcleo; 117/117 con hreflang y canonical autorreferencial correctos; cero enlaces internos rotos; cero nombres de cliente, cero `logos-clientes`, cero estado interno en `dist/`; `valida_cierre.sh` sin bloqueantes.
