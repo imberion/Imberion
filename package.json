@@ -14,7 +14,8 @@
     "i18n:gate": "node scripts/i18n_gate.mjs",
     "rutas:check": "node scripts/rutas_check.mjs",
     "gate:terceros": "node scripts/gate_terceros.mjs",
-    "gate:acentos": "node scripts/gate_acentos.mjs"
+    "gate:acentos": "node scripts/gate_acentos.mjs",
+    "texturas:optimizar": "node scripts/texturas_optimizar.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
