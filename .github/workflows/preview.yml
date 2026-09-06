@@ -103,7 +103,17 @@ jobs:
             for i in 1 2 3 4 5 6; do
               code=$(curl -sL --max-time 30 "${extra[@]}" -o "$cuerpo" -w "%{http_code}" "$url" || echo "000")
               if [ "$code" = "200" ] && grep -qF -- "$marcador" "$cuerpo"; then
-                echo "intento $i: GET $ruta -> 200 con marcador, OK"
+                # La canónica declarada apunta a producción (www). Se exige que responda 200 sin
+                # redirect para que un 'site' mal puesto en astro.config.mjs no pase en verde.
+                canonica=$(grep -oE '<link rel="canonical" href="[^"]+"' "$cuerpo" | head -1 | sed -E 's/.*href="([^"]+)"/\1/')
+                if [ -n "$canonica" ]; then
+                  ccode=$(curl -s --max-time 30 -o /dev/null -w "%{http_code}" "$canonica" || echo "000")
+                  if [ "$ccode" != "200" ]; then
+                    echo "::error::La canónica declarada en $ruta ($canonica) responde $ccode, no 200 sin redirect."
+                    fallo=1
+                  fi
+                fi
+                echo "intento $i: GET $ruta -> 200 con marcador, canónica $canonica -> ${ccode:-sin canonical}, OK"
                 ok=1
                 break
               fi

@@ -74,13 +74,24 @@ jobs:
           # (un andamio de tres páginas con marcador también pasaría el check de "/").
           rutas=$(grep -vE '^\s*(#|$)' scripts/censo_rutas.txt)
           for ruta in $rutas; do
-            url="https://imberion.com${ruta}"
+            url="https://www.imberion.com${ruta}"
             ok=0
             code="000"
             for i in 1 2 3 4 5 6; do
               code=$(curl -sL --max-time 30 -o "$cuerpo" -w "%{http_code}" "$url" || echo "000")
               if [ "$code" = "200" ] && grep -qF -- "$marcador" "$cuerpo"; then
-                echo "intento $i: GET $ruta -> 200 con marcador, OK"
+                # La canónica que declara la página debe responder 200 sin redirect.
+                # El dominio canónico es www: si site apuntara al apex, canonical,
+                # og:url y sitemap serían redirects y esto lo cazaría.
+                canonica=$(grep -oE '<link rel="canonical" href="[^"]+"' "$cuerpo" | head -1 | sed -E 's/.*href="([^"]+)"/\1/')
+                if [ -n "$canonica" ]; then
+                  ccode=$(curl -s --max-time 30 -o /dev/null -w "%{http_code}" "$canonica" || echo "000")
+                  if [ "$ccode" != "200" ]; then
+                    echo "::error::La canónica declarada en $ruta ($canonica) responde $ccode, no 200 sin redirect. Revisar 'site' en astro.config.mjs."
+                    fallo=1
+                  fi
+                fi
+                echo "intento $i: GET $ruta -> 200 con marcador, canónica $canonica -> ${ccode:-sin canonical}, OK"
                 ok=1
                 break
               fi

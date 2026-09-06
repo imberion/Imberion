@@ -87,6 +87,10 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 - 🟡 `npm ci` avisa `EBADENGINE` en la Mac (Node 26 contra `engines 24.x`); en CI corre Node 24.
 - 🟡 Este canal mete IDs de Vercel en un repo cuyo root se sirve público; la protección hoy es el propio `vercel.json` que acota a `dist/`. Ubicación dictada por el handoff.
 
+### 🔴 Dominio canónico (Rodrigo, 2026-09-06): corregido
+
+`site` apuntaba al apex `https://imberion.com`, que devuelve 307 hacia `https://www.imberion.com/`. Canonical, hreflang, og:url y las 126 entradas del sitemap eran redirects. Corregido en `astro.config.mjs`, `robots.txt` y el fallback de `Base.astro`: todo sale con www (verificado en `dist/`: 0 referencias al apex, 126 `<loc>` con www). Los smoke tests de producción y preview ahora extraen la canónica declarada de cada página del censo y exigen que responda 200 sin seguir redirects; si `site` vuelve a apuntar mal, el deploy sale rojo con el mensaje que apunta a `astro.config.mjs`.
+
 ## Cambios del 2026-09-06 (spec en ruta estable, CP2 aprobado)
 
 Estado (2026-09-06 ~13:25 CDMX), commit `4b779ed`:
