@@ -18,6 +18,74 @@
     "valor_h2": "De la señal a la acción comercial",
     "valor_p": "Cuando el precio de piso se aleja de la lista, la señal dice en qué zona y en qué producto, y el ajuste se hace ahí y no en todo el país. Cuando el mostrador empuja a otra marca, la señal identifica al distribuidor y el equipo comercial lo trabaja con nombre y apellido.",
     "sowhat": "Dice dónde ajustar precio, a qué distribuidor visitar y en qué mercado responder antes de perder participación.",
+    "demo": {
+      "eyebrow": "Mini-demo · señal y acción",
+      "titulo": "El tablero, por dentro",
+      "intro": "Una rebanada del tablero con datos ilustrativos: el universo de puntos de venta por geografía y las señales que el radar levanta en el piso. Al elegir una señal aparece la acción comercial que habilita.",
+      "tablero": {
+        "marca": "Market Signal",
+        "tabs": ["México", "Centroamérica", "Caribe", "LATAM"],
+        "nav": ["Mapa", "Precios", "Diálogos", "Competencia", "Cobertura"],
+        "mapa_k": "Universo de PDV",
+        "mapa_num": "1,847",
+        "mapa_unidad": "puntos",
+        "mapa_alerta_num": "124",
+        "mapa_alerta": "sin cobertura",
+        "leyenda": ["Cobertura", "Sin cobertura", "Competidor"],
+        "callout_t": "Marca nueva detectada",
+        "callout_s": "3 puntos de venta sin actividad registrada en 60 días",
+        "kpis": [
+          { "k": "Índice de precio", "v": "-18%", "i": "vs zona" },
+          { "k": "Diálogo de valor", "v": "64%", "i": "cumple" },
+          { "k": "Marcas nuevas", "v": "3", "i": "detectadas" }
+        ],
+        "mapa_alt": "Mapa de México con el universo de puntos de venta: cobertura propia, puntos sin cobertura y presencia de competidor."
+      },
+      "flow": {
+        "senal_label": "Señal levantada en el piso",
+        "accion_label": "Acción que habilita",
+        "senales": [
+          {
+            "clave": "Precio",
+            "texto": "El piso opera <b>18% por debajo</b> de la lista en una zona del mercado.",
+            "accion": "Ajustar precio y promoción en esa zona, no en todo el país."
+          },
+          {
+            "clave": "Diálogo de valor",
+            "texto": "<b>1 de cada 3</b> distribuidores recomienda a la competencia en el mostrador.",
+            "accion": "Trabajar con nombre y apellido al distribuidor que no comunica la propuesta."
+          },
+          {
+            "clave": "Competencia",
+            "texto": "<b>Una marca nueva</b> entra en un mercado donde hoy no hay visibilidad.",
+            "accion": "Responder antes de que la entrada se convierta en participación perdida."
+          },
+          {
+            "clave": "Espacios sin cubrir",
+            "texto": "<b>124 puntos de venta</b> con demanda y sin presencia propia.",
+            "accion": "Dirigir la fuerza de ventas al volumen que hoy no se captura."
+          }
+        ]
+      },
+      "pipe": {
+        "label": "Del mercado al tablero",
+        "etapas": [
+          {
+            "nombre": "El mercado",
+            "texto": "Cientos de puntos de venta, precios y conversaciones dispersos."
+          },
+          {
+            "nombre": "Imberion opera el radar",
+            "texto": "El levantamiento y el mantenimiento del dato corren del lado de Imberion."
+          },
+          {
+            "nombre": "El tablero",
+            "texto": "Inteligencia por geografía, lista para decidir."
+          }
+        ]
+      },
+      "nota": "Datos ilustrativos, no de un cliente."
+    },
     "industrias": [
       "retail",
       "cpg",
@@ -55,6 +123,74 @@
     "valor_h2": "From signal to commercial action",
     "valor_p": "When the shelf price drifts from list, the signal names the zone and the product, so the correction lands there instead of nationwide. When the counter pushes another brand, the signal identifies the distributor and the commercial team works that account by name.",
     "sowhat": "It says where to adjust price, which distributor to visit, and which market to answer before share is lost.",
+    "demo": {
+      "eyebrow": "Mini-demo · signal and action",
+      "titulo": "Inside the dashboard",
+      "intro": "A slice of the dashboard on illustrative data: the point-of-sale universe by geography and the signals the radar picks up on the floor. Selecting a signal shows the commercial action it enables.",
+      "tablero": {
+        "marca": "Market Signal",
+        "tabs": ["Mexico", "Central America", "Caribbean", "LATAM"],
+        "nav": ["Map", "Prices", "Pitch", "Competition", "Coverage"],
+        "mapa_k": "Point-of-sale universe",
+        "mapa_num": "1,847",
+        "mapa_unidad": "points",
+        "mapa_alerta_num": "124",
+        "mapa_alerta": "uncovered",
+        "leyenda": ["Covered", "Uncovered", "Competitor"],
+        "callout_t": "New brand detected",
+        "callout_s": "3 points of sale with no activity logged in 60 days",
+        "kpis": [
+          { "k": "Price index", "v": "-18%", "i": "vs zone" },
+          { "k": "Value pitch", "v": "64%", "i": "on message" },
+          { "k": "New brands", "v": "3", "i": "detected" }
+        ],
+        "mapa_alt": "Map of Mexico with the point-of-sale universe: own coverage, uncovered points and competitor presence."
+      },
+      "flow": {
+        "senal_label": "Signal picked up on the floor",
+        "accion_label": "Action it enables",
+        "senales": [
+          {
+            "clave": "Price",
+            "texto": "The floor runs <b>18% below</b> list in one market zone.",
+            "accion": "Adjust price and promotion in that zone, not nationwide."
+          },
+          {
+            "clave": "Value pitch",
+            "texto": "<b>1 in 3</b> distributors recommends the competitor at the counter.",
+            "accion": "Work the distributor that drops the value proposition, by name."
+          },
+          {
+            "clave": "Competition",
+            "texto": "<b>A new brand</b> enters a market with no visibility today.",
+            "accion": "Respond before the entry turns into lost share."
+          },
+          {
+            "clave": "Uncovered space",
+            "texto": "<b>124 points of sale</b> with demand and no own presence.",
+            "accion": "Point the sales force at volume that goes uncaptured today."
+          }
+        ]
+      },
+      "pipe": {
+        "label": "From market to dashboard",
+        "etapas": [
+          {
+            "nombre": "The market",
+            "texto": "Hundreds of points of sale, prices and conversations, scattered."
+          },
+          {
+            "nombre": "Imberion runs the radar",
+            "texto": "Collection and upkeep of the data sit on the Imberion side."
+          },
+          {
+            "nombre": "The dashboard",
+            "texto": "Intelligence by geography, ready for decisions."
+          }
+        ]
+      },
+      "nota": "Illustrative data, not from a client."
+    },
     "industrias": [
       "retail",
       "cpg",
@@ -92,6 +228,74 @@
     "valor_h2": "Do sinal à ação comercial",
     "valor_p": "Quando o preço de piso se afasta da lista, o sinal diz em que zona e em que produto, e o ajuste acontece ali, não no país inteiro. Quando o balcão empurra outra marca, o sinal identifica o distribuidor e o time comercial trabalha essa conta com nome e sobrenome.",
     "sowhat": "Diz onde ajustar preço, que distribuidor visitar e em que mercado responder antes de perder participação.",
+    "demo": {
+      "eyebrow": "Mini-demo · sinal e ação",
+      "titulo": "O painel, por dentro",
+      "intro": "Uma fatia do painel com dados ilustrativos: o universo de pontos de venda por geografia e os sinais que o radar levanta no piso. Ao escolher um sinal aparece a ação comercial que ele habilita.",
+      "tablero": {
+        "marca": "Market Signal",
+        "tabs": ["México", "América Central", "Caribe", "LATAM"],
+        "nav": ["Mapa", "Preços", "Discurso", "Concorrência", "Cobertura"],
+        "mapa_k": "Universo de PDV",
+        "mapa_num": "1.847",
+        "mapa_unidad": "pontos",
+        "mapa_alerta_num": "124",
+        "mapa_alerta": "sem cobertura",
+        "leyenda": ["Cobertura", "Sem cobertura", "Concorrente"],
+        "callout_t": "Marca nova detectada",
+        "callout_s": "3 pontos de venda sem atividade registrada em 60 dias",
+        "kpis": [
+          { "k": "Índice de preço", "v": "-18%", "i": "vs zona" },
+          { "k": "Discurso de valor", "v": "64%", "i": "cumpre" },
+          { "k": "Marcas novas", "v": "3", "i": "detectadas" }
+        ],
+        "mapa_alt": "Mapa do México com o universo de pontos de venda: cobertura própria, pontos sem cobertura e presença de concorrente."
+      },
+      "flow": {
+        "senal_label": "Sinal levantado no piso",
+        "accion_label": "Ação que habilita",
+        "senales": [
+          {
+            "clave": "Preço",
+            "texto": "O piso opera <b>18% abaixo</b> da lista em uma zona do mercado.",
+            "accion": "Ajustar preço e promoção naquela zona, não no país inteiro."
+          },
+          {
+            "clave": "Discurso de valor",
+            "texto": "<b>1 em cada 3</b> distribuidores recomenda o concorrente no balcão.",
+            "accion": "Trabalhar nominalmente o distribuidor que não comunica a proposta."
+          },
+          {
+            "clave": "Concorrência",
+            "texto": "<b>Uma marca nova</b> entra em um mercado sem visibilidade hoje.",
+            "accion": "Responder antes que a entrada vire participação perdida."
+          },
+          {
+            "clave": "Espaços não cobertos",
+            "texto": "<b>124 pontos de venda</b> com demanda e sem presença própria.",
+            "accion": "Direcionar a força de vendas ao volume que hoje não é capturado."
+          }
+        ]
+      },
+      "pipe": {
+        "label": "Do mercado ao painel",
+        "etapas": [
+          {
+            "nombre": "O mercado",
+            "texto": "Centenas de pontos de venda, preços e conversas dispersos."
+          },
+          {
+            "nombre": "A Imberion opera o radar",
+            "texto": "O levantamento e a manutenção do dado ficam do lado da Imberion."
+          },
+          {
+            "nombre": "O painel",
+            "texto": "Inteligência por geografia, pronta para decidir."
+          }
+        ]
+      },
+      "nota": "Dados ilustrativos, não de um cliente."
+    },
     "industrias": [
       "retail",
       "cpg",

@@ -6,6 +6,8 @@ import Base from '../layouts/Base.astro';
 import { ZCAL_30MIN } from '../lib/enlaces';
 import { contenidoFicha, enlazarFichas } from '../lib/catalogo';
 import DemoConcierge from './demos/DemoConcierge.astro';
+import DemoMarketSignal from './demos/DemoMarketSignal.astro';
+import DemoVirtualBuyerPersonas from './demos/DemoVirtualBuyerPersonas.astro';
 
 interface Props {
   locale: Locale;
@@ -28,6 +30,8 @@ const relacion = enlazarFichas(c.relacion_p, locale, slug);
 // JSON. No hay que tocar nada más.
 const DEMOS: Record<string, any> = {
   concierge: DemoConcierge,
+  'market-signal': DemoMarketSignal,
+  'virtual-buyer-personas': DemoVirtualBuyerPersonas,
 };
 const contenidoDemo = (c as Record<string, any>).demo;
 const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
