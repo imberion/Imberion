@@ -1,20 +1,25 @@
 ---
-// Mini-demo de Concierge: la arquitectura de tres capas (front omnicanal →
-// cerebro → acciones) narrada paso a paso.
+// Mini-demo de Concierge: la misma conversación de tres momentos (queja y
+// reposición → venta cruzada con lealtad → cierre) narrada paso a paso, ahora
+// dentro del chrome de una aplicación real (CP11e): barra de ventana, hilo de
+// conversación con compositor, y un panel lateral donde el cerebro lee al
+// cliente y dispara las acciones. Antes era el diagrama de tres columnas con
+// flechas portado tal cual de la lámina del deck, y por eso no se sentía
+// producto.
 //
-// Portada del componente `ARCH` de
-// 00_imberion/comercial/concierge/_build.py (chasis de deck): misma secuencia,
-// mismos 12 `data-step`, mismos tres momentos (queja y reposición → venta
-// cruzada con lealtad → cierre). Lo que cambia es el chasis: aquí no hay
-// presentador que avance la lámina, así que el control es un par de botones y,
-// si nadie toca nada, un avance automático suave.
+// Sigue enseñando las tres capas (decisión comercial registrada en
+// 00_imberion/comercial/concierge/README.md): 01 front omnicanal es el hilo
+// de la conversación, 02 el cerebro y 03 las acciones son el panel lateral.
+// Mismos 12 `data-step` y mismo motor que la versión anterior.
 //
-// Concierge SÍ enseña su arquitectura: decisión comercial registrada en
-// 00_imberion/comercial/concierge/README.md. No se uniforma con otras fichas.
+// El fondo desenfocado detrás de la ventana es la foto real de sector de
+// retail (src/assets/industrias/retail.jpg), no un degradado inventado.
 //
 // El contenedor lleva `data-dialogo` porque los globos son habla citada entre
 // un cliente y el servicio de atención: ahí la segunda persona es del
 // personaje, no del sitio, y el grep de segunda persona debe excluir el bloque.
+import { Image } from 'astro:assets';
+import fondo from '../../assets/industrias/retail.jpg';
 
 export interface DemoConciergeContenido {
   titulo: string;
@@ -28,6 +33,8 @@ export interface DemoConciergeContenido {
   btn_siguiente: string;
   btn_reiniciar: string;
   simulacion: string;
+  /** Chrome de la aplicación (CP11e): textos que solo existen en la ventana. */
+  app: { producto: string; contacto: string; canal: string; estado: string; compositor: string; fondo_alt: string };
 }
 
 interface Props {
@@ -42,6 +49,14 @@ const pasos = [
   ...d.acciones.map((a) => a.paso),
 ];
 const maxPaso = Math.max(...pasos);
+
+// Iniciales del contacto para el avatar, como las pinta cualquier mensajería.
+const iniciales = d.app.contacto
+  .split(/\s+/)
+  .map((w) => w[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
 
 // Glifos de canal del front omnicanal (voz, WhatsApp, correo, SMS, Instagram,
 // TikTok, LinkedIn, Facebook). Monocromos, heredados del material comercial:
@@ -100,118 +115,129 @@ const canales = [
       </div>
     </div>
 
-    <div
-      class="arch-wrap"
-      data-dialogo
-      data-demo-concierge
-      data-max={maxPaso}
-      role="group"
-      aria-label={d.titulo}
-    >
-      <div class="arch">
-        <div class="arch-col">
-          <div class="arch-head">
-            <span class="arch-num">{d.capas[0].num}</span>
-            <span class="arch-label">{d.capas[0].label}</span>
-          </div>
-          <div class="arch-in">
-            <div class="arch-channels">
-              {
-                canales.map((c) => (
-                  <span class="arch-ch">
-                    <svg
-                      viewBox="0 0 24 24"
-                      role="img"
-                      aria-label={c.n}
-                      fill={c.fill ? 'currentColor' : 'none'}
-                      stroke={c.fill ? 'none' : 'currentColor'}
-                      stroke-width="1.5"
-                      stroke-linejoin="round"
-                      set:html={c.d}
-                    />
-                  </span>
-                ))
-              }
-            </div>
-            <div class="arch-chat">
+    <div class="app-escena">
+      <div class="app-fondo" aria-hidden="true">
+        <Image src={fondo} alt="" widths={[720, 1400]} sizes="(max-width: 900px) 100vw, 1400px" format="webp" quality={40} loading="lazy" decoding="async" />
+      </div>
+
+      <div
+        class="app-ventana"
+        data-dialogo
+        data-demo-concierge
+        data-max={maxPaso}
+        role="group"
+        aria-label={d.titulo}
+      >
+        <div class="app-barra">
+          <span class="app-marca"><span class="app-marca-o" aria-hidden="true"></span>{d.app.producto}</span>
+          <span class="app-titulo">{d.app.contacto} · {d.app.canal}</span>
+          <span class="app-estado"><span class="app-estado-dot" aria-hidden="true"></span>{d.app.estado}</span>
+        </div>
+
+        <div class="app-cuerpo">
+          <section class="chat" aria-label={d.capas[0].label}>
+            <header class="chat-cab">
+              <span class="chat-av" aria-hidden="true">{iniciales}</span>
+              <span class="chat-quien">
+                <span class="chat-nombre">{d.app.contacto}</span>
+                <span class="chat-meta">{d.app.canal} · {d.app.estado}</span>
+              </span>
+              <span class="chat-canales" aria-hidden="true">
+                {
+                  canales.map((c) => (
+                    <span class:list={['chat-ch', { on: c.n === 'WhatsApp' }]} title={c.n}>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill={c.fill ? 'currentColor' : 'none'}
+                        stroke={c.fill ? 'none' : 'currentColor'}
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                        set:html={c.d}
+                      />
+                    </span>
+                  ))
+                }
+              </span>
+              <span class="chat-capa" aria-hidden="true">{d.capas[0].num}</span>
+            </header>
+            <div class="chat-hilo">
               {
                 d.globos.map((g) => (
-                  <div class={`arch-bub ${g.lado} demo-ai`} data-step={g.paso}>
+                  <div class={`bub ${g.lado} demo-ai`} data-step={g.paso}>
                     <span class="who">{g.quien}</span>
                     {g.texto}
                   </div>
                 ))
               }
             </div>
-          </div>
-        </div>
-
-        <div class="arch-arrow" aria-hidden="true">→</div>
-
-        <div class="arch-col hot">
-          <div class="arch-head">
-            <span class="arch-num">{d.capas[1].num}</span>
-            <span class="arch-label">{d.capas[1].label}</span>
-            <span class="arch-proc" aria-hidden="true"></span>
-          </div>
-          <div class="arch-in">
-            {
-              d.senales.map((s) => (
-                <div class={`arch-tag demo-ai${s.vp ? ' vp' : ''}`} data-step={s.paso}>
-                  <span class="tk">{s.clave}</span>
-                  <span class="tv">{s.valor}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="arch-arrow" aria-hidden="true">→</div>
-
-        <div class="arch-col">
-          <div class="arch-head">
-            <span class="arch-num">{d.capas[2].num}</span>
-            <span class="arch-label">{d.capas[2].label}</span>
-          </div>
-          <div class="arch-in">
-            {
-              d.acciones.map((a) => (
-                <div class={`arch-act demo-ai${a.soft ? ' soft' : ''}`} data-step={a.paso}>
-                  <span class="ck" aria-hidden="true">
-                    ✓
-                  </span>
-                  {a.texto}
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-
-      <div class="arch-ctrl">
-        <button type="button" class="arch-btn" data-demo-next>
-          {d.btn_siguiente}
-          <span class="arch-btn-arrow" aria-hidden="true">→</span>
-        </button>
-        <button type="button" class="arch-btn arch-btn--ghost" data-demo-reset>
-          {d.btn_reiniciar}
-        </button>
-        <span class="arch-step" aria-live="polite">
-          <span class="arch-step-k">{d.paso_label}</span>
-          <span class="arch-step-n" data-demo-count>{`00 / ${String(maxPaso).padStart(2, '0')}`}</span>
-        </span>
-      </div>
-
-      <div class="arch-foot">
-        {
-          d.pie.map((f) => (
-            <div class="arch-fitem">
-              <div class="fk">{f.k}</div>
-              <div class="fv">{f.v}</div>
+            <div class="chat-compositor" aria-hidden="true">
+              <span class="chat-input">{d.app.compositor}</span>
+              <span class="chat-enviar">↑</span>
             </div>
-          ))
-        }
+          </section>
+
+          <aside class="lateral">
+            <section class="lat" aria-label={d.capas[1].label}>
+              <header class="lat-cab">
+                <span class="lat-num">{d.capas[1].num}</span>
+                <span class="lat-label">{d.capas[1].label}</span>
+                <span class="lat-proc" aria-hidden="true"></span>
+              </header>
+              <div class="lat-in">
+                {
+                  d.senales.map((s) => (
+                    <div class={`sig demo-ai${s.vp ? ' vp' : ''}`} data-step={s.paso}>
+                      <span class="tk">{s.clave}</span>
+                      <span class="tv">{s.valor}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </section>
+            <section class="lat lat--acc" aria-label={d.capas[2].label}>
+              <header class="lat-cab">
+                <span class="lat-num">{d.capas[2].num}</span>
+                <span class="lat-label">{d.capas[2].label}</span>
+              </header>
+              <div class="lat-in">
+                {
+                  d.acciones.map((a) => (
+                    <div class={`act demo-ai${a.soft ? ' soft' : ''}`} data-step={a.paso}>
+                      <span class="ck" aria-hidden="true">✓</span>
+                      {a.texto}
+                    </div>
+                  ))
+                }
+              </div>
+            </section>
+          </aside>
+        </div>
       </div>
+    </div>
+
+    <div class="arch-ctrl">
+      <button type="button" class="arch-btn" data-demo-next>
+        {d.btn_siguiente}
+        <span class="arch-btn-arrow" aria-hidden="true">→</span>
+      </button>
+      <button type="button" class="arch-btn arch-btn--ghost" data-demo-reset>
+        {d.btn_reiniciar}
+      </button>
+      <span class="arch-step" aria-live="polite">
+        <span class="arch-step-k">{d.paso_label}</span>
+        <span class="arch-step-n" data-demo-count>{`00 / ${String(maxPaso).padStart(2, '0')}`}</span>
+      </span>
+    </div>
+
+    <div class="arch-foot">
+      {
+        d.pie.map((f) => (
+          <div class="arch-fitem">
+            <div class="fk">{f.k}</div>
+            <div class="fv">{f.v}</div>
+          </div>
+        ))
+      }
     </div>
 
     <p class="demo-nota">{d.simulacion}</p>
@@ -220,10 +246,8 @@ const canales = [
 
 <style is:inline>
   /* Tokens del sitio (site.css / shell.css). Monocromo navy sobre papel: sin
-     petróleo, sin ochre y sin verde. La paloma de las acciones va en navy. */
+     petróleo, sin ochre y sin verde. El punto de "en línea" va en slate. */
   .demo-bloque {
-    /* La barra superior es fija: sin este margen, un salto a #mini-demo deja el
-       encabezado del bloque debajo de la barra. */
     scroll-margin-top: 86px;
     padding: clamp(70px, 6.5vw, 150px) 0;
     background: var(--paper-warm);
@@ -238,10 +262,7 @@ const canales = [
     max-width: 22ch;
     margin-top: 12px;
   }
-  .demo-bloque .demo-eyebrow {
-    font-size: 11px;
-    text-transform: uppercase;
-  }
+  .demo-bloque .demo-eyebrow { font-size: 11px; text-transform: uppercase; }
   .demo-bloque .demo-head .cuerpo {
     margin-top: 20px;
     max-width: 66ch;
@@ -250,37 +271,159 @@ const canales = [
     color: var(--navy-72);
   }
 
-  /* ---------- las tres capas ---------- */
-  .demo-bloque .arch-wrap {
-    margin-top: 46px;
+  /* ---------- la escena: foto desenfocada y la ventana encima ---------- */
+  .demo-bloque .app-escena {
     position: relative;
+    margin-top: 46px;
+    padding: clamp(22px, 4vw, 64px) clamp(16px, 4vw, 64px);
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--navy-deep);
+    isolation: isolate;
   }
-  .demo-bloque .arch {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    align-items: stretch;
-    gap: 12px;
+  .demo-bloque .app-fondo {
+    position: absolute;
+    inset: -40px;
+    z-index: 0;
+    pointer-events: none;
   }
-  .demo-bloque .arch-col {
+  .demo-bloque .app-fondo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(22px) saturate(0.55) brightness(0.62);
+    transform: scale(1.06);
+  }
+  .demo-bloque .app-fondo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(10, 24, 40, 0.55), rgba(6, 16, 28, 0.78));
+  }
+
+  .demo-bloque .app-ventana {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
     background: var(--white);
-    border: 1px solid var(--navy-12);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 40px 90px rgba(6, 16, 28, 0.5),
+      0 6px 18px rgba(6, 16, 28, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    color: var(--navy);
+  }
+
+  /* barra de ventana */
+  .demo-bloque .app-barra {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    height: 44px;
+    padding: 0 16px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .app-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+  .demo-bloque .app-marca-o {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    box-sizing: border-box;
+  }
+  .demo-bloque .app-titulo {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--navy-60);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .demo-bloque .app-estado {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .app-estado-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--slate);
+  }
+
+  .demo-bloque .app-cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr);
+    min-height: 520px;
+  }
+
+  /* ---------- 01 · la conversación ---------- */
+  .demo-bloque .chat {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    border-right: 1px solid var(--navy-12);
+    min-width: 0;
   }
-  .demo-bloque .arch-col.hot {
-    border-top: 2px solid var(--navy);
-    box-shadow: 0 4px 18px rgba(10, 24, 40, 0.06);
-  }
-  .demo-bloque .arch-head {
+  .demo-bloque .chat-cab {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 11px 16px;
+    gap: 12px;
+    padding: 12px 18px;
     border-bottom: 1px solid var(--navy-06);
-    background: var(--paper-warm);
   }
-  .demo-bloque .arch-num {
+  .demo-bloque .chat-av {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--paper-warm);
+    font-family: var(--font-serif);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .demo-bloque .chat-quien { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .demo-bloque .chat-nombre { font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; }
+  .demo-bloque .chat-meta { font-family: var(--font-sans); font-size: 11px; color: var(--navy-60); }
+  .demo-bloque .chat-canales {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    color: var(--navy-40);
+  }
+  .demo-bloque .chat-ch {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .demo-bloque .chat-ch svg { width: 13px; height: 13px; display: block; }
+  .demo-bloque .chat-ch.on { color: var(--navy); background: var(--paper); }
+  .demo-bloque .chat-capa,
+  .demo-bloque .lat-num {
     /* Cifra suelta: DM Sans, nunca el "1" de Cormorant. */
     font-family: var(--font-sans);
     font-size: 10px;
@@ -289,99 +432,127 @@ const canales = [
     color: var(--gray-blue);
     font-variant-numeric: tabular-nums;
   }
-  .demo-bloque .arch-label {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .demo-bloque .arch-proc {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--slate-soft);
-    margin-left: auto;
-  }
-  .demo-bloque .arch-in {
-    padding: 16px 16px 18px;
+  .demo-bloque .chat-hilo {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    flex: 1;
+    padding: 20px 18px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(111, 133, 156, 0.08), transparent 55%),
+      var(--white);
   }
-
-  .demo-bloque .arch-channels {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
-    color: var(--navy);
+  .demo-bloque .bub {
+    font-size: 13.5px;
+    line-height: 1.45;
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 78%;
+    box-shadow: 0 1px 2px rgba(6, 16, 28, 0.06);
   }
-  .demo-bloque .arch-ch {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 26px;
-    border: 1px solid var(--navy-12);
-    background: var(--paper-warm);
-    border-radius: 3px;
-  }
-  .demo-bloque .arch-ch svg {
-    width: 15px;
-    height: 15px;
-    display: block;
-  }
-
-  .demo-bloque .arch-chat {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    margin-top: 4px;
-  }
-  .demo-bloque .arch-bub {
-    font-size: 13px;
-    line-height: 1.42;
-    padding: 9px 12px;
-    border-radius: 9px;
-    max-width: 92%;
-  }
-  .demo-bloque .arch-bub.cli {
+  .demo-bloque .bub.cli {
     align-self: flex-start;
     background: var(--paper);
     border: 1px solid var(--navy-12);
-    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 4px;
     color: var(--navy);
   }
-  .demo-bloque .arch-bub.bot {
+  .demo-bloque .bub.bot {
     align-self: flex-end;
     background: var(--navy);
     color: var(--paper-warm);
-    border-bottom-right-radius: 2px;
+    border-bottom-right-radius: 4px;
   }
-  .demo-bloque .arch-bub .who {
+  .demo-bloque .bub .who {
     display: block;
     font-family: var(--font-sans);
     font-size: 9px;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    opacity: 0.6;
+    opacity: 0.55;
     margin-bottom: 3px;
   }
+  .demo-bloque .chat-compositor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 14px;
+    border-top: 1px solid var(--navy-06);
+    background: var(--white);
+  }
+  .demo-bloque .chat-input {
+    flex: 1;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid var(--navy-20);
+    border-radius: 19px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--navy-40);
+  }
+  .demo-bloque .chat-enviar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
 
-  .demo-bloque .arch-tag {
+  /* ---------- 02 y 03 · el panel lateral ---------- */
+  .demo-bloque .lateral {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper-warm);
+    min-width: 0;
+  }
+  .demo-bloque .lat { display: flex; flex-direction: column; }
+  .demo-bloque .lat:first-child { flex: 1; border-bottom: 1px solid var(--navy-12); }
+  .demo-bloque .lat-cab {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 18px 11px;
+    border-bottom: 1px solid var(--navy-06);
+  }
+  .demo-bloque .lat-label {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .demo-bloque .lat-proc {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--slate-soft);
+    margin-left: auto;
+  }
+  .demo-bloque .lat-in {
+    padding: 14px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .demo-bloque .sig {
     display: flex;
     flex-direction: column;
     gap: 2px;
     padding: 9px 12px;
-    background: var(--paper);
+    background: var(--white);
+    border: 1px solid var(--navy-06);
     border-left: 2px solid var(--slate-soft);
+    border-radius: 3px;
   }
-  .demo-bloque .arch-tag.vp {
-    border-left-color: var(--navy);
-    background: var(--paper-alt);
-  }
-  .demo-bloque .arch-tag .tk {
+  .demo-bloque .sig.vp { border-left-color: var(--navy); background: var(--paper-alt); }
+  .demo-bloque .sig .tk {
     font-family: var(--font-sans);
     font-size: 9px;
     font-weight: 600;
@@ -389,21 +560,15 @@ const canales = [
     text-transform: uppercase;
     color: var(--gray-blue);
   }
-  .demo-bloque .arch-tag .tv {
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--navy);
-  }
-
-  .demo-bloque .arch-act {
+  .demo-bloque .sig .tv { font-size: 13px; line-height: 1.4; }
+  .demo-bloque .act {
     display: flex;
     gap: 9px;
     align-items: flex-start;
     font-size: 13px;
     line-height: 1.42;
-    color: var(--navy);
   }
-  .demo-bloque .arch-act .ck {
+  .demo-bloque .act .ck {
     width: 17px;
     height: 17px;
     border-radius: 50%;
@@ -417,21 +582,8 @@ const canales = [
     flex-shrink: 0;
     margin-top: 2px;
   }
-  .demo-bloque .arch-act.soft {
-    color: var(--navy-60);
-  }
-  .demo-bloque .arch-act.soft .ck {
-    background: var(--slate-mist);
-    color: var(--navy);
-  }
-
-  .demo-bloque .arch-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: var(--slate);
-  }
+  .demo-bloque .act.soft { color: var(--navy-60); }
+  .demo-bloque .act.soft .ck { background: var(--slate-mist); color: var(--navy); }
 
   /* ---------- control ---------- */
   .demo-bloque .arch-ctrl {
@@ -460,33 +612,12 @@ const canales = [
       color 0.28s var(--ease),
       border-color 0.28s var(--ease);
   }
-  .demo-bloque .arch-btn:hover {
-    background: var(--navy-soft);
-    border-color: var(--navy-soft);
-  }
-  .demo-bloque .arch-btn .arch-btn-arrow {
-    display: inline-block;
-    transition: transform 0.35s var(--ease);
-  }
-  .demo-bloque .arch-btn:hover .arch-btn-arrow {
-    transform: translateX(4px);
-  }
-  .demo-bloque .arch-btn--ghost {
-    background: transparent;
-    color: var(--navy);
-    border-color: var(--navy-20);
-  }
-  .demo-bloque .arch-btn--ghost:hover {
-    background: transparent;
-    border-color: var(--navy);
-    color: var(--navy);
-  }
-  .demo-bloque .arch-step {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-left: auto;
-  }
+  .demo-bloque .arch-btn:hover { background: var(--navy-soft); border-color: var(--navy-soft); }
+  .demo-bloque .arch-btn .arch-btn-arrow { display: inline-block; transition: transform 0.35s var(--ease); }
+  .demo-bloque .arch-btn:hover .arch-btn-arrow { transform: translateX(4px); }
+  .demo-bloque .arch-btn--ghost { background: transparent; color: var(--navy); border-color: var(--navy-20); }
+  .demo-bloque .arch-btn--ghost:hover { background: transparent; border-color: var(--navy); color: var(--navy); }
+  .demo-bloque .arch-step { display: inline-flex; align-items: baseline; gap: 8px; margin-left: auto; }
   .demo-bloque .arch-step-k {
     font-family: var(--font-sans);
     font-size: 10px;
@@ -496,7 +627,6 @@ const canales = [
     color: var(--gray-blue);
   }
   .demo-bloque .arch-step-n {
-    /* Cifras sueltas: DM Sans con anchos tabulares para que no salte. */
     font-family: var(--font-sans);
     font-size: 14px;
     font-weight: 600;
@@ -513,29 +643,11 @@ const canales = [
     margin-top: 24px;
     border-top: 1px solid var(--navy-12);
   }
-  .demo-bloque .arch-foot .fk {
-    font-family: var(--font-sans);
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 5px;
-  }
-  .demo-bloque .arch-foot .fv {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--navy-72);
-  }
-
-  .demo-bloque .demo-nota {
-    margin-top: 20px;
-    font-size: 11.5px;
-    line-height: 1.5;
-    color: var(--navy-40);
-  }
+  .demo-bloque .arch-foot .fk { font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+  .demo-bloque .arch-foot .fv { font-size: 13px; line-height: 1.6; color: var(--navy-72); }
+  .demo-bloque .demo-nota { margin-top: 20px; font-size: 11.5px; line-height: 1.5; color: var(--navy-40); }
 
   /* ---------- secuencia paso a paso ---------- */
-  /* Mismo mecanismo que el material comercial: cada elemento declara su
-     `data-step` y el motor le pone `.shown`. */
   .demo-bloque .demo-ai {
     opacity: 0;
     transform: translateY(5px);
@@ -543,38 +655,24 @@ const canales = [
       opacity 0.45s var(--ease-io),
       transform 0.45s var(--ease-io);
   }
-  .demo-bloque .demo-ai.shown {
-    opacity: 1;
-    transform: none;
-  }
+  .demo-bloque .demo-ai.shown { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    /* Todo visible y sin movimiento, como la versión impresa. */
-    .demo-bloque .demo-ai {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+    .demo-bloque .demo-ai { opacity: 1; transform: none; transition: none; }
     .arch-btn,
-    .demo-bloque .arch-btn .arch-btn-arrow {
-      transition: none;
-    }
+    .demo-bloque .arch-btn .arch-btn-arrow { transition: none; }
   }
 
   @media (max-width: 900px) {
-    /* Las tres columnas se apilan en orden front → cerebro → acciones. */
-    .demo-bloque .arch {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .demo-bloque .arch-arrow {
-      transform: rotate(90deg);
-      font-size: 16px;
-      padding: 2px 0;
-    }
-    .demo-bloque .arch-step {
-      margin-left: 0;
-    }
+    .demo-bloque .app-escena { padding: 14px; border-radius: 0; margin-left: calc(-1 * var(--gutter, 24px)); margin-right: calc(-1 * var(--gutter, 24px)); }
+    .demo-bloque .app-cuerpo { grid-template-columns: 1fr; min-height: 0; }
+    .demo-bloque .chat { border-right: 0; border-bottom: 1px solid var(--navy-12); }
+    .demo-bloque .chat-hilo { min-height: 320px; }
+    .demo-bloque .chat-canales { display: none; }
+    .demo-bloque .app-titulo { display: none; }
+    .demo-bloque .app-barra { grid-template-columns: 1fr auto; }
+    .demo-bloque .bub { max-width: 88%; }
+    .demo-bloque .arch-step { margin-left: 0; }
   }
 </style>
 

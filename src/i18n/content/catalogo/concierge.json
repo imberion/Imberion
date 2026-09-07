@@ -54,7 +54,8 @@
       "paso_label": "Paso",
       "btn_siguiente": "Siguiente",
       "btn_reiniciar": "Reiniciar",
-      "simulacion": "Conversación simulada con datos ficticios."
+      "simulacion": "Conversación simulada con datos ficticios.",
+      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "En línea", "compositor": "Escribe un mensaje", "fondo_alt": ""}
     },
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
@@ -118,7 +119,8 @@
       "paso_label": "Step",
       "btn_siguiente": "Next",
       "btn_reiniciar": "Restart",
-      "simulacion": "Simulated conversation with fictional data."
+      "simulacion": "Simulated conversation with fictional data.",
+      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "Online", "compositor": "Type a message", "fondo_alt": ""}
     },
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
@@ -182,7 +184,8 @@
       "paso_label": "Passo",
       "btn_siguiente": "Avançar",
       "btn_reiniciar": "Reiniciar",
-      "simulacion": "Conversa simulada com dados fictícios."
+      "simulacion": "Conversa simulada com dados fictícios.",
+      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "Online", "compositor": "Escreva uma mensagem", "fondo_alt": ""}
     },
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
