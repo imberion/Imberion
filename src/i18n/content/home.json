@@ -17,10 +17,10 @@
     "hero_btn1": "Book a 30-min call",
     "hero_btn2": "See how it works",
     "col_ruido": "Noise",
-    "col_ruido_p": "That channel reports aggregate sales, but not the actual closing price, the terms granted, or how the plan was executed at the point of sale. With that gap, next month's pricing and promotion are decided on a sales report and what the team remembers.",
-    "col_ruido_h": "The channel that bills the most is the one measured the least.",
     "col_senal": "Signal",
     "col_resultado": "Outcome",
+    "col_ruido_h": "The channel that bills the most is the one measured the least.",
+    "col_ruido_p": "That channel reports aggregate sales, but not the actual closing price, the terms granted, or how the plan was executed at the point of sale. With that gap, next month's pricing and promotion are decided on a sales report and what the team remembers.",
     "col_senal_h": "The missing data, organized around one decision.",
     "col_senal_p": "Pricing, promotions, portfolio and channel stop being argued separately once the information arrives together, on time and under one criterion.",
     "col_resultado_h": "And the criterion holds the following month.",
@@ -145,22 +145,19 @@
         "Manufacturers & CPG",
         "Understand the market beyond sell-in data alone. Price and promote with discipline. Align trade investment to measurable performance.",
         null,
-        null,
-        "assets/who-manufacturers.png"
+        null
       ],
       [
         "Distributors",
         "Structure commercial information and turn it into a differentiator. Become an intelligence node between manufacturers and retail.",
         "Full proposal →",
-        "distribuidores.html",
-        "assets/who-distributors.png"
+        "distribuidores.html"
       ],
       [
         "Retailers & Commercial Ecosystems",
         "Connect fragmented downstream data. Make execution visible, measurable, and governable.",
         null,
-        null,
-        "assets/who-retailers.png"
+        null
       ]
     ],
     "mat_eyebrow": "Any starting point",
@@ -178,15 +175,17 @@
     "sect_eyebrow": "Sectors",
     "sect_h2": "Where we play",
     "sect_lead": "Imberion applies wherever commercial complexity creates an information gap.",
-    "sect_chips": [
-      "CPG / FMCG",
-      "Retail",
-      "e-Commerce",
-      "Industrial & Manufacturing",
-      "Logistics & Transportation",
-      "Construction & Building Materials",
-      "Healthcare & Pharma"
-    ],
+    "sect_industrias": {
+      "retail": "Shelf, price and promotion happen in the store and are read late.",
+      "cpg": "Sell-in in detail, sell-out and shelf in the dark.",
+      "farma": "The counter and the shelf close the sale, and neither one is measured.",
+      "b2b": "The business has the data and never turns it into signal.",
+      "construccion": "The commercial policy designed is not the one executed on the street.",
+      "automotriz": "Aftersales holds the margin and is the least instrumented part.",
+      "telco": "Churn shows up once the number has already ported.",
+      "servicios-b2b": "The inventory is people's capacity, and it perishes every day.",
+      "servicios-b2c": "Run on gross adds; renewals and off-peak hours stay out of view."
+    },
     "team_eyebrow": "The Team",
     "team_h2": "Built by practitioners,<br>not theorists.",
     "team_p1": "Built by people who have solved this before. Not in theory, in complex, messy, real-world environments.",
@@ -296,8 +295,12 @@
       ]
     ],
     "loop_eyebrow": "The loop",
-    "loop_decision": "Decision",
-    "loop_execution": "Execution",
+    "loop_nodos": [
+      ["Decision", "Price, promotion and assortment get set by point of sale and by period."],
+      ["Execution", "The decision reaches the floor, the channel and the systems that run it."],
+      ["Measurement", "What happened gets measured: floor compliance, volume, mix and margin."],
+      ["Adjustment", "What did not work gets corrected, and the next decision starts from that evidence."]
+    ],
     "loop_cap": "The operation learns on every loop."
   },
   "es": {
@@ -318,10 +321,10 @@
     "hero_btn1": "Agenda una llamada de 30 min",
     "hero_btn2": "Cómo funciona",
     "col_ruido": "Ruido",
-    "col_ruido_p": "De ese canal llega la venta agregada, pero no el precio real de cierre, las condiciones otorgadas ni la ejecución en el punto de venta. Con ese hueco, precio y promoción del mes siguiente se deciden con el reporte de ventas y la memoria del equipo.",
-    "col_ruido_h": "El canal que más factura es el que menos se mide.",
     "col_senal": "Señal",
     "col_resultado": "Resultado",
+    "col_ruido_h": "El canal que más factura es el que menos se mide.",
+    "col_ruido_p": "De ese canal llega la venta agregada, pero no el precio real de cierre, las condiciones otorgadas ni la ejecución en el punto de venta. Con ese hueco, precio y promoción del mes siguiente se deciden con el reporte de ventas y la memoria del equipo.",
     "col_senal_h": "El dato que faltaba, ordenado alrededor de una decisión.",
     "col_senal_p": "Precio, promoción, portafolio y canal dejan de discutirse por separado cuando la información llega junta, a tiempo y con el mismo criterio.",
     "col_resultado_h": "Y el criterio se sostiene el mes siguiente.",
@@ -446,22 +449,19 @@
         "Fabricantes y CPG",
         "Entender el mercado más allá de la propia data de sell-in. Poner disciplina a precios y promociones. Alinear la inversión comercial a desempeño medible.",
         null,
-        null,
-        "assets/who-manufacturers.png"
+        null
       ],
       [
         "Distribuidores",
         "Estructurar la información comercial y convertirla en un diferenciador. Ser un nodo de inteligencia entre fabricantes y retail.",
         "Ver propuesta completa →",
-        "distribuidores.html",
-        "assets/who-distributors.png"
+        "distribuidores.html"
       ],
       [
         "Retailers y Ecosistemas Comerciales",
         "Conecta data downstream fragmentada. Haz la ejecución visible, medible y gobernable.",
         null,
-        null,
-        "assets/who-retailers.png"
+        null
       ]
     ],
     "mat_eyebrow": "Cualquier punto de partida",
@@ -479,15 +479,17 @@
     "sect_eyebrow": "Sectores",
     "sect_h2": "Dónde jugamos",
     "sect_lead": "Imberion aplica donde sea que la complejidad comercial genere una brecha de información.",
-    "sect_chips": [
-      "CPG / FMCG",
-      "Retail",
-      "e-Commerce",
-      "Industria y Manufactura",
-      "Logística y Transporte",
-      "Construcción y Materiales",
-      "Salud y Farma"
-    ],
+    "sect_industrias": {
+      "retail": "Anaquel, precio y promoción se ejecutan en tienda y se leen tarde.",
+      "cpg": "Sell-in al detalle, sell-out y anaquel a ciegas.",
+      "farma": "La venta la cierran el mostrador y el anaquel, y ninguno se mide.",
+      "b2b": "El negocio tiene la data y no la convierte en señal.",
+      "construccion": "La política comercial que se diseña no es la que se ejecuta en la calle.",
+      "automotriz": "La posventa concentra el margen y es lo peor instrumentado.",
+      "telco": "La baja se descubre cuando el cliente ya portó.",
+      "servicios-b2b": "El inventario es la capacidad de la gente y perece cada día.",
+      "servicios-b2c": "Se gestiona por altas brutas; la renovación y las horas valle quedan fuera."
+    },
     "team_eyebrow": "El Equipo",
     "team_h2": "Construido por gente que ya lo resolvió,<br>no por teóricos.",
     "team_p1": "Construido por quienes ya resolvieron esto antes. No en teoría, en entornos complejos, desordenados y reales.",
@@ -597,8 +599,12 @@
       ]
     ],
     "loop_eyebrow": "El loop",
-    "loop_decision": "Decisión",
-    "loop_execution": "Ejecución",
+    "loop_nodos": [
+      ["Decisión", "Precio, promoción y surtido se definen por punto de venta y por periodo."],
+      ["Ejecución", "La decisión llega al piso, al canal y a los sistemas que la operan."],
+      ["Medición", "Se mide lo que ocurrió: cumplimiento en piso, volumen, mezcla y margen."],
+      ["Ajuste", "Se corrige lo que no funcionó, y la siguiente decisión parte de esa evidencia."]
+    ],
     "loop_cap": "La operación aprende en cada vuelta."
   },
   "pt": {
@@ -619,10 +625,10 @@
     "hero_btn1": "Agende uma call de 30 min",
     "hero_btn2": "Como funciona",
     "col_ruido": "Ruído",
-    "col_ruido_p": "Desse canal chega a venda agregada, mas não o preço real de fechamento, as condições concedidas nem a execução no ponto de venda. Com essa lacuna, preço e promoção do mês seguinte são decididos com o relatório de vendas e a memória da equipe.",
-    "col_ruido_h": "O canal que mais fatura é o que menos se mede.",
     "col_senal": "Sinal",
     "col_resultado": "Resultado",
+    "col_ruido_h": "O canal que mais fatura é o que menos se mede.",
+    "col_ruido_p": "Desse canal chega a venda agregada, mas não o preço real de fechamento, as condições concedidas nem a execução no ponto de venda. Com essa lacuna, preço e promoção do mês seguinte são decididos com o relatório de vendas e a memória da equipe.",
     "col_senal_h": "O dado que faltava, organizado em torno de uma decisão.",
     "col_senal_p": "Preço, promoção, portfólio e canal deixam de ser discutidos separadamente quando a informação chega junta, no tempo certo e com o mesmo critério.",
     "col_resultado_h": "E o critério se sustenta no mês seguinte.",
@@ -747,22 +753,19 @@
         "Fabricantes e CPG",
         "Entender o mercado além dos próprios dados de sell-in. Aplicar disciplina a preços e promoções. Alinhar o investimento comercial ao desempenho mensurável.",
         null,
-        null,
-        "assets/who-manufacturers.png"
+        null
       ],
       [
         "Distribuidores",
         "Estruturar a informação comercial e convertê-la em um diferencial. Ser um nó de inteligência entre fabricantes e varejo.",
         "Proposta completa →",
-        "distribuidores.html",
-        "assets/who-distributors.png"
+        "distribuidores.html"
       ],
       [
         "Varejistas e Ecossistemas Comerciais",
         "Conecte dados downstream fragmentados. Torne a execução visível, mensurável e governável.",
         null,
-        null,
-        "assets/who-retailers.png"
+        null
       ]
     ],
     "mat_eyebrow": "Qualquer ponto de partida",
@@ -780,15 +783,17 @@
     "sect_eyebrow": "Setores",
     "sect_h2": "Onde atuamos",
     "sect_lead": "Imberion se aplica onde quer que a complexidade comercial crie uma lacuna de informação.",
-    "sect_chips": [
-      "CPG / FMCG",
-      "Retail",
-      "e-Commerce",
-      "Indústria e Manufatura",
-      "Logística e Transporte",
-      "Construção e Materiais",
-      "Saúde e Farma"
-    ],
+    "sect_industrias": {
+      "retail": "Gôndola, preço e promoção acontecem na loja e são lidos tarde.",
+      "cpg": "Sell-in em detalhe, sell-out e gôndola às cegas.",
+      "farma": "A venda é fechada pelo balcão e pela gôndola, e nenhum dos dois é medido.",
+      "b2b": "O negócio tem o dado e não o converte em sinal.",
+      "construccion": "A política comercial desenhada não é a executada na rua.",
+      "automotriz": "O pós-venda concentra a margem e é a parte menos instrumentada.",
+      "telco": "O cancelamento aparece depois que o número já foi portado.",
+      "servicios-b2b": "O estoque é a capacidade das pessoas e perece todo dia.",
+      "servicios-b2c": "Gerido por adições brutas; a renovação e o horário fora de pico ficam de fora."
+    },
     "team_eyebrow": "O Time",
     "team_h2": "Construído por quem já resolveu,<br>não por teóricos.",
     "team_p1": "Construído por quem já resolveu isso antes. Não na teoria, em ambientes complexos, caóticos e reais.",
@@ -898,8 +903,12 @@
       ]
     ],
     "loop_eyebrow": "O loop",
-    "loop_decision": "Decisão",
-    "loop_execution": "Execução",
+    "loop_nodos": [
+      ["Decisão", "Preço, promoção e sortimento são definidos por ponto de venda e por período."],
+      ["Execução", "A decisão chega ao piso, ao canal e aos sistemas que a operam."],
+      ["Medição", "Mede-se o que aconteceu: cumprimento no piso, volume, mix e margem."],
+      ["Ajuste", "Corrige-se o que não funcionou, e a decisão seguinte parte dessa evidência."]
+    ],
     "loop_cap": "A operação aprende a cada volta."
   }
 }

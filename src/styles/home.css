@@ -222,9 +222,8 @@
 @keyframes sp { 0% { transform: translateY(-100%); } 70%, 100% { transform: translateY(220%); } }
 
 /* ============================================================ LO QUE RESOLVEMOS */
-.solve-section { padding: 128px 0; position: relative; overflow: hidden; }
-.solve-section .container { display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, .84fr); gap: 72px; align-items: stretch; }
-.solve-inner { max-width: none; align-self: center; }
+.solve-section { padding: 128px 0 0; position: relative; overflow: hidden; }
+.solve-inner { max-width: none; }
 .solve-section h2 { margin-bottom: 26px; }
 .solve-body { font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--navy-72); line-height: 1.75; margin-bottom: 34px; max-width: 600px; }
 .q-list { display: flex; flex-direction: column; border-top: 1px solid var(--navy-12); }
@@ -266,43 +265,127 @@
   max-width: 620px;
 }
 .solve-close { margin-top: 14px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--gray-blue); }
-.loop-panel {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
+/* ============================================================ EL LOOP
+   Banda navy a todo el ancho: cuatro nodos en fila, chevrón en cada hueco y la
+   vuelta de retorno por debajo, con la frase del loop montada sobre esa vuelta.
+   Antes era un círculo de 344 px flotando en un panel de 520 px de alto donde
+   solo se leían dos etiquetas: el resto era navy muerto (invariante 16). */
+.loop-banda {
+  margin-top: clamp(72px, 7vw, 128px);
   background: var(--navy);
-  min-height: 520px;
-  box-shadow: 0 22px 60px rgba(10, 24, 40, .14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
+  color: #fff;
+  padding: clamp(64px, 6vw, 104px) 0 clamp(56px, 5vw, 92px);
 }
-.loop-panel .lp-eyebrow {
-  position: absolute;
-  left: 26px; top: 24px;
+.loop-banda .lb-eyebrow {
+  display: block;
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--slate-soft);
+  margin-bottom: clamp(34px, 3.4vw, 56px);
 }
-.loop-panel .lp-cap {
+.lb-nodos {
+  --lb-gap: clamp(24px, 3vw, 64px);
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--lb-gap);
+}
+.lb-nodo { position: relative; }
+/* Chevrón centrado en el hueco, a la altura del centro del icono. Marca la
+   dirección sin dibujar un riel que se rompa al cambiar de columnas. */
+.lb-nodo:not(:last-child)::after {
+  content: "";
   position: absolute;
-  left: 26px; right: 26px; bottom: 26px;
+  top: 17px;
+  left: calc(100% + var(--lb-gap) / 2 - 5px);
+  width: 9px; height: 9px;
+  border-top: 1.5px solid var(--slate-soft);
+  border-right: 1.5px solid var(--slate-soft);
+  transform: rotate(45deg);
+}
+.lb-marca { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.lb-ico {
+  width: 44px; height: 44px;
+  flex: none;
+  border: 1px solid var(--white-25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.lb-ico svg { width: 22px; height: 22px; }
+.lb-num {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--white-45);
+  font-variant-numeric: tabular-nums;
+}
+.lb-label {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.lb-linea {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, .95vw, 16px);
+  line-height: 1.65;
+  color: var(--white-65);
+  max-width: 34ch;
+}
+/* La vuelta: dos patas que suben hacia la fila de nodos y el travesaño donde va
+   la frase. La punta de flecha regresa al nodo 01. */
+.lb-retorno {
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
+  align-items: center;
+  gap: clamp(18px, 2vw, 44px);
+  margin-top: clamp(36px, 3.4vw, 60px);
+}
+.lb-ret-linea { height: clamp(28px, 3vw, 46px); border-bottom: 1px solid var(--white-25); position: relative; }
+.lb-ret-izq { border-left: 1px solid var(--white-25); }
+.lb-ret-der { border-right: 1px solid var(--white-25); }
+.lb-ret-izq::after {
+  content: "";
+  position: absolute;
+  left: -5px; top: -1px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--slate-soft);
+}
+.lb-cap {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-size: clamp(1.15rem, 1.7vw, 1.7rem);
   color: #fff;
   line-height: 1.25;
   letter-spacing: -.01em;
+  text-align: center;
+  align-self: end;
+  transform: translateY(50%);
 }
-.loop-svg { width: 344px; max-width: 100%; height: auto; color: #fff; }
-.loop-node-label { font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; fill: var(--slate-soft); }
-@media (max-width: 960px) {
-  .solve-section .container { grid-template-columns: 1fr; gap: 44px; }
-  .loop-panel { min-height: 360px; }
+@media (max-width: 1100px) {
+  .lb-nodos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: clamp(38px, 5vw, 56px); }
+  .lb-nodo:nth-child(2)::after { display: none; }
+  .lb-linea { max-width: none; }
+}
+@media (max-width: 620px) {
+  .lb-nodos { grid-template-columns: 1fr; row-gap: 34px; }
+  .lb-nodo::after { display: none !important; }
+  .lb-nodo { padding-left: 22px; border-left: 1px solid var(--white-12); }
+  .lb-marca { margin-bottom: 14px; }
+  .lb-retorno { grid-template-columns: 28px auto; gap: 14px; }
+  .lb-ret-der { display: none; }
+  .lb-cap { text-align: left; transform: none; align-self: center; }
 }
 
 /* ============================================================ TRES BRAZOS */
@@ -385,29 +468,28 @@
 .impact-mid-cta { margin-top: 34px; text-align: right; }
 
 /* ============================================================ PARA QUIÉN */
-.serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
-.serve-card-wrapper {
+/* Tres tarjetas de texto, sin imagen: los tres PNG genéricos salieron del repo.
+   La tarjeta se estira a la altura de la fila para que ninguna quede corta y el
+   padding crece con la ventana en vez de dejar hueco. */
+.serve-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 34px);
+  margin-top: 64px;
+  align-items: stretch;
+}
+.serve-card {
   display: flex;
   flex-direction: column;
   background: var(--white);
   border: 1px solid var(--navy-08);
-  overflow: hidden;
-  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  border-top: 2px solid var(--navy-12);
+  padding: clamp(34px, 3vw, 52px) clamp(28px, 2.4vw, 46px);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-top-color .3s var(--ease);
 }
-.serve-card-wrapper:hover { transform: translateY(-5px); box-shadow: 0 18px 50px rgba(10, 24, 40, .12); }
-.serve-card-image { flex: 0 0 auto; height: 188px; overflow: hidden; background: var(--beige); }
-.serve-card-image img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .6s var(--ease);
-  filter: grayscale(.18) saturate(.95);
-}
-.serve-card-wrapper:hover .serve-card-image img { transform: scale(1.05); filter: grayscale(0) saturate(1); }
-.serve-card { flex: 1; padding: 34px 30px; border-top: 2px solid var(--navy-12); transition: border-top-color .3s var(--ease); }
-.serve-card-wrapper:hover .serve-card { border-top-color: var(--gray-blue); }
-.serve-card h3 { font-size: clamp(1.3rem, 1.9vw, 1.65rem); margin-bottom: 14px; }
-.serve-card p { font-family: var(--font-sans); font-size: 14.5px; color: var(--navy-72); line-height: 1.68; }
+.serve-card:hover { transform: translateY(-5px); box-shadow: 0 18px 50px rgba(10, 24, 40, .12); border-top-color: var(--gray-blue); }
+.serve-card h3 { font-size: clamp(1.3rem, 1.9vw, 1.75rem); margin-bottom: 16px; }
+.serve-card p { font-family: var(--font-sans); font-size: clamp(14.5px, .95vw, 16px); color: var(--navy-72); line-height: 1.72; }
 
 /* ============================================================ MADUREZ */
 .mat-section { padding: 128px 0; background-color: var(--navy); color: var(--white); }
@@ -430,19 +512,92 @@
 /* ============================================================ SECTORES */
 #sectors { position: relative; overflow: hidden; }
 #sectors .container { position: relative; z-index: 2; }
-.sectors-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 44px; }
-.sector-chip {
-  padding: 11px 20px;
-  background: var(--white);
-  border: 1px solid var(--navy-12);
-  border-radius: 2px;
-  font-family: var(--font-sans);
-  font-size: 13.5px;
-  color: var(--navy-72);
-  transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+/* La puerta de industria (§8.4): 01-09 con la foto del sector mandando el
+   bloque, misma familia que /industrias/ (velo navy multiply + desaturación,
+   que se retiran en hover). Reemplaza los chips de texto, que no decían nada
+   de la industria y no llevaban a ninguna parte en cuatro de siete casos. */
+.sect-rejilla {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 2.6vw, 48px) clamp(24px, 2.2vw, 40px);
+  margin-top: clamp(48px, 4vw, 72px);
 }
-a.sector-chip { color: var(--gray-blue); border-color: var(--navy-20); }
-.sector-chip:hover { color: var(--navy); border-color: var(--gray-blue); background: var(--beige); }
+.sect-card { display: block; }
+/* 3:2 fijo: object-fit cover recorta, nunca deforma. */
+.sect-foto {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--paper-alt);
+}
+.sect-foto img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(.62) contrast(1.06) brightness(.94);
+  transform: scale(1.01);
+  transition: transform .7s var(--ease), filter .5s var(--ease);
+}
+.sect-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  opacity: .24;
+  mix-blend-mode: multiply;
+  transition: opacity .5s var(--ease);
+}
+.sect-card:hover .sect-foto img { transform: scale(1.05); filter: saturate(.95) contrast(1.02) brightness(1); }
+.sect-card:hover .sect-foto::after { opacity: .05; }
+.sect-pie { display: block; padding-top: 20px; border-top: 1px solid var(--navy-12); margin-top: 20px; }
+.sect-num {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--navy-40);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  transition: color .25s var(--ease);
+}
+.sect-card:hover .sect-num { color: var(--navy); }
+.sect-nombre {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.9vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.sect-linea {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(13.5px, .9vw, 15.5px);
+  line-height: 1.6;
+  color: var(--navy-72);
+  max-width: 40ch;
+}
+@media (max-width: 1100px) {
+  .sect-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Nueve en dos columnas dejan una sola al final: se abre a todo el ancho en
+     vez de quedar como tarjeta huérfana. */
+  .sect-item:last-child { grid-column: 1 / -1; }
+  .sect-item:last-child .sect-foto { aspect-ratio: 21 / 9; }
+}
+@media (max-width: 640px) {
+  .sect-rejilla { grid-template-columns: 1fr; gap: 34px; }
+  .sect-item:last-child { grid-column: auto; }
+  .sect-item:last-child .sect-foto { aspect-ratio: 3 / 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sect-foto img, .sect-foto::after, .sect-num { transition: none; }
+  .sect-card:hover .sect-foto img { transform: scale(1.01); }
+}
 
 /* ============================================================ EQUIPO */
 .team-text p { font-family: var(--font-sans); font-size: 1.05rem; color: var(--navy-72); line-height: 1.85; margin-bottom: 22px; }
@@ -546,14 +701,17 @@ a.sector-chip { color: var(--gray-blue); border-color: var(--navy-20); }
   .columna-rail-item { transition: none; }
 }
 @media (max-width: 960px) {
-  .solve-section, .arms-section, .mat-section, .persp-section { padding: 96px 0; }
+  .arms-section, .mat-section, .persp-section { padding: 96px 0; }
+  /* Sin padding abajo: la banda del loop cierra la sección a todo el ancho. */
+  .solve-section { padding: 96px 0 0; }
   .three-arms, .serve-grid, .mat-inner { grid-template-columns: 1fr; }
   .hero-content { grid-template-columns: 1fr; gap: 52px; }
   .hero-right { justify-self: stretch; max-width: none; }
   .hero h1 { max-width: none; }
 }
 @media (max-width: 600px) {
-  .solve-section, .arms-section, .mat-section, .persp-section { padding: 80px 0; }
+  .arms-section, .mat-section, .persp-section { padding: 80px 0; }
+  .solve-section { padding: 80px 0 0; }
   .impact-grid { grid-template-columns: 1fr; }
   .hero { padding: 108px 0 84px; }
   .hero h1 { font-size: clamp(3rem, 13vw, 4.2rem); }
@@ -593,9 +751,32 @@ a.sector-chip { color: var(--gray-blue); border-color: var(--navy-20); }
   .team-text p { break-inside: avoid; max-width: 46ch; }
   .col-etapa-txt { max-width: 24ch; }
   .col-etapa .lead { max-width: 40ch; }
+  /* La sección ya no comparte fila con el panel del loop. Para que la mitad
+     derecha no quede muerta (invariante 16), la entradilla sube al costado del
+     h2 y la lista de decisiones se abre a dos columnas. */
+  .solve-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    column-gap: clamp(48px, 4vw, 112px);
+  }
+  .solve-inner > .eyebrow { grid-column: 1; grid-row: 1; }
+  .solve-inner > h2 { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+  .solve-body { grid-column: 2; grid-row: 2; align-self: end; max-width: 46ch; margin-bottom: 0; }
+  .q-list { grid-column: 1 / -1; grid-row: 3; margin-top: clamp(48px, 4vw, 76px); }
+  .solve-bridge { grid-column: 1 / -1; grid-row: 4; }
+  .solve-close { grid-column: 1 / -1; grid-row: 5; }
+  .q-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(48px, 4vw, 112px);
+    border-top: 0;
+  }
+  .q-row { border-top: 1px solid var(--navy-12); border-bottom: 0; }
+  .q-row:nth-last-child(-n + 2) { border-bottom: 1px solid var(--navy-12); }
 }
 @media (min-width: 1600px) {
-  .solve-section, .arms-section, .mat-section, .persp-section { padding: 168px 0; }
+  .arms-section, .mat-section, .persp-section { padding: 168px 0; }
+  .solve-section { padding: 168px 0 0; }
   .cta-section { padding: 200px 0; }
   .arm-card { padding: 62px 54px; }
   .arm-card p { max-width: 42ch; }
@@ -604,13 +785,9 @@ a.sector-chip { color: var(--gray-blue); border-color: var(--navy-20); }
   .impact-card { padding: 58px 46px; }
   .estrat-card { padding: 46px 36px; }
   .estrat-card p { max-width: 34ch; }
-  .serve-card { padding: 42px 38px; }
-  .serve-card-image { height: 232px; }
-  .solve-section .container { gap: 108px; }
   .q-txt { font-size: 1.22rem; }
   .q-ico { width: 44px; height: 44px; }
   .q-ico svg { width: 24px; height: 24px; }
-  .sector-chip { padding: 14px 26px; font-size: 15px; }
   .team-text p { font-size: 1.14rem; }
   .columna-rail { bottom: 64px; }
 

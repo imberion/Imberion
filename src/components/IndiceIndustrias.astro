@@ -26,6 +26,8 @@ const fotos = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
   eager: true,
 });
 
+const alts = c.industrias_foto_alt as Record<string, string>;
+
 const filas = INDUSTRIAS.map((ind, i) => {
   const clave = `../assets/industrias/${ind.slug}.jpg`;
   const foto = fotos[clave];
@@ -34,7 +36,14 @@ const filas = INDUSTRIAS.map((ind, i) => {
       `industrias: falta la foto de sector de ${ind.slug}. Se esperaba src/assets/industrias/${ind.slug}.jpg.`
     );
   }
+  const alt = alts?.[ind.slug];
+  if (!alt) {
+    throw new Error(
+      `industrias: falta el alt de la foto de ${ind.slug} (${locale}) en "industrias_foto_alt" de src/i18n/content/common.json.`
+    );
+  }
   return {
+    alt,
     slug: ind.slug,
     num: String(i + 1).padStart(2, '0'),
     nombre: titulo(ind, locale),
@@ -74,11 +83,11 @@ const filas = INDUSTRIAS.map((ind, i) => {
               <span class="ind-foto">
                 <Image
                   src={f.foto}
-                  alt=""
-                  widths={[420, 840]}
-                  sizes="(max-width: 600px) 92vw, (max-width: 1080px) 260px, 420px"
+                  alt={f.alt}
+                  widths={[780, 1560]}
+                  sizes="(max-width: 600px) 92vw, (max-width: 1080px) 34vw, 42vw"
                   format="webp"
-                  quality={70}
+                  quality={62}
                   loading={i === 0 ? 'eager' : 'lazy'}
                   decoding={i === 0 ? 'sync' : 'async'}
                 />
@@ -100,18 +109,19 @@ const filas = INDUSTRIAS.map((ind, i) => {
   .ind-item { border-bottom: 1px solid var(--navy-12); }
 
   /* La fila es la unidad: número, nombre, la línea de casos de uso y la foto
-     del sector. En monitor grande la foto crece con la ventana en vez de dejar
-     un costado vacío. */
+     del sector. La columna de foto se lleva ~42 % del ancho de la fila y crece
+     con ella (fr, no vw), porque en este patrón la imagen manda: a 420 px fijos
+     se leía como miniatura al lado del texto. */
   .ind-fila {
     display: grid;
     grid-template-columns:
-      5rem
-      minmax(220px, 1fr)
-      minmax(0, 1.5fr)
-      clamp(240px, 22vw, 420px);
+      4.5rem
+      minmax(240px, 0.75fr)
+      minmax(0, 1.1fr)
+      minmax(360px, 1.72fr);
     align-items: center;
     gap: clamp(20px, 2.4vw, 56px);
-    padding: clamp(20px, 1.8vw, 30px) 0;
+    padding: clamp(26px, 2.2vw, 40px) 0;
     transition: background 0.35s var(--ease), padding-left 0.35s var(--ease);
   }
   .ind-fila:hover { background: var(--white); padding-left: clamp(0px, 1vw, 20px); }
@@ -130,11 +140,15 @@ const filas = INDUSTRIAS.map((ind, i) => {
 
   .ind-nombre {
     font-family: var(--font-serif);
-    font-size: clamp(1.7rem, 2.3vw, 3rem);
+    font-size: clamp(1.6rem, 2.1vw, 2.8rem);
     font-weight: 300;
     line-height: 1.08;
     letter-spacing: -0.015em;
     color: var(--navy);
+    /* "Telecomunicaciones" es una sola palabra más ancha que su columna: sin
+       esto se montaba encima de la bajada. */
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .ind-bajada { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
@@ -191,7 +205,7 @@ const filas = INDUSTRIAS.map((ind, i) => {
 
   @media (max-width: 1080px) {
     .ind-fila {
-      grid-template-columns: 3rem minmax(0, 1fr) clamp(150px, 24vw, 260px);
+      grid-template-columns: 3rem minmax(0, 1fr) minmax(200px, 0.85fr);
       grid-template-areas:
         "num nombre foto"
         "num bajada foto";

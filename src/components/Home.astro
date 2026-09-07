@@ -4,6 +4,7 @@
 // el mismo orden. Fuera queda el muro de logos de cliente, que en index.html
 // está oculto por instrucción desde 2026-06-01.
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
@@ -11,10 +12,8 @@ import { contenido } from '../lib/meta';
 import Columna from './home/Columna.astro';
 import catalogoData from '../data/catalogo.json';
 import industriasData from '../data/industrias.json';
-
-import whoFabricantes from '../assets/home/who-manufacturers.png';
-import whoDistribuidores from '../assets/home/who-distributors.png';
-import whoRetailers from '../assets/home/who-retailers.png';
+import comun from '../i18n/content/common.json';
+import { INDUSTRIAS as INDUSTRIAS_PUBLICADAS, titulo as tituloIndustria } from '../lib/industrias';
 
 import '../styles/base-pagina.css';
 import '../styles/texturas.css';
@@ -48,12 +47,6 @@ const SLUGS_TAGS: Record<'a' | 'b' | 'c', (string | null)[]> = {
   ],
   c: ['concierge', null, 'training-signal', 'account-twin', 'habilitadores', null, null, null],
 };
-// Mismo criterio para los chips de sector. e-Commerce y Logística todavía no
-// tienen página de industria publicada, así que van sin enlace.
-const SLUGS_SECTORES: (string | null)[] = [
-  'cpg', 'retail', null, 'b2b', null, 'construccion', 'farma',
-];
-
 function hrefFicha(slug: string | null): string | null {
   return slug && FICHAS.has(slug) ? ruta(locale, `catalogo/${slug}`) : null;
 }
@@ -72,7 +65,46 @@ const brazos = [
   { num: '03', k: 'arm_c', ancla: 'ejecucion', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
 ];
 
-const imagenesWho = [whoFabricantes, whoDistribuidores, whoRetailers];
+// La puerta de industria del home es la misma familia que /industrias/: mismo
+// roster (sin borradores), mismo número 01-09, misma foto de sector con el
+// mismo tratamiento. Lo que cambia es la bajada: en el índice es el hero_lead
+// completo; aquí, de 200 a 410 caracteres, ahogaría la foto, así que la línea
+// corta vive en sect_industrias del JSON del home.
+const fotosIndustria = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
+  import: 'default',
+  eager: true,
+});
+const lineasSector = c.sect_industrias as Record<string, string>;
+const altsSector = comun[locale].industrias_foto_alt as Record<string, string>;
+
+const filasIndustria = INDUSTRIAS_PUBLICADAS.map((ind, i) => {
+  const foto = fotosIndustria[`../assets/industrias/${ind.slug}.jpg`];
+  if (!foto) {
+    throw new Error(
+      `home: falta la foto de sector de ${ind.slug}. Se esperaba src/assets/industrias/${ind.slug}.jpg.`
+    );
+  }
+  const linea = lineasSector?.[ind.slug];
+  if (!linea) {
+    throw new Error(
+      `home (${locale}): falta la línea de ${ind.slug} en "sect_industrias" de src/i18n/content/home.json.`
+    );
+  }
+  const alt = altsSector?.[ind.slug];
+  if (!alt) {
+    throw new Error(
+      `home (${locale}): falta el alt de la foto de ${ind.slug} en "industrias_foto_alt" de src/i18n/content/common.json.`
+    );
+  }
+  return {
+    num: String(i + 1).padStart(2, '0'),
+    nombre: tituloIndustria(ind, locale),
+    href: ruta(locale, `industrias/${ind.slug}`),
+    linea,
+    alt,
+    foto,
+  };
+});
 
 // Iconos del índice de decisiones. Son independientes del idioma.
 const ICONOS_SOLVE = [
@@ -83,6 +115,16 @@ const ICONOS_SOLVE = [
   '<path d="M5 8h14l-1.5 11h-11z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>',
   '<path d="M4 19V9"/><path d="M9 19V5"/><path d="M14 19v-8"/><path d="M19 19v-12"/>',
   '<circle cx="12" cy="12" r="9"/><path d="M5 12c1.8 0 1.8 -4 3.5 -4S10.3 16 12 16s1.8 -8 3.5 -8S17.2 12 19 12"/>',
+];
+
+// Iconos de los cuatro nodos del loop, mismo trazo que los .ic de arriba: la
+// bifurcación con una rama elegida, la flecha que llega al piso, la lectura en
+// barras sobre su eje y los controles que se corren. Independientes del idioma.
+const ICONOS_LOOP = [
+  '<path d="M12 21v-7"/><path d="M12 14 5 7"/><path d="m12 14 7-7"/><circle cx="19" cy="7" r="2"/>',
+  '<path d="M4 12h10"/><path d="m11 7 5 5-5 5"/><path d="M20 4v16"/>',
+  '<path d="M4 4v16h16"/><path d="M8 20v-5"/><path d="M13 20v-9"/><path d="M18 20v-3"/>',
+  '<path d="M4 8h8"/><path d="M16 8h4"/><circle cx="14" cy="8" r="2"/><path d="M4 16h4"/><path d="M12 16h8"/><circle cx="10" cy="16" r="2"/>',
 ];
 ---
 
@@ -136,40 +178,30 @@ const ICONOS_SOLVE = [
       <p class="solve-bridge">{c.solve_bridge}</p>
       <p class="solve-close">{c.solve_close}</p>
     </div>
-    <div class="loop-panel" aria-hidden="true">
-      <span class="lp-eyebrow">{c.loop_eyebrow}</span>
-      <svg class="loop-svg" viewBox="0 0 300 300">
-        <defs>
-          <path id="ring-path" d="M150,40 a110,110 0 1,1 -0.01,0"></path>
-          <marker id="loop-ah" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6" fill="none" stroke="#8FA3B8" stroke-width="1.2"></path>
-          </marker>
-        </defs>
-        <circle cx="150" cy="150" r="132" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="3" stroke-dasharray="1.1 12.3"></circle>
-        <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.4"></circle>
-        <path d="M150,40 a110,110 0 0,1 0,220" fill="none" stroke="#8FA3B8" stroke-width="1.6" marker-end="url(#loop-ah)"></path>
-        <path d="M150,260 a110,110 0 0,1 0,-220" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.2" stroke-dasharray="4 5"></path>
-        <circle r="5" fill="#fff">
-          <animateMotion dur="3.6s" repeatCount="indefinite" rotate="auto"><mpath href="#ring-path"></mpath></animateMotion>
-          <animate attributeName="opacity" values="0.35;1;0.35" dur="3.6s" repeatCount="indefinite"></animate>
-        </circle>
-        <circle cx="150" cy="40" r="22" fill="#0A1828" stroke="#fff" stroke-width="1.2"></circle>
-        <g transform="translate(138,28)">
-          <svg class="ic" width="24" height="24" viewBox="0 0 24 24" style="color:#fff">
-            <path d="M12 3v7"></path><path d="M5 21l7-11 7 11"></path>
-            <circle cx="12" cy="10" r="1.1" fill="#fff" stroke="none"></circle>
-          </svg>
-        </g>
-        <text x="150" y="14" text-anchor="middle" class="loop-node-label">{c.loop_decision}</text>
-        <circle cx="150" cy="260" r="22" fill="#0A1828" stroke="#fff" stroke-width="1.2"></circle>
-        <g transform="translate(138,248)">
-          <svg class="ic" width="24" height="24" viewBox="0 0 24 24" style="color:#fff">
-            <path d="M5 12h10"></path><path d="M12 7l4 5 -4 5"></path><circle cx="19" cy="12" r="1.4"></circle>
-          </svg>
-        </g>
-        <text x="150" y="294" text-anchor="middle" class="loop-node-label">{c.loop_execution}</text>
-      </svg>
-      <span class="lp-cap">{c.loop_cap}</span>
+  </div>
+
+  <!-- EL LOOP: banda de cuatro nodos a todo el ancho, con la vuelta de retorno
+       por debajo. Lleva texto que informa, así que no va aria-hidden. -->
+  <div class="loop-banda" id="el-loop">
+    <div class="container">
+      <span class="lb-eyebrow">{c.loop_eyebrow}</span>
+      <ol class="lb-nodos">
+        {(c.loop_nodos as string[][]).map((n, i) => (
+          <li class="lb-nodo">
+            <span class="lb-marca">
+              <span class="lb-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" set:html={ICONOS_LOOP[i] ?? ''} /></span>
+              <span class="lb-num" aria-hidden="true">{`0${i + 1}`}</span>
+            </span>
+            <h3 class="lb-label">{n[0]}</h3>
+            <p class="lb-linea">{n[1]}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="lb-retorno">
+        <span class="lb-ret-linea lb-ret-izq" aria-hidden="true"></span>
+        <p class="lb-cap">{c.loop_cap}</p>
+        <span class="lb-ret-linea lb-ret-der" aria-hidden="true"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -243,15 +275,10 @@ const ICONOS_SOLVE = [
     <h2 set:html={c.who_h2} />
     <p class="lead" style="margin-top:16px;">{c.who_lead}</p>
     <div class="serve-grid">
-      {(c.who_cards as (string | null)[][]).map((card, i) => (
-        <div class="serve-card-wrapper">
-          <div class="serve-card-image">
-            <Image src={imagenesWho[i]} alt={card[0] ?? ''} widths={[420, 840]} sizes="(max-width: 960px) 100vw, 360px" loading="lazy" />
-          </div>
-          <div class="serve-card">
-            <h3>{card[0]}</h3>
-            <p>{card[1]}</p>
-          </div>
+      {(c.who_cards as (string | null)[][]).map((card) => (
+        <div class="serve-card">
+          <h3>{card[0]}</h3>
+          <p>{card[1]}</p>
         </div>
       ))}
     </div>
@@ -297,12 +324,31 @@ const ICONOS_SOLVE = [
     <div class="eyebrow">{c.sect_eyebrow}</div>
     <h2>{c.sect_h2}</h2>
     <p class="lead" style="margin-top:16px;">{c.sect_lead}</p>
-    <div class="sectors-list">
-      {(c.sect_chips as string[]).map((s, i) => {
-        const href = hrefIndustria(SLUGS_SECTORES[i] ?? null);
-        return href ? <a href={href} class="sector-chip">{s} →</a> : <span class="sector-chip">{s}</span>;
-      })}
-    </div>
+    <ol class="sect-rejilla">
+      {filasIndustria.map((f) => (
+        <li class="sect-item">
+          <a class="sect-card" href={f.href}>
+            <span class="sect-foto">
+              <Image
+                src={f.foto}
+                alt={f.alt}
+                widths={[540, 1080]}
+                sizes="(max-width: 640px) 92vw, (max-width: 1100px) 44vw, 30vw"
+                format="webp"
+                quality={58}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="sect-pie">
+              <span class="sect-num" aria-hidden="true">{f.num}</span>
+              <span class="sect-nombre">{f.nombre}</span>
+              <span class="sect-linea">{f.linea}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 

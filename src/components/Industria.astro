@@ -9,6 +9,7 @@ import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import { ZCAL_30MIN } from '../lib/enlaces';
 import { contenido, type Industria } from '../lib/industrias';
+import comun from '../i18n/content/common.json';
 import MiniDiagnostico from './MiniDiagnostico.astro';
 
 interface Props {
@@ -31,13 +32,22 @@ if (!foto) {
     `industrias: falta la foto de sector de ${industria.slug}. Se esperaba src/assets/industrias/${industria.slug}.jpg.`
   );
 }
+
+// La foto describe la industria, no decora: lleva alt en los tres idiomas y por
+// eso su contenedor no va aria-hidden. El velo de encima sí es decoración.
+const fotoAlt = (comun[locale].industrias_foto_alt as Record<string, string>)?.[industria.slug];
+if (!fotoAlt) {
+  throw new Error(
+    `industrias: falta el alt de la foto de ${industria.slug} (${locale}) en "industrias_foto_alt" de src/i18n/content/common.json.`
+  );
+}
 ---
 
 <section class="page-hero page-hero--foto">
-  <div class="hero-foto" aria-hidden="true">
+  <div class="hero-foto">
     <Image
       src={foto}
-      alt=""
+      alt={fotoAlt}
       widths={[900, 1600]}
       sizes="100vw"
       format="webp"
