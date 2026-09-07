@@ -14,8 +14,32 @@ interface Props {
   slug: string;
 }
 
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 const { locale, slug } = Astro.props;
 const c = contenidoFicha(slug, locale);
+
+// ---------------------------------------------------------------- pieza visual
+// CP11d: una ficha lleva su pieza visual propia (captura real o pieza del
+// material del producto; nunca un gráfico conceptual) cuando existen las dos
+// mitades: src/assets/catalogo/<slug>.png y la clave `pieza` en su JSON. Una
+// sola de las dos es un error de build, no un hueco silencioso. Ver el README
+// de la carpeta para la procedencia de cada archivo.
+const PIEZAS = import.meta.glob<ImageMetadata>('../assets/catalogo/*.png', { import: 'default', eager: true });
+const piezaImg = PIEZAS[`../assets/catalogo/${slug}.png`];
+if (piezaImg && !c.pieza) {
+  throw new Error(`catálogo: existe src/assets/catalogo/${slug}.png pero ${slug}.json no trae la clave "pieza".`);
+}
+if (c.pieza && !piezaImg) {
+  throw new Error(`catálogo: ${slug}.json declara "pieza" pero falta src/assets/catalogo/${slug}.png.`);
+}
+// Las piezas se capturan a 2x: su ancho natural en pantalla es la mitad del
+// archivo. Se deja crecer hasta un 15 % más y nunca se estira más allá, para que
+// una tarjeta angosta no se infle al ancho del contenedor con el texto gigante.
+const pieza = piezaImg && c.pieza
+  ? { img: piezaImg, ...c.pieza, maxAncho: Math.round((piezaImg.width / 2) * 1.15) }
+  : null;
 const relacion = enlazarFichas(c.relacion_p, locale, slug);
 
 // ---------------------------------------------------------------- mini-demo
@@ -46,6 +70,30 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
       <p class="lead" set:html={c.hero_lead} />
     </div>
   </section>
+
+  {
+    pieza && (
+      <section class="pieza" aria-label={c.nombre}>
+        <div class="container">
+          <figure class="pieza-fig" style={`max-width:${pieza.maxAncho}px`}>
+            <div class="pieza-marco">
+              <Image
+                src={pieza.img}
+                alt={pieza.alt}
+                widths={[720, 1200, 1800]}
+                sizes="(max-width: 700px) 94vw, min(92vw, 1240px)"
+                format="webp"
+                quality={82}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="pieza-pie">{pieza.pie}</figcaption>
+          </figure>
+        </div>
+      </section>
+    )
+  }
 
   <section class="bloque">
     <div class="container">
@@ -132,6 +180,43 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
      de v2 todavía no, así que se corrige aquí. */
   .page-hero .lead {
     color: var(--white-65);
+  }
+
+  /* ---------- pieza visual ---------- */
+  /* La pieza sube sobre el borde inferior del hero navy: la mitad de arriba
+     apoya en el navy y la de abajo en el papel, como una captura puesta sobre
+     la mesa. El hero lleva overflow hidden, así que el solape va aquí. */
+  .pieza {
+    position: relative;
+    z-index: 1;
+    margin-top: -56px;
+    padding-bottom: clamp(20px, 2.5vw, 40px);
+  }
+  .pieza-fig {
+    margin: 0; /* el max-width lo pone cada pieza según su ancho natural */
+  }
+  .pieza-marco {
+    background: var(--white);
+    border: 1px solid var(--navy-12);
+    box-shadow: 0 24px 60px rgba(6, 16, 28, 0.22), 0 2px 6px rgba(6, 16, 28, 0.08);
+    overflow: hidden;
+  }
+  .pieza-marco :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .pieza-pie {
+    margin-top: 14px;
+    max-width: 78ch;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--navy-60);
+  }
+  @media (max-width: 700px) {
+    .pieza { margin-top: -32px; }
+    .pieza-marco { box-shadow: 0 14px 34px rgba(6, 16, 28, 0.2); }
   }
 
   h2,

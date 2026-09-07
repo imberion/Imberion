@@ -5,6 +5,7 @@
     "hero_eyebrow": "Floor Signal · Familia Signal",
     "hero_h1": "Tráfico, recorrido y anaquel, medidos con las cámaras que ya están instaladas.",
     "hero_lead": "Floor Signal instrumenta el piso con las cámaras existentes e inteligencia artificial que corre en el propio sitio: tráfico, recorrido, atención al anaquel, prueba de producto, venta acompañante y disponibilidad. Sale dato anonimizado; no se guarda imagen.",
+    "pieza": {"alt": "Tablero de Floor Signal con el embudo de una tienda (pasa frente, entra, se acerca al anaquel, se prueba, compra), la composición del tráfico y cuatro lecturas al pie.", "pie": "El tablero de Floor Signal: el embudo del piso, quién pasa y las lecturas que disparan una decisión, por tienda. Vista del material del producto, con datos ilustrativos."},
     "que_hace_h2": "Lo que ocurre en el piso y no llega al reporte",
     "que_hace_p": "El modelo corre sobre el video en el sitio y emite atributos y trayectorias, nunca imágenes. La tienda deja de ver solo el resultado de la caja y ve la composición del tráfico que lo produjo.",
     "que_hace_items": [
@@ -30,6 +31,7 @@
     "hero_eyebrow": "Floor Signal · Signal family",
     "hero_h1": "Traffic, path and shelf, measured with the cameras already installed.",
     "hero_lead": "Floor Signal instruments the sales floor with existing cameras and artificial intelligence running on site: traffic, path, shelf attention, product trial, attach rate and availability. The output is anonymized data; no image is stored.",
+    "pieza": {"alt": "Floor Signal dashboard with a store funnel (walks by, enters, approaches the shelf, tries on, buys), traffic composition and four readings along the bottom.", "pie": "The Floor Signal dashboard: the floor funnel, who walks by and the readings that trigger a decision, per store. A view of the product material, with illustrative data."},
     "que_hace_h2": "What happens on the floor and never reaches the report",
     "que_hace_p": "The model runs on the video on site and emits attributes and paths, never images. The store stops seeing only the checkout result and starts seeing the traffic composition that produced it.",
     "que_hace_items": [
@@ -55,6 +57,7 @@
     "hero_eyebrow": "Floor Signal · Família Signal",
     "hero_h1": "Tráfego, percurso e gôndola, medidos com as câmeras já instaladas.",
     "hero_lead": "Floor Signal instrumenta o piso com as câmeras existentes e inteligência artificial rodando no próprio local: tráfego, percurso, atenção à gôndola, experimentação de produto, venda casada e disponibilidade. A saída é dado anonimizado; nenhuma imagem é guardada.",
+    "pieza": {"alt": "Painel do Floor Signal com o funil de uma loja (passa em frente, entra, se aproxima da gôndola, experimenta, compra), a composição do tráfego e quatro leituras no rodapé.", "pie": "O painel do Floor Signal: o funil do piso, quem passa e as leituras que disparam uma decisão, por loja. Vista do material do produto, com dados ilustrativos."},
     "que_hace_h2": "O que acontece no piso e não chega ao relatório",
     "que_hace_p": "O modelo roda sobre o vídeo no local e emite atributos e trajetórias, nunca imagens. A loja deixa de ver só o resultado do caixa e passa a ver a composição do tráfego que o produziu.",
     "que_hace_items": [

@@ -5,6 +5,7 @@
     "hero_eyebrow": "Market Signal · Familia Signal",
     "hero_h1": "Precio, promoción y discurso del canal, leídos en el punto de venta.",
     "hero_lead": "Market Signal lee el punto de venta real: precios y promociones en piso, el discurso con el que el canal recomienda, competidores y entrantes, y los espacios de mercado sin cubrir. Imberion opera el levantamiento; del lado del cliente no hay operación que montar.",
+    "pieza": {"alt": "Ventana del Companion de Market Signal: una pregunta sobre la competencia en la red de un distribuidor y la respuesta con los movimientos detectados y un briefing listo para la reunión.", "pie": "El radar, preguntado en lenguaje natural: qué hace la competencia en la red de un distribuidor y con qué llegar a la siguiente negociación. Vista del material del producto, con datos ilustrativos."},
     "que_hace_h2": "Cuatro lecturas del piso, vivas y por geografía",
     "que_hace_p": "El radar recorre cientos de puntos de venta y devuelve lo que ocurre en el anaquel y en el mostrador, con una frecuencia que ningún equipo de campo sostiene. La data se levanta, se depura y se mantiene viva sin conectarse a los sistemas internos del cliente, así que se habilita rápido.",
     "que_hace_items": [
@@ -98,6 +99,7 @@
     "hero_eyebrow": "Market Signal · Signal family",
     "hero_h1": "Price, promotion and channel pitch, read at the point of sale.",
     "hero_lead": "Market Signal reads the real point of sale: in-store prices and promotions, the pitch the channel uses to recommend, competitors and new entrants, and uncovered market space. Imberion runs the collection; there is no operation to stand up on the client side.",
+    "pieza": {"alt": "Market Signal Companion window: a question about competitors in a distributor's network, answered with the movements detected and a briefing ready for the meeting.", "pie": "The radar, asked in plain language: what competitors are doing in a distributor's network and what to bring to the next negotiation. A view of the product material, with illustrative data."},
     "que_hace_h2": "Four readings of the sales floor, live and by geography",
     "que_hace_p": "The radar covers hundreds of points of sale and returns what happens on the shelf and at the counter, at a frequency no field team sustains. Data is collected, cleaned and kept live without connecting to the client's internal systems, so it goes live fast.",
     "que_hace_items": [
@@ -191,6 +193,7 @@
     "hero_eyebrow": "Market Signal · Família Signal",
     "hero_h1": "Preço, promoção e discurso do canal, lidos no ponto de venda.",
     "hero_lead": "Market Signal lê o ponto de venda real: preços e promoções no piso, o discurso com que o canal recomenda, concorrentes e entrantes, e os espaços de mercado não cobertos. A Imberion opera o levantamento; do lado do cliente não há operação a montar.",
+    "pieza": {"alt": "Janela do Companion do Market Signal: uma pergunta sobre a concorrência na rede de um distribuidor e a resposta com os movimentos detectados e um briefing pronto para a reunião.", "pie": "O radar, perguntado em linguagem natural: o que a concorrência faz na rede de um distribuidor e com o que chegar à próxima negociação. Vista do material do produto, com dados ilustrativos."},
     "que_hace_h2": "Quatro leituras do piso de venda, vivas e por geografia",
     "que_hace_p": "O radar percorre centenas de pontos de venda e devolve o que acontece na gôndola e no balcão, com uma frequência que nenhum time de campo sustenta. O dado é levantado, depurado e mantido vivo sem conexão com os sistemas internos do cliente, então entra no ar rápido.",
     "que_hace_items": [

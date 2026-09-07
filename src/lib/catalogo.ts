@@ -176,6 +176,8 @@ export interface ContenidoFicha {
   ctastrip_h2: string;
   ctastrip_p: string;
   ctastrip_btn: string;
+  /** Pieza visual propia (CP11d). Opcional: la imagen vive en src/assets/catalogo/<slug>.png. */
+  pieza?: { alt: string; pie: string };
 }
 
 /** Normaliza un item de "qué hace": acepta texto plano o { t, p }. */
@@ -209,6 +211,17 @@ export function contenidoFicha(slug: string, locale: Locale): ContenidoFicha {
     );
   }
   exigeClaves(slug, locale, bloque, CLAVES_FICHA);
+  // La pieza visual es opcional, pero si está declarada tiene que estar completa
+  // en este locale: un alt vacío es una imagen muda para quien no la ve.
+  const pieza = bloque.pieza as Record<string, unknown> | undefined;
+  if (pieza !== undefined) {
+    for (const k of ['alt', 'pie']) {
+      const v = pieza[k];
+      if (typeof v !== 'string' || v.trim() === '') {
+        throw new Error(`catálogo: ${slug}.json / ${locale}: "pieza.${k}" falta o está vacía.`);
+      }
+    }
+  }
 
   // La lista de industrias de una ficha sale del cruce (src/data/cruce.json), que
   // es su única fuente. Antes venía de una clave "industrias" escrita a mano en
