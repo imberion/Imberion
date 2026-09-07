@@ -56,17 +56,6 @@
       "btn_reiniciar": "Reiniciar",
       "simulacion": "Conversación simulada con datos ficticios."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Ejecuta en el canal la segmentación y los beneficios que diseña Clientes & Lealtad, y opera sobre la base que arma Integración de datos.",
@@ -131,17 +120,6 @@
       "btn_reiniciar": "Restart",
       "simulacion": "Simulated conversation with fictional data."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It executes in the channel the segmentation and benefits designed by Clientes & Lealtad, and operates on the base built by Integración de datos.",
@@ -206,17 +184,6 @@
       "btn_reiniciar": "Reiniciar",
       "simulacion": "Conversa simulada com dados fictícios."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Executa no canal a segmentação e os benefícios desenhados por Clientes & Lealtad, e opera sobre a base construída por Integración de datos.",

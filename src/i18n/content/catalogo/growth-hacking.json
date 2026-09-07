@@ -17,9 +17,6 @@
     "valor_h2": "Decisión con evidencia, no por jerarquía",
     "valor_p": "Una discusión de opinión entre áreas se cierra en dos semanas con una prueba pequeña, en lugar de resolverse por jerarquía o por un estudio de tres meses. El criterio de éxito escrito de antemano evita que el resultado se reinterprete cuando incomoda.",
     "sowhat": "Convierte una discusión abierta en una decisión con evidencia dentro del mismo mes.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Se usa para probar jugadas de Pricing & Surtido y de Promociones antes de llevarlas a toda la red.",
@@ -45,9 +42,6 @@
     "valor_h2": "Decisions on evidence, not hierarchy",
     "valor_p": "An opinion argument between functions closes in two weeks with a small test, instead of being settled by hierarchy or by a three-month study. The success criterion written in advance keeps the result from being reinterpreted when it is inconvenient.",
     "sowhat": "It turns an open argument into an evidence-based decision within the same month.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It is used to test plays from Pricing & Surtido and Promociones before taking them to the whole network.",
@@ -73,9 +67,6 @@
     "valor_h2": "Decisão com evidência, não por hierarquia",
     "valor_p": "Uma discussão de opinião entre áreas se fecha em duas semanas com um teste pequeno, em vez de ser resolvida por hierarquia ou por um estudo de três meses. O critério de sucesso escrito de antemão evita que o resultado seja reinterpretado quando incomoda.",
     "sowhat": "Converte uma discussão aberta em decisão com evidência dentro do mesmo mês.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "É usado para testar jogadas de Pricing & Surtido e de Promociones antes de levá-las para toda a rede.",

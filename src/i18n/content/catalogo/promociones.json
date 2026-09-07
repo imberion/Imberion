@@ -17,12 +17,6 @@
     "valor_h2": "El calendario depurado",
     "valor_p": "Una mecánica que mueve mucho volumen puede estar comprando compras que ya iban a ocurrir, y el reporte de venta al consumidor no lo distingue. Al separarlo, la inversión sale de esa mecánica y entra en la que sí trae demanda nueva.",
     "sowhat": "Dice qué promoción se repite, cuál se corta y cuánto presupuesto se libera al cortarla.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Su lectura previa se apoya en Scenario Engine y su resultado se verifica en Growth Bridge Analysis.",
@@ -48,12 +42,6 @@
     "valor_h2": "A cleaned-up calendar",
     "valor_p": "A mechanic that moves a lot of volume may be buying purchases that were going to happen anyway, and the sell-out report does not tell the difference. Once separated, investment leaves that mechanic and moves to the one that brings new demand.",
     "sowhat": "It says which promotion repeats, which one is cut, and how much budget the cut releases.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "Its ex-ante reading leans on Scenario Engine, and its result is verified in Growth Bridge Analysis.",
@@ -79,12 +67,6 @@
     "valor_h2": "O calendário depurado",
     "valor_p": "Uma mecânica que move muito volume pode estar comprando compras que já iriam acontecer, e o relatório de sell-out não distingue isso. Depois de separado, o investimento sai dessa mecânica e entra na que traz demanda nova.",
     "sowhat": "Diz que promoção se repete, qual é cortada e quanto orçamento o corte libera.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "A leitura prévia se apoia no Scenario Engine e o resultado é verificado em Growth Bridge Analysis.",

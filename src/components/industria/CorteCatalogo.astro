@@ -1,0 +1,234 @@
+---
+// El corte del catálogo de una industria (D3 del spec: la industria es la
+// puerta, el catálogo es el menú). Las herramientas salen del cruce
+// (src/data/cruce.json vía src/lib/cruce.ts), agrupadas por familia en el orden
+// del catálogo, con la oferta transversal al final.
+//
+// Va después de la retícula de capacidades y antes de la franja de cierre. Las
+// tarjetas de capacidad siguen siendo el gancho; esto es el menú completo.
+
+import type { Locale } from '../../i18n/index';
+import { herramientasDeIndustria } from '../../lib/cruce';
+import { titulo, type Industria } from '../../lib/industrias';
+import textos from '../../i18n/content/cruce.json';
+
+interface Props {
+  locale: Locale;
+  industria: Industria;
+}
+
+const { locale, industria } = Astro.props;
+
+const t = (textos as Record<string, Record<string, string>>)[locale];
+if (!t) {
+  throw new Error(`cruce: src/i18n/content/cruce.json no trae el bloque "${locale}".`);
+}
+for (const clave of ['eyebrow', 'h2', 'lead', 'transversal_t', 'transversal_p', 'conteo_l']) {
+  if (typeof t[clave] !== 'string' || t[clave].trim() === '') {
+    throw new Error(`cruce: src/i18n/content/cruce.json / ${locale}: falta "${clave}".`);
+  }
+}
+
+const nombreIndustria = titulo(industria, locale);
+const con = (s: string) => s.replaceAll('{ind}', nombreIndustria);
+
+const grupos = herramientasDeIndustria(industria.slug, locale);
+const total = grupos.reduce((a, g) => a + g.herramientas.length, 0);
+const dosDigitos = (n: number) => String(n).padStart(2, '0');
+---
+
+<section class="corte" id="catalogo-industria">
+  <div class="container corte-cab">
+    <div class="eyebrow">{t.eyebrow}</div>
+    <h2>{con(t.h2)}</h2>
+    <p class="lead lead--bajo-h2">{con(t.lead)}</p>
+    <p class="corte-conteo"><span class="corte-conteo-n">{total}</span> {t.conteo_l}</p>
+  </div>
+
+  <div class="corte-tabla">
+    {
+      grupos.map((g, i) => (
+        <div class:list={['corte-fila', g.tipo === 'transversal' && 'corte-fila--transversal']}>
+          <div class="corte-rotulo">
+            <span class="corte-n">{dosDigitos(i + 1)}</span>
+            <h3>{g.tipo === 'transversal' ? t.transversal_t : g.nombre}</h3>
+            <p>{g.tipo === 'transversal' ? t.transversal_p : g.verbo}</p>
+          </div>
+          <ul class="corte-items">
+            {g.herramientas.map((h) => (
+              <li class="corte-item">
+                <a href={h.href}>
+                  <span class="corte-item-t">{h.nombre}</span>
+                  <span class="corte-item-p">{h.angulo}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* La sección usa el ancho del monitor: el encabezado va en .container y la
+     retícula sangra a todo el viewport (invariante 16). */
+  .corte {
+    background: var(--paper);
+    padding: 96px 0 0;
+    border-top: 1px solid var(--navy-12);
+  }
+  .corte-cab { padding-bottom: 52px; }
+  .corte-cab .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .corte-cab h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--navy);
+  }
+  .corte-cab .lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.7;
+    color: var(--navy-72);
+    max-width: 70ch;
+    margin-top: 16px;
+  }
+  .corte-conteo {
+    margin-top: 22px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--navy-40);
+  }
+  .corte-conteo-n {
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    font-size: 15px;
+  }
+
+  .corte-tabla {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    border-top: 1px solid var(--navy-12);
+  }
+
+  .corte-fila {
+    display: grid;
+    grid-template-columns: clamp(200px, 17vw, 320px) 1fr;
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .corte-rotulo {
+    padding: 30px var(--gutter) 30px var(--gutter);
+    border-right: 1px solid var(--navy-12);
+    position: relative;
+  }
+  .corte-n {
+    display: block;
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    color: var(--navy-40);
+    margin-bottom: 10px;
+  }
+  .corte-rotulo h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 1.5vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--navy);
+  }
+  .corte-rotulo p {
+    margin-top: 6px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+
+  /* Tres columnas fijas y las reglas verticales pintadas de fondo: así una
+     familia con una sola herramienta deja celdas vacías que siguen leyéndose
+     como parte de la tabla, y no como un hueco. */
+  .corte-items {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-image: linear-gradient(to right, var(--navy-12) 1px, transparent 1px);
+    background-size: calc(100% / 3) 100%;
+  }
+  .corte-item { min-width: 0; }
+  .corte-item a {
+    display: block;
+    height: 100%;
+    padding: 26px clamp(20px, 1.8vw, 34px) 28px;
+    color: inherit;
+    transition: background .25s var(--ease);
+  }
+  .corte-item a:hover { background: var(--white); }
+  .corte-item-t {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: clamp(1.12rem, 1.15vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .corte-item a:hover .corte-item-t { text-decoration: underline; text-underline-offset: 4px; }
+  .corte-item-p {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--navy-72);
+  }
+
+  /* La oferta transversal cierra la tabla y se distingue por fondo, no por color
+     de marca: el sitio es monocromo. */
+  .corte-fila--transversal { background: var(--paper-alt); }
+  .corte-fila--transversal .corte-item a:hover { background: var(--paper-warm); }
+  .corte-fila--transversal .corte-rotulo p {
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    color: var(--navy-72);
+  }
+
+  @media (max-width: 1240px) {
+    .corte-items {
+      grid-template-columns: repeat(2, 1fr);
+      background-size: calc(100% / 2) 100%;
+    }
+  }
+  @media (max-width: 1000px) {
+    .corte-fila { grid-template-columns: 1fr; }
+    .corte-rotulo {
+      border-right: 0;
+      border-bottom: 1px solid var(--navy-12);
+      padding-block: 24px;
+    }
+    .corte-item a { padding-inline: var(--gutter); }
+  }
+  @media (max-width: 720px) {
+    .corte { padding-top: 68px; }
+    .corte-items {
+      grid-template-columns: 1fr;
+      background-image: none;
+    }
+    .corte-item + .corte-item { border-top: 1px solid var(--navy-12); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .corte-item a { transition: none; }
+  }
+</style>

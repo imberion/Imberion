@@ -17,12 +17,6 @@
     "valor_h2": "La brecha resuelta antes de la ejecución",
     "valor_p": "Un plan comercial se degrada cuando dos funciones creen que la prioridad es distinta y cada una asigna su gente en consecuencia. Ver la brecha por subgrupo permite resolverla en el foro correcto antes de comprometer presupuesto de ejecución.",
     "sowhat": "Dice si la organización puede ejecutar el plan tal como está escrito, y con quién hay que cerrarlo antes.",
-    "industrias": [
-      "b2b",
-      "cpg",
-      "farma",
-      "retail"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Es componente de Imberion Checkup y también se toma suelto. Su lectura orienta el rediseño que hace Commercial & Operating Model.",
@@ -48,12 +42,6 @@
     "valor_h2": "The gap closed before execution",
     "valor_p": "A commercial plan decays when two functions believe the priority is different and each staffs accordingly. Seeing the gap by subgroup allows it to be settled in the right forum before execution budget is committed.",
     "sowhat": "It says whether the organization can execute the plan as written, and with whom it must be settled first.",
-    "industrias": [
-      "b2b",
-      "cpg",
-      "farma",
-      "retail"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It is a component of Imberion Checkup and is also taken on its own. Its reading guides the redesign done by Commercial & Operating Model.",
@@ -79,12 +67,6 @@
     "valor_h2": "A lacuna resolvida antes da execução",
     "valor_p": "Um plano comercial se degrada quando duas funções acreditam em prioridades diferentes e cada uma aloca gente de acordo. Ver a lacuna por subgrupo permite resolvê-la no fórum certo antes de comprometer orçamento de execução.",
     "sowhat": "Diz se a organização consegue executar o plano como está escrito, e com quem é preciso fechá-lo antes.",
-    "industrias": [
-      "b2b",
-      "cpg",
-      "farma",
-      "retail"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "É componente do Imberion Checkup e também é contratado sozinho. A leitura orienta o redesenho feito por Commercial & Operating Model.",

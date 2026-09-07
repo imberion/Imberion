@@ -17,13 +17,6 @@
     "valor_h2": "Un filtro antes del gasto grande",
     "valor_p": "Producir un surtido o convocar un focus group cuesta semanas y presupuesto. Correr el concepto contra las personas simuladas descarta antes lo que nadie quiere, y deja la investigación con personas reales para las opciones que sobreviven al filtro.",
     "sowhat": "Define qué conceptos llegan a producción y cuáles se descartan antes de gastar en ellos.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Valida los atributos de valor que levanta Value-Attribute Compass y alimenta los argumentos que Training Signal lleva a la fuerza de ventas.",
@@ -167,13 +160,6 @@
     "valor_h2": "A filter ahead of the large spend",
     "valor_p": "Producing an assortment or convening a focus group costs weeks and budget. Running the concept against simulated personas discards early what nobody wants, and leaves research with real people for the options that survive the filter.",
     "sowhat": "It settles which concepts reach production and which are dropped before money goes into them.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It validates the value attributes surfaced by Value-Attribute Compass and feeds the arguments Training Signal takes to the sales force.",
@@ -317,13 +303,6 @@
     "valor_h2": "Um filtro antes do gasto grande",
     "valor_p": "Produzir um sortimento ou convocar um focus group custa semanas e orçamento. Rodar o conceito contra as personas simuladas descarta antes o que ninguém quer, e deixa a pesquisa com pessoas reais para as opções que sobrevivem ao filtro.",
     "sowhat": "Define quais conceitos chegam à produção e quais são descartados antes de haver gasto neles.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Valida os atributos de valor que o Value-Attribute Compass levanta e alimenta os argumentos que o Training Signal leva à força de vendas.",

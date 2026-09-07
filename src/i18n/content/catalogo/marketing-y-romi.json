@@ -17,9 +17,6 @@
     "valor_h2": "Inversión asignada por retorno real",
     "valor_p": "Medir por alcance e interacción premia al medio fácil de medir y no al que mueve venta, así que el presupuesto se concentra donde ya hay saturación. Al medir el aporte incremental de cada medio, el dinero se mueve al que todavía tiene retorno por capturar.",
     "sowhat": "Dice qué medio recibe la siguiente unidad de inversión y cuál ya llegó a su techo.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Se coordina con Promociones para no atribuir dos veces el mismo volumen, y su efecto se verifica en Growth Bridge Analysis.",
@@ -45,9 +42,6 @@
     "valor_h2": "Investment allocated by real return",
     "valor_p": "Measuring by reach and interaction rewards the medium that is easy to measure rather than the one that moves sales, so budget concentrates where saturation has already set in. Measuring each medium's incremental contribution moves money to the one with return still to capture.",
     "sowhat": "It says which medium gets the next unit of investment and which one has hit its ceiling.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It coordinates with Promociones so the same volume is not credited twice, and its effect is verified in Growth Bridge Analysis.",
@@ -73,9 +67,6 @@
     "valor_h2": "Investimento alocado por retorno real",
     "valor_p": "Medir por alcance e interação premia o meio fácil de medir e não o que move venda, então o orçamento se concentra onde já há saturação. Ao medir a contribuição incremental de cada meio, o dinheiro migra para o que ainda tem retorno a capturar.",
     "sowhat": "Diz que meio recebe a próxima unidade de investimento e qual já chegou ao teto.",
-    "industrias": [
-      "retail"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Coordena-se com Promociones para não atribuir o mesmo volume duas vezes, e o efeito é verificado em Growth Bridge Analysis.",

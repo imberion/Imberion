@@ -86,17 +86,6 @@
       },
       "nota": "Datos ilustrativos, no de un cliente."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Alimenta a Pricing & Surtido y a Política Comercial con precio y condiciones observadas en campo. Su lectura de espacios sin cubrir se profundiza en Whitespace Compass.",
@@ -191,17 +180,6 @@
       },
       "nota": "Illustrative data, not from a client."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It feeds Pricing & Surtido and Política Comercial with prices and terms observed in the field. Its reading of uncovered space is taken further by Whitespace Compass.",
@@ -296,17 +274,6 @@
       },
       "nota": "Dados ilustrativos, não de um cliente."
     },
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "b2b",
-      "construccion",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Alimenta Pricing & Surtido e Política Comercial com preços e condições observados em campo. A leitura de espaços não cobertos é aprofundada em Whitespace Compass.",

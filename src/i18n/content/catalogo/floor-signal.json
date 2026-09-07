@@ -18,10 +18,6 @@
     "valor_h2": "Del resultado en caja a la causa en el piso",
     "valor_p": "Con exposición alta y prueba baja, el problema no es el tráfico sino el anaquel, y la corrección es de ejecución y no de inversión en atraer gente. Con la composición del tráfico por hora se agrupan tiendas y el surtido deja de ser uniforme para toda la red.",
     "sowhat": "Separa el problema de tráfico del problema de conversión, y dice en qué tienda y a qué hora corregir.",
-    "industrias": [
-      "retail",
-      "cpg"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Alimenta a Canales & Tiendas para surtido por cluster y estándares de ejecución, y a Pricing & Surtido cuando la duda del comprador se concentra en un rango de precio.",
@@ -48,10 +44,6 @@
     "valor_h2": "From the checkout result to the cause on the floor",
     "valor_p": "With high exposure and low trial, the problem is the shelf and not the traffic, so the fix is execution rather than spend on bringing people in. With traffic composition by hour, stores can be clustered and assortment stops being uniform across the network.",
     "sowhat": "It separates a traffic problem from a conversion problem, and says in which store and at what hour to correct it.",
-    "industrias": [
-      "retail",
-      "cpg"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It feeds Canales & Tiendas for cluster assortment and execution standards, and Pricing & Surtido when shopper hesitation concentrates in one price range.",
@@ -78,10 +70,6 @@
     "valor_h2": "Do resultado no caixa à causa no piso",
     "valor_p": "Com exposição alta e experimentação baixa, o problema é a gôndola e não o tráfego, e a correção é de execução, não de investimento em atrair gente. Com a composição do tráfego por hora dá para agrupar lojas e o sortimento deixa de ser uniforme para toda a rede.",
     "sowhat": "Separa o problema de tráfego do problema de conversão, e diz em que loja e em que horário corrigir.",
-    "industrias": [
-      "retail",
-      "cpg"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Alimenta Canales & Tiendas para sortimento por cluster e padrões de execução, e Pricing & Surtido quando a dúvida do comprador se concentra em uma faixa de preço.",

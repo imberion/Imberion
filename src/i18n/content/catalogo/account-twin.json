@@ -17,11 +17,6 @@
     "valor_h2": "La curva de aprendizaje sale de la mesa real",
     "valor_p": "Un KAM aprende a negociar una cuenta grande negociándola, y cada error se paga en condiciones que después quedan fijas por años. Ensayar contra el gemelo mueve esa práctica a un lugar donde equivocarse no cuesta margen.",
     "sowhat": "Define qué concesiones se llevan preparadas a la mesa y cuáles no se ponen sobre ella.",
-    "industrias": [
-      "b2b",
-      "construccion",
-      "servicios-b2b"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Es la contraparte contra la que Training Signal entrena la negociación B2B de la fuerza de ventas.",
@@ -47,11 +42,6 @@
     "valor_h2": "The learning curve moves off the real table",
     "valor_p": "A KAM learns to negotiate a large account by negotiating it, and every mistake is paid in terms that then stay fixed for years. Rehearsing against the twin moves that practice somewhere being wrong costs no margin.",
     "sowhat": "It settles which concessions are taken to the table prepared and which are never put on it.",
-    "industrias": [
-      "b2b",
-      "construccion",
-      "servicios-b2b"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It is the counterpart Training Signal uses to train the sales force on B2B negotiation.",
@@ -77,11 +67,6 @@
     "valor_h2": "A curva de aprendizado sai da mesa real",
     "valor_p": "Um KAM aprende a negociar uma conta grande negociando-a, e cada erro é pago em condições que depois ficam fixas por anos. Ensaiar contra o gêmeo move essa prática para um lugar onde errar não custa margem.",
     "sowhat": "Define quais concessões vão preparadas para a mesa e quais não são colocadas nela.",
-    "industrias": [
-      "b2b",
-      "construccion",
-      "servicios-b2b"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "É a contraparte contra a qual o Training Signal treina a negociação B2B da força de vendas.",

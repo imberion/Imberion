@@ -17,15 +17,6 @@
     "valor_h2": "Una sola versión de los números",
     "valor_p": "Un motor de decisión mal alimentado produce una recomendación precisa sobre datos equivocados, y nadie la audita. Emparejar las llaves y fijar reglas de limpieza es lo que permite que las cifras del tablero coincidan con las del cierre contable.",
     "sowhat": "Permite decidir precio, promoción y surtido sobre una sola versión de los números.",
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Es el sustrato de Pricing & Surtido, Promociones, Clientes & Lealtad y Marketing & ROMI.",
@@ -51,15 +42,6 @@
     "valor_h2": "A single version of the numbers",
     "valor_p": "A badly fed decision engine produces a precise recommendation on the wrong data, and nobody audits it. Matching the keys and fixing cleaning rules is what makes dashboard figures agree with the accounting close.",
     "sowhat": "It allows price, promotion and assortment to be decided on a single version of the numbers.",
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It is the foundation under Pricing & Surtido, Promociones, Clientes & Lealtad and Marketing & ROMI.",
@@ -85,15 +67,6 @@
     "valor_h2": "Uma só versão dos números",
     "valor_p": "Um motor de decisão mal alimentado produz uma recomendação precisa sobre dados errados, e ninguém audita. Casar as chaves e fixar regras de limpeza é o que faz os números do painel baterem com os do fechamento contábil.",
     "sowhat": "Permite decidir preço, promoção e sortimento sobre uma só versão dos números.",
-    "industrias": [
-      "retail",
-      "cpg",
-      "farma",
-      "automotriz",
-      "telco",
-      "servicios-b2b",
-      "servicios-b2c"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "É o substrato de Pricing & Surtido, Promociones, Clientes & Lealtad e Marketing & ROMI.",

@@ -17,13 +17,6 @@
     "valor_h2": "Ejecución que no depende del criterio de cada gerente",
     "valor_p": "Un surtido único para toda la red deja faltantes en las tiendas que sí venden un producto y sobreinventario en las que no. Al agrupar por demanda y auditar el estándar, la ejecución deja de depender del criterio de cada gerente de tienda.",
     "sowhat": "Dice qué se pone en cada tienda y cómo se verifica que quedó puesto.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
     "relacion_p": "Toma la prioridad de Whitespace Compass y, en piso físico, la lectura de tráfico de Floor Signal.",
@@ -49,13 +42,6 @@
     "valor_h2": "Execution that does not depend on each manager's judgment",
     "valor_p": "A single assortment for the whole network leaves stockouts in the stores that do sell a product and overstock in those that do not. Grouping by demand and auditing the standard takes execution out of each store manager's discretion.",
     "sowhat": "It says what goes into each store and how it is verified that it got there.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
     "relacion_p": "It takes priorities from Whitespace Compass and, on the physical floor, the traffic reading from Floor Signal.",
@@ -81,13 +67,6 @@
     "valor_h2": "Execução que não depende do critério de cada gerente",
     "valor_p": "Um sortimento único para toda a rede gera ruptura nas lojas que vendem o produto e excesso de estoque nas que não vendem. Ao agrupar por demanda e auditar o padrão, a execução deixa de depender do critério de cada gerente de loja.",
     "sowhat": "Diz o que entra em cada loja e como se verifica que entrou.",
-    "industrias": [
-      "cpg",
-      "farma",
-      "retail",
-      "servicios-b2c",
-      "telco"
-    ],
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",
     "relacion_p": "Toma a prioridade de Whitespace Compass e, no piso físico, a leitura de tráfego de Floor Signal.",

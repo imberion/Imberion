@@ -10,6 +10,7 @@ import catalogoData from '../data/catalogo.json';
 import industriasData from '../data/industrias.json';
 import type { Locale } from '../i18n/index';
 import { ruta } from './rutas';
+import { industriasDeHerramienta } from './cruce';
 
 export interface Familia {
   id: string;
@@ -82,7 +83,6 @@ const CLAVES_FICHA = [
   'valor_h2',
   'valor_p',
   'sowhat',
-  'industrias',
   'industrias_h2',
   'relacion_h2',
   'relacion_p',
@@ -91,7 +91,7 @@ const CLAVES_FICHA = [
   'ctastrip_btn',
 ] as const;
 
-const CLAVES_ARREGLO = new Set(['que_hace_items', 'industrias']);
+const CLAVES_ARREGLO = new Set(['que_hace_items']);
 
 const CLAVES_INDICE = [
   '__title',
@@ -203,12 +203,15 @@ export function contenidoFicha(slug: string, locale: Locale): ContenidoFicha {
   }
   exigeClaves(slug, locale, bloque, CLAVES_FICHA);
 
-  const industrias = (bloque.industrias as unknown[]).map((valor) => {
-    const slugInd = String(valor);
+  // La lista de industrias de una ficha sale del cruce (src/data/cruce.json), que
+  // es su única fuente. Antes venía de una clave "industrias" escrita a mano en
+  // este mismo JSON: la misma información en dos lugares, y las dos se caían de
+  // sincronía en silencio.
+  const industrias = industriasDeHerramienta(slug).map((slugInd) => {
     const registro = INDUSTRIAS.find((i) => i.slug === slugInd);
     if (!registro) {
       throw new Error(
-        `catálogo: ${slug}.json / ${locale}: "${slugInd}" no es una industria publicada. ` +
+        `catálogo: el cruce manda "${slugInd}" para ${slug}, y no es una industria publicada. ` +
           `Válidas: ${INDUSTRIAS.map((i) => i.slug).join(', ')}.`
       );
     }
