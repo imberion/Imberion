@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Training Signal",
-    "nombre": "Training Signal",
     "familia_label": "Operator · actuar",
     "hero_eyebrow": "Training Signal · Familia Operator",
     "hero_h1": "Capacitación de la fuerza de ventas construida con los argumentos que sí cierran.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Training Signal",
-    "nombre": "Training Signal",
     "familia_label": "Operator · act",
     "hero_eyebrow": "Training Signal · Operator family",
     "hero_h1": "Sales force training built from the arguments that actually close.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Training Signal",
-    "nombre": "Training Signal",
     "familia_label": "Operator · agir",
     "hero_eyebrow": "Training Signal · Família Operator",
     "hero_h1": "Capacitação da força de vendas construída com os argumentos que de fato fecham.",

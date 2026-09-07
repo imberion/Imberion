@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Clientes & Lealtad",
-    "nombre": "Clientes & Lealtad",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Clientes & Lealtad · Familia Engine",
     "hero_h1": "Quién está detrás del ticket, y cómo se queda.",
@@ -25,8 +24,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Clientes & Lealtad",
-    "nombre": "Clientes & Lealtad",
+    "__title": "Imberion — Customers & Loyalty",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Clientes & Lealtad · Engine family",
     "hero_h1": "Who is behind the ticket, and how they stay.",
@@ -50,8 +48,7 @@
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
-    "__title": "Imberion — Clientes & Lealtad",
-    "nombre": "Clientes & Lealtad",
+    "__title": "Imberion — Clientes & Fidelidade",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Clientes & Lealtad · Família Engine",
     "hero_h1": "Quem está por trás do ticket, e como permanece.",

@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Growth Bridge Analysis",
-    "nombre": "Growth Bridge Analysis",
     "familia_label": "Bridge · explicar",
     "hero_eyebrow": "Growth Bridge Analysis · Familia Bridge",
     "hero_h1": "De dónde vino el crecimiento, y de dónde vino la caída.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Growth Bridge Analysis",
-    "nombre": "Growth Bridge Analysis",
     "familia_label": "Bridge · explain",
     "hero_eyebrow": "Growth Bridge Analysis · Bridge family",
     "hero_h1": "Where the growth came from, and where the decline came from.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Growth Bridge Analysis",
-    "nombre": "Growth Bridge Analysis",
     "familia_label": "Bridge · explicar",
     "hero_eyebrow": "Growth Bridge Analysis · Família Bridge",
     "hero_h1": "De onde veio o crescimento, e de onde veio a queda.",

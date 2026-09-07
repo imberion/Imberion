@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Habilitadores",
-    "nombre": "Habilitadores",
     "familia_label": "Enabler · habilitar",
     "hero_eyebrow": "Habilitadores · Familia Enabler",
     "hero_h1": "El equipo del cliente operando el modelo, sin Imberion en la silla.",
@@ -26,8 +25,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Habilitadores",
-    "nombre": "Habilitadores",
+    "__title": "Imberion — Enablers",
     "familia_label": "Enabler · enable",
     "hero_eyebrow": "Habilitadores · Enabler family",
     "hero_h1": "The client's team running the model, with Imberion out of the seat.",
@@ -53,7 +51,6 @@
   },
   "pt": {
     "__title": "Imberion — Habilitadores",
-    "nombre": "Habilitadores",
     "familia_label": "Enabler · habilitar",
     "hero_eyebrow": "Habilitadores · Família Enabler",
     "hero_h1": "O time do cliente operando o modelo, com a Imberion fora da cadeira.",

@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Scenario Engine",
-    "nombre": "Scenario Engine",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Scenario Engine · Familia Engine",
     "hero_h1": "El trade-off completo antes de comprometer la jugada.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Scenario Engine",
-    "nombre": "Scenario Engine",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Scenario Engine · Engine family",
     "hero_h1": "The full trade-off before the play is committed.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Scenario Engine",
-    "nombre": "Scenario Engine",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Scenario Engine · Família Engine",
     "hero_h1": "O trade-off completo antes de comprometer a jogada.",

@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Market Signal",
-    "nombre": "Market Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Market Signal · Familia Signal",
     "hero_h1": "Precio, promoción y discurso del canal, leídos en el punto de venta.",
@@ -53,7 +52,7 @@
           {
             "clave": "Diálogo de valor",
             "texto": "<b>1 de cada 3</b> distribuidores recomienda a la competencia en el mostrador.",
-            "accion": "Trabajar con nombre y apellido al distribuidor que no comunica la propuesta."
+            "accion": "Ir con nombre y apellido sobre el distribuidor que no comunica la propuesta."
           },
           {
             "clave": "Competencia",
@@ -95,7 +94,6 @@
   },
   "en": {
     "__title": "Imberion — Market Signal",
-    "nombre": "Market Signal",
     "familia_label": "Signal · sense",
     "hero_eyebrow": "Market Signal · Signal family",
     "hero_h1": "Price, promotion and channel pitch, read at the point of sale.",
@@ -189,7 +187,6 @@
   },
   "pt": {
     "__title": "Imberion — Market Signal",
-    "nombre": "Market Signal",
     "familia_label": "Signal · sentir",
     "hero_eyebrow": "Market Signal · Família Signal",
     "hero_h1": "Preço, promoção e discurso do canal, lidos no ponto de venda.",

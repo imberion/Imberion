@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Canales & Tiendas",
-    "nombre": "Canales & Tiendas",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Canales & Tiendas · Familia Engine",
     "hero_h1": "Ejecución medible, repetible en toda la red.",
@@ -25,8 +24,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Canales & Tiendas",
-    "nombre": "Canales & Tiendas",
+    "__title": "Imberion — Channels & Stores",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Canales & Tiendas · Engine family",
     "hero_h1": "Measurable execution, repeatable across the network.",
@@ -50,8 +48,7 @@
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
-    "__title": "Imberion — Canales & Tiendas",
-    "nombre": "Canales & Tiendas",
+    "__title": "Imberion — Canais & Lojas",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Canales & Tiendas · Família Engine",
     "hero_h1": "Execução mensurável, repetível em toda a rede.",

@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Integración de datos",
-    "nombre": "Integración de datos",
     "familia_label": "Sustrato",
     "hero_eyebrow": "Integración de datos · Sustrato",
     "hero_h1": "El piso de datos sobre el que corren los motores de decisión.",
@@ -25,8 +24,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Integración de datos",
-    "nombre": "Integración de datos",
+    "__title": "Imberion — Data Integration",
     "familia_label": "Foundation",
     "hero_eyebrow": "Integración de datos · Foundation",
     "hero_h1": "The data floor the decision engines run on.",
@@ -50,8 +48,7 @@
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
-    "__title": "Imberion — Integración de datos",
-    "nombre": "Integración de datos",
+    "__title": "Imberion — Integração de dados",
     "familia_label": "Substrato",
     "hero_eyebrow": "Integración de datos · Substrato",
     "hero_h1": "A base de dados sobre a qual rodam os motores de decisão.",

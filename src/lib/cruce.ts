@@ -169,7 +169,7 @@ export function herramientasDeIndustria(slug: string, locale: Locale = 'es'): Gr
     const ficha = HERRAMIENTAS.find((x) => x.slug === h.slug)!;
     return {
       slug: h.slug,
-      nombre: ficha.nombre,
+      nombre: ((ficha as Record<string, unknown>)[`nombre_${locale}`] as string | undefined) || ficha.nombre,
       href: href(locale, h.slug),
       angulo,
       transversal: h.transversal,

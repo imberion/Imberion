@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Account Twin",
-    "nombre": "Account Twin",
     "familia_label": "Twin · simular",
     "hero_eyebrow": "Account Twin · Familia Twin",
     "hero_h1": "Gemelos digitales de las cuentas con las que se negocia.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Account Twin",
-    "nombre": "Account Twin",
     "familia_label": "Twin · simulate",
     "hero_eyebrow": "Account Twin · Twin family",
     "hero_h1": "Digital twins of the accounts on the other side of the table.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Account Twin",
-    "nombre": "Account Twin",
     "familia_label": "Twin · simular",
     "hero_eyebrow": "Account Twin · Família Twin",
     "hero_h1": "Gêmeos digitais das contas com as quais se negocia.",

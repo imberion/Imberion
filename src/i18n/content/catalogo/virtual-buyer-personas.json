@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Virtual Buyer Personas",
-    "nombre": "Virtual Buyer Personas",
     "familia_label": "Twin · simular",
     "hero_eyebrow": "Virtual Buyer Personas · Familia Twin",
     "hero_h1": "Compradores simulados que reaccionan al catálogo antes de producirlo.",
@@ -131,7 +130,7 @@
       ],
       "pie": [
         {
-          "k": "Un panel, no un promedio",
+          "k": "Cada segmento por separado",
           "v": "Cada segmento se lee por separado, porque el mismo movimiento sube el volumen en uno y lo tira en otro."
         },
         {
@@ -144,7 +143,6 @@
   },
   "en": {
     "__title": "Imberion — Virtual Buyer Personas",
-    "nombre": "Virtual Buyer Personas",
     "familia_label": "Twin · simulate",
     "hero_eyebrow": "Virtual Buyer Personas · Twin family",
     "hero_h1": "Simulated buyers that react to the catalog before it is produced.",
@@ -274,7 +272,7 @@
       ],
       "pie": [
         {
-          "k": "A panel, not an average",
+          "k": "Each segment on its own",
           "v": "Each segment is read on its own, because the same move lifts volume in one and sinks it in another."
         },
         {
@@ -287,7 +285,6 @@
   },
   "pt": {
     "__title": "Imberion — Virtual Buyer Personas",
-    "nombre": "Virtual Buyer Personas",
     "familia_label": "Twin · simular",
     "hero_eyebrow": "Virtual Buyer Personas · Família Twin",
     "hero_h1": "Compradores simulados que reagem ao catálogo antes de produzi-lo.",
@@ -417,7 +414,7 @@
       ],
       "pie": [
         {
-          "k": "Um painel, não uma média",
+          "k": "Cada segmento em separado",
           "v": "Cada segmento é lido separadamente, porque o mesmo movimento sobe o volume em um e derruba em outro."
         },
         {

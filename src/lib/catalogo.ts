@@ -50,6 +50,14 @@ const INDUSTRIAS = industriasData.industrias as Array<{
   titulo_pt: string;
 }>;
 
+/** Nombre de una herramienta en el locale: `nombre_<locale>` si existe, si no `nombre`.
+ *  Los nombres propios (Market Signal, Imberion Concierge) no se traducen; los
+ *  descriptivos (Promociones, Política Comercial) sí, y viven en catalogo.json. */
+export function nombreHerramienta(h: Herramienta, locale: Locale): string {
+  const v = (h as Record<string, unknown>)[`nombre_${locale}`];
+  return typeof v === 'string' && v.trim() !== '' ? v : h.nombre;
+}
+
 /** Toma el campo `<base>_<locale>` de un registro de datos. */
 export function porLocale<T extends Record<string, any>>(
   registro: T,
@@ -72,7 +80,6 @@ const LOCALES: readonly Locale[] = ['es', 'en', 'pt'] as const;
 
 const CLAVES_FICHA = [
   '__title',
-  'nombre',
   'familia_label',
   'hero_eyebrow',
   'hero_h1',
@@ -222,8 +229,12 @@ export function contenidoFicha(slug: string, locale: Locale): ContenidoFicha {
     };
   });
 
+  const registro = HERRAMIENTAS.find((h) => h.slug === slug);
+  if (!registro) throw new Error(`catálogo: ${slug} no está en catalogo.json.`);
+
   return {
     ...(bloque as unknown as ContenidoFicha),
+    nombre: nombreHerramienta(registro, locale),
     que_hace_items: (bloque.que_hace_items as unknown[]).map((i) => normalizaItem(slug, locale, i)),
     industrias,
   };
@@ -287,9 +298,11 @@ export function enlazarFichas(texto: string, locale: Locale, slugActual: string)
   const candidatos: Array<{ etiqueta: string; slug: string }> = [];
   for (const h of HERRAMIENTAS) {
     if (h.slug === slugActual) continue;
-    candidatos.push({ etiqueta: h.nombre, slug: h.slug });
-    const sinPrefijo = h.nombre.replace(/^Imberion\s+/, '');
-    if (sinPrefijo !== h.nombre) candidatos.push({ etiqueta: sinPrefijo, slug: h.slug });
+    for (const etiqueta of new Set([h.nombre, nombreHerramienta(h, locale)])) {
+      candidatos.push({ etiqueta, slug: h.slug });
+      const sinPrefijo = etiqueta.replace(/^Imberion\s+/, '');
+      if (sinPrefijo !== etiqueta) candidatos.push({ etiqueta: sinPrefijo, slug: h.slug });
+    }
   }
   candidatos.sort((a, b) => b.etiqueta.length - a.etiqueta.length);
 

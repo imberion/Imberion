@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Floor Signal",
-    "nombre": "Floor Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Floor Signal · Familia Signal",
     "hero_h1": "Tráfico, recorrido y anaquel, medidos con las cámaras que ya están instaladas.",
@@ -27,7 +26,6 @@
   },
   "en": {
     "__title": "Imberion — Floor Signal",
-    "nombre": "Floor Signal",
     "familia_label": "Signal · sense",
     "hero_eyebrow": "Floor Signal · Signal family",
     "hero_h1": "Traffic, path and shelf, measured with the cameras already installed.",
@@ -53,7 +51,6 @@
   },
   "pt": {
     "__title": "Imberion — Floor Signal",
-    "nombre": "Floor Signal",
     "familia_label": "Signal · sentir",
     "hero_eyebrow": "Floor Signal · Família Signal",
     "hero_h1": "Tráfego, percurso e gôndola, medidos com as câmeras já instaladas.",

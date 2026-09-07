@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Promociones",
-    "nombre": "Promociones",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Promociones · Familia Engine",
     "hero_h1": "Qué promoción genera valor y cuál lo destruye.",
@@ -25,8 +24,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Promociones",
-    "nombre": "Promociones",
+    "__title": "Imberion — Promotions",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Promociones · Engine family",
     "hero_h1": "Which promotion creates value and which destroys it.",
@@ -50,8 +48,7 @@
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
-    "__title": "Imberion — Promociones",
-    "nombre": "Promociones",
+    "__title": "Imberion — Promoções",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Promociones · Família Engine",
     "hero_h1": "Que promoção gera valor e qual destrói.",

@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Price Value Compass",
-    "nombre": "Price Value Compass",
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Price Value Compass · Familia Compass",
     "hero_h1": "Dónde está el precio frente al valor percibido.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Price Value Compass",
-    "nombre": "Price Value Compass",
     "familia_label": "Compass · orient",
     "hero_eyebrow": "Price Value Compass · Compass family",
     "hero_h1": "Where price sits against perceived value.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Price Value Compass",
-    "nombre": "Price Value Compass",
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Price Value Compass · Família Compass",
     "hero_h1": "Onde está o preço frente ao valor percebido.",

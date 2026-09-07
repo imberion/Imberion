@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Imberion Concierge",
-    "nombre": "Imberion Concierge",
     "familia_label": "Operator · actuar",
     "hero_eyebrow": "Imberion Concierge · Familia Operator",
     "hero_h1": "Atención al cliente en cada canal, a toda hora.",
@@ -65,7 +64,6 @@
   },
   "en": {
     "__title": "Imberion — Imberion Concierge",
-    "nombre": "Imberion Concierge",
     "familia_label": "Operator · act",
     "hero_eyebrow": "Imberion Concierge · Operator family",
     "hero_h1": "Customer service on every channel, around the clock.",
@@ -129,7 +127,6 @@
   },
   "pt": {
     "__title": "Imberion — Imberion Concierge",
-    "nombre": "Imberion Concierge",
     "familia_label": "Operator · agir",
     "hero_eyebrow": "Imberion Concierge · Família Operator",
     "hero_h1": "Atendimento ao cliente em cada canal, a qualquer hora.",

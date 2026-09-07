@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Pricing & Surtido",
-    "nombre": "Pricing & Surtido",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Pricing & Surtido · Familia Engine",
     "hero_h1": "El precio atado al valor, y el surtido al que de verdad rota.",
@@ -26,8 +25,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Pricing & Surtido",
-    "nombre": "Pricing & Surtido",
+    "__title": "Imberion — Pricing & Assortment",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Pricing & Surtido · Engine family",
     "hero_h1": "Price tied to value, and assortment tied to what actually moves.",
@@ -52,8 +50,7 @@
     "ctastrip_btn": "Book a Call"
   },
   "pt": {
-    "__title": "Imberion — Pricing & Surtido",
-    "nombre": "Pricing & Surtido",
+    "__title": "Imberion — Pricing & Sortimento",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Pricing & Surtido · Família Engine",
     "hero_h1": "O preço atado ao valor, e o sortimento ao que de fato gira.",

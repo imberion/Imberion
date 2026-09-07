@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Value-Attribute Compass",
-    "nombre": "Value-Attribute Compass",
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Value-Attribute Compass · Familia Compass",
     "hero_h1": "En qué atributos se compite de verdad, y cuánto vale cada uno.",
@@ -26,7 +25,6 @@
   },
   "en": {
     "__title": "Imberion — Value-Attribute Compass",
-    "nombre": "Value-Attribute Compass",
     "familia_label": "Compass · orient",
     "hero_eyebrow": "Value-Attribute Compass · Compass family",
     "hero_h1": "Which attributes the competition is really about, and what each one is worth.",
@@ -51,7 +49,6 @@
   },
   "pt": {
     "__title": "Imberion — Value-Attribute Compass",
-    "nombre": "Value-Attribute Compass",
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Value-Attribute Compass · Família Compass",
     "hero_h1": "Em que atributos a concorrência realmente acontece, e quanto cada um vale.",

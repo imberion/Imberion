@@ -1,7 +1,6 @@
 {
   "es": {
     "__title": "Imberion — Política Comercial",
-    "nombre": "Política Comercial",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Política Comercial · Familia Engine",
     "hero_h1": "La concesión de valor, gobernada.",
@@ -26,8 +25,7 @@
     "ctastrip_btn": "Agendar llamada"
   },
   "en": {
-    "__title": "Imberion — Política Comercial",
-    "nombre": "Política Comercial",
+    "__title": "Imberion — Commercial Policy",
     "familia_label": "Engine · decide",
     "hero_eyebrow": "Política Comercial · Engine family",
     "hero_h1": "Value concessions, under governance.",
@@ -53,7 +51,6 @@
   },
   "pt": {
     "__title": "Imberion — Política Comercial",
-    "nombre": "Política Comercial",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Política Comercial · Família Engine",
     "hero_h1": "A concessão de valor, sob governança.",
