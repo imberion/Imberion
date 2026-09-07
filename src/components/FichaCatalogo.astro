@@ -5,6 +5,7 @@ import type { Locale } from '../i18n/index';
 import Base from '../layouts/Base.astro';
 import { ZCAL_30MIN } from '../lib/enlaces';
 import { contenidoFicha, enlazarFichas } from '../lib/catalogo';
+import DemoConcierge from './demos/DemoConcierge.astro';
 
 interface Props {
   locale: Locale;
@@ -14,6 +15,22 @@ interface Props {
 const { locale, slug } = Astro.props;
 const c = contenidoFicha(slug, locale);
 const relacion = enlazarFichas(c.relacion_p, locale, slug);
+
+// ---------------------------------------------------------------- mini-demo
+// Gancho de las mini-demos interactivas (§8.5c/§8.5d del spec, CP10 10d). Una
+// ficha lleva demo cuando se cumplen las dos cosas: su JSON de contenido trae
+// la clave `demo` (con las cadenas en los tres locales) y su slug está
+// registrado abajo con el componente que la pinta. Falta cualquiera de las
+// dos y la ficha rinde igual que siempre, sin bloque y sin JS.
+//
+// Para sumar otra ficha: se escribe su componente en `src/components/demos/`,
+// se agrega `slug: Componente` a este mapa y se pone la clave `demo` en su
+// JSON. No hay que tocar nada más.
+const DEMOS: Record<string, any> = {
+  concierge: DemoConcierge,
+};
+const contenidoDemo = (c as Record<string, any>).demo;
+const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
 ---
 
 <Base title={c.__title} description={c.hero_lead} locale={locale} rutaEs={`catalogo/${slug}`}>
@@ -49,6 +66,8 @@ const relacion = enlazarFichas(c.relacion_p, locale, slug);
       </div>
     </div>
   </section>
+
+  {Demo && <Demo contenido={contenidoDemo} />}
 
   <section class="bloque bloque--dark">
     <div class="container">

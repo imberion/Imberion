@@ -18,6 +18,44 @@
     "valor_h2": "La atención que vende y retiene",
     "valor_p": "El área de atención se dimensiona por costo por contacto, y por eso cierra fuera de horario justo cuando el cliente quiere comprar. Al operar sobre el punto de venta y el programa de lealtad, la misma conversación que resuelve una duda cierra el pedido y aplica el beneficio.",
     "sowhat": "Convierte el centro de costo de atención en un canal que vende y retiene.",
+    "demo": {
+      "titulo": "Tres capas, una conversación",
+      "intro": "La misma conversación atraviesa el front omnicanal, el cerebro que decide con las reglas del negocio y las acciones que se ejecutan en los sistemas. Estos son tres momentos encadenados: una queja que se resuelve, una recomendación que se acepta y un pedido que se cierra sumando puntos de lealtad.",
+      "capas": [
+        { "num": "01", "label": "Front omnicanal" },
+        { "num": "02", "label": "El cerebro" },
+        { "num": "03", "label": "Acciones" }
+      ],
+      "globos": [
+        { "paso": 1, "lado": "cli", "quien": "Cliente · WhatsApp", "texto": "Mi pedido llegó incompleto y lo necesito para mañana." },
+        { "paso": 4, "lado": "bot", "quien": "Atención", "texto": "Listo, María. Repongo lo faltante y llega mañana." },
+        { "paso": 5, "lado": "cli", "quien": "Cliente", "texto": "¿Y qué me recomiendas para acompañarlo?" },
+        { "paso": 8, "lado": "bot", "quien": "Atención", "texto": "El complemento premium. Con tus puntos sale a mitad." },
+        { "paso": 9, "lado": "cli", "quien": "Cliente", "texto": "Perfecto, agrégalo." },
+        { "paso": 12, "lado": "bot", "quien": "Atención", "texto": "Hecho. Lo agregué y sumaste 320 puntos." }
+      ],
+      "senales": [
+        { "paso": 2, "clave": "Quién es", "valor": "Premium · alto valor" },
+        { "paso": 2, "clave": "Propuesta de valor", "valor": "Reposición sin costo, trato cercano", "vp": true },
+        { "paso": 6, "clave": "Su historia", "valor": "Compra la línea premium" },
+        { "paso": 6, "clave": "Lealtad", "valor": "Tiene puntos para redimir" },
+        { "paso": 10, "clave": "Intención", "valor": "Compra confirmada, sin fricción", "vp": true }
+      ],
+      "acciones": [
+        { "paso": 3, "texto": "Genera la reposición y agenda la entrega" },
+        { "paso": 7, "texto": "Sugiere el complemento y aplica sus puntos de lealtad" },
+        { "paso": 11, "texto": "Cierra el pedido y acumula sus puntos" },
+        { "paso": 11, "texto": "Escala a un supervisor si hace falta", "soft": true }
+      ],
+      "pie": [
+        { "k": "Operado por Imberion", "v": "Imberion opera el cerebro y los canales, sin que el cliente tenga que montar la operación." },
+        { "k": "Aprende de cada interacción", "v": "Cada conversación afina la lectura del cliente y la ejecución de la promesa de marca." }
+      ],
+      "paso_label": "Paso",
+      "btn_siguiente": "Siguiente",
+      "btn_reiniciar": "Reiniciar",
+      "simulacion": "Conversación simulada con datos ficticios."
+    },
     "industrias": [
       "retail",
       "cpg",
@@ -55,6 +93,44 @@
     "valor_h2": "Service that sells and retains",
     "valor_p": "Service teams are sized by cost per contact, which is why they close after hours, exactly when customers want to buy. Operating on point of sale and the loyalty program, the same conversation that settles a question closes the order and applies the benefit.",
     "sowhat": "It turns the service cost center into a channel that sells and retains.",
+    "demo": {
+      "titulo": "Three layers, one conversation",
+      "intro": "The same conversation runs through the omnichannel front, the brain that decides with the business rules, and the actions executed in the systems. Three moments, chained: a complaint that gets settled, a recommendation that lands, and an order that closes while loyalty points add up.",
+      "capas": [
+        { "num": "01", "label": "Omnichannel front" },
+        { "num": "02", "label": "The brain" },
+        { "num": "03", "label": "Actions" }
+      ],
+      "globos": [
+        { "paso": 1, "lado": "cli", "quien": "Customer · WhatsApp", "texto": "My order arrived incomplete and I need it by tomorrow." },
+        { "paso": 4, "lado": "bot", "quien": "Support", "texto": "All set, María. I'm sending the missing items, they arrive tomorrow." },
+        { "paso": 5, "lado": "cli", "quien": "Customer", "texto": "And what would you recommend to go with it?" },
+        { "paso": 8, "lado": "bot", "quien": "Support", "texto": "The premium add-on. With your points it comes to half price." },
+        { "paso": 9, "lado": "cli", "quien": "Customer", "texto": "Perfect, add it." },
+        { "paso": 12, "lado": "bot", "quien": "Support", "texto": "Done. I added it and you earned 320 points." }
+      ],
+      "senales": [
+        { "paso": 2, "clave": "Who they are", "valor": "Premium · high value" },
+        { "paso": 2, "clave": "Value proposition", "valor": "Replacement at no cost, close treatment", "vp": true },
+        { "paso": 6, "clave": "Their history", "valor": "Buys the premium line" },
+        { "paso": 6, "clave": "Loyalty", "valor": "Has points to redeem" },
+        { "paso": 10, "clave": "Intent", "valor": "Purchase confirmed, no friction", "vp": true }
+      ],
+      "acciones": [
+        { "paso": 3, "texto": "Issues the replacement and schedules delivery" },
+        { "paso": 7, "texto": "Suggests the add-on and applies the loyalty points" },
+        { "paso": 11, "texto": "Closes the order and credits the points" },
+        { "paso": 11, "texto": "Escalates to a supervisor if needed", "soft": true }
+      ],
+      "pie": [
+        { "k": "Run by Imberion", "v": "Imberion operates the brain and the channels, with no in-house operation to stand up." },
+        { "k": "It learns from every interaction", "v": "Each conversation sharpens the read on the customer and the execution of the brand promise." }
+      ],
+      "paso_label": "Step",
+      "btn_siguiente": "Next",
+      "btn_reiniciar": "Restart",
+      "simulacion": "Simulated conversation with fictional data."
+    },
     "industrias": [
       "retail",
       "cpg",
@@ -92,6 +168,44 @@
     "valor_h2": "O atendimento que vende e retém",
     "valor_p": "A área de atendimento é dimensionada por custo por contato, e por isso fecha fora do horário justamente quando o cliente quer comprar. Operando sobre o ponto de venda e o programa de fidelidade, a mesma conversa que resolve uma dúvida fecha o pedido e aplica o benefício.",
     "sowhat": "Converte o centro de custo de atendimento em um canal que vende e retém.",
+    "demo": {
+      "titulo": "Três camadas, uma conversa",
+      "intro": "A mesma conversa passa pelo front omnicanal, pelo cérebro que decide com as regras do negócio e pelas ações executadas nos sistemas. São três momentos encadeados: uma reclamação que se resolve, uma recomendação que é aceita e um pedido que fecha somando pontos de fidelidade.",
+      "capas": [
+        { "num": "01", "label": "Front omnicanal" },
+        { "num": "02", "label": "O cérebro" },
+        { "num": "03", "label": "Ações" }
+      ],
+      "globos": [
+        { "paso": 1, "lado": "cli", "quien": "Cliente · WhatsApp", "texto": "Meu pedido chegou incompleto e preciso dele para amanhã." },
+        { "paso": 4, "lado": "bot", "quien": "Atendimento", "texto": "Pronto, María. Já estou repondo o que faltou e chega amanhã." },
+        { "paso": 5, "lado": "cli", "quien": "Cliente", "texto": "E o que você recomenda para acompanhar?" },
+        { "paso": 8, "lado": "bot", "quien": "Atendimento", "texto": "O complemento premium. Com os seus pontos sai pela metade." },
+        { "paso": 9, "lado": "cli", "quien": "Cliente", "texto": "Perfeito, pode adicionar." },
+        { "paso": 12, "lado": "bot", "quien": "Atendimento", "texto": "Feito. Adicionei e você somou 320 pontos." }
+      ],
+      "senales": [
+        { "paso": 2, "clave": "Quem é", "valor": "Premium · alto valor" },
+        { "paso": 2, "clave": "Proposta de valor", "valor": "Reposição sem custo, trato próximo", "vp": true },
+        { "paso": 6, "clave": "Histórico", "valor": "Compra a linha premium" },
+        { "paso": 6, "clave": "Fidelidade", "valor": "Tem pontos para resgatar" },
+        { "paso": 10, "clave": "Intenção", "valor": "Compra confirmada, sem fricção", "vp": true }
+      ],
+      "acciones": [
+        { "paso": 3, "texto": "Gera a reposição e agenda a entrega" },
+        { "paso": 7, "texto": "Sugere o complemento e aplica os pontos de fidelidade" },
+        { "paso": 11, "texto": "Fecha o pedido e acumula os pontos" },
+        { "paso": 11, "texto": "Escala para um supervisor se for preciso", "soft": true }
+      ],
+      "pie": [
+        { "k": "Operado pela Imberion", "v": "A Imberion opera o cérebro e os canais, sem que o cliente precise montar a operação." },
+        { "k": "Aprende com cada interação", "v": "Cada conversa refina a leitura do cliente e a execução da promessa de marca." }
+      ],
+      "paso_label": "Passo",
+      "btn_siguiente": "Avançar",
+      "btn_reiniciar": "Reiniciar",
+      "simulacion": "Conversa simulada com dados fictícios."
+    },
     "industrias": [
       "retail",
       "cpg",
