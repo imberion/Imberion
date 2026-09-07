@@ -10,6 +10,7 @@ import { ruta } from '../lib/rutas';
 import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
 import { contenido } from '../lib/meta';
 import Columna from './home/Columna.astro';
+import MotorEscenarios from './home/MotorEscenarios.astro';
 import catalogoData from '../data/catalogo.json';
 import industriasData from '../data/industrias.json';
 import comun from '../i18n/content/common.json';
@@ -246,26 +247,6 @@ const ICONOS_LOOP = [
   </div>
 </section>
 
-<!-- IMPACTO -->
-<section class="section section--dark section-dark-flow">
-  <div class="container">
-    <div class="eyebrow">{c.impact_eyebrow}</div>
-    <h2>{c.impact_h2}</h2>
-    <div class="impact-grid">
-      {(c.impact_stats as string[][]).map((s) => (
-        <div class="impact-card">
-          <div class="impact-num">{s[0]}<span class="impact-unit">{s[1]}</span></div>
-          <div class="impact-label">{s[2]}<span class="impact-label-sub">{s[3]}</span></div>
-        </div>
-      ))}
-    </div>
-    <p class="impact-foot">{c.impact_foot}</p>
-    <div class="impact-mid-cta">
-      <a href={ZCAL_30MIN} class="inline-cta white" target="_blank" rel="noopener">{c.impact_cta}</a>
-    </div>
-  </div>
-</section>
-
 <div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
 
 <!-- PARA QUIÉN -->
@@ -386,6 +367,26 @@ const ICONOS_LOOP = [
     </div>
   </div>
 </section>
+
+<!-- EL MOTOR CORRIENDO: último bloque de contenido, antes del cierre -->
+<MotorEscenarios
+  locale={locale}
+  contenido={{
+    eyebrow: c.motor_eyebrow as string,
+    h2: c.motor_h2 as string,
+    lead: c.motor_lead as string,
+    escenario_label: c.motor_escenario_label as string,
+    precio_label: c.motor_precio_label as string,
+    precio_aria: c.motor_precio_aria as string,
+    referencia_label: c.motor_referencia_label as string,
+    referencia_pie: c.motor_referencia_pie as string,
+    delta_label: c.motor_delta_label as string,
+    skus: c.motor_skus as string[],
+    kpis: c.motor_kpis as string[],
+    extrapolacion: c.motor_extrapolacion as string,
+    declaracion: c.motor_declaracion as string,
+  }}
+/>
 
 <!-- CTA -->
 <section class="cta-section section-cta-dust">

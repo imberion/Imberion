@@ -16,6 +16,7 @@
     "gate:terceros": "node scripts/gate_terceros.mjs",
     "gate:acentos": "node scripts/gate_acentos.mjs",
     "gate:cruce": "node scripts/gate_cruce.mjs",
+    "gate:rangos": "node scripts/gate_rangos.mjs",
     "texturas:optimizar": "node scripts/texturas_optimizar.mjs"
   },
   "dependencies": {

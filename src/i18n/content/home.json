@@ -113,30 +113,6 @@
     ],
     "solve_bridge": "And the hardest part: turning each decision into execution that holds.",
     "solve_close": "From decision to execution, and back again.",
-    "impact_eyebrow": "Impact",
-    "impact_h2": "The range a well-run commercial operation moves.",
-    "impact_cta": "Book a call to see what this looks like in the operation →",
-    "impact_stats": [
-      [
-        "+2–5",
-        "%",
-        "Gross margin",
-        "Pricing, mix and discount discipline."
-      ],
-      [
-        "+3–8",
-        "%",
-        "Revenue growth",
-        "Execution, coverage and win-rate."
-      ],
-      [
-        "+10–20",
-        "%",
-        "Return on commercial spend",
-        "Reallocate trade and promo to what converts."
-      ]
-    ],
-    "impact_foot": "Reference ranges from comparable markets; actual results depend on the starting point. Impact visible from weeks 6–8 in pilots.",
     "who_eyebrow": "Who It's For",
     "who_h2": "Built for fragmented,<br>high-complexity markets.",
     "who_lead": "The common thread is not the industry. It is the structural condition: fragmented channels, incomplete data, and commercial decisions made without a reliable picture of the market.",
@@ -191,6 +167,29 @@
     "team_p1": "Built by people who have solved this before. Not in theory, in complex, messy, real-world environments.",
     "team_p2": "We come from top-tier strategy, AI, and advanced analytics. We’ve worked on pricing, promotions, portfolio, and commercial transformation where the stakes are real and the data is imperfect. We don’t build frameworks. We build capabilities that work, because we’ve seen what happens when they don’t.",
     "team_clients": "A selection of organizations our team has served:",
+    "motor_eyebrow": "The engine, running",
+    "motor_h2": "A pricing scenario, recalculated on the spot.",
+    "motor_lead": "This is the same computation that runs inside an engagement, here on synthetic data. Moving the price of a SKU reads its estimated demand curve and returns volume, revenue, margin and return on cost, against the reference of the last observed cycle.",
+    "motor_escenario_label": "Scenario",
+    "motor_precio_label": "Price",
+    "motor_precio_aria": "Price of {sku}",
+    "motor_referencia_label": "Reference",
+    "motor_referencia_pie": "Reference: the last observed cycle, before any price change.",
+    "motor_delta_label": "vs. reference",
+    "motor_skus": [
+      "SKU 01 · brand A",
+      "SKU 02 · brand A",
+      "SKU 03 · brand B",
+      "SKU 04 · brand B"
+    ],
+    "motor_kpis": [
+      "Volume",
+      "Revenue",
+      "Margin",
+      "Return on cost"
+    ],
+    "motor_extrapolacion": "{n} of {total} SKUs priced outside their observed range.",
+    "motor_declaracion": "Synthetic data, generated with a fixed seed (20260708). The computation is deterministic and reproducible: the same data and the same configuration return the same result. Aggregation runs in closed form over precomputed curves, with no modeling in the browser.",
     "cta_eyebrow": "Get Started",
     "cta_h2": "Ready to go from<br>noise to signal?",
     "cta_lead": "A 30-minute call to locate exactly where the gaps are and what it takes to close them.",
@@ -417,30 +416,6 @@
     ],
     "solve_bridge": "Y lo más difícil: convertir cada decisión en ejecución que se sostiene.",
     "solve_close": "De la decisión a la ejecución, y de vuelta.",
-    "impact_eyebrow": "Impacto",
-    "impact_h2": "El rango que mueve una operación comercial bien ejecutada.",
-    "impact_cta": "Agenda una llamada para ver cómo se ve esto en la operación →",
-    "impact_stats": [
-      [
-        "+2–5",
-        "%",
-        "Margen bruto",
-        "Pricing, mix y disciplina de descuentos."
-      ],
-      [
-        "+3–8",
-        "%",
-        "Crecimiento en ventas",
-        "Ejecución, cobertura y win-rate."
-      ],
-      [
-        "+10–20",
-        "%",
-        "Retorno del gasto comercial",
-        "Reasignar trade y promo a lo que convierte."
-      ]
-    ],
-    "impact_foot": "Rangos de referencia en mercados comparables; el resultado real depende del punto de partida. Impacto visible desde semanas 6–8 en pilotos.",
     "who_eyebrow": "Para Quién",
     "who_h2": "Construido para mercados<br>fragmentados y de alta complejidad.",
     "who_lead": "El denominador común no es la industria. Es la condición estructural: canales fragmentados, data incompleta y decisiones tomadas sin una imagen confiable del mercado.",
@@ -459,7 +434,7 @@
       ],
       [
         "Retailers y Ecosistemas Comerciales",
-        "Conecta data downstream fragmentada. Haz la ejecución visible, medible y gobernable.",
+        "Conectar la data downstream fragmentada. Volver la ejecución visible, medible y gobernable.",
         null,
         null
       ]
@@ -495,6 +470,29 @@
     "team_p1": "Construido por quienes ya resolvieron esto antes. No en teoría, en entornos complejos, desordenados y reales.",
     "team_p2": "Venimos de estrategia top-tier, inteligencia artificial y analítica avanzada. Hemos trabajado en pricing, promociones, portafolio y transformación comercial donde lo que está en juego es real y la data es imperfecta. No construimos frameworks. Construimos capacidades que funcionan, porque ya vimos lo que pasa cuando no funcionan.",
     "team_clients": "Una selección de organizaciones con las que nuestro equipo ha trabajado:",
+    "motor_eyebrow": "El motor corriendo",
+    "motor_h2": "Un escenario de precio, recalculado en el momento.",
+    "motor_lead": "Este es el mismo cálculo que corre dentro de un engagement, aquí sobre datos sintéticos. Mover el precio de un SKU lee su curva de demanda estimada y devuelve volumen, ingreso, margen y retorno sobre costo, contra la referencia del último ciclo observado.",
+    "motor_escenario_label": "Escenario",
+    "motor_precio_label": "Precio",
+    "motor_precio_aria": "Precio de {sku}",
+    "motor_referencia_label": "Referencia",
+    "motor_referencia_pie": "Referencia: el último ciclo observado, antes de cualquier cambio de precio.",
+    "motor_delta_label": "vs. referencia",
+    "motor_skus": [
+      "SKU 01 · marca A",
+      "SKU 02 · marca A",
+      "SKU 03 · marca B",
+      "SKU 04 · marca B"
+    ],
+    "motor_kpis": [
+      "Volumen",
+      "Ingreso",
+      "Margen",
+      "Retorno sobre costo"
+    ],
+    "motor_extrapolacion": "{n} de {total} SKU con precio fuera de su rango observado.",
+    "motor_declaracion": "Datos sintéticos, generados con semilla fija (20260708). El cálculo es determinista y reproducible: la misma data y la misma configuración devuelven el mismo resultado. La agregación corre en forma cerrada sobre curvas precomputadas, sin modelado en el navegador.",
     "cta_eyebrow": "Empieza ahora",
     "cta_h2": "¿Listo para ir del<br>ruido a la señal?",
     "cta_lead": "Una llamada de 30 minutos para ubicar exactamente dónde están las brechas y qué hace falta para cerrarlas.",
@@ -721,30 +719,6 @@
     ],
     "solve_bridge": "E o mais difícil: transformar cada decisão em execução que se sustenta.",
     "solve_close": "Da decisão à execução, e de volta.",
-    "impact_eyebrow": "Impacto",
-    "impact_h2": "A faixa que uma operação comercial bem executada move.",
-    "impact_cta": "Agende uma chamada para ver como isso se aplica à operação →",
-    "impact_stats": [
-      [
-        "+2–5",
-        "%",
-        "Margem bruta",
-        "Pricing, mix e disciplina de descontos."
-      ],
-      [
-        "+3–8",
-        "%",
-        "Crescimento em vendas",
-        "Execução, cobertura e win-rate."
-      ],
-      [
-        "+10–20",
-        "%",
-        "Retorno do gasto comercial",
-        "Realocar trade e promo para o que converte."
-      ]
-    ],
-    "impact_foot": "Faixas de referência em mercados comparáveis; o resultado real depende do ponto de partida. Impacto visível a partir das semanas 6–8 em pilotos.",
     "who_eyebrow": "Para Quem",
     "who_h2": "Construído para mercados<br>fragmentados e de alta complexidade.",
     "who_lead": "O denominador comum não é a indústria. É a condição estrutural: canais fragmentados, dados incompletos e decisões tomadas sem uma visão confiável do mercado.",
@@ -763,7 +737,7 @@
       ],
       [
         "Varejistas e Ecossistemas Comerciais",
-        "Conecte dados downstream fragmentados. Torne a execução visível, mensurável e governável.",
+        "Conectar os dados downstream fragmentados. Tornar a execução visível, mensurável e governável.",
         null,
         null
       ]
@@ -799,9 +773,32 @@
     "team_p1": "Construído por quem já resolveu isso antes. Não na teoria, em ambientes complexos, caóticos e reais.",
     "team_p2": "Viemos de estratégia top-tier, inteligência artificial e analytics avançado. Trabalhamos com pricing, promoções, portfólio e transformação comercial onde o que está em jogo é real e os dados são imperfeitos. Não construímos frameworks. Construímos capacidades que funcionam, porque já vimos o que acontece quando não funcionam.",
     "team_clients": "Uma seleção de organizações que nossa equipe atendeu:",
+    "motor_eyebrow": "O motor rodando",
+    "motor_h2": "Um cenário de preço, recalculado na hora.",
+    "motor_lead": "Este é o mesmo cálculo que roda dentro de um engagement, aqui sobre dados sintéticos. Mover o preço de um SKU lê a curva de demanda estimada correspondente e devolve volume, receita, margem e retorno sobre custo, contra a referência do último ciclo observado.",
+    "motor_escenario_label": "Cenário",
+    "motor_precio_label": "Preço",
+    "motor_precio_aria": "Preço de {sku}",
+    "motor_referencia_label": "Referência",
+    "motor_referencia_pie": "Referência: o último ciclo observado, antes de qualquer mudança de preço.",
+    "motor_delta_label": "vs. referência",
+    "motor_skus": [
+      "SKU 01 · marca A",
+      "SKU 02 · marca A",
+      "SKU 03 · marca B",
+      "SKU 04 · marca B"
+    ],
+    "motor_kpis": [
+      "Volume",
+      "Receita",
+      "Margem",
+      "Retorno sobre custo"
+    ],
+    "motor_extrapolacion": "{n} de {total} SKU com preço fora da faixa observada.",
+    "motor_declaracion": "Dados sintéticos, gerados com semente fixa (20260708). O cálculo é determinístico e reproduzível: os mesmos dados e a mesma configuração devolvem o mesmo resultado. A agregação roda em forma fechada sobre curvas pré-computadas, sem modelagem no navegador.",
     "cta_eyebrow": "Comece agora",
     "cta_h2": "Pronto para ir do<br>ruído ao sinal?",
-    "cta_lead": "Agende uma chamada de 30 minutos. Mostraremos exatamente onde estão as lacunas e o que é preciso para fechá-las.",
+    "cta_lead": "Uma chamada de 30 minutos para localizar exatamente onde estão as lacunas e o que é preciso para fechá-las.",
     "cta_btn1": "Agendar chamada de 30 min",
     "cta_btn2": "hola@imberion.com",
     "nav_persp": "Perspectivas",

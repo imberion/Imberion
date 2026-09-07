@@ -448,25 +448,6 @@
 .arm-cta-link:hover { color: var(--navy); }
 .arm-cta-link:hover .btn-arrow { transform: translateX(4px); }
 
-/* ============================================================ IMPACTO */
-.impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 64px; background: var(--white-12); border: 1px solid var(--white-12); }
-.impact-card { padding: 44px 34px; background-color: var(--navy); position: relative; }
-.impact-card::before { content: ""; position: absolute; top: 0; left: 0; width: 42px; height: 2px; background: var(--slate-soft); }
-.impact-num {
-  font-family: var(--font-sans);
-  font-size: clamp(2.6rem, 4.4vw, 3.6rem);
-  font-weight: 300;
-  line-height: 1;
-  color: #fff;
-  letter-spacing: -.03em;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-.impact-unit { font-size: 1.5rem; color: var(--white-45); letter-spacing: 0; margin-left: 3px; }
-.impact-label { margin-top: 16px; font-family: var(--font-serif); font-size: 1.05rem; color: var(--white-85); line-height: 1.4; }
-.impact-label-sub { display: block; font-family: var(--font-sans); font-size: 13px; font-style: normal; color: var(--white-45); margin-top: 8px; line-height: 1.55; font-weight: 400; }
-.impact-foot { margin-top: 30px; font-family: var(--font-sans); font-size: 12px; color: var(--white-45); letter-spacing: .01em; line-height: 1.55; }
-.impact-mid-cta { margin-top: 34px; text-align: right; }
-
 /* ============================================================ PARA QUIÉN */
 /* Tres tarjetas de texto, sin imagen: los tres PNG genéricos salieron del repo.
    La tarjeta se estira a la altura de la fila para que ninguna quede corta y el
@@ -712,7 +693,6 @@
 @media (max-width: 600px) {
   .arms-section, .mat-section, .persp-section { padding: 80px 0; }
   .solve-section { padding: 80px 0 0; }
-  .impact-grid { grid-template-columns: 1fr; }
   .hero { padding: 108px 0 84px; }
   .hero h1 { font-size: clamp(3rem, 13vw, 4.2rem); }
   .arm-card { padding: 38px 28px; }
@@ -782,7 +762,6 @@
   .arm-card p { max-width: 42ch; }
   .persp-card { padding: 56px 46px; }
   .persp-card p { max-width: 40ch; }
-  .impact-card { padding: 58px 46px; }
   .estrat-card { padding: 46px 36px; }
   .estrat-card p { max-width: 34ch; }
   .q-txt { font-size: 1.22rem; }
@@ -805,7 +784,7 @@
   .mat-inner h2 { font-size: clamp(2.1rem, 3.6vw, 4rem); }
 }
 /* Nota: las rejillas del home no pueden "sumar columnas" en monitor grande
-   porque tienen exactamente 3 y 4 elementos (pilares, perspectivas, impacto,
+   porque tienen exactamente 3 y 4 elementos (pilares, perspectivas,
    estrategia). El ancho extra se gasta en tipo y en padding de tarjeta, arriba. */
 
 /* ============================================================ COLUMNA EN PANTALLA CHICA */

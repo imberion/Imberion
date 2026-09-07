@@ -1,0 +1,588 @@
+---
+// Cierre del arco del home (§8.5, §8.7 del spec): el producto corriendo.
+//
+// Porta la sección "2 · Generar escenario" del workbench del analytics-engine
+// (~/Code/analytics-engine/examples/workbench/cockpit_demo.html): los sliders
+// de precio por SKU y los cuatro KPI que se recalculan en vivo. La agregación
+// es la del motor, copiada literal en `motor_agregacion.mjs`, y las curvas
+// vienen precomputadas en `motor_curvas.json` (datos sintéticos con semilla
+// fija, declarado al pie del bloque).
+//
+// Fuera quedan, a propósito: las pestañas de espacio de trabajo, las tarjetas
+// de añada del modelo / asertividad / valor del diseño, y las secciones 3 a 5
+// (validar, comparar, exportar). El home enseña una rebanada, no el producto.
+//
+// Marca: el archivo fuente pinta petróleo en sliders y bordes. Aquí no: en el
+// home el petróleo está reservado al instante ruido→señal de la columna, así
+// que este bloque va en navy, papel y grises.
+import type { Locale } from '../../i18n/index';
+import { wbAggregate } from './motor_agregacion.mjs';
+import datos from './motor_curvas.json';
+
+interface Props {
+  locale: Locale;
+  contenido: {
+    eyebrow: string;
+    h2: string;
+    lead: string;
+    escenario_label: string;
+    precio_label: string;
+    precio_aria: string;
+    referencia_label: string;
+    referencia_pie: string;
+    delta_label: string;
+    skus: string[];
+    kpis: string[];
+    extrapolacion: string;
+    declaracion: string;
+  };
+}
+
+const { locale, contenido: t } = Astro.props;
+
+// El formato de número es del idioma de la página, no del navegador: es-MX es
+// el mismo que usa el workbench, así que las cifras del bloque en español son
+// idénticas a las del archivo fuente.
+const BCP47: Record<Locale, string> = { es: 'es-MX', en: 'en-US', pt: 'pt-BR' };
+const tag = BCP47[locale];
+
+const curvas = datos.curvas as Record<string, {
+  brand: string; prices: number[]; price_current: number;
+  price_min_obs: number; price_max_obs: number;
+}>;
+const ref = datos.referencia;
+
+const SKUS = Object.keys(curvas).sort();
+if (SKUS.length !== t.skus.length) {
+  throw new Error(
+    `MotorEscenarios (${locale}): motor_curvas.json trae ${SKUS.length} SKU y ` +
+    `"motor_skus" de home.json trae ${t.skus.length}. Tienen que coincidir.`
+  );
+}
+
+// Valores iniciales renderizados en el servidor: el bloque llega escrito y el
+// script solo recalcula al mover un slider. Los precios de partida son los
+// `price_current` sin redondear, igual que el workbench.
+const precios0: Record<string, number> = {};
+for (const s of SKUS) precios0[s] = curvas[s].price_current;
+const agg0 = wbAggregate(curvas, precios0);
+
+const fmt = (v: number | null | undefined, dec = 0) =>
+  v === null || v === undefined
+    ? 'n/d'
+    : Number(v).toLocaleString(tag, { maximumFractionDigits: dec });
+
+// El precio siempre con dos decimales: la columna queda alineada en tabular-nums
+// y "9.00" no se lee como un número de otra magnitud al lado de "8.52".
+const fmtPrecio = (v: number) =>
+  Number(v).toLocaleString(tag, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+// El delta se oculta cuando redondea a cero a la precisión de la tarjeta: un
+// "+0" no dice nada y ensucia la lectura.
+function delta(valor: number | null | undefined, base: number, dec = 0) {
+  if (valor === null || valor === undefined) return null;
+  const d = valor - base;
+  const texto = fmt(Math.abs(d), dec);
+  if (Number(Math.abs(d).toFixed(dec)) === 0) return null;
+  return (d > 0 ? '+' : '−') + texto;
+}
+
+const filas = SKUS.map((s, i) => {
+  const c = curvas[s];
+  const min = c.prices[0];
+  const max = c.prices[c.prices.length - 1];
+  return {
+    sku: s,
+    id: `motor-precio-${s}`,
+    etiqueta: t.skus[i],
+    min,
+    max,
+    paso: Math.max((max - min) / 100, 0.0001),
+    valor: c.price_current,
+    aria: t.precio_aria.replace('{sku}', t.skus[i]),
+  };
+});
+
+const tarjetas = [
+  { k: 'volume', label: t.kpis[0], v: agg0.volume.mid, ref: ref.volume, dec: 0 },
+  { k: 'revenue', label: t.kpis[1], v: agg0.revenue.mid, ref: ref.revenue, dec: 0 },
+  { k: 'margin', label: t.kpis[2], v: agg0.margin ? agg0.margin.mid : null, ref: ref.margin, dec: 0 },
+  { k: 'roi', label: t.kpis[3], v: agg0.roi ? agg0.roi.mid : null, ref: ref.roi, dec: 2 },
+];
+
+const extrapolacion0 = t.extrapolacion
+  .replace('{n}', String(agg0.n_extrapolated))
+  .replace('{total}', String(agg0.n_skus));
+---
+
+<section class="motor-bloque section-paper" id="motor">
+  <div class="container">
+    <div class="motor-head">
+      <div class="eyebrow">{t.eyebrow}</div>
+      <h2>{t.h2}</h2>
+      <p class="lead motor-lead">{t.lead}</p>
+    </div>
+
+    <div class="motor-panel" data-motor data-locale={tag} role="group" aria-label={t.h2}>
+      <div class="motor-escenario">
+        <span class="motor-k">{t.escenario_label}</span>
+        <div class="motor-sliders">
+          {
+            filas.map((f) => (
+              <div class="motor-fila">
+                <label class="motor-sku" for={f.id}>{f.etiqueta}</label>
+                <input
+                  class="motor-range"
+                  type="range"
+                  id={f.id}
+                  data-sku={f.sku}
+                  min={f.min}
+                  max={f.max}
+                  step={f.paso}
+                  value={f.valor}
+                  aria-label={f.aria}
+                />
+                <span class="motor-precio">
+                  <span class="motor-precio-k">{t.precio_label}</span>
+                  <span class="motor-precio-v" data-precio={f.sku}>{fmtPrecio(f.valor)}</span>
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="motor-kpis" aria-live="polite">
+        {
+          tarjetas.map((c) => (
+            <div class="motor-kpi">
+              <div class="motor-kpi-k">{c.label}</div>
+              <div class="motor-kpi-v" data-kpi={c.k}>{fmt(c.v, c.dec)}</div>
+              <div class="motor-kpi-pie">
+                <span class="motor-kpi-ref">
+                  {t.referencia_label} <b data-ref={c.k} data-valor={String(c.ref)}>{fmt(c.ref, c.dec)}</b>
+                </span>
+                <span
+                  class="motor-kpi-d"
+                  data-delta={c.k}
+                  data-etiqueta={t.delta_label}
+                  hidden={delta(c.v, c.ref, c.dec) === null}
+                >
+                  {delta(c.v, c.ref, c.dec) ? `${delta(c.v, c.ref, c.dec)} ${t.delta_label}` : ''}
+                </span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="motor-pie">
+        <span data-extrap data-tpl={t.extrapolacion}>{extrapolacion0}</span>
+        <span>{t.referencia_pie}</span>
+      </p>
+    </div>
+
+    <p class="motor-declaracion">{t.declaracion}</p>
+  </div>
+
+  <script
+    type="application/json"
+    id="motor-curvas"
+    is:inline
+    set:html={JSON.stringify(datos.curvas)}
+  />
+</section>
+
+<style>
+  .motor-bloque {
+    /* La barra superior es fija: sin el margen, un salto a #motor deja el
+       encabezado del bloque debajo de la barra. */
+    scroll-margin-top: 86px;
+    padding: clamp(90px, 8vw, 170px) 0;
+    border-top: 1px solid var(--navy-12);
+  }
+  .motor-head h2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 3.6vw, 4rem);
+    max-width: 20ch;
+    margin-top: 14px;
+  }
+  .motor-head .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .motor-lead {
+    margin-top: 22px;
+    max-width: 68ch;
+    font-size: 1.02rem;
+    line-height: 1.72;
+  }
+  /* En monitor ancho el encabezado se abre en dos columnas en vez de dejar
+     media pantalla muerta a la derecha (invariante 16). */
+  @media (min-width: 1100px) {
+    .motor-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      column-gap: clamp(48px, 6vw, 120px);
+      align-items: end;
+    }
+    .motor-head .eyebrow,
+    .motor-head h2 {
+      grid-column: 1;
+    }
+    .motor-head h2 {
+      max-width: 16ch;
+      margin-bottom: 0;
+    }
+    .motor-lead {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: end;
+      margin-top: 0;
+      padding-bottom: 8px;
+    }
+  }
+
+  .motor-panel {
+    margin-top: 54px;
+    border: 1px solid var(--navy-12);
+    background: var(--white);
+  }
+
+  /* ---------- escenario: los sliders, a lo ancho ---------- */
+  .motor-escenario {
+    padding: clamp(26px, 2.6vw, 44px) clamp(22px, 2.4vw, 46px);
+  }
+  .motor-k {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .motor-sliders {
+    margin-top: 20px;
+    display: grid;
+    gap: 4px;
+  }
+  .motor-fila {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) 1fr minmax(110px, 150px);
+    align-items: center;
+    gap: clamp(16px, 2vw, 40px);
+    padding: 13px 0;
+    border-top: 1px solid var(--navy-08);
+  }
+  .motor-fila:first-child {
+    border-top: 0;
+  }
+  .motor-sku {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy-72);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  .motor-precio {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .motor-precio-k {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .motor-precio-v {
+    font-family: var(--font-sans);
+    font-size: 1.22rem;
+    font-weight: 400;
+    color: var(--navy);
+    font-variant-numeric: lining-nums tabular-nums;
+    min-width: 4.4ch;
+    text-align: right;
+  }
+
+  /* Slider: pista gris, recorrido y control en navy. Sin petróleo, sin verde. */
+  .motor-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .motor-range::-webkit-slider-runnable-track {
+    height: 3px;
+    background: var(--navy-12);
+    border-radius: 2px;
+  }
+  .motor-range::-moz-range-track {
+    height: 3px;
+    background: var(--navy-12);
+    border-radius: 2px;
+  }
+  .motor-range::-moz-range-progress {
+    height: 3px;
+    background: var(--navy);
+    border-radius: 2px;
+  }
+  .motor-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6.5px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--navy);
+  }
+  .motor-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 1px var(--navy);
+  }
+  .motor-range:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 1px var(--navy), 0 0 0 5px var(--navy-20);
+  }
+  .motor-range:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 1px var(--navy), 0 0 0 5px var(--navy-20);
+  }
+
+  /* ---------- los cuatro KPI, en fila ---------- */
+  .motor-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--navy-20);
+    border-top: 1px solid var(--navy-12);
+  }
+  .motor-kpi {
+    padding: clamp(28px, 2.6vw, 46px) clamp(22px, 2.2vw, 42px);
+    background-color: var(--navy);
+  }
+  .motor-kpi-k {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+  }
+  .motor-kpi-v {
+    margin-top: 14px;
+    font-family: var(--font-sans);
+    font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .motor-kpi-pie {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 12px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--white-45);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .motor-kpi-ref b {
+    font-weight: 500;
+    color: var(--white-65);
+  }
+  .motor-kpi-d {
+    color: var(--white-85);
+    border-left: 1px solid var(--white-25);
+    padding-left: 12px;
+  }
+  .motor-kpi-d[hidden] {
+    display: none;
+  }
+
+  .motor-pie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    padding: 16px clamp(22px, 2.4vw, 46px);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--navy-60);
+    background: var(--paper-warm);
+    border-top: 1px solid var(--navy-12);
+  }
+  .motor-declaracion {
+    margin-top: 22px;
+    max-width: 92ch;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--navy-60);
+  }
+
+  @media (max-width: 900px) {
+    .motor-kpis {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .motor-fila {
+      grid-template-columns: 1fr auto;
+      gap: 10px 16px;
+      padding: 16px 0;
+    }
+    .motor-sku {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .motor-precio {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .motor-range {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .motor-kpis {
+      grid-template-columns: 1fr;
+    }
+    .motor-kpi-v {
+      font-size: 2.4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motor-range,
+    .motor-kpi-v {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import { wbAggregate } from './motor_agregacion.mjs';
+
+  (function () {
+    var raiz = document.querySelector('[data-motor]');
+    if (!raiz) return;
+    var fuente = document.getElementById('motor-curvas');
+    if (!fuente || !fuente.textContent) return;
+
+    var curvas = JSON.parse(fuente.textContent);
+    var tag = raiz.getAttribute('data-locale') || 'es-MX';
+    var sliders = Array.prototype.slice.call(raiz.querySelectorAll('.motor-range'));
+    var pieExtrap = raiz.querySelector('[data-extrap]');
+    var plantillaExtrap = pieExtrap ? pieExtrap.getAttribute('data-tpl') : null;
+
+    // Los precios de partida son los `price_current` sin redondear, no el valor
+    // que el navegador le asigna al slider tras encajarlo en su paso: así el
+    // primer render coincide con el del workbench.
+    var precios = {};
+    Object.keys(curvas).forEach(function (s) {
+      precios[s] = curvas[s].price_current;
+    });
+
+    var DEC = { volume: 0, revenue: 0, margin: 0, roi: 2 };
+    var referencias = {};
+    Object.keys(DEC).forEach(function (k) {
+      var el = raiz.querySelector('[data-ref="' + k + '"]');
+      referencias[k] = el ? el.getAttribute('data-valor') : null;
+    });
+
+    function fmt(v, dec) {
+      return v === null || v === undefined
+        ? 'n/d'
+        : Number(v).toLocaleString(tag, { maximumFractionDigits: dec });
+    }
+
+    function fmtPrecio(v) {
+      return Number(v).toLocaleString(tag, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    }
+
+    function pintar() {
+      var agg = wbAggregate(curvas, precios);
+      var vals = {
+        volume: agg.volume.mid,
+        revenue: agg.revenue.mid,
+        margin: agg.margin ? agg.margin.mid : null,
+        roi: agg.roi ? agg.roi.mid : null,
+      };
+      Object.keys(vals).forEach(function (k) {
+        var caja = raiz.querySelector('[data-kpi="' + k + '"]');
+        if (caja) caja.textContent = fmt(vals[k], DEC[k]);
+        var chip = raiz.querySelector('[data-delta="' + k + '"]');
+        var base = referencias[k] === null ? null : parseFloat(referencias[k]);
+        if (!chip || base === null || isNaN(base) || vals[k] === null) return;
+        var d = vals[k] - base;
+        if (Number(Math.abs(d).toFixed(DEC[k])) === 0) {
+          chip.hidden = true;
+          chip.textContent = '';
+        } else {
+          chip.hidden = false;
+          chip.textContent =
+            (d > 0 ? '+' : '−') + fmt(Math.abs(d), DEC[k]) + ' ' +
+            (chip.getAttribute('data-etiqueta') || '');
+        }
+      });
+      if (pieExtrap && plantillaExtrap) {
+        pieExtrap.textContent = plantillaExtrap
+          .replace('{n}', String(agg.n_extrapolated))
+          .replace('{total}', String(agg.n_skus));
+      }
+    }
+
+    sliders.forEach(function (s) {
+      var sku = s.getAttribute('data-sku');
+      var salida = raiz.querySelector('[data-precio="' + sku + '"]');
+      s.addEventListener('input', function () {
+        precios[sku] = parseFloat(s.value);
+        if (salida) salida.textContent = fmtPrecio(precios[sku]);
+        pintar();
+      });
+    });
+
+    // Gancho de QA: ?motor=<precio> fija el precio del primer SKU y repinta,
+    // para capturar el bloque en un estado distinto al de partida. Inerte sin
+    // el parámetro.
+    try {
+      var qa = new URLSearchParams(window.location.search).get('motor');
+      if (qa !== null && sliders.length) {
+        var n = parseFloat(qa);
+        if (!isNaN(n)) {
+          var s0 = sliders[0];
+          var sku0 = s0.getAttribute('data-sku');
+          s0.value = String(n);
+          precios[sku0] = n;
+          var out0 = raiz.querySelector('[data-precio="' + sku0 + '"]');
+          if (out0) out0.textContent = fmtPrecio(n);
+          pintar();
+        }
+      }
+    } catch (e) {
+      /* sin URLSearchParams no hay gancho de QA; el bloque funciona igual */
+    }
+  })();
+</script>
