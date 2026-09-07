@@ -699,6 +699,10 @@
   .cta-section { padding: 104px 0; }
 }
 
+/* El nav fijo mide 70px: sin este margen, el enlace Industrias del nav (que
+   desde CP11c baja a #sectors) dejaba el título de la sección debajo de la barra. */
+#sectors { scroll-margin-top: 70px; }
+
 /* ============================================================ CIERRE DE LA COLUMNA */
 .columna::after {
   content: "";

@@ -66,11 +66,11 @@ const brazos = [
   { num: '03', k: 'arm_c', ancla: 'ejecucion', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
 ];
 
-// La puerta de industria del home es la misma familia que /industrias/: mismo
-// roster (sin borradores), mismo número 01-09, misma foto de sector con el
-// mismo tratamiento. Lo que cambia es la bajada: en el índice es el hero_lead
-// completo; aquí, de 200 a 410 caracteres, ahogaría la foto, así que la línea
-// corta vive en sect_industrias del JSON del home.
+// La puerta de industria es esta rejilla (#sectors): desde CP11c no hay índice
+// /industrias/ aparte y el enlace del nav y del pie bajan aquí. Mismo roster
+// (sin borradores), número 01-09 y foto de sector con el mismo tratamiento que
+// el hero de cada industria. La bajada es la línea corta de sect_industrias del
+// JSON del home: el hero_lead completo (200 a 410 caracteres) ahogaría la foto.
 const fotosIndustria = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
   import: 'default',
   eager: true,

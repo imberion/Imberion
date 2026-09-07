@@ -5,6 +5,9 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/industrias", "destination": "/#sectors", "permanent": true },
+    { "source": "/en/industries", "destination": "/en/#sectors", "permanent": true },
+    { "source": "/pt/industrias", "destination": "/pt/#sectors", "permanent": true },
     { "source": "/how-it-works.html", "destination": "/como-funciona/", "permanent": true },
     { "source": "/how-we-operate.html", "destination": "/como-operamos/", "permanent": true },
     { "source": "/estrategia.html", "destination": "/catalogo/#estrategia", "permanent": true },

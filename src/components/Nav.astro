@@ -22,15 +22,18 @@ interface Props {
 const { locale, rutaEs } = Astro.props;
 const c = comun[locale];
 
+// Industrias no tiene índice propio (CP11c): la puerta de las nueve es la
+// rejilla #sectors del home, así que el enlace baja a esa sección. Las páginas
+// individuales /industrias/<slug>/ siguen existiendo y siguen marcando el
+// enlace como activo, porque el lector está dentro de esa familia.
 const enlaces = [
-  { seg: 'que-resolvemos', texto: c.nav_que_resolvemos },
-  { seg: 'como-funciona', texto: c.nav_como_funciona },
-  { seg: 'como-operamos', texto: c.nav_como_operamos },
-  { seg: 'industrias', texto: c.nav_industrias },
-  { seg: 'catalogo', texto: c.nav_catalogo },
+  { seg: 'que-resolvemos', texto: c.nav_que_resolvemos, href: ruta(locale, 'que-resolvemos') },
+  { seg: 'como-funciona', texto: c.nav_como_funciona, href: ruta(locale, 'como-funciona') },
+  { seg: 'como-operamos', texto: c.nav_como_operamos, href: ruta(locale, 'como-operamos') },
+  { seg: 'industrias', texto: c.nav_industrias, href: `${ruta(locale, '')}#sectors` },
+  { seg: 'catalogo', texto: c.nav_catalogo, href: ruta(locale, 'catalogo') },
 ].map((e) => ({
   ...e,
-  href: ruta(locale, e.seg),
   // Activo también en las páginas hijas: /industrias/retail/ marca Industrias.
   activo: rutaEs !== undefined && (rutaEs === e.seg || rutaEs.startsWith(`${e.seg}/`)),
 }));

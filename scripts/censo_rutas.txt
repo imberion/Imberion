@@ -25,9 +25,6 @@
 /catalogo/checkup/
 /en/catalog/pricing-y-surtido/
 /pt/catalogo/habilitadores/
-/industrias/
-/en/industries/
-/pt/industrias/
 /industrias/retail/
 /industrias/b2b/
 /industrias/cpg/
@@ -52,6 +49,10 @@
 /farma.html
 /construccion.html
 /distribuidores.html
+# El índice de industrias se retiró en CP11c: estas tres resuelven por redirect al ancla #sectors del home.
+/industrias/
+/en/industries/
+/pt/industrias/
 /catalogo/training-signal/
 /catalogo/account-twin/
 /catalogo/virtual-buyer-personas/

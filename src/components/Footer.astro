@@ -19,7 +19,8 @@ const enlaces = [
   { href: ruta(locale, 'que-resolvemos'), texto: c.nav_que_resolvemos },
   { href: ruta(locale, 'como-funciona'), texto: c.nav_como_funciona },
   { href: ruta(locale, 'como-operamos'), texto: c.nav_como_operamos },
-  { href: ruta(locale, 'industrias'), texto: c.nav_industrias },
+  // Sin índice de industrias (CP11c): baja a la rejilla del home.
+  { href: `${ruta(locale, '')}#sectors`, texto: c.nav_industrias },
   { href: ruta(locale, 'catalogo'), texto: c.nav_catalogo },
   { href: CONTACTO_MAIL, texto: c.footer_contacto, externo: true },
   { href: ZCAL_30MIN, texto: c.nav_cta, externo: true, nuevaPestana: true },
