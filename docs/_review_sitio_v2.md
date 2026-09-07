@@ -91,6 +91,43 @@ Hallazgos del verificador fresco sobre CP0+CP1 que quedan registrados:
 
 `site` apuntaba al apex `https://imberion.com`, que devuelve 307 hacia `https://www.imberion.com/`. Canonical, hreflang, og:url y las 126 entradas del sitemap eran redirects. Corregido en `astro.config.mjs`, `robots.txt` y el fallback de `Base.astro`: todo sale con www (verificado en `dist/`: 0 referencias al apex, 126 `<loc>` con www). Los smoke tests de producción y preview ahora extraen la canónica declarada de cada página del censo y exigen que responda 200 sin seguir redirects; si `site` vuelve a apuntar mal, el deploy sale rojo con el mensaje que apunta a `astro.config.mjs`.
 
+### 🔴 Segunda revisión de Rodrigo (2026-09-06, tarde): tres correcciones visuales y el copy de la columna
+
+Cerrada como CP10 (ver sección propia). Fotos de industria al home (rejilla 01-09 con foto, patrón happyrobot §8.4) y retiro de los tres PNG `who-*`; fotos de `/industrias/` a bloque real; `alt` descriptivo en las fotos de industria; rediseño del loop a ancho completo con cuatro nodos legibles; y el copy de la columna del home (`col_resultado_p` reemplazado con el texto de Rodrigo, `col_ruido_h/_p` nuevos con la asimetría de información, relectura de EN y PT por sentido). Estado y evidencia se registran en esta misma sección al cerrar.
+
+**La franja de indicadores se retira del home (Rodrigo, 2026-09-06, spec §8.7 y CP10 10c).** No existe un número propio medido (tres engagements firmados, ninguno con impacto registrado; la corrida del analytics-engine sobre data anonimizada no está en disco) y los rangos actuales no se rescatan. En su lugar va una salida interactiva del analytics-engine sobre datos sintéticos declarados, portada de `~/Code/analytics-engine/examples/`. Gate: cero rangos de impacto en `dist/` y el bloque declara los datos como sintéticos. La franja vuelve cuando exista el primer resultado medido de un engagement propio, con palanca y mecanismo.
+
+**El arco del home cierra en el producto corriendo (Rodrigo, 2026-09-06, spec §8.5).** Ya no aplica el cierre anónimo. El bloque interactivo del analytics-engine de 10c es ese cierre: va como último bloque de contenido del home, antes del CTA final, con el workbench de escenarios (`analytics-engine/examples/workbench/cockpit_demo.html`: sliders de precio y KPI recalculados en el navegador con agregación de forma cerrada, 69 KB sin dependencias). Los otros dos ejemplos (cohorte, forward buying) son tableros de lectura, no de manipulación, y el de forward buying pesa 648 KB. El bloque queda listo para recibir un cliente autorizado más adelante sin rehacer nada.
+
+## CP10 · Lo que la §8 describió y nadie construyó (medido 2026-09-07 ~00:30 CDMX contra c013309)
+
+Seis commits, uno por punto, en el orden en que cerraron: c939cc0 y 715275a (10d), e4bce1b (10e), 171e836 (10b), e1db913 (10a), c013309 (10c). Checkout limpio de c013309: 126 páginas sin warnings; `gate:acentos` 0, `gate:terceros` 0, `gate:cruce` verde (26/26 fichas alcanzadas), `gate:rangos` verde, `rutas:check` 9/9, `i18n:gate` byte a byte, segunda persona 0/126 fuera de los bloques `data-dialogo`, cero `who-*` en `dist/`, canónicas con www. Verificador fresco (agente sin contexto, checkout propio de c013309, medido 2026-09-07 ~00:45 CDMX): 10a ✅, 10b ✅ (fotos medidas por CDP: 551 px a 1440 y 750 a 1920; 0 `alt` vacíos en 342 imágenes), 10c ✅ (paridad con `cockpit_demo.html` por defecto y con S0 al máximo: 936 / 9,981 / 4,363), 10e ✅ (cada estado de la columna cae sobre su bloque, con scroll real), invariantes ✅ (segunda persona 0/126 fuera de `data-dialogo`; los 6 hits de dentro son habla de personaje; 126/126 canónicas con www; peso del home ~1,080 KB a 1440, del que 900 KB son las siete texturas WebP; `/industrias/` ~278 KB), 10d 🟡 y copy 🟡. Los ocho hallazgos amarillos se corrigieron en el commit siguiente salvo dos, que quedan anotados abajo: "levantamiento" aparece cuatro veces en la ficha de Market Signal (dice quién lo opera, no cómo; a juicio del verificador no cruza el README, pero es la frase que mirar si el criterio se lee estricto) y las tres columnas de la demo de Concierge quedan con hueco en los primeros pasos (altura fija para que no salte al avanzar).
+
+**10a · Cruce.** `src/data/cruce.json` (113 celdas aprobadas + 17 de las tres fichas nuevas + 6 transversales, ángulo en tres idiomas), `src/lib/cruce.ts` valida al cargar, `CorteCatalogo.astro` en cada industria. Fichas enlazadas por industria: retail 25, cpg 23, farma 22, servicios-b2c 21, b2b/telco/servicios-b2b 19, construccion/automotriz 18 (antes 2 en todas). La copia a mano de `industrias` en los 26 JSON coincidía con el cruce y se retiró.
+
+**10b · Fotos y loop.** Rejilla 01-09 con foto en el home, PNG `who-*` fuera del repo, foto de `/industrias/` al 42 % de la fila (555 px a 1440, 745 a 1920), `alt` en tres idiomas en `common.json`. Loop en banda a todo el ancho, cuatro nodos legibles (Decisión, Ejecución, Medición, Ajuste), sin `aria-hidden`.
+
+**10c · Motor en el cierre.** Franja de impacto fuera; el workbench de escenarios del analytics-engine cierra el home (agregación copiada literal, valores idénticos al archivo fuente en Chrome: 994 / 10,161 / 4,195 / 0.7), declaración visible de datos sintéticos con semilla fija. +24 KB al HTML del home (10 KB gzip).
+
+**10d · Mini-demos.** Concierge portada del deck (12 pasos, tres capas, globos con el tú del personaje bajo `data-dialogo`); Market Signal con DASHBOARD, FLOW jugable y PIPE sin revelar receta (la pestaña Misiones pasó a Cobertura); Virtual Buyer Personas de cero, 4 personas × 3 escenarios con las 12 respuestas escritas en el JSON, sin tocar material de cliente.
+
+**10e · Columna.** `col_resultado_p` con el texto de Rodrigo; `col_ruido_h/_p` nuevos ("El canal que más factura es el que menos se mide."); `col_senal_h` y `col_resultado_h` reescritos para encadenar; PT sin calcos. Etapa de ruido agregada a `Columna.astro` con umbrales recalibrados (0.42 y 0.74) y medidos en el navegador.
+
+### Decisiones de CP10 que necesitan a Rodrigo
+
+- **Copy escrito por agentes sin evidencia archivo:línea**: las 27 líneas de `sect_industrias` (no se usó `hero_lead` porque ahogaba la foto), los ángulos de Virtual Buyer Personas, Account Twin y Training Signal en el cruce, y el lead de la sección del cruce ("Las demás herramientas no se descartan: se activan cuando el diagnóstico las pide"). Conviene una lectura suya.
+- **Huecos del cruce que ahora se ven en pantalla**: b2b y construccion no tienen fila Sustrato (Integración de datos no aparece en sus frameworks) y solo retail tiene Growth Hacking. Las celdas candidatas que más cambiarían la lectura: Integración de datos en b2b y construccion, Whitespace en telco, Leadership Alignment en las cinco que faltan.
+- **Concierge**: el tercer pie del deck ("También al piso de venta... Frontera, a futuro") se dejó fuera porque anuncia capacidad futura. El `?demo=` de QA queda en producción (inerte).
+- **Market Signal**: título del bloque "El tablero, por dentro"; el mapa es solo México y las pestañas Centroamérica/Caribe/LATAM son estáticas como en el deck.
+- **Virtual Buyer Personas**: nombres propios (Renata, Alonso, Beatriz, Damián) versus perfiles sin nombre; los pesos numéricos (85, 62, 24) son los únicos números del bloque; el bloque mide 1,193 px y no cabe en 900 de alto.
+- **Motor**: SKU nombrados "SKU 01 · marca A"; "Retorno sobre costo" en vez de ROI; sección en papel (puede ir en navy si el cierre debe pesar más).
+- **Loop**: el tercer nodo se llama Medición, no Lectura, para que ES/EN/PT queden paralelos.
+- **Columna**: el hero más la etapa de ruido ocupan casi dos pantallas antes del primer cambio visible (umbral 0.42; bajarlo a ~0.36 acelera). Las partículas motean el texto de la etapa de ruido; se arregla sesgando la siembra.
+- **Nombres de herramienta por idioma**: los siete descriptivos ahora se traducen (Promotions, Commercial Policy, Pricing & Assortment, Customers & Loyalty, Channels & Stores, Enablers, Data Integration y sus pares en PT); los nombres propios (Market Signal, Imberion Concierge, Growth Bridge Analysis, etc.) no. Si alguno de los siete es marca y no descripción, se revierte en `catalogo.json`.
+- **Market Signal**: "levantamiento" (quién lo opera) en cuatro frases de la ficha; y las columnas de Concierge con hueco en los primeros pasos.
+- **`pt.cta_lead`** se alineó con ES/EN en impersonal (traía "Agende uma chamada..."); si era deliberado, se revierte en una línea.
+- **§6.1 /contacto con formulario de HubSpot** sigue sin construirse: necesita un formulario creado en el portal 51273309 (ID) y el aviso de privacidad. No estaba en CP10.
+
 ## Cambios del 2026-09-06 (spec en ruta estable, CP2 aprobado)
 
 Estado (2026-09-06 ~13:25 CDMX), commit `4b779ed`:
@@ -228,6 +265,7 @@ Nota de orden: CP3 cerró antes que CP2 porque no depende de él. CP2 (dos artef
 | CP5 | ✅ | 8f514e7 | 2026-09-05 ~23:40 CDMX |
 | CP6 | ✅ (copy pendiente de aprobación) | 1994c33 + ad2114b | 2026-09-06 ~00:40 CDMX |
 | CP7 | ✅ (pendientes de Rodrigo: mini-demos, KPI propios, §8.5) | e7173f8 + 4abbe61 + 13ae01b | 2026-09-06 ~15:10 CDMX |
+| CP10 | ✅ (decisiones de copy y celdas del cruce para Rodrigo; §6.1 /contacto sin construir) | c939cc0 … c013309 + hallazgos | 2026-09-07 ~01:05 CDMX |
 | CP8 (imagen) | ✅ texturas e industrias en WebP; video pendiente de decisión | 4c26860 | 2026-09-06 ~15:10 CDMX |
 | CP8 | pendiente (video de producto: decisión de Rodrigo; texturas sin optimizar) | | |
 | CP9 | ✅ salvo lo que depende de Rodrigo | 9e102c3 + este commit | 2026-09-06 ~01:00 CDMX |
