@@ -88,9 +88,10 @@ const ICONOS_SOLVE = [
 
 <div class="home-v2">
 
-<!-- LA COLUMNA: hero (ruido) + señal + resultado, un solo campo de partículas -->
+<!-- LA COLUMNA: hero + ruido + señal + resultado, un solo campo de partículas -->
 <Columna
   etiquetas={[c.col_ruido as string, c.col_senal as string, c.col_resultado as string]}
+  ruido={{ h: c.col_ruido_h as string, p: c.col_ruido_p as string }}
   senal={{ h: c.col_senal_h as string, p: c.col_senal_p as string }}
   resultado={{ h: c.col_resultado_h as string, p: c.col_resultado_p as string }}
 >

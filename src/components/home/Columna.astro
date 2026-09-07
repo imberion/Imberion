@@ -2,14 +2,16 @@
 // La columna del home (spec §8.1): un solo campo de partículas, ligado al
 // progreso de scroll de este bloque, que recorre ruido -> señal -> resultado.
 // Absorbe el canvas que antes vivía suelto en el hero: no conviven dos.
-// El hero entra por <slot /> y es la primera etapa (ruido); las otras dos
-// etapas viven aquí. El lienzo es sticky y el contenido pasa por encima.
+// El hero entra por <slot /> y abre el arco; las tres etapas con texto (ruido,
+// señal, resultado) viven aquí. El lienzo es sticky y el contenido pasa por
+// encima.
 interface Props {
   etiquetas: string[];
+  ruido: { h: string; p: string };
   senal: { h: string; p: string };
   resultado: { h: string; p: string };
 }
-const { etiquetas, senal, resultado } = Astro.props;
+const { etiquetas, ruido, senal, resultado } = Astro.props;
 ---
 
 <div class="columna" data-columna>
@@ -28,6 +30,15 @@ const { etiquetas, senal, resultado } = Astro.props;
   </div>
 
   <slot />
+
+  <section class="col-etapa" id="etapa-ruido" data-etapa="ruido">
+    <div class="container">
+      <div class="col-etapa-txt">
+        <h2>{ruido.h}</h2>
+        <p class="lead">{ruido.p}</p>
+      </div>
+    </div>
+  </section>
 
   <section class="col-etapa" id="etapa-senal" data-etapa="senal">
     <div class="container">
@@ -54,11 +65,20 @@ const { etiquetas, senal, resultado } = Astro.props;
      adentro (el ruido nace en los bordes del viewport) y la convergencia cuelga
      del scroll, no de un ciclo de tiempo.
 
-     Fases por progreso p del bloque (0 = arriba del hero, 1 = fin de la 3a etapa):
-       p 0.00-0.22  ruido      partículas dispersas en los bordes
-       p 0.22-0.52  convergen  de afuera hacia adentro
-       p 0.52-0.62  señal      senoidal sostenida
-       p 0.62-0.90  resuelven  la senoidal se vuelve curva con punto de decisión
+     El bloque son 4 pantallas de 100vh (hero + ruido + señal + resultado), así
+     que el scroll total es 3 pantallas y cada bloque de texto queda encuadrado
+     en p = 0, 1/3, 2/3 y 1. Los umbrales cuelgan de esos cuatro instantes: la
+     transformación ocurre ENTRE bloques de texto y cada estado llega completo
+     al bloque que lo nombra. (Antes eran 3 pantallas y los umbrales estaban
+     calibrados a p = 0, 1/2, 1; al entrar la etapa de ruido había que
+     recorrerlos o la señal se dibujaba sobre el texto de ruido.)
+
+     Fases por progreso p del bloque (0 = arriba del hero, 1 = fin de resultado):
+       p 0.00-0.42  ruido      partículas dispersas en los bordes (hero + etapa ruido en p=1/3)
+       p 0.42-0.65  convergen  de afuera hacia adentro
+       p 0.65-0.74  señal      senoidal sostenida (etapa señal encuadrada en p=2/3)
+       p 0.74-0.96  resuelven  la senoidal se vuelve curva con punto de decisión
+       p 0.96-1.00  resultado  curva y punto de decisión sostenidos (etapa resultado en p=1)
 
      El petróleo (§8.6) entra SOLO aquí y solo en la ventana de transformación:
      sube con la convergencia, se sostiene mientras hay señal y se apaga al
@@ -168,8 +188,8 @@ const { etiquetas, senal, resultado } = Astro.props;
     }
 
     function dibujar() {
-      var conv = estatico ? 1 : ease(clamp01((progreso - 0.22) / 0.3));
-      var res = estatico ? 1 : ease(clamp01((progreso - 0.62) / 0.28));
+      var conv = estatico ? 1 : ease(clamp01((progreso - 0.42) / 0.23));
+      var res = estatico ? 1 : ease(clamp01((progreso - 0.74) / 0.22));
       var petro = conv * (1 - res);
       rail(res > 0.5 ? 2 : conv > 0.45 ? 1 : 0);
 
