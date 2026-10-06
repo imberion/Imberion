@@ -1,0 +1,406 @@
+---
+// Apertura del home v3. Un bloque fijo (sticky) de 100vh dentro de un recorrido
+// de 520vh: el scroll manda el estado del campo y el texto que se lee.
+//
+//   p 0.00-0.16  portada    campo tranquilo, titular y botones
+//   p 0.16-0.42  datos      el campo se satura: cifras, códigos y fuentes
+//   p 0.42-0.68  decisión   tres de cada cuatro cifras se apagan; el resto
+//                           converge a la ficha de decisión, que aparece
+//   p 0.68-1.00  valor      de la ficha salen líneas a cinco puntos de la
+//                           operación; un pulso petróleo recorre cada línea
+//
+// Las partículas son texto (cifras tabulares, códigos, nombres de fuente), no
+// puntos: el ruido es información. Se pintan desde un atlas pre-renderizado
+// con drawImage, no con fillText por cuadro, que es lo que permite ~1,400 en
+// escritorio a 60 fps.
+//
+// El petróleo aparece solo en los pulsos de la etapa valor. Ningún otro
+// elemento del bloque lo usa.
+//
+// prefers-reduced-motion: no hay recorrido; los tres pasos se apilan, la ficha
+// y los nodos quedan visibles y el canvas pinta un solo cuadro.
+interface Props {
+  c: any;
+  agendar: string;
+  como: string;
+}
+const { c, agendar, como } = Astro.props;
+---
+
+<section class="ap" data-ap aria-label={c.ap_h1}>
+  <div class="ap-stage" data-ap-stage>
+    <canvas class="ap-canvas" data-ap-canvas aria-hidden="true"></canvas>
+
+    <div class="ap-veil" aria-hidden="true"></div>
+
+    <div class="ap-texto">
+      <div class="ap-panel ap-panel--portada" data-ap-panel="0">
+        <p class="ap-marca mono">{c.ap_marca}</p>
+        <h1 class="ap-h1">{c.ap_h1}</h1>
+        <p class="ap-lead">{c.ap_lead}</p>
+        <div class="ap-btns">
+          <a class="btn btn-primary" href={agendar} target="_blank" rel="noopener">{c.ap_btn1}</a>
+          <a class="btn btn-outline" href={como}>{c.ap_btn2}</a>
+        </div>
+      </div>
+
+      {c.ap_pasos.map((p: any, i: number) => (
+        <div class="ap-panel ap-panel--paso" data-ap-panel={i + 1}>
+          <p class="ap-paso-num mono"><span>{p.num}</span> {p.etiqueta}</p>
+          <h2 class="ap-h2">{p.h}</h2>
+          <p class="ap-p">{p.p}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="ap-escena" data-ap-escena>
+      <article class="ap-ficha" data-ap-ficha aria-label={c.ap_decision.titulo}>
+        <header class="ap-ficha-head mono">
+          <span>{c.ap_decision.folio}</span>
+          <span class="ap-ficha-estado"><i></i>Lista para junta</span>
+        </header>
+        <h3 class="ap-ficha-titulo">{c.ap_decision.titulo}</h3>
+        <dl class="ap-ficha-filas">
+          {c.ap_decision.filas.map((f: string[]) => (
+            <div><dt class="mono">{f[0]}</dt><dd>{f[1]}</dd></div>
+          ))}
+        </dl>
+        <p class="ap-ficha-pie mono">{c.ap_decision.pie}</p>
+      </article>
+
+      <ol class="ap-nodos" data-ap-nodos>
+        {c.ap_nodos.map((n: string[], i: number) => (
+          <li class="ap-nodo" data-ap-nodo={i}>
+            <span class="ap-nodo-n mono">{String(i + 1).padStart(2, '0')}</span>
+            <span class="ap-nodo-t">{n[0]}</span>
+            <span class="ap-nodo-d">{n[1]}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="ap-riel" aria-hidden="true">
+      {c.ap_recorrido.map((r: string, i: number) => (
+        <span class="ap-riel-paso mono" data-ap-riel={i + 1}><b>{String(i + 1).padStart(2, '0')}</b>{r}</span>
+      ))}
+      <span class="ap-riel-barra"><i data-ap-barra></i></span>
+    </div>
+  </div>
+  <script type="application/json" data-ap-fuentes set:html={JSON.stringify(c.ap_fuentes)} />
+</section>
+
+<script is:inline>
+(function () {
+  var raiz = document.querySelector('[data-ap]');
+  if (!raiz) return;
+  var stage = raiz.querySelector('[data-ap-stage]');
+  var canvas = raiz.querySelector('[data-ap-canvas]');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var paneles = [].slice.call(raiz.querySelectorAll('[data-ap-panel]'));
+  var ficha = raiz.querySelector('[data-ap-ficha]');
+  var nodos = [].slice.call(raiz.querySelectorAll('[data-ap-nodo]'));
+  var riel = [].slice.call(raiz.querySelectorAll('[data-ap-riel]'));
+  var barra = raiz.querySelector('[data-ap-barra]');
+  var fuentes = [];
+  try { fuentes = JSON.parse(raiz.querySelector('[data-ap-fuentes]').textContent); } catch (e) {}
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) raiz.classList.add('ap--estatico');
+
+  /* ---------- vocabulario del ruido ---------- */
+  function r(a, b) { return a + Math.random() * (b - a); }
+  function ri(a, b) { return Math.floor(r(a, b + 1)); }
+  function pad(n, k) { n = String(n); while (n.length < k) n = '0' + n; return n; }
+  function token() {
+    var t = Math.random();
+    if (t < 0.18) return '$' + ri(12, 980) + '.' + pad(ri(0, 99), 2);
+    if (t < 0.32) return 'SKU-' + pad(ri(10, 9999), 4);
+    if (t < 0.42) return (Math.random() < 0.5 ? '+' : '−') + r(0.1, 18).toFixed(1) + '%';
+    if (t < 0.52) return pad(ri(6, 21), 2) + ':' + pad(ri(0, 59), 2);
+    if (t < 0.60) return 'PZ ' + ri(1, 480);
+    if (t < 0.67) return '#' + ri(10000, 99999);
+    if (t < 0.74) return ri(1, 31) + '/' + ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][ri(0, 11)];
+    if (t < 0.80) return 'T' + pad(ri(1, 640), 3);
+    if (t < 0.86) return ri(100, 99999).toLocaleString('es-MX');
+    if (t < 0.92) return 'R' + ri(1, 48) + '·V' + ri(1, 30);
+    return fuentes.length ? fuentes[ri(0, fuentes.length - 1)] : 'POS';
+  }
+
+  /* ---------- atlas de glifos ---------- */
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var atlas = {};
+  var FUENTE = '400 11px "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace';
+  var FUENTE_SRC = '500 12px "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace';
+  function glifo(txt, esFuente) {
+    var k = (esFuente ? 'F|' : '') + txt;
+    if (atlas[k]) return atlas[k];
+    var m = document.createElement('canvas').getContext('2d');
+    m.font = esFuente ? FUENTE_SRC : FUENTE;
+    var w = Math.ceil(m.measureText(txt).width) + 4;
+    var h = esFuente ? 18 : 16;
+    var cv = document.createElement('canvas');
+    cv.width = w * dpr; cv.height = h * dpr;
+    var g = cv.getContext('2d');
+    g.scale(dpr, dpr);
+    g.font = esFuente ? FUENTE_SRC : FUENTE;
+    g.fillStyle = '#C9D4DF';
+    g.textBaseline = 'middle';
+    g.fillText(txt, 2, h / 2);
+    atlas[k] = { cv: cv, w: w, h: h };
+    return atlas[k];
+  }
+
+  /* ---------- estado ---------- */
+  var W = 0, H = 0, movil = false;
+  var parts = [];
+  var mouse = { x: -9999, y: -9999 };
+  var cajaFicha = null, centrosNodos = [], zonaTexto = null;
+
+  function crear() {
+    var n = movil ? 480 : 1250;
+    parts = [];
+    for (var i = 0; i < n; i++) {
+      var esFuente = Math.random() < 0.06;
+      var txt = esFuente && fuentes.length ? fuentes[ri(0, fuentes.length - 1)] : token();
+      parts.push({
+        x: r(0, W), y: r(0, H),
+        vx: r(-0.12, 0.12), vy: r(-0.08, 0.08),
+        fase: r(0, Math.PI * 2),
+        a: r(0.18, 0.55),
+        g: glifo(txt, esFuente),
+        fuente: esFuente,
+        sobrevive: i % 4 === 0,
+        tx: 0, ty: 0, ox: 0, oy: 0
+      });
+    }
+    asignarDestinos();
+  }
+
+  function medir() {
+    var s = stage.getBoundingClientRect();
+    if (ficha) {
+      var f = ficha.getBoundingClientRect();
+      cajaFicha = { x: f.left - s.left, y: f.top - s.top, w: f.width, h: f.height };
+    }
+    centrosNodos = nodos.map(function (n) {
+      var b = n.getBoundingClientRect();
+      return { x: b.left - s.left + 6, y: b.top - s.top + b.height / 2 };
+    });
+    var t = raiz.querySelector('.ap-texto').getBoundingClientRect();
+    zonaTexto = { x: t.left - s.left, y: t.top - s.top, w: t.width, h: t.height };
+  }
+
+  /* Los sobrevivientes van a una retícula dentro de la ficha: filas de cifras
+     que se leen como el contenido de la decisión antes de que la ficha cubra. */
+  function asignarDestinos() {
+    if (!cajaFicha) return;
+    var sob = parts.filter(function (p) { return p.sobrevive; });
+    var cols = movil ? 6 : 9, filas = Math.ceil(sob.length / cols);
+    var padX = 22, padY = 64;
+    var cw = (cajaFicha.w - padX * 2) / cols;
+    var ch = Math.max(8, (cajaFicha.h - padY - 30) / filas);
+    sob.forEach(function (p, i) {
+      p.tx = cajaFicha.x + padX + (i % cols) * cw + r(-2, 2);
+      p.ty = cajaFicha.y + padY + Math.floor(i / cols) * ch;
+    });
+  }
+
+  function resize() {
+    W = stage.clientWidth; H = stage.clientHeight;
+    movil = W < 820;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    medir();
+    if (!parts.length) crear(); else asignarDestinos();
+  }
+
+  /* ---------- progreso ---------- */
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function ss(a, b, v) { var t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+  function progreso() {
+    if (reduce) return 1;
+    var b = raiz.getBoundingClientRect();
+    var total = raiz.offsetHeight - window.innerHeight;
+    return total > 0 ? clamp(-b.top / total, 0, 1) : 0;
+  }
+
+  var VENTANAS = [[0, 0.16], [0.16, 0.42], [0.42, 0.68], [0.68, 1.01]];
+  var panelActivo = -1;
+  function actualizarDom(p) {
+    var activo = 0;
+    for (var i = 0; i < VENTANAS.length; i++) if (p >= VENTANAS[i][0]) activo = i;
+    if (activo !== panelActivo) {
+      panelActivo = activo;
+      paneles.forEach(function (el, i) { el.classList.toggle('is-on', i === activo); });
+      riel.forEach(function (el, i) { el.classList.toggle('is-on', i + 1 <= activo); el.classList.toggle('is-actual', i + 1 === activo); });
+    }
+    if (barra) barra.style.transform = 'scaleX(' + ss(0.16, 1, p).toFixed(3) + ')';
+    var fOn = ss(0.52, 0.62, p);
+    /* en celular no caben juntas: la ficha sale cuando entran los nodos */
+    if (movil) fOn *= 1 - ss(0.68, 0.72, p);
+    raiz.classList.toggle('is-portada', activo === 0);
+    if (ficha) {
+      ficha.style.opacity = fOn.toFixed(3);
+      ficha.style.transform = 'translateY(' + ((1 - fOn) * 14).toFixed(1) + 'px)';
+    }
+    nodos.forEach(function (n, i) {
+      var a = ss(0.72 + i * 0.035, 0.78 + i * 0.035, p);
+      n.style.opacity = a.toFixed(3);
+      n.style.transform = 'translateX(' + ((1 - a) * 16).toFixed(1) + 'px)';
+    });
+  }
+
+  /* ---------- dibujo ---------- */
+  var t0 = performance.now();
+  function dibujar(now) {
+    var t = (now - t0) / 1000;
+    var p = progreso();
+    actualizarDom(p);
+
+    var ruido = ss(0.14, 0.34, p) * (1 - ss(0.46, 0.56, p));   // saturación de la etapa datos
+    var conv = ss(0.42, 0.57, p);                               // convergencia a la ficha
+    var ejec = ss(0.70, 0.84, p);                               // líneas a la operación
+    var cubre = ss(0.56, 0.64, p);                              // la ficha tapa a los convergidos
+
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = 0; i < parts.length; i++) {
+      var q = parts[i];
+      var agit = 1 + ruido * 2.2;
+      q.x += q.vx * agit; q.y += q.vy * agit;
+      if (q.x < -60) q.x = W + 20; else if (q.x > W + 60) q.x = -20;
+      if (q.y < -20) q.y = H + 10; else if (q.y > H + 20) q.y = -10;
+
+      var dx = q.x - mouse.x, dy = q.y - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < 14400 && conv < 0.5) { var f = (1 - d2 / 14400) * 1.6; q.x += dx / Math.sqrt(d2 + 1) * f; q.y += dy / Math.sqrt(d2 + 1) * f; }
+
+      var x = q.x, y = q.y, a = q.a;
+      var parpadeo = 0.65 + 0.35 * Math.sin(t * (1.4 + ruido * 5) + q.fase);
+      a = a * (0.32 + ruido * 1.1) * parpadeo;
+      if (q.fuente) a = Math.min(1, a * (1.2 + ruido * 1.4));
+
+      /* menos densidad detrás del texto que se está leyendo */
+      if (zonaTexto && x > zonaTexto.x - 30 && x < zonaTexto.x + zonaTexto.w + 30 && y > zonaTexto.y - 20 && y < zonaTexto.y + zonaTexto.h + 20) {
+        a *= movil ? 0.18 : 0.28;
+      }
+
+      if (q.sobrevive) {
+        var e = conv;
+        x = q.x + (q.tx - q.x) * e;
+        y = q.y + (q.ty - q.y) * e;
+        a = a + (0.9 - a) * e;
+        a *= 1 - cubre * 0.92;
+      } else {
+        /* el ruido no desaparece: baja a un residuo tranquilo */
+        a *= 1 - conv * 0.8;
+      }
+      if (a < 0.015) continue;
+      ctx.globalAlpha = a;
+      ctx.drawImage(q.g.cv, x, y - q.g.h / 2, q.g.w, q.g.h);
+    }
+    ctx.globalAlpha = 1;
+
+    /* líneas de la ficha a los nodos, y el pulso que las recorre */
+    if (ejec > 0 && !movil && cajaFicha && centrosNodos.length) {
+      var ox = movil ? cajaFicha.x + cajaFicha.w / 2 : cajaFicha.x + cajaFicha.w;
+      var oy = movil ? cajaFicha.y + cajaFicha.h : cajaFicha.y + cajaFicha.h / 2;
+      for (var k = 0; k < centrosNodos.length; k++) {
+        var loc = clamp((ejec - k * 0.06) / 0.76, 0, 1);
+        if (loc <= 0) continue;
+        var n = centrosNodos[k];
+        var mx = ox + (n.x - ox) * 0.5;
+        ctx.strokeStyle = 'rgba(201,212,223,0.32)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        var pasos = 40;
+        for (var s = 0; s <= pasos * loc; s++) {
+          var u = s / pasos;
+          var pt = bez(ox, oy, mx, oy, mx, n.y, n.x - 10, n.y, u);
+          if (s === 0) ctx.moveTo(pt[0], pt[1]); else ctx.lineTo(pt[0], pt[1]);
+        }
+        ctx.stroke();
+        if (loc >= 1) {
+          var ciclo = ((t * 0.42) + k * 0.19) % 1;
+          var pp = bez(ox, oy, mx, oy, mx, n.y, n.x - 10, n.y, ciclo);
+          ctx.fillStyle = '#52A0AC';
+          ctx.globalAlpha = 0.25;
+          ctx.beginPath(); ctx.arc(pp[0], pp[1], 6, 0, 6.283); ctx.fill();
+          ctx.globalAlpha = 1;
+          ctx.beginPath(); ctx.arc(pp[0], pp[1], 2.2, 0, 6.283); ctx.fill();
+        }
+      }
+      /* el regreso: de la medición a la ficha, punteado */
+      var vuelta = ss(0.88, 0.97, p);
+      if (vuelta > 0 && !movil) {
+        var m = centrosNodos[centrosNodos.length - 1];
+        ctx.setLineDash([3, 5]);
+        ctx.strokeStyle = 'rgba(201,212,223,' + (0.38 * vuelta).toFixed(3) + ')';
+        ctx.beginPath();
+        var bx = cajaFicha.x + cajaFicha.w * 0.5, by = cajaFicha.y + cajaFicha.h + 8;
+        var steps = 50;
+        for (var z = 0; z <= steps * vuelta; z++) {
+          var uu = z / steps;
+          var q2 = bez(m.x - 10, m.y + 6, m.x - 40, m.y + 90, bx + 40, by + 90, bx, by, uu);
+          if (z === 0) ctx.moveTo(q2[0], q2[1]); else ctx.lineTo(q2[0], q2[1]);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+  }
+
+  function bez(x0, y0, x1, y1, x2, y2, x3, y3, u) {
+    var v = 1 - u;
+    return [
+      v * v * v * x0 + 3 * v * v * u * x1 + 3 * v * u * u * x2 + u * u * u * x3,
+      v * v * v * y0 + 3 * v * v * u * y1 + 3 * v * u * u * y2 + u * u * u * y3
+    ];
+  }
+
+  /* ---------- ciclo ---------- */
+  var corriendo = false, visible = true;
+  function bucle(now) {
+    if (!visible) { corriendo = false; return; }
+    dibujar(now);
+    requestAnimationFrame(bucle);
+  }
+  function arrancar() { if (!corriendo && visible) { corriendo = true; requestAnimationFrame(bucle); } }
+
+  stage.addEventListener('pointermove', function (e) {
+    var s = stage.getBoundingClientRect();
+    mouse.x = e.clientX - s.left; mouse.y = e.clientY - s.top;
+  });
+  stage.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
+
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(resize, 120); });
+
+  function iniciar() {
+    resize();
+    if (reduce) {
+      /* un solo cuadro: campo tenue, sin convergencia */
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach(function (q) {
+        if (q.sobrevive) return;
+        ctx.globalAlpha = q.a * 0.5;
+        ctx.drawImage(q.g.cv, q.x, q.y - q.g.h / 2, q.g.w, q.g.h);
+      });
+      ctx.globalAlpha = 1;
+      return;
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        if (visible) arrancar();
+      }).observe(raiz);
+    }
+    arrancar();
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.load(FUENTE).then(function () { return document.fonts.load(FUENTE_SRC); }).then(iniciar, iniciar);
+  } else iniciar();
+})();
+</script>

@@ -97,7 +97,7 @@ nav:not(.footer-links).imb-elevated{border-bottom-color:var(--white-12)!importan
 
 /* ---------- FOOTER (editorial + ghost wordmark) ---------- */
 footer{position:relative;background:var(--navy-deep)!important;border-top:1px solid var(--white-06)!important;padding:88px 0 40px!important;overflow:hidden}
-footer::before{content:"Imberion";position:absolute;left:50%;bottom:-2.6vw;transform:translateX(-50%);font-family:var(--font-serif);font-weight:300;font-size:23vw;line-height:.78;color:var(--white-06);letter-spacing:-.03em;pointer-events:none;white-space:nowrap;-webkit-user-select:none;user-select:none}
+footer::before{display:none;content:"Imberion";position:absolute;left:50%;bottom:-2.6vw;transform:translateX(-50%);font-family:var(--font-serif);font-weight:300;font-size:23vw;line-height:.78;color:var(--white-06);letter-spacing:-.03em;pointer-events:none;white-space:nowrap;-webkit-user-select:none;user-select:none}
 footer .container{position:relative;z-index:1}
 .footer-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding-bottom:42px;border-bottom:1px solid var(--white-12)}
 .footer-inner img{height:32px!important}

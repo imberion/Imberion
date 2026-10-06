@@ -1,0 +1,141 @@
+{
+  "es": {
+    "ap_marca": "Revenue Growth Management · Latinoamérica",
+    "ap_h1": "Hacemos crecer ventas y margen con la información que la empresa ya genera.",
+    "ap_lead": "Imberion trabaja con fabricantes, distribuidores y retailers de nueve industrias en Latinoamérica. Tomamos los datos dispersos de la operación comercial, los convertimos en decisiones de precio, promoción, portafolio y canal, y acompañamos al equipo hasta que esas decisiones se ejecutan y se miden.",
+    "ap_btn1": "Agendar llamada de 30 min",
+    "ap_btn2": "Cómo trabajamos",
+    "ap_recorrido": ["Datos", "Decisión", "Valor"],
+    "ap_pasos": [
+      {
+        "num": "01",
+        "etiqueta": "Datos",
+        "h": "La información ya existe y está repartida.",
+        "p": "Tickets del punto de venta, listas de precios en el ERP, pedidos por WhatsApp, reportes de visita, precios de la competencia y lo que se conversa en el piso de venta. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide el precio del mes."
+      },
+      {
+        "num": "02",
+        "etiqueta": "Decisión",
+        "h": "La ordenamos alrededor de una decisión.",
+        "p": "Homologamos las fuentes y corremos los modelos de elasticidad, mezcla y valor percibido. La IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Lo que sale es una decisión con su trade-off a la vista: qué precio, en qué canal, para qué cliente y desde cuándo."
+      },
+      {
+        "num": "03",
+        "etiqueta": "Valor",
+        "h": "Y la acompañamos hasta que se ve en el resultado.",
+        "p": "La decisión baja a la lista de precios, al anaquel, a la ruta del asesor y al guion de venta. Estamos con el equipo mientras se ejecuta, medimos contra la línea base, y la siguiente decisión parte de lo que pasó."
+      }
+    ],
+    "ap_decision": {
+      "folio": "Decisión 014",
+      "titulo": "Lista de precios, canal mayoreo",
+      "filas": [
+        ["Alcance", "42 SKU de alta rotación"],
+        ["Región", "Bajío y Occidente"],
+        ["Movimiento", "+3.5% sobre precio de lista"],
+        ["Efecto estimado", "−1.1% vol. · +2.4 pts margen"],
+        ["Vigencia", "1 nov – 31 ene"],
+        ["Autoriza", "Dirección comercial"]
+      ],
+      "pie": "Ejemplo ilustrativo con datos sintéticos."
+    },
+    "ap_nodos": [
+      ["Lista de precios", "42 SKU actualizados en el ERP"],
+      ["Anaquel", "Precio y exhibición verificados en tienda"],
+      ["Ruta del asesor", "Visitas ordenadas por oportunidad"],
+      ["Guion de venta", "Argumento por SKU y por objeción"],
+      ["Medición", "Resultado contra la línea base"]
+    ],
+    "ap_fuentes": ["POS", "ERP", "CRM", "WhatsApp", "e-commerce", "lealtad", "audio de piso", "anaquel", "competencia", "visitas", "pedidos", "listas de precio"],
+
+    "pal_num": "01",
+    "pal_label": "Qué decidimos",
+    "pal_h2": "Seis decisiones comerciales mueven las ventas y el margen.",
+    "pal_lead": "Revenue Growth Management es la disciplina que toma estas decisiones con datos y las sostiene en la operación. Cada una responde una pregunta concreta y termina en un entregable que el equipo puede ejecutar.",
+    "pal_cols": ["Palanca", "La pregunta", "Cómo queda decidido"],
+    "pal_filas": [
+      ["Precio", "¿Qué precio captura el valor real por canal, presentación y cliente?", "Lista de precios por canal con reglas de posicionamiento contra la competencia.", "pricing-y-surtido"],
+      ["Promoción", "¿Qué inversión promocional rinde y cuál se fuga?", "Calendario promocional con el retorno estimado de cada evento.", "promociones"],
+      ["Portafolio", "¿Qué parte del portafolio crea crecimiento y cuál solo ocupa espacio?", "Surtido por formato de tienda, con los SKU que salen y los que entran.", "whitespace-compass"],
+      ["Canal y mercado", "¿En qué mercados y canales está el crecimiento que sí se puede ganar?", "Prioridad de regiones, cadenas y clientes para el siguiente ciclo.", "canales-y-tiendas"],
+      ["Cliente", "¿Quién está detrás de cada ticket y cómo se le hace volver?", "Segmentos de cliente con su oferta y su frecuencia de contacto.", "clientes-y-lealtad"],
+      ["Política comercial", "¿Qué descuentos y condiciones se otorgan, a quién y a cambio de qué?", "Matriz de descuentos con contraprestación y límites de autorización.", "politica-comercial"]
+    ],
+    "estrat_texto": "Cuando la pregunta es anterior (en qué mercado competir, qué categoría abrir, si conviene entrar), el trabajo es de Estrategia de Crecimiento.",
+    "estrat_link": "Estrategia de Crecimiento",
+
+    "como_num": "02",
+    "como_label": "Cómo trabajamos",
+    "como_h2": "De los datos a la decisión, y de la decisión a la operación.",
+    "como_pasos": [
+      {
+        "num": "01",
+        "nombre": "Información",
+        "h": "Construimos la base que falta.",
+        "p": "Integramos punto de venta, ERP, CRM, e-commerce y lealtad, y capturamos lo que ningún sistema registra. Market Signal lee precios y presencia de la competencia. Floor Signal lee el piso de venta con video y audio: dónde se detiene el comprador, qué pregunta y qué le hace soltar el producto.",
+        "herramientas": [["Market Signal", "market-signal"], ["Floor Signal", "floor-signal"], ["Integración de datos", "integracion-de-datos"]]
+      },
+      {
+        "num": "02",
+        "nombre": "Análisis",
+        "h": "Corremos los modelos y respondemos por el análisis.",
+        "p": "Elasticidad, atributos de valor, espacios en blanco del portafolio y simulación de escenarios. El cliente recibe decisiones listas para discutirse en su junta comercial, con el trade-off de cada una. Los modelos los corre Imberion, así que el equipo del cliente no tiene que aprender un sistema nuevo.",
+        "herramientas": [["Value-Attribute Compass", "value-attribute-compass"], ["Price Value Compass", "price-value-compass"], ["Whitespace Compass", "whitespace-compass"], ["Growth Bridge", "growth-bridge-analysis"], ["Virtual Buyer Personas", "virtual-buyer-personas"], ["Scenario Engine", "scenario-engine"]]
+      },
+      {
+        "num": "03",
+        "nombre": "Ejecución",
+        "h": "Nos quedamos hasta capturar el valor.",
+        "p": "En dos modos, según dónde deba vivir el trabajo. Como operador, Imberion corre el servicio: Concierge atiende pedidos y clientes por WhatsApp y Training Signal entrena a la fuerza de ventas con el argumento de cada producto. Como habilitador, instalamos en el equipo del cliente las cadencias, los tableros, la compensación variable y el gobierno que sostienen las decisiones.",
+        "herramientas": [["Concierge", "concierge"], ["Training Signal", "training-signal"], ["Account Twin", "account-twin"], ["Habilitadores", "habilitadores"]]
+      }
+    ],
+
+    "ia_num": "03",
+    "ia_label": "Inteligencia artificial",
+    "ia_h2": "Orquestamos modelos de IA, y cada decisión la firma una persona.",
+    "ia_lead": "Usamos modelos de lenguaje, visión y audio donde multiplican la capacidad del equipo: leer miles de conversaciones, precios y tickets que nadie alcanza a revisar a mano. Cada salida pasa por una persona antes de llegar al cliente o a la operación.",
+    "ia_cols": ["Lo que hace la IA", "Lo que decide una persona"],
+    "ia_filas": [
+      ["Transcribe y clasifica las conversaciones de venta grabadas en tienda.", "Qué argumento entra al guion de venta."],
+      ["Lee precios y presencia de la competencia, en línea y en anaquel.", "La regla de posicionamiento de precio."],
+      ["Simula volumen, ingreso y margen de cada escenario de precio.", "Qué escenario se aplica y por cuánto tiempo."],
+      ["Atiende pedidos y dudas por WhatsApp con el catálogo y las condiciones del cliente.", "Las condiciones, las excepciones y cuándo pasa a un humano."],
+      ["Detecta a los clientes que bajaron su frecuencia de compra.", "A quién se visita y con qué oferta."]
+    ],
+
+    "motor_num": "04",
+    "motor_label": "El motor, en vivo",
+    "motor_h2": "Un escenario de precio, recalculado en el momento.",
+    "motor_lead": "Es el mismo cálculo del motor de Imberion, aquí sobre datos sintéticos. Al mover el precio de un SKU, el motor lee su curva de demanda estimada y devuelve volumen, ingreso, margen y retorno sobre costo contra el último ciclo observado.",
+
+    "op_num": "05",
+    "op_label": "En la operación",
+    "op_h2": "El trabajo pasa donde se vende.",
+    "op_lead": "Las decisiones se discuten en la junta comercial del cliente, con sus números. Después vamos a la tienda, a la ruta y al centro de llamadas a ver que se ejecuten como se decidieron.",
+    "op_items": [
+      ["retail", "En tienda", "Precio, exhibición y conversación de venta, verificados en el piso."],
+      ["servicios-b2b", "En la junta comercial", "Cada decisión llega con su trade-off y con el nombre de quien la autoriza."],
+      ["cpg", "En la ruta", "La visita del asesor se ordena por oportunidad, y el resultado regresa al modelo."]
+    ],
+    "op_arranque_h": "Se arranca con lo que hay.",
+    "op_arranque_p": "Hojas de cálculo, sistemas que no se hablan y datos incompletos son el punto de partida de la mayoría de los proyectos. La base se construye mientras se toman las primeras decisiones.",
+
+    "ind_num": "06",
+    "ind_label": "Para quién",
+    "ind_h2": "Empresas con muchos SKU, canales, clientes o puntos de venta.",
+    "ind_lead": "Fabricantes, distribuidores y retailers donde la decisión comercial depende de información que llega fragmentada. Tenemos marco de trabajo propio para nueve industrias.",
+
+    "eq_num": "07",
+    "eq_label": "Equipo",
+    "eq_h2": "Un equipo con mandato directo en 14 países.",
+    "eq_p": "Venimos de estrategia, pricing, analítica avanzada e inteligencia artificial. Hemos llevado proyectos de precio, promoción, portafolio y transformación comercial, la mayoría en México, Centroamérica y el Caribe.",
+    "persp_label": "Publicado en LinkedIn",
+
+    "cta_h2": "El primer paso es un Checkup comercial.",
+    "cta_p": "Un diagnóstico de la operación comercial (estrategia, precios, gobierno y forma de trabajar) que termina en una lista de iniciativas, cada una con su caso de negocio, y un plan para ejecutarlas.",
+    "cta_btn1": "Agendar llamada de 30 min",
+    "cta_btn2": "Ver el Checkup",
+    "cta_mail": "hola@imberion.com"
+  }
+}
