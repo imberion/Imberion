@@ -332,6 +332,7 @@ a.pal-fila:hover .pal-entregable i { transform: translateX(4px); color: var(--ti
 .chk-doc.is-in .chk-nivel[data-nivel="Bajo"] i::after, .chk-doc.is-in .chk-nivel[data-nivel="Baja"] i::after { transform: scaleX(.33); }
 .chk-doc.is-in .chk-nivel[data-nivel="Medio"] i::after, .chk-doc.is-in .chk-nivel[data-nivel="Media"] i::after { transform: scaleX(.66); }
 .chk-doc.is-in .chk-nivel[data-nivel="Alto"] i::after, .chk-doc.is-in .chk-nivel[data-nivel="Alta"] i::after { transform: scaleX(1); }
+.chk-horizonte { font-size: 12px; color: var(--tinta-72); }
 .chk-doc-pie { font-size: 10.5px; color: var(--tinta-55); margin: 12px 0 0; }
 @media (max-width: 919px) {
   .chk { grid-template-columns: 1fr; }

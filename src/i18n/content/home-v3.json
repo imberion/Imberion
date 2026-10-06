@@ -176,8 +176,8 @@
     ],
     "tray_num": "02",
     "tray_label": "Trayectoria",
-    "tray_h2": "Resultados de proyectos que dirigió el equipo antes de fundar Imberion.",
-    "tray_lead": "Más de 40 proyectos en 14 países, la mayoría en México, Centroamérica y el Caribe. Tres ejemplos, sin nombre de cliente.",
+    "tray_h2": "Lo que estas palancas han movido en empresas de la región.",
+    "tray_lead": "Tres proyectos que dirigió el equipo antes de fundar Imberion, sin nombre de cliente. En total son más de 40 en 14 países.",
     "tray_casos": [
       {
         "cifra": "USD 3 M",
@@ -280,54 +280,55 @@
     "ind_ficha_label": "Decisión típica",
     "chk_num": "06",
     "chk_label": "El primer paso",
-    "chk_h2": "Imberion Checkup: un diagnóstico que se puede aprobar.",
-    "chk_p": "Radiografía de la operación comercial que termina en una lista ordenada de iniciativas, cada una con su costo, su retorno estimado y su dificultad. Un comité la puede aprobar en una sesión.",
+    "chk_h2": "Imberion Checkup: un diagnóstico de dos semanas que se puede aprobar.",
+    "chk_p": "En su versión rápida toma dos semanas. El equipo directivo responde un cuestionario enfocado en los problemas que ya identificó, e Imberion lo convierte en una lista ordenada de iniciativas que un comité puede aprobar en una sesión.",
     "chk_entregables_label": "Entregables",
     "chk_entregables": [
-      "Radiografía de estrategia, embudo, precios, gobierno y formas de trabajo",
-      "Matriz de iniciativas con caso de negocio por iniciativa",
-      "Medición de la alineación del liderazgo",
-      "Manual de ejecución para arrancar la primera iniciativa"
+      "Puntaje de madurez por dimensión comercial",
+      "Hallazgos con caso de negocio cuantificado",
+      "Matriz de iniciativas por impacto y esfuerzo",
+      "Hoja de ruta de 18 a 24 meses"
     ],
     "chk_arranque": "Se arranca con lo que hay: hojas de cálculo, sistemas que no se hablan y datos incompletos son el punto de partida de la mayoría de los proyectos.",
     "chk_matriz": {
       "titulo": "Matriz de iniciativas",
       "cols": [
         "Iniciativa",
-        "Costo",
-        "Retorno",
-        "Dificultad"
+        "Impacto",
+        "Esfuerzo",
+        "Horizonte"
       ],
       "filas": [
         [
           "Política de descuentos por cliente",
-          "Bajo",
           "Alto",
-          "Media"
+          "Bajo",
+          "0–6 m"
         ],
         [
           "Precio por canal y presentación",
-          "Medio",
           "Alto",
-          "Media"
+          "Medio",
+          "0–6 m"
         ],
         [
           "Calendario promocional",
-          "Bajo",
           "Medio",
-          "Baja"
+          "Bajo",
+          "6–12 m"
         ],
         [
           "Surtido por formato",
           "Medio",
-          "Medio",
-          "Alta"
+          "Alto",
+          "12–24 m"
         ]
       ],
       "pie": "Ejemplo ilustrativo."
     },
     "cta_btn1": "Agendar llamada de 30 min",
     "cta_btn2": "Ver el Checkup",
-    "cta_mail": "hola@imberion.com"
+    "cta_mail": "hola@imberion.com",
+    "chk_cliente": "Del lado del cliente: una conversación inicial y las respuestas del equipo directivo al cuestionario."
   }
 }
