@@ -1,40 +1,33 @@
 ---
 // Home v3 (prototipo, solo español). Reescritura completa del home sobre la
-// misma marca: Cormorant y DM Sans, navy, papel frío y petróleo escaso. Agrega
-// DM Mono para la capa de datos (cifras, folios, etiquetas de sección).
+// misma marca: Cormorant y DM Sans, navy, papel frío y petróleo escaso. DM Mono
+// para la capa de datos (cifras, folios, etiquetas de sección).
 //
-// Orden del argumento: qué hace Imberion y para quién (apertura), qué decide
-// (palancas), cómo trabaja (información, análisis, ejecución), qué hace la IA y
-// qué decide una persona, el motor corriendo, el trabajo en la operación, para
-// quién, equipo, primer paso.
+// Segunda versión (2026-10-06), después de la revisión a ciegas de cuatro
+// lectores (director comercial y CFO, en Claude y en Sol). Se quitaron las dos
+// secciones que repetían el arco de la apertura ("Cómo trabajamos" con sus
+// trece nombres de producto, "En la operación" con fotos), el simulador y el
+// carril de nueve industrias. Entraron lo que los cuatro pidieron: resultados
+// (trayectoria anónima del equipo), qué se contrata y un Checkup concreto.
+//
+// El elemento visual que se repite es la ficha: la de la apertura, una por
+// industria y la matriz del Checkup. Enseña el entregable en lugar de una foto.
 //
 // Conserva los id con enlaces vivos: #how-it-works, #who, #sectors, #estrategia
 // y #perspectivas.
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/index';
 import { ruta } from '../lib/rutas';
 import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
-import { contenido } from '../lib/meta';
 import Apertura from './home/Apertura.astro';
-import MotorEscenarios from './home/MotorEscenarios.astro';
 import v3 from '../i18n/content/home-v3.json';
-import comun from '../i18n/content/common.json';
-import { INDUSTRIAS, titulo as tituloIndustria } from '../lib/industrias';
 
 import '../styles/home-v3.css';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const c = (v3 as any).es;
-const viejo = contenido('home', locale);
-
-const fotos = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', { import: 'default', eager: true });
-const foto = (slug: string) => fotos[`../assets/industrias/${slug}.jpg`];
-const lineasSector = viejo.sect_industrias as Record<string, string>;
-const altsSector = comun[locale].industrias_foto_alt as Record<string, string>;
 const ficha = (slug: string) => ruta(locale, `catalogo/${slug}`);
-const persp = (viejo.persp_cards as string[][]).slice(0, 3);
+const n2 = (i: number) => String(i + 1).padStart(2, '0');
 ---
 
 <div class="v3">
@@ -42,6 +35,7 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
 
   <!-- 01 Qué decidimos -->
   <section class="v3-sec v3-papel" id="que-decidimos">
+    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
       <header class="v3-head">
         <p class="v3-label mono"><span>{c.pal_num}</span>{c.pal_label}</p>
@@ -56,51 +50,42 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
         </div>
         {c.pal_filas.map((f: string[], i: number) => (
           <a class="pal-fila" role="row" href={ficha(f[3])} data-v3-in>
-            <span class="pal-n mono" role="cell">{String(i + 1).padStart(2, '0')}</span>
+            <span class="pal-n mono" role="cell">{n2(i)}</span>
             <span class="pal-palanca" role="cell">{f[0]}</span>
             <span class="pal-pregunta" role="cell">{f[1]}</span>
             <span class="pal-entregable" role="cell">{f[2]}<i aria-hidden="true">→</i></span>
           </a>
         ))}
       </div>
-
-      <p class="pal-estrat" id="estrategia">
-        {c.estrat_texto} <a href={ficha('market-sizing-y-right-to-win')}>{c.estrat_link} →</a>
-      </p>
     </div>
   </section>
 
-  <!-- 02 Cómo trabajamos: columna fija con el riel, pasos que corren -->
-  <section class="v3-sec v3-blanco" id="how-it-works">
-    <div class="container como">
-      <div class="como-fijo">
-        <p class="v3-label mono"><span>{c.como_num}</span>{c.como_label}</p>
-        <h2 class="v3-h2">{c.como_h2}</h2>
-        <ol class="como-riel" aria-hidden="true">
-          {c.como_pasos.map((p: any, i: number) => (
-            <li data-como-riel={i}><span class="mono">{p.num}</span>{p.nombre}</li>
-          ))}
-        </ol>
-      </div>
-      <div class="como-pasos">
-        {c.como_pasos.map((p: any, i: number) => (
-          <article class="como-paso" data-como-paso={i}>
-            <p class="como-paso-n mono">{p.num} · {p.nombre}</p>
-            <h3 class="como-paso-h">{p.h}</h3>
-            <p class="como-paso-p">{p.p}</p>
-            <ul class="como-tools">
-              {p.herramientas.map((h: string[]) => (
-                <li><a href={ficha(h[1])}><span>{h[0]}</span><i aria-hidden="true">→</i></a></li>
-              ))}
-            </ul>
+  <!-- 02 Trayectoria: las cifras cuentan hacia su valor al entrar -->
+  <section class="v3-sec v3-navy" id="trayectoria">
+    <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
+    <div class="container">
+      <header class="v3-head v3-head--ancho">
+        <p class="v3-label mono"><span>{c.tray_num}</span>{c.tray_label}</p>
+        <h2 class="v3-h2">{c.tray_h2}</h2>
+        <p class="v3-lead">{c.tray_lead}</p>
+      </header>
+      <div class="tray">
+        {c.tray_casos.map((k: any, i: number) => (
+          <article class="tray-caso" data-v3-in style={`--i:${i}`}>
+            <p class="tray-ctx mono">{k.ctx}</p>
+            <p class="tray-cifra" data-cuenta={k.cifra}>{k.cifra}</p>
+            <p class="tray-unidad">{k.unidad}</p>
+            <p class="tray-p">{k.p}</p>
+            <p class="tray-palanca mono">Palanca · {k.palanca}</p>
           </article>
         ))}
       </div>
+      <p class="tray-pie mono">{c.tray_pie}</p>
     </div>
   </section>
 
   <!-- 03 IA -->
-  <section class="v3-sec v3-navy" id="ia">
+  <section class="v3-sec v3-papel" id="ia">
     <div class="container">
       <header class="v3-head v3-head--ancho">
         <p class="v3-label mono"><span>{c.ia_num}</span>{c.ia_label}</p>
@@ -114,7 +99,7 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
         </div>
         {c.ia_filas.map((f: string[], i: number) => (
           <div class="ia-fila" role="row" data-v3-in style={`--i:${i}`}>
-            <span class="ia-maquina" role="cell"><b class="mono">{String(i + 1).padStart(2, '0')}</b>{f[0]}</span>
+            <span class="ia-maquina" role="cell"><b class="mono">{n2(i)}</b>{f[0]}</span>
             <span class="ia-persona" role="cell">{f[1]}</span>
           </div>
         ))}
@@ -122,114 +107,96 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
     </div>
   </section>
 
-  <!-- 04 Motor: el bloque trae su propia sección (id="motor") -->
-  <div class="v3-motor">
-    <MotorEscenarios
-      locale={locale}
-      contenido={{
-        eyebrow: `${c.motor_num}  ${c.motor_label}`, h2: c.motor_h2, lead: c.motor_lead,
-        escenario_label: viejo.motor_escenario_label,
-        precio_label: viejo.motor_precio_label,
-        precio_aria: viejo.motor_precio_aria,
-        referencia_label: viejo.motor_referencia_label,
-        referencia_pie: viejo.motor_referencia_pie,
-        delta_label: viejo.motor_delta_label,
-        skus: viejo.motor_skus,
-        kpis: viejo.motor_kpis,
-        extrapolacion: viejo.motor_extrapolacion,
-        declaracion: viejo.motor_declaracion,
-      }}
-    />
-  </div>
-
-  <!-- 05 En la operación -->
-  <section class="v3-sec v3-navy v3-op" id="operacion">
+  <!-- 04 Qué se contrata -->
+  <section class="v3-sec v3-blanco" id="how-it-works">
     <div class="container">
       <header class="v3-head">
-        <p class="v3-label mono"><span>{c.op_num}</span>{c.op_label}</p>
-        <h2 class="v3-h2">{c.op_h2}</h2>
-        <p class="v3-lead">{c.op_lead}</p>
+        <p class="v3-label mono"><span>{c.con_num}</span>{c.con_label}</p>
+        <h2 class="v3-h2">{c.con_h2}</h2>
       </header>
-      <div class="op-grid">
-        {c.op_items.map((it: string[], i: number) => (
-          <figure class="op-item" data-v3-in style={`--i:${i}`}>
-            <div class="op-foto" data-parallax>
-              <Image src={foto(it[0])} alt={altsSector[it[0]] ?? ''} widths={[480, 760]} sizes="(max-width: 820px) 100vw, 33vw" loading="lazy" />
-            </div>
-            <figcaption>
-              <span class="op-t">{it[1]}</span>
-              <span class="op-d">{it[2]}</span>
-            </figcaption>
-          </figure>
+      <div class="con">
+        {c.con_modos.map((m: any, i: number) => (
+          <article class="con-modo" data-v3-in style={`--i:${i}`}>
+            <p class="con-n mono">Modo {String.fromCharCode(65 + i)}</p>
+            <h3 class="con-t">{m.t}</h3>
+            <p class="con-p">{m.p}</p>
+            <p class="con-recibe-l mono">El cliente recibe</p>
+            <ul class="con-recibe">
+              {m.recibe.map((r: string) => <li>{r}</li>)}
+            </ul>
+            <p class="con-conviene">{m.conviene}</p>
+          </article>
         ))}
       </div>
-      <div class="op-arranque">
-        <h3>{c.op_arranque_h}</h3>
-        <p>{c.op_arranque_p}</p>
-      </div>
+      <a class="con-catalogo mono" href={ruta(locale, 'catalogo')}>{c.con_catalogo} →</a>
     </div>
   </section>
 
-  <!-- 06 Para quién: carril horizontal amarrado al scroll -->
-  <section class="v3-ind" id="who" data-ind>
+  <!-- 05 Para quién -->
+  <section class="v3-sec v3-papel" id="who">
     <span id="sectors" class="v3-ancla" aria-hidden="true"></span>
-    <div class="ind-stage" data-ind-stage>
-      <div class="container ind-head">
+    <div class="container">
+      <header class="v3-head">
         <p class="v3-label mono"><span>{c.ind_num}</span>{c.ind_label}</p>
         <h2 class="v3-h2">{c.ind_h2}</h2>
-        <p class="v3-lead">{c.ind_lead}</p>
-      </div>
-      <div class="ind-carril" data-ind-carril>
-        {INDUSTRIAS.map((ind, i) => (
-          <a class="ind-card" href={ruta(locale, `industrias/${ind.slug}`)}>
-            <div class="ind-foto">
-              <Image src={foto(ind.slug)} alt={altsSector[ind.slug] ?? ''} widths={[420, 640]} sizes="(max-width: 820px) 78vw, 30vw" loading="lazy" />
+      </header>
+      <div class="ind4">
+        {c.ind_items.map((it: any, i: number) => (
+          <a class="ind4-item" href={ruta(locale, `industrias/${it.slug}`)} data-v3-in style={`--i:${i}`}>
+            <div class="ind4-texto">
+              <span class="ind4-n mono">{n2(i)}</span>
+              <h3 class="ind4-t">{it.t}</h3>
+              <p class="ind4-sub mono">{it.sub}</p>
+              <p class="ind4-p">{it.p}</p>
             </div>
-            <span class="ind-n mono">{String(i + 1).padStart(2, '0')}</span>
-            <span class="ind-t">{tituloIndustria(ind, locale)}</span>
-            <span class="ind-d">{lineasSector[ind.slug]}</span>
+            <div class="ind4-ficha">
+              <p class="ind4-ficha-l mono"><span>{c.ind_ficha_label}</span><i aria-hidden="true">→</i></p>
+              <p class="ind4-ficha-t">{it.ficha[0]}</p>
+              <p class="ind4-ficha-d mono">{it.ficha[1]}</p>
+              <p class="ind4-ficha-d mono">{it.ficha[2]}</p>
+            </div>
           </a>
         ))}
       </div>
-      <div class="container ind-pie mono" aria-hidden="true">
-        <span class="ind-barra"><i data-ind-barra></i></span>
-        <span>{INDUSTRIAS.length} industrias</span>
-      </div>
     </div>
   </section>
 
-  <!-- 07 Equipo + perspectivas -->
-  <section class="v3-sec v3-blanco" id="equipo">
-    <div class="container eq">
-      <div>
-        <p class="v3-label mono"><span>{c.eq_num}</span>{c.eq_label}</p>
-        <h2 class="v3-h2" set:html={c.eq_h2.replace(/(\d+)/g, '<span class="num-sans">$1</span>')} />
-      </div>
-      <div>
-        <p class="eq-p">{c.eq_p}</p>
-        <div class="persp" id="perspectivas">
-          <p class="persp-label mono">{c.persp_label}</p>
-          <ul>
-            {persp.map((p) => (
-              <li><a href={p[4]} target="_blank" rel="noopener"><span class="persp-tema mono">{p[0]}</span><span class="persp-t">{p[1]}</span><i aria-hidden="true">↗</i></a></li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Primer paso -->
+  <!-- 06 Primer paso: Checkup y cierre -->
   <section class="v3-cta" id="checkup">
     <canvas class="v3-cta-canvas" data-cta-canvas aria-hidden="true"></canvas>
-    <div class="container v3-cta-in">
-      <h2 class="v3-h2">{c.cta_h2}</h2>
-      <p class="v3-lead">{c.cta_p}</p>
-      <div class="v3-cta-btns">
-        <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.cta_btn1}</a>
-        <a class="btn btn-outline" href={ficha('checkup')}>{c.cta_btn2}</a>
-        <a class="v3-cta-mail mono" href={CONTACTO_MAIL}>{c.cta_mail}</a>
+    <div class="container chk">
+      <div class="chk-texto">
+        <p class="v3-label mono"><span>{c.chk_num}</span>{c.chk_label}</p>
+        <h2 class="v3-h2">{c.chk_h2}</h2>
+        <p class="v3-lead">{c.chk_p}</p>
+        <p class="chk-l mono">{c.chk_entregables_label}</p>
+        <ol class="chk-lista">
+          {c.chk_entregables.map((e: string, i: number) => <li><span class="mono">{n2(i)}</span>{e}</li>)}
+        </ol>
+        <p class="chk-arranque">{c.chk_arranque}</p>
+        <div class="v3-cta-btns">
+          <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.cta_btn1}</a>
+          <a class="btn btn-outline" href={ficha('checkup')}>{c.cta_btn2}</a>
+          <a class="v3-cta-mail mono" href={CONTACTO_MAIL}>{c.cta_mail}</a>
+        </div>
       </div>
+      <figure class="chk-doc" data-v3-in aria-label={c.chk_matriz.titulo}>
+        <header class="chk-doc-head mono"><span>Imberion Checkup</span><span>{c.chk_matriz.titulo}</span></header>
+        <div class="chk-doc-tabla" role="table">
+          <div class="chk-doc-fila chk-doc-fila--head mono" role="row">
+            <span role="columnheader">#</span>
+            {c.chk_matriz.cols.map((h: string) => <span role="columnheader">{h}</span>)}
+          </div>
+          {c.chk_matriz.filas.map((f: string[], i: number) => (
+            <div class="chk-doc-fila" role="row" style={`--i:${i}`}>
+              <span class="mono" role="cell">{n2(i)}</span>
+              <span role="cell">{f[0]}</span>
+              {f.slice(1).map((v) => <span class="chk-nivel" data-nivel={v} role="cell"><i></i>{v}</span>)}
+            </div>
+          ))}
+        </div>
+        <figcaption class="chk-doc-pie mono">{c.chk_matriz.pie}</figcaption>
+      </figure>
     </div>
   </section>
 </div>
@@ -239,74 +206,44 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
-  /* Entrada por fila: una clase cuando el elemento cruza el 88% del viewport. */
+  /* Las cifras de trayectoria cuentan hasta su valor cuando entran. */
+  function contar(el) {
+    var final = el.getAttribute('data-cuenta');
+    if (reduce || !final) return;
+    var nums = final.match(/[\d.]+/g);
+    if (!nums) return;
+    var t0 = performance.now(), dur = 1400;
+    function paso(now) {
+      var k = clamp((now - t0) / dur, 0, 1);
+      var e = 1 - Math.pow(1 - k, 3);
+      var i = 0;
+      el.textContent = final.replace(/[\d.]+/g, function (m) {
+        var v = parseFloat(nums[i++]);
+        var dec = (m.split('.')[1] || '').length;
+        return (v * e).toFixed(dec);
+      });
+      if (k < 1) requestAnimationFrame(paso); else el.textContent = final;
+    }
+    requestAnimationFrame(paso);
+  }
+
   var ins = [].slice.call(document.querySelectorAll('[data-v3-in]'));
   if (reduce || !('IntersectionObserver' in window)) {
     ins.forEach(function (el) { el.classList.add('is-in'); });
   } else {
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        var cifra = e.target.querySelector('[data-cuenta]');
+        if (cifra) contar(cifra);
+        io.unobserve(e.target);
+      });
     }, { rootMargin: '0px 0px -12% 0px' });
     ins.forEach(function (el) { io.observe(el); });
   }
 
-  /* Cómo trabajamos: el paso más cercano al centro enciende su marca del riel. */
-  var pasos = [].slice.call(document.querySelectorAll('[data-como-paso]'));
-  var rieles = [].slice.call(document.querySelectorAll('[data-como-riel]'));
-
-  /* Para quién: el scroll vertical mueve el carril en horizontal. */
-  var ind = document.querySelector('[data-ind]');
-  var carril = document.querySelector('[data-ind-carril]');
-  var barraInd = document.querySelector('[data-ind-barra]');
-  var fijoInd = false, recorrido = 0;
-  function medirInd() {
-    if (!ind || !carril) return;
-    fijoInd = !reduce && window.innerWidth >= 820;
-    carril.style.transform = '';
-    recorrido = Math.max(0, carril.scrollWidth - window.innerWidth + 64);
-    ind.style.height = fijoInd ? (window.innerHeight + recorrido) + 'px' : '';
-    ind.classList.toggle('is-fijo', fijoInd);
-  }
-
-  var paralaje = [].slice.call(document.querySelectorAll('[data-parallax] img'));
-
-  var tick = false;
-  function frame() {
-    tick = false;
-    var vh = window.innerHeight;
-    if (pasos.length) {
-      var mejor = 0, dist = 1e9;
-      pasos.forEach(function (p, i) {
-        var b = p.getBoundingClientRect();
-        var d = Math.abs(b.top + b.height / 2 - vh / 2);
-        if (d < dist) { dist = d; mejor = i; }
-      });
-      rieles.forEach(function (r, i) { r.classList.toggle('is-on', i === mejor); });
-      pasos.forEach(function (p, i) { p.classList.toggle('is-on', i === mejor); });
-    }
-    if (fijoInd) {
-      var b = ind.getBoundingClientRect();
-      var total = ind.offsetHeight - vh;
-      var p = total > 0 ? clamp(-b.top / total, 0, 1) : 0;
-      carril.style.transform = 'translate3d(' + (-p * recorrido).toFixed(1) + 'px,0,0)';
-      if (barraInd) barraInd.style.transform = 'scaleX(' + p.toFixed(3) + ')';
-    }
-    if (!reduce) {
-      paralaje.forEach(function (img) {
-        var b = img.parentNode.getBoundingClientRect();
-        if (b.bottom < 0 || b.top > vh) return;
-        var k = (b.top + b.height / 2 - vh / 2) / vh;
-        img.style.transform = 'translate3d(0,' + (k * -36).toFixed(1) + 'px,0) scale(1.14)';
-      });
-    }
-  }
-  function sched() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
-  window.addEventListener('scroll', sched, { passive: true });
-  window.addEventListener('resize', function () { medirInd(); sched(); }, { passive: true });
-  window.addEventListener('load', function () { medirInd(); sched(); });
-  medirInd(); frame();
-
-  /* Cierre: el mismo campo de cifras, quieto y tenue, que converge al centro
+  /* Cierre: el campo de cifras, quieto y tenue, que converge hacia la matriz
      conforme el bloque entra. Sin petróleo. */
   var cv = document.querySelector('[data-cta-canvas]');
   if (cv && cv.getContext) {
@@ -321,8 +258,7 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
       pts = [];
       var n = W < 820 ? 140 : 320;
       for (var i = 0; i < n; i++) {
-        var ang = rnd(0, 6.283), rad = rnd(0.25, 0.75) * Math.max(W, H);
-        pts.push({ ang: ang, rad: rad, txt: Math.random() < 0.5 ? (rnd(0.5, 99).toFixed(1) + '%') : ('$' + Math.round(rnd(10, 990))), a: rnd(0.08, 0.3) });
+        pts.push({ ang: rnd(0, 6.283), rad: rnd(0.25, 0.75) * Math.max(W, H), txt: Math.random() < 0.5 ? (rnd(0.5, 99).toFixed(1) + '%') : ('$' + Math.round(rnd(10, 990))), a: rnd(0.06, 0.22) });
       }
     }
     function pinta() {
@@ -332,12 +268,15 @@ const persp = (viejo.persp_cards as string[][]).slice(0, 3);
       g.clearRect(0, 0, W, H);
       g.font = '400 11px "DM Mono", ui-monospace, monospace';
       g.fillStyle = '#C9D4DF';
-      var cx = W / 2, cy = H / 2;
+      var cx = W < 820 ? W / 2 : W * 0.72, cy = H / 2;
       for (var i = 0; i < pts.length; i++) {
         var q = pts[i];
         var rr = q.rad * (1 - p * 0.55);
-        g.globalAlpha = q.a * (1 - p * 0.5);
-        g.fillText(q.txt, cx + Math.cos(q.ang) * rr * 1.3, cy + Math.sin(q.ang) * rr * 0.7);
+        var x = cx + Math.cos(q.ang) * rr * 1.3;
+        /* del lado del texto el campo casi desaparece */
+        var lado = W < 820 ? 0.5 : (x < W * 0.5 ? 0.25 : 1);
+        g.globalAlpha = q.a * (1 - p * 0.5) * lado;
+        g.fillText(q.txt, x, cy + Math.sin(q.ang) * rr * 0.7);
       }
       g.globalAlpha = 1;
     }
