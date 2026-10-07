@@ -2,7 +2,7 @@
   "es": {
     "ap_marca": "Revenue Growth Management · Latinoamérica",
     "ap_h1": "Ayudamos a las empresas a crecer de manera rentable y sostenible.",
-    "ap_lead": "Juntamos los datos de la operación comercial y levantamos los que nadie registra: las conversaciones con clientes, lo que pasa en la tienda y los precios del mercado. Con eso armamos decisiones de precio, promoción, portafolio, canal y ejecución comercial, y acompañamos al equipo hasta que se ejecutan y se miden. Trabajamos con fabricantes, distribuidores y retailers en Latinoamérica.",
+    "ap_lead": "Juntamos los datos de la operación comercial y levantamos los que nadie registra: las conversaciones con clientes, lo que pasa en la tienda y los precios del mercado. Con eso armamos decisiones de precio, promoción, portafolio, canal y ejecución comercial para cada perfil de cliente, y acompañamos al equipo hasta que se ejecutan y se miden. Trabajamos con fabricantes, distribuidores y retailers en Latinoamérica.",
     "ap_btn1": "Agendar llamada de 30 min",
     "ap_btn2": "Cómo trabajamos",
     "ap_recorrido": [
@@ -31,7 +31,7 @@
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
-        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos que corren sobre esa base responden tres preguntas, y lo que sale es una decisión con su trade-off a la vista.",
+        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos responden tres preguntas para cada perfil de cliente, porque el mismo precio o la misma promoción rinden distinto según quién compra. Lo que sale es una decisión con su trade-off a la vista.",
         "grupos": [
           [
             "Cuánto vale",
@@ -140,7 +140,7 @@
     "ia_num": "03",
     "ia_label": "Inteligencia artificial",
     "ia_h2": "Orquestamos modelos de IA, y cada decisión la firma una persona.",
-    "ia_lead": "Usamos modelos de lenguaje, visión y audio donde multiplican la capacidad del equipo: leer miles de conversaciones, precios y tickets que nadie alcanza a revisar a mano. Cada salida pasa por una persona antes de llegar al cliente o a la operación.",
+    "ia_lead": "Usamos modelos de lenguaje, visión y audio donde multiplican la capacidad del equipo: leer miles de conversaciones, precios y tickets que nadie alcanza a revisar a mano. Cada salida pasa primero por reglas de negocio fijas que no dependen del modelo (margen mínimo, límite de descuento, condiciones pactadas con cada cliente), y lo que no las cumple no sale. Así, un precio o un descuento que la IA invente fuera de esos límites no llega a ninguna lista. Después la revisa una persona antes de llegar al cliente o a la operación.",
     "ia_cols": [
       "Lo que hace la IA",
       "Lo que decide una persona"
@@ -305,6 +305,6 @@
       "El de mayor impacto y menor esfuerzo es la primera iniciativa."
     ],
     "ind_ver": "Ver la industria",
-    "con_lead": "En los dos modos hay una persona en el circuito: un consultor de Imberion revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial."
+    "con_lead": "En los dos modos una persona revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial. Esa persona puede ser de Imberion o del equipo del cliente, y se puede empezar con Imberion operando y pasar la operación al equipo cuando esté listo."
   }
 }
