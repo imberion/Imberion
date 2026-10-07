@@ -121,10 +121,11 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
       <header class="v3-head">
         <h2 class="v3-h2">{c.ind_h2}</h2>
       </header>
-      <!-- Escena: la lista corre con el scroll y el panel de la derecha se queda
-           fijo; la industria más cercana al centro de la pantalla manda la foto,
-           el problema y la decisión típica. En celular cada industria trae su
-           propia foto y no hay panel. -->
+      <!-- Escena: la lista corre con el scroll y la foto de la derecha se queda
+           fija; la industria más cercana al centro de la pantalla se enciende y
+           manda la foto. Cada industria trae su problema, los indicadores que se
+           mueven y en qué se trabaja, tomados del marco de la industria en el
+           brain. En celular cada industria trae su propia foto y no hay panel. -->
       <div class="ind-esc" data-ind-esc>
         <ol class="ind-lista">
           {c.ind_items.map((it: any, i: number) => (
@@ -134,9 +135,17 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
               <p class="ind-paso-sub mono">{it.sub}</p>
               <div class="ind-paso-movil">
                 <Image src={fotos[it.foto]} alt={it.alt} widths={[480, 760]} sizes="100vw" loading="lazy" />
-                <p class="ind-panel-p">{it.p}</p>
-                <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)}>{c.ind_ver} →</a>
               </div>
+              <p class="ind-paso-p">{it.p}</p>
+              <p class="ind-l mono">{c.ind_mueve_label}</p>
+              <ul class="ind-mueve">
+                {it.mueve.map((m: string) => <li>{m}</li>)}
+              </ul>
+              <p class="ind-l mono">{c.ind_trab_label}</p>
+              <ul class="ind-trab">
+                {it.trabajamos.map((t: string) => <li>{t}</li>)}
+              </ul>
+              <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)}>{c.ind_ver} →</a>
             </li>
           ))}
         </ol>
@@ -144,15 +153,6 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
           {c.ind_items.map((it: any, i: number) => (
             <figure class="ind-capa" data-ind-capa={i}>
               <Image src={fotos[it.foto]} alt="" widths={[760, 1200]} sizes="50vw" loading="lazy" />
-              <figcaption class="ind-cap">
-                <p class="ind-panel-p">{it.p}</p>
-                <div class="ind-ficha">
-                  <p class="ind-ficha-l mono">{c.ind_ficha_label}</p>
-                  <p class="ind-ficha-t">{it.ficha[0]}</p>
-                  <p class="ind-ficha-d mono">{it.ficha[1]} · {it.ficha[2]}</p>
-                </div>
-                <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)} tabindex="-1">{c.ind_ver} →</a>
-              </figcaption>
             </figure>
           ))}
         </div>

@@ -62,6 +62,11 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
 - "Qué decidimos" (tabla de seis palancas y la definición de RGM): fuera del home
   (2026-10-06). El ancla `#estrategia` ahora cae en Trayectoria.
 - La captura de datos que hoy no existen va desde el principio: titular, lead y etapa 01.
+- Industrias (2026-10-07): sin "Decisión típica" (no se entendía). Cada industria trae el
+  problema, los indicadores que se mueven y seis frentes de trabajo tomados de su marco en
+  el brain (`00_imberion/comercial/framework_*/Marco_Capacidades_*.md`). Retail incluye
+  lo que se le ofrece a Flexi y a Workplay (Samsung): surtido, diálogos de valor, conversión,
+  attachment rate, tráfico.
 
 ## Pendiente, en orden (actualizado 2026-10-06 23:00)
 
