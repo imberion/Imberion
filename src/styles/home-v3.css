@@ -95,10 +95,10 @@
   font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.04; letter-spacing: -.018em; margin: 0; text-wrap: balance;
 }
 .ap-p { font-size: clamp(.98rem, 1.2vw, 1.05rem); line-height: 1.7; color: var(--on-dark-78); margin: 24px 0 0; max-width: 58ch; }
-.ap-modelos { margin-top: 26px; }
-.ap-modelos-l { font-size: 11px; color: var(--on-dark-62); margin: 0 0 8px; }
-.ap-modelos ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; border-top: 1px solid var(--linea-dark); }
-.ap-modelos li { font-size: 12.5px; line-height: 1.4; color: var(--on-dark-78); padding: 7px 0; border-bottom: 1px solid var(--linea-dark); }
+.ap-preguntas { margin: 26px 0 0; border-top: 1px solid var(--linea-dark); }
+.ap-preguntas div { display: grid; grid-template-columns: 190px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--linea-dark); }
+.ap-preguntas dt { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.2; color: #fff; }
+.ap-preguntas dd { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--on-dark-78); }
 
 /* escena de la derecha: ficha de decisión y nodos de la operación */
 .ap-escena { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; }
@@ -167,7 +167,7 @@
   .ap-h2 { font-size: 2rem; }
   .ap-lead { font-size: .98rem; margin-top: 20px; }
   .ap-p { font-size: .9rem; line-height: 1.6; margin-top: 14px; }
-  .ap-modelos { display: none; }
+  .ap-preguntas { display: none; }
   .ap-btns { margin-top: 26px; }
   .ap-marca { margin-bottom: 20px; }
   .ap-ficha { width: 100%; padding: 16px 16px 12px; }
@@ -320,12 +320,18 @@ a.pal-fila:hover .pal-entregable i { transform: translateX(4px); color: var(--ti
 .v3-cta .v3-h2 { font-size: clamp(2.2rem, 4.2vw, 3.5rem); }
 /* El cuadro se recorta arriba y abajo: la mesa vacía no aporta. */
 .chk-film-wrap { position: relative; margin: clamp(40px, 5vw, 64px) 0 0; }
-.chk-film { position: sticky; top: 80px; margin: 0; aspect-ratio: 16 / 7.6; overflow: hidden; border-radius: 4px; background: #E3E4E6; }
+.chk-film-fijo { position: sticky; top: 80px; }
+.chk-film { position: relative; margin: 0; aspect-ratio: 16 / 7.6; overflow: hidden; border-radius: 4px; background: #E3E4E6; }
 .chk-film img { position: absolute; left: 0; top: 50%; width: 100%; height: auto; transform: translateY(-52%); }
 .chk-eje { position: absolute; font-size: 11.5px; color: var(--navy); letter-spacing: .02em; }
 /* posiciones en fracciones del cuadro: el tablero va de x 50.2% a 76.6% */
 .chk-eje--y { left: 46.9%; top: 36%; transform: translate(-50%, -50%) rotate(-90deg); white-space: nowrap; }
 .chk-eje--x { left: 63.4%; top: 71%; transform: translateX(-50%); white-space: nowrap; }
+.chk-pasos { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.chk-pasos li { display: grid; gap: 6px; padding-top: 12px; border-top: 1px solid var(--linea-dark); font-size: .92rem; line-height: 1.45; color: var(--on-dark-46); transition: color .3s, border-color .3s; }
+.chk-pasos li span { font-size: 11px; }
+.chk-pasos li.is-hecho { color: var(--on-dark-62); }
+.chk-pasos li.is-on { color: #fff; border-top-color: #fff; }
 .chk-cuerpo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); margin-top: 48px; }
 .chk-l { font-size: 11px; color: var(--on-dark-62); margin: 0; }
 .chk-lista { list-style: none; margin: 10px 0 0; padding: 0; border-top: 1px solid var(--linea-dark); }
@@ -341,6 +347,9 @@ a.pal-fila:hover .pal-entregable i { transform: translateX(4px); color: var(--ti
   .chk-eje--y { left: 24%; top: 34%; }
   .chk-eje--x { left: 52%; top: 75%; }
   .chk-cuerpo { grid-template-columns: 1fr; gap: 8px; }
+  .chk-pasos { grid-template-columns: 1fr; gap: 0; }
+  .chk-pasos li { display: none; border-top: 0; padding-top: 4px; }
+  .chk-pasos li.is-on { display: grid; }
   .v3-cta-mail { margin-left: 0; }
 }
 

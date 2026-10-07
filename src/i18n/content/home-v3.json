@@ -15,25 +15,26 @@
         "num": "01",
         "etiqueta": "Datos",
         "h": "La información ya existe y está repartida.",
-        "p": "En el punto de venta pasa mucho más de lo que registra la caja: quién entra, qué buscaba, qué tomó del anaquel y qué soltó, qué preguntó, qué objeción tuvo y qué no encontró. A eso se suman los tickets, las listas de precios y descuentos del ERP, los pedidos por WhatsApp, los reportes de visita y los precios de la competencia. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide."
+        "p": "Cada interacción con un cliente deja información: qué buscaba, qué objeción puso, qué no encontró, qué descuento pidió y por qué se fue. Pasa en el anaquel de una tienda, en la visita de un asesor a un distribuidor, en una llamada al centro de contacto y en cada cotización. A eso se suman las ventas, las listas de precios y descuentos del ERP, los pedidos por WhatsApp y los precios de la competencia. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide."
       },
       {
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
-        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Sobre esa base corren los modelos que cada decisión necesita. Lo que sale es una decisión con su trade-off a la vista: qué precio, qué promoción, qué surtido, para qué cliente y desde cuándo.",
-        "modelos_label": "Algunos de los modelos que corren",
-        "modelos": [
-          "Elasticidad de precio y canibalización entre SKU",
-          "Valor percibido por atributo frente a la competencia",
-          "Precio contra valor percibido, producto por producto",
-          "Demanda sin oferta propia en el portafolio",
-          "Origen del crecimiento: precio, volumen y mezcla",
-          "Retorno de cada promoción",
-          "Retención y valor de cada cliente",
-          "Compradores simulados que prueban un concepto antes de producirlo",
-          "Gemelos de las cuentas con las que se negocia",
-          "Simulación de escenarios antes de aprobar una jugada"
+        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos que corren sobre esa base responden tres preguntas, y lo que sale es una decisión con su trade-off a la vista.",
+        "preguntas": [
+          [
+            "Cuánto vale",
+            "Precio, elasticidad y valor percibido frente a la competencia, por producto y por canal."
+          ],
+          [
+            "Dónde está el crecimiento",
+            "Huecos del portafolio, clientes con más potencial, promociones que rinden."
+          ],
+          [
+            "Qué pasa si se mueve",
+            "Escenarios simulados y compradores sintéticos antes de comprometer la jugada."
+          ]
         ]
       },
       {
@@ -103,22 +104,22 @@
       "WhatsApp",
       "e-commerce",
       "lealtad",
-      "audio de piso",
+      "llamada",
+      "cotización",
+      "visita",
       "anaquel",
       "competencia",
-      "visitas",
       "pedidos",
       "listas de precio",
-      "perfil",
       "objeción",
       "no encontró",
       "buscaba",
-      "soltó",
-      "recorrido",
+      "descuento",
+      "se fue",
       "devoluciones",
-      "descuentos",
-      "tráfico",
-      "conversión"
+      "contrato",
+      "ruta",
+      "renovación"
     ],
     "pal_num": "01",
     "pal_label": "Qué decidimos",
@@ -304,7 +305,7 @@
     "chk_num": "06",
     "chk_label": "El primer paso",
     "chk_h2": "Imberion Checkup: un diagnóstico de dos semanas que se puede aprobar.",
-    "chk_p": "En su versión rápida toma dos semanas. El equipo directivo responde un cuestionario enfocado en los problemas que ya identificó, e Imberion lo convierte en una lista ordenada de iniciativas que un comité puede aprobar en una sesión.",
+    "chk_p": "En su versión rápida toma dos semanas. El equipo directivo responde un cuestionario sobre estrategia, embudo comercial, precios, gobierno y formas de trabajo, enfocado en los problemas que ya identificó. Imberion lo convierte en una lista ordenada de iniciativas que un comité puede aprobar en una sesión.",
     "chk_entregables_label": "Entregables",
     "chk_entregables": [
       "Puntaje de madurez por dimensión comercial",
@@ -319,6 +320,12 @@
     "chk_cliente": "Del lado del cliente: una conversación inicial y las respuestas del equipo directivo al cuestionario.",
     "chk_film_alt": "Seis tarjetas de hallazgos se acomodan en una matriz de 3 por 3 sobre un tablero azul marino; la de mayor impacto y menor esfuerzo queda en petróleo.",
     "chk_eje_y": "Impacto",
-    "chk_eje_x": "Esfuerzo"
+    "chk_eje_x": "Esfuerzo",
+    "chk_pasos": [
+      "El equipo directivo contesta el cuestionario.",
+      "Las respuestas se vuelven hallazgos, cada uno con su caso de negocio.",
+      "Cada hallazgo se ubica en la matriz por impacto y esfuerzo.",
+      "El de mayor impacto y menor esfuerzo es la primera iniciativa."
+    ]
   }
 }

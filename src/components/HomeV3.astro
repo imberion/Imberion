@@ -169,11 +169,16 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       </header>
 
       <div class="chk-film-wrap" data-film-wrap>
+      <div class="chk-film-fijo" data-film-fijo>
       <figure class="chk-film" data-film data-n="36" data-base="/stop-motion/checkup/1280/">
         <img src="/stop-motion/checkup/1280/0001.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
         <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
         <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
       </figure>
+      <ol class="chk-pasos" aria-label={c.chk_label}>
+        {c.chk_pasos.map((t: string, i: number) => <li data-film-paso={i}><span class="mono">{i + 1}/{c.chk_pasos.length}</span>{t}</li>)}
+      </ol>
+      </div>
       </div>
 
       <div class="chk-cuerpo">
@@ -254,23 +259,27 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       for (var i = 1; i <= N; i++) { var im = new Image(); im.src = base + String(i).padStart(4, '0') + '.' + ext; cache[i] = im; }
       pintaFilm();
     }
-    var wrap = film.parentNode, topFijo = 80;
-    /* La imagen se queda fija en pantalla mientras las tarjetas se acomodan: la
-       envoltura mide la imagen más 90vh de recorrido. */
+    var fijo = film.parentNode, wrap = fijo.parentNode, topFijo = 80;
+    /* Imagen y pasos van juntos en un bloque fijo mientras las tarjetas se
+       acomodan: la envoltura mide el bloque más 90vh de recorrido. */
     function medirFilm() {
-      var vh = window.innerHeight, h = film.offsetHeight;
-      topFijo = Math.max(80, (vh - h) / 2 + 30);
-      film.style.top = topFijo + 'px';
+      var vh = window.innerHeight, h = fijo.offsetHeight;
+      topFijo = Math.max(80, (vh - h) / 2 + 20);
+      fijo.style.top = topFijo + 'px';
       wrap.style.height = reduce ? '' : (h + vh * 0.9) + 'px';
     }
     function pintaFilm() {
       var b = wrap.getBoundingClientRect();
-      var recorrido = wrap.offsetHeight - film.offsetHeight;
+      var recorrido = wrap.offsetHeight - fijo.offsetHeight;
       var p = reduce ? 1 : clamp((topFijo - b.top) / recorrido, 0, 1);
       var k = Math.max(1, Math.round(p * (N - 1)) + 1);
+      /* el paso del texto sigue al cuadro: respuestas, hallazgos, matriz, primera iniciativa */
+      var paso = k <= 3 ? 0 : k <= 16 ? 1 : k <= 31 ? 2 : 3;
+      pasosFilm.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); el.classList.toggle('is-hecho', i < paso); });
       if (k === actual || !cache[k]) return;
       if (cache[k].complete) { img.src = cache[k].src; actual = k; }
     }
+    var pasosFilm = [].slice.call(document.querySelectorAll('[data-film-paso]'));
     medirFilm();
     window.addEventListener('resize', function () { medirFilm(); pintaFilm(); });
     window.addEventListener('load', function () { medirFilm(); pintaFilm(); });
