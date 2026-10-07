@@ -1,8 +1,8 @@
 {
   "es": {
     "ap_marca": "Revenue Growth Management · Latinoamérica",
-    "ap_h1": "Hacemos crecer ventas y margen con la información que existe y la que falta levantar.",
-    "ap_lead": "Imberion trabaja con fabricantes, distribuidores y retailers en Latinoamérica. Juntamos los datos de la operación comercial, levantamos los que nadie registra con agentes de voz, las cámaras de la tienda y lecturas del punto de venta, y los convertimos en decisiones de precio, promoción, portafolio y canal. Acompañamos al equipo hasta que esas decisiones se ejecutan y se miden.",
+    "ap_h1": "Ayudamos a las empresas a crecer de manera rentable y sostenible.",
+    "ap_lead": "Juntamos los datos de la operación comercial y levantamos los que nadie registra: las conversaciones con clientes, lo que pasa en la tienda y los precios del mercado. Con eso armamos decisiones de precio, promoción, portafolio, canal y ejecución comercial, y acompañamos al equipo hasta que se ejecutan y se miden. Trabajamos con fabricantes, distribuidores y retailers en Latinoamérica.",
     "ap_btn1": "Agendar llamada de 30 min",
     "ap_btn2": "Cómo trabajamos",
     "ap_recorrido": [
@@ -23,7 +23,7 @@
           ],
           [
             "Lo que se levanta",
-            "Agentes de voz y de WhatsApp que atienden al cliente y dejan cada conversación transcrita y clasificada. Las cámaras ya instaladas en tienda, que miden tráfico, recorrido y atención al anaquel. Precios y argumentos de venta leídos en cientos de puntos de venta, propios y de la competencia."
+            "Imberion instala y opera la captura. Las conversaciones con clientes, las de agentes de voz y WhatsApp y las de vendedores en piso o en visita (con su consentimiento), quedan grabadas, transcritas y clasificadas. Cámaras en tienda, las que ya existen o nuevas, miden tráfico, recorrido y atención al anaquel. En cientos de puntos de venta se levantan precios y argumentos de venta, propios y de la competencia."
           ]
         ]
       },
@@ -304,6 +304,7 @@
       "Cada hallazgo se ubica en la matriz por impacto y esfuerzo.",
       "El de mayor impacto y menor esfuerzo es la primera iniciativa."
     ],
-    "ind_ver": "Ver la industria"
+    "ind_ver": "Ver la industria",
+    "con_lead": "En los dos modos hay una persona en el circuito: un consultor de Imberion revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial."
   }
 }
