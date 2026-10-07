@@ -10,6 +10,10 @@
 // carril de nueve industrias. Entraron lo que los cuatro pidieron: resultados
 // (trayectoria anónima del equipo), qué se contrata y un Checkup concreto.
 //
+// Tercera versión (2026-10-07): sale la tabla de seis palancas (explicar qué es
+// RGM se leía condescendiente) y la captura de datos que hoy no existen entra
+// desde el titular y la etapa 01 de la apertura.
+//
 // El elemento visual que se repite es la ficha: la de la apertura, una por
 // industria y la matriz del Checkup. Enseña el entregable en lugar de una foto.
 //
@@ -39,35 +43,10 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
 <div class="v3">
   <Apertura c={c} agendar={ZCAL_30MIN} como="#how-it-works" />
 
-  <!-- 01 Qué decidimos -->
-  <section class="v3-sec v3-papel" id="que-decidimos">
-    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
-    <div class="container">
-      <header class="v3-head">
-        <h2 class="v3-h2">{c.pal_h2}</h2>
-        <p class="v3-lead">{c.pal_lead}</p>
-      </header>
-
-      <div class="pal" role="table" aria-label={c.pal_label}>
-        <div class="pal-fila pal-fila--head mono" role="row">
-          <span role="columnheader"></span>
-          {c.pal_cols.map((h: string) => <span role="columnheader">{h}</span>)}
-        </div>
-        {c.pal_filas.map((f: string[], i: number) => (
-          <a class="pal-fila" role="row" href={ficha(f[3])} data-v3-in>
-            <span class="pal-n mono" role="cell">{n2(i)}</span>
-            <span class="pal-palanca" role="cell">{f[0]}</span>
-            <span class="pal-pregunta" role="cell">{f[1]}</span>
-            <span class="pal-entregable" role="cell">{f[2]}<i aria-hidden="true">→</i></span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 Trayectoria: las cifras cuentan hacia su valor al entrar -->
-  <section class="v3-sec v3-navy" id="trayectoria">
+  <!-- Trayectoria: las cifras cuentan hacia su valor al entrar -->
+  <section class="v3-sec v3-blanco" id="trayectoria">
     <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
+    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
       <header class="v3-head v3-head--ancho">
         <h2 class="v3-h2">{c.tray_h2}</h2>
@@ -194,14 +173,21 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
 
       <div class="chk-film-wrap" data-film-wrap>
       <div class="chk-film-fijo" data-film-fijo>
+      <!-- El paso que se está viendo va junto a la imagen, en grande: la mirada
+           se queda en la animación y el texto tiene que estar ahí. -->
+      <div class="chk-guia">
+        <p class="chk-avance mono" aria-hidden="true">
+          {c.chk_pasos.map((_: string, i: number) => <i data-film-tick={i}></i>)}
+        </p>
+        <ol class="chk-pasos" aria-label={c.chk_label}>
+          {c.chk_pasos.map((t: string, i: number) => <li data-film-paso={i}><span class="mono">Paso {i + 1} de {c.chk_pasos.length}</span>{t}</li>)}
+        </ol>
+      </div>
       <figure class="chk-film" data-film data-n="40" data-base="/stop-motion/checkup/1280/">
         <img src="/stop-motion/checkup/1280/0001.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
         <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
         <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
       </figure>
-      <ol class="chk-pasos" aria-label={c.chk_label}>
-        {c.chk_pasos.map((t: string, i: number) => <li data-film-paso={i}><span class="mono">{i + 1}/{c.chk_pasos.length}</span>{t}</li>)}
-      </ol>
       </div>
       </div>
 
@@ -320,10 +306,12 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
       /* el paso del texto sigue al cuadro: respuestas, hallazgos, matriz, primera iniciativa */
       var paso = k <= 7 ? 0 : k <= 17 ? 1 : k <= 37 ? 2 : 3;
       pasosFilm.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); el.classList.toggle('is-hecho', i < paso); });
+      ticksFilm.forEach(function (el, i) { el.classList.toggle('is-on', i <= paso); });
       if (k === actual || !cache[k]) return;
       if (cache[k].complete) { img.src = cache[k].src; actual = k; }
     }
     var pasosFilm = [].slice.call(document.querySelectorAll('[data-film-paso]'));
+    var ticksFilm = [].slice.call(document.querySelectorAll('[data-film-tick]'));
     medirFilm();
     window.addEventListener('resize', function () { medirFilm(); pintaFilm(); });
     window.addEventListener('load', function () { medirFilm(); pintaFilm(); });

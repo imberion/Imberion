@@ -1,7 +1,7 @@
 # Handoff: home v3 de imberion.com
 
-**Medido:** 2026-10-06 22:48. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
-`/Users/rodrigogarrido/Code/imberion-website/_wt_home_v3`, último commit `f5646c9`.
+**Medido:** 2026-10-06 23:00. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
+`/Users/rodrigogarrido/Code/imberion-website/_wt_home_v3`, ver `git log -1`.
 **Sin push:** el repo `imberion/Imberion` es público. Respaldo incremental en Drive:
 `Unidades compartidas/Imberion/04_marca/sitio_web/respaldos/imberion-website_sitio-home-v3_2026-10-05.bundle`
 (requiere el bundle base `imberion-website_ramas-sin-subir_2026-10-05.bundle` de la misma carpeta).
@@ -34,13 +34,14 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
 
 ## Estructura actual del home
 
-1. Apertura amarrada al scroll: portada, 01 Datos, 02 Decisión (ficha de decisión), 03 Valor.
-2. Qué decidimos: seis palancas en tabla.
-3. Trayectoria: tres resultados anónimos del portafolio de Rodrigo, encabezados por palanca.
-4. IA: "Lo que hace la IA / Lo que decide una persona".
-5. Qué se contrata: Imberion opera o el equipo del cliente opera.
-6. Para quién: escena con cuatro industrias y foto fija que cambia con el scroll.
-7. Checkup: dos semanas, entregables, stop motion fijo con cuatro pasos debajo.
+1. Apertura amarrada al scroll: portada, 01 Datos (lo que ya está y lo que se levanta),
+   02 Decisión (ficha de decisión), 03 Valor.
+2. Trayectoria (fondo blanco): tres resultados anónimos del portafolio de Rodrigo.
+3. IA: "Lo que hace la IA / Lo que decide una persona".
+4. Qué se contrata: Imberion opera o el equipo del cliente opera.
+5. Para quién: escena con cuatro industrias y foto fija que cambia con el scroll.
+6. Checkup: stop motion fijo con el paso actual en grande a su izquierda (arriba en
+   celular), entregables y botones.
 
 ## Decisiones de Rodrigo (no volver a proponer)
 
@@ -58,29 +59,22 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
 - Copy multiindustria siempre: nada que hable solo de retail.
 - Nada de listas largas: la etapa 02 agrupa los modelos en tres preguntas.
 - Stop motion: le gustó que abra con los cuestionarios llegando a la pila.
+- "Qué decidimos" (tabla de seis palancas y la definición de RGM): fuera del home
+  (2026-10-06). El ancla `#estrategia` ahora cae en Trayectoria.
+- La captura de datos que hoy no existen va desde el principio: titular, lead y etapa 01.
 
-## Pendiente, en orden (feedback de Rodrigo del 2026-10-06 22:40)
+## Pendiente, en orden (actualizado 2026-10-06 23:00)
 
-1. **Falta la captura de datos que hoy no existen.** El home no habla de agentes de voz,
-   de instrumentar el punto de venta ni de levantar la información con la que el cliente no
-   cuenta. Es un diferenciador y está ausente. Material de catálogo para apoyarse:
-   Floor Signal (cámaras ya instaladas, recorrido y anaquel), Market Signal (precio y
-   discurso del canal en el punto de venta), Concierge (atención por WhatsApp), audio de piso
-   con grabadoras, Training Signal. Decidir con Rodrigo si va en la apertura (etapa 01) o
-   como sección propia.
-2. **La sección "Qué decidimos" se lee condescendiente** ("Revenue Growth Management es la
-   disciplina que..."). Rodrigo no está seguro de que le guste la sección. Opciones a
-   proponerle: quitarla, o convertirla en las preguntas que el cliente ya se hace sin
-   explicar qué es RGM.
-3. **Checkup: no se ve lo que va pasando.** Los cuatro pasos están chicos y debajo de la
-   imagen; la mirada se queda en la animación. Llevar el texto a donde está la mirada: sobre
-   la imagen o al lado, más grande, cambiando con cada paso.
-4. Ficha del Checkup en el catálogo (`src/i18n/content/catalogo/checkup.json`): dice
-   "costo, retorno y dificultad"; el repo `~/Code/imberion-checkup` dice matriz por impacto
-   y esfuerzo, puntaje de madurez y hoja de ruta de 18 a 24 meses.
-5. Stop motion para cada página de solución (Rodrigo lo quiere; la técnica está en el PR #569).
-6. Traducir el home v3 a EN y PT cuando Rodrigo apruebe el español.
-7. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
+Hecho en esta vuelta: captura de datos en titular, lead y etapa 01; "Qué decidimos"
+fuera; texto del Checkup en grande junto a la imagen; ficha del Checkup en el catálogo
+corregida a impacto y esfuerzo, puntaje de madurez y hoja de ruta (es, en, pt).
+
+1. Que Rodrigo revise la vuelta anterior en http://localhost:4391/.
+2. Stop motion para cada página de solución (Rodrigo lo quiere; la técnica está en el PR #569).
+3. Traducir el home v3 a EN y PT cuando Rodrigo apruebe el español.
+4. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
+5. El lead dice "fabricantes, distribuidores y retailers" y la apertura ya no menciona
+   nueve industrias; las fichas de industria del sitio siguen siendo nueve.
 
 ## Revisión a ciegas (2026-10-06)
 

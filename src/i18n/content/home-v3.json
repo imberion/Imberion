@@ -1,8 +1,8 @@
 {
   "es": {
     "ap_marca": "Revenue Growth Management · Latinoamérica",
-    "ap_h1": "Hacemos crecer ventas y margen con la información que la empresa ya genera.",
-    "ap_lead": "Imberion trabaja con fabricantes, distribuidores y retailers de nueve industrias en Latinoamérica. Tomamos los datos dispersos de la operación comercial, los convertimos en decisiones de precio, promoción, portafolio y canal, y acompañamos al equipo hasta que esas decisiones se ejecutan y se miden.",
+    "ap_h1": "Hacemos crecer ventas y margen con la información que existe y la que falta levantar.",
+    "ap_lead": "Imberion trabaja con fabricantes, distribuidores y retailers en Latinoamérica. Juntamos los datos de la operación comercial, levantamos los que nadie registra con agentes de voz, las cámaras de la tienda y lecturas del punto de venta, y los convertimos en decisiones de precio, promoción, portafolio y canal. Acompañamos al equipo hasta que esas decisiones se ejecutan y se miden.",
     "ap_btn1": "Agendar llamada de 30 min",
     "ap_btn2": "Cómo trabajamos",
     "ap_recorrido": [
@@ -14,15 +14,25 @@
       {
         "num": "01",
         "etiqueta": "Datos",
-        "h": "La información ya existe y está repartida.",
-        "p": "Cada interacción con un cliente deja información: qué buscaba, qué objeción puso, qué no encontró, qué descuento pidió y por qué se fue. Pasa en el anaquel de una tienda, en la visita de un asesor a un distribuidor, en una llamada al centro de contacto y en cada cotización. A eso se suman las ventas, las listas de precios y descuentos del ERP, los pedidos por WhatsApp y los precios de la competencia. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide."
+        "h": "Una parte de la información ya existe. La otra se levanta.",
+        "p": "Cada interacción con un cliente deja información: qué buscaba, qué objeción puso, qué descuento pidió y por qué se fue. Casi nada de eso llega a un sistema.",
+        "grupos": [
+          [
+            "Lo que ya está",
+            "Ventas, listas de precios y descuentos del ERP, CRM, cotizaciones, pedidos por WhatsApp y programa de lealtad."
+          ],
+          [
+            "Lo que se levanta",
+            "Agentes de voz y de WhatsApp que atienden al cliente y dejan cada conversación transcrita y clasificada. Las cámaras ya instaladas en tienda, que miden tráfico, recorrido y atención al anaquel. Precios y argumentos de venta leídos en cientos de puntos de venta, propios y de la competencia."
+          ]
+        ]
       },
       {
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
         "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos que corren sobre esa base responden tres preguntas, y lo que sale es una decisión con su trade-off a la vista.",
-        "preguntas": [
+        "grupos": [
           [
             "Cuánto vale",
             "Precio, elasticidad y valor percibido frente a la competencia, por producto y por canal."
@@ -119,54 +129,13 @@
       "devoluciones",
       "contrato",
       "ruta",
-      "renovación"
-    ],
-    "pal_num": "01",
-    "pal_label": "Qué decidimos",
-    "pal_h2": "Seis decisiones comerciales mueven las ventas y el margen.",
-    "pal_lead": "Revenue Growth Management es la disciplina que toma estas decisiones con datos y las sostiene en la operación. Cada una responde una pregunta concreta y termina en un entregable que el equipo puede ejecutar.",
-    "pal_cols": [
-      "Palanca",
-      "La pregunta",
-      "Cómo queda decidido"
-    ],
-    "pal_filas": [
-      [
-        "Precio",
-        "¿Qué precio captura el valor real por canal, presentación y cliente?",
-        "Lista de precios por canal con reglas de posicionamiento contra la competencia.",
-        "pricing-y-surtido"
-      ],
-      [
-        "Promoción",
-        "¿Qué inversión promocional rinde y cuál se fuga?",
-        "Calendario promocional con el retorno estimado de cada evento.",
-        "promociones"
-      ],
-      [
-        "Portafolio",
-        "¿Qué parte del portafolio crea crecimiento y cuál solo ocupa espacio?",
-        "Surtido por formato de tienda, con los SKU que salen y los que entran.",
-        "whitespace-compass"
-      ],
-      [
-        "Canal y mercado",
-        "¿En qué mercados y canales está el crecimiento que sí se puede ganar?",
-        "Prioridad de regiones, cadenas y clientes para el siguiente ciclo.",
-        "canales-y-tiendas"
-      ],
-      [
-        "Cliente",
-        "¿Quién está detrás de cada ticket y cómo se le hace volver?",
-        "Segmentos de cliente con su oferta y su frecuencia de contacto.",
-        "clientes-y-lealtad"
-      ],
-      [
-        "Política comercial",
-        "¿Qué descuentos y condiciones se otorgan, a quién y a cambio de qué?",
-        "Matriz de descuentos con contraprestación y límites de autorización.",
-        "politica-comercial"
-      ]
+      "renovación",
+      "agente de voz",
+      "cámara",
+      "recorrido",
+      "transcripción",
+      "precio en piso",
+      "tráfico"
     ],
     "ia_num": "03",
     "ia_label": "Inteligencia artificial",
@@ -200,7 +169,7 @@
     ],
     "tray_num": "02",
     "tray_label": "Trayectoria",
-    "tray_h2": "Lo que estas palancas han movido en empresas de la región.",
+    "tray_h2": "Lo que el equipo ha movido en ventas y margen en empresas de la región.",
     "tray_lead": "Tres proyectos que dirigió el equipo antes de fundar Imberion, sin nombre de cliente. En total son más de 40 en 14 países.",
     "tray_casos": [
       {

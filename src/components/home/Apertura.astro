@@ -47,9 +47,9 @@ const { c, agendar, como } = Astro.props;
         <div class="ap-panel ap-panel--paso" data-ap-panel={i + 1}>
           <h2 class="ap-h2">{p.h}</h2>
           <p class="ap-p">{p.p}</p>
-          {p.preguntas && (
+          {p.grupos && (
             <dl class="ap-preguntas">
-              {p.preguntas.map((q: string[]) => <div><dt>{q[0]}</dt><dd>{q[1]}</dd></div>)}
+              {p.grupos.map((q: string[]) => <div><dt>{q[0]}</dt><dd>{q[1]}</dd></div>)}
             </dl>
           )}
         </div>
