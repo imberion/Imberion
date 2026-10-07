@@ -230,13 +230,26 @@ const { c, agendar, como } = Astro.props;
   }
 
   var VENTANAS = [[0, 0.16], [0.16, 0.42], [0.42, 0.68], [0.68, 1.01]];
+  var FUNDIDO = 0.03;   /* ~16% de una pantalla de scroll para salir y otro tanto para entrar */
   var panelActivo = -1;
   function actualizarDom(p) {
     var activo = 0;
     for (var i = 0; i < VENTANAS.length; i++) if (p >= VENTANAS[i][0]) activo = i;
+    /* La opacidad de cada panel la manda el scroll, no un fundido por tiempo:
+       el que sale termina de irse antes de que entre el siguiente, así que
+       nunca hay dos textos encimados ni un cambio que va y viene en el borde. */
+    paneles.forEach(function (el, i) {
+      var a = VENTANAS[i][0], b = VENTANAS[i][1];
+      var entra = i === 0 ? 1 : ss(a, a + FUNDIDO, p);
+      var sale = i === VENTANAS.length - 1 ? 0 : ss(b - FUNDIDO, b, p);
+      var o = entra * (1 - sale);
+      el.style.opacity = o.toFixed(3);
+      el.style.transform = o > 0.999 ? 'none' : 'translateY(' + ((sale > 0 ? -1 : 1) * (1 - o) * 14).toFixed(1) + 'px)';
+      el.style.visibility = o > 0.001 ? 'visible' : 'hidden';
+      el.style.pointerEvents = o > 0.6 ? 'auto' : 'none';
+    });
     if (activo !== panelActivo) {
       panelActivo = activo;
-      paneles.forEach(function (el, i) { el.classList.toggle('is-on', i === activo); });
       riel.forEach(function (el, i) { el.classList.toggle('is-on', i + 1 <= activo); el.classList.toggle('is-actual', i + 1 === activo); });
     }
     if (barra) barra.style.transform = 'scaleX(' + ss(0.16, 1, p).toFixed(3) + ')';

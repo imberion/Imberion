@@ -74,9 +74,9 @@
 .ap-panel {
   grid-area: 1 / 1; max-width: 640px;
   opacity: 0; transform: translateY(18px); pointer-events: none;
-  transition: opacity .6s var(--ease-v3), transform .8s var(--ease-v3);
+  will-change: opacity, transform;
 }
-.ap-panel.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.ap-panel--portada { opacity: 1; transform: none; pointer-events: auto; }
 
 .ap-marca { font-size: 12px; color: var(--on-dark-62); margin: 0 0 32px; display: flex; gap: 12px; align-items: center; }
 .ap-marca::before { content: ''; width: 8px; height: 8px; border: 1px solid var(--petrol-bright); border-radius: 50%; }
