@@ -290,45 +290,12 @@
       "Hoja de ruta de 18 a 24 meses"
     ],
     "chk_arranque": "Se arranca con lo que hay: hojas de cálculo, sistemas que no se hablan y datos incompletos son el punto de partida de la mayoría de los proyectos.",
-    "chk_matriz": {
-      "titulo": "Matriz de iniciativas",
-      "cols": [
-        "Iniciativa",
-        "Impacto",
-        "Esfuerzo",
-        "Horizonte"
-      ],
-      "filas": [
-        [
-          "Política de descuentos por cliente",
-          "Alto",
-          "Bajo",
-          "0–6 m"
-        ],
-        [
-          "Precio por canal y presentación",
-          "Alto",
-          "Medio",
-          "0–6 m"
-        ],
-        [
-          "Calendario promocional",
-          "Medio",
-          "Bajo",
-          "6–12 m"
-        ],
-        [
-          "Surtido por formato",
-          "Medio",
-          "Alto",
-          "12–24 m"
-        ]
-      ],
-      "pie": "Ejemplo ilustrativo."
-    },
     "cta_btn1": "Agendar llamada de 30 min",
     "cta_btn2": "Ver el Checkup",
     "cta_mail": "hola@imberion.com",
-    "chk_cliente": "Del lado del cliente: una conversación inicial y las respuestas del equipo directivo al cuestionario."
+    "chk_cliente": "Del lado del cliente: una conversación inicial y las respuestas del equipo directivo al cuestionario.",
+    "chk_film_alt": "Seis tarjetas de hallazgos se acomodan en una matriz de 3 por 3 sobre un tablero azul marino; la de mayor impacto y menor esfuerzo queda en petróleo.",
+    "chk_eje_y": "Impacto",
+    "chk_eje_x": "Esfuerzo"
   }
 }

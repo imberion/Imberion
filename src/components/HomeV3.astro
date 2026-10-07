@@ -161,43 +161,41 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     </div>
   </section>
 
-  <!-- 06 Primer paso: Checkup y cierre -->
+  <!-- 06 Primer paso: Checkup y cierre. El stop motion de la matriz corre con
+       el scroll: el progreso del bloque elige el cuadro (36, AVIF con WebP de
+       respaldo). Las tarjetas se componen con código sobre una foto limpia de la
+       mesa, así que no cambian de forma entre cuadros. -->
   <section class="v3-cta" id="checkup">
     <canvas class="v3-cta-canvas" data-cta-canvas aria-hidden="true"></canvas>
     <div class="container chk">
-      <div class="chk-texto">
+      <header class="chk-head">
         <p class="v3-label mono"><span>{c.chk_num}</span>{c.chk_label}</p>
         <h2 class="v3-h2">{c.chk_h2}</h2>
         <p class="v3-lead">{c.chk_p}</p>
-        <p class="chk-l mono">{c.chk_entregables_label}</p>
-        <ol class="chk-lista">
-          {c.chk_entregables.map((e: string, i: number) => <li><span class="mono">{n2(i)}</span>{e}</li>)}
-        </ol>
-        <p class="chk-arranque">{c.chk_cliente} {c.chk_arranque}</p>
-        <div class="v3-cta-btns">
-          <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.cta_btn1}</a>
-          <a class="btn btn-outline" href={ficha('checkup')}>{c.cta_btn2}</a>
-          <a class="v3-cta-mail mono" href={CONTACTO_MAIL}>{c.cta_mail}</a>
+      </header>
+
+      <figure class="chk-film" data-film data-n="36" data-base="/stop-motion/checkup/1280/">
+        <img src="/stop-motion/checkup/1280/0036.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
+        <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
+        <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
+      </figure>
+
+      <div class="chk-cuerpo">
+        <div>
+          <p class="chk-l mono">{c.chk_entregables_label}</p>
+          <ol class="chk-lista">
+            {c.chk_entregables.map((e: string, i: number) => <li><span class="mono">{n2(i)}</span>{e}</li>)}
+          </ol>
+        </div>
+        <div>
+          <p class="chk-arranque">{c.chk_cliente} {c.chk_arranque}</p>
+          <div class="v3-cta-btns">
+            <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.cta_btn1}</a>
+            <a class="btn btn-outline" href={ficha('checkup')}>{c.cta_btn2}</a>
+            <a class="v3-cta-mail mono" href={CONTACTO_MAIL}>{c.cta_mail}</a>
+          </div>
         </div>
       </div>
-      <figure class="chk-doc" data-v3-in aria-label={c.chk_matriz.titulo}>
-        <header class="chk-doc-head mono"><span>Imberion Checkup</span><span>{c.chk_matriz.titulo}</span></header>
-        <div class="chk-doc-tabla" role="table">
-          <div class="chk-doc-fila chk-doc-fila--head mono" role="row">
-            <span role="columnheader">#</span>
-            {c.chk_matriz.cols.map((h: string) => <span role="columnheader">{h}</span>)}
-          </div>
-          {c.chk_matriz.filas.map((f: string[], i: number) => (
-            <div class="chk-doc-fila" role="row" style={`--i:${i}`}>
-              <span class="mono" role="cell">{n2(i)}</span>
-              <span role="cell">{f[0]}</span>
-              {f.slice(1, 3).map((v) => <span class="chk-nivel" data-nivel={v} role="cell"><i></i>{v}</span>)}
-              <span class="chk-horizonte mono" role="cell">{f[3]}</span>
-            </div>
-          ))}
-        </div>
-        <figcaption class="chk-doc-pie mono">{c.chk_matriz.pie}</figcaption>
-      </figure>
     </div>
   </section>
 </div>
@@ -242,6 +240,35 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       });
     }, { rootMargin: '0px 0px -12% 0px' });
     ins.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Stop motion del Checkup amarrado al scroll. */
+  var film = document.querySelector('[data-film]');
+  if (film) {
+    var img = film.querySelector('[data-film-img]');
+    var N = +film.getAttribute('data-n'), base = film.getAttribute('data-base');
+    var ext = 'webp', cache = [], actual = -1;
+    var prueba = new Image();
+    prueba.onload = function () { if (prueba.width > 0) { ext = 'avif'; precargar(); } };
+    prueba.onerror = precargar;
+    prueba.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    var precargado = false;
+    function precargar() {
+      if (precargado) return; precargado = true;
+      for (var i = 1; i <= N; i++) { var im = new Image(); im.src = base + String(i).padStart(4, '0') + '.' + ext; cache[i] = im; }
+      pintaFilm();
+    }
+    function pintaFilm() {
+      var b = film.getBoundingClientRect(), vh = window.innerHeight;
+      /* empieza cuando el borde superior entra (0) y termina cuando llega al 25%
+         del alto de la ventana (1): la matriz queda completa con la imagen a la vista */
+      var p = reduce ? 1 : clamp((vh - b.top) / (vh * 0.75), 0, 1);
+      var k = Math.max(1, Math.round(p * (N - 1)) + 1);
+      if (k === actual || !cache[k]) return;
+      if (cache[k].complete) { img.src = cache[k].src; actual = k; }
+    }
+    var tf = false;
+    window.addEventListener('scroll', function () { if (!tf) { tf = true; requestAnimationFrame(function () { tf = false; pintaFilm(); }); } }, { passive: true });
   }
 
   /* Cierre: el campo de cifras, quieto y tenue, que converge hacia la matriz
