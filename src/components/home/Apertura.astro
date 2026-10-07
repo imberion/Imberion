@@ -35,7 +35,6 @@ const { c, agendar, como } = Astro.props;
 
     <div class="ap-texto">
       <div class="ap-panel ap-panel--portada" data-ap-panel="0">
-        <p class="ap-marca mono">{c.ap_marca}</p>
         <h1 class="ap-h1">{c.ap_h1}</h1>
         <p class="ap-lead">{c.ap_lead}</p>
         <div class="ap-btns">
@@ -46,9 +45,14 @@ const { c, agendar, como } = Astro.props;
 
       {c.ap_pasos.map((p: any, i: number) => (
         <div class="ap-panel ap-panel--paso" data-ap-panel={i + 1}>
-          <p class="ap-paso-num mono"><span>{p.num}</span> {p.etiqueta}</p>
           <h2 class="ap-h2">{p.h}</h2>
           <p class="ap-p">{p.p}</p>
+          {p.modelos && (
+            <div class="ap-modelos">
+              <p class="ap-modelos-l mono">{p.modelos_label}</p>
+              <ul>{p.modelos.map((m: string) => <li>{m}</li>)}</ul>
+            </div>
+          )}
         </div>
       ))}
     </div>

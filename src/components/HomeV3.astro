@@ -38,7 +38,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
       <header class="v3-head">
-        <p class="v3-label mono"><span>{c.pal_num}</span>{c.pal_label}</p>
         <h2 class="v3-h2">{c.pal_h2}</h2>
         <p class="v3-lead">{c.pal_lead}</p>
       </header>
@@ -65,7 +64,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
       <header class="v3-head v3-head--ancho">
-        <p class="v3-label mono"><span>{c.tray_num}</span>{c.tray_label}</p>
         <h2 class="v3-h2">{c.tray_h2}</h2>
         <p class="v3-lead">{c.tray_lead}</p>
       </header>
@@ -88,7 +86,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
   <section class="v3-sec v3-papel" id="ia">
     <div class="container">
       <header class="v3-head v3-head--ancho">
-        <p class="v3-label mono"><span>{c.ia_num}</span>{c.ia_label}</p>
         <h2 class="v3-h2">{c.ia_h2}</h2>
         <p class="v3-lead">{c.ia_lead}</p>
       </header>
@@ -111,7 +108,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
   <section class="v3-sec v3-blanco" id="how-it-works">
     <div class="container">
       <header class="v3-head">
-        <p class="v3-label mono"><span>{c.con_num}</span>{c.con_label}</p>
         <h2 class="v3-h2">{c.con_h2}</h2>
       </header>
       <div class="con">
@@ -137,7 +133,6 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     <span id="sectors" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
       <header class="v3-head">
-        <p class="v3-label mono"><span>{c.ind_num}</span>{c.ind_label}</p>
         <h2 class="v3-h2">{c.ind_h2}</h2>
       </header>
       <div class="ind4">
@@ -169,16 +164,17 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
     <canvas class="v3-cta-canvas" data-cta-canvas aria-hidden="true"></canvas>
     <div class="container chk">
       <header class="chk-head">
-        <p class="v3-label mono"><span>{c.chk_num}</span>{c.chk_label}</p>
         <h2 class="v3-h2">{c.chk_h2}</h2>
         <p class="v3-lead">{c.chk_p}</p>
       </header>
 
+      <div class="chk-film-wrap" data-film-wrap>
       <figure class="chk-film" data-film data-n="36" data-base="/stop-motion/checkup/1280/">
-        <img src="/stop-motion/checkup/1280/0036.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
+        <img src="/stop-motion/checkup/1280/0001.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
         <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
         <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
       </figure>
+      </div>
 
       <div class="chk-cuerpo">
         <div>
@@ -258,15 +254,26 @@ const n2 = (i: number) => String(i + 1).padStart(2, '0');
       for (var i = 1; i <= N; i++) { var im = new Image(); im.src = base + String(i).padStart(4, '0') + '.' + ext; cache[i] = im; }
       pintaFilm();
     }
+    var wrap = film.parentNode, topFijo = 80;
+    /* La imagen se queda fija en pantalla mientras las tarjetas se acomodan: la
+       envoltura mide la imagen más 90vh de recorrido. */
+    function medirFilm() {
+      var vh = window.innerHeight, h = film.offsetHeight;
+      topFijo = Math.max(80, (vh - h) / 2 + 30);
+      film.style.top = topFijo + 'px';
+      wrap.style.height = reduce ? '' : (h + vh * 0.9) + 'px';
+    }
     function pintaFilm() {
-      var b = film.getBoundingClientRect(), vh = window.innerHeight;
-      /* empieza cuando el borde superior entra (0) y termina cuando llega al 25%
-         del alto de la ventana (1): la matriz queda completa con la imagen a la vista */
-      var p = reduce ? 1 : clamp((vh - b.top) / (vh * 0.75), 0, 1);
+      var b = wrap.getBoundingClientRect();
+      var recorrido = wrap.offsetHeight - film.offsetHeight;
+      var p = reduce ? 1 : clamp((topFijo - b.top) / recorrido, 0, 1);
       var k = Math.max(1, Math.round(p * (N - 1)) + 1);
       if (k === actual || !cache[k]) return;
       if (cache[k].complete) { img.src = cache[k].src; actual = k; }
     }
+    medirFilm();
+    window.addEventListener('resize', function () { medirFilm(); pintaFilm(); });
+    window.addEventListener('load', function () { medirFilm(); pintaFilm(); });
     var tf = false;
     window.addEventListener('scroll', function () { if (!tf) { tf = true; requestAnimationFrame(function () { tf = false; pintaFilm(); }); } }, { passive: true });
   }

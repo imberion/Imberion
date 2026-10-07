@@ -15,13 +15,26 @@
         "num": "01",
         "etiqueta": "Datos",
         "h": "La información ya existe y está repartida.",
-        "p": "Tickets del punto de venta, listas de precios en el ERP, pedidos por WhatsApp, reportes de visita, precios de la competencia y lo que se conversa en el piso de venta. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide el precio del mes."
+        "p": "En el punto de venta pasa mucho más de lo que registra la caja: quién entra, qué buscaba, qué tomó del anaquel y qué soltó, qué preguntó, qué objeción tuvo y qué no encontró. A eso se suman los tickets, las listas de precios y descuentos del ERP, los pedidos por WhatsApp, los reportes de visita y los precios de la competencia. Cada fuente tiene su formato y su cadencia, y rara vez coinciden en la mesa donde se decide."
       },
       {
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
-        "p": "Homologamos las fuentes y corremos los modelos de elasticidad, mezcla y valor percibido. La IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Lo que sale es una decisión con su trade-off a la vista: qué precio, en qué canal, para qué cliente y desde cuándo."
+        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Sobre esa base corren los modelos que cada decisión necesita. Lo que sale es una decisión con su trade-off a la vista: qué precio, qué promoción, qué surtido, para qué cliente y desde cuándo.",
+        "modelos_label": "Algunos de los modelos que corren",
+        "modelos": [
+          "Elasticidad de precio y canibalización entre SKU",
+          "Valor percibido por atributo frente a la competencia",
+          "Precio contra valor percibido, producto por producto",
+          "Demanda sin oferta propia en el portafolio",
+          "Origen del crecimiento: precio, volumen y mezcla",
+          "Retorno de cada promoción",
+          "Retención y valor de cada cliente",
+          "Compradores simulados que prueban un concepto antes de producirlo",
+          "Gemelos de las cuentas con las que se negocia",
+          "Simulación de escenarios antes de aprobar una jugada"
+        ]
       },
       {
         "num": "03",
@@ -95,7 +108,17 @@
       "competencia",
       "visitas",
       "pedidos",
-      "listas de precio"
+      "listas de precio",
+      "perfil",
+      "objeción",
+      "no encontró",
+      "buscaba",
+      "soltó",
+      "recorrido",
+      "devoluciones",
+      "descuentos",
+      "tráfico",
+      "conversión"
     ],
     "pal_num": "01",
     "pal_label": "Qué decidimos",
