@@ -181,7 +181,7 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
   </section>
 
   <!-- 06 Primer paso: Checkup y cierre. El stop motion de la matriz corre con
-       el scroll: el progreso del bloque elige el cuadro (36, AVIF con WebP de
+       el scroll: el progreso del bloque elige el cuadro (40, AVIF con WebP de
        respaldo). Las tarjetas se componen con código sobre una foto limpia de la
        mesa, así que no cambian de forma entre cuadros. -->
   <section class="v3-cta" id="checkup">
@@ -194,7 +194,7 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
 
       <div class="chk-film-wrap" data-film-wrap>
       <div class="chk-film-fijo" data-film-fijo>
-      <figure class="chk-film" data-film data-n="36" data-base="/stop-motion/checkup/1280/">
+      <figure class="chk-film" data-film data-n="40" data-base="/stop-motion/checkup/1280/">
         <img src="/stop-motion/checkup/1280/0001.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
         <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
         <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
@@ -318,7 +318,7 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
       var p = reduce ? 1 : clamp((topFijo - b.top) / recorrido, 0, 1);
       var k = Math.max(1, Math.round(p * (N - 1)) + 1);
       /* el paso del texto sigue al cuadro: respuestas, hallazgos, matriz, primera iniciativa */
-      var paso = k <= 3 ? 0 : k <= 16 ? 1 : k <= 31 ? 2 : 3;
+      var paso = k <= 7 ? 0 : k <= 17 ? 1 : k <= 37 ? 2 : 3;
       pasosFilm.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); el.classList.toggle('is-hecho', i < paso); });
       if (k === actual || !cache[k]) return;
       if (cache[k].complete) { img.src = cache[k].src; actual = k; }
