@@ -284,30 +284,45 @@ a.pal-fila:hover .pal-entregable i { transform: translateX(4px); color: var(--ti
   .con-modo + .con-modo { border-top: 1px solid var(--linea); }
 }
 
-/* ================= 05 PARA QUIÉN ================= */
-.ind4 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.ind4-item {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 240px); gap: 28px; align-items: start;
-  padding: 32px; background: #fff; border-radius: 4px; color: inherit; text-decoration: none;
-  transition: background .3s var(--ease-v3);
+/* ================= 05 PARA QUIÉN (escena) ================= */
+.ind-esc { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); }
+.ind-lista { list-style: none; margin: 0; padding: 0; }
+.ind-paso { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid var(--linea); opacity: .3; transition: opacity .5s var(--ease-v3); }
+.ind-paso:last-child { border-bottom: 1px solid var(--linea); }
+.ind-paso.is-on { opacity: 1; }
+.ind-paso-n { font-size: 12px; color: var(--tinta-55); }
+.ind-paso-t { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.4rem, 4.4vw, 3.8rem); line-height: 1.02; letter-spacing: -.018em; margin: 12px 0 0; }
+.ind-paso-sub { font-size: 12px; color: var(--tinta-55); margin: 14px 0 0; line-height: 1.5; max-width: 36ch; }
+.ind-paso-movil { display: none; }
+
+.ind-panel { position: sticky; top: 110px; height: min(76vh, 680px); align-self: start; border-radius: 4px; overflow: hidden; background: #E3E4E6; }
+.ind-capa { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .7s var(--ease-v3); }
+.ind-capa.is-on { opacity: 1; }
+.ind-capa img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1.6s var(--ease-v3); }
+.ind-capa.is-on img { transform: scale(1); }
+.ind-cap {
+  position: absolute; left: 20px; right: 20px; bottom: 20px;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 20px; align-items: end;
+  background: rgba(10, 24, 40, .92); color: #fff; border-radius: 4px; padding: 20px 22px;
+  transform: translateY(12px); opacity: 0; transition: transform .7s var(--ease-v3) .15s, opacity .6s var(--ease-v3) .15s;
 }
-.ind4-n { font-size: 11.5px; color: var(--tinta-55); }
-.ind4-t { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.7rem, 2.4vw, 2.1rem); line-height: 1.1; margin: 10px 0 0; }
-.ind4-sub { font-size: 11.5px; color: var(--tinta-55); margin: 10px 0 0; line-height: 1.5; }
-.ind4-p { font-size: .98rem; line-height: 1.6; color: var(--tinta-72); margin: 18px 0 0; }
-.ind4-ficha {
-  background: var(--navy); color: #fff; border-radius: 4px; padding: 16px 18px 14px;
-  transition: transform .5s var(--ease-v3);
-}
-.ind4-item:hover .ind4-ficha { transform: translateY(-4px); }
-.ind4-ficha-l { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--on-dark-62); margin: 0 0 10px; }
-.ind4-ficha-l i { font-style: normal; transition: transform .3s var(--ease-v3); }
-.ind4-item:hover .ind4-ficha-l i { transform: translateX(3px); color: #fff; }
-.ind4-ficha-t { font-family: var(--font-serif); font-size: 1.3rem; line-height: 1.15; margin: 0 0 10px; }
-.ind4-ficha-d { font-size: 11.5px; color: var(--on-dark-78); margin: 0; padding: 7px 0; border-top: 1px solid var(--linea-dark); }
-@media (max-width: 1080px) { .ind4 { grid-template-columns: 1fr; } }
-@media (max-width: 600px) {
-  .ind4-item { grid-template-columns: 1fr; padding: 24px; gap: 20px; }
+.ind-capa.is-on .ind-cap { transform: none; opacity: 1; }
+.ind-cap .ind-panel-p { grid-column: 1 / -1; margin: 0; font-family: var(--font-serif); font-size: 1.35rem; line-height: 1.25; color: #fff; }
+.ind-ficha { border-top: 1px solid var(--linea-dark); padding-top: 12px; }
+.ind-ficha-l { font-size: 10.5px; color: var(--on-dark-62); margin: 0; }
+.ind-ficha-t { font-size: 1rem; margin: 4px 0 0; }
+.ind-ficha-d { font-size: 11.5px; color: var(--on-dark-78); margin: 4px 0 0; }
+.ind-ver { font-size: 12px; color: #fff; border-bottom: 1px solid var(--linea-dark); padding-bottom: 2px; white-space: nowrap; }
+.ind-ver:hover { border-color: #fff; }
+
+@media (max-width: 919px) {
+  .ind-esc { grid-template-columns: 1fr; }
+  .ind-panel { display: none; }
+  .ind-paso { min-height: 0; opacity: 1; padding: 32px 0; }
+  .ind-paso-movil { display: block; margin-top: 20px; }
+  .ind-paso-movil img { width: 100%; height: auto; border-radius: 4px; display: block; }
+  .ind-paso-movil .ind-panel-p { font-family: var(--font-serif); font-size: 1.3rem; line-height: 1.25; margin: 16px 0 0; }
+  .ind-paso-movil .ind-ver { display: inline-block; margin-top: 14px; color: var(--tinta); border-color: var(--linea-fuerte); }
 }
 
 /* ================= 06 CHECKUP Y CIERRE ================= */

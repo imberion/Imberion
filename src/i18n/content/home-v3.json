@@ -265,7 +265,9 @@
           "Precio por zona",
           "1,200 SKU de abarrotes",
           "Revisión semanal contra competencia"
-        ]
+        ],
+        "foto": "ind-retail",
+        "alt": "Tramo de anaquel con tres productos sin marca, etiquetas de precio y una etiquetadora."
       },
       {
         "slug": "cpg",
@@ -276,7 +278,9 @@
           "Calendario promocional",
           "14 eventos al año",
           "Retorno estimado por evento"
-        ]
+        ],
+        "foto": "ind-consumo",
+        "alt": "Calendario promocional impreso con semanas marcadas, junto a una botella y una caja sin marca."
       },
       {
         "slug": "b2b",
@@ -287,7 +291,9 @@
           "Matriz de descuentos",
           "4 niveles de autorización",
           "Contraprestación por descuento"
-        ]
+        ],
+        "foto": "ind-b2b",
+        "alt": "Cotización impresa con descuentos marcados a lápiz, calculadora, un rodamiento y un tornillo."
       },
       {
         "slug": "servicios-b2c",
@@ -298,7 +304,9 @@
           "Oferta de retención",
           "3 segmentos de riesgo",
           "Se dispara con la caída de uso"
-        ]
+        ],
+        "foto": "ind-servicios",
+        "alt": "Contrato de servicio impreso junto a un teléfono celular y una tarjeta en blanco."
       }
     ],
     "ind_ficha_label": "Decisión típica",
@@ -326,6 +334,7 @@
       "Las respuestas se vuelven hallazgos, cada uno con su caso de negocio.",
       "Cada hallazgo se ubica en la matriz por impacto y esfuerzo.",
       "El de mayor impacto y menor esfuerzo es la primera iniciativa."
-    ]
+    ],
+    "ind_ver": "Ver la industria"
   }
 }
