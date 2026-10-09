@@ -43,78 +43,7 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
 <div class="v3">
   <Apertura c={c} agendar={ZCAL_30MIN} como="#how-it-works" />
 
-  <!-- Trayectoria: las cifras cuentan hacia su valor al entrar -->
-  <section class="v3-sec v3-blanco" id="trayectoria">
-    <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
-    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
-    <div class="container">
-      <header class="v3-head v3-head--ancho">
-        <h2 class="v3-h2">{c.tray_h2}</h2>
-        <p class="v3-lead">{c.tray_lead}</p>
-      </header>
-      <div class="tray">
-        {c.tray_casos.map((k: any, i: number) => (
-          <article class="tray-caso" data-v3-in style={`--i:${i}`}>
-            <p class="tray-ctx mono">{k.ctx}</p>
-            <p class="tray-cifra" data-cuenta={k.cifra}>{k.cifra}</p>
-            <p class="tray-unidad">{k.unidad}</p>
-            <p class="tray-p">{k.p}</p>
-            <p class="tray-palanca mono">Palanca · {k.palanca}</p>
-          </article>
-        ))}
-      </div>
-      <p class="tray-pie mono">{c.tray_pie}</p>
-    </div>
-  </section>
-
-  <!-- 03 IA -->
-  <section class="v3-sec v3-papel" id="ia">
-    <div class="container">
-      <header class="v3-head v3-head--ancho">
-        <h2 class="v3-h2">{c.ia_h2}</h2>
-        <p class="v3-lead">{c.ia_lead}</p>
-      </header>
-      <div class="ia-tabla" role="table" aria-label={c.ia_label}>
-        <div class="ia-fila ia-fila--head mono" role="row">
-          <span role="columnheader">{c.ia_cols[0]}</span>
-          <span role="columnheader">{c.ia_cols[1]}</span>
-        </div>
-        {c.ia_filas.map((f: string[], i: number) => (
-          <div class="ia-fila" role="row" data-v3-in style={`--i:${i}`}>
-            <span class="ia-maquina" role="cell"><b class="mono">{n2(i)}</b>{f[0]}</span>
-            <span class="ia-persona" role="cell">{f[1]}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 Qué se contrata -->
-  <section class="v3-sec v3-blanco" id="how-it-works">
-    <div class="container">
-      <header class="v3-head">
-        <h2 class="v3-h2">{c.con_h2}</h2>
-        <p class="v3-lead">{c.con_lead}</p>
-      </header>
-      <div class="con">
-        {c.con_modos.map((m: any, i: number) => (
-          <article class="con-modo" data-v3-in style={`--i:${i}`}>
-            <p class="con-n mono">Modo {String.fromCharCode(65 + i)}</p>
-            <h3 class="con-t">{m.t}</h3>
-            <p class="con-p">{m.p}</p>
-            <p class="con-recibe-l mono">El cliente recibe</p>
-            <ul class="con-recibe">
-              {m.recibe.map((r: string) => <li>{r}</li>)}
-            </ul>
-            <p class="con-conviene">{m.conviene}</p>
-          </article>
-        ))}
-      </div>
-      <a class="con-catalogo mono" href={ruta(locale, 'catalogo')}>{c.con_catalogo} →</a>
-    </div>
-  </section>
-
-  <!-- 05 Para quién -->
+  <!-- Para quién: va primero para que cada comprador encuentre su problema pronto (revisión a ciegas 2, 2026-10-08) -->
   <section class="v3-sec v3-papel" id="who">
     <span id="sectors" class="v3-ancla" aria-hidden="true"></span>
     <div class="container">
@@ -160,7 +89,78 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
     </div>
   </section>
 
-  <!-- 06 Primer paso: Checkup y cierre. El stop motion de la matriz corre con
+  <!-- Trayectoria: las cifras cuentan hacia su valor al entrar -->
+  <section class="v3-sec v3-blanco" id="trayectoria">
+    <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
+    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
+    <div class="container">
+      <header class="v3-head v3-head--ancho">
+        <h2 class="v3-h2">{c.tray_h2}</h2>
+        <p class="v3-lead">{c.tray_lead}</p>
+      </header>
+      <div class="tray">
+        {c.tray_casos.map((k: any, i: number) => (
+          <article class="tray-caso" data-v3-in style={`--i:${i}`}>
+            <p class="tray-ctx mono">{k.ctx}</p>
+            <p class="tray-cifra" data-cuenta={k.cifra}>{k.cifra}</p>
+            <p class="tray-unidad">{k.unidad}</p>
+            <p class="tray-p">{k.p}</p>
+            <p class="tray-palanca mono">Palanca · {k.palanca}</p>
+          </article>
+        ))}
+      </div>
+      <p class="tray-pie mono">{c.tray_pie}</p>
+    </div>
+  </section>
+
+  <!-- IA -->
+  <section class="v3-sec v3-papel" id="ia">
+    <div class="container">
+      <header class="v3-head v3-head--ancho">
+        <h2 class="v3-h2">{c.ia_h2}</h2>
+        <p class="v3-lead">{c.ia_lead}</p>
+      </header>
+      <div class="ia-tabla" role="table" aria-label={c.ia_label}>
+        <div class="ia-fila ia-fila--head mono" role="row">
+          <span role="columnheader">{c.ia_cols[0]}</span>
+          <span role="columnheader">{c.ia_cols[1]}</span>
+        </div>
+        {c.ia_filas.map((f: string[], i: number) => (
+          <div class="ia-fila" role="row" data-v3-in style={`--i:${i}`}>
+            <span class="ia-maquina" role="cell"><b class="mono">{n2(i)}</b>{f[0]}</span>
+            <span class="ia-persona" role="cell">{f[1]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué se contrata -->
+  <section class="v3-sec v3-blanco" id="how-it-works">
+    <div class="container">
+      <header class="v3-head">
+        <h2 class="v3-h2">{c.con_h2}</h2>
+        <p class="v3-lead">{c.con_lead}</p>
+      </header>
+      <div class="con">
+        {c.con_modos.map((m: any, i: number) => (
+          <article class="con-modo" data-v3-in style={`--i:${i}`}>
+            <p class="con-n mono">Modo {String.fromCharCode(65 + i)}</p>
+            <h3 class="con-t">{m.t}</h3>
+            <p class="con-p">{m.p}</p>
+            <p class="con-recibe-l mono">El cliente recibe</p>
+            <ul class="con-recibe">
+              {m.recibe.map((r: string) => <li>{r}</li>)}
+            </ul>
+            <p class="con-conviene">{m.conviene}</p>
+          </article>
+        ))}
+      </div>
+      <a class="con-catalogo mono" href={ruta(locale, 'catalogo')}>{c.con_catalogo} →</a>
+    </div>
+  </section>
+
+  <!-- Primer paso: Checkup y cierre. El stop motion de la matriz corre con
        el scroll: el progreso del bloque elige el cuadro (40, AVIF con WebP de
        respaldo). Las tarjetas se componen con código sobre una foto limpia de la
        mesa, así que no cambian de forma entre cuadros. -->

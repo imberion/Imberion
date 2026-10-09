@@ -76,20 +76,22 @@ comercial de consumo y director de operaciones de 60 tiendas de electrónica). R
 compradores sintéticos, cadencia, "se puede aprobar") y la llamada de 30 minutos ya dice
 para qué es.
 
-Decisiones de Rodrigo pendientes, de lo que dijeron los tres:
+Hecho el 2026-10-08 con las respuestas de Rodrigo: "Para quién" sube justo después de la
+apertura; bajo el titular van los cuatro problemas, uno por industria; la llamada menciona
+el modelo de madurez; el Checkup dice que usa datos del cliente y modelos analíticos, con
+versión rápida (dos semanas) y completa (con entrevistas). La versión solo de entrevistas,
+que no cuesta, no se menciona nunca (decisión de Rodrigo). Telecom y confitería ganaron
+escala, método y plazo, tomados de `00_imberion/identidad/portfolio_proyectos.md`.
 
-1. El problema de cada comprador llega tarde (B2B en la pantalla de industrias, retail
-   igual). Opciones: subir "Para quién" justo después de la apertura, o nombrar los cuatro
-   problemas en la portada.
-2. El titular se lee genérico para los tres.
-3. Evidencia: piden escala, método de medición y plazo de los casos, un caso de su
-   industria y nombres de quién responde.
-4. Checkup: no entienden de dónde salen cifras si la entrada es un cuestionario; la hoja de
-   ruta de 18 a 24 meses se lee larga. Piden una entrada corta tipo piloto.
-5. Servicio Memorable aparece sin explicar qué hace.
-6. Guiones de stop motion para cuatro fichas en `guiones_stop_motion_fichas.md`.
-7. Traducir el home v3 a EN y PT cuando Rodrigo apruebe el español.
-8. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
+Lo que falta y solo Rodrigo puede dar:
+
+1. Un caso de B2B industrial con número (el de materiales de construcción del portafolio no
+   tiene resultado cuantificado) y, si existe, uno de retail.
+2. Si el home nombra a quién responde (nombre y trayectoria de Rodrigo, sin foto).
+3. Qué hace en concreto Servicio Memorable, en una frase de mecanismo.
+4. Aprobar los guiones de `guiones_stop_motion_fichas.md`.
+5. Aprobar el español para traducir a EN y PT.
+6. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 
 ## Revisión a ciegas (2026-10-06)
 

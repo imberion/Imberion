@@ -177,11 +177,11 @@
         "unidad": "de margen incremental en un trimestre",
         "ctx": "Confitería global · México",
         "palanca": "Promoción",
-        "p": "Rediseño del plan promocional del cuarto trimestre con el retorno estimado de cada evento. El 36% del gasto estaba en mecánicas que restaban valor y se movió a eventos de mayor rendimiento."
+        "p": "Plan promocional del cuarto trimestre con un modelo que clasificó cada evento por su retorno, sobre datos de mercado y de la empresa. El 36% del gasto estaba en mecánicas que restaban valor y se movió a eventos de mayor rendimiento. El margen se midió contra el plan que se habría ejecutado sin el cambio."
       },
       {
         "cifra": "17.5% → 27.3%",
-        "unidad": "de margen EBITDA entre 2015 y 2018",
+        "unidad": "de margen EBITDA entre 2015 y 2018, con ingresos de USD 1,060 M",
         "ctx": "Operador de telecomunicaciones · Costa Rica",
         "palanca": "Cliente y canal",
         "p": "Reset comercial después de la apertura del mercado: segmentación, propuesta de valor, gestión de bajas y gobierno del margen, con la dirección del estado de resultados durante 18 meses."
@@ -321,25 +321,25 @@
     "chk_num": "06",
     "chk_label": "El primer paso",
     "chk_h2": "Imberion Checkup: dos semanas para saber qué iniciativa va primero.",
-    "chk_p": "En su versión rápida toma dos semanas. El equipo directivo responde un cuestionario sobre estrategia, embudo comercial, precios, gobierno y formas de trabajo, enfocado en los problemas que ya identificó. Imberion lo convierte en una lista ordenada de iniciativas que un comité puede aprobar en una sesión.",
+    "chk_p": "El equipo directivo responde un cuestionario sobre estrategia, embudo comercial, precios, gobierno y formas de trabajo, y la empresa comparte sus datos de ventas, precios, descuentos y clientes. Sobre esos datos corren los modelos analíticos de Imberion, y de ahí salen las oportunidades, cada una con su caso de negocio. La versión rápida toma dos semanas. La versión completa suma entrevistas con el equipo y un análisis más profundo.",
     "chk_entregables_label": "Entregables",
     "chk_entregables": [
       "Puntaje de madurez por dimensión comercial",
       "Hallazgos con caso de negocio cuantificado",
       "Matriz de iniciativas por impacto y esfuerzo",
-      "Hoja de ruta de 18 a 24 meses"
+      "Hoja de ruta de 18 a 24 meses, que arranca por la iniciativa de mayor impacto y menor esfuerzo"
     ],
     "chk_arranque": "Se arranca con lo que hay: hojas de cálculo, sistemas que no se hablan y datos incompletos son el punto de partida de la mayoría de los proyectos.",
     "cta_btn1": "Agendar llamada de 30 min",
     "cta_btn2": "Ver el Checkup",
     "cta_mail": "hola@imberion.com",
-    "chk_cliente": "Del lado del cliente: una conversación inicial y las respuestas del equipo directivo al cuestionario.",
+    "chk_cliente": "Del lado del cliente: una conversación inicial, las respuestas del equipo directivo al cuestionario y los datos de la solicitud.",
     "chk_film_alt": "Seis tarjetas de hallazgos se acomodan en una matriz de 3 por 3 sobre un tablero azul marino; la de mayor impacto y menor esfuerzo queda en petróleo.",
     "chk_eje_y": "Impacto",
     "chk_eje_x": "Esfuerzo",
     "chk_pasos": [
       "El equipo directivo contesta el cuestionario.",
-      "Las respuestas se vuelven hallazgos, cada uno con su caso de negocio.",
+      "Respuestas y datos se vuelven hallazgos, cada uno con su caso de negocio.",
       "Cada hallazgo se ubica en la matriz por impacto y esfuerzo.",
       "El de mayor impacto y menor esfuerzo es la primera iniciativa."
     ],
@@ -347,6 +347,7 @@
     "con_lead": "En los dos modos una persona revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial. Esa persona puede ser de Imberion o del equipo del cliente, y se puede empezar con Imberion operando y pasar la operación al equipo cuando esté listo.",
     "ind_mueve_label": "Indicadores que movemos",
     "ind_trab_label": "En qué trabajamos",
-    "chk_llamada": "En la llamada de 30 minutos se revisa el problema que más le cuesta a la empresa, qué datos existen y si conviene empezar con el Checkup o con un piloto acotado."
+    "chk_llamada": "En la llamada de 30 minutos se corre con el equipo un modelo de madurez comercial, se revisa el problema que más le cuesta a la empresa y qué datos existen, y se decide si conviene empezar con el Checkup o con un piloto acotado.",
+    "ap_problemas": "Tiendas que no convierten, promociones que no rinden, descuentos sin contraprestación y clientes que se van sin aviso."
   }
 }

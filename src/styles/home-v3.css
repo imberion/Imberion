@@ -85,6 +85,7 @@
   font-size: clamp(2.5rem, 4.5vw, 4.1rem); line-height: 1.03;
   letter-spacing: -.022em; margin: 0; text-wrap: balance;
 }
+.ap-problemas { font-family: var(--font-serif); font-size: clamp(1.2rem, 1.6vw, 1.45rem); line-height: 1.3; color: var(--on-dark-78); margin: 22px 0 0; max-width: 42ch; text-wrap: pretty; }
 .ap-lead { font-size: clamp(1rem, 1.3vw, 1.1rem); line-height: 1.7; color: var(--on-dark-78); margin: 30px 0 0; max-width: 56ch; }
 .ap-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
 
@@ -166,6 +167,7 @@
   .ap-h1 { font-size: 2.15rem; }
   .ap-h2 { font-size: 2rem; }
   .ap-lead { font-size: .98rem; margin-top: 20px; }
+  .ap-problemas { font-size: 1.1rem; margin-top: 14px; }
   .ap-p { font-size: .9rem; line-height: 1.6; margin-top: 14px; }
   .ap-preguntas { display: none; }
   .ap-panel[data-ap-panel="1"] .ap-preguntas { display: block; margin-top: 14px; }
