@@ -11,7 +11,7 @@ contra el copy nuevo del home. Se generan cuando él dé la orden.
 - **Cámaras en tienda, las que ya existen o nuevas.** Rodrigo corrigió "las cámaras ya
   instaladas" (2026-10-07). Se corrigió también la ficha de Floor Signal en los tres
   idiomas.
-- **Vendedores de carne y hueso.** Training Signal graba a los asesores en piso, no solo a
+- **Vendedores humanos.** Training Signal graba a los asesores en piso, no solo a
   agentes.
 - **Una persona en el circuito.** Concierge cierra con el paso a una persona.
 - **Sin compromisos largos.** Ninguna pieza muestra calendarios ni hojas de ruta.

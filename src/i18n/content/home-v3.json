@@ -23,7 +23,7 @@
           ],
           [
             "Lo que se levanta",
-            "Imberion instala y opera la captura. Las conversaciones con clientes, las de agentes de voz y WhatsApp y las de vendedores en piso o en visita (con su consentimiento), quedan grabadas, transcritas y clasificadas. Cámaras en tienda, las que ya existen o nuevas, miden tráfico, recorrido y atención al anaquel. En cientos de puntos de venta se levantan precios y argumentos de venta, propios y de la competencia."
+            "Lo que hoy se pierde: qué pidió y qué objetó cada cliente en una llamada, un chat o una visita; quién entra a la tienda y se va sin comprar; a qué precio y con qué argumento se vende en el mercado. Imberion instala y opera la captura con agentes de voz y WhatsApp, cámaras en tienda y grabaciones de los vendedores, con su consentimiento."
           ]
         ]
       },
@@ -31,7 +31,7 @@
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
-        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos responden tres preguntas para cada perfil de cliente, porque el mismo precio o la misma promoción rinden distinto según quién compra. Lo que sale es una decisión con lo que se gana, lo que se arriesga y cuánto.",
+        "p": "Con esa información se responden tres preguntas para cada perfil de cliente, porque el mismo precio o la misma promoción rinden distinto según quién compra. Lo que sale es una decisión con lo que se gana, lo que se arriesga y cuánto.",
         "grupos": [
           [
             "Cuánto vale",
@@ -140,7 +140,7 @@
     "ia_num": "03",
     "ia_label": "Inteligencia artificial",
     "ia_h2": "Orquestamos modelos de IA, y cada decisión la firma una persona.",
-    "ia_lead": "Usamos modelos de lenguaje, visión y audio donde multiplican la capacidad del equipo: leer miles de conversaciones, precios y tickets que nadie alcanza a revisar a mano. Cada salida pasa primero por reglas de negocio fijas que no dependen del modelo (margen mínimo, límite de descuento, condiciones pactadas con cada cliente), y lo que no las cumple no sale. Así, un precio o un descuento que la IA invente fuera de esos límites no llega a ninguna lista. Después la revisa una persona antes de llegar al cliente o a la operación.",
+    "ia_lead": "La IA permite revisar miles de conversaciones, precios y tickets que nadie alcanza a leer a mano. Ningún precio ni descuento sale fuera de los límites del negocio (margen mínimo, límite de descuento, condiciones pactadas con cada cliente), y cada recomendación la revisa una persona antes de llegar al cliente o a la operación.",
     "ia_cols": [
       "Lo que hace la IA",
       "Lo que decide una persona"
@@ -240,13 +240,13 @@
           "Margen por metro cuadrado"
         ],
         "trabajamos": [
-          "Surtido y espacio por tipo de tienda",
-          "Precio y productos que definen la imagen de precio",
-          "Promociones que separan venta incremental de canibalización",
-          "El argumento del mejor vendedor, llevado a todo el piso",
-          "Acompañamiento cultural con la metodología Servicio Memorable: estándares de servicio, una junta de 15 minutos por turno y margen para que el equipo resuelva sin pedir permiso",
-          "Embudo de la tienda: quién pasa, entra, prueba y compra",
-          "Lealtad y CRM para que el cliente regrese"
+          "Surtido y espacio que venden más por metro cuadrado",
+          "Precios que cuidan la imagen de precio y el margen",
+          "Promociones que traen venta incremental",
+          "Todo el piso vendiendo con el argumento del mejor vendedor",
+          "Una cultura de servicio y de enfoque al cliente, con la metodología Servicio Memorable, que hace que los clientes se vuelvan leales y quieran regresar",
+          "Saber quién entra, qué busca y por qué se va sin comprar",
+          "Clientes identificados que compran más seguido"
         ]
       },
       {
@@ -263,12 +263,12 @@
           "Sell-out"
         ],
         "trabajamos": [
-          "Arquitectura de precio y empaque por canal y ocasión",
-          "Del precio de lista al precio neto, con cada descuento a la vista",
-          "Inversión comercial pagada por desempeño del canal",
-          "Calendario promocional con retorno por evento",
-          "Portafolio: qué productos salen, cuáles entran y dónde subir de gama",
-          "Precio, promoción y discurso del canal leídos en el punto de venta"
+          "Precio y empaque correctos para cada canal y ocasión",
+          "Saber cuánto del precio de lista se queda en descuentos al canal",
+          "Inversión comercial que se paga contra el desempeño del canal",
+          "Promociones con retorno conocido antes de lanzarlas",
+          "Más de los productos que crecen y menos de los que no rinden",
+          "Saber a qué precio y con qué argumento se vende en el punto de venta"
         ]
       },
       {
@@ -285,12 +285,12 @@
           "Retención de cuentas"
         ],
         "trabajamos": [
-          "Precio por valor y regla para trasladar alzas de costo",
-          "Margen real visible al momento de cotizar",
-          "Política de descuentos con límites y contraprestación",
-          "Segmentación de cuentas y cobertura según su potencial",
-          "Pedidos y servicio por WhatsApp y voz",
-          "Compensación variable que premia margen y mezcla"
+          "Precios que reflejan el valor para cada cliente y trasladan las alzas de costo",
+          "Cotizaciones con el margen real a la vista",
+          "Descuentos con límite, que se otorgan a cambio de algo",
+          "Tiempo comercial puesto en las cuentas con más potencial",
+          "Pedidos y servicio atendidos a toda hora por WhatsApp y voz",
+          "Vendedores que ganan más cuando venden con margen"
         ]
       },
       {
@@ -307,14 +307,14 @@
           "Costo de adquisición"
         ],
         "trabajamos": [
-          "Arquitectura de planes y precio de renovación",
-          "Alerta de baja y oferta de retención por segmento",
-          "La siguiente mejor oferta para cada cliente",
-          "Promociones con venta incremental medida",
-          "Atención y venta por voz y WhatsApp las 24 horas",
-          "Entrenamiento de asesores y ejecutivos con los argumentos que sí cierran",
-          "Acompañamiento cultural con la metodología Servicio Memorable: estándares de servicio, una junta de 15 minutos por turno y margen para que el equipo resuelva sin pedir permiso",
-          "Precio por horario para llenar la capacidad ociosa"
+          "Planes y precios de renovación que retienen sin regalar margen",
+          "Saber qué cliente se va a ir antes de que se vaya, con una oferta para retenerlo",
+          "La oferta correcta para cada cliente",
+          "Promociones que traen venta incremental medida",
+          "Atención y venta a toda hora por voz y WhatsApp",
+          "Asesores y ejecutivos que cierran con los argumentos que funcionan",
+          "Una cultura de servicio y de enfoque al cliente, con la metodología Servicio Memorable, que hace que los clientes se vuelvan leales y quieran regresar",
+          "Capacidad ociosa que se llena con precio por horario"
         ]
       }
     ],
@@ -346,7 +346,7 @@
     "ind_ver": "Ver la industria",
     "con_lead": "En los dos modos una persona revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial. Esa persona puede ser de Imberion o del equipo del cliente, y se puede empezar con Imberion operando y pasar la operación al equipo cuando esté listo.",
     "ind_mueve_label": "Indicadores que movemos",
-    "ind_trab_label": "En qué trabajamos",
+    "ind_trab_label": "Lo que resolvemos",
     "chk_llamada": "En la llamada de 30 minutos se corre con el equipo un modelo de madurez comercial, se revisa el problema que más le cuesta a la empresa y qué datos existen, y se decide si conviene empezar con el Checkup o con un piloto acotado.",
     "ap_problemas": "Tiendas que no convierten, promociones que no rinden, descuentos sin contraprestación y clientes que se van sin aviso.",
     "tec_titulo": "Casos de éxito de la tecnología de piso",

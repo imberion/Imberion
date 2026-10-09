@@ -59,6 +59,9 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
 - Servicio Memorable: metodología basada en los estándares de Ritz-Carlton, pero la marca
   Ritz-Carlton no se nombra sin licencia (nota en `imberion-concierge/docs/_nota_servicio_memorable.md`).
 - Cifras de los casos: basta con que sean coherentes, factibles y sin abuso (2026-10-09).
+- Resultado antes que mecanismo (2026-10-09): cada entrada dice qué resuelve; el cómo
+  funciona solo donde importa (Checkup) o como lo que se requiere del cliente. Las
+  industrias dicen "Lo que resolvemos". Decir "humanos", no "de carne y hueso".
 - Fotos de IA con personas borrosas: fuera. Objetos sobre la mesa, sin personas, sí.
 - Copy multiindustria siempre: nada que hable solo de retail.
 - Nada de listas largas: la etapa 02 agrupa los modelos en tres preguntas.
