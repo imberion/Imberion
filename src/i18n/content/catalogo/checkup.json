@@ -4,14 +4,14 @@
     "familia_label": "Puerta de entrada",
     "hero_eyebrow": "Imberion Checkup · Puerta de entrada",
     "hero_h1": "El diagnóstico que ordena por dónde empezar.",
-    "hero_lead": "Imberion Checkup es la puerta de entrada: radiografía la operación comercial (estrategia, embudo, precios, gobierno y formas de trabajo), ordena las iniciativas por impacto y esfuerzo, cada una con su caso de negocio, y deja una hoja de ruta de 18 a 24 meses.",
-    "que_hace_h2": "Radiografía, matriz de iniciativas y hoja de ruta",
+    "hero_lead": "Imberion Checkup es la puerta de entrada: radiografía la operación comercial (estrategia, embudo, precios, gobierno y formas de trabajo) contra las mejores prácticas de distintas industrias, ordena las iniciativas por impacto y esfuerzo, cada una con su caso de negocio, y deja claros los siguientes pasos y los quick wins con retorno inmediato.",
+    "que_hace_h2": "Radiografía, matriz de iniciativas y siguientes pasos",
     "que_hace_p": "El diagnóstico cubre la operación comercial completa y termina en una matriz donde cada iniciativa queda ubicada por su impacto y por el esfuerzo de ejecutarla. La alineación del liderazgo se mide como parte del ejercicio, porque determina qué iniciativas pueden ejecutarse. Parte de un cuestionario al equipo directivo y de una solicitud de datos de ventas, precios, descuentos y clientes, sobre los que corren los modelos analíticos de Imberion.",
     "que_hace_items": [
       "Radiografía de estrategia, embudo, precios, gobierno y formas de trabajo",
       "Puntaje de madurez por dimensión y medición de la alineación del liderazgo",
       "Matriz de iniciativas por impacto y esfuerzo, con caso de negocio por iniciativa",
-      "Hoja de ruta de 18 a 24 meses"
+      "Siguientes pasos claros y quick wins con retorno inmediato"
     ],
     "valor_h2": "Un diagnóstico que se puede aprobar",
     "valor_p": "Cada hallazgo sale con su caso de negocio y su lugar en la matriz por impacto y esfuerzo. Con eso la lista ya viene ordenada y un comité puede aprobar la secuencia en una sesión.",
@@ -28,14 +28,14 @@
     "familia_label": "Entry point",
     "hero_eyebrow": "Imberion Checkup · Entry point",
     "hero_h1": "The diagnosis that sets the order of what comes first.",
-    "hero_lead": "Imberion Checkup is the entry point: it x-rays the commercial operation (strategy, funnel, pricing, governance and ways of working), ranks initiatives by impact and effort, each with its business case, and leaves an 18 to 24 month roadmap.",
-    "que_hace_h2": "X-ray, initiative matrix, and roadmap",
+    "hero_lead": "Imberion Checkup is the entry point: it x-rays the commercial operation (strategy, funnel, pricing, governance and ways of working) against best practices from several industries, ranks initiatives by impact and effort, each with its business case, and makes the next steps and the quick wins with immediate return clear.",
+    "que_hace_h2": "X-ray, initiative matrix, and next steps",
     "que_hace_p": "The diagnosis covers the whole commercial operation and ends in a matrix where each initiative is placed by its impact and the effort to execute it. Leadership alignment is measured as part of the exercise, because it determines which initiatives can be executed at all. It starts from a leadership questionnaire and a data request covering sales, pricing, discounts and customers, on which Imberion's analytical models run.",
     "que_hace_items": [
       "X-ray of strategy, funnel, pricing, governance and ways of working",
       "Maturity score by dimension and measurement of leadership alignment",
       "Initiative matrix by impact and effort, with a business case per initiative",
-      "18 to 24 month roadmap"
+      "Clear next steps and quick wins with immediate return"
     ],
     "valor_h2": "A diagnosis that can be approved",
     "valor_p": "Each finding comes with its business case and its place in the impact and effort matrix. The list arrives already ranked, and a committee can approve the sequence in one session.",
@@ -52,14 +52,14 @@
     "familia_label": "Porta de entrada",
     "hero_eyebrow": "Imberion Checkup · Porta de entrada",
     "hero_h1": "O diagnóstico que define por onde começar.",
-    "hero_lead": "Imberion Checkup é a porta de entrada: faz a radiografia da operação comercial (estratégia, funil, preços, governança e formas de trabalho), ordena as iniciativas por impacto e esforço, cada uma com seu business case, e deixa um roteiro de 18 a 24 meses.",
-    "que_hace_h2": "Radiografia, matriz de iniciativas e roteiro",
+    "hero_lead": "Imberion Checkup é a porta de entrada: faz a radiografia da operação comercial (estratégia, funil, preços, governança e formas de trabalho) contra as melhores práticas de diferentes indústrias, ordena as iniciativas por impacto e esforço, cada uma com seu business case, e deixa claros os próximos passos e os quick wins com retorno imediato.",
+    "que_hace_h2": "Radiografia, matriz de iniciativas e próximos passos",
     "que_hace_p": "O diagnóstico cobre a operação comercial completa e termina em uma matriz onde cada iniciativa fica posicionada por seu impacto e pelo esforço de executá-la. O alinhamento da liderança é medido como parte do exercício, porque determina que iniciativas conseguem ser executadas. Parte de um questionário à liderança e de uma solicitação de dados de vendas, preços, descontos e clientes, sobre os quais rodam os modelos analíticos da Imberion.",
     "que_hace_items": [
       "Radiografia de estratégia, funil, preços, governança e formas de trabalho",
       "Pontuação de maturidade por dimensão e medição do alinhamento da liderança",
       "Matriz de iniciativas por impacto e esforço, com business case por iniciativa",
-      "Roteiro de 18 a 24 meses"
+      "Próximos passos claros e quick wins com retorno imediato"
     ],
     "valor_h2": "Um diagnóstico que dá para aprovar",
     "valor_p": "Cada achado sai com seu business case e seu lugar na matriz de impacto e esforço. A lista já chega ordenada, e um comitê aprova a sequência em uma sessão.",

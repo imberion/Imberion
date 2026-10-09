@@ -83,10 +83,17 @@ versión rápida (dos semanas) y completa (con entrevistas). La versión solo de
 que no cuesta, no se menciona nunca (decisión de Rodrigo). Telecom y confitería ganaron
 escala, método y plazo, tomados de `00_imberion/identidad/portfolio_proyectos.md`.
 
+Hecho el 2026-10-09: el Checkup contrasta cada palanca con mejores prácticas de distintas
+industrias (como Rodrigo se lo explicó a Santiago Andino de Prime Power, 2026-07-16); la
+hoja de ruta de 18 a 24 meses sale (espanta) y entra "Siguientes pasos claros y quick wins
+con retorno inmediato", también en la ficha del catálogo. Trayectoria: sale lácteos y entra
+la política comercial de materiales de construcción (+2 pts de EBITDA en el caso de
+negocio, cifra que Rodrigo dio de memoria). Abajo, aparte, tres casos de la tecnología de
+Floor Signal tomados de la propuesta a Workplay, con la nota de la regla del 2026-09-24.
+
 Lo que falta y solo Rodrigo puede dar:
 
-1. Un caso de B2B industrial con número (el de materiales de construcción del portafolio no
-   tiene resultado cuantificado) y, si existe, uno de retail.
+1. Confirmar el +2 pts de EBITDA del caso de materiales de construcción.
 2. Si el home nombra a quién responde (nombre y trayectoria de Rodrigo, sin foto).
 3. Qué hace en concreto Servicio Memorable, en una frase de mecanismo.
 4. Aprobar los guiones de `guiones_stop_motion_fichas.md`.

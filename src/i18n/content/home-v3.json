@@ -170,7 +170,7 @@
     "tray_num": "02",
     "tray_label": "Trayectoria",
     "tray_h2": "Lo que el equipo ha movido en ventas y margen en empresas de la región.",
-    "tray_lead": "Tres proyectos que dirigió el equipo antes de fundar Imberion, sin nombre de cliente. En total son más de 40 en 14 países.",
+    "tray_lead": "Tres proyectos que dirigió el equipo antes de fundar Imberion, uno por tipo de empresa y sin nombre de cliente. En total son más de 40 en 14 países.",
     "tray_casos": [
       {
         "cifra": "USD 3 M",
@@ -187,11 +187,11 @@
         "p": "Reset comercial después de la apertura del mercado: segmentación, propuesta de valor, gestión de bajas y gobierno del margen, con la dirección del estado de resultados durante 18 meses."
       },
       {
-        "cifra": "7%",
-        "unidad": "de eficiencia en costo de servicio",
-        "ctx": "Lácteos y frescos · México",
-        "palanca": "Canal",
-        "p": "Rediseño de cobertura y modelo de servicio, con disciplina de precio y promoción, sin afectar la relación con las cadenas clave."
+        "cifra": "+2 pts",
+        "unidad": "de EBITDA en el caso de negocio",
+        "ctx": "Materiales de construcción · seis países de Centroamérica y el Caribe",
+        "palanca": "Política comercial",
+        "p": "Política comercial para distribuidores: condiciones que se ganan por desempeño y precios más altos en los productos que más valora cada perfil de cliente. El equipo acompañó las negociaciones con cada distribuidor hasta que aceptó la política, y se diseñó un programa de lealtad para esa misma red."
       }
     ],
     "tray_pie": "Proyectos dirigidos por miembros del equipo en sus empresas anteriores. Los resultados son de esos proyectos.",
@@ -321,13 +321,13 @@
     "chk_num": "06",
     "chk_label": "El primer paso",
     "chk_h2": "Imberion Checkup: dos semanas para saber qué iniciativa va primero.",
-    "chk_p": "El equipo directivo responde un cuestionario sobre estrategia, embudo comercial, precios, gobierno y formas de trabajo, y la empresa comparte sus datos de ventas, precios, descuentos y clientes. Sobre esos datos corren los modelos analíticos de Imberion, y de ahí salen las oportunidades, cada una con su caso de negocio. La versión rápida toma dos semanas. La versión completa suma entrevistas con el equipo y un análisis más profundo.",
+    "chk_p": "El equipo directivo responde un cuestionario sobre precio, promociones, portafolio, condiciones comerciales y go-to-market, y la empresa comparte sus datos de ventas, precios, descuentos y clientes. Sobre esos datos corren los modelos analíticos de Imberion, y cada palanca se contrasta con las mejores prácticas de distintas industrias para ubicar el nivel de madurez y las brechas que conviene cerrar. De ahí salen las oportunidades, cada una con su caso de negocio. La versión rápida toma dos semanas. La versión completa suma entrevistas con el equipo y un análisis más profundo.",
     "chk_entregables_label": "Entregables",
     "chk_entregables": [
-      "Puntaje de madurez por dimensión comercial",
+      "Nivel de madurez por palanca, contra las mejores prácticas de distintas industrias",
       "Hallazgos con caso de negocio cuantificado",
       "Matriz de iniciativas por impacto y esfuerzo",
-      "Hoja de ruta de 18 a 24 meses, que arranca por la iniciativa de mayor impacto y menor esfuerzo"
+      "Siguientes pasos claros y quick wins con retorno inmediato"
     ],
     "chk_arranque": "Se arranca con lo que hay: hojas de cálculo, sistemas que no se hablan y datos incompletos son el punto de partida de la mayoría de los proyectos.",
     "cta_btn1": "Agendar llamada de 30 min",
@@ -348,6 +348,29 @@
     "ind_mueve_label": "Indicadores que movemos",
     "ind_trab_label": "En qué trabajamos",
     "chk_llamada": "En la llamada de 30 minutos se corre con el equipo un modelo de madurez comercial, se revisa el problema que más le cuesta a la empresa y qué datos existen, y se decide si conviene empezar con el Checkup o con un piloto acotado.",
-    "ap_problemas": "Tiendas que no convierten, promociones que no rinden, descuentos sin contraprestación y clientes que se van sin aviso."
+    "ap_problemas": "Tiendas que no convierten, promociones que no rinden, descuentos sin contraprestación y clientes que se van sin aviso.",
+    "tec_titulo": "Casos de éxito de la tecnología de piso",
+    "tec_tag": "No exhaustivo",
+    "tec_casos": [
+      {
+        "cifra": "+7%",
+        "unidad": "de ticket promedio y 250% de retorno a tres meses",
+        "ctx": "Retailer de electrónica de consumo · 92 tiendas",
+        "p": "Perfil y comportamiento del visitante medidos en continuo; piloto en cinco tiendas y escalamiento a la red completa."
+      },
+      {
+        "cifra": "+12%",
+        "unidad": "de ventas en tiendas piloto y 290% de retorno",
+        "ctx": "Cadena de retail de belleza · 230 tiendas",
+        "p": "Analítica de audiencia con contenido dirigido por perfil de visitante en toda la red."
+      },
+      {
+        "cifra": "+10%",
+        "unidad": "de prospectos al mes, sin personal extra",
+        "ctx": "Marca global de cuidado personal · autoservicio en CDMX",
+        "p": "Tráfico por hora en una isla de demostración, cruzado contra la cobertura del promotor; sin video y sin datos personales."
+      }
+    ],
+    "tec_pie": "Casos en los que se ha aplicado la tecnología de Floor Signal, de forma parcial o total."
   }
 }

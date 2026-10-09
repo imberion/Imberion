@@ -110,6 +110,23 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
         ))}
       </div>
       <p class="tray-pie mono">{c.tray_pie}</p>
+
+      <!-- Casos de la tecnología de piso: otra categoría que la trayectoria del
+           equipo, con su nota al pie y sin nombrar al proveedor. -->
+      <div class="tec">
+        <p class="tec-head mono"><span>{c.tec_titulo}</span><b>{c.tec_tag}</b></p>
+        <div class="tec-casos">
+          {c.tec_casos.map((k: any, i: number) => (
+            <article class="tec-caso" data-v3-in style={`--i:${i}`}>
+              <p class="tray-ctx mono">{k.ctx}</p>
+              <p class="tec-cifra">{k.cifra}</p>
+              <p class="tray-unidad">{k.unidad}</p>
+              <p class="tec-p">{k.p}</p>
+            </article>
+          ))}
+        </div>
+        <p class="tray-pie mono">{c.tec_pie}</p>
+      </div>
     </div>
   </section>
 
