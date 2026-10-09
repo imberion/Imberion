@@ -3,23 +3,23 @@
     "__title": "Imberion — Floor Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Floor Signal · Familia Signal",
-    "hero_h1": "Tráfico, recorrido y anaquel, medidos con cámaras en tienda: las que ya existen o nuevas.",
-    "hero_lead": "Floor Signal instrumenta el piso con cámaras en tienda, las que ya existen o nuevas, e inteligencia artificial que corre en el propio sitio: tráfico, recorrido, atención al anaquel, prueba de producto, venta acompañante y disponibilidad. Sale dato anonimizado; no se guarda imagen.",
+    "hero_h1": "Por qué el que entra a la tienda no compra, y cómo corregirlo.",
+    "hero_lead": "Floor Signal mide lo que pasa en el piso de venta y el reporte de caja no explica: cuánta gente entra, de qué perfil, qué recorre, qué prueba y dónde se va sin comprar. Del lado del cliente se requiere acceso a cámaras en tienda, las que ya existen o nuevas. No se guarda imagen.",
     "pieza": {
       "alt": "Tablero de Floor Signal con el embudo de una tienda (pasa frente, entra, se acerca al anaquel, se prueba, compra), la composición del tráfico y cuatro lecturas al pie.",
       "pie": "El tablero de Floor Signal: el embudo del piso, quién pasa y las lecturas que disparan una decisión, por tienda. Vista del material del producto, con datos ilustrativos."
     },
-    "que_hace_h2": "Lo que ocurre en el piso y no llega al reporte",
-    "que_hace_p": "El modelo corre sobre el video en el sitio y emite atributos y trayectorias, nunca imágenes. La tienda deja de ver solo el resultado de la caja y ve la composición del tráfico que lo produjo.",
+    "que_hace_h2": "Lo que resuelve en la tienda",
+    "que_hace_p": "La tienda deja de ver solo el resultado de la caja y ve qué lo produjo, por tienda y por hora.",
     "que_hace_items": [
-      "Composición del tráfico por hora y por tienda",
-      "Recorrido y dónde se detiene el visitante",
-      "Atención al anaquel: exposición contra prueba",
-      "Prueba de producto y venta acompañante",
-      "Disponibilidad en piso"
+      "Saber si la venta se cae por tráfico o por conversión",
+      "Personal en piso a la hora en que entra la gente que compra",
+      "Anaqueles que atraen y no logran que el cliente pruebe, identificados",
+      "Surtido por tipo de tienda, según el perfil de quien entra",
+      "Productos agotados en piso, detectados el mismo día"
     ],
     "valor_h2": "Del resultado en caja a la causa en el piso",
-    "valor_p": "Con exposición alta y prueba baja, el problema no es el tráfico sino el anaquel, y la corrección es de ejecución y no de inversión en atraer gente. Con la composición del tráfico por hora se agrupan tiendas y el surtido deja de ser uniforme para toda la red.",
+    "valor_p": "Con exposición alta y prueba baja, la falla está en el anaquel y se corrige con ejecución en tienda, sin gastar más en atraer gente. Con la composición del tráfico por hora se agrupan tiendas y cada grupo recibe el surtido que le corresponde.",
     "sowhat": "Separa el problema de tráfico del problema de conversión, y dice en qué tienda y a qué hora corregir.",
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",

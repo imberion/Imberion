@@ -3,17 +3,20 @@
     "__title": "Imberion — Imberion Concierge",
     "familia_label": "Operator · actuar",
     "hero_eyebrow": "Imberion Concierge · Familia Operator",
-    "hero_h1": "Atención al cliente en cada canal, a toda hora.",
-    "hero_lead": "Imberion Concierge es atención omnicanal agéntica que atiende, toma pedidos, recomienda y da servicio las 24 horas en voz, WhatsApp, correo, mensajes de texto y redes, operando sobre los sistemas existentes: punto de venta (POS, point of sale), lealtad y comercio electrónico.",
-    "pieza": {"alt": "Ficha de memoria de un cliente en Imberion Concierge: segmento, canal preferido, trato, frecuencia de recompra, valor a doce meses, su historia con la marca y la promesa para su segmento.", "pie": "La memoria viva de la relación: lo que Concierge sabe de cada cliente antes de contestar, cruzado con la promesa de su segmento. Vista del material del producto, con un cliente ficticio."},
-    "que_hace_h2": "Atención agéntica en cada canal",
-    "que_hace_p": "El agente reconoce al cliente, recupera su historia y su valor, y ejecuta la promesa de marca que corresponde a su segmento en el canal por donde llegó. Cuando la conversación excede lo que puede resolver, escala a una persona con el contexto ya armado.",
+    "hero_h1": "Atender, vender y retener a cada cliente, a cualquier hora y en su canal.",
+    "hero_lead": "Imberion Concierge contesta las 24 horas en voz, WhatsApp, correo, mensajes de texto y redes: toma pedidos, recomienda y aplica los beneficios de lealtad en la misma conversación, con el trato que corresponde al segmento de cada cliente. Lo que excede su alcance pasa a una persona del equipo con el contexto completo. Del lado del cliente se requiere acceso a los sistemas existentes: punto de venta (POS, point of sale), lealtad y comercio electrónico.",
+    "pieza": {
+      "alt": "Ficha de memoria de un cliente en Imberion Concierge: segmento, canal preferido, trato, frecuencia de recompra, valor a doce meses, su historia con la marca y la promesa para su segmento.",
+      "pie": "La memoria viva de la relación: lo que Concierge sabe de cada cliente antes de contestar, cruzado con la promesa de su segmento. Vista del material del producto, con un cliente ficticio."
+    },
+    "que_hace_h2": "Lo que resuelve en la atención",
+    "que_hace_p": "Las compras que llegan fuera de horario se cierran, y cada cliente recibe el trato de su segmento sin repetir su historia al cambiar de canal.",
     "que_hace_items": [
-      "Atención en voz, WhatsApp, correo, mensajes de texto y redes",
-      "Memoria del cliente: historia, valor y puntos de lealtad",
-      "Toma de pedidos, reposición y agenda de entrega",
-      "Recomendación y venta cruzada dentro de la conversación",
-      "Escalamiento a una persona con el contexto completo"
+      "Respuesta a cualquier hora en voz, WhatsApp, correo, mensajes de texto y redes",
+      "Cada cliente atendido con su historia, su valor y sus puntos de lealtad a la mano",
+      "Pedidos, reposiciones y entregas agendados dentro de la misma conversación",
+      "Venta cruzada recomendada según lo que el cliente ya compra",
+      "Casos que exceden al agente, pasados a una persona del equipo sin que el cliente repita su historia"
     ],
     "valor_h2": "La atención que vende y retiene",
     "valor_p": "El área de atención se dimensiona por costo por contacto, y por eso cierra fuera de horario justo cuando el cliente quiere comprar. Al operar sobre el punto de venta y el programa de lealtad, la misma conversación que resuelve una duda cierra el pedido y aplica el beneficio.",
@@ -22,40 +25,127 @@
       "titulo": "Tres capas, una conversación",
       "intro": "La misma conversación atraviesa el front omnicanal, el cerebro que decide con las reglas del negocio y las acciones que se ejecutan en los sistemas. Estos son tres momentos encadenados: una queja que se resuelve, una recomendación que se acepta y un pedido que se cierra sumando puntos de lealtad.",
       "capas": [
-        { "num": "01", "label": "Front omnicanal" },
-        { "num": "02", "label": "El cerebro" },
-        { "num": "03", "label": "Acciones" }
+        {
+          "num": "01",
+          "label": "Front omnicanal"
+        },
+        {
+          "num": "02",
+          "label": "El cerebro"
+        },
+        {
+          "num": "03",
+          "label": "Acciones"
+        }
       ],
       "globos": [
-        { "paso": 1, "lado": "cli", "quien": "Cliente · WhatsApp", "texto": "Mi pedido llegó incompleto y lo necesito para mañana." },
-        { "paso": 4, "lado": "bot", "quien": "Atención", "texto": "Listo, María. Repongo lo faltante y llega mañana." },
-        { "paso": 5, "lado": "cli", "quien": "Cliente", "texto": "¿Y qué me recomiendas para acompañarlo?" },
-        { "paso": 8, "lado": "bot", "quien": "Atención", "texto": "El complemento premium. Con tus puntos sale a mitad." },
-        { "paso": 9, "lado": "cli", "quien": "Cliente", "texto": "Perfecto, agrégalo." },
-        { "paso": 12, "lado": "bot", "quien": "Atención", "texto": "Hecho. Lo agregué y sumaste 320 puntos." }
+        {
+          "paso": 1,
+          "lado": "cli",
+          "quien": "Cliente · WhatsApp",
+          "texto": "Mi pedido llegó incompleto y lo necesito para mañana."
+        },
+        {
+          "paso": 4,
+          "lado": "bot",
+          "quien": "Atención",
+          "texto": "Listo, María. Repongo lo faltante y llega mañana."
+        },
+        {
+          "paso": 5,
+          "lado": "cli",
+          "quien": "Cliente",
+          "texto": "¿Y qué me recomiendas para acompañarlo?"
+        },
+        {
+          "paso": 8,
+          "lado": "bot",
+          "quien": "Atención",
+          "texto": "El complemento premium. Con tus puntos sale a mitad."
+        },
+        {
+          "paso": 9,
+          "lado": "cli",
+          "quien": "Cliente",
+          "texto": "Perfecto, agrégalo."
+        },
+        {
+          "paso": 12,
+          "lado": "bot",
+          "quien": "Atención",
+          "texto": "Hecho. Lo agregué y sumaste 320 puntos."
+        }
       ],
       "senales": [
-        { "paso": 2, "clave": "Quién es", "valor": "Premium · alto valor" },
-        { "paso": 2, "clave": "Propuesta de valor", "valor": "Reposición sin costo, trato cercano", "vp": true },
-        { "paso": 6, "clave": "Su historia", "valor": "Compra la línea premium" },
-        { "paso": 6, "clave": "Lealtad", "valor": "Tiene puntos para redimir" },
-        { "paso": 10, "clave": "Intención", "valor": "Compra confirmada, sin fricción", "vp": true }
+        {
+          "paso": 2,
+          "clave": "Quién es",
+          "valor": "Premium · alto valor"
+        },
+        {
+          "paso": 2,
+          "clave": "Propuesta de valor",
+          "valor": "Reposición sin costo, trato cercano",
+          "vp": true
+        },
+        {
+          "paso": 6,
+          "clave": "Su historia",
+          "valor": "Compra la línea premium"
+        },
+        {
+          "paso": 6,
+          "clave": "Lealtad",
+          "valor": "Tiene puntos para redimir"
+        },
+        {
+          "paso": 10,
+          "clave": "Intención",
+          "valor": "Compra confirmada, sin fricción",
+          "vp": true
+        }
       ],
       "acciones": [
-        { "paso": 3, "texto": "Genera la reposición y agenda la entrega" },
-        { "paso": 7, "texto": "Sugiere el complemento y aplica sus puntos de lealtad" },
-        { "paso": 11, "texto": "Cierra el pedido y acumula sus puntos" },
-        { "paso": 11, "texto": "Escala a un supervisor si hace falta", "soft": true }
+        {
+          "paso": 3,
+          "texto": "Genera la reposición y agenda la entrega"
+        },
+        {
+          "paso": 7,
+          "texto": "Sugiere el complemento y aplica sus puntos de lealtad"
+        },
+        {
+          "paso": 11,
+          "texto": "Cierra el pedido y acumula sus puntos"
+        },
+        {
+          "paso": 11,
+          "texto": "Escala a un supervisor si hace falta",
+          "soft": true
+        }
       ],
       "pie": [
-        { "k": "Operado por Imberion", "v": "Imberion opera el cerebro y los canales, sin que el cliente tenga que montar la operación." },
-        { "k": "Aprende de cada interacción", "v": "Cada conversación afina la lectura del cliente y la ejecución de la promesa de marca." }
+        {
+          "k": "Operado por Imberion",
+          "v": "Imberion opera el cerebro y los canales, sin que el cliente tenga que montar la operación."
+        },
+        {
+          "k": "Aprende de cada interacción",
+          "v": "Cada conversación afina la lectura del cliente y la ejecución de la promesa de marca."
+        }
       ],
       "paso_label": "Paso",
       "btn_siguiente": "Siguiente",
       "btn_reiniciar": "Reiniciar",
       "simulacion": "Conversación simulada con datos ficticios.",
-      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "En línea", "compositor": "Escribe un mensaje", "fondo_alt": ""}
+      "app": {
+        "producto": "Imberion Concierge",
+        "contacto": "María R.",
+        "canal": "WhatsApp",
+        "estado": "En línea",
+        "compositor": "Escribe un mensaje",
+        "fondo_alt": ""
+      }
     },
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
@@ -70,7 +160,10 @@
     "hero_eyebrow": "Imberion Concierge · Operator family",
     "hero_h1": "Customer service on every channel, around the clock.",
     "hero_lead": "Imberion Concierge is agentic omnichannel service that answers, takes orders, recommends and serves 24 hours a day on voice, WhatsApp, email, text messages and social, operating on existing systems: point of sale (POS), loyalty and e-commerce.",
-    "pieza": {"alt": "A customer memory card in Imberion Concierge: segment, preferred channel, tone, repurchase frequency, twelve-month value, history with the brand and the promise for that segment.", "pie": "The living memory of the relationship: what Concierge knows about each customer before answering, crossed with the promise for their segment. A view of the product material, with a fictitious customer."},
+    "pieza": {
+      "alt": "A customer memory card in Imberion Concierge: segment, preferred channel, tone, repurchase frequency, twelve-month value, history with the brand and the promise for that segment.",
+      "pie": "The living memory of the relationship: what Concierge knows about each customer before answering, crossed with the promise for their segment. A view of the product material, with a fictitious customer."
+    },
     "que_hace_h2": "Agentic service on every channel",
     "que_hace_p": "The agent recognizes the customer, retrieves their history and their value, and executes the brand promise that matches their segment on whichever channel they arrived through. When a conversation goes beyond what it can settle, it escalates to a person with the context already assembled.",
     "que_hace_items": [
@@ -87,40 +180,127 @@
       "titulo": "Three layers, one conversation",
       "intro": "The same conversation runs through the omnichannel front, the brain that decides with the business rules, and the actions executed in the systems. Three moments, chained: a complaint that gets settled, a recommendation that lands, and an order that closes while loyalty points add up.",
       "capas": [
-        { "num": "01", "label": "Omnichannel front" },
-        { "num": "02", "label": "The brain" },
-        { "num": "03", "label": "Actions" }
+        {
+          "num": "01",
+          "label": "Omnichannel front"
+        },
+        {
+          "num": "02",
+          "label": "The brain"
+        },
+        {
+          "num": "03",
+          "label": "Actions"
+        }
       ],
       "globos": [
-        { "paso": 1, "lado": "cli", "quien": "Customer · WhatsApp", "texto": "My order arrived incomplete and I need it by tomorrow." },
-        { "paso": 4, "lado": "bot", "quien": "Support", "texto": "All set, María. I'm sending the missing items, they arrive tomorrow." },
-        { "paso": 5, "lado": "cli", "quien": "Customer", "texto": "And what would you recommend to go with it?" },
-        { "paso": 8, "lado": "bot", "quien": "Support", "texto": "The premium add-on. With your points it comes to half price." },
-        { "paso": 9, "lado": "cli", "quien": "Customer", "texto": "Perfect, add it." },
-        { "paso": 12, "lado": "bot", "quien": "Support", "texto": "Done. I added it and you earned 320 points." }
+        {
+          "paso": 1,
+          "lado": "cli",
+          "quien": "Customer · WhatsApp",
+          "texto": "My order arrived incomplete and I need it by tomorrow."
+        },
+        {
+          "paso": 4,
+          "lado": "bot",
+          "quien": "Support",
+          "texto": "All set, María. I'm sending the missing items, they arrive tomorrow."
+        },
+        {
+          "paso": 5,
+          "lado": "cli",
+          "quien": "Customer",
+          "texto": "And what would you recommend to go with it?"
+        },
+        {
+          "paso": 8,
+          "lado": "bot",
+          "quien": "Support",
+          "texto": "The premium add-on. With your points it comes to half price."
+        },
+        {
+          "paso": 9,
+          "lado": "cli",
+          "quien": "Customer",
+          "texto": "Perfect, add it."
+        },
+        {
+          "paso": 12,
+          "lado": "bot",
+          "quien": "Support",
+          "texto": "Done. I added it and you earned 320 points."
+        }
       ],
       "senales": [
-        { "paso": 2, "clave": "Who they are", "valor": "Premium · high value" },
-        { "paso": 2, "clave": "Value proposition", "valor": "Replacement at no cost, close treatment", "vp": true },
-        { "paso": 6, "clave": "Their history", "valor": "Buys the premium line" },
-        { "paso": 6, "clave": "Loyalty", "valor": "Has points to redeem" },
-        { "paso": 10, "clave": "Intent", "valor": "Purchase confirmed, no friction", "vp": true }
+        {
+          "paso": 2,
+          "clave": "Who they are",
+          "valor": "Premium · high value"
+        },
+        {
+          "paso": 2,
+          "clave": "Value proposition",
+          "valor": "Replacement at no cost, close treatment",
+          "vp": true
+        },
+        {
+          "paso": 6,
+          "clave": "Their history",
+          "valor": "Buys the premium line"
+        },
+        {
+          "paso": 6,
+          "clave": "Loyalty",
+          "valor": "Has points to redeem"
+        },
+        {
+          "paso": 10,
+          "clave": "Intent",
+          "valor": "Purchase confirmed, no friction",
+          "vp": true
+        }
       ],
       "acciones": [
-        { "paso": 3, "texto": "Issues the replacement and schedules delivery" },
-        { "paso": 7, "texto": "Suggests the add-on and applies the loyalty points" },
-        { "paso": 11, "texto": "Closes the order and credits the points" },
-        { "paso": 11, "texto": "Escalates to a supervisor if needed", "soft": true }
+        {
+          "paso": 3,
+          "texto": "Issues the replacement and schedules delivery"
+        },
+        {
+          "paso": 7,
+          "texto": "Suggests the add-on and applies the loyalty points"
+        },
+        {
+          "paso": 11,
+          "texto": "Closes the order and credits the points"
+        },
+        {
+          "paso": 11,
+          "texto": "Escalates to a supervisor if needed",
+          "soft": true
+        }
       ],
       "pie": [
-        { "k": "Run by Imberion", "v": "Imberion operates the brain and the channels, with no in-house operation to stand up." },
-        { "k": "It learns from every interaction", "v": "Each conversation sharpens the read on the customer and the execution of the brand promise." }
+        {
+          "k": "Run by Imberion",
+          "v": "Imberion operates the brain and the channels, with no in-house operation to stand up."
+        },
+        {
+          "k": "It learns from every interaction",
+          "v": "Each conversation sharpens the read on the customer and the execution of the brand promise."
+        }
       ],
       "paso_label": "Step",
       "btn_siguiente": "Next",
       "btn_reiniciar": "Restart",
       "simulacion": "Simulated conversation with fictional data.",
-      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "Online", "compositor": "Type a message", "fondo_alt": ""}
+      "app": {
+        "producto": "Imberion Concierge",
+        "contacto": "María R.",
+        "canal": "WhatsApp",
+        "estado": "Online",
+        "compositor": "Type a message",
+        "fondo_alt": ""
+      }
     },
     "industrias_h2": "Where it applies",
     "relacion_h2": "What it connects to",
@@ -135,7 +315,10 @@
     "hero_eyebrow": "Imberion Concierge · Família Operator",
     "hero_h1": "Atendimento ao cliente em cada canal, a qualquer hora.",
     "hero_lead": "Imberion Concierge é atendimento omnicanal agêntico que atende, recebe pedidos, recomenda e presta serviço 24 horas por dia em voz, WhatsApp, e-mail, mensagens de texto e redes, operando sobre os sistemas existentes: ponto de venda (POS, point of sale), fidelidade e comércio eletrônico.",
-    "pieza": {"alt": "Ficha de memória de um cliente no Imberion Concierge: segmento, canal preferido, tratamento, frequência de recompra, valor em doze meses, sua história com a marca e a promessa para o segmento.", "pie": "A memória viva da relação: o que o Concierge sabe de cada cliente antes de responder, cruzado com a promessa do seu segmento. Vista do material do produto, com um cliente fictício."},
+    "pieza": {
+      "alt": "Ficha de memória de um cliente no Imberion Concierge: segmento, canal preferido, tratamento, frequência de recompra, valor em doze meses, sua história com a marca e a promessa para o segmento.",
+      "pie": "A memória viva da relação: o que o Concierge sabe de cada cliente antes de responder, cruzado com a promessa do seu segmento. Vista do material do produto, com um cliente fictício."
+    },
     "que_hace_h2": "Atendimento agêntico em cada canal",
     "que_hace_p": "O agente reconhece o cliente, recupera o histórico e o valor dele, e executa a promessa de marca correspondente ao segmento no canal por onde ele chegou. Quando a conversa passa do que consegue resolver, escala para uma pessoa com o contexto já montado.",
     "que_hace_items": [
@@ -152,40 +335,127 @@
       "titulo": "Três camadas, uma conversa",
       "intro": "A mesma conversa passa pelo front omnicanal, pelo cérebro que decide com as regras do negócio e pelas ações executadas nos sistemas. São três momentos encadeados: uma reclamação que se resolve, uma recomendação que é aceita e um pedido que fecha somando pontos de fidelidade.",
       "capas": [
-        { "num": "01", "label": "Front omnicanal" },
-        { "num": "02", "label": "O cérebro" },
-        { "num": "03", "label": "Ações" }
+        {
+          "num": "01",
+          "label": "Front omnicanal"
+        },
+        {
+          "num": "02",
+          "label": "O cérebro"
+        },
+        {
+          "num": "03",
+          "label": "Ações"
+        }
       ],
       "globos": [
-        { "paso": 1, "lado": "cli", "quien": "Cliente · WhatsApp", "texto": "Meu pedido chegou incompleto e preciso dele para amanhã." },
-        { "paso": 4, "lado": "bot", "quien": "Atendimento", "texto": "Pronto, María. Já estou repondo o que faltou e chega amanhã." },
-        { "paso": 5, "lado": "cli", "quien": "Cliente", "texto": "E o que você recomenda para acompanhar?" },
-        { "paso": 8, "lado": "bot", "quien": "Atendimento", "texto": "O complemento premium. Com os seus pontos sai pela metade." },
-        { "paso": 9, "lado": "cli", "quien": "Cliente", "texto": "Perfeito, pode adicionar." },
-        { "paso": 12, "lado": "bot", "quien": "Atendimento", "texto": "Feito. Adicionei e você somou 320 pontos." }
+        {
+          "paso": 1,
+          "lado": "cli",
+          "quien": "Cliente · WhatsApp",
+          "texto": "Meu pedido chegou incompleto e preciso dele para amanhã."
+        },
+        {
+          "paso": 4,
+          "lado": "bot",
+          "quien": "Atendimento",
+          "texto": "Pronto, María. Já estou repondo o que faltou e chega amanhã."
+        },
+        {
+          "paso": 5,
+          "lado": "cli",
+          "quien": "Cliente",
+          "texto": "E o que você recomenda para acompanhar?"
+        },
+        {
+          "paso": 8,
+          "lado": "bot",
+          "quien": "Atendimento",
+          "texto": "O complemento premium. Com os seus pontos sai pela metade."
+        },
+        {
+          "paso": 9,
+          "lado": "cli",
+          "quien": "Cliente",
+          "texto": "Perfeito, pode adicionar."
+        },
+        {
+          "paso": 12,
+          "lado": "bot",
+          "quien": "Atendimento",
+          "texto": "Feito. Adicionei e você somou 320 pontos."
+        }
       ],
       "senales": [
-        { "paso": 2, "clave": "Quem é", "valor": "Premium · alto valor" },
-        { "paso": 2, "clave": "Proposta de valor", "valor": "Reposição sem custo, trato próximo", "vp": true },
-        { "paso": 6, "clave": "Histórico", "valor": "Compra a linha premium" },
-        { "paso": 6, "clave": "Fidelidade", "valor": "Tem pontos para resgatar" },
-        { "paso": 10, "clave": "Intenção", "valor": "Compra confirmada, sem fricção", "vp": true }
+        {
+          "paso": 2,
+          "clave": "Quem é",
+          "valor": "Premium · alto valor"
+        },
+        {
+          "paso": 2,
+          "clave": "Proposta de valor",
+          "valor": "Reposição sem custo, trato próximo",
+          "vp": true
+        },
+        {
+          "paso": 6,
+          "clave": "Histórico",
+          "valor": "Compra a linha premium"
+        },
+        {
+          "paso": 6,
+          "clave": "Fidelidade",
+          "valor": "Tem pontos para resgatar"
+        },
+        {
+          "paso": 10,
+          "clave": "Intenção",
+          "valor": "Compra confirmada, sem fricção",
+          "vp": true
+        }
       ],
       "acciones": [
-        { "paso": 3, "texto": "Gera a reposição e agenda a entrega" },
-        { "paso": 7, "texto": "Sugere o complemento e aplica os pontos de fidelidade" },
-        { "paso": 11, "texto": "Fecha o pedido e acumula os pontos" },
-        { "paso": 11, "texto": "Escala para um supervisor se for preciso", "soft": true }
+        {
+          "paso": 3,
+          "texto": "Gera a reposição e agenda a entrega"
+        },
+        {
+          "paso": 7,
+          "texto": "Sugere o complemento e aplica os pontos de fidelidade"
+        },
+        {
+          "paso": 11,
+          "texto": "Fecha o pedido e acumula os pontos"
+        },
+        {
+          "paso": 11,
+          "texto": "Escala para um supervisor se for preciso",
+          "soft": true
+        }
       ],
       "pie": [
-        { "k": "Operado pela Imberion", "v": "A Imberion opera o cérebro e os canais, sem que o cliente precise montar a operação." },
-        { "k": "Aprende com cada interação", "v": "Cada conversa refina a leitura do cliente e a execução da promessa de marca." }
+        {
+          "k": "Operado pela Imberion",
+          "v": "A Imberion opera o cérebro e os canais, sem que o cliente precise montar a operação."
+        },
+        {
+          "k": "Aprende com cada interação",
+          "v": "Cada conversa refina a leitura do cliente e a execução da promessa de marca."
+        }
       ],
       "paso_label": "Passo",
       "btn_siguiente": "Avançar",
       "btn_reiniciar": "Reiniciar",
       "simulacion": "Conversa simulada com dados fictícios.",
-      "app": {"producto": "Imberion Concierge", "contacto": "María R.", "canal": "WhatsApp", "estado": "Online", "compositor": "Escreva uma mensagem", "fondo_alt": ""}
+      "app": {
+        "producto": "Imberion Concierge",
+        "contacto": "María R.",
+        "canal": "WhatsApp",
+        "estado": "Online",
+        "compositor": "Escreva uma mensagem",
+        "fondo_alt": ""
+      }
     },
     "industrias_h2": "Onde se aplica",
     "relacion_h2": "Com o que se conecta",

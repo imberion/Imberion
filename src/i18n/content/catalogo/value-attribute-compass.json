@@ -3,15 +3,15 @@
     "__title": "Imberion — Value-Attribute Compass",
     "familia_label": "Compass · orientar",
     "hero_eyebrow": "Value-Attribute Compass · Familia Compass",
-    "hero_h1": "En qué atributos se compite de verdad, y cuánto vale cada uno.",
-    "hero_lead": "Value-Attribute Compass mapea los atributos de valor de un producto en importancia para el cliente contra desempeño percibido por jugador, e identifica la disposición a pagar (WTP, willingness to pay) por atributo. El método cruza dos lecturas del mismo cliente: lo que declara que le importa y lo que percibe que recibe de cada marca.",
-    "que_hace_h2": "El mapa de atributos y su disposición a pagar",
-    "que_hace_p": "Cada atributo se ubica en la matriz y se contrasta con el desempeño percibido de cada competidor. Sobre ese mapa se estima cuánto está dispuesto a pagar el cliente por moverse un escalón en cada atributo.",
+    "hero_h1": "Por qué atributos paga más el cliente, y en cuáles se gasta de más.",
+    "hero_lead": "Value-Attribute Compass dice qué atributos del producto pesan en la compra, cómo ve el cliente a la marca frente a cada competidor en cada uno y cuánto más pagaría por mejorarlo (disposición a pagar, o WTP por sus siglas en inglés). Con eso se decide dónde subir precio, dónde dejar de invertir y con qué argumento defender el precio frente al comprador. Del lado del cliente se requiere acceso a una muestra de sus clientes y, si existe, el histórico de transacciones.",
+    "que_hace_h2": "Lo que resuelve en el precio y en el producto",
+    "que_hace_p": "El precio se fija con lo que el cliente paga por cada atributo, y la inversión en producto se mueve a los atributos que pesan en la compra.",
     "que_hace_items": [
-      "Matriz de importancia contra desempeño percibido por jugador",
-      "Disposición a pagar por atributo",
-      "Atributos sobre-invertidos y sub-invertidos",
-      "Cruce con elasticidad observada en transacciones"
+      "Atributos donde la marca gana frente a cada competidor y atributos donde pierde",
+      "Cuánto más paga el cliente por mejorar cada atributo",
+      "Gasto en atributos que el cliente no valora, identificado para recortarlo",
+      "Precio por atributo contrastado con la reacción real del cliente a cambios de precio pasados"
     ],
     "valor_h2": "La base del precio a valor",
     "valor_p": "Un atributo caro de sostener y poco importante para el cliente se puede bajar sin perder venta. Uno importante donde la marca ya gana sostiene un premio de precio explícito y defendible frente al comprador.",

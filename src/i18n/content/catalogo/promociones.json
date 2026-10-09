@@ -3,15 +3,15 @@
     "__title": "Imberion — Promociones",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Promociones · Familia Engine",
-    "hero_h1": "Qué promoción genera valor y cuál lo destruye.",
-    "hero_lead": "Promociones separa el volumen incremental de la canibalización antes de lanzar, y evalúa lo ya ejecutado para clasificar cada mecánica como generadora o destructora de valor.",
-    "que_hace_h2": "Incremental y canibalización, antes y después",
-    "que_hace_p": "El modelo estima qué parte del volumen promocional habría ocurrido de todos modos, qué parte se le quitó a otro producto propio y qué parte es demanda nueva. La misma lectura se aplica hacia atrás sobre el calendario ya ejecutado.",
+    "hero_h1": "Qué promoción trae venta nueva y cuál regala descuento.",
+    "hero_lead": "Promociones dice, antes de lanzar y sobre el calendario ya ejecutado, qué mecánica atrajo demanda nueva y cuál le quitó venta a otro producto propio. Con eso el calendario se queda con las promociones que traen volumen incremental y la inversión de las demás se reasigna. Del lado del cliente se requiere el histórico de venta y el calendario de promociones ejecutadas.",
+    "que_hace_h2": "Lo que resuelve en el calendario promocional",
+    "que_hace_p": "La decisión de repetir o cortar una promoción se toma con el volumen nuevo que trajo, medido por mecánica y por canal.",
     "que_hace_items": [
-      "Predicción previa de incremental contra canibalización",
-      "Evaluación posterior por mecánica y por canal",
-      "Clasificación de cada promoción por valor generado",
-      "Calendario depurado y reasignación de inversión"
+      "Saber, antes de lanzar, cuánto volumen nuevo traerá una promoción y cuánto le quitará a otro producto propio",
+      "Mecánicas y canales donde la promoción pasada trajo venta nueva, identificados",
+      "Lista de promociones a repetir y a cortar, por mecánica y por canal",
+      "Presupuesto de las promociones cortadas, reasignado a las que traen venta nueva"
     ],
     "valor_h2": "El calendario depurado",
     "valor_p": "Una mecánica que mueve mucho volumen puede estar comprando compras que ya iban a ocurrir, y el reporte de venta al consumidor no lo distingue. Al separarlo, la inversión sale de esa mecánica y entra en la que sí trae demanda nueva.",

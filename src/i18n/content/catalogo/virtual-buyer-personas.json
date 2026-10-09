@@ -3,18 +3,18 @@
     "__title": "Imberion — Virtual Buyer Personas",
     "familia_label": "Twin · simular",
     "hero_eyebrow": "Virtual Buyer Personas · Familia Twin",
-    "hero_h1": "Compradores simulados que reaccionan al catálogo antes de producirlo.",
-    "hero_lead": "Virtual Buyer Personas construye decenas de avatares que se comportan como los compradores reales de la empresa, entrenados con su data transaccional y sus estudios. Se les expone catálogo o conceptos y se observa qué eligen.",
-    "que_hace_h2": "Un panel de compradores simulados",
-    "que_hace_p": "Cada persona se arma con el historial de compra, la segmentación vigente y los estudios que ya existen, y responde como el segmento que representa. La corrida se hace en horas: se muestra el concepto, el empaque o el surtido, se registra qué atrae a quién y se comparan las respuestas entre segmentos.",
+    "hero_h1": "Qué concepto, empaque o surtido elegirían los compradores, antes de producirlo.",
+    "hero_lead": "Virtual Buyer Personas muestra en horas qué atrae a cada segmento de compradores, antes de gastar en producción o en un focus group. Los conceptos que ningún segmento elige se descartan pronto y la investigación con compradores reales se reserva para los que pasan el filtro. Del lado del cliente se requieren el historial de compra, la segmentación vigente y los estudios de consumidor que ya existan.",
+    "que_hace_h2": "Lo que resuelve en el desarrollo de catálogo",
+    "que_hace_p": "El catálogo se prueba con cada segmento de compradores antes de comprometer presupuesto de producción o de investigación.",
     "que_hace_items": [
-      "Avatares entrenados con data transaccional y estudios propios",
-      "Decenas de perfiles, uno por segmento relevante",
-      "Exposición a catálogo, concepto o empaque",
-      "Lectura de qué atributo mueve a qué segmento"
+      "Conceptos que ningún segmento elegiría, descartados antes de producirlos",
+      "Qué atributo atrae a cada segmento de compradores",
+      "Empaques y surtidos comparados entre segmentos en horas",
+      "Focus groups reservados para las opciones que pasaron el filtro"
     ],
     "valor_h2": "Un filtro antes del gasto grande",
-    "valor_p": "Producir un surtido o convocar un focus group cuesta semanas y presupuesto. Correr el concepto contra las personas simuladas descarta antes lo que nadie quiere, y deja la investigación con personas reales para las opciones que sobreviven al filtro.",
+    "valor_p": "Producir un surtido o convocar un focus group cuesta semanas y presupuesto. Correr el concepto contra los compradores simulados descarta antes lo que nadie quiere, y deja la investigación con compradores reales para las opciones que sobreviven al filtro.",
     "sowhat": "Define qué conceptos llegan a producción y cuáles se descartan antes de gastar en ellos.",
     "industrias_h2": "Dónde aplica",
     "relacion_h2": "Con qué se conecta",
@@ -30,18 +30,33 @@
       "atributos_label": "Peso en la decisión",
       "consecuencia_label": "Consecuencia",
       "escenarios": [
-        { "titulo": "Sube 5 % el precio de la línea principal" },
-        { "titulo": "La promoción pasa de 2x1 a 20 % de descuento" },
-        { "titulo": "Falta el producto en anaquel una semana" }
+        {
+          "titulo": "Sube 5 % el precio de la línea principal"
+        },
+        {
+          "titulo": "La promoción pasa de 2x1 a 20 % de descuento"
+        },
+        {
+          "titulo": "Falta el producto en anaquel una semana"
+        }
       ],
       "personas": [
         {
           "nombre": "Renata",
           "perfil": "Sensible al precio",
           "atributos": [
-            { "k": "Precio", "v": 85 },
-            { "k": "Promoción", "v": 62 },
-            { "k": "Marca", "v": 24 }
+            {
+              "k": "Precio",
+              "v": 85
+            },
+            {
+              "k": "Promoción",
+              "v": 62
+            },
+            {
+              "k": "Marca",
+              "v": 24
+            }
           ],
           "respuestas": [
             {
@@ -62,9 +77,18 @@
           "nombre": "Alonso",
           "perfil": "Leal a la marca",
           "atributos": [
-            { "k": "Marca", "v": 90 },
-            { "k": "Atención", "v": 54 },
-            { "k": "Precio", "v": 22 }
+            {
+              "k": "Marca",
+              "v": 90
+            },
+            {
+              "k": "Atención",
+              "v": 54
+            },
+            {
+              "k": "Precio",
+              "v": 22
+            }
           ],
           "respuestas": [
             {
@@ -85,9 +109,18 @@
           "nombre": "Beatriz",
           "perfil": "Compra por conveniencia",
           "atributos": [
-            { "k": "Disponibilidad", "v": 88 },
-            { "k": "Atención", "v": 48 },
-            { "k": "Precio", "v": 36 }
+            {
+              "k": "Disponibilidad",
+              "v": 88
+            },
+            {
+              "k": "Atención",
+              "v": 48
+            },
+            {
+              "k": "Precio",
+              "v": 36
+            }
           ],
           "respuestas": [
             {
@@ -108,9 +141,18 @@
           "nombre": "Damián",
           "perfil": "Compra en promoción",
           "atributos": [
-            { "k": "Promoción", "v": 92 },
-            { "k": "Precio", "v": 71 },
-            { "k": "Marca", "v": 28 }
+            {
+              "k": "Promoción",
+              "v": 92
+            },
+            {
+              "k": "Precio",
+              "v": 71
+            },
+            {
+              "k": "Marca",
+              "v": 28
+            }
           ],
           "respuestas": [
             {
@@ -172,18 +214,33 @@
       "atributos_label": "Weight in the decision",
       "consecuencia_label": "Consequence",
       "escenarios": [
-        { "titulo": "The main line's price goes up 5%" },
-        { "titulo": "The promotion moves from 2-for-1 to 20% off" },
-        { "titulo": "The product is out of shelf for a week" }
+        {
+          "titulo": "The main line's price goes up 5%"
+        },
+        {
+          "titulo": "The promotion moves from 2-for-1 to 20% off"
+        },
+        {
+          "titulo": "The product is out of shelf for a week"
+        }
       ],
       "personas": [
         {
           "nombre": "Renata",
           "perfil": "Price sensitive",
           "atributos": [
-            { "k": "Price", "v": 85 },
-            { "k": "Promotion", "v": 62 },
-            { "k": "Brand", "v": 24 }
+            {
+              "k": "Price",
+              "v": 85
+            },
+            {
+              "k": "Promotion",
+              "v": 62
+            },
+            {
+              "k": "Brand",
+              "v": 24
+            }
           ],
           "respuestas": [
             {
@@ -204,9 +261,18 @@
           "nombre": "Alonso",
           "perfil": "Brand loyal",
           "atributos": [
-            { "k": "Brand", "v": 90 },
-            { "k": "Service", "v": 54 },
-            { "k": "Price", "v": 22 }
+            {
+              "k": "Brand",
+              "v": 90
+            },
+            {
+              "k": "Service",
+              "v": 54
+            },
+            {
+              "k": "Price",
+              "v": 22
+            }
           ],
           "respuestas": [
             {
@@ -227,9 +293,18 @@
           "nombre": "Beatriz",
           "perfil": "Convenience driven",
           "atributos": [
-            { "k": "Availability", "v": 88 },
-            { "k": "Service", "v": 48 },
-            { "k": "Price", "v": 36 }
+            {
+              "k": "Availability",
+              "v": 88
+            },
+            {
+              "k": "Service",
+              "v": 48
+            },
+            {
+              "k": "Price",
+              "v": 36
+            }
           ],
           "respuestas": [
             {
@@ -250,9 +325,18 @@
           "nombre": "Damián",
           "perfil": "Promotion driven",
           "atributos": [
-            { "k": "Promotion", "v": 92 },
-            { "k": "Price", "v": 71 },
-            { "k": "Brand", "v": 28 }
+            {
+              "k": "Promotion",
+              "v": 92
+            },
+            {
+              "k": "Price",
+              "v": 71
+            },
+            {
+              "k": "Brand",
+              "v": 28
+            }
           ],
           "respuestas": [
             {
@@ -314,18 +398,33 @@
       "atributos_label": "Peso na decisão",
       "consecuencia_label": "Consequência",
       "escenarios": [
-        { "titulo": "O preço da linha principal sobe 5 %" },
-        { "titulo": "A promoção passa de 2x1 para 20 % de desconto" },
-        { "titulo": "O produto falta na gôndola por uma semana" }
+        {
+          "titulo": "O preço da linha principal sobe 5 %"
+        },
+        {
+          "titulo": "A promoção passa de 2x1 para 20 % de desconto"
+        },
+        {
+          "titulo": "O produto falta na gôndola por uma semana"
+        }
       ],
       "personas": [
         {
           "nombre": "Renata",
           "perfil": "Sensível ao preço",
           "atributos": [
-            { "k": "Preço", "v": 85 },
-            { "k": "Promoção", "v": 62 },
-            { "k": "Marca", "v": 24 }
+            {
+              "k": "Preço",
+              "v": 85
+            },
+            {
+              "k": "Promoção",
+              "v": 62
+            },
+            {
+              "k": "Marca",
+              "v": 24
+            }
           ],
           "respuestas": [
             {
@@ -346,9 +445,18 @@
           "nombre": "Alonso",
           "perfil": "Fiel à marca",
           "atributos": [
-            { "k": "Marca", "v": 90 },
-            { "k": "Atendimento", "v": 54 },
-            { "k": "Preço", "v": 22 }
+            {
+              "k": "Marca",
+              "v": 90
+            },
+            {
+              "k": "Atendimento",
+              "v": 54
+            },
+            {
+              "k": "Preço",
+              "v": 22
+            }
           ],
           "respuestas": [
             {
@@ -369,9 +477,18 @@
           "nombre": "Beatriz",
           "perfil": "Compra por conveniência",
           "atributos": [
-            { "k": "Disponibilidade", "v": 88 },
-            { "k": "Atendimento", "v": 48 },
-            { "k": "Preço", "v": 36 }
+            {
+              "k": "Disponibilidade",
+              "v": 88
+            },
+            {
+              "k": "Atendimento",
+              "v": 48
+            },
+            {
+              "k": "Preço",
+              "v": 36
+            }
           ],
           "respuestas": [
             {
@@ -392,9 +509,18 @@
           "nombre": "Damián",
           "perfil": "Compra em promoção",
           "atributos": [
-            { "k": "Promoção", "v": 92 },
-            { "k": "Preço", "v": 71 },
-            { "k": "Marca", "v": 28 }
+            {
+              "k": "Promoção",
+              "v": 92
+            },
+            {
+              "k": "Preço",
+              "v": 71
+            },
+            {
+              "k": "Marca",
+              "v": 28
+            }
           ],
           "respuestas": [
             {

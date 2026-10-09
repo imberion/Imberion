@@ -3,15 +3,15 @@
     "__title": "Imberion — Scenario Engine",
     "familia_label": "Engine · decidir",
     "hero_eyebrow": "Scenario Engine · Familia Engine",
-    "hero_h1": "El trade-off completo antes de comprometer la jugada.",
-    "hero_lead": "Scenario Engine simula combinaciones de jugadas a través de varias palancas (precio, promoción, surtido, inversión) y compara escenarios completos, no palanca por palanca.",
-    "que_hace_h2": "Escenarios completos, no palanca por palanca",
-    "que_hace_p": "Cada escenario reúne los supuestos de las palancas que se moverían juntas y devuelve su efecto en volumen, ingreso y margen. La comparación ocurre entre escenarios completos, así que la ganancia de una palanca nunca se lee sin el costo que provoca en otra.",
+    "hero_h1": "Cuánto margen gana y cuánto volumen arriesga un plan, antes de aprobarlo.",
+    "hero_lead": "Scenario Engine dice qué pasa con el volumen, el ingreso y el margen si se mueven a la vez precio, promoción, surtido e inversión, y lo compara con no mover nada. Así se evita aprobar dos jugadas que se ven bien por separado y se restan entre sí en el mismo trimestre. Del lado del cliente se requiere el histórico de venta y precio, y los supuestos del plan que se quiere probar.",
+    "que_hace_h2": "Lo que resuelve en la aprobación del plan",
+    "que_hace_p": "El plan comercial se aprueba con el efecto combinado de todas sus jugadas a la vista, comparado contra no mover nada.",
     "que_hace_items": [
-      "Escenarios que combinan precio, promoción, surtido e inversión",
-      "Efecto en volumen, ingreso y margen por escenario",
-      "Comparación contra el escenario de no mover nada",
-      "Rango de sensibilidad sobre los supuestos críticos"
+      "Saber qué combinación de precio, promoción, surtido e inversión deja más margen",
+      "Volumen, ingreso y margen esperados de cada plan, antes de aprobarlo",
+      "Cuánto gana cada plan frente a no mover nada",
+      "Qué supuesto, si falla, cambia la decisión"
     ],
     "valor_h2": "El trade-off visible antes de aprobar",
     "valor_p": "Subir precio y recortar promoción se ven bien por separado y pueden restarse entre sí cuando ocurren el mismo trimestre. Correr la combinación completa muestra qué escenario gana margen sin poner en riesgo el volumen ya comprometido.",

@@ -98,13 +98,22 @@ la política comercial de materiales de construcción (+2 pts de EBITDA en el ca
 negocio, cifra que Rodrigo dio de memoria). Abajo, aparte, tres casos de la tecnología de
 Floor Signal tomados de la propuesta a Workplay, con la nota de la regla del 2026-09-24.
 
+Hecho el 2026-10-09: las 26 fichas del catálogo, solo en español, abren con lo que
+resuelven (titular de 9 a 13 palabras, entrada con lo que se requiere del cliente, lista de
+resultados en "Lo que resuelve..."). Sin etiquetas numeradas de sección. EN y PT quedaron
+intactos (verificado contra HEAD) y se traducen al cerrar el copy.
+
 Lo que falta:
 
-1. Cerrar el copy en español con Rodrigo (él dice cuándo).
-2. Generar los stop motion de las fichas cuando Rodrigo dé la orden; guiones revisados el
-   2026-10-09 en `guiones_stop_motion_fichas.md`.
-3. Traducir el home v3 a EN y PT después del punto 1.
-4. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
+1. Cerrar el copy en español con Rodrigo (home y fichas).
+2. Confirmar los requisitos del cliente que los agentes dedujeron sin fuente: Growth
+   Bridge, Growth Hacking, Habilitadores, Integración de datos, Leadership Alignment,
+   Market Entry, Canales y Tiendas, Clientes y Lealtad, Commercial Model, Training Signal,
+   Value-Attribute Compass, Value Creation, Promociones y Scenario Engine.
+3. Revisar los guiones de stop motion (`guiones_stop_motion_fichas.md`), pendientes de la
+   primera lectura de Rodrigo.
+4. Traducir home y fichas a EN y PT después del punto 1.
+5. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 
 ## Revisión a ciegas (2026-10-06)
 
