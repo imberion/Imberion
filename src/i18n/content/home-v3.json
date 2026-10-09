@@ -31,7 +31,7 @@
         "num": "02",
         "etiqueta": "Decisión",
         "h": "La ordenamos alrededor de una decisión.",
-        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos responden tres preguntas para cada perfil de cliente, porque el mismo precio o la misma promoción rinden distinto según quién compra. Lo que sale es una decisión con su trade-off a la vista.",
+        "p": "Homologamos las fuentes, y la IA lee, clasifica y simula a una escala que un equipo no cubre a mano. Los modelos responden tres preguntas para cada perfil de cliente, porque el mismo precio o la misma promoción rinden distinto según quién compra. Lo que sale es una decisión con lo que se gana, lo que se arriesga y cuánto.",
         "grupos": [
           [
             "Cuánto vale",
@@ -43,7 +43,7 @@
           ],
           [
             "Qué pasa si se mueve",
-            "Escenarios simulados y compradores sintéticos antes de comprometer la jugada."
+            "Escenarios simulados y pruebas contra agentes de IA entrenados con el perfil de cada tipo de cliente, antes de comprometer presupuesto."
           ]
         ]
       },
@@ -211,10 +211,10 @@
       },
       {
         "t": "El equipo del cliente opera",
-        "p": "Imberion instala la capacidad dentro de la empresa: cadencia de decisiones, tableros, reglas de precio y descuento, compensación variable y gobierno. Al terminar, el equipo interno decide con el mismo método.",
+        "p": "Imberion instala la capacidad dentro de la empresa: calendario de juntas de decisión, tableros, reglas de precio y descuento, compensación variable y gobierno. Al terminar, el equipo interno decide con el mismo método.",
         "recibe": [
           "Reglas y tableros instalados en sus sistemas",
-          "Equipo entrenado en la cadencia de decisión",
+          "Equipo entrenado para correr las juntas de decisión con el mismo método",
           "Proyecto con fecha de cierre"
         ],
         "conviene": "Conviene cuando la empresa quiere que la capacidad viva en su propio equipo."
@@ -320,7 +320,7 @@
     ],
     "chk_num": "06",
     "chk_label": "El primer paso",
-    "chk_h2": "Imberion Checkup: un diagnóstico de dos semanas que se puede aprobar.",
+    "chk_h2": "Imberion Checkup: dos semanas para saber qué iniciativa va primero.",
     "chk_p": "En su versión rápida toma dos semanas. El equipo directivo responde un cuestionario sobre estrategia, embudo comercial, precios, gobierno y formas de trabajo, enfocado en los problemas que ya identificó. Imberion lo convierte en una lista ordenada de iniciativas que un comité puede aprobar en una sesión.",
     "chk_entregables_label": "Entregables",
     "chk_entregables": [
@@ -346,6 +346,7 @@
     "ind_ver": "Ver la industria",
     "con_lead": "En los dos modos una persona revisa lo que proponen los modelos, lo contrasta con lo que sabe del negocio y responde por cada recomendación antes de que llegue a la junta comercial. Esa persona puede ser de Imberion o del equipo del cliente, y se puede empezar con Imberion operando y pasar la operación al equipo cuando esté listo.",
     "ind_mueve_label": "Indicadores que movemos",
-    "ind_trab_label": "En qué trabajamos"
+    "ind_trab_label": "En qué trabajamos",
+    "chk_llamada": "En la llamada de 30 minutos se revisa el problema que más le cuesta a la empresa, qué datos existen y si conviene empezar con el Checkup o con un piloto acotado."
   }
 }

@@ -68,18 +68,28 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
   lo que se le ofrece a Flexi y a Workplay (Samsung): surtido, diálogos de valor, conversión,
   attachment rate, tráfico.
 
-## Pendiente, en orden (actualizado 2026-10-06 23:00)
+## Pendiente, en orden (actualizado 2026-10-08)
 
-Hecho en esta vuelta: captura de datos en titular, lead y etapa 01; "Qué decidimos"
-fuera; texto del Checkup en grande junto a la imagen; ficha del Checkup en el catálogo
-corregida a impacto y esfuerzo, puntaje de madurez y hoja de ruta (es, en, pt).
+Segunda revisión a ciegas (2026-10-08, Sol como CFO de distribuidor B2B, director
+comercial de consumo y director de operaciones de 60 tiendas de electrónica). Respuestas en
+`revision2_sol_*.md`. Ya se corrigió el vocabulario que los tres no entendieron (trade-off,
+compradores sintéticos, cadencia, "se puede aprobar") y la llamada de 30 minutos ya dice
+para qué es.
 
-1. Que Rodrigo revise la vuelta anterior en http://localhost:4391/.
-2. Stop motion para cada página de solución (Rodrigo lo quiere; la técnica está en el PR #569).
-3. Traducir el home v3 a EN y PT cuando Rodrigo apruebe el español.
-4. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
-5. El lead dice "fabricantes, distribuidores y retailers" y la apertura ya no menciona
-   nueve industrias; las fichas de industria del sitio siguen siendo nueve.
+Decisiones de Rodrigo pendientes, de lo que dijeron los tres:
+
+1. El problema de cada comprador llega tarde (B2B en la pantalla de industrias, retail
+   igual). Opciones: subir "Para quién" justo después de la apertura, o nombrar los cuatro
+   problemas en la portada.
+2. El titular se lee genérico para los tres.
+3. Evidencia: piden escala, método de medición y plazo de los casos, un caso de su
+   industria y nombres de quién responde.
+4. Checkup: no entienden de dónde salen cifras si la entrada es un cuestionario; la hoja de
+   ruta de 18 a 24 meses se lee larga. Piden una entrada corta tipo piloto.
+5. Servicio Memorable aparece sin explicar qué hace.
+6. Guiones de stop motion para cuatro fichas en `guiones_stop_motion_fichas.md`.
+7. Traducir el home v3 a EN y PT cuando Rodrigo apruebe el español.
+8. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 
 ## Revisión a ciegas (2026-10-06)
 
