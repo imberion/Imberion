@@ -54,7 +54,11 @@ Solo el home en español usa el v3 (`src/pages/index.astro`); EN y PT siguen con
 - Cuatro industrias: Retail; Bienes de consumo (alimentos, bebidas, cuidado personal,
   electrónica de consumo); B2B industrial; Servicios (telecomunicaciones, financieros,
   servicios al consumidor).
-- Foto de Rodrigo: no en el home hasta que haya más gente en la firma.
+- Foto y nombre de Rodrigo: no en el home. La firma tiene que leerse como empresa grande,
+  no como one-man show (2026-10-09).
+- Servicio Memorable: metodología basada en los estándares de Ritz-Carlton, pero la marca
+  Ritz-Carlton no se nombra sin licencia (nota en `imberion-concierge/docs/_nota_servicio_memorable.md`).
+- Cifras de los casos: basta con que sean coherentes, factibles y sin abuso (2026-10-09).
 - Fotos de IA con personas borrosas: fuera. Objetos sobre la mesa, sin personas, sí.
 - Copy multiindustria siempre: nada que hable solo de retail.
 - Nada de listas largas: la etapa 02 agrupa los modelos en tres preguntas.
@@ -91,14 +95,13 @@ la política comercial de materiales de construcción (+2 pts de EBITDA en el ca
 negocio, cifra que Rodrigo dio de memoria). Abajo, aparte, tres casos de la tecnología de
 Floor Signal tomados de la propuesta a Workplay, con la nota de la regla del 2026-09-24.
 
-Lo que falta y solo Rodrigo puede dar:
+Lo que falta:
 
-1. Confirmar el +2 pts de EBITDA del caso de materiales de construcción.
-2. Si el home nombra a quién responde (nombre y trayectoria de Rodrigo, sin foto).
-3. Qué hace en concreto Servicio Memorable, en una frase de mecanismo.
-4. Aprobar los guiones de `guiones_stop_motion_fichas.md`.
-5. Aprobar el español para traducir a EN y PT.
-6. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
+1. Cerrar el copy en español con Rodrigo (él dice cuándo).
+2. Generar los stop motion de las fichas cuando Rodrigo dé la orden; guiones revisados el
+   2026-10-09 en `guiones_stop_motion_fichas.md`.
+3. Traducir el home v3 a EN y PT después del punto 1.
+4. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 
 ## Revisión a ciegas (2026-10-06)
 
