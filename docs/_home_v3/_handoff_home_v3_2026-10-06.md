@@ -1,6 +1,6 @@
 # Handoff: home v3 de imberion.com
 
-**Medido:** 2026-10-10 08:40. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
+**Medido:** 2026-10-10 12:27. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
 `/Users/rodrigogarrido/Code/imberion-website/_wt_home_v3`, ver `git log -1`.
 **Sin push:** el repo `imberion/Imberion` es público. Respaldo incremental en Drive:
 `Unidades compartidas/Imberion/04_marca/sitio_web/respaldos/imberion-website_sitio-home-v3_2026-10-05.bundle`
@@ -115,12 +115,14 @@ una plantilla, reiniciarlo (`npx astro dev --port 4391`). Playwright que funcion
 
 Lo que falta, en orden:
 
-1. **Training Signal, feedback de Rodrigo (2026-10-10):** conceptualmente bien, pero falta
-   decir que el entrenamiento también es por voz y contra clientes simulados que se
-   comportan como clientes reales. La demo enseña un solo paso (una objeción, una
-   respuesta) y se queda corta: hacerla una conversación de varios turnos con el cliente
-   simulado (y mencionar el modo de voz), y ajustar el copy de la ficha. Rodrigo todavía
-   no decide si se quedan demo y video o solo la demo; de eso dependen SM1 a SM3.
+1. **Training Signal, decisión de Rodrigo:** si se quedan demo y video o solo la demo; de
+   eso dependen SM1 a SM3. El feedback del 2026-10-10 ya se atendió (12:27): la demo tiene
+   un modo "Practicar con cliente simulado" (tres productos, un cliente con perfil por
+   producto, tres turnos con reacción del cliente y retroalimentación, cierre según aciertos:
+   compra, pide tiempo o se va) con la indicación de que en el piso la práctica es por voz;
+   el ensayo de un paso se quitó. La entrada y "Lo que resuelve" de la ficha dicen ya que
+   se practica por voz contra clientes simulados que se comportan como clientes reales.
+   Parámetro de QA: `?demo=<producto>-<objeción>-p` abre la práctica.
 2. Cerrar el copy en español con Rodrigo (home y 26 fichas).
 3. Confirmar los requisitos del cliente que los agentes dedujeron sin fuente en 14 fichas
    (lista en la sección de 2026-10-09 de arriba).
