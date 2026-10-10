@@ -25,7 +25,219 @@
     "relacion_p": "Se alimenta de los diálogos de valor que captura Floor Signal, ensaya negociación contra Account Twin y toma de Virtual Buyer Personas qué atributos mueven a cada segmento.",
     "ctastrip_h2": "¿Cuánto tarda un vendedor nuevo en argumentar el catálogo completo?",
     "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
-    "ctastrip_btn": "Agendar llamada"
+    "ctastrip_btn": "Agendar llamada",
+    "demo": {
+      "eyebrow": "Producto · objeción · respuesta",
+      "titulo": "Lo que responde el mejor asesor a cada objeción",
+      "intro": "Se elige un producto y la frase con la que el cliente frena la compra. El panel muestra lo que hizo el asesor que más cierra en ese caso: el movimiento, la frase que usó y por qué funciona. En el modo Ensayar, el asesor escoge entre tres respuestas antes de ver la buena.",
+      "producto_label": "El asesor escanea el producto",
+      "objecion_label": "El cliente dice",
+      "app": {
+        "producto": "Training Signal",
+        "sku_label": "SKU",
+        "estado": "Piso de venta"
+      },
+      "productos": [
+        {
+          "nombre": "Tenis para correr",
+          "detalle": "Amortiguación de espuma",
+          "sku": "TN-2041",
+          "precio": "$2,899"
+        },
+        {
+          "nombre": "Pantalla de 55 pulgadas",
+          "detalle": "4K · 120 Hz",
+          "sku": "TV-5508",
+          "precio": "$11,499"
+        },
+        {
+          "nombre": "Licuadora de alta potencia",
+          "detalle": "1,500 W · vaso de 2 L",
+          "sku": "LC-1500",
+          "precio": "$3,299"
+        }
+      ],
+      "objeciones": [
+        {
+          "frase": "Está caro."
+        },
+        {
+          "frase": "En línea lo vi más barato."
+        },
+        {
+          "frase": "Ya tengo uno parecido."
+        }
+      ],
+      "quien_cliente": "Cliente",
+      "quien_asesor": "Mejor asesor",
+      "modo_ver": "Ver la respuesta",
+      "modo_ensayar": "Ensayar",
+      "movimiento_label": "Movimiento",
+      "frase_label": "Frase sugerida",
+      "porque_label": "Por qué funciona",
+      "ensayo_pregunta": "¿Qué respondería el asesor?",
+      "acierto_label": "Respuesta del mejor asesor",
+      "error_label": "Respuesta frecuente en el equipo",
+      "btn_reintentar": "Ensayar otra vez",
+      "simulacion": "Ejemplo ilustrativo con diálogos sintéticos.",
+      "combos": [
+        [
+          {
+            "movimiento": "Indaga cuánto corre el cliente antes de hablar del precio.",
+            "frase": "¿Cuántas veces a la semana sale a correr? Con tres salidas de 5 km, esta suela aguanta unos 700 km: le sale en unos 20 pesos por salida durante casi un año.",
+            "porque": "Convierte el precio total en costo por salida con los datos que el propio cliente acaba de dar.",
+            "pos_correcta": 1,
+            "distractores": [
+              {
+                "texto": "Le puedo revisar si hay algún descuento disponible.",
+                "nota": "Ofrece bajar el precio antes de saber para qué los quiere el cliente y entrega margen sin necesidad."
+              },
+              {
+                "texto": "Es de las mejores marcas; la calidad se paga.",
+                "nota": "Defiende con una afirmación general que el cliente no puede comprobar en la tienda."
+              }
+            ]
+          },
+          {
+            "movimiento": "Pregunta qué modelo y talla vio antes de igualar nada.",
+            "frase": "¿Me enseña cuál vio? Si es el mismo modelo, aquí se los mide con la pisada en la caminadora y sale con la talla correcta. Un cambio de talla en línea tarda una semana.",
+            "porque": "Confirma que la comparación sea del mismo modelo y le pone valor a lo que solo la tienda resuelve: la prueba de talla y de pisada.",
+            "pos_correcta": 0,
+            "distractores": [
+              {
+                "texto": "Si gusta, cómprelos en línea; aquí el precio es el que es.",
+                "nota": "Manda al cliente a otro canal y termina la conversación."
+              },
+              {
+                "texto": "Déjeme preguntarle al gerente si se lo igualamos.",
+                "nota": "Iguala sin verificar que sea el mismo modelo y le enseña al cliente a pedir descuento en cada visita."
+              }
+            ]
+          },
+          {
+            "movimiento": "Pregunta cuántos kilómetros traen los tenis que ya tiene.",
+            "frase": "¿Cuánto tiempo llevan con usted? Después de unos 600 km la espuma pierde amortiguación y se siente en las rodillas. Esos le sirven para el gimnasio y estos para correr.",
+            "porque": "Da un criterio que el cliente puede revisar en su propio par y le deja un uso al que ya tiene.",
+            "pos_correcta": 2,
+            "distractores": [
+              {
+                "texto": "Estos son mucho mejores que los que trae.",
+                "nota": "Critica la compra anterior del cliente sin saber cuáles son."
+              },
+              {
+                "texto": "Ah, bueno. Si cambia de opinión, aquí estamos.",
+                "nota": "Toma la objeción como un no y da por terminada la venta."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "movimiento": "Pregunta a qué distancia la va a ver antes de defender el precio.",
+            "frase": "¿Cuántos metros hay del sillón a la pared? A 2.5 metros, una de 55 pulgadas en 4K se ve nítida. La de 43 se queda chica y la de 65 cuesta 4 mil pesos más para esa distancia.",
+            "porque": "Ata el tamaño al cuarto del cliente y deja el modelo elegido como la opción que corresponde a esa distancia.",
+            "pos_correcta": 1,
+            "distractores": [
+              {
+                "texto": "Tenemos meses sin intereses con tarjeta.",
+                "nota": "Responde con financiamiento antes de confirmar que el tamaño es el adecuado, y el precio sigue pareciendo alto."
+              },
+              {
+                "texto": "Tengo una de 50 pulgadas más económica.",
+                "nota": "Baja de producto sin preguntar el uso y reduce el ticket a la primera objeción."
+              }
+            ]
+          },
+          {
+            "movimiento": "Compara el precio total, con instalación y garantía incluidas.",
+            "frase": "¿El precio que vio incluye envío e instalación en muro? Aquí se la llevamos y se la instalamos este fin de semana, y la garantía se tramita en este mostrador, sin mandar la pantalla por paquetería.",
+            "porque": "Suma lo que el precio en línea deja fuera y le da al cliente una razón concreta para comprar hoy en la tienda.",
+            "pos_correcta": 2,
+            "distractores": [
+              {
+                "texto": "En línea a veces llegan dañadas; mejor llévesela de aquí.",
+                "nota": "Mete miedo sin un dato que lo respalde, y el cliente lo lee como presión."
+              },
+              {
+                "texto": "Es el mismo precio de lista; la diferencia es por promociones.",
+                "nota": "Explica de dónde sale la diferencia sin dar una razón para comprar en la tienda."
+              }
+            ]
+          },
+          {
+            "movimiento": "Pregunta en qué cuarto quedaría la pantalla que ya tiene.",
+            "frase": "¿Cuántos años tiene la de ahora? Si pasa de cinco, es probable que ya no reciba actualizaciones de las aplicaciones de streaming. Muchos clientes la pasan a la recámara y ponen esta en la sala.",
+            "porque": "Le encuentra lugar a la pantalla vieja y convierte la compra en una segunda pantalla para la casa.",
+            "pos_correcta": 0,
+            "distractores": [
+              {
+                "texto": "Esta tiene mejor imagen que cualquiera de hace unos años.",
+                "nota": "Afirma una ventaja genérica que el cliente no tiene cómo comparar con la suya."
+              },
+              {
+                "texto": "Si trae la vieja, le hacemos un descuento.",
+                "nota": "Promete un programa de canje sin saber si la tienda lo tiene y regala margen antes de que el cliente lo pida."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "movimiento": "Pregunta qué prepara y cuántas veces a la semana.",
+            "frase": "¿Qué prepara más seguido? Si hace licuados con hielo o semillas todos los días, el motor de 1,500 W los deja listos en 40 segundos. Una de 600 W tarda el doble y con ese uso el motor dura menos.",
+            "porque": "Liga la potencia a una tarea que el cliente hace a diario y le pone costo a comprar una licuadora que no aguanta ese uso.",
+            "pos_correcta": 2,
+            "distractores": [
+              {
+                "texto": "Trae siete años de garantía.",
+                "nota": "Da el dato de garantía antes de saber para qué la quiere el cliente; sin ese uso, la garantía no justifica la diferencia."
+              },
+              {
+                "texto": "Hay otra de 600 W a la mitad del precio.",
+                "nota": "Baja de producto a la primera objeción, sin preguntar el uso."
+              }
+            ]
+          },
+          {
+            "movimiento": "Ofrece probarla en tienda con lo que al cliente más le cuesta licuar.",
+            "frase": "¿Qué le cuesta más trabajo licuar en casa? Aquí tenemos hielo; se la enciendo y ve el resultado antes de llevársela. Y si algún día falla, la garantía se tramita en este mostrador.",
+            "porque": "La prueba con el ingrediente del cliente resuelve en un minuto la duda que el precio en línea deja abierta.",
+            "pos_correcta": 1,
+            "distractores": [
+              {
+                "texto": "Ese precio seguro es de un vendedor externo.",
+                "nota": "Pone en duda la fuente sin verificarla; si el cliente tiene razón, el asesor pierde credibilidad."
+              },
+              {
+                "texto": "No le puedo igualar el precio de internet.",
+                "nota": "Deja la conversación en el precio, el único punto donde la tienda pierde la comparación."
+              }
+            ]
+          },
+          {
+            "movimiento": "Pregunta qué no le sale bien con la licuadora que ya tiene.",
+            "frase": "¿Qué le queda con grumos en la que tiene? Si es crema de cacahuate o salsa de chile seco, esta la deja lisa sin agregarle agua.",
+            "porque": "Parte de una falla que el cliente ya conoce de su licuadora y le muestra la tarea específica que la nueva resuelve.",
+            "pos_correcta": 0,
+            "distractores": [
+              {
+                "texto": "Esta es profesional; la usan en restaurantes.",
+                "nota": "Habla del producto en general sin conectarlo con lo que el cliente prepara en su cocina."
+              },
+              {
+                "texto": "¿Y si mejor ve nuestros extractores de jugo?",
+                "nota": "Cambia de categoría sin entender la necesidad y se aleja de una venta que estaba cerca."
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "film": {
+      "src": "/stop-motion/training-signal/training_signal.mp4",
+      "poster": "/stop-motion/training-signal/poster.webp",
+      "alt": "Tiras de papel salen de una grabadora, se ordenan en tres charolas, forman una tarjeta de argumento junto a la caja del producto y sale el ticket de venta."
+    }
   },
   "en": {
     "__title": "Imberion — Training Signal",

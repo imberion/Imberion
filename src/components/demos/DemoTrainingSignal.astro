@@ -1,0 +1,758 @@
+---
+// Mini-demo de Training Signal: el asesor escanea un producto, el cliente
+// suelta una objeción y el panel devuelve lo que respondió el mejor asesor en
+// ese caso (movimiento, frase y por qué funciona). El modo Ensayar esconde la
+// respuesta y pide escogerla entre tres antes de verla.
+//
+// Igual que Virtual Buyer Personas, es determinista: las 9 combinaciones
+// producto × objeción están escritas en el JSON de contenido y ya vienen en el
+// HTML. El navegador solo decide cuál se ve; no calcula ni llama a nada.
+//
+// `combos[p][o]` es la combinación del producto p con la objeción o. La opción
+// correcta del ensayo es la misma `frase` del modo Ver, insertada en
+// `pos_correcta` entre los dos `distractores`; así la frase vive en un solo
+// lugar. Agregar un producto obliga a escribir sus tres combinaciones.
+//
+// El panel lleva `data-dialogo` porque los globos y las opciones son habla
+// citada entre cliente y asesor en una tienda: ahí el trato de usted es del
+// personaje, no del sitio.
+//
+// Color: navy sobre papel. El petróleo aparece en un solo lugar, la respuesta
+// correcta del ensayo una vez revelada (el instante de acierto).
+
+export interface DemoTrainingSignalContenido {
+  eyebrow: string;
+  titulo: string;
+  intro: string;
+  producto_label: string;
+  objecion_label: string;
+  app: { producto: string; sku_label: string; estado: string };
+  productos: Array<{ nombre: string; detalle: string; sku: string; precio: string }>;
+  objeciones: Array<{ frase: string }>;
+  quien_cliente: string;
+  quien_asesor: string;
+  modo_ver: string;
+  modo_ensayar: string;
+  movimiento_label: string;
+  frase_label: string;
+  porque_label: string;
+  ensayo_pregunta: string;
+  acierto_label: string;
+  error_label: string;
+  btn_reintentar: string;
+  simulacion: string;
+  combos: Array<
+    Array<{
+      movimiento: string;
+      frase: string;
+      porque: string;
+      pos_correcta: number;
+      distractores: Array<{ texto: string; nota: string }>;
+    }>
+  >;
+}
+
+interface Props {
+  contenido: DemoTrainingSignalContenido;
+}
+
+const { contenido: d } = Astro.props;
+
+// Arma las tres opciones del ensayo de cada combinación.
+function opciones(c: DemoTrainingSignalContenido['combos'][number][number]) {
+  const lista = c.distractores.map((x) => ({ texto: x.texto, nota: x.nota, correcta: false }));
+  const pos = Math.max(0, Math.min(lista.length, c.pos_correcta));
+  lista.splice(pos, 0, { texto: c.frase, nota: c.porque, correcta: true });
+  return lista;
+}
+const letras = ['A', 'B', 'C', 'D'];
+---
+
+<section class="demo-bloque" id="mini-demo">
+  <div class="container">
+    <div class="demo-head">
+      <div class="eyebrow demo-eyebrow">{d.eyebrow}</div>
+      <h2>{d.titulo}</h2>
+      <p class="cuerpo">{d.intro}</p>
+    </div>
+
+    <div class="ts-wrap" data-demo-ts role="group" aria-label={d.titulo}>
+      <div class="ts-ctrl">
+        <div class="ts-grupo">
+          <span class="ts-k" id="ts-k-prod">{d.producto_label}</span>
+          <div class="ts-prods" role="group" aria-labelledby="ts-k-prod">
+            {
+              d.productos.map((p, i) => (
+                <button
+                  type="button"
+                  class={`ts-prod${i === 0 ? ' on' : ''}`}
+                  data-prod-btn={i}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <span class="ts-scan" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                      <path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" />
+                      <path d="M8 8.5v7M10.5 8.5v7M13 8.5v7M15.5 8.5v7" />
+                    </svg>
+                  </span>
+                  <span class="ts-prod-txt">
+                    <span class="ts-prod-n">{p.nombre}</span>
+                    <span class="ts-prod-d">{p.detalle}</span>
+                  </span>
+                  <span class="ts-prod-p">{p.precio}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="ts-grupo">
+          <span class="ts-k" id="ts-k-obj">{d.objecion_label}</span>
+          <div class="ts-objs" role="group" aria-labelledby="ts-k-obj" data-dialogo>
+            {
+              d.objeciones.map((o, i) => (
+                <button
+                  type="button"
+                  class={`ts-obj${i === 0 ? ' on' : ''}`}
+                  data-obj-btn={i}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  “{o.frase}”
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="ts-app" data-dialogo>
+        <div class="ts-barra">
+          <span class="ts-marca"><span class="ts-marca-o" aria-hidden="true"></span>{d.app.producto}</span>
+          <span class="ts-estado"><span class="ts-estado-dot" aria-hidden="true"></span>{d.app.estado}</span>
+        </div>
+
+        <div class="ts-modos" role="group">
+          <button type="button" class="ts-modo on" data-modo-btn="ver" aria-pressed="true">{d.modo_ver}</button>
+          <button type="button" class="ts-modo" data-modo-btn="ensayar" aria-pressed="false">{d.modo_ensayar}</button>
+        </div>
+
+        <div class="ts-panel" aria-live="polite">
+          {
+            d.combos.map((fila, p) =>
+              fila.map((c, o) => (
+                <div class={`ts-combo${p === 0 && o === 0 ? ' on' : ''}`} data-p={p} data-o={o}>
+                  <div class="ts-sku">
+                    <span class="ts-sku-k">{d.app.sku_label}</span>
+                    <span class="ts-sku-v">{d.productos[p].sku}</span>
+                    <span class="ts-sku-n">{d.productos[p].nombre}</span>
+                    <span class="ts-sku-p">{d.productos[p].precio}</span>
+                  </div>
+
+                  <div class="ts-bub cli">
+                    <span class="who">{d.quien_cliente}</span>
+                    {d.objeciones[o].frase}
+                  </div>
+
+                  <div class="ts-ver">
+                    <div class="ts-mov">
+                      <span class="ts-lbl">{d.movimiento_label}</span>
+                      <p>{c.movimiento}</p>
+                    </div>
+                    <div class="ts-bub ase">
+                      <span class="who">
+                        {d.quien_asesor} · {d.frase_label}
+                      </span>
+                      {c.frase}
+                    </div>
+                    <div class="ts-porque">
+                      <span class="ts-lbl">{d.porque_label}</span>
+                      <p>{c.porque}</p>
+                    </div>
+                  </div>
+
+                  <div class="ts-ensayo">
+                    <p class="ts-preg">{d.ensayo_pregunta}</p>
+                    <div class="ts-opcs">
+                      {opciones(c).map((op, k) => (
+                        <div class={`ts-opc${op.correcta ? ' es-correcta' : ''}`} data-opc>
+                          <button type="button" class="ts-opc-btn" data-opc-btn>
+                            <span class="ts-opc-l" aria-hidden="true">{letras[k]}</span>
+                            <span class="ts-opc-t">{op.texto}</span>
+                          </button>
+                          <div class="ts-opc-nota">
+                            <span class="ts-opc-k">{op.correcta ? d.acierto_label : d.error_label}</span>
+                            {op.nota}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button type="button" class="ts-reintentar" data-reintentar>
+                      {d.btn_reintentar}
+                    </button>
+                  </div>
+                </div>
+              ))
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="demo-nota">{d.simulacion}</p>
+  </div>
+</section>
+
+<style is:inline>
+  /* Tokens del sitio (site.css / shell.css). Navy sobre papel; el petróleo
+     solo marca la respuesta correcta del ensayo. Selectores prefijados por
+     `.demo-bloque` porque el <style is:inline> no lleva scope de Astro. */
+  .demo-bloque {
+    scroll-margin-top: 86px;
+    padding: clamp(70px, 6.5vw, 150px) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .demo-head h2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.12;
+    font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+    max-width: 22ch;
+    margin-top: 12px;
+  }
+  .demo-bloque .demo-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .demo-bloque .demo-head .cuerpo {
+    margin-top: 20px;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 1.72;
+    color: var(--navy-72);
+  }
+
+  .demo-bloque .ts-wrap {
+    margin-top: 46px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+    gap: clamp(20px, 3vw, 44px);
+    align-items: start;
+  }
+
+  /* ---------- controles ---------- */
+  .demo-bloque .ts-ctrl {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+  }
+  .demo-bloque .ts-k,
+  .demo-bloque .ts-lbl,
+  .demo-bloque .ts-sku-k,
+  .demo-bloque .ts-opc-k {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .ts-prods,
+  .demo-bloque .ts-objs {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .demo-bloque .ts-prod {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+    padding: 13px 16px;
+    border: 1px solid var(--navy-12);
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition:
+      background 0.28s var(--ease),
+      border-color 0.28s var(--ease),
+      color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-prod:hover { border-color: var(--navy-20); }
+  .demo-bloque .ts-prod.on {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper-warm);
+  }
+  .demo-bloque .ts-scan {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--navy-60);
+  }
+  .demo-bloque .ts-scan svg { width: 18px; height: 18px; display: block; }
+  .demo-bloque .ts-prod.on .ts-scan { background: rgba(255, 255, 255, 0.1); color: var(--paper-warm); }
+  .demo-bloque .ts-prod-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .demo-bloque .ts-prod-n { font-size: 14px; font-weight: 600; line-height: 1.3; }
+  .demo-bloque .ts-prod-d { font-size: 12px; color: var(--navy-60); }
+  .demo-bloque .ts-prod.on .ts-prod-d { color: var(--slate-mist); }
+  .demo-bloque .ts-prod-p,
+  .demo-bloque .ts-sku-p,
+  .demo-bloque .ts-sku-v {
+    /* Cifra suelta: DM Sans, nunca el "1" de Cormorant. */
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .demo-bloque .ts-obj {
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    border: 1px solid var(--navy-12);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition:
+      background 0.28s var(--ease),
+      border-color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-obj:hover { border-color: var(--navy-20); }
+  .demo-bloque .ts-obj.on {
+    background: var(--paper);
+    border-color: var(--navy);
+    box-shadow: inset 2px 0 0 var(--navy);
+    font-weight: 500;
+  }
+
+  /* ---------- el panel de la herramienta ---------- */
+  .demo-bloque .ts-app {
+    min-width: 0;
+    background: var(--white);
+    border: 1px solid var(--navy-12);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 24px 60px rgba(6, 16, 28, 0.12),
+      0 4px 12px rgba(6, 16, 28, 0.06);
+    color: var(--navy);
+  }
+  .demo-bloque .ts-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 44px;
+    padding: 0 16px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .ts-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .demo-bloque .ts-marca-o {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    box-sizing: border-box;
+  }
+  .demo-bloque .ts-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .ts-estado-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--slate); }
+
+  .demo-bloque .ts-modos {
+    display: flex;
+    gap: 4px;
+    padding: 12px 18px 0;
+    border-bottom: 1px solid var(--navy-06);
+  }
+  .demo-bloque .ts-modo {
+    padding: 9px 14px 11px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--navy-60);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: color 0.28s var(--ease), border-color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-modo:hover { color: var(--navy); }
+  .demo-bloque .ts-modo.on { color: var(--navy); border-bottom-color: var(--navy); }
+
+  /* Las nueve combinaciones se apilan en la misma celda: el alto lo fija la más
+     larga y el panel no salta al cambiar de producto u objeción. */
+  .demo-bloque .ts-panel {
+    display: grid;
+    padding: 18px 18px 22px;
+  }
+  .demo-bloque .ts-combo {
+    grid-area: 1 / 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition:
+      opacity 0.34s var(--ease-io),
+      transform 0.34s var(--ease-io);
+  }
+  .demo-bloque .ts-combo.on { opacity: 1; visibility: visible; transform: none; }
+
+  .demo-bloque .ts-sku {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--navy-12);
+  }
+  .demo-bloque .ts-sku-v { font-size: 12px; color: var(--navy-72); letter-spacing: 0.04em; }
+  .demo-bloque .ts-sku-n { font-family: var(--font-sans); font-size: 13px; color: var(--navy-72); }
+  .demo-bloque .ts-sku-p { margin-left: auto; }
+
+  .demo-bloque .ts-bub {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 11px 15px;
+    border-radius: 14px;
+    max-width: 88%;
+  }
+  .demo-bloque .ts-bub .who {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 3px;
+  }
+  .demo-bloque .ts-bub.cli {
+    align-self: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--navy-12);
+    border-bottom-left-radius: 4px;
+  }
+  .demo-bloque .ts-bub.ase {
+    align-self: flex-end;
+    background: var(--navy);
+    color: var(--paper-warm);
+    border-bottom-right-radius: 4px;
+  }
+
+  .demo-bloque .ts-ver,
+  .demo-bloque .ts-ensayo {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .demo-bloque .ts-mov p {
+    margin-top: 5px;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .demo-bloque .ts-porque {
+    padding-left: 13px;
+    border-left: 2px solid var(--slate-mist);
+  }
+  .demo-bloque .ts-porque p {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.58;
+    color: var(--navy-72);
+  }
+
+  /* El modo decide cuál de las dos vistas se pinta en todas las combinaciones. */
+  .demo-bloque .ts-wrap:not(.ensayando) .ts-ensayo { display: none; }
+  .demo-bloque .ts-wrap.ensayando .ts-ver { display: none; }
+
+  .demo-bloque .ts-preg {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .demo-bloque .ts-opcs { display: flex; flex-direction: column; gap: 8px; }
+  .demo-bloque .ts-opc {
+    border: 1px solid var(--navy-12);
+    border-radius: 4px;
+    background: var(--white);
+    transition: border-color 0.28s var(--ease), opacity 0.28s var(--ease);
+  }
+  .demo-bloque .ts-opc-btn {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border: 0;
+    background: transparent;
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.48;
+    cursor: pointer;
+  }
+  .demo-bloque .ts-opc:hover { border-color: var(--navy-20); }
+  .demo-bloque .ts-opc-l {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--navy-20);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy-60);
+  }
+  .demo-bloque .ts-opc-nota {
+    display: none;
+    padding: 0 14px 13px 48px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--navy-72);
+  }
+  .demo-bloque .ts-opc-k { margin-bottom: 4px; }
+
+  /* Respondido: la elegida muestra su nota; la correcta se marca en petróleo
+     siempre, aunque la elegida haya sido otra. */
+  .demo-bloque .ts-combo.respondido .ts-opc-btn { cursor: default; }
+  .demo-bloque .ts-combo.respondido .ts-opc:hover { border-color: var(--navy-12); }
+  .demo-bloque .ts-combo.respondido .ts-opc { opacity: 0.55; }
+  .demo-bloque .ts-combo.respondido .ts-opc.elegida,
+  .demo-bloque .ts-combo.respondido .ts-opc.es-correcta { opacity: 1; }
+  .demo-bloque .ts-combo.respondido .ts-opc.elegida .ts-opc-nota,
+  .demo-bloque .ts-combo.respondido .ts-opc.es-correcta .ts-opc-nota { display: block; }
+  .demo-bloque .ts-combo.respondido .ts-opc.elegida:not(.es-correcta) {
+    border-color: var(--navy-40);
+    background: var(--paper-warm);
+  }
+  .demo-bloque .ts-combo.respondido .ts-opc.elegida:not(.es-correcta) .ts-opc-l {
+    background: var(--navy-60);
+    border-color: var(--navy-60);
+    color: var(--white);
+  }
+  .demo-bloque .ts-combo.respondido .ts-opc.es-correcta {
+    border-color: var(--petrol);
+    box-shadow: inset 3px 0 0 var(--petrol);
+    background: var(--petrol-06);
+  }
+  .demo-bloque .ts-combo.respondido .ts-opc.es-correcta .ts-opc-l {
+    background: var(--petrol);
+    border-color: var(--petrol);
+    color: var(--white);
+  }
+  .demo-bloque .ts-combo.respondido .ts-opc.es-correcta .ts-opc-k { color: var(--petrol-deep); }
+
+  .demo-bloque .ts-reintentar {
+    display: none;
+    align-self: flex-start;
+    padding: 10px 18px;
+    border-radius: var(--r);
+    border: 1px solid var(--navy-20);
+    background: transparent;
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-reintentar:hover { border-color: var(--navy); }
+  .demo-bloque .ts-combo.respondido .ts-reintentar { display: inline-flex; }
+
+  .demo-bloque .demo-nota {
+    margin-top: 20px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--navy-40);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-bloque .ts-combo,
+    .demo-bloque .ts-prod,
+    .demo-bloque .ts-obj,
+    .demo-bloque .ts-modo,
+    .demo-bloque .ts-opc,
+    .demo-bloque .ts-reintentar {
+      transition: none;
+    }
+    .demo-bloque .ts-combo { transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    .demo-bloque .ts-wrap { grid-template-columns: 1fr; }
+    .demo-bloque .ts-ctrl { gap: 22px; }
+  }
+  @media (max-width: 600px) {
+    .demo-bloque .ts-panel { padding: 16px 14px 18px; }
+    .demo-bloque .ts-modos { padding: 10px 14px 0; }
+    .demo-bloque .ts-bub { max-width: 94%; }
+    .demo-bloque .ts-opc-nota { padding-left: 14px; }
+    .demo-bloque .ts-sku-n { flex-basis: 100%; order: 3; }
+  }
+</style>
+
+<script is:inline>
+  // Motor de la mini-demo. Sin dependencias y sin cálculo: las nueve
+  // combinaciones ya están en el HTML y esto solo decide cuál lleva `on`, en
+  // qué modo se ve y qué opción del ensayo se eligió. No hay avance
+  // automático: el visitante maneja los tres controles.
+  (function () {
+    var raices = document.querySelectorAll('[data-demo-ts]');
+    for (var r = 0; r < raices.length; r++) montar(raices[r]);
+
+    function montar(raiz) {
+      var prods = raiz.querySelectorAll('[data-prod-btn]');
+      var objs = raiz.querySelectorAll('[data-obj-btn]');
+      var modos = raiz.querySelectorAll('[data-modo-btn]');
+      var combos = raiz.querySelectorAll('.ts-combo');
+      if (!prods.length || !objs.length || !combos.length) return;
+
+      var p = 0;
+      var o = 0;
+      var modo = 'ver';
+
+      function marcar(lista, attr, valor) {
+        for (var i = 0; i < lista.length; i++) {
+          var activo = lista[i].getAttribute(attr) === String(valor);
+          lista[i].classList.toggle('on', activo);
+          lista[i].setAttribute('aria-pressed', activo ? 'true' : 'false');
+        }
+      }
+
+      function limpiarEnsayo(combo) {
+        combo.classList.remove('respondido');
+        var opcs = combo.querySelectorAll('[data-opc]');
+        for (var i = 0; i < opcs.length; i++) {
+          opcs[i].classList.remove('elegida');
+          var b = opcs[i].querySelector('[data-opc-btn]');
+          if (b) {
+            b.removeAttribute('aria-disabled');
+            b.removeAttribute('aria-pressed');
+          }
+        }
+      }
+
+      function pintar() {
+        marcar(prods, 'data-prod-btn', p);
+        marcar(objs, 'data-obj-btn', o);
+        marcar(modos, 'data-modo-btn', modo);
+        raiz.classList.toggle('ensayando', modo === 'ensayar');
+        for (var i = 0; i < combos.length; i++) {
+          var c = combos[i];
+          var activo = c.getAttribute('data-p') === String(p) && c.getAttribute('data-o') === String(o);
+          c.classList.toggle('on', activo);
+          // Un ensayo que se deja atrás se reinicia: al volver, se vuelve a ensayar.
+          if (!activo) limpiarEnsayo(c);
+        }
+      }
+
+      function enlazar(lista, fn) {
+        for (var i = 0; i < lista.length; i++) lista[i].addEventListener('click', fn);
+      }
+      enlazar(prods, function () {
+        p = parseInt(this.getAttribute('data-prod-btn'), 10) || 0;
+        pintar();
+      });
+      enlazar(objs, function () {
+        o = parseInt(this.getAttribute('data-obj-btn'), 10) || 0;
+        pintar();
+      });
+      enlazar(modos, function () {
+        modo = this.getAttribute('data-modo-btn') === 'ensayar' ? 'ensayar' : 'ver';
+        for (var i = 0; i < combos.length; i++) limpiarEnsayo(combos[i]);
+        pintar();
+      });
+
+      for (var i = 0; i < combos.length; i++) {
+        (function (combo) {
+          var opcs = combo.querySelectorAll('[data-opc]');
+          for (var k = 0; k < opcs.length; k++) {
+            (function (opc) {
+              var b = opc.querySelector('[data-opc-btn]');
+              if (!b) return;
+              b.addEventListener('click', function () {
+                if (combo.classList.contains('respondido')) return;
+                opc.classList.add('elegida');
+                combo.classList.add('respondido');
+                b.setAttribute('aria-pressed', 'true');
+                for (var j = 0; j < opcs.length; j++) {
+                  var bj = opcs[j].querySelector('[data-opc-btn]');
+                  if (bj) bj.setAttribute('aria-disabled', 'true');
+                }
+              });
+            })(opcs[k]);
+          }
+          var re = combo.querySelector('[data-reintentar]');
+          if (re)
+            re.addEventListener('click', function () {
+              limpiarEnsayo(combo);
+              var primero = combo.querySelector('[data-opc-btn]');
+              if (primero) primero.focus();
+            });
+        })(combos[i]);
+      }
+
+      // Parámetro de QA: ?demo=<producto>-<objeción>[-e] (1 = el primero) fija la
+      // combinación y, con -e, abre el modo Ensayar. No cambia nada para quien
+      // navega el sitio.
+      try {
+        var v = new URLSearchParams(window.location.search).get('demo');
+        if (v) {
+          var partes = v.split('-');
+          var qp = parseInt(partes[0], 10);
+          var qo = parseInt(partes[1], 10);
+          if (!isNaN(qp)) p = Math.max(0, Math.min(prods.length - 1, qp - 1));
+          if (!isNaN(qo)) o = Math.max(0, Math.min(objs.length - 1, qo - 1));
+          if (partes[2] === 'e') modo = 'ensayar';
+        }
+      } catch (e) {}
+
+      pintar();
+    }
+  })();
+</script>

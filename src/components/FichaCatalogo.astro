@@ -7,6 +7,7 @@ import { ZCAL_30MIN } from '../lib/enlaces';
 import { contenidoFicha, enlazarFichas } from '../lib/catalogo';
 import DemoConcierge from './demos/DemoConcierge.astro';
 import DemoMarketSignal from './demos/DemoMarketSignal.astro';
+import DemoTrainingSignal from './demos/DemoTrainingSignal.astro';
 import DemoVirtualBuyerPersonas from './demos/DemoVirtualBuyerPersonas.astro';
 
 interface Props {
@@ -55,6 +56,7 @@ const relacion = enlazarFichas(c.relacion_p, locale, slug);
 const DEMOS: Record<string, any> = {
   concierge: DemoConcierge,
   'market-signal': DemoMarketSignal,
+  'training-signal': DemoTrainingSignal,
   'virtual-buyer-personas': DemoVirtualBuyerPersonas,
 };
 const contenidoDemo = (c as Record<string, any>).demo;
@@ -99,6 +101,11 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
     <div class="container">
       <h2 set:html={c.que_hace_h2} />
       <p class="cuerpo" set:html={c.que_hace_p} />
+      {(c as any).film && (
+        <figure class="film">
+          <video src={(c as any).film.src} poster={(c as any).film.poster} autoplay muted loop playsinline preload="metadata" aria-label={(c as any).film.alt}></video>
+        </figure>
+      )}
 
       <div class="rejilla" style={`--n:${c.que_hace_items.length}`}>
         {
@@ -226,6 +233,9 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
     max-width: 22ch;
   }
 
+  .film { margin: 36px 0 8px; max-width: 980px; border-radius: 4px; overflow: hidden; background: #E3E4E6; }
+  .film video { display: block; width: 100%; height: auto; }
+  @media (prefers-reduced-motion: reduce) { .film video { animation: none; } }
   .sec-head {
     margin-bottom: 14px;
   }

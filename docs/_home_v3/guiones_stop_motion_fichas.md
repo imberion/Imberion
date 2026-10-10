@@ -1,7 +1,8 @@
 # Guiones de stop motion para las fichas de solución
 
-**Medido:** 2026-10-09. **Estado:** pendientes de la primera revisión de Rodrigo. No se
-genera ninguna imagen hasta que los apruebe.
+**Medido:** 2026-10-09. **Estado:** SM4 (Training Signal) generado el 2026-10-10 y puesto en su ficha junto a la
+mini-demo interactiva, para que Rodrigo decida si se quedan los dos. SM1 a SM3 esperan esa
+decisión. Todo se genera con Codex (plan de ChatGPT, sin costo por imagen).
 
 ## Cómo leer cada guion
 
@@ -109,8 +110,9 @@ Cada pieza se lee en tres tiempos:
     "Objeción" y "Cierre" van como HTML encima).
   - 21 a 30: tres tiras, una por charola, se juntan en una tarjeta de argumento que se
     desliza junto a la caja.
-  - 31 a 44, **el resultado:** la caja entra a la bolsa y la bolsa se cierra. El asa queda
-    en petróleo: venta cerrada.
+  - 31 a 44, **el resultado:** la tarjeta del argumento se acomoda junto a la caja y sale
+    el ticket de venta con una línea petróleo: venta cerrada. (Hecho el 2026-10-10 con
+    Codex; se cambió la bolsa por el ticket porque se compone con código sin deformarse.)
 - **Zona que se mueve:** `0.1,0.15,0.8,0.7`.
 - **Pausas:** 1 s al inicio y 2 s al final.
 
