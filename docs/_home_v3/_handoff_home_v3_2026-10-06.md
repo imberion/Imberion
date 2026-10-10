@@ -1,6 +1,6 @@
 # Handoff: home v3 de imberion.com
 
-**Medido:** 2026-10-06 23:00. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
+**Medido:** 2026-10-10 08:40. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
 `/Users/rodrigogarrido/Code/imberion-website/_wt_home_v3`, ver `git log -1`.
 **Sin push:** el repo `imberion/Imberion` es público. Respaldo incremental en Drive:
 `Unidades compartidas/Imberion/04_marca/sitio_web/respaldos/imberion-website_sitio-home-v3_2026-10-05.bundle`
@@ -103,16 +103,28 @@ resuelven (titular de 9 a 13 palabras, entrada con lo que se requiere del client
 resultados en "Lo que resuelve..."). Sin etiquetas numeradas de sección. EN y PT quedaron
 intactos (verificado contra HEAD) y se traducen al cerrar el copy.
 
-Lo que falta:
+Hecho el 2026-10-10: Training Signal tiene mini-demo interactiva
+(`src/components/demos/DemoTrainingSignal.astro`, contenido en la clave `demo` del bloque
+`es` de `training-signal.json`) y stop motion en loop en "Lo que resuelve"
+(`public/stop-motion/training-signal/`, clave `film` del mismo JSON, soporte en
+`FichaCatalogo.astro`). El video se generó con Codex (sin costo); compositor en
+`herramientas/componer_stop_motion_training_signal.py`, material en Drive
+`06_marketing/stop_motion/training_signal/`. Si el servidor de desarrollo sirve CSS viejo de
+una plantilla, reiniciarlo (`npx astro dev --port 4391`). Playwright que funciona:
+`scratchpad/pw` con `playwright-core` (la carpeta de trabajo vieja quedó dañada).
 
-1. Cerrar el copy en español con Rodrigo (home y fichas).
-2. Confirmar los requisitos del cliente que los agentes dedujeron sin fuente: Growth
-   Bridge, Growth Hacking, Habilitadores, Integración de datos, Leadership Alignment,
-   Market Entry, Canales y Tiendas, Clientes y Lealtad, Commercial Model, Training Signal,
-   Value-Attribute Compass, Value Creation, Promociones y Scenario Engine.
-3. Revisar los guiones de stop motion (`guiones_stop_motion_fichas.md`), pendientes de la
-   primera lectura de Rodrigo.
-4. Traducir home y fichas a EN y PT después del punto 1.
+Lo que falta, en orden:
+
+1. **Training Signal, feedback de Rodrigo (2026-10-10):** conceptualmente bien, pero falta
+   decir que el entrenamiento también es por voz y contra clientes simulados que se
+   comportan como clientes reales. La demo enseña un solo paso (una objeción, una
+   respuesta) y se queda corta: hacerla una conversación de varios turnos con el cliente
+   simulado (y mencionar el modo de voz), y ajustar el copy de la ficha. Rodrigo todavía
+   no decide si se quedan demo y video o solo la demo; de eso dependen SM1 a SM3.
+2. Cerrar el copy en español con Rodrigo (home y 26 fichas).
+3. Confirmar los requisitos del cliente que los agentes dedujeron sin fuente en 14 fichas
+   (lista en la sección de 2026-10-09 de arriba).
+4. Traducir home y fichas a EN y PT después del punto 2.
 5. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 
 ## Revisión a ciegas (2026-10-06)
