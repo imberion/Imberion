@@ -70,7 +70,8 @@
       ["Who It's For",'index.html#who'],
       ['How we operate','how-we-operate.html'],
       ['Book a Call','https://zcal.co/rodrigoimberion/30min'],
-      ['Contact','mailto:hello@imberion.com']
+      ['Contact','mailto:hello@imberion.com'],
+      ['Aviso de privacidad','privacidad.html']
     ];
     fl.innerHTML = links.map(function(l){ return '<a href="'+l[1]+'">'+l[0]+'</a>'; }).join('');
   }
