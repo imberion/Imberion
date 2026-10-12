@@ -1,5 +1,5 @@
 {
-  "_nota": "El cruce industria x herramienta como dato (D3 del spec: la industria es la puerta, el catalogo es el menu). Fuente: el artefacto aprobado por Rodrigo el 2026-09-06 (113 celdas con evidencia archivo:linea en el Brain), mas las tres fichas nuevas que el censo ya cruzaba (Virtual Buyer Personas, Account Twin, Training Signal) y la fila transversal (las 4 de Estrategia de Crecimiento, Price Value Compass y Scenario Engine), que aplica a las nueve industrias publicadas. El angulo en espanol es literal del artefacto; EN y PT se tradujeron por sentido. Esta es la unica fuente de la relacion industria-herramienta: las fichas del catalogo la derivan de aqui, no la repiten.",
+  "_nota": "El cruce industria x herramienta como dato (D3 del spec: la industria es la puerta, el catalogo es el menu). Fuente: el artefacto aprobado por Rodrigo el 2026-09-06 (113 celdas con evidencia archivo:linea en el Brain), mas las tres fichas nuevas que el censo ya cruzaba (Virtual Buyer Personas, Account Twin, Training Signal) y la fila transversal (las 4 de Estrategia de Crecimiento, Price Value Compass y Scenario Engine), que aplica a las nueve industrias publicadas. El angulo en espanol es literal del artefacto; EN y PT se tradujeron por sentido. Esta es la unica fuente de la relacion industria-herramienta: las fichas del catalogo la derivan de aqui, no la repiten. Street Signal (2026-10-12) cruza solo con retail porque aplica solo a moda e indumentaria.",
   "herramientas": [
     {
       "slug": "market-signal",
@@ -65,6 +65,17 @@
           "es": "Captura los diálogos de valor de los mejores vendedores en el piso propio.",
           "en": "Captures the value dialogues of the best sellers on the floor of the business itself.",
           "pt": "Captura os diálogos de valor dos melhores vendedores no piso próprio."
+        }
+      }
+    },
+    {
+      "slug": "street-signal",
+      "transversal": false,
+      "industrias": {
+        "retail": {
+          "es": "Mide qué marcas y prendas usa la gente en la calle, por zona y perfil, para decidir surtido, importación y aparador en moda.",
+          "en": "Measures which brands and garments people wear on the street, by area and profile, to decide assortment, imports and shop windows in fashion.",
+          "pt": "Mede que marcas e peças as pessoas usam na rua, por zona e perfil, para decidir sortimento, importação e vitrine em moda."
         }
       }
     },

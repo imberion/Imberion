@@ -18,6 +18,7 @@
   "herramientas": [
     { "slug": "market-signal",                "nombre": "Market Signal",                    "familia": "signal",   "pagina_vieja": "market-signal" },
     { "slug": "floor-signal",                 "nombre": "Floor Signal",                     "familia": "signal",   "pagina_vieja": "floor-signal" },
+    { "slug": "street-signal",                "nombre": "Street Signal",                    "familia": "signal" },
     { "slug": "virtual-buyer-personas",       "nombre": "Virtual Buyer Personas",           "familia": "twin" },
     { "slug": "account-twin",                 "nombre": "Account Twin",                     "familia": "twin" },
     { "slug": "whitespace-compass",           "nombre": "Whitespace Compass",               "familia": "compass" },
