@@ -1,8 +1,42 @@
 # Guiones de stop motion para las fichas de solución
 
-**Medido:** 2026-10-09. **Estado:** SM4 (Training Signal) generado el 2026-10-10 y puesto en su ficha junto a la
-mini-demo interactiva, para que Rodrigo decida si se quedan los dos. SM1 a SM3 esperan esa
-decisión. Todo se genera con Codex (plan de ChatGPT, sin costo por imagen).
+**Medido:** 2026-10-12. **Estado:** SM4 (Training Signal) se quitó de la ficha el 2026-10-12: Rodrigo
+y dos lectores con perfil de comprador no lo entendieron. Los guiones SM1 a SM3 de abajo usan
+la misma fórmula y quedan en pausa. Rodrigo pidió plantear cómo sí funcionarían; la propuesta
+está en la sección siguiente y espera su visto bueno. Todo se genera con Codex (plan de ChatGPT,
+sin costo por imagen).
+
+## Por qué no funcionó SM4 y cómo sí funcionarían (propuesta del 2026-10-12)
+
+Lo que falló, según Rodrigo ("no está sincronizado con los mensajes") y los dos lectores ("son
+cajas blancas y papelitos"):
+
+1. **Objetos abstractos.** Grabadora, charolas y tiras de papel son una metáfora que hay que
+   descifrar. El lector no reconoce nada de su negocio.
+2. **Sin texto que diga qué pasa.** Las etiquetas "Apertura / Objeción / Cierre" nunca se
+   pusieron, y un loop sin palabras no cuenta nada en 6 segundos.
+3. **Contaba otra historia.** El video mostraba cómo se capturan conversaciones; el texto de al
+   lado hablaba de practicar con un cliente simulado.
+4. **Loop automático.** Corre a su ritmo y no al del lector, que lo ve a la mitad.
+
+Lo que sí funcionó: el stop motion del Checkup en el home. Avanza con el scroll y junto al
+cuadro tiene el paso en grande ("Paso 2 de 4" y la frase). El texto lleva el mensaje y el
+cuadro lo ilustra.
+
+Cómo sí funcionarían en las fichas:
+
+1. **Amarrados al scroll, como el Checkup.** Cada tramo de scroll es un tiempo de la historia,
+   con su frase en grande a un lado. Nunca loop automático.
+2. **Tres tiempos y tres frases, que son el mensaje de la ficha.** Problema, lo que cambia y el
+   resultado. Si las tres frases solas no cuentan la historia, el video tampoco.
+3. **El objeto es la herramienta real en su lugar real.** Un celular sobre el mostrador de una
+   tienda cuya pantalla cambia cuadro a cuadro; un reporte impreso sobre el escritorio del
+   director. Lo que se lee en la pantalla o el papel es interfaz real compuesta con código
+   (legible, sin texto generado por IA), así el lector reconoce lo que va a usar.
+4. **Sin metáforas de cajas y papeles**, y sin personas generadas por IA.
+5. **Solo donde no hay demo.** Donde la ficha tiene demo interactiva, la demo ya es la pieza
+   visual. Primer candidato: Floor Signal (sin demo y en el deal de Flexi).
+
 
 ## Cómo leer cada guion
 
