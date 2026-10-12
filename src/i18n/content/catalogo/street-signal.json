@@ -4,7 +4,7 @@
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Street Signal · Familia Signal",
     "hero_h1": "Qué comprar, importar y exhibir según lo que la gente viste en la calle.",
-    "hero_lead": "Street Signal mide qué trae puesto la gente que camina por la calle: prenda, estilo y, cuando se alcanza a leer, marca, junto con el perfil aparente de quien la usa. Las tomas se levantan en distintos puntos, horarios, días y climas. Aplica a moda e indumentaria.",
+    "hero_lead": "Street Signal mide qué trae puesto la gente que camina por la calle: prenda, estilo y, cuando se alcanza a leer, marca, junto con el perfil aparente de quien la usa. Las tomas se levantan en distintos puntos, horarios, días y climas. Los datos salen anonimizados: se registran el perfil aparente y lo que la persona trae puesto, sin datos personales ni biométricos. Aplica a moda e indumentaria.",
     "que_hace_h2": "Lo que resuelve en el surtido",
     "que_hace_p": "El equipo de compras decide con lo que la gente trae puesto en la calle de cada zona, además de lo que ya se vendió en tienda.",
     "que_hace_items": [
@@ -29,7 +29,7 @@
     "familia_label": "Signal · sense",
     "hero_eyebrow": "Street Signal · Signal family",
     "hero_h1": "What to buy, import and display, based on what people wear on the street.",
-    "hero_lead": "Street Signal measures what people walking down the street are wearing: garment, style and, when it can be read, brand, along with the apparent profile of the person wearing it. Footage is captured at different points, hours, days and weather. The client chooses the areas it cares about; recording follows an Imberion protocol: full body, side view and at least ten minutes per take. It applies to fashion and apparel.",
+    "hero_lead": "Street Signal measures what people walking down the street are wearing: garment, style and, when it can be read, brand, along with the apparent profile of the person wearing it. Footage is captured at different points, hours, days and weather. Data comes out anonymized: the system records the apparent profile and what the person is wearing, with no personal or biometric data. It applies to fashion and apparel.",
     "que_hace_h2": "What it solves in the assortment",
     "que_hace_p": "The buying team decides with what people wear on the street in each area, in addition to what has already sold in store.",
     "que_hace_items": [
@@ -54,7 +54,7 @@
     "familia_label": "Signal · sentir",
     "hero_eyebrow": "Street Signal · Família Signal",
     "hero_h1": "O que comprar, importar e expor segundo o que as pessoas vestem na rua.",
-    "hero_lead": "Street Signal mede o que vestem as pessoas que caminham pela rua: peça, estilo e, quando dá para ler, marca, junto com o perfil aparente de quem usa. As tomadas são feitas em diferentes pontos, horários, dias e climas. Do lado do cliente, é preciso escolher as zonas de interesse; a gravação segue um protocolo da Imberion: corpo inteiro, de perfil e pelo menos dez minutos por tomada. Aplica-se a moda e vestuário.",
+    "hero_lead": "Street Signal mede o que vestem as pessoas que caminham pela rua: peça, estilo e, quando dá para ler, marca, junto com o perfil aparente de quem usa. As tomadas são feitas em diferentes pontos, horários, dias e climas. Os dados saem anonimizados: registram-se o perfil aparente e o que a pessoa está vestindo, sem dados pessoais nem biométricos. Aplica-se a moda e vestuário.",
     "que_hace_h2": "O que resolve no sortimento",
     "que_hace_p": "O time de compras decide com o que as pessoas vestem na rua de cada zona, além do que já foi vendido na loja.",
     "que_hace_items": [
