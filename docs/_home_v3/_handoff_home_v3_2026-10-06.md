@@ -1,6 +1,6 @@
 # Handoff: home v3 de imberion.com
 
-**Medido:** 2026-10-10 12:27. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
+**Medido:** 2026-10-12 12:41. **Rama:** `sitio/home-v3` (sobre `feat/sitio-v2`), worktree
 `/Users/rodrigogarrido/Code/imberion-website/_wt_home_v3`, ver `git log -1`.
 **Sin push:** el repo `imberion/Imberion` es público. Respaldo incremental en Drive:
 `Unidades compartidas/Imberion/04_marca/sitio_web/respaldos/imberion-website_sitio-home-v3_2026-10-05.bundle`
@@ -115,17 +115,22 @@ una plantilla, reiniciarlo (`npx astro dev --port 4391`). Playwright que funcion
 
 Lo que falta, en orden:
 
-1. **Training Signal, decisión de Rodrigo:** si se quedan demo y video o solo la demo; de
-   eso dependen SM1 a SM3. El feedback del 2026-10-10 ya se atendió (12:27): la demo tiene
-   un modo "Practicar con cliente simulado" (tres productos, un cliente con perfil por
-   producto, tres turnos con reacción del cliente y retroalimentación, cierre según aciertos:
-   compra, pide tiempo o se va) con la indicación de que en el piso la práctica es por voz;
-   el ensayo de un paso se quitó. La entrada y "Lo que resuelve" de la ficha dicen ya que
-   se practica por voz contra clientes simulados que se comportan como clientes reales.
-   Parámetro de QA: `?demo=<producto>-<objeción>-p` abre la práctica.
+1. **Training Signal, rediseñada el 2026-10-12** tras el feedback de Rodrigo ("el stop motion
+   no está sincronizado con los mensajes", "me pierdo, hay demasiado contenido") y dos vueltas
+   con dos lectores objetivo (director comercial de cadena de electrónica, gerente de
+   capacitación de marca con promotores). Quedó: inicio con problema y qué resuelve, demo de
+   un solo modo (práctica con cliente simulado, pantalla primero, botón Escuchar con la voz
+   del navegador, repaso final de lo que dijo el mejor asesor en los turnos fallados), tres
+   puntos y la llamada. Salieron el video, la imagen del chat viejo y el modo "Ver la
+   respuesta". La plantilla de las 26 fichas perdió "Operator · ...", "Dónde aplica" y "Con
+   qué se conecta"; con demo, la demo va arriba y la imagen fija no se pinta; `que_hace_p`,
+   `valor_*` y `sowhat` pueden ir vacíos. Lo que los lectores siguen pidiendo y no se puede
+   resolver solo en la página: un número de piloto, ver al asesor contestando por voz
+   (clip real o micrófono), quién es Imberion (logos/casos en la ficha) y el tamaño del
+   piloto. Los stop motion SM1 a SM3 quedan en pausa: el de Training Signal no se entendió.
 2. Cerrar el copy en español con Rodrigo (home y 26 fichas).
-3. Confirmar los requisitos del cliente que los agentes dedujeron sin fuente en 14 fichas
-   (lista en la sección de 2026-10-09 de arriba).
+3. Requisitos del cliente: Rodrigo decidió (2026-10-12) que no van en la página; se quitaron
+   de 22 fichas. Solo el Checkup conserva que usa datos del cliente.
 4. Traducir home y fichas a EN y PT después del punto 2.
 5. Merge de los PR del brain #565 (DM Mono) y #569 (stop motion compuesto).
 

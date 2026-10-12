@@ -67,14 +67,16 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
   <section class="page-hero">
     <div class="page-hero-bg"></div>
     <div class="page-hero-content">
-      <div class="eyebrow">{c.familia_label}</div>
       <h1 set:html={c.hero_h1} />
       <p class="lead" set:html={c.hero_lead} />
     </div>
   </section>
 
+  {Demo && <Demo contenido={contenidoDemo} />}
+
   {
-    pieza && (
+    // Con demo, la demo es la pieza visual de la ficha; la imagen fija sobra.
+    pieza && !Demo && (
       <section class="pieza" aria-label={c.nombre}>
         <div class="container">
           <figure class="pieza-fig" style={`max-width:${pieza.maxAncho}px`}>
@@ -100,7 +102,7 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
   <section class="bloque">
     <div class="container">
       <h2 set:html={c.que_hace_h2} />
-      <p class="cuerpo" set:html={c.que_hace_p} />
+      {c.que_hace_p && <p class="cuerpo" set:html={c.que_hace_p} />}
       {(c as any).film && (
         <figure class="film">
           <video src={(c as any).film.src} poster={(c as any).film.poster} autoplay muted loop playsinline preload="metadata" aria-label={(c as any).film.alt}></video>
@@ -123,39 +125,17 @@ const Demo = contenidoDemo ? (DEMOS[slug] ?? null) : null;
     </div>
   </section>
 
-  {Demo && <Demo contenido={contenidoDemo} />}
-
-  <section class="bloque bloque--dark">
-    <div class="container">
-      <h2 set:html={c.valor_h2} />
-      <p class="cuerpo" set:html={c.valor_p} />
-      <p class="sowhat" set:html={c.sowhat} />
-    </div>
-  </section>
-
-  <section class="bloque">
-    <div class="container">
-      <h2 set:html={c.industrias_h2} />
-      <ul class="chips">
-        {
-          c.industrias.map((ind) => (
-            <li>
-              <a class="tag" href={ind.href}>
-                {ind.titulo}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="bloque bloque--fino">
-    <div class="container">
-      <h2 set:html={c.relacion_h2} />
-      <p class="cuerpo cuerpo--enlaces" set:html={relacion} />
-    </div>
-  </section>
+  {
+    c.valor_h2 && (
+      <section class="bloque bloque--dark">
+        <div class="container">
+          <h2 set:html={c.valor_h2} />
+          <p class="cuerpo" set:html={c.valor_p} />
+          <p class="sowhat" set:html={c.sowhat} />
+        </div>
+      </section>
+    )
+  }
 
   <section class="cta-strip">
     <div class="container">

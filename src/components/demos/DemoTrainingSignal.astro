@@ -1,52 +1,39 @@
 ---
-// Mini-demo de Training Signal, con dos modos sobre el mismo producto:
+// Mini-demo de Training Signal: práctica con un cliente simulado.
 //
-// - Ver la respuesta: el cliente suelta una objeción y el panel devuelve lo que
-//   respondió el mejor asesor en ese caso (movimiento, frase y por qué funciona).
-//   `combos[p][o]` es la combinación del producto p con la objeción o; las nueve
-//   ya vienen en el HTML y el navegador solo decide cuál se ve.
-// - Practicar con cliente simulado: un cliente con perfil definido
-//   (`practica.clientes[p]`) lleva la conversación durante tres turnos. Cada
-//   opción trae la reacción del cliente y la retroalimentación; el cierre sale
-//   del número de respuestas buenas (3 compra, 2 pide tiempo, 0 o 1 se va). En
-//   el producto real la práctica es por voz; aquí se escribe y la interfaz lo
-//   dice.
+// Se elige un producto; cada uno trae un cliente con perfil definido
+// (`practica.clientes[p]`) que lleva la conversación durante tres turnos. Cada
+// opción trae la reacción del cliente y la retroalimentación; el cierre sale
+// del número de respuestas buenas (3 compra, 2 pide tiempo, 0 o 1 se va).
 //
-// Es determinista igual que Virtual Buyer Personas: todo el diálogo está escrito
-// en el JSON de contenido y viaja como JSON en la página. No calcula ni llama a
-// nada.
+// Voz: cada globo del cliente tiene un botón para escucharlo con la síntesis
+// de voz del navegador (speechSynthesis, es-MX si existe). Si el navegador no
+// la tiene, el botón no aparece. En el producto real el asesor contesta en voz
+// alta; aquí escoge entre tres respuestas, y la interfaz lo dice.
+//
+// Es determinista igual que Virtual Buyer Personas: todo el diálogo está
+// escrito en el JSON de contenido y viaja como JSON en la página.
 //
 // El panel lleva `data-dialogo` porque los globos y las opciones son habla
 // citada entre cliente y asesor en una tienda: ahí el trato de usted es del
 // personaje, no del sitio.
-//
-// Color: navy sobre papel. El petróleo aparece solo en la práctica: la
-// retroalimentación de una respuesta buena y el cierre cuando el cliente compra.
 
 export interface DemoTrainingSignalContenido {
   eyebrow: string;
   titulo: string;
   intro: string;
   producto_label: string;
-  objecion_label: string;
   app: { producto: string; sku_label: string; estado: string };
   productos: Array<{ nombre: string; detalle: string; sku: string; precio: string }>;
-  objeciones: Array<{ frase: string }>;
-  quien_cliente: string;
-  quien_asesor: string;
-  modo_ver: string;
-  modo_practicar: string;
-  movimiento_label: string;
-  frase_label: string;
-  porque_label: string;
   simulacion: string;
-  combos: Array<Array<{ movimiento: string; frase: string; porque: string }>>;
   practica: {
     perfil_label: string;
     quien_cliente: string;
     quien_asesor: string;
     voz_label: string;
     voz_nota: string;
+    escuchar: string;
+    detener: string;
     turno_label: string;
     de: string;
     pregunta: string;
@@ -57,6 +44,7 @@ export interface DemoTrainingSignalContenido {
     btn_resultado: string;
     btn_otra: string;
     resultado_label: string;
+    repaso_label: string;
     resultados: { compra: string; duda: string; se_va: string };
     marcador: string;
     clientes: Array<{
@@ -78,8 +66,8 @@ interface Props {
 
 const { contenido: d } = Astro.props;
 const pr = d.practica;
-// El diálogo de la práctica viaja como JSON; `<` escapado para que ningún texto
-// pueda cerrar la etiqueta <script>.
+// El diálogo viaja como JSON; `<` escapado para que ningún texto pueda cerrar
+// la etiqueta <script>.
 const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
 ---
 
@@ -121,25 +109,7 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
           </div>
         </div>
 
-        <div class="ts-grupo ts-objs-grupo">
-          <span class="ts-k" id="ts-k-obj">{d.objecion_label}</span>
-          <div class="ts-objs" role="group" aria-labelledby="ts-k-obj" data-dialogo>
-            {
-              d.objeciones.map((o, i) => (
-                <button
-                  type="button"
-                  class={`ts-obj${i === 0 ? ' on' : ''}`}
-                  data-obj-btn={i}
-                  aria-pressed={i === 0 ? 'true' : 'false'}
-                >
-                  “{o.frase}”
-                </button>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="ts-grupo ts-perfiles">
+        <div class="ts-grupo">
           <span class="ts-k">{pr.perfil_label}</span>
           {
             pr.clientes.map((c, i) => (
@@ -160,50 +130,6 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         <div class="ts-barra">
           <span class="ts-marca"><span class="ts-marca-o" aria-hidden="true"></span>{d.app.producto}</span>
           <span class="ts-estado"><span class="ts-estado-dot" aria-hidden="true"></span>{d.app.estado}</span>
-        </div>
-
-        <div class="ts-modos" role="group">
-          <button type="button" class="ts-modo on" data-modo-btn="ver" aria-pressed="true">{d.modo_ver}</button>
-          <button type="button" class="ts-modo" data-modo-btn="practicar" aria-pressed="false">{d.modo_practicar}</button>
-        </div>
-
-        <div class="ts-panel" aria-live="polite">
-          {
-            d.combos.map((fila, p) =>
-              fila.map((c, o) => (
-                <div class={`ts-combo${p === 0 && o === 0 ? ' on' : ''}`} data-p={p} data-o={o}>
-                  <div class="ts-sku">
-                    <span class="ts-sku-k">{d.app.sku_label}</span>
-                    <span class="ts-sku-v">{d.productos[p].sku}</span>
-                    <span class="ts-sku-n">{d.productos[p].nombre}</span>
-                    <span class="ts-sku-p">{d.productos[p].precio}</span>
-                  </div>
-
-                  <div class="ts-bub cli">
-                    <span class="who">{d.quien_cliente}</span>
-                    {d.objeciones[o].frase}
-                  </div>
-
-                  <div class="ts-ver">
-                    <div class="ts-mov">
-                      <span class="ts-lbl">{d.movimiento_label}</span>
-                      <p>{c.movimiento}</p>
-                    </div>
-                    <div class="ts-bub ase">
-                      <span class="who">
-                        {d.quien_asesor} · {d.frase_label}
-                      </span>
-                      {c.frase}
-                    </div>
-                    <div class="ts-porque">
-                      <span class="ts-lbl">{d.porque_label}</span>
-                      <p>{c.porque}</p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )
-          }
         </div>
 
         <div class="ts-practica" data-practica aria-live="polite">
@@ -236,20 +162,23 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
             <span class="ts-lbl">{pr.resultado_label}</span>
             <p class="ts-final-r" data-final-r></p>
             <p class="ts-final-m" data-final-m></p>
+            <div class="ts-repaso" data-repaso hidden>
+              <span class="ts-lbl">{pr.repaso_label}</span>
+              <ol data-repaso-l></ol>
+            </div>
             <button type="button" class="ts-btn" data-otra>{pr.btn_otra}</button>
           </div>
         </div>
       </div>
     </div>
     <script type="application/json" data-ts-practica set:html={practicaJson}></script>
-
     <p class="demo-nota">{d.simulacion}</p>
   </div>
 </section>
 
 <style is:inline>
   /* Tokens del sitio (site.css / shell.css). Navy sobre papel; el petróleo
-     solo marca la respuesta correcta del ensayo. Selectores prefijados por
+     solo marca la respuesta buena y la venta cerrada. Selectores prefijados por
      `.demo-bloque` porque el <style is:inline> no lleva scope de Astro. */
   .demo-bloque {
     scroll-margin-top: 86px;
@@ -305,8 +234,7 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
     text-transform: uppercase;
     color: var(--gray-blue);
   }
-  .demo-bloque .ts-prods,
-  .demo-bloque .ts-objs {
+  .demo-bloque .ts-prods {
     margin-top: 12px;
     display: flex;
     flex-direction: column;
@@ -362,31 +290,6 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
     font-variant-numeric: tabular-nums;
   }
 
-  .demo-bloque .ts-obj {
-    width: 100%;
-    text-align: left;
-    padding: 12px 16px;
-    border: 1px solid var(--navy-12);
-    border-radius: 14px;
-    border-bottom-left-radius: 4px;
-    background: var(--white);
-    color: var(--navy);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    line-height: 1.4;
-    cursor: pointer;
-    transition:
-      background 0.28s var(--ease),
-      border-color 0.28s var(--ease);
-  }
-  .demo-bloque .ts-obj:hover { border-color: var(--navy-20); }
-  .demo-bloque .ts-obj.on {
-    background: var(--paper);
-    border-color: var(--navy);
-    box-shadow: inset 2px 0 0 var(--navy);
-    font-weight: 500;
-  }
-
   /* ---------- el panel de la herramienta ---------- */
   .demo-bloque .ts-app {
     min-width: 0;
@@ -437,62 +340,6 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   }
   .demo-bloque .ts-estado-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--slate); }
 
-  .demo-bloque .ts-modos {
-    display: flex;
-    gap: 4px;
-    padding: 12px 18px 0;
-    border-bottom: 1px solid var(--navy-06);
-  }
-  .demo-bloque .ts-modo {
-    padding: 9px 14px 11px;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    background: transparent;
-    color: var(--navy-60);
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    margin-bottom: -1px;
-    transition: color 0.28s var(--ease), border-color 0.28s var(--ease);
-  }
-  .demo-bloque .ts-modo:hover { color: var(--navy); }
-  .demo-bloque .ts-modo.on { color: var(--navy); border-bottom-color: var(--navy); }
-
-  /* Las nueve combinaciones se apilan en la misma celda: el alto lo fija la más
-     larga y el panel no salta al cambiar de producto u objeción. */
-  .demo-bloque .ts-panel {
-    display: grid;
-    padding: 18px 18px 22px;
-  }
-  .demo-bloque .ts-combo {
-    grid-area: 1 / 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(4px);
-    transition:
-      opacity 0.34s var(--ease-io),
-      transform 0.34s var(--ease-io);
-  }
-  .demo-bloque .ts-combo.on { opacity: 1; visibility: visible; transform: none; }
-
-  .demo-bloque .ts-sku {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 10px;
-    padding-bottom: 12px;
-    border-bottom: 1px dashed var(--navy-12);
-  }
-  .demo-bloque .ts-sku-v { font-size: 12px; color: var(--navy-72); letter-spacing: 0.04em; }
-  .demo-bloque .ts-sku-n { font-family: var(--font-sans); font-size: 13px; color: var(--navy-72); }
-  .demo-bloque .ts-sku-p { margin-left: auto; }
-
   .demo-bloque .ts-bub {
     font-size: 14px;
     line-height: 1.5;
@@ -523,36 +370,6 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
     border-bottom-right-radius: 4px;
   }
 
-  .demo-bloque .ts-ver {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .demo-bloque .ts-mov p {
-    margin-top: 5px;
-    font-family: var(--font-serif);
-    font-size: 1.3rem;
-    font-weight: 500;
-    line-height: 1.25;
-  }
-  .demo-bloque .ts-porque {
-    padding-left: 13px;
-    border-left: 2px solid var(--slate-mist);
-  }
-  .demo-bloque .ts-porque p {
-    margin-top: 4px;
-    font-size: 13px;
-    line-height: 1.58;
-    color: var(--navy-72);
-  }
-
-  /* El modo decide qué se pinta: las combinaciones de Ver o la práctica. Las
-     objeciones de la izquierda ceden su lugar al perfil del cliente simulado. */
-  .demo-bloque .ts-wrap:not(.practicando) .ts-practica,
-  .demo-bloque .ts-wrap:not(.practicando) .ts-perfiles,
-  .demo-bloque .ts-wrap.practicando .ts-panel,
-  .demo-bloque .ts-wrap.practicando .ts-objs-grupo { display: none; }
-
   /* ---------- perfil del cliente simulado ---------- */
   .demo-bloque .ts-perfil { display: none; margin-top: 12px; padding: 16px 18px; background: var(--white); border: 1px solid var(--navy-12); }
   .demo-bloque .ts-perfil.on { display: block; }
@@ -582,7 +399,7 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   }
 
   /* ---------- práctica ---------- */
-  .demo-bloque .ts-practica { display: flex; flex-direction: column; gap: 14px; padding: 16px 18px 22px; }
+  .demo-bloque .ts-practica { display: flex; flex-direction: column; gap: 14px; }
   .demo-bloque .ts-voz {
     display: flex;
     flex-wrap: wrap;
@@ -638,6 +455,32 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   .demo-bloque .ts-onda { display: inline-flex; align-items: center; gap: 2px; height: 10px; }
   .demo-bloque .ts-onda b { display: block; width: 2px; border-radius: 1px; background: currentColor; }
   .demo-bloque .ts-dur { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+  /* Botón de escuchar en cada globo del cliente: la voz es la del navegador. */
+  .demo-bloque .ts-oir {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px 3px 7px;
+    border: 1px solid var(--navy-20);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 1;
+    cursor: pointer;
+  }
+  .demo-bloque .ts-oir svg { width: 10px; height: 10px; display: block; }
+  .demo-bloque .ts-oir:hover { border-color: var(--navy); }
+  .demo-bloque .ts-oir.sonando { background: var(--navy); color: var(--paper-warm); border-color: var(--navy); }
+  .demo-bloque .ts-bub.cli .who { opacity: 1; }
+  .demo-bloque .ts-bub.cli .who > span:first-child { opacity: 0.6; }
+  .demo-bloque .ts-bub.cli .ts-onda, .demo-bloque .ts-bub.cli .ts-dur { opacity: 0.6; }
+  .demo-bloque .ts-practica { padding: 16px 18px 22px; }
 
   .demo-bloque .ts-turno { display: flex; flex-direction: column; gap: 12px; }
   .demo-bloque .ts-preg {
@@ -717,6 +560,12 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   .demo-bloque .ts-final.compra { border-color: var(--petrol); background: var(--petrol-06); }
   .demo-bloque .ts-final.compra .ts-final-r { color: var(--petrol-deep); }
   .demo-bloque .ts-final-m { font-size: 13px; color: var(--navy-72); }
+  .demo-bloque .ts-repaso { margin-top: 6px; width: 100%; }
+  .demo-bloque .ts-repaso[hidden] { display: none; }
+  .demo-bloque .ts-repaso ol { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .demo-bloque .ts-repaso li { display: flex; flex-direction: column; gap: 3px; padding-left: 12px; border-left: 2px solid var(--slate-mist); }
+  .demo-bloque .ts-repaso-c { font-size: 12px; color: var(--navy-60); }
+  .demo-bloque .ts-repaso-m { font-size: 13px; line-height: 1.5; color: var(--navy); }
 
   .demo-bloque .ts-btn {
     margin-top: 4px;
@@ -741,16 +590,12 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .demo-bloque .ts-combo,
     .demo-bloque .ts-prod,
-    .demo-bloque .ts-obj,
-    .demo-bloque .ts-modo,
     .demo-bloque .ts-opc-btn,
     .demo-bloque .ts-btn,
     .demo-bloque .ts-turnos i {
       transition: none;
     }
-    .demo-bloque .ts-combo { transform: none; }
     .demo-bloque .ts-hilo { scroll-behavior: auto; }
     .demo-bloque .ts-hilo .ts-bub { animation: none; }
   }
@@ -760,42 +605,42 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
     .demo-bloque .ts-ctrl { gap: 22px; }
   }
   @media (max-width: 600px) {
-    .demo-bloque .ts-panel { padding: 16px 14px 18px; }
-    .demo-bloque .ts-modos { padding: 10px 14px 0; }
+    /* En celular la conversación tiene que verse pronto: productos en una fila
+       compacta y el perfil solo con su nombre. */
+    .demo-bloque .ts-ctrl { gap: 14px; }
+    .demo-bloque .ts-prods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+    .demo-bloque .ts-prod { grid-template-columns: 1fr; gap: 2px; padding: 9px 10px; }
+    .demo-bloque .ts-scan,
+    .demo-bloque .ts-prod-d,
+    .demo-bloque .ts-perfil ul { display: none; }
+    .demo-bloque .ts-prod-n { font-size: 12.5px; }
+    .demo-bloque .ts-prod-p { font-size: 11.5px; font-weight: 500; }
+    .demo-bloque .ts-perfil { padding: 10px 14px; margin-top: 8px; }
+    .demo-bloque .ts-perfil-n { font-size: 1.1rem; }
     .demo-bloque .ts-bub { max-width: 94%; }
     .demo-bloque .ts-practica { padding: 14px 14px 18px; }
     .demo-bloque .ts-turnos { margin-left: 0; }
-    .demo-bloque .ts-sku-n { flex-basis: 100%; order: 3; }
   }
 </style>
 
 <script is:inline>
-  // Motor de la mini-demo. Sin dependencias y sin cálculo. En Ver solo decide
-  // qué combinación lleva `on`. En Practicar arma el hilo de la conversación a
-  // partir del JSON de la página: cliente, respuesta elegida, reacción del
-  // cliente y retroalimentación, turno por turno. Todo el texto entra con
-  // textContent. No hay avance automático: el visitante maneja todo.
+  // Motor de la práctica. Sin dependencias: arma el hilo de la conversación a
+  // partir del JSON de la página (cliente, respuesta elegida, reacción y
+  // retroalimentación, turno por turno). Todo el texto entra con textContent.
+  // La voz no arranca sola: el visitante pide escuchar cada globo.
   (function () {
     var raices = document.querySelectorAll('[data-demo-ts]');
     for (var r = 0; r < raices.length; r++) montar(raices[r]);
 
     function montar(raiz) {
       var prods = raiz.querySelectorAll('[data-prod-btn]');
-      var objs = raiz.querySelectorAll('[data-obj-btn]');
-      var modos = raiz.querySelectorAll('[data-modo-btn]');
-      var combos = raiz.querySelectorAll('.ts-combo');
       var perfiles = raiz.querySelectorAll('[data-perfil]');
-      if (!prods.length || !objs.length || !combos.length) return;
-
       var datos = null;
       try {
         var nodo = raiz.parentNode.querySelector('[data-ts-practica]');
         datos = nodo ? JSON.parse(nodo.textContent) : null;
       } catch (e) {}
-
-      var p = 0;
-      var o = 0;
-      var modo = 'ver';
+      if (!prods.length || !datos) return;
 
       var q = function (sel) { return raiz.querySelector(sel); };
       var hilo = q('[data-hilo]');
@@ -814,16 +659,52 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
       var otra = q('[data-otra]');
       var ticks = raiz.querySelectorAll('[data-turnos] i');
 
-      // Estado de la práctica.
+      var p = 0;
       var t = 0;
       var aciertos = 0;
+      var fallas = [];
+      var repaso = q('[data-repaso]');
+      var repasoL = q('[data-repaso-l]');
 
-      function marcar(lista, attr, valor) {
-        for (var i = 0; i < lista.length; i++) {
-          var activo = lista[i].getAttribute(attr) === String(valor);
-          lista[i].classList.toggle('on', activo);
-          if (lista[i].tagName === 'BUTTON') lista[i].setAttribute('aria-pressed', activo ? 'true' : 'false');
+      // ---- voz del navegador ----
+      var sintesis = 'speechSynthesis' in window ? window.speechSynthesis : null;
+      var vozMx = null;
+      function elegirVoz() {
+        if (!sintesis) return;
+        var voces = sintesis.getVoices() || [];
+        vozMx =
+          voces.filter(function (v) { return /^es[-_]MX/i.test(v.lang); })[0] ||
+          voces.filter(function (v) { return /^es[-_](US|419)/i.test(v.lang); })[0] ||
+          voces.filter(function (v) { return /^es/i.test(v.lang); })[0] ||
+          null;
+      }
+      if (sintesis) {
+        elegirVoz();
+        if (typeof sintesis.addEventListener === 'function') sintesis.addEventListener('voiceschanged', elegirVoz);
+      }
+      var sonando = null;
+      function callar() {
+        if (sintesis) sintesis.cancel();
+        if (sonando) {
+          sonando.classList.remove('sonando');
+          sonando.lastChild.textContent = datos.escuchar;
+          sonando = null;
         }
+      }
+      function decir(texto, boton) {
+        if (!sintesis) return;
+        var mismo = sonando === boton;
+        callar();
+        if (mismo) return;
+        var u = new SpeechSynthesisUtterance(texto);
+        u.lang = vozMx ? vozMx.lang : 'es-MX';
+        if (vozMx) u.voice = vozMx;
+        u.rate = 1;
+        u.onend = u.onerror = function () { if (sonando === boton) callar(); };
+        sonando = boton;
+        boton.classList.add('sonando');
+        boton.lastChild.textContent = datos.detener;
+        sintesis.speak(u);
       }
 
       function el(tag, cls, txt) {
@@ -833,8 +714,7 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         return n;
       }
 
-      // Onda de voz decorativa; alturas fijas a partir del texto para que no
-      // cambie entre visitas.
+      // Onda decorativa; alturas fijas a partir del texto.
       function onda(texto) {
         var w = el('span', 'ts-onda');
         w.setAttribute('aria-hidden', 'true');
@@ -851,9 +731,17 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         var cli = quien === 'cli';
         var g = el('div', 'ts-bub ' + quien);
         var who = el('span', 'who');
-        who.appendChild(document.createTextNode(cli ? datos.quien_cliente : datos.quien_asesor));
+        who.appendChild(el('span', null, cli ? datos.quien_cliente : datos.quien_asesor));
         who.appendChild(onda(texto));
         if (dur) who.appendChild(el('span', 'ts-dur', dur));
+        if (cli && sintesis) {
+          var b = el('button', 'ts-oir');
+          b.type = 'button';
+          b.innerHTML = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2v7.6L8.6 5z" fill="currentColor"/></svg>';
+          b.appendChild(el('span', null, datos.escuchar));
+          b.addEventListener('click', function () { decir(texto, b); });
+          who.appendChild(b);
+        }
         g.appendChild(who);
         g.appendChild(document.createTextNode(texto));
         hilo.appendChild(g);
@@ -881,12 +769,15 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
       }
 
       function responder(op, turno) {
+        callar();
         turnoBox.hidden = true;
         globo('ase', op.texto, null);
         globo('cli', op.reaccion, null);
         if (op.buena) aciertos++;
-        ticks[t] && ticks[t].classList.remove('actual');
-        ticks[t] && ticks[t].classList.add(op.buena ? 'bien' : 'mal');
+        if (ticks[t]) {
+          ticks[t].classList.remove('actual');
+          ticks[t].classList.add(op.buena ? 'bien' : 'mal');
+        }
         coach.classList.toggle('bien', !!op.buena);
         coachK.textContent = op.buena ? datos.nota_buena : datos.nota_mala;
         coachNota.textContent = op.nota;
@@ -894,8 +785,8 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         turno.opciones.forEach(function (x) { if (x.buena) mejor = x; });
         coachMejor.hidden = !!op.buena || !mejor;
         if (mejor) coachMejorT.textContent = mejor.texto;
-        var ultimo = t >= cliente().turnos.length - 1;
-        seguir.textContent = ultimo ? datos.btn_resultado : datos.btn_seguir;
+        if (!op.buena && mejor) fallas.push({ cliente: turno.cliente, mejor: mejor.texto });
+        seguir.textContent = t >= cliente().turnos.length - 1 ? datos.btn_resultado : datos.btn_seguir;
         coach.hidden = false;
       }
 
@@ -907,81 +798,64 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         fin.classList.toggle('compra', r === 'compra');
         finR.textContent = datos.resultados[r];
         finM.textContent = datos.marcador.replace('{n}', aciertos).replace('{t}', total);
+        // Repaso: en cada turno fallado, la objeción y lo que dijo el mejor asesor.
+        repasoL.textContent = '';
+        fallas.forEach(function (f) {
+          var li = el('li');
+          li.appendChild(el('span', 'ts-repaso-c', '“' + f.cliente + '”'));
+          li.appendChild(el('span', 'ts-repaso-m', f.mejor));
+          repasoL.appendChild(li);
+        });
+        repaso.hidden = fallas.length === 0;
         fin.hidden = false;
       }
 
       function iniciar() {
-        if (!datos || !hilo) return;
+        callar();
         t = 0;
         aciertos = 0;
+        fallas = [];
         hilo.textContent = '';
         fin.hidden = true;
         for (var i = 0; i < ticks.length; i++) ticks[i].className = '';
         mostrarTurno();
       }
 
-      if (seguir)
-        seguir.addEventListener('click', function () {
-          if (t >= cliente().turnos.length - 1) return cerrar();
-          t++;
-          mostrarTurno();
-        });
-      if (otra)
-        otra.addEventListener('click', function () {
+      seguir.addEventListener('click', function () {
+        if (t >= cliente().turnos.length - 1) return cerrar();
+        t++;
+        mostrarTurno();
+      });
+      otra.addEventListener('click', function () {
+        iniciar();
+        var b = opcsBox.querySelector('button');
+        if (b) b.focus();
+      });
+
+      function marcar(lista, attr, valor) {
+        for (var i = 0; i < lista.length; i++) {
+          var activo = lista[i].getAttribute(attr) === String(valor);
+          lista[i].classList.toggle('on', activo);
+          if (lista[i].tagName === 'BUTTON') lista[i].setAttribute('aria-pressed', activo ? 'true' : 'false');
+        }
+      }
+      for (var i = 0; i < prods.length; i++)
+        prods[i].addEventListener('click', function () {
+          p = parseInt(this.getAttribute('data-prod-btn'), 10) || 0;
+          marcar(prods, 'data-prod-btn', p);
+          marcar(perfiles, 'data-perfil', p);
+          // Otro producto es otro cliente: la práctica empieza de nuevo.
           iniciar();
-          var b = opcsBox.querySelector('button');
-          if (b) b.focus();
         });
 
-      function pintar() {
-        marcar(prods, 'data-prod-btn', p);
-        marcar(objs, 'data-obj-btn', o);
-        marcar(modos, 'data-modo-btn', modo);
-        marcar(perfiles, 'data-perfil', p);
-        raiz.classList.toggle('practicando', modo === 'practicar');
-        for (var i = 0; i < combos.length; i++) {
-          var c = combos[i];
-          c.classList.toggle('on', c.getAttribute('data-p') === String(p) && c.getAttribute('data-o') === String(o));
-        }
-      }
-
-      function enlazar(lista, fn) {
-        for (var i = 0; i < lista.length; i++) lista[i].addEventListener('click', fn);
-      }
-      enlazar(prods, function () {
-        p = parseInt(this.getAttribute('data-prod-btn'), 10) || 0;
-        pintar();
-        // Otro producto es otro cliente: la práctica empieza de nuevo.
-        if (modo === 'practicar') iniciar();
-      });
-      enlazar(objs, function () {
-        o = parseInt(this.getAttribute('data-obj-btn'), 10) || 0;
-        pintar();
-      });
-      enlazar(modos, function () {
-        var antes = modo;
-        modo = this.getAttribute('data-modo-btn') === 'practicar' && datos ? 'practicar' : 'ver';
-        pintar();
-        if (modo === 'practicar' && antes !== 'practicar') iniciar();
-      });
-
-      // Parámetro de QA: ?demo=<producto>-<objeción>[-p] (1 = el primero) fija
-      // la combinación y, con -p, abre la práctica. No cambia nada para quien
-      // navega el sitio.
+      // Parámetro de QA: ?demo=<producto> (1 = el primero) fija el producto.
       try {
-        var v = new URLSearchParams(window.location.search).get('demo');
-        if (v) {
-          var partes = v.split('-');
-          var qp = parseInt(partes[0], 10);
-          var qo = parseInt(partes[1], 10);
-          if (!isNaN(qp)) p = Math.max(0, Math.min(prods.length - 1, qp - 1));
-          if (!isNaN(qo)) o = Math.max(0, Math.min(objs.length - 1, qo - 1));
-          if (partes[2] === 'p' && datos) modo = 'practicar';
-        }
+        var v = parseInt(new URLSearchParams(window.location.search).get('demo'), 10);
+        if (!isNaN(v)) p = Math.max(0, Math.min(prods.length - 1, v - 1));
       } catch (e) {}
-
-      pintar();
-      if (modo === 'practicar') iniciar();
+      marcar(prods, 'data-prod-btn', p);
+      marcar(perfiles, 'data-perfil', p);
+      iniciar();
     }
   })();
 </script>

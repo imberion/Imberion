@@ -132,6 +132,8 @@ function exigeBloque(nombre: string): Archivo {
   return archivo;
 }
 
+const CLAVES_OPCIONALES = new Set(['que_hace_p', 'valor_h2', 'valor_p', 'sowhat']);
+
 function exigeClaves(nombre: string, locale: Locale, bloque: Bloque, claves: readonly string[]) {
   for (const clave of claves) {
     const valor = bloque[clave];
@@ -145,6 +147,8 @@ function exigeClaves(nombre: string, locale: Locale, bloque: Bloque, claves: rea
       continue;
     }
     if (clave === 'familia_intro' || clave === 'seccion_intro') continue;
+    // Bloques que una ficha puede omitir dejándolos vacíos (la plantilla no los pinta).
+    if (CLAVES_OPCIONALES.has(clave) && valor === '') continue;
     if (typeof valor !== 'string' || valor.trim() === '') {
       throw new Error(`catálogo: ${nombre}.json / ${locale}: "${clave}" está vacía.`);
     }
