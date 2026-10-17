@@ -1,0 +1,641 @@
+{
+  "en": {
+    "nav_estrat": "Strategy",
+    "page_title": "Imberion — How It Works",
+    "nav_cta": "Book a Call",
+    "hero_back": "← Imberion",
+    "hero_eyebrow": "How it works",
+    "hero_h1": "One connected operation.<br>Three distinct capabilities.",
+    "hero_lead": "Built to work as a full loop, or deployed where the need is greatest.",
+    "hf_a_title": "Information Infrastructure",
+    "hf_a_sub": "We build the visibility",
+    "hf_b_title": "Commercial Intelligence Engine",
+    "hf_b_sub": "We convert it into decisions",
+    "hf_c_title": "Execution &amp; Value Capture",
+    "hf_c_sub": "We stay until value is captured",
+    "snav_a": "Information Infrastructure",
+    "snav_b": "Commercial Intelligence Engine",
+    "snav_c": "Execution &amp; Value Capture",
+    "a_eyebrow": "Information Infrastructure",
+    "a_h2": "We build the visibility<br>you don't have yet.",
+    "a_lead": "Most organizations cannot see their market clearly, not because the data doesn't exist, but because it has never been consolidated into a single reliable base. Arm A resolves that before anything else can be attempted.",
+    "a_struct_label": "Structured Sources",
+    "a_unstruct_label": "Unstructured &amp; Missing Sources",
+    "a_s1_title": "Internal transactional data",
+    "a_s1_body": "ERP, sales systems, and billing records, the data the client already owns but rarely consolidates.",
+    "a_s2_title": "Traditional channel POS",
+    "a_s2_body": "Point-of-sale capture from fragmented traditional trade where traceability is typically low.",
+    "a_s3_title": "Modern channel POS",
+    "a_s3_body": "Transactional data from structured retail chains and modern trade formats.",
+    "a_s4_title": "Distributor integrations",
+    "a_s4_body": "Structured connections to receive and map sales, coverage, pricing, and promotional data.",
+    "a_s5_title": "Syndicated market data",
+    "a_s5_body": "Third-party aggregated sources for benchmarking and market-level reads.",
+    "a_s6_title": "Product &amp; price catalogs",
+    "a_s6_body": "SKU master data, price lists, promotional calendars, and inventory records.",
+    "a_u1_title": "Field surveys",
+    "a_u1_body": "In-field capture for prices, inventory, promotions, visibility, competitive presence, and compliance.",
+    "a_u2_title": "Sales force reports",
+    "a_u2_body": "Route-level intelligence from commercial teams operating at the point of sale.",
+    "a_u3_title": "Shelf &amp; in-store intelligence",
+    "a_u3_body": "Assortment compliance, share of shelf, pricing execution, and promotional display tracking.",
+    "a_u4_title": "Competitive price monitoring",
+    "a_u4_body": "Observed competitor pricing at point of sale by channel, region, and format.",
+    "a_u5_title": "Market studies &amp; benchmarking",
+    "a_u5_body": "External research and category benchmarks that provide context beyond internal data.",
+    "a_u6_title": "Consumer &amp; shopper research",
+    "a_u6_body": "Demand-side intelligence to complement supply-side and transactional data.",
+    "a_p1_title": "Data Capture",
+    "a_p1_body": "Direct capture from POS systems, surveys, apps, and integrations. The entry point for all commercial information.",
+    "a_p2_title": "Data Ingestion",
+    "a_p2_body": "Technical loading of multiple sources into a common architecture, regardless of format, cadence, or origin.",
+    "a_p3_title": "Data Cleansing",
+    "a_p3_body": "Correction, validation, deduplication, and resolution of inconsistencies. A reliable base starts here.",
+    "a_p4_title": "Harmonization",
+    "a_p4_body": "Standardization of SKUs, customers, channels, and geographies so data becomes comparable across sources.",
+    "a_p5_title": "Data Asset Creation",
+    "a_p5_body": "Generation of structured, usable datasets for analytics, benchmarking, and eventual monetization.",
+    "a_process_footer": "Five steps. One integrated base.",
+    "conn_ab_left": "A, Information Infrastructure",
+    "conn_ab_right": "B, Commercial Intelligence Engine",
+    "conn_bc_left": "B, Commercial Intelligence Engine",
+    "conn_bc_right": "C, Execution &amp; Value Capture",
+    "b_eyebrow": "Commercial Intelligence Engine",
+    "b_h2": "We convert visibility<br>into commercial decisions.",
+    "b_lead": "Thirteen analytical capabilities that turn structured commercial data into prioritized decisions, organized in four families. Trade-offs made explicit. Decisions, not reports.",
+    "b_screenshot_caption": "Pricing &amp; scenario modeling interface",
+    "b_ph_label": "Product screenshot",
+    "c_eyebrow": "Execution &amp; Value Capture",
+    "c_h2": "We stay until<br>the value is captured.",
+    "c_lead": "Most engagements stop at the recommendation. Arm C is where the work becomes real, intelligence translated into field action, measured against baseline, and fed back into the operation.",
+    "c_gap_note": "The distance between a good analysis and a measurable commercial result is where most consulting engagements fail. We do not hand off a deck and disengage.",
+    "c_i1_eyebrow": "Decision Translation",
+    "c_i1_h3": "Analysis into prioritized actions",
+    "c_i1_body": "B output converted into a specific, sequenced action list, what gets done first, what gets done second, what does not get done at all, with responsible owners and timelines.",
+    "c_i2_eyebrow": "Action Plans",
+    "c_i2_h3": "Decisions into concrete plans",
+    "c_i2_body": "Decisions structured into field-ready plans by commercial, trade, key account, and territory, with the specificity required for execution, not just communication.",
+    "c_i3_eyebrow": "Field Enablement",
+    "c_i3_h3": "Working alongside execution teams",
+    "c_i3_body": "We do not hand off the plan. We work alongside the teams responsible for execution until the logic operates on its own, training, real-time support, and adaptation when field signals reveal gaps.",
+    "c_i4_eyebrow": "KPI Tracking",
+    "c_i4_h3": "Measuring what actually happened",
+    "c_i4_body": "Performance dashboards and cycle-by-cycle variance analysis built in from the start. Results measured against a pre-defined baseline, not against internal perception of progress.",
+    "c_i5_eyebrow": "Governance",
+    "c_i5_h3": "Execution discipline across cycles",
+    "c_i5_body": "Structured review cadence, escalation paths, and accountability frameworks to maintain commercial discipline beyond the initial deployment, institutionalizing the logic, not just the output.",
+    "c_i6_eyebrow": "Learning Loop",
+    "c_i6_h3": "Feeding results back into the operation",
+    "c_i6_body": "What Arm C learns in execution is not lost. Structured and returned to the analytical models, the data infrastructure, and the priority framework, so every cycle is more informed than the last.",
+    "loop_eyebrow": "The loop closes",
+    "loop_h2": "Execution feeds the operation.<br>The operation improves.",
+    "loop_lead": "Every cycle returns structured learning to Arm A and Arm B, making the data richer, the models sharper, and the decisions more precise. The operation compounds.",
+    "ln_a_title": "Information",
+    "ln_a_body": "Market data structured and consolidated",
+    "ln_b_title": "Intelligence",
+    "ln_b_body": "Data converted into decisions",
+    "ln_c_title": "Execution",
+    "ln_c_body": "Decisions captured in the field",
+    "ln_l_title": "Learning",
+    "ln_l_body": "Results feed back into A &amp; B",
+    "loop_cta_btn": "Book a Call",
+    "loop_back_link": "← Back to Imberion",
+    "footer_copy": "© 2026 Imberion. All rights reserved.",
+    "footer_links": [
+      [
+        "Home",
+        "index.html"
+      ],
+      [
+        "How We Operate",
+        "how-we-operate.html"
+      ],
+      [
+        "Distributors",
+        "distribuidores.html"
+      ],
+      [
+        "Book a Call",
+        "https://zcal.co/rodrigoimberion/30min"
+      ]
+    ],
+    "b_families": [
+      {
+        "label": "Pricing & commercial investment",
+        "mods": [
+          [
+            "Pricing",
+            "We design prices with economic rigor, demand sensitivity, and behavioral validation."
+          ],
+          [
+            "Promotion Intelligence",
+            "We measure which promotions create value and which only displace volume or destroy margin."
+          ],
+          [
+            "Commercial Policy",
+            "We make visible how net price erodes from list to pocket, and give teams the tools to redirect trade spend with measurable return."
+          ],
+          [
+            "Marketing & ROMI",
+            "We allocate the marketing budget by real return, not by engagement: every dollar goes where it pays off at the margin."
+          ]
+        ]
+      },
+      {
+        "label": "Portfolio & channel",
+        "mods": [
+          [
+            "OBPPC & Portfolio Design",
+            "We design the right offer for each occasion, format, price point, and channel, and identify where current coverage leaves demand uncaptured."
+          ],
+          [
+            "Assortment",
+            "What goes on shelf, in which store, and at what priority."
+          ],
+          [
+            "Channel & Route-to-Market",
+            "We prioritize channels by value potential, capacity to win, and commercial coherence."
+          ]
+        ]
+      },
+      {
+        "label": "Customer & growth",
+        "mods": [
+          [
+            "Segmentation & ICP",
+            "We segment customers and markets by what actually drives value, and define who to win and who to serve."
+          ],
+          [
+            "Retention & Revenue Quality",
+            "We measure not just how much you sell, but how durable that revenue is."
+          ],
+          [
+            "Loyalty Program",
+            "We design the loyalty program as an economic lever: mechanics, tiers, and benefits calibrated to program economics and customer lifetime value."
+          ]
+        ]
+      },
+      {
+        "label": "Focus & decision",
+        "mods": [
+          [
+            "Leadership Alignment Compass",
+            "Before any lever is optimized, objectives must be clear and trade-offs agreed."
+          ],
+          [
+            "Competitive Intelligence",
+            "We read the competitive set continuously, in price, portfolio, and positioning."
+          ],
+          [
+            "Scenario Engine",
+            "A simulation layer across all capabilities, to test decisions before committing them."
+          ]
+        ]
+      }
+    ],
+    "a_signals_eyebrow": "The data foundation",
+    "a_signals_h2": "We integrate what already exists.<br>We capture what's missing.",
+    "a_signals_lead": "Arm A does not assume the data exists. First it consolidates the information the operation already has, scattered and unharmonized; then it captures what is not yet visible.",
+    "a_sig_market_h": "Market Signal",
+    "a_sig_market_p": "The external market made observable: competition, prices, and what happens at the point of sale.",
+    "a_sig_floor_h": "Floor Signal",
+    "a_sig_floor_p": "The physical floor made observable: shopper, journey, shelf, and the sales conversation, read with computer vision and audio.",
+    "modes_eyebrow": "Two ways we execute",
+    "modes_h2": "We operate the intelligence engine, or we equip your team.",
+    "modes_lead": "Execution is delivered in two modes, depending on where it is needed.",
+    "modes_operators_eyebrow": "Operators",
+    "modes_operators_h": "We operate the engine",
+    "modes_operators_p": "In capabilities like <a href=\"concierge.html\">Concierge</a> or <a href=\"market-signal.html\">Market Signal</a>, Imberion operates the intelligence engine end-to-end. Concierge runs omnichannel customer interaction (takes orders, recommends, and serves) through the Companion, a conversational layer with live dashboards; Market Signal runs the market radar. AI does the work; we operate the engine. Nothing to operate on the client side.",
+    "modes_enablers_eyebrow": "Enablers",
+    "modes_enablers_h": "We equip your team",
+    "modes_enablers_p": "When the work belongs inside your organization, we build the capability: ways of working, RGM playbooks, dashboards, and governance, so your team runs the operation and the decisions stick.",
+    "a_consol_h": "We consolidate what already exists",
+    "a_consol_p": "The transactional, POS, and distributor data the operation already has: scattered, in different formats, and unharmonized. We capture, clean, harmonize, and consolidate it into a single reliable base."
+  },
+  "es": {
+    "nav_estrat": "Estrategia",
+    "page_title": "Imberion, Cómo Funciona",
+    "nav_cta": "Agendar llamada",
+    "hero_back": "← Imberion",
+    "hero_eyebrow": "Cómo funciona",
+    "hero_h1": "Una operación conectada.<br>Tres capacidades distintas.",
+    "hero_lead": "Diseñado para operar como un loop completo, o desplegado donde la necesidad es mayor.",
+    "hf_a_title": "Infraestructura de Información",
+    "hf_a_sub": "Construimos la visibilidad",
+    "hf_b_title": "Motor de Inteligencia Comercial",
+    "hf_b_sub": "La convertimos en decisiones",
+    "hf_c_title": "Ejecución y Captura de Valor",
+    "hf_c_sub": "Nos quedamos hasta capturar el valor",
+    "snav_a": "Infraestructura de Información",
+    "snav_b": "Motor de Inteligencia Comercial",
+    "snav_c": "Ejecución y Captura de Valor",
+    "a_eyebrow": "Infraestructura de Información",
+    "a_h2": "Construimos la visibilidad<br>que aún no existe.",
+    "a_lead": "La mayoría de las organizaciones no puede ver su mercado con claridad, no porque la data no exista, sino porque nunca se consolidó en una base confiable. El Brazo A resuelve eso antes de que cualquier otra cosa sea posible.",
+    "a_struct_label": "Fuentes Estructuradas",
+    "a_unstruct_label": "Fuentes No Estructuradas y Faltantes",
+    "a_s1_title": "Data transaccional interna",
+    "a_s1_body": "ERP, sistemas de ventas y facturación, la data que el cliente ya tiene pero raramente consolida.",
+    "a_s2_title": "POS canal tradicional",
+    "a_s2_body": "Captura en punto de venta del canal tradicional fragmentado, donde la trazabilidad suele ser baja.",
+    "a_s3_title": "POS canal moderno",
+    "a_s3_body": "Data transaccional de cadenas de retail y formatos de comercio moderno.",
+    "a_s4_title": "Integraciones con distribuidores",
+    "a_s4_body": "Conexiones estructuradas para recibir y mapear ventas, cobertura, precios y data promocional.",
+    "a_s5_title": "Data sindicada de mercado",
+    "a_s5_body": "Fuentes agregadas de terceros para benchmarking y lecturas a nivel de mercado.",
+    "a_s6_title": "Catálogos de producto y precio",
+    "a_s6_body": "Master de SKUs, listas de precio, calendarios promocionales y registros de inventario.",
+    "a_u1_title": "Encuestas de campo",
+    "a_u1_body": "Captura en campo de precios, inventario, promociones, visibilidad, presencia competitiva y cumplimiento.",
+    "a_u2_title": "Reportes de fuerza de ventas",
+    "a_u2_body": "Inteligencia a nivel de ruta de equipos comerciales que operan en el punto de venta.",
+    "a_u3_title": "Inteligencia en anaquel y tienda",
+    "a_u3_body": "Cumplimiento de surtido, share de anaquel, ejecución de precios y visibilidad de exhibiciones promocionales.",
+    "a_u4_title": "Monitoreo de precios competitivos",
+    "a_u4_body": "Precios observados de la competencia en punto de venta, por canal, región y formato.",
+    "a_u5_title": "Estudios de mercado y benchmarking",
+    "a_u5_body": "Investigación externa y benchmarks de categoría que dan contexto más allá de la data interna.",
+    "a_u6_title": "Research de consumidor y shopper",
+    "a_u6_body": "Inteligencia del lado de la demanda para complementar la data transaccional y de oferta.",
+    "a_p1_title": "Captura",
+    "a_p1_body": "Captura directa desde sistemas POS, encuestas, apps e integraciones. El punto de entrada de toda la información comercial.",
+    "a_p2_title": "Ingesta",
+    "a_p2_body": "Carga técnica de múltiples fuentes en una arquitectura común, sin importar formato, cadencia u origen.",
+    "a_p3_title": "Limpieza",
+    "a_p3_body": "Corrección, validación, deduplicación y resolución de inconsistencias. La base confiable empieza aquí.",
+    "a_p4_title": "Homologación",
+    "a_p4_body": "Estandarización de SKUs, clientes, canales y geografías para que la data sea comparable entre fuentes.",
+    "a_p5_title": "Activos de datos",
+    "a_p5_body": "Generación de datasets estructurados y utilizables para analytics, benchmarking y eventual monetización.",
+    "a_process_footer": "Cinco pasos. Una base integrada.",
+    "conn_ab_left": "A, Infraestructura de Información",
+    "conn_ab_right": "B, Motor de Inteligencia Comercial",
+    "conn_bc_left": "B, Motor de Inteligencia Comercial",
+    "conn_bc_right": "C, Ejecución y Captura de Valor",
+    "b_eyebrow": "Motor de Inteligencia Comercial",
+    "b_h2": "Convertimos visibilidad<br>en decisiones comerciales.",
+    "b_lead": "Trece capacidades analíticas que convierten data comercial estructurada en decisiones priorizadas, organizadas en cuatro familias. Los trade-offs, explícitos. Decisiones, no reportes.",
+    "b_screenshot_caption": "Interfaz de modelado de precios y escenarios",
+    "b_ph_label": "Mapa de cobertura de clientes",
+    "c_eyebrow": "Ejecución y Captura de Valor",
+    "c_h2": "Nos quedamos hasta<br>que el valor sea capturado.",
+    "c_lead": "La mayoría de los proyectos se detiene en la recomendación. El Brazo C es donde el trabajo se vuelve real, inteligencia traducida en acción de campo, medida contra el baseline y retroalimentada a la operación.",
+    "c_gap_note": "La distancia entre un buen análisis y un resultado comercial medible es donde fallan la mayoría de los proyectos de consultoría. No entregamos el deck y nos desconectamos.",
+    "c_i1_eyebrow": "Traducción de Decisiones",
+    "c_i1_h3": "Del análisis a acciones priorizadas",
+    "c_i1_body": "El output del Brazo B se convierte en una lista de acciones específica y secuenciada, qué se hace primero, qué se hace después, qué no se hace, con responsables y plazos definidos.",
+    "c_i2_eyebrow": "Planes de Acción",
+    "c_i2_h3": "Decisiones en planes concretos",
+    "c_i2_body": "Las decisiones se estructuran en planes listos para campo por equipo comercial, trade, cuentas clave y territorio, con la especificidad que requiere la ejecución, no solo la comunicación.",
+    "c_i3_eyebrow": "Habilitación de Campo",
+    "c_i3_h3": "Trabajando junto a los equipos de ejecución",
+    "c_i3_body": "No entregamos el plan y nos vamos. Trabajamos junto a los equipos responsables de la ejecución hasta que la lógica opera sola, entrenamiento, soporte en tiempo real y adaptación cuando el campo revela brechas.",
+    "c_i4_eyebrow": "Seguimiento de KPIs",
+    "c_i4_h3": "Midiendo lo que realmente ocurrió",
+    "c_i4_body": "Dashboards de desempeño y análisis de varianza ciclo a ciclo, integrados desde el inicio. Los resultados se miden contra un baseline predefinido, no contra la percepción interna del avance.",
+    "c_i5_eyebrow": "Gobierno Comercial",
+    "c_i5_h3": "Disciplina de ejecución entre ciclos",
+    "c_i5_body": "Cadencia de revisión estructurada, rutas de escalación y marcos de responsabilidad para mantener la disciplina comercial más allá del despliegue inicial, institucionalizando la lógica, no solo los resultados.",
+    "c_i6_eyebrow": "Loop de Aprendizaje",
+    "c_i6_h3": "Retroalimentando los resultados a la operación",
+    "c_i6_body": "Lo que el Brazo C aprende en la ejecución no se pierde. Se estructura y retorna a los modelos analíticos, la infraestructura de datos y el marco de prioridades, para que cada ciclo sea más informado que el anterior.",
+    "loop_eyebrow": "El loop se cierra",
+    "loop_h2": "La ejecución alimenta la operación.<br>La operación mejora.",
+    "loop_lead": "Cada ciclo retorna aprendizaje estructurado al Brazo A y al Brazo B, la data es más rica, los modelos más precisos y las decisiones más informadas. La operación se acumula.",
+    "ln_a_title": "Información",
+    "ln_a_body": "Data de mercado estructurada y consolidada",
+    "ln_b_title": "Inteligencia",
+    "ln_b_body": "Data convertida en decisiones",
+    "ln_c_title": "Ejecución",
+    "ln_c_body": "Decisiones capturadas en el campo",
+    "ln_l_title": "Aprendizaje",
+    "ln_l_body": "Los resultados retroalimentan A y B",
+    "loop_cta_btn": "Agendar llamada",
+    "loop_back_link": "← Volver a Imberion",
+    "footer_copy": "© 2026 Imberion. Todos los derechos reservados.",
+    "footer_links": [
+      [
+        "Inicio",
+        "index.html"
+      ],
+      [
+        "Cómo Operamos",
+        "how-we-operate.html"
+      ],
+      [
+        "Distribuidores",
+        "distribuidores.html"
+      ],
+      [
+        "Agendar llamada",
+        "https://zcal.co/rodrigoimberion/30min"
+      ]
+    ],
+    "b_families": [
+      {
+        "label": "Precio e inversión comercial",
+        "mods": [
+          [
+            "Pricing",
+            "Diseñamos precios con rigor económico, sensibilidad de demanda y validación conductual."
+          ],
+          [
+            "Inteligencia de Promociones",
+            "Medimos qué promociones crean valor y cuáles solo desplazan volumen o destruyen margen."
+          ],
+          [
+            "Política Comercial",
+            "Hacemos visible cómo se erosiona el precio neto de la lista al bolsillo, y damos a los equipos las herramientas para redirigir la inversión comercial con retorno medible."
+          ],
+          [
+            "Marketing & ROMI",
+            "Asignamos el presupuesto de marketing por retorno real, no por engagement: cada peso va a donde rinde al margen."
+          ]
+        ]
+      },
+      {
+        "label": "Portafolio y canal",
+        "mods": [
+          [
+            "OBPPC y Diseño de Portafolio",
+            "Diseñamos la oferta correcta para cada ocasión, formato, punto de precio y canal, e identificamos dónde la cobertura actual deja demanda sin capturar."
+          ],
+          [
+            "Surtido",
+            "Qué va en el anaquel, en qué tienda y con qué prioridad."
+          ],
+          [
+            "Canal y Route-to-Market",
+            "Priorizamos canales por potencial de valor, capacidad de ganar y coherencia comercial."
+          ]
+        ]
+      },
+      {
+        "label": "Cliente y crecimiento",
+        "mods": [
+          [
+            "Segmentación e ICP",
+            "Segmentamos clientes y mercados por lo que realmente impulsa el valor, y definimos a quién ganar y a quién servir."
+          ],
+          [
+            "Retención y Calidad de Ingresos",
+            "Medimos no solo cuánto se vende, sino qué tan duradero es ese ingreso."
+          ],
+          [
+            "Loyalty Program",
+            "Diseñamos el programa de lealtad como palanca económica: mecánica, tiers y beneficios calibrados a la economía del programa y al valor de vida del cliente."
+          ]
+        ]
+      },
+      {
+        "label": "Foco y decisión",
+        "mods": [
+          [
+            "Leadership Alignment Compass",
+            "Antes de optimizar cualquier palanca, los objetivos deben estar claros y los trade-offs acordados."
+          ],
+          [
+            "Inteligencia Competitiva",
+            "Leemos el set competitivo de forma continua, en precio, portafolio y posicionamiento."
+          ],
+          [
+            "Scenario Engine",
+            "Una capa de simulación transversal a todas las capacidades, para probar decisiones antes de comprometerlas."
+          ]
+        ]
+      }
+    ],
+    "a_signals_eyebrow": "El cimiento del dato",
+    "a_signals_h2": "Integramos lo que ya existe.<br>Capturamos lo que falta.",
+    "a_signals_lead": "El Brazo A no asume que el dato existe. Primero consolida la información que la operación ya tiene, dispersa y sin homologar; después captura lo que aún no se ve.",
+    "a_sig_market_h": "Market Signal",
+    "a_sig_market_p": "El mercado externo vuelto observable: competencia, precios y lo que ocurre en el punto de venta.",
+    "a_sig_floor_h": "Floor Signal",
+    "a_sig_floor_p": "El piso físico vuelto observable: shopper, journey, anaquel y la conversación de venta, con visión computacional y audio.",
+    "modes_eyebrow": "Dos formas de ejecutar",
+    "modes_h2": "Operamos el motor de inteligencia, o equipamos al equipo del cliente.",
+    "modes_lead": "La ejecución se entrega en dos modos, según dónde se necesite.",
+    "modes_operators_eyebrow": "Operators",
+    "modes_operators_h": "Operamos el motor",
+    "modes_operators_p": "En capacidades como <a href=\"concierge.html\">Concierge</a> o <a href=\"market-signal.html\">Market Signal</a>, Imberion opera el motor de inteligencia de punta a punta. Concierge corre la interacción omnicanal con el cliente (toma pedidos, recomienda y atiende) a través del Companion, una capa conversacional con dashboards en vivo; Market Signal corre el radar de mercado. La IA hace el trabajo; nosotros operamos el motor. Del lado del cliente, nada que operar.",
+    "modes_enablers_eyebrow": "Enablers",
+    "modes_enablers_h": "Equipamos a su equipo",
+    "modes_enablers_p": "Cuando el trabajo pertenece dentro de la organización del cliente, construimos la capacidad: ways of working, playbooks de RGM, dashboards y gobierno, para que el equipo interno opere y las decisiones se sostengan.",
+    "a_consol_h": "Consolidamos lo que ya existe",
+    "a_consol_p": "La data transaccional, de POS y de distribuidores que la operación ya tiene: dispersa, en formatos distintos y sin homologar. La capturamos, limpiamos, homologamos y consolidamos en una sola base confiable."
+  },
+  "pt": {
+    "nav_estrat": "Estratégia",
+    "page_title": "Imberion, Como Funciona",
+    "nav_cta": "Agendar chamada",
+    "hero_back": "← Imberion",
+    "hero_eyebrow": "Como funciona",
+    "hero_h1": "Uma operação conectada.<br>Três capacidades distintas.",
+    "hero_lead": "Projetado para operar como um loop completo, ou implantado onde a necessidade é maior.",
+    "hf_a_title": "Infraestrutura de Informação",
+    "hf_a_sub": "Construímos a visibilidade",
+    "hf_b_title": "Motor de Inteligência Comercial",
+    "hf_b_sub": "Convertemos em decisões",
+    "hf_c_title": "Execução e Captura de Valor",
+    "hf_c_sub": "Ficamos até o valor ser capturado",
+    "snav_a": "Infraestrutura de Informação",
+    "snav_b": "Motor de Inteligência Comercial",
+    "snav_c": "Execução e Captura de Valor",
+    "a_eyebrow": "Infraestrutura de Informação",
+    "a_h2": "Construímos a visibilidade<br>que você ainda não tem.",
+    "a_lead": "A maioria das organizações não consegue enxergar seu mercado com clareza, não porque os dados não existam, mas porque nunca foram consolidados em uma base confiável. O Braço A resolve isso antes que qualquer outra coisa seja possível.",
+    "a_struct_label": "Fontes Estruturadas",
+    "a_unstruct_label": "Fontes Não Estruturadas e Ausentes",
+    "a_s1_title": "Dados transacionais internos",
+    "a_s1_body": "ERP, sistemas de vendas e faturamento, os dados que o cliente já possui mas raramente consolida.",
+    "a_s2_title": "POS canal tradicional",
+    "a_s2_body": "Captura no ponto de venda do canal tradicional fragmentado, onde a rastreabilidade costuma ser baixa.",
+    "a_s3_title": "POS canal moderno",
+    "a_s3_body": "Dados transacionais de redes de varejo e formatos de comércio moderno.",
+    "a_s4_title": "Integrações com distribuidores",
+    "a_s4_body": "Conexões estruturadas para receber e mapear vendas, cobertura, preços e dados promocionais.",
+    "a_s5_title": "Dados sindicados de mercado",
+    "a_s5_body": "Fontes agregadas de terceiros para benchmarking e leituras em nível de mercado.",
+    "a_s6_title": "Catálogos de produto e preço",
+    "a_s6_body": "Master de SKUs, tabelas de preço, calendários promocionais e registros de estoque.",
+    "a_u1_title": "Pesquisas de campo",
+    "a_u1_body": "Captura em campo de preços, estoque, promoções, visibilidade, presença competitiva e conformidade.",
+    "a_u2_title": "Relatórios de força de vendas",
+    "a_u2_body": "Inteligência em nível de rota de equipes comerciais que operam no ponto de venda.",
+    "a_u3_title": "Inteligência em gôndola e loja",
+    "a_u3_body": "Conformidade de sortimento, share de gôndola, execução de preços e visibilidade de materiais promocionais.",
+    "a_u4_title": "Monitoramento de preços competitivos",
+    "a_u4_body": "Preços observados da concorrência no ponto de venda, por canal, região e formato.",
+    "a_u5_title": "Estudos de mercado e benchmarking",
+    "a_u5_body": "Pesquisas externas e benchmarks de categoria que fornecem contexto além dos dados internos.",
+    "a_u6_title": "Pesquisa de consumidor e shopper",
+    "a_u6_body": "Inteligência do lado da demanda para complementar dados transacionais e de oferta.",
+    "a_p1_title": "Captura",
+    "a_p1_body": "Captura direta de sistemas POS, pesquisas, apps e integrações. O ponto de entrada de toda informação comercial.",
+    "a_p2_title": "Ingestão",
+    "a_p2_body": "Carga técnica de múltiplas fontes em uma arquitetura comum, independentemente de formato, cadência ou origem.",
+    "a_p3_title": "Limpeza",
+    "a_p3_body": "Correção, validação, deduplicação e resolução de inconsistências. A base confiável começa aqui.",
+    "a_p4_title": "Harmonização",
+    "a_p4_body": "Padronização de SKUs, clientes, canais e geografias para que os dados sejam comparáveis entre fontes.",
+    "a_p5_title": "Ativos de dados",
+    "a_p5_body": "Geração de datasets estruturados e utilizáveis para analytics, benchmarking e eventual monetização.",
+    "a_process_footer": "Cinco etapas. Uma base integrada.",
+    "conn_ab_left": "A, Infraestrutura de Informação",
+    "conn_ab_right": "B, Motor de Inteligência Comercial",
+    "conn_bc_left": "B, Motor de Inteligência Comercial",
+    "conn_bc_right": "C, Execução e Captura de Valor",
+    "b_eyebrow": "Motor de Inteligência Comercial",
+    "b_h2": "Convertemos visibilidade<br>em decisões comerciais.",
+    "b_lead": "Treze capacidades analíticas que convertem dados comerciais estruturados em decisões priorizadas, organizadas em quatro famílias. Trade-offs explícitos. Decisões, não relatórios.",
+    "b_screenshot_caption": "Interface de modelagem de preços e cenários",
+    "b_ph_label": "Mapa de cobertura de clientes",
+    "c_eyebrow": "Execução e Captura de Valor",
+    "c_h2": "Ficamos até<br>o valor ser capturado.",
+    "c_lead": "A maioria dos projetos para na recomendação. O Braço C é onde o trabalho se torna real, inteligência traduzida em ação de campo, medida contra o baseline e retroalimentada à operação.",
+    "c_gap_note": "A distância entre uma boa análise e um resultado comercial mensurável é onde a maioria dos projetos de consultoria falha. Não entregamos o deck e nos desconectamos.",
+    "c_i1_eyebrow": "Tradução de Decisões",
+    "c_i1_h3": "Da análise a ações priorizadas",
+    "c_i1_body": "O output do Braço B é convertido em uma lista de ações específica e sequenciada, o que se faz primeiro, o que se faz depois, o que não se faz, com responsáveis e prazos definidos.",
+    "c_i2_eyebrow": "Planos de Ação",
+    "c_i2_h3": "Decisões em planos concretos",
+    "c_i2_body": "As decisões são estruturadas em planos prontos para campo por equipe comercial, trade, contas-chave e território, com a especificidade que a execução exige, não apenas a comunicação.",
+    "c_i3_eyebrow": "Habilitação de Campo",
+    "c_i3_h3": "Trabalhando junto às equipes de execução",
+    "c_i3_body": "Não entregamos o plano e nos afastamos. Trabalhamos junto às equipes responsáveis pela execução até a lógica operar de forma autônoma, treinamento, suporte em tempo real e adaptação quando o campo revela lacunas.",
+    "c_i4_eyebrow": "Acompanhamento de KPIs",
+    "c_i4_h3": "Medindo o que de fato aconteceu",
+    "c_i4_body": "Dashboards de desempenho e análise de variância ciclo a ciclo, integrados desde o início. Os resultados são medidos contra um baseline pré-definido, não contra a percepção interna do progresso.",
+    "c_i5_eyebrow": "Governança Comercial",
+    "c_i5_h3": "Disciplina de execução entre ciclos",
+    "c_i5_body": "Cadência de revisão estruturada, rotas de escalação e frameworks de responsabilidade para manter a disciplina comercial além do deployment inicial, institucionalizando a lógica, não apenas o resultado.",
+    "c_i6_eyebrow": "Loop de Aprendizado",
+    "c_i6_h3": "Retroalimentando a operação com os resultados",
+    "c_i6_body": "O que o Braço C aprende na execução não se perde. É estruturado e retorna aos modelos analíticos, à infraestrutura de dados e ao framework de prioridades, para que cada ciclo seja mais informado que o anterior.",
+    "loop_eyebrow": "O loop se fecha",
+    "loop_h2": "A execução alimenta a operação.<br>A operação melhora.",
+    "loop_lead": "Cada ciclo retorna aprendizado estruturado ao Braço A e ao Braço B, os dados ficam mais ricos, os modelos mais precisos e as decisões mais informadas. A operação se acumula.",
+    "ln_a_title": "Informação",
+    "ln_a_body": "Dados de mercado estruturados e consolidados",
+    "ln_b_title": "Inteligência",
+    "ln_b_body": "Dados convertidos em decisões",
+    "ln_c_title": "Execução",
+    "ln_c_body": "Decisões capturadas no campo",
+    "ln_l_title": "Aprendizado",
+    "ln_l_body": "Os resultados retroalimentam A e B",
+    "loop_cta_btn": "Agendar chamada",
+    "loop_back_link": "← Voltar à Imberion",
+    "footer_copy": "© 2026 Imberion. Todos os direitos reservados.",
+    "footer_links": [
+      [
+        "Início",
+        "index.html"
+      ],
+      [
+        "Como Operamos",
+        "how-we-operate.html"
+      ],
+      [
+        "Distribuidores",
+        "distribuidores.html"
+      ],
+      [
+        "Agendar chamada",
+        "https://zcal.co/rodrigoimberion/30min"
+      ]
+    ],
+    "b_families": [
+      {
+        "label": "Preço e investimento comercial",
+        "mods": [
+          [
+            "Pricing",
+            "Desenhamos preços com rigor econômico, sensibilidade de demanda e validação comportamental."
+          ],
+          [
+            "Inteligência de Promoções",
+            "Medimos quais promoções criam valor e quais apenas deslocam volume ou destroem margem."
+          ],
+          [
+            "Política Comercial",
+            "Tornamos visível como o preço líquido se erode da lista ao bolso, e damos às equipes as ferramentas para redirecionar o investimento comercial com retorno mensurável."
+          ],
+          [
+            "Marketing & ROMI",
+            "Alocamos o orçamento de marketing por retorno real, não por engagement: cada real vai para onde rende na margem."
+          ]
+        ]
+      },
+      {
+        "label": "Portfólio e canal",
+        "mods": [
+          [
+            "OBPPC e Design de Portfólio",
+            "Desenhamos a oferta certa para cada ocasião, formato, ponto de preço e canal, e identificamos onde a cobertura atual deixa demanda sem capturar."
+          ],
+          [
+            "Sortimento",
+            "O que vai na gôndola, em qual loja e com qual prioridade."
+          ],
+          [
+            "Canal e Route-to-Market",
+            "Priorizamos canais por potencial de valor, capacidade de ganhar e coerência comercial."
+          ]
+        ]
+      },
+      {
+        "label": "Cliente e crescimento",
+        "mods": [
+          [
+            "Segmentação e ICP",
+            "Segmentamos clientes e mercados pelo que realmente impulsiona o valor, e definimos quem ganhar e quem servir."
+          ],
+          [
+            "Retenção e Qualidade de Receita",
+            "Medimos não apenas quanto você vende, mas quão durável é essa receita."
+          ],
+          [
+            "Loyalty Program",
+            "Desenhamos o programa de fidelidade como alavanca econômica: mecânica, tiers e benefícios calibrados à economia do programa e ao valor de vida do cliente."
+          ]
+        ]
+      },
+      {
+        "label": "Foco e decisão",
+        "mods": [
+          [
+            "Leadership Alignment Compass",
+            "Antes de otimizar qualquer alavanca, os objetivos devem estar claros e os trade-offs acordados."
+          ],
+          [
+            "Inteligência Competitiva",
+            "Lemos o set competitivo de forma contínua, em preço, portfólio e posicionamento."
+          ],
+          [
+            "Scenario Engine",
+            "Uma camada de simulação transversal a todas as capacidades, para testar decisões antes de comprometê-las."
+          ]
+        ]
+      }
+    ],
+    "a_signals_eyebrow": "O alicerce do dado",
+    "a_signals_h2": "Integramos o que já existe.<br>Capturamos o que falta.",
+    "a_signals_lead": "O Braço A não assume que o dado existe. Primeiro consolida a informação que a operação já tem, dispersa e sem homologação; depois captura o que ainda não se vê.",
+    "a_sig_market_h": "Market Signal",
+    "a_sig_market_p": "O mercado externo tornado observável: concorrência, preços e o que acontece no ponto de venda.",
+    "a_sig_floor_h": "Floor Signal",
+    "a_sig_floor_p": "O piso físico tornado observável: shopper, journey, gôndola e a conversa de venda, com visão computacional e áudio.",
+    "modes_eyebrow": "Duas formas de executar",
+    "modes_h2": "Operamos o motor de inteligência, ou habilitamos o seu time.",
+    "modes_lead": "A execução é entregue em dois modos, conforme onde for necessária.",
+    "modes_operators_eyebrow": "Operators",
+    "modes_operators_h": "Operamos o motor",
+    "modes_operators_p": "Em capacidades como o <a href=\"concierge.html\">Concierge</a> ou o <a href=\"market-signal.html\">Market Signal</a>, a Imberion opera o motor de inteligência de ponta a ponta. O Concierge conduz a interação omnicanal com o cliente (registra pedidos, recomenda e atende) por meio do Companion, uma camada conversacional com dashboards ao vivo; o Market Signal conduz o radar de mercado. A IA faz o trabalho; nós operamos o motor. Do lado do cliente, nada a operar.",
+    "modes_enablers_eyebrow": "Enablers",
+    "modes_enablers_h": "Habilitamos o seu time",
+    "modes_enablers_p": "Quando o trabalho pertence dentro da sua organização, construímos a capacidade: ways of working, playbooks de RGM, dashboards e governança, para que o seu time opere e as decisões se sustentem.",
+    "a_consol_h": "Consolidamos o que já existe",
+    "a_consol_p": "Os dados transacionais, de PDV e de distribuidores que a operação já tem: dispersos, em formatos distintos e sem homologação. Nós os capturamos, limpamos, homologamos e consolidamos em uma única base confiável."
+  }
+}

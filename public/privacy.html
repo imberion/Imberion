@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><link rel="icon" type="image/png" href="/favicon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Imberion — Privacy Notice</title>
+  <meta name="description" content="Imberion privacy notice."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0A1828;--navy-deep:#06101C;--navy-soft:#13263b;--navy-80:rgba(10,24,40,.8);--navy-60:rgba(10,24,40,.6);--navy-72:rgba(10,24,40,.72);--navy-40:rgba(10,24,40,.4);--navy-12:rgba(10,24,40,.12);--navy-06:rgba(10,24,40,.06);--gray-blue:#6F859C;--slate-soft:#8FA3B8;--white-65:rgba(255,255,255,.65);--white-45:rgba(255,255,255,.45);--white-12:rgba(255,255,255,.12);--paper:#EDEAE4;--paper-alt:#E2DED7;--white:#fff;--max:1140px;--r:3px;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',-apple-system,sans-serif;--ease:cubic-bezier(.19,1,.22,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);background:var(--paper);color:var(--navy);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 36px}
+    .section{padding:96px 0}
+    .section--dark{background:var(--navy);color:#fff}
+    .section--dark h2{color:#fff}
+    h1,h2,h3,h4{font-family:var(--font-serif);line-height:1.12;font-weight:400;letter-spacing:-.012em}
+    h2{font-size:clamp(2rem,3.6vw,3rem);font-weight:300}
+    .eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:14px}
+    .section--dark .eyebrow{color:var(--slate-soft)}
+    .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--navy-80);max-width:660px;line-height:1.7}
+    .section--dark .lead{color:var(--white-65)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,18,30,.72);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--white-12);padding:0 36px}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-logo img{height:34px;width:auto}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a:not(.btn):not(.lang-btn){color:var(--white-65);font-size:13.5px;font-weight:500;transition:color .2s}
+    .nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+    .nav-right{display:flex;gap:14px;align-items:center}
+    .lang-toggle{display:flex;gap:1px;background:var(--white-12);border-radius:var(--r);padding:3px}
+    .lang-btn{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:2px;cursor:pointer;color:var(--white-45);transition:all .2s;border:none;background:transparent}
+    .lang-btn.active{background:var(--white-12);color:#fff}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:var(--r);font-family:var(--font-sans);font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .25s var(--ease)}
+    .btn-primary{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+    .btn-primary:hover{background:#fff}
+    .page-hero{background:var(--navy);padding:150px 36px 92px;position:relative;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 46%,rgba(111,133,156,.22) 0%,transparent 60%);pointer-events:none}
+    .page-hero-content{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+    .page-hero .back{display:inline-flex;align-items:center;gap:8px;color:var(--white-45);font-size:13px;font-weight:500;margin-bottom:38px;transition:color .2s}
+    .page-hero .back:hover{color:#fff}
+    .page-hero .eyebrow{color:var(--slate-soft)}
+    .page-hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);font-weight:300;color:#fff;line-height:1.06;max-width:840px;letter-spacing:-.02em}
+    .page-hero .lead{margin-top:24px;max-width:640px;color:var(--white-65)}
+    .cta-strip{background:var(--navy-deep);padding:88px 0;text-align:center}
+    .cta-strip h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px;font-weight:300}
+    .cta-strip p{color:var(--white-65);font-size:15px;margin-bottom:30px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7}
+    @media(max-width:600px){.container{padding:0 20px}nav{padding:0 20px}.nav-links{display:none}.page-hero{padding:120px 20px 64px}}
+
+    .reads-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:56px;background:var(--navy-12);border:1px solid var(--navy-12)}
+    .read-item{background:var(--white);padding:32px 30px;display:flex;gap:18px;align-items:flex-start;transition:background .25s var(--ease)}
+    .read-item:hover{background:var(--paper)}
+    .read-n{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--gray-blue);font-variant-numeric:tabular-nums;padding-top:4px}
+    .read-item h4{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:8px;line-height:1.15}
+    .read-item p{font-family:var(--font-sans);font-size:13.5px;color:var(--navy-72);line-height:1.6}
+    .flow{margin-top:56px;border-top:1px solid var(--navy-12)}
+    .flow-head{display:grid;grid-template-columns:1fr 40px 1fr;padding:14px 0;font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-blue);border-bottom:1px solid var(--navy-12)}
+    .flow-row{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;padding:22px 0;border-bottom:1px solid var(--navy-12)}
+    .flow-sig .flow-k{display:block;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:5px}
+    .flow-sig{font-size:14.5px;color:var(--navy-80);line-height:1.5;padding-right:20px}
+    .flow-sig b{color:var(--navy);font-weight:600}
+    .flow-arrow{text-align:center;color:var(--gray-blue);font-size:18px}
+    .flow-act{font-size:14px;color:var(--navy-72);line-height:1.5;display:flex;gap:9px;align-items:flex-start;padding-left:4px}
+    .flow-check{color:var(--gray-blue);font-weight:700;flex-shrink:0}
+    .pipe{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:stretch;margin-top:56px}
+    .pipe-stage{background:rgba(255,255,255,.04);border:1px solid var(--white-12);padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+    .pipe-stage.hot{background:rgba(143,163,184,.12);border-color:var(--slate-soft)}
+    .pipe-name{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.12}
+    .pipe-desc{font-family:var(--font-sans);font-size:13px;color:var(--white-65);line-height:1.55}
+    .pipe-arrow{display:flex;align-items:center;justify-content:center;color:var(--slate-soft);font-size:20px}
+    .pipe-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--white-12);border:1px solid var(--white-12);border-top:none}
+    .pipe-note{background:var(--navy);padding:24px 26px}
+    .pipe-note b{display:block;font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:6px}
+    .pipe-note span{font-family:var(--font-sans);font-size:12.5px;color:var(--white-45);line-height:1.55}
+    .channels{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;align-items:center}
+    .chan-label{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-blue);margin-right:6px}
+    .chan-chip{font-family:var(--font-sans);font-size:13.5px;color:var(--navy-80);background:var(--white);border:1px solid var(--navy-12);border-radius:2px;padding:9px 16px;transition:all .2s var(--ease)}
+    .chan-chip:hover{border-color:var(--gray-blue);color:var(--navy)}
+    .arch{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:56px}
+    .arch-col{background:rgba(255,255,255,.04);border:1px solid var(--white-12);padding:28px 24px;display:flex;flex-direction:column}
+    .arch-col.hot{background:rgba(143,163,184,.12);border-color:var(--slate-soft)}
+    .arch-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+    .arch-num{font-family:var(--font-sans);font-size:11px;font-weight:600;color:var(--slate-soft)}
+    .arch-label{font-family:var(--font-serif);font-size:1.3rem;color:#fff;line-height:1.1}
+    .arch-item{font-family:var(--font-sans);font-size:13px;color:var(--white-65);line-height:1.5;padding:10px 0;border-top:1px solid var(--white-12);display:flex;gap:9px}
+    .arch-item::before{content:"›";color:var(--slate-soft);flex-shrink:0}
+    .arch-col .arch-item:first-of-type{border-top:none}
+    .arch-conn{display:flex;align-items:center;justify-content:center;color:var(--slate-soft);font-size:20px}
+    @media(max-width:860px){.reads-grid{grid-template-columns:1fr}.pipe,.arch{grid-template-columns:1fr}.pipe-arrow,.arch-conn{padding:8px 0;transform:rotate(90deg)}.pipe-notes{grid-template-columns:1fr}.flow-head,.flow-row{grid-template-columns:1fr}.flow-arrow{display:none}.flow-act{padding-top:10px}}
+
+    .legal{padding:72px 0 104px}
+    .legal .container{max-width:760px}
+    .legal h2{font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:400;margin:52px 0 16px}
+    .legal h2:first-child{margin-top:0}
+    .legal p,.legal li{font-size:16px;color:var(--navy-80);line-height:1.75}
+    .legal p{margin-bottom:16px}
+    .legal ul,.legal ol{margin:0 0 18px 24px}
+    .legal li{margin-bottom:8px}
+    .legal strong{color:var(--navy);font-weight:600}
+    .legal a{color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+</style>
+  <link rel="stylesheet" href="/legado/css/imberion-site.css"/>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="/"><img src="/brand/logo-white.png" alt="Imberion"/></a>
+  <div class="nav-links"><a href="/">← Back to home</a></div>
+  <div class="nav-right">
+    <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" id="nav-cta">Book a Call</a>
+  </div>
+</div></nav>
+<section class="page-hero"><div class="page-hero-bg"></div><div class="page-hero-content">
+  <a href="/" class="back">← Back to home</a>
+  <div class="eyebrow">Legal</div>
+  <h1>Privacy Notice</h1>
+  <p class="lead">Last updated: October 15, 2026 · <a href="/privacidad.html" style="color:inherit;text-decoration:underline">Versión en español</a></p>
+</div></section>
+<main class="legal"><div class="container">
+<p>This is an English translation of our Spanish-language privacy notice, provided for convenience. If the two versions differ, the Spanish version at <a href="/privacidad.html">www.imberion.com/privacidad.html</a> prevails.</p>
+<h2>1. Who is the data controller</h2>
+<p>Rodrigo Garrido Espíndola, an individual registered for business activity in Mexico who operates under the trade name <strong>Imberion</strong> ("Imberion", "we"), with address at Privada Jacarandas 5, Bosque Real, Huixquilucan de Degollado, State of Mexico, ZIP 52774, Mexico, is the controller of the personal data described in sections 2(a), 2(b) and 2(c) of this notice, under Mexico's Federal Law on the Protection of Personal Data Held by Private Parties, published in the Official Gazette of the Federation on March 20, 2025 (the "Law").</p>
+<p>The person designated to handle any matter related to this notice or to your personal data, including requests to exercise your rights, is Rodrigo Garrido Espíndola, at <strong><a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a></strong>.</p>
+<h2>2. What data we process and where it comes from</h2>
+<p><strong>a) People who contact us or book a meeting</strong> through www.imberion.com, by email, by WhatsApp or in person: name, email address, phone number, company, job title and the content of their messages, including conversations with our automated assistant and with our demonstration agents. Our WhatsApp number is answered by an automated assistant powered by artificial intelligence. During a demonstration, the agent may ask you for a document, such as the declarations page of an insurance policy, and reads it with artificial intelligence to show you how it works. Before asking, it tells you what it will use it for. We extract only the data the demonstration uses (for example, insurer, policy number, policyholder and term), and we do not keep the image or the file. The extracted data, and the agent's replies that mention it, are kept with the demonstration conversation, for the period that section 8 sets for contact data. If you send it after receiving that explanation, you authorize us to read it for that purpose.</p>
+<p><strong>b) Clients and their staff:</strong> contact and billing data (name, tax ID, tax address, email and phone number) and the information we exchange during the working relationship, including meeting recordings when agreed.</p>
+<p><strong>c) Website visitors:</strong> technical browsing data (pages visited, referring page, device type, operating system and browser, approximate location) and, if you submit the contact form, the link between your visits to the site and the data you entered in the form. See section 9.</p>
+<p>For the purposes in items (a), (b) and (c) we do not request sensitive personal data. Please do not share it through these channels. We do not request information about your health in the documents you send us during a demonstration, and the system is designed not to extract or keep it even if the document contains it.</p>
+<p><strong>d) People we speak or exchange messages with while providing a service to a client:</strong> phone number or WhatsApp identifier, name if the person provides it, voice recording, transcript and content of phone and messaging conversations, and any data the person shares in them. These conversations are carried out by AI voice and text agents that we operate on behalf of our clients, in customer service and follow-up by phone and WhatsApp, training of sales and service teams, market research and mystery shopping studies (section 4). In in-store training services, we also record the voice of the client's staff with an audio device they wear during their shift, with their written authorization. From their conversations with store customers we only retain the purchase intent, without the customer's voice.</p>
+<p>For item (d), <strong>Imberion acts as a data processor</strong>: it processes the data on behalf of the client that hires the service and only according to its instructions. The client is the controller with respect to those people and is responsible for providing them with its own privacy notice, which sets out its purposes. Section 5 explains what we do with that data.</p>
+<p>Depending on the client's industry, those conversations may contain <strong>sensitive personal data</strong>, such as health information, or financial data. We process them only according to the client's instructions and with the security measures described in section 8.</p>
+<h2>3. What we use the data for when we are the controller</h2>
+<p>These purposes apply to the data in sections 2(a), 2(b) and 2(c).</p>
+<p><strong>Necessary purposes</strong> for your relationship with us. They do not require your consent because they arise from the legal relationship between you and Imberion or from a legal obligation:</p>
+<ol>
+<li>Responding to your messages, scheduling and following up on meetings, and giving you access to the demonstrations of our agents that you request, with a record of their use (access code used, number it was used from, date and number of messages).</li>
+<li>Preparing proposals, entering into and performing service agreements.</li>
+<li>Invoicing and complying with tax and legal obligations.</li>
+<li>Keeping our systems secure and running.</li>
+</ol>
+<p><strong>Secondary purposes</strong>, which require your consent and which you may refuse without affecting your relationship with us:</p>
+<ol start="5">
+<li>Sending you information about our services, publications and event invitations.</li>
+<li>Measuring use of the website and linking your visits to the contact data you gave us, to improve the site and for commercial follow-up.</li>
+</ol>
+<p>If you do not agree with purposes 5 or 6, write to <a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a> with the subject "Secondary purposes", at any time. You can also unsubscribe using the link included in each informational email and disable cookies as explained in section 9.</p>
+<h2>4. Mystery shopping studies</h2>
+<p>This section applies <strong>only</strong> to our mystery shopping service and to no other Imberion service. Some clients hire us to evaluate how points of sale or suppliers in a market serve their customers (mystery shopping studies). In these studies an agent contacts the business as a prospective customer and records the commercial information it receives: availability, prices, response times and quality of service.</p>
+<p>The subject of the study is the business's service. The agent does not ask the person who answers for personal data. Results are delivered to the client aggregated by business or point of sale, and deliverables do not include the name or voice of the person who answered, so they do not allow anyone to identify individuals or make decisions about them. Recordings from this service are deleted within 90 days after the study is delivered.</p>
+<h2>5. Data we process as a processor</h2>
+<p>With respect to the data in section 2(d):</p>
+<ul>
+<li>We process it only to provide the contracted service to the client and according to its instructions.</li>
+<li>We do not use it to send Imberion advertising, to measure the website or to train artificial intelligence models.</li>
+<li>When the client instructs us, we use its conversations to build practice cases for training its own sales or service team.</li>
+<li>We keep it for the period set in the agreement with the client and, when the service ends, we return or delete it as the client instructs.</li>
+</ul>
+<h2>6. Who we share data with</h2>
+<p><strong>Service providers (processors).</strong> To operate we use providers of cloud infrastructure and databases (Fly.io, Neon, Vercel), email and documents (Google Workspace), customer relationship management and forms (HubSpot), scheduling (Zcal), telephony (Twilio), messaging (WhatsApp Business by Meta), speech transcription and synthesis (Deepgram, ElevenLabs), artificial intelligence models, both from external providers and models we run on our own equipment, and meeting recording and transcription (Fathom, Plaud). Some of them are located or process data outside Mexico, mainly in the United States and the European Union. They process data only to provide their service to us, under confidentiality and security obligations. Disclosing data to a processor is not a transfer and does not require your consent.</p>
+<p><strong>Delivery to the controlling client.</strong> The data in section 2(d) is delivered to the client that hired the service, because it is the controller. That delivery is not a transfer either.</p>
+<p><strong>Transfers.</strong> We do not sell personal data. We only transfer personal data to third parties in the cases where the Law allows it without your consent: to competent authorities when a law or treaty provides for it, when necessary for the prosecution or administration of justice, or when necessary to establish, exercise or defend a right in legal proceedings. We do not carry out transfers that require your consent. If we wished to do so in the future, we would update this notice and ask for your acceptance before transferring.</p>
+<h2>7. Your rights and how to exercise them</h2>
+<p>You may <strong>access</strong> your data, ask for it to be <strong>rectified</strong> if it is inaccurate or incomplete, ask for it to be <strong>cancelled</strong> (deleted from our records) or <strong>object</strong> to its processing (ARCO rights). You may also <strong>revoke your consent</strong> or <strong>limit</strong> the use of your data.</p>
+<p>Send your request to <strong><a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a></strong> including:</p>
+<ol>
+<li>Your name and an email, address or other means to reply to you.</li>
+<li>A document proving your identity or, where applicable, the identity and authority of the person acting on your behalf.</li>
+<li>A clear description of the data on which you wish to exercise your right (not needed if you request access).</li>
+<li>The right you wish to exercise or what you are requesting.</li>
+<li>Any information that helps locate the data (for example, the phone number from which you received a call or the WhatsApp number you chatted with).</li>
+</ol>
+<p>If you request rectification, state the change to be made and attach the supporting document.</p>
+<p><strong>To revoke your consent or ask us to delete your data</strong>, use the same email with the subject "Revocation" or "Data deletion". We will confirm through the same channel when it has been completed. Revocation has no retroactive effect. If any data is needed to comply with a legal obligation or a current agreement with you, we will explain this in our reply.</p>
+<p>We will communicate our response within a maximum of 20 business days from receipt of your request and, if it is granted, we will carry it out within the 15 business days following the date of the response. When justified by the circumstances, each period may be extended once for an equal period. We will reply through the same channel through which we received your request. If you request access, we will provide your data as electronic documents or plain copies, after verifying your identity. Exercising these rights is free of charge; only the cost of reproduction, copies or delivery may be charged.</p>
+<p>If your data was processed by Imberion as a processor for a client (section 2(d)), we will inform you that the controller is the client and forward your request to that client to handle. For training services we will tell you which client it is; for mystery shopping studies we do not disclose the client's identity, but we do forward your request.</p>
+<h2>8. How we protect the data</h2>
+<p>We apply administrative, technical and physical measures to protect data against damage, loss, alteration, destruction, or unauthorized use, access or processing. These include encryption of communications, separation of each client's information in our databases, credential-restricted access and retention limited to the time required by the purpose or set by the client agreement. Everyone involved in the processing is bound by confidentiality, even after their relationship with Imberion ends.</p>
+<p><strong>Retention.</strong> Contact data with no business relationship: up to 24 months from the last contact. Billing data: the period required by tax regulations. Recordings and transcripts in section 2(d): the period set in each client agreement and, for mystery shopping studies, the period in section 4.</p>
+<h2>9. Cookies and similar technologies</h2>
+<p>The website www.imberion.com uses two measurement tools:</p>
+<ul>
+<li><strong>Vercel Web Analytics</strong>, which records in aggregate the page visited, the referring page, approximate country and region, device type, operating system and browser. According to its provider, it does not use cookies: it distinguishes visits with a value computed from the request, which is discarded after 24 hours. We use it for purpose 6.</li>
+<li><strong>HubSpot tracking code</strong>, loaded on the website and in the contact form. It uses cookies to recognize your browser, record the pages you visit and, if you submit the form, link those visits to your contact data. We use it to record your request (purpose 1) and for purpose 6.</li>
+</ul>
+<p>You can block or delete cookies in your browser settings. If you block them, the site still shows its content; the contact form might not work, in which case you can write to <a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a>.</p>
+<h2>10. Changes to this notice</h2>
+<p>We will publish any change at <a href="/privacidad.html">www.imberion.com/privacidad.html</a>, with the last-updated date at the top of the document. If the change affects the purposes or the transfers, we will also notify it by email to the clients and contacts with whom we have a current relationship.</p>
+<h2>11. Authority</h2>
+<p>If you believe your right to the protection of your personal data has been violated, you may file a data protection request with Mexico's Secretariat of Anti-Corruption and Good Governance (Secretaría Anticorrupción y Buen Gobierno) within the 15 business days following the date on which we communicate our response, or after the response period expires if you receive none.</p>
+</div></main>
+<footer><div class="container"><div class="footer-inner">
+  <div><div><img src="/brand/logo-white.png" alt="Imberion" style="height:28px;width:auto;"/></div>
+  <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px;" id="footer-copy">© 2026 Imberion. Todos los derechos reservados.</div></div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;" id="footer-links"></div>
+</div></div></footer>
+<style>footer{background:var(--navy-deep);border-top:1px solid var(--white-12);padding:48px 0 36px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}#footer-links a{font-size:13px;color:rgba(255,255,255,.4);transition:color .2s}#footer-links a:hover{color:rgba(255,255,255,.85)}</style>
+<script src="/legado/js/imberion-site.js"></script>
+</body></html>

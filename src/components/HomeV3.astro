@@ -1,0 +1,386 @@
+---
+// Home v3 (prototipo, solo español). Reescritura completa del home sobre la
+// misma marca: Cormorant y DM Sans, navy, papel frío y petróleo escaso. DM Mono
+// para la capa de datos (cifras, folios, etiquetas de sección).
+//
+// Segunda versión (2026-10-06), después de la revisión a ciegas de cuatro
+// lectores (director comercial y CFO, en Claude y en Sol). Se quitaron las dos
+// secciones que repetían el arco de la apertura ("Cómo trabajamos" con sus
+// trece nombres de producto, "En la operación" con fotos), el simulador y el
+// carril de nueve industrias. Entraron lo que los cuatro pidieron: resultados
+// (trayectoria anónima del equipo), qué se contrata y un Checkup concreto.
+//
+// Tercera versión (2026-10-07): sale la tabla de seis palancas (explicar qué es
+// RGM se leía condescendiente) y la captura de datos que hoy no existen entra
+// desde el titular y la etapa 01 de la apertura.
+//
+// El elemento visual que se repite es la ficha: la de la apertura, una por
+// industria y la matriz del Checkup. Enseña el entregable en lugar de una foto.
+//
+// Conserva los id con enlaces vivos: #how-it-works, #who, #sectors, #estrategia
+// y #perspectivas.
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
+import Apertura from './home/Apertura.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import v3 from '../i18n/content/home-v3.json';
+
+import '../styles/home-v3.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = (v3 as any).es;
+const ficha = (slug: string) => ruta(locale, `catalogo/${slug}`);
+const n2 = (i: number) => String(i + 1).padStart(2, '0');
+const globFotos = import.meta.glob<ImageMetadata>('../assets/home/*.jpg', { import: 'default', eager: true });
+const fotos: Record<string, ImageMetadata> = Object.fromEntries(
+  Object.entries(globFotos).map(([k, v]) => [k.split('/').pop()!.replace('.jpg', ''), v]),
+);
+---
+
+<div class="v3">
+  <Apertura c={c} agendar={ZCAL_30MIN} como="#how-it-works" />
+
+  <!-- Para quién: va primero para que cada comprador encuentre su problema pronto (revisión a ciegas 2, 2026-10-08) -->
+  <section class="v3-sec v3-papel" id="who">
+    <span id="sectors" class="v3-ancla" aria-hidden="true"></span>
+    <div class="container">
+      <header class="v3-head">
+        <h2 class="v3-h2">{c.ind_h2}</h2>
+      </header>
+      <!-- Escena: la lista corre con el scroll y la foto de la derecha se queda
+           fija; la industria más cercana al centro de la pantalla se enciende y
+           manda la foto. Cada industria trae su problema, los indicadores que se
+           mueven y en qué se trabaja, tomados del marco de la industria en el
+           brain. En celular cada industria trae su propia foto y no hay panel. -->
+      <div class="ind-esc" data-ind-esc>
+        <ol class="ind-lista">
+          {c.ind_items.map((it: any, i: number) => (
+            <li class="ind-paso" data-ind-paso={i}>
+              <span class="ind-paso-n mono">{n2(i)}</span>
+              <h3 class="ind-paso-t">{it.t}</h3>
+              <p class="ind-paso-sub mono">{it.sub}</p>
+              <div class="ind-paso-movil">
+                <Image src={fotos[it.foto]} alt={it.alt} widths={[480, 760]} sizes="100vw" loading="lazy" />
+              </div>
+              <p class="ind-paso-p">{it.p}</p>
+              <p class="ind-l mono">{c.ind_mueve_label}</p>
+              <ul class="ind-mueve">
+                {it.mueve.map((m: string) => <li>{m}</li>)}
+              </ul>
+              <p class="ind-l mono">{c.ind_trab_label}</p>
+              <ul class="ind-trab">
+                {it.trabajamos.map((t: string) => <li>{t}</li>)}
+              </ul>
+              <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)}>{c.ind_ver} →</a>
+            </li>
+          ))}
+        </ol>
+        <div class="ind-panel" aria-hidden="true">
+          {c.ind_items.map((it: any, i: number) => (
+            <figure class="ind-capa" data-ind-capa={i}>
+              <Image src={fotos[it.foto]} alt="" widths={[760, 1200]} sizes="50vw" loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trayectoria: las cifras cuentan hacia su valor al entrar -->
+  <section class="v3-sec v3-blanco" id="trayectoria">
+    <span id="perspectivas" class="v3-ancla" aria-hidden="true"></span>
+    <span id="estrategia" class="v3-ancla" aria-hidden="true"></span>
+    <div class="container">
+      <header class="v3-head v3-head--ancho">
+        <h2 class="v3-h2">{c.tray_h2}</h2>
+        <p class="v3-lead">{c.tray_lead}</p>
+      </header>
+      <div class="tray">
+        {c.tray_casos.map((k: any, i: number) => (
+          <article class="tray-caso" data-v3-in style={`--i:${i}`}>
+            <p class="tray-ctx mono">{k.ctx}</p>
+            <p class="tray-cifra" data-cuenta={k.cifra}>{k.cifra}</p>
+            <p class="tray-unidad">{k.unidad}</p>
+            <p class="tray-p">{k.p}</p>
+            <p class="tray-palanca mono">Palanca · {k.palanca}</p>
+          </article>
+        ))}
+      </div>
+      <p class="tray-pie mono">{c.tray_pie}</p>
+
+      <!-- Casos de la tecnología de piso: otra categoría que la trayectoria del
+           equipo, con su nota al pie y sin nombrar al proveedor. -->
+      <div class="tec">
+        <p class="tec-head mono"><span>{c.tec_titulo}</span><b>{c.tec_tag}</b></p>
+        <div class="tec-casos">
+          {c.tec_casos.map((k: any, i: number) => (
+            <article class="tec-caso" data-v3-in style={`--i:${i}`}>
+              <p class="tray-ctx mono">{k.ctx}</p>
+              <p class="tec-cifra">{k.cifra}</p>
+              <p class="tray-unidad">{k.unidad}</p>
+              <p class="tec-p">{k.p}</p>
+            </article>
+          ))}
+        </div>
+        <p class="tray-pie mono">{c.tec_pie}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA -->
+  <section class="v3-sec v3-papel" id="ia">
+    <div class="container">
+      <header class="v3-head v3-head--ancho">
+        <h2 class="v3-h2">{c.ia_h2}</h2>
+        <p class="v3-lead">{c.ia_lead}</p>
+      </header>
+      <div class="ia-tabla" role="table" aria-label={c.ia_label}>
+        <div class="ia-fila ia-fila--head mono" role="row">
+          <span role="columnheader">{c.ia_cols[0]}</span>
+          <span role="columnheader">{c.ia_cols[1]}</span>
+        </div>
+        {c.ia_filas.map((f: string[], i: number) => (
+          <div class="ia-fila" role="row" data-v3-in style={`--i:${i}`}>
+            <span class="ia-maquina" role="cell"><b class="mono">{n2(i)}</b>{f[0]}</span>
+            <span class="ia-persona" role="cell">{f[1]}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué se contrata -->
+  <section class="v3-sec v3-blanco" id="how-it-works">
+    <div class="container">
+      <header class="v3-head">
+        <h2 class="v3-h2">{c.con_h2}</h2>
+        <p class="v3-lead">{c.con_lead}</p>
+      </header>
+      <div class="con">
+        {c.con_modos.map((m: any, i: number) => (
+          <article class="con-modo" data-v3-in style={`--i:${i}`}>
+            <p class="con-n mono">Modo {String.fromCharCode(65 + i)}</p>
+            <h3 class="con-t">{m.t}</h3>
+            <p class="con-p">{m.p}</p>
+            <p class="con-recibe-l mono">El cliente recibe</p>
+            <ul class="con-recibe">
+              {m.recibe.map((r: string) => <li>{r}</li>)}
+            </ul>
+            <p class="con-conviene">{m.conviene}</p>
+          </article>
+        ))}
+      </div>
+      <a class="con-catalogo mono" href={ruta(locale, 'catalogo')}>{c.con_catalogo} →</a>
+    </div>
+  </section>
+
+  <!-- Primer paso: Checkup y cierre. El stop motion de la matriz corre con
+       el scroll: el progreso del bloque elige el cuadro (40, AVIF con WebP de
+       respaldo). Las tarjetas se componen con código sobre una foto limpia de la
+       mesa, así que no cambian de forma entre cuadros. -->
+  <section class="v3-cta" id="checkup">
+    <canvas class="v3-cta-canvas" data-cta-canvas aria-hidden="true"></canvas>
+    <div class="container chk">
+      <header class="chk-head">
+        <h2 class="v3-h2">{c.chk_h2}</h2>
+        <p class="v3-lead">{c.chk_p}</p>
+      </header>
+
+      <div class="chk-film-wrap" data-film-wrap>
+      <div class="chk-film-fijo" data-film-fijo>
+      <!-- El paso que se está viendo va junto a la imagen, en grande: la mirada
+           se queda en la animación y el texto tiene que estar ahí. -->
+      <div class="chk-guia">
+        <p class="chk-avance mono" aria-hidden="true">
+          {c.chk_pasos.map((_: string, i: number) => <i data-film-tick={i}></i>)}
+        </p>
+        <ol class="chk-pasos" aria-label={c.chk_label}>
+          {c.chk_pasos.map((t: string, i: number) => <li data-film-paso={i}><span class="mono">Paso {i + 1} de {c.chk_pasos.length}</span>{t}</li>)}
+        </ol>
+      </div>
+      <figure class="chk-film" data-film data-n="40" data-base="/stop-motion/checkup/1280/">
+        <img src="/stop-motion/checkup/1280/0001.webp" alt={c.chk_film_alt} width="1280" height="720" loading="lazy" data-film-img />
+        <span class="chk-eje chk-eje--y mono" aria-hidden="true">{c.chk_eje_y} ↑</span>
+        <span class="chk-eje chk-eje--x mono" aria-hidden="true">{c.chk_eje_x} →</span>
+      </figure>
+      </div>
+      </div>
+
+      <div class="chk-cuerpo">
+        <div>
+          <p class="chk-l mono">{c.chk_entregables_label}</p>
+          <ol class="chk-lista">
+            {c.chk_entregables.map((e: string, i: number) => <li><span class="mono">{n2(i)}</span>{e}</li>)}
+          </ol>
+        </div>
+        <div>
+          <p class="chk-arranque">{c.chk_cliente} {c.chk_arranque}</p>
+          <p class="chk-arranque">{c.chk_llamada}</p>
+          <div class="v3-cta-btns">
+            <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.cta_btn1}</a>
+            <a class="btn btn-outline" href={ficha('checkup')}>{c.cta_btn2}</a>
+            <a class="v3-cta-mail mono" href={CONTACTO_MAIL}>{c.cta_mail}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+
+  /* Las cifras de trayectoria cuentan hasta su valor cuando entran. */
+  function contar(el) {
+    var final = el.getAttribute('data-cuenta');
+    if (reduce || !final) return;
+    var nums = final.match(/[\d.]+/g);
+    if (!nums) return;
+    var t0 = performance.now(), dur = 1400;
+    function paso(now) {
+      var k = clamp((now - t0) / dur, 0, 1);
+      var e = 1 - Math.pow(1 - k, 3);
+      var i = 0;
+      el.textContent = final.replace(/[\d.]+/g, function (m) {
+        var v = parseFloat(nums[i++]);
+        var dec = (m.split('.')[1] || '').length;
+        return (v * e).toFixed(dec);
+      });
+      if (k < 1) requestAnimationFrame(paso); else el.textContent = final;
+    }
+    requestAnimationFrame(paso);
+  }
+
+  var ins = [].slice.call(document.querySelectorAll('[data-v3-in]'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    ins.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        var cifra = e.target.querySelector('[data-cuenta]');
+        if (cifra) contar(cifra);
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    ins.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Para quién: la industria más cercana al centro enciende su capa. */
+  var pasosInd = [].slice.call(document.querySelectorAll('[data-ind-paso]'));
+  var capasInd = [].slice.call(document.querySelectorAll('[data-ind-capa]'));
+  var indActual = -1;
+  function pintaInd() {
+    if (!pasosInd.length) return;
+    var vh = window.innerHeight, mejor = 0, dist = 1e9;
+    pasosInd.forEach(function (el, i) {
+      var b = el.getBoundingClientRect(), d = Math.abs(b.top + b.height / 2 - vh / 2);
+      if (d < dist) { dist = d; mejor = i; }
+    });
+    if (mejor === indActual) return;
+    indActual = mejor;
+    pasosInd.forEach(function (el, i) { el.classList.toggle('is-on', i === mejor); });
+    capasInd.forEach(function (el, i) { el.classList.toggle('is-on', i === mejor); });
+  }
+  var ti = false;
+  window.addEventListener('scroll', function () { if (!ti) { ti = true; requestAnimationFrame(function () { ti = false; pintaInd(); }); } }, { passive: true });
+  pintaInd();
+
+  /* Stop motion del Checkup amarrado al scroll. */
+  var film = document.querySelector('[data-film]');
+  if (film) {
+    var img = film.querySelector('[data-film-img]');
+    var N = +film.getAttribute('data-n'), base = film.getAttribute('data-base');
+    var ext = 'webp', cache = [], actual = -1;
+    var prueba = new Image();
+    prueba.onload = function () { if (prueba.width > 0) { ext = 'avif'; precargar(); } };
+    prueba.onerror = precargar;
+    prueba.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    var precargado = false;
+    function precargar() {
+      if (precargado) return; precargado = true;
+      for (var i = 1; i <= N; i++) { var im = new Image(); im.src = base + String(i).padStart(4, '0') + '.' + ext; cache[i] = im; }
+      pintaFilm();
+    }
+    var fijo = film.parentNode, wrap = fijo.parentNode, topFijo = 80;
+    /* Imagen y pasos van juntos en un bloque fijo mientras las tarjetas se
+       acomodan: la envoltura mide el bloque más 90vh de recorrido. */
+    function medirFilm() {
+      var vh = window.innerHeight, h = fijo.offsetHeight;
+      topFijo = Math.max(80, (vh - h) / 2 + 20);
+      fijo.style.top = topFijo + 'px';
+      wrap.style.height = reduce ? '' : (h + vh * 0.9) + 'px';
+    }
+    function pintaFilm() {
+      var b = wrap.getBoundingClientRect();
+      var recorrido = wrap.offsetHeight - fijo.offsetHeight;
+      var p = reduce ? 1 : clamp((topFijo - b.top) / recorrido, 0, 1);
+      var k = Math.max(1, Math.round(p * (N - 1)) + 1);
+      /* el paso del texto sigue al cuadro: respuestas, hallazgos, matriz, primera iniciativa */
+      var paso = k <= 7 ? 0 : k <= 17 ? 1 : k <= 37 ? 2 : 3;
+      pasosFilm.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); el.classList.toggle('is-hecho', i < paso); });
+      ticksFilm.forEach(function (el, i) { el.classList.toggle('is-on', i <= paso); });
+      if (k === actual || !cache[k]) return;
+      if (cache[k].complete) { img.src = cache[k].src; actual = k; }
+    }
+    var pasosFilm = [].slice.call(document.querySelectorAll('[data-film-paso]'));
+    var ticksFilm = [].slice.call(document.querySelectorAll('[data-film-tick]'));
+    medirFilm();
+    window.addEventListener('resize', function () { medirFilm(); pintaFilm(); });
+    window.addEventListener('load', function () { medirFilm(); pintaFilm(); });
+    var tf = false;
+    window.addEventListener('scroll', function () { if (!tf) { tf = true; requestAnimationFrame(function () { tf = false; pintaFilm(); }); } }, { passive: true });
+  }
+
+  /* Cierre: el campo de cifras, quieto y tenue, que converge hacia la matriz
+     conforme el bloque entra. Sin petróleo. */
+  var cv = document.querySelector('[data-cta-canvas]');
+  if (cv && cv.getContext) {
+    var g = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var sec = cv.parentNode, W = 0, H = 0, pts = [];
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+    function arma() {
+      W = sec.clientWidth; H = sec.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      pts = [];
+      var n = W < 820 ? 140 : 320;
+      for (var i = 0; i < n; i++) {
+        pts.push({ ang: rnd(0, 6.283), rad: rnd(0.25, 0.75) * Math.max(W, H), txt: Math.random() < 0.5 ? (rnd(0.5, 99).toFixed(1) + '%') : ('$' + Math.round(rnd(10, 990))), a: rnd(0.06, 0.22) });
+      }
+    }
+    function pinta() {
+      var b = sec.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var p = reduce ? 1 : clamp((vh - b.top) / (vh + b.height * 0.4), 0, 1);
+      g.clearRect(0, 0, W, H);
+      g.font = '400 11px "DM Mono", ui-monospace, monospace';
+      g.fillStyle = '#C9D4DF';
+      var cx = W < 820 ? W / 2 : W * 0.72, cy = H / 2;
+      for (var i = 0; i < pts.length; i++) {
+        var q = pts[i];
+        var rr = q.rad * (1 - p * 0.55);
+        var x = cx + Math.cos(q.ang) * rr * 1.3;
+        /* del lado del texto el campo casi desaparece */
+        var lado = W < 820 ? 0.5 : (x < W * 0.5 ? 0.25 : 1);
+        g.globalAlpha = q.a * (1 - p * 0.5) * lado;
+        g.fillText(q.txt, x, cy + Math.sin(q.ang) * rr * 0.7);
+      }
+      g.globalAlpha = 1;
+    }
+    var t2 = false;
+    function sch2() { if (!t2) { t2 = true; requestAnimationFrame(function () { t2 = false; pinta(); }); } }
+    arma(); pinta();
+    window.addEventListener('scroll', sch2, { passive: true });
+    window.addEventListener('resize', function () { arma(); pinta(); });
+    if (document.fonts) document.fonts.ready.then(pinta);
+  }
+})();
+</script>

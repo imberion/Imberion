@@ -1,0 +1,781 @@
+---
+// Escena de Floor Signal amarrada al scroll. Guion de Rodrigo (2026-10-12):
+//
+//   1. Antes: la tienda en blanco y negro, sin clientes dibujados. Solo un
+//      contador en la entrada (cuántos entraron) y otro en la caja (cuánto se
+//      vendió).
+//   2. Se instala Floor Signal: un lente se abre sobre la tienda y la vuelve a
+//      color. Los clientes toman el color de su perfil, aparece el mapa de calor
+//      y el tablero se llena. La escena gana color con las semanas.
+//   3. Se ven los que pasan y no entran, y los que piden algo que no hay.
+//   4. Cambio de aparador: entran más del perfil al que va dirigido.
+//   5. Entrenamiento: los diálogos que venden; sube conversión y complementos.
+//   6. Surtido: más conversión, más rotación, menos saldos.
+//   7. Plantilla por hora: un asesor pasa de la mañana a la tarde, donde los
+//      clientes se iban sin que nadie los atendiera (tarjeta junto al calendario).
+//   8. El mercado cambia: abre un competidor y el ajuste vuelve a empezar.
+//   Un calendario corre las semanas; los indicadores muestran su cambio.
+//
+// Cada paso cambia una sola cosa y la señala: lo demás se atenúa y lo que
+// cambió queda enmarcado. La frase del paso va en un recuadro navy que entra con
+// movimiento, para que se note que cambió (feedback de Rodrigo: "no es notorio
+// cuando cambia el texto").
+//
+// Técnica: la mesa con las hojas en blanco es la foto de Codex
+// (public/stop-motion/floor-signal/mesa.webp); el plano, los clientes, el mapa
+// de calor, el tablero y el calendario se dibujan encima en SVG con mezcla
+// multiplicar, como tinta impresa. Todo lo legible es texto real. Coordenadas =
+// píxeles de la foto de 1600 x 900. El dibujo vive una vez en <defs> y las
+// vistas lo usan con <use>: el CSS de la página no llega a esos clones, por eso
+// los estilos de la tinta son atributos de presentación.
+//
+// Cifras: la conversión total es el promedio de la conversión de cada perfil
+// ponderado por su peso en el tráfico, así que el tablero no se contradice.
+
+export interface EscenaTiendaContenido {
+  pasos: string[];
+  paso_label: string;
+  nota: string;
+  alt: string;
+  semana_label: string;
+  perfiles: string[];
+}
+
+interface Props {
+  contenido: EscenaTiendaContenido;
+}
+const { contenido: e } = Astro.props;
+const total = e.pasos.length;
+const MESA = '/stop-motion/floor-signal/mesa.webp';
+---
+
+<section class="esc-fs" data-esc-fs>
+  <div class="esc-fs-wrap" data-wrap>
+    <div class="esc-fs-fijo" data-fijo>
+      <div class="esc-fs-guia" data-guia>
+        <p class="esc-fs-nota">{e.nota}</p>
+        <ol class="esc-fs-pasos">
+          {
+            e.pasos.map((t, i) => (
+              <li data-paso={i} class={i === 0 ? 'is-on' : ''}>
+                <span>{e.paso_label.replace('{n}', String(i + 1)).replace('{t}', String(total))}</span>
+                {t}
+              </li>
+            ))
+          }
+        </ol>
+        <p class="esc-fs-avance" aria-hidden="true">{e.pasos.map((_, i) => <i data-tick={i}></i>)}</p>
+      </div>
+
+      <!-- Escritorio: la mesa completa, en gris debajo y a color dentro del lente -->
+      <div class="esc-fs-escena" data-escena>
+        <svg class="esc-fs-mesa capa-gris" viewBox="60 54 1485 756" role="img" aria-label={e.alt}>
+          <image href={MESA} x="0" y="0" width="1600" height="900" />
+          <use href="#fs-plano" class="tinta" /><use href="#fs-tablero" class="tinta" /><use href="#fs-cal" class="tinta" /><use href="#fs-hora" />
+        </svg>
+        <svg class="esc-fs-mesa capa-color" viewBox="60 54 1485 756" aria-hidden="true" data-capa-color>
+          <image href={MESA} x="0" y="0" width="1600" height="900" />
+          <use href="#fs-plano" class="tinta" /><use href="#fs-tablero" class="tinta" /><use href="#fs-cal" class="tinta" /><use href="#fs-hora" />
+        </svg>
+        <div class="esc-fs-lente" data-lente aria-hidden="true"></div>
+      </div>
+
+      <!-- Celular: plano, indicadores y la sección del tablero que cambia -->
+      <div class="esc-fs-movil" aria-hidden="true" data-movil>
+        <svg viewBox="76 192 763 517"><image href={MESA} x="0" y="0" width="1600" height="900" /><use href="#fs-plano" class="tinta" /></svg>
+        <svg viewBox="882 214 446 222"><image href={MESA} x="0" y="0" width="1600" height="900" /><use href="#fs-tablero" class="tinta" /></svg>
+        <svg viewBox="882 438 446 130" data-m-tablero><image href={MESA} x="0" y="0" width="1600" height="900" /><use href="#fs-tablero" class="tinta" /></svg>
+        <svg viewBox="0 0 446 130" data-m-hora hidden><use href="#fs-hora-m" /></svg>
+      </div>
+    </div>
+  </div>
+
+  <svg class="esc-fs-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- La gente camina hasta la orilla de la hoja y no más allá. -->
+      <clipPath id="fs-recorte-plano"><rect x="2" y="2" width="759" height="513" /></clipPath>
+      <filter id="fs-sombra" x="-10%" y="-10%" width="130%" height="130%"><feDropShadow dx="2" dy="5" stdDeviation="5" flood-color="#0a1828" flood-opacity="0.28" /></filter>
+      <radialGradient id="fs-calor-0"><stop offset="0" stop-color="#4D6A85" stop-opacity="0.9" /><stop offset="1" stop-color="#4D6A85" stop-opacity="0" /></radialGradient>
+      <radialGradient id="fs-calor-1"><stop offset="0" stop-color="#B4664B" stop-opacity="0.9" /><stop offset="1" stop-color="#B4664B" stop-opacity="0" /></radialGradient>
+      <radialGradient id="fs-calor-2"><stop offset="0" stop-color="#1C5F6B" stop-opacity="0.9" /><stop offset="1" stop-color="#1C5F6B" stop-opacity="0" /></radialGradient>
+      <radialGradient id="fs-calor-3"><stop offset="0" stop-color="#A88A3A" stop-opacity="0.9" /><stop offset="1" stop-color="#A88A3A" stop-opacity="0" /></radialGradient>
+
+      <!-- ============ PLANO (hoja izquierda, origen 76,192; 763 x 517) ============ -->
+      <g id="fs-plano" transform="translate(76 192)">
+        <text x="28" y="30" class="t-gris t15 w5">Tienda Centro · plano de piso</text>
+        <g data-leyenda transform="translate(318 25)"></g>
+        <text data-z="leyenda-calor" x="735" y="44" text-anchor="end" class="t-gris t11 w6" opacity="0">nube: dónde se junta cada perfil</text>
+        <g data-calor></g>
+        <g data-z="anaqueles">
+          <path d="M330 405 H28 V52 H735 V405 H430" fill="none" stroke="#16202e" stroke-width="3" />
+          <g fill="#d7dbe0" stroke="#969ca4" stroke-width="1">
+            <rect x="80" y="80" width="600" height="38" />
+            <rect x="80" y="148" width="60" height="180" />
+            <rect x="232" y="176" width="188" height="48" />
+            <rect x="606" y="148" width="74" height="180" />
+            <rect x="468" y="346" width="132" height="40" />
+          </g>
+          <text x="380" y="104" text-anchor="middle" class="t-tinta t14 w6">Línea blanca</text>
+          <text transform="translate(115 238) rotate(-90)" text-anchor="middle" class="t-tinta t14 w6">Celulares</text>
+          <text x="326" y="205" text-anchor="middle" class="t-tinta t14 w6">Audio</text>
+          <text transform="translate(648 238) rotate(-90)" text-anchor="middle" class="t-tinta t14 w6">Pantallas</text>
+          <text x="534" y="371" text-anchor="middle" class="t-tinta t14 w6">Caja</text>
+        </g>
+        <g data-z="surtido" opacity="0">
+          <rect x="606" y="148" width="74" height="54" fill="#1C5F6B" fill-opacity="0.22" stroke="#1C5F6B" stroke-width="1.5" />
+          <text x="643" y="172" text-anchor="middle" class="t-tinta t13 w7">85"</text>
+          <text x="643" y="189" text-anchor="middle" class="t-tinta t10 w6">nuevo</text>
+        </g>
+        <g data-z="aparador">
+          <rect x="120" y="399" width="180" height="12" fill="#fff" stroke="#16202e" stroke-width="1.5" />
+          <rect x="460" y="399" width="180" height="12" fill="#fff" stroke="#16202e" stroke-width="1.5" />
+          <rect data-aparador-tinta x="121" y="400" width="178" height="10" fill="#1C5F6B" opacity="0" />
+          <rect data-aparador-tinta x="461" y="400" width="178" height="10" fill="#1C5F6B" opacity="0" />
+          <text data-aparador-txt x="210" y="392" text-anchor="middle" class="t-tinta t13 w7" opacity="0">aparador nuevo</text>
+        </g>
+        <g data-z="banqueta">
+          <line x1="0" y1="430" x2="763" y2="430" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 5" />
+          <text x="28" y="500" class="t-gris t13 w5">Banqueta</text>
+          <text data-pasan x="735" y="500" text-anchor="end" class="t-tinta t14 w7" opacity="0"></text>
+        </g>
+        <g data-z="leyenda2" opacity="0">
+          <circle cx="140" cy="496" r="5.5" fill="#8b9199" stroke="#16202e" stroke-width="2.4" />
+          <text x="151" y="500" class="t-gris t12 w5">compró</text>
+          <rect x="206" y="488" width="15" height="15" rx="3" fill="#fff" stroke="#16202e" stroke-width="1.2" />
+          <text x="213.5" y="500" text-anchor="middle" class="t-tinta t11 w7">?</text>
+          <text x="227" y="500" class="t-gris t12 w5">pide algo que no hay</text>
+        </g>
+        <text data-z="competidor" x="735" y="424" text-anchor="end" class="t-tinta t14 w7" opacity="0">↑ abrió un competidor enfrente</text>
+        <g data-z="gente" clip-path="url(#fs-recorte-plano)"><g data-gente></g><g data-preguntas></g></g>
+        <!-- contadores: lo único que se sabe antes de Floor Signal -->
+        <g data-z="contadores">
+          <rect x="172" y="330" width="138" height="52" rx="4" fill="#fff" stroke="#16202e" stroke-width="1.6" />
+          <text x="184" y="350" class="t-gris t12 w6 caps">ENTRARON</text>
+          <text data-cnt-entran x="184" y="374" class="t-tinta t20 w7">0</text>
+          <rect x="468" y="284" width="132" height="52" rx="4" fill="#fff" stroke="#16202e" stroke-width="1.6" />
+          <text x="480" y="304" class="t-gris t12 w6 caps">VENTAS</text>
+          <text data-cnt-ventas x="480" y="328" class="t-tinta t20 w7">0</text>
+        </g>
+        <g data-marcos-plano></g>
+      </g>
+
+      <!-- ============ TABLERO (hoja derecha, origen 882,138; 446 x 618) ============ -->
+      <g id="fs-tablero" transform="translate(882 138)">
+        <text x="32" y="34" class="t-gris t11 w6 caps">FLOOR SIGNAL</text>
+        <text x="32" y="58" class="t-tinta t20 w6">Tienda Centro</text>
+        <text data-semana-t x="414" y="58" text-anchor="end" class="t-gris t14 w5"></text>
+        <line x1="32" y1="72" x2="414" y2="72" stroke="#c4c9cf" />
+        <text x="274" y="88" class="t-gris t10 w6 caps">VS. SEMANA 0</text>
+        <g data-kpis></g>
+
+        <g data-b="perfiles">
+          <text x="32" y="322" class="t-gris t11 w6 caps">POR PERFIL</text>
+          <text x="330" y="322" text-anchor="end" class="t-gris t11 w6 caps">TRÁFICO</text>
+          <text x="414" y="322" text-anchor="end" class="t-gris t11 w6 caps">COMPRA</text>
+          <g data-perfiles></g>
+        </g>
+        <g data-b="dialogos">
+          <text x="32" y="436" class="t-gris t11 w6 caps">LO QUE DICE EL ASESOR</text>
+          <text x="340" y="436" text-anchor="end" class="t-gris t11 w6 caps">VENDE</text>
+          <text x="414" y="436" text-anchor="end" class="t-gris t11 w6 caps">LO USAN</text>
+          <g data-dialogos></g>
+        </g>
+        <g data-b="piden">
+          <text x="32" y="548" class="t-gris t11 w6 caps">PIDEN Y NO HAY</text>
+          <text x="414" y="548" text-anchor="end" class="t-gris t11 w6 caps">POR SEMANA</text>
+          <g data-piden></g>
+        </g>
+        <g data-marcos-tablero></g>
+      </g>
+
+      <!-- ============ PLANTILLA POR HORA (tarjeta bajo el calendario, origen 1374,236) ============ -->
+      <g id="fs-hora" transform="translate(1372 234) rotate(1.2)" opacity="0">
+        <rect x="0" y="0" width="166" height="324" rx="3" fill="#fbfaf7" filter="url(#fs-sombra)" />
+        <g data-hora></g>
+        <g data-marcos-hora></g>
+      </g>
+      <!-- La misma tarjeta, apaisada, para el celular -->
+      <g id="fs-hora-m">
+        <rect x="0" y="0" width="446" height="130" fill="#fbfaf7" />
+        <g data-hora-m></g>
+      </g>
+
+      <!-- ============ CALENDARIO (sobre el bloc de notas, origen 1380,82) ============ -->
+      <g id="fs-cal" transform="translate(1380 82)">
+        <text x="76" y="44" text-anchor="middle" class="t-gris t13 w6 caps">{e.semana_label.toUpperCase()}</text>
+        <text data-cal x="76" y="112" text-anchor="middle" class="t-tinta t56 w6">0</text>
+      </g>
+    </defs>
+  </svg>
+  <script type="application/json" data-perfiles-nombres set:html={JSON.stringify(e.perfiles).replace(/</g, '\\u003c')}></script>
+</section>
+
+<style is:inline>
+  .esc-fs { background: var(--paper-warm); border-bottom: 1px solid var(--navy-12); padding: clamp(40px, 4vw, 70px) 0; }
+  .esc-fs-wrap { position: relative; }
+  .esc-fs-fijo { position: sticky; top: 72px; width: min(100% - 32px, 1440px); margin: 0 auto; container-type: inline-size; }
+  .esc-fs-escena { position: relative; border-radius: 4px; overflow: hidden; background: #b9bcc0; }
+  .esc-fs-mesa { display: block; width: 100%; height: auto; }
+  .esc-fs .capa-gris { filter: grayscale(1) contrast(1.05); }
+  .esc-fs .capa-color { position: absolute; inset: 0; clip-path: circle(0 at 27% 52%); }
+  .esc-fs-lente {
+    position: absolute;
+    left: 27%;
+    top: 52%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 1px rgba(10, 24, 40, 0.35), 0 0 40px 8px rgba(255, 255, 255, 0.45), inset 0 0 30px rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .esc-fs-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .esc-fs .tinta { mix-blend-mode: multiply; }
+  .esc-fs-movil { display: none; }
+
+  /* La frase del paso: recuadro navy sobre la mesa, arriba a la izquierda. */
+  .esc-fs-guia {
+    position: absolute;
+    left: 1.1%;
+    top: 1.4%;
+    width: 52%;
+    z-index: 3;
+    pointer-events: none;
+    background: var(--navy);
+    color: #fff;
+    /* Todo en unidades del ancho de la escena: el recuadro escala con la mesa y
+       nunca pasa del hueco que hay sobre el plano (~9% del ancho). */
+    padding: 0.75cqw 1.2cqw;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(6, 16, 28, 0.25);
+  }
+  .esc-fs-guia.cambia { animation: fs-cambia 0.6s var(--ease-io, ease) both; }
+  @keyframes fs-cambia {
+    0% { transform: translateX(-14px); box-shadow: 0 0 0 0 rgba(82, 160, 172, 0.9); }
+    60% { box-shadow: 0 0 0 10px rgba(82, 160, 172, 0); }
+    100% { transform: none; box-shadow: 0 10px 30px rgba(6, 16, 28, 0.25); }
+  }
+  .esc-fs-nota { margin: 0 0 0.3cqw; font-size: max(10px, 0.9cqw); font-weight: 500; color: #fff; opacity: 0.85; }
+  .esc-fs-avance { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.3cqw; margin: 0.5cqw 0 0; }
+  .esc-fs-avance i { height: max(2px, 0.2cqw); background: rgba(255, 255, 255, 0.18); transition: background 0.3s; }
+  .esc-fs-avance i.is-on { background: #fff; }
+  .esc-fs-pasos { list-style: none; margin: 0; padding: 0; display: grid; }
+  .esc-fs-pasos li {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: var(--font-serif);
+    font-size: 1.5cqw;
+    font-weight: 500;
+    line-height: 1.16;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s, transform 0.35s;
+  }
+  .esc-fs-pasos li span {
+    font-family: var(--font-sans);
+    font-size: max(8.5px, 0.72cqw);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--petrol-bright);
+  }
+  .esc-fs-pasos li.is-on { opacity: 1; transform: none; }
+  .esc-fs text { font-family: var(--font-sans); }
+
+  @media (max-width: 900px) {
+    .esc-fs-fijo { top: 76px; }
+    .esc-fs-escena { display: none; }
+    .esc-fs-movil { display: flex; flex-direction: column; gap: 6px; }
+    .esc-fs-movil svg { display: block; width: 100%; height: auto; border-radius: 3px; box-shadow: 0 6px 18px rgba(6, 16, 28, 0.12); }
+    .esc-fs-movil svg[hidden] { display: none; }
+    .esc-fs-guia { position: static; width: auto; margin-bottom: 8px; padding: 10px 14px; }
+    .esc-fs-pasos li { font-size: 1.04rem; min-height: 5em; }
+    .esc-fs-pasos li span { font-size: 10px; }
+    .esc-fs-nota { font-size: 11px; margin-bottom: 4px; }
+    .esc-fs-avance { gap: 4px; margin-top: 8px; }
+    .esc-fs-avance i { height: 3px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .esc-fs-pasos li { transition: none; transform: none; }
+    .esc-fs-guia.cambia { animation: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var sec = document.querySelector('[data-esc-fs]');
+    if (!sec) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var wrap = sec.querySelector('[data-wrap]');
+    var fijo = sec.querySelector('[data-fijo]');
+    var guia = sec.querySelector('[data-guia]');
+    var pasos = [].slice.call(sec.querySelectorAll('[data-paso]'));
+    var ticks = [].slice.call(sec.querySelectorAll('[data-tick]'));
+    var q = function (s) { return sec.querySelector(s); };
+    var NOMBRES = JSON.parse(q('[data-perfiles-nombres]').textContent);
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------------------------------------------------------- tiempo
+    var COLOR = ['#4D6A85', '#B4664B', '#1C5F6B', '#A88A3A', '#7B5E86'];
+    var GRIS = '#8b9199', TINTA = '#16202e', PETRO = '#1C5F6B';
+    var REVELA = [1.15, 1.15, 2.2, 3.2, 15.6]; // el quinto perfil aparece cuando cambia el mercado
+    // Posición en el scroll (P) y semana (S) de cada paso.
+    var P = [0, 0.11, 0.23, 0.34, 0.45, 0.57, 0.69, 0.81, 0.96, 1];
+    var S = [0, 1, 2.6, 4, 6, 9, 12, 14, 18, 18];
+    var CORTES = [0.11, 0.23, 0.34, 0.45, 0.57, 0.69, 0.81];
+    var LENTE = [0.11, 0.17]; // tramo del scroll en que se abre el lente
+    var FRANJA = [300, 300, 530, 300, 420, 530, 0, 300];
+    var PASO_HORA = 6; // paso de la plantilla por hora
+
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+    function rampa(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+    function lerp(a, b, f) { return a + (b - a) * f; }
+    function suave(f) { return f * f * (3 - 2 * f); }
+    function semanaDe(p) {
+      for (var i = 1; i < P.length; i++) if (p <= P[i]) return lerp(S[i - 1], S[i], (p - P[i - 1]) / (P[i] - P[i - 1]));
+      return 12;
+    }
+
+    // ---------------------------------------------------------- modelo
+    var BASE_S = [0.34, 0.29, 0.22, 0.15], APAR_S = [0.32, 0.27, 0.28, 0.13];
+    var BASE_C = [0.13, 0.062, 0.14, 0.18], TREN_C = [0.135, 0.09, 0.148, 0.185], SURT_C = [0.14, 0.10, 0.155, 0.19];
+    function estado(w) {
+      var ap = rampa(w, 4.0, 5.0), tr = rampa(w, 6.0, 7.6), su = rampa(w, 9.0, 10.6), pl = rampa(w, 12.7, 13.7);
+      // Semana 16: abre un competidor enfrente. Aparece un perfil nuevo y baja la
+      // entrada; Floor Signal lo marca y el ajuste vuelve a empezar (rec).
+      var ev = rampa(w, 15.5, 16.3), rec = rampa(w, 16.8, 18);
+      var s = BASE_S.map(function (v, i) { return lerp(v, APAR_S[i], ap) * (1 - 0.12 * ev); });
+      s.push(0.12 * ev);
+      // Con un asesor más de 6 a 8 de la noche se atiende a los que antes se iban.
+      var c = BASE_C.map(function (v, i) { return lerp(lerp(v, TREN_C[i], tr), SURT_C[i], su) * (1 + 0.10 * pl); });
+      c.push(lerp(0.07, 0.11, rec));
+      var conv = 0;
+      for (var i = 0; i < 5; i++) conv += s[i] * c[i];
+      var entran = 1000 + 60 * ap - 50 * ev + 30 * rec;
+      return {
+        ap: ap, tr: tr, su: su, pl: pl, ev: ev,
+        sinAtender: lerp(31, 12, pl), s: s, c: c, conv: conv,
+        pasan: 6400 * (1 + 0.01 * Math.sin(w * 1.3)),
+        entran: entran, compran: entran * conv,
+        attach: 18 + 4 * tr + 1 * su,
+        rotacion: 6.1 + 0.6 * su,
+        saldos: 9 - 2 * su,
+        piden: [34 - 24 * su, 21 - 15 * su],
+        uso: [lerp(22, 45, tr), lerp(18, 36, tr), lerp(41, 20, tr), lerp(35, 16, tr)]
+      };
+    }
+    var E0 = estado(0);
+
+    // ---------------------------------------------------------- utilidades SVG
+    var TONO = { 't-tinta': TINTA, 't-gris': '#6b737d' };
+    function estilo(el, cls) {
+      el.setAttribute('class', cls);
+      cls.split(/\s+/).forEach(function (c) {
+        if (TONO[c]) el.setAttribute('fill', TONO[c]);
+        var m = /^t(\d+)$/.exec(c); if (m) el.setAttribute('font-size', m[1]);
+        var n = /^w(\d)$/.exec(c); if (n) el.setAttribute('font-weight', n[1] + '00');
+        if (c === 'caps') el.setAttribute('letter-spacing', '1.3');
+      });
+      if (el.tagName.toLowerCase() === 'text') el.setAttribute('font-family', 'DM Sans, -apple-system, Helvetica, Arial, sans-serif');
+    }
+    [].forEach.call(sec.querySelectorAll('.esc-fs-defs [class]'), function (el) { estilo(el, el.getAttribute('class')); });
+    function nodo(tag, attrs, padre, texto) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) { if (k === 'class') estilo(n, attrs[k]); else n.setAttribute(k, attrs[k]); }
+      if (texto != null) n.textContent = texto;
+      if (padre) padre.appendChild(n);
+      return n;
+    }
+    function fmt(n, dec) { return Number(n).toLocaleString('es-MX', { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0 }); }
+
+    // ---------------------------------------------------------- indicadores
+    // delta: cómo se lee el cambio contra la semana 0; bueno: si subir es bueno.
+    var KPI = [
+      { k: 'pasan', l: 'Pasan frente', f: function (e) { return fmt(Math.round(e.pasan / 10) * 10); }, antes: false, d: null },
+      { k: 'entran', l: 'Entran', f: function (e) { return fmt(Math.round(e.entran)); }, antes: true, d: 'pct', bueno: 1 },
+      { k: 'compran', l: 'Compran', f: function (e) { return fmt(Math.round(e.compran)); }, antes: true, d: 'pct', bueno: 1 },
+      { k: 'conv', l: 'Conversión', f: function (e) { return fmt(e.conv * 100) + '%'; }, antes: false, d: 'pts100', bueno: 1 },
+      { k: 'attach', l: 'Venta de complementos', f: function (e) { return fmt(e.attach) + '%'; }, antes: false, d: 'pts', bueno: 1 },
+      { k: 'rotacion', l: 'Rotación', f: function (e) { return fmt(e.rotacion, 1) + ' veces'; }, antes: false, d: 'pct', bueno: 1 },
+      { k: 'saldos', l: 'Saldos', f: function (e) { return fmt(e.saldos) + '%'; }, antes: false, d: 'pts', bueno: -1 }
+    ];
+    var RANGO = { pasan: [6200, 6600], entran: [980, 1080], compran: [110, 175], conv: [0.115, 0.165], attach: [17, 24], rotacion: [6.0, 6.8], saldos: [6.5, 9.5] };
+    var gK = q('[data-kpis]');
+    KPI.forEach(function (it, i) {
+      var y = 108 + i * 30;
+      it.y = y;
+      it.g = nodo('g', {}, gK);
+      it.lbl = nodo('text', { x: 32, y: y, class: 't-tinta t15 w5' }, it.g, it.l);
+      it.val = nodo('text', { x: 262, y: y, 'text-anchor': 'end', class: 't-tinta t16 w6' }, it.g, '');
+      it.del = nodo('text', { x: 274, y: y, class: 't-gris t13 w7' }, it.g, '');
+      it.lin = nodo('polyline', { fill: 'none', stroke: TINTA, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, it.g);
+    });
+    function delta(it, e) {
+      var v = it.k === 'conv' ? e.conv : e[it.k], b = it.k === 'conv' ? E0.conv : E0[it.k];
+      var d, txt;
+      if (it.d === 'pct') { d = (v / b - 1) * 100; txt = fmt(Math.abs(d)) + '%'; }
+      else if (it.d === 'pts100') { d = (v - b) * 100; txt = fmt(Math.abs(d)) + (Math.round(Math.abs(d)) === 1 ? ' pt' : ' pts'); }
+      else { d = v - b; txt = fmt(Math.abs(d)) + (Math.round(Math.abs(d)) === 1 ? ' pt' : ' pts'); }
+      if (Math.abs(d) < 0.5) return { t: '=', bien: false };
+      return { t: (d > 0 ? '▲ ' : '▼ ') + txt, bien: d * it.bueno > 0 };
+    }
+
+    // ---------------------------------------------------------- secciones del tablero
+    var gP = q('[data-perfiles]');
+    var filasP = NOMBRES.map(function (nom, i) {
+      var y = 340 + i * 19;
+      var g = nodo('g', { opacity: 0 }, gP);
+      nodo('circle', { cx: 38, cy: y - 5, r: 5.5, fill: COLOR[i] }, g);
+      nodo('text', { x: 52, y: y, class: 't-tinta t13 w5' }, g, nom);
+      return { g: g, tr: nodo('text', { x: 330, y: y, 'text-anchor': 'end', class: 't-tinta t13 w6' }, g, ''), co: nodo('text', { x: 414, y: y, 'text-anchor': 'end', class: 't-tinta t13 w6' }, g, '') };
+    });
+    var DIALOGOS = [
+      { t: 'Preguntar qué ven en la sala', vende: 31, ok: true },
+      { t: 'Traducir la ficha a lo que verán en casa', vende: 27, ok: true },
+      { t: 'Descuento antes de que lo pidan', vende: 8, ok: false },
+      { t: 'Recitar la ficha técnica', vende: 6, ok: false }
+    ];
+    var gD = q('[data-dialogos]');
+    var filasD = DIALOGOS.map(function (d, i) {
+      var y = 458 + i * 22;
+      var g = nodo('g', { opacity: 0 }, gD);
+      nodo('text', { x: 32, y: y, class: 't-tinta t14 w7' }, g, d.ok ? '✓' : '✗');
+      var tx = nodo('text', { x: 50, y: y, class: 't-tinta t13 w5' }, g, d.t);
+      nodo('text', { x: 340, y: y, 'text-anchor': 'end', class: 't-tinta t13 w6' }, g, d.vende + '%');
+      var uso = nodo('text', { x: 414, y: y, 'text-anchor': 'end', class: 't-tinta t13 w6' }, g, '');
+      var tacha = d.ok ? null : nodo('line', { x1: 48, y1: y - 4, x2: 48, y2: y - 4, stroke: TINTA, 'stroke-width': 1.6 }, g);
+      return { g: g, uso: uso, tacha: tacha, tx: tx };
+    });
+    var gN = q('[data-piden]');
+    var filasN = ['Pantalla de 85 pulgadas', 'Barra de sonido con subwoofer'].map(function (t, i) {
+      var y = 570 + i * 22;
+      var g = nodo('g', { opacity: 0 }, gN);
+      nodo('text', { x: 32, y: y, class: 't-tinta t13 w5' }, g, t);
+      return { g: g, v: nodo('text', { x: 414, y: y, 'text-anchor': 'end', class: 't-tinta t13 w6' }, g, '') };
+    });
+    // Plantilla por hora: clientes en piso y asesores en cada franja. Un asesor
+    // pasa de 10 a 12 (pocos clientes) a 18 a 20 (más del triple).
+    var HORAS = ['10–12', '12–14', '14–16', '16–18', '18–20', '20–21'];
+    var CLIENTES = [9, 14, 12, 18, 31, 15];
+    var PICO = 4, VALLE = 0;
+    function tarjeta(g, L) {
+      nodo('text', { x: L.tx, y: L.ty, class: 't-gris t10 w6 caps' }, g, L.titulo);
+      var filas = HORAS.map(function (h, i) {
+        var b = L.barra(i, CLIENTES[i]);
+        nodo('rect', { x: b[0], y: b[1], width: b[2], height: b[3], fill: i === PICO ? PETRO : '#9aa3ad' }, g);
+        var hp = L.hora(i);
+        nodo('text', { x: hp[0], y: hp[1], 'text-anchor': hp[2], class: 't-tinta ' + L.th + (i === PICO ? ' w7' : ' w5') }, g, h);
+        var asesores = [];
+        for (var j = 0; j < 4; j++) {
+          var d = L.asesor(i, j);
+          asesores.push(nodo('circle', { cx: d[0], cy: d[1], r: L.r, fill: j === 3 ? PETRO : TINTA, opacity: j < 3 ? 1 : 0 }, g));
+        }
+        return asesores;
+      });
+      L.pie.forEach(function (t) { nodo('text', { x: t[0], y: t[1], 'text-anchor': t[2] || 'start', class: t[3] }, g, t[4]); });
+      var v = nodo('text', { x: L.vx, y: L.vy, 'text-anchor': L.va, class: 't-tinta ' + L.tv + ' w7' }, g, '');
+      // Con el cambio, el número de antes se queda escrito al lado.
+      var antes = nodo('text', { x: L.ax, y: L.ay, 'text-anchor': L.va, class: 't-gris t13 w6', opacity: 0 }, g, 'antes 31%');
+      return { filas: filas, v: v, antes: antes };
+    }
+    var horaD = tarjeta(q('[data-hora]'), {
+      titulo: 'POR HORA', tx: 12, ty: 26, th: 't14', r: 4, tv: 't28', vx: 12, vy: 310, va: 'start', ax: 86, ay: 308,
+      barra: function (i, c) { return [60, 83 + i * 27, c * 1.6, 11]; },
+      hora: function (i) { return [12, 93 + i * 27, 'start']; },
+      asesor: function (i, j) { return [122 + j * 10, 88.5 + i * 27]; },
+      pie: [[28, 51, 'start', 't-gris t12 w5', 'clientes en piso'], [28, 69, 'start', 't-gris t12 w5', 'asesores'], [100, 69, 'start', 't-gris t12 w5', 'se mueve'],
+        [12, 264, 'start', 't-tinta t13 w6', 'Se van sin atender'], [12, 281, 'start', 't-gris t13 w5', 'de 18 a 20 h']]
+    });
+    var leyH = q('[data-hora]');
+    nodo('rect', { x: 12, y: 42, width: 11, height: 10, fill: '#9aa3ad' }, leyH);
+    nodo('circle', { cx: 17.5, cy: 64.5, r: 4, fill: TINTA }, leyH);
+    nodo('circle', { cx: 92, cy: 64.5, r: 4, fill: PETRO }, leyH);
+    var horaM = tarjeta(q('[data-hora-m]'), {
+      titulo: 'CLIENTES EN PISO Y ASESORES POR HORA', tx: 14, ty: 20, th: 't11', r: 3.2, tv: 't28', vx: 330, vy: 104, va: 'start', ax: 330, ay: 122,
+      barra: function (i, c) { return [21 + i * 48, 88 - c * 1.5, 18, c * 1.5]; },
+      hora: function (i) { return [30 + i * 48, 104, 'middle']; },
+      asesor: function (i, j) { return [18 + i * 48 + j * 8, 119]; },
+      pie: [[330, 54, 'start', 't-tinta t12 w6', 'Se van sin atender'], [330, 70, 'start', 't-gris t12 w5', 'de 18 a 20 h']]
+    });
+    var gHora = q('#fs-hora'), mHora = q('[data-m-hora]');
+
+    var gL = q('[data-leyenda]');
+    var leyenda = NOMBRES.map(function (nom, i) {
+      var g = nodo('g', { opacity: 0, transform: 'translate(' + [0, 108, 0, 108, 216][i] + ' ' + [0, 0, 16, 16, 0][i] + ')' }, gL);
+      nodo('circle', { cx: 0, cy: -4, r: 4.5, fill: COLOR[i] }, g);
+      nodo('text', { x: 9, y: 0, class: 't-gris t11 w6' }, g, nom.split(' ')[0]);
+      return g;
+    });
+
+    // ---------------------------------------------------------- mapa de calor
+    // Una mancha por perfil y zona; crece con las semanas y con los cambios.
+    var MANCHAS = [
+      { p: 0, x: 380, y: 140, r: 120 }, { p: 0, x: 320, y: 262, r: 90 },
+      { p: 1, x: 565, y: 250, r: 100 },
+      { p: 2, x: 560, y: 205, r: 95 }, { p: 2, x: 430, y: 135, r: 90 },
+      { p: 3, x: 230, y: 140, r: 80 },
+      { p: 2, x: 640, y: 178, r: 70, surtido: true },
+      { p: 4, x: 520, y: 270, r: 95 }
+    ];
+    var gC = q('[data-calor]');
+    MANCHAS.forEach(function (m) { m.el = nodo('circle', { cx: m.x, cy: m.y, r: m.r, fill: 'url(#fs-calor-' + m.p + ')', opacity: 0 }, gC); });
+
+    // ---------------------------------------------------------- gente
+    var semilla = 20261012;
+    function azar() { semilla |= 0; semilla = (semilla + 0x6d2b79f5) | 0; var t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }
+    function elegir(pesos) { var r = azar(), a = 0; for (var i = 0; i < pesos.length; i++) { a += pesos[i]; if (r < a) return i; } return pesos.length - 1; }
+    var ZONAS = [[[380, 136], [330, 250]], [[560, 230], [565, 290]], [[560, 200], [380, 136]], [[250, 136], [180, 250]], [[540, 260], [330, 250]]];
+    var CAJA = [534, 336], PUERTA_IN = [380, 418], PUERTA = [380, 392];
+    var adentro = [], afuera = [];
+    for (var w = 0.4; w < 18.6; w += 0.018) {
+      var e0 = estado(w);
+      // en el piso se exagera el efecto del aparador para que se vea; el tablero da el número real
+      var p = elegir(e0.s.map(function (v, i) { return i === 2 ? v + 0.18 * e0.ap : v; }));
+      var compra = azar() < e0.c[p] * 2.2;
+      var z = ZONAS[p][azar() < 0.6 ? 0 : 1];
+      var pide = (p === 2 || p === 0) && azar() < 0.35 * (1 - e0.su);
+      if (pide) z = [575, 200 + azar() * 90];
+      var lado = azar() < 0.5 ? -20 : 783;
+      adentro.push({ t0: w, dur: 0.5, p: p, compra: compra, pide: pide,
+        ruta: [[lado, 455 + azar() * 20], PUERTA_IN, PUERTA, [z[0] + (azar() - 0.5) * 40, z[1] + (azar() - 0.5) * 30], compra ? CAJA : [z[0] + 30 * (azar() - 0.5), z[1] + 20], PUERTA, PUERTA_IN, [lado < 0 ? 783 : -20, 462 + azar() * 16]] });
+    }
+    for (var w2 = 0.6; w2 < 18.4; w2 += 0.012) afuera.push({ t0: w2, dur: 0.17, p: elegir([0.30, 0.25, 0.33, 0.12, 0.12 * rampa(w2, 15.5, 16.3)]), y: 448 + azar() * 30, izq: azar() < 0.5 });
+    var TRAMOS = [0, 0.12, 0.17, 0.34, 0.66, 0.8, 0.87, 1];
+    function posicion(a, f) {
+      for (var i = 1; i < TRAMOS.length; i++) if (f <= TRAMOS[i]) {
+        var g = (f - TRAMOS[i - 1]) / (TRAMOS[i] - TRAMOS[i - 1]), A = a.ruta[i - 1], B = a.ruta[i];
+        return [lerp(A[0], B[0], g), lerp(A[1], B[1], g), i];
+      }
+      return a.ruta[a.ruta.length - 1].concat([TRAMOS.length]);
+    }
+    var gG = q('[data-gente]'), gQ = q('[data-preguntas]');
+    var poolIn = [], poolOut = [], poolQ = [];
+    for (var i = 0; i < 70; i++) poolIn.push(nodo('circle', { r: 5.6, opacity: 0 }, gG));
+    for (var j = 0; j < 22; j++) poolOut.push(nodo('circle', { r: 4.6, opacity: 0 }, gG));
+    for (var k = 0; k < 6; k++) {
+      var gq = nodo('g', { opacity: 0 }, gQ);
+      nodo('rect', { x: -8, y: -24, width: 16, height: 16, rx: 3, fill: '#fff', stroke: TINTA, 'stroke-width': 1.2 }, gq);
+      nodo('text', { x: 0, y: -12, 'text-anchor': 'middle', class: 't-tinta t12 w7' }, gq, '?');
+      poolQ.push(gq);
+    }
+
+    // ---------------------------------------------------------- foco de cada paso
+    // Qué se resalta en cada paso (lo demás se atenúa) y dónde va el marco.
+    var FOCO = [
+      { kpis: ['entran', 'compran'], b: [], z: ['contadores'], mt: [[24, 116, 398, 58]], mp: [[164, 322, 154, 68], [460, 276, 148, 68]] },
+      { kpis: [], b: ['perfiles'], z: ['gente', 'anaqueles', 'contadores'], mt: [[24, 306, 398, 106]], mp: [], calor: true },
+      { kpis: ['pasan'], b: ['piden'], z: ['banqueta', 'gente'], mt: [[24, 86, 398, 28], [24, 532, 398, 74]], mp: [[6, 434, 751, 78]] },
+      { kpis: ['entran'], b: [], z: ['aparador', 'gente'], mt: [[24, 116, 398, 28]], mp: [[110, 384, 540, 34]] },
+      { kpis: ['conv', 'attach'], b: ['dialogos'], z: [], mt: [[24, 176, 398, 58], [24, 420, 398, 108]], mp: [] },
+      { kpis: ['rotacion', 'saldos'], b: ['piden'], z: ['surtido', 'anaqueles'], mt: [[24, 236, 398, 58], [24, 532, 398, 74]], mp: [[598, 140, 90, 70]] },
+      { kpis: ['compran', 'conv'], b: [], z: ['gente'], mt: [[24, 146, 398, 58]], mp: [], mh: [[5, 74, 156, 26]] },
+      { kpis: ['entran', 'conv'], b: ['perfiles'], z: ['banqueta', 'gente', 'competidor'], mt: [[24, 116, 398, 28], [24, 176, 398, 28], [24, 306, 398, 118]], mp: [[430, 406, 314, 26]] }
+    ];
+    var ZP = {}, BP = {};
+    [].forEach.call(sec.querySelectorAll('.esc-fs-defs [data-z]'), function (el) { ZP[el.getAttribute('data-z')] = el; });
+    [].forEach.call(sec.querySelectorAll('.esc-fs-defs [data-b]'), function (el) { BP[el.getAttribute('data-b')] = el; });
+    var gMT = q('[data-marcos-tablero]'), gMP = q('[data-marcos-plano]'), gMH = q('[data-marcos-hora]');
+    function marcos(g, cajas, avance) {
+      while (g.firstChild) g.removeChild(g.firstChild);
+      cajas.forEach(function (c) {
+        // marco de plumón: se dibuja por partes conforme avanza el paso
+        var per = 2 * (c[2] + c[3]), largo = per * avance;
+        nodo('rect', { x: c[0], y: c[1], width: c[2], height: c[3], rx: 6, fill: 'none', stroke: PETRO, 'stroke-width': 3, 'stroke-dasharray': largo + ' ' + per }, g);
+      });
+    }
+    var TENUE = 0.22;
+
+    // ---------------------------------------------------------- pintar
+    var cal = q('[data-cal]'), semT = q('[data-semana-t]'), pasanT = q('[data-pasan]');
+    var cntE = q('[data-cnt-entran]'), cntV = q('[data-cnt-ventas]');
+    var apTinta = sec.querySelectorAll('[data-aparador-tinta]'), apTxt = q('[data-aparador-txt]');
+    var mTab = q('[data-m-tablero]'), capa = q('[data-capa-color]'), lente = q('[data-lente]'), escena = q('[data-escena]'), movil = q('[data-movil]');
+    var ultimo = -1, pasoActual = -1;
+
+    function colorDe(p, w) { return w >= REVELA[p] ? COLOR[p] : GRIS; }
+
+    function pintar(p) {
+      p = Math.round(p * 300) / 300;
+      if (p === ultimo) return;
+      ultimo = p;
+      var w = semanaDe(p);
+      var on = w >= 1;
+      var sem = Math.floor(w);
+      var e = estado(w), es = estado(sem);
+      var paso = 0;
+      while (paso < CORTES.length && p > CORTES[paso]) paso++;
+      var inicio = paso === 0 ? 0 : CORTES[paso - 1], fin = paso < CORTES.length ? CORTES[paso] : 1;
+      var avance = clamp((p - inicio) / ((fin - inicio) * 0.35), 0, 1);
+
+      if (paso !== pasoActual) {
+        pasos.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); });
+        ticks.forEach(function (el, i) { el.classList.toggle('is-on', i <= paso); });
+        if (pasoActual !== -1 && !reduce) { guia.classList.remove('cambia'); void guia.offsetWidth; guia.classList.add('cambia'); }
+        pasoActual = paso;
+      }
+
+      // Lente y color: gris antes; el lente abre la tienda a color; el color crece con las semanas.
+      var fl = suave(rampa(p, LENTE[0], LENTE[1]));
+      var sat = on ? lerp(0.75, 1.5, rampa(w, 1, 12)) : 0;
+      if (escena) {
+        var W = escena.clientWidth, H = escena.clientHeight;
+        var R = fl * Math.hypot(W, H);
+        capa.style.clipPath = 'circle(' + R.toFixed(1) + 'px at 27% 52%)';
+        capa.style.filter = 'saturate(' + sat.toFixed(2) + ')';
+        var visible = fl > 0 && fl < 1;
+        lente.style.opacity = visible ? 1 : 0;
+        lente.style.width = lente.style.height = (2 * R).toFixed(1) + 'px';
+      }
+      if (movil) movil.style.filter = 'grayscale(' + (1 - fl).toFixed(2) + ') saturate(' + (on ? sat : 1).toFixed(2) + ')';
+
+      cal.textContent = String(sem);
+      semT.textContent = 'Semana ' + sem;
+
+      // Contadores de la entrada y la caja: en el paso 1 corren durante la semana.
+      var fc = on ? 1 : clamp(w * 1.9, 0, 1); // los contadores llegan al total a media semana
+      cntE.textContent = fmt(Math.round((on ? es.entran : 1000) * fc));
+      cntV.textContent = fmt(Math.round((on ? es.compran : 120) * fc));
+
+      var foco = FOCO[paso];
+      // Cierre: en el último tramo se resaltan todos los indicadores juntos.
+      KPI.forEach(function (it) {
+        var sabe = it.antes || on;
+        var resaltado = foco.kpis.indexOf(it.k) >= 0;
+        it.val.textContent = !sabe ? 'sin dato' : on ? it.f(es) : fmt(Math.round((it.k === 'entran' ? 1000 : 120) * fc));
+        estilo(it.val, sabe ? 't-tinta t16 w6' : 't-gris t13 w5');
+        estilo(it.lbl, sabe ? 't-tinta t15 w5' : 't-gris t15 w5');
+        if (it.d && sabe && sem >= 1) {
+          var dd = delta(it, es);
+          it.del.textContent = dd.t;
+          it.del.setAttribute('fill', dd.bien ? PETRO : '#6b737d');
+        } else it.del.textContent = '';
+        var r = RANGO[it.k], pts = [];
+        for (var s = it.antes ? 0 : 1; s <= sem + 1e-6; s += 0.5) {
+          var v = it.k === 'conv' ? estado(s).conv : estado(s)[it.k];
+          pts.push((340 + (s / 18) * 74).toFixed(1) + ',' + (it.y - 2 - clamp((v - r[0]) / (r[1] - r[0]), 0, 1) * 16).toFixed(1));
+        }
+        it.lin.setAttribute('points', pts.length > 1 ? pts.join(' ') : '');
+        it.lin.setAttribute('stroke', resaltado && on ? PETRO : TINTA);
+        it.g.setAttribute('opacity', resaltado || paso === 0 && it.antes ? 1 : (paso === 0 ? 0.5 : TENUE));
+      });
+      Object.keys(BP).forEach(function (k) { BP[k].setAttribute('opacity', foco.b.indexOf(k) >= 0 ? 1 : TENUE); });
+      Object.keys(ZP).forEach(function (k) {
+        if (k === 'surtido' || k === 'leyenda2' || k === 'leyenda-calor' || k === 'competidor') return;
+        ZP[k].setAttribute('opacity', foco.z.indexOf(k) >= 0 || foco.z.length === 0 ? 1 : 0.35);
+      });
+      ZP.surtido.setAttribute('opacity', e.su > 0.1 ? (paso === 5 ? 1 : 0.35) : 0);
+      ZP.leyenda2.setAttribute('opacity', on ? 1 : 0);
+      ZP.competidor.setAttribute('opacity', e.ev.toFixed(2));
+      ZP['leyenda-calor'].setAttribute('opacity', w >= 1.6 ? 1 : 0);
+      marcos(gMT, foco.mt, avance);
+      marcos(gMP, foco.mp, avance);
+      marcos(gMH, (foco.mh || []).map(function (c) { return [c[0], c[1] + PICO * 27, c[2], c[3]]; }), avance);
+
+      // Tarjeta de plantilla: entra en su paso y se queda atenuada después.
+      gHora.setAttribute('opacity', paso < PASO_HORA ? 0 : paso === PASO_HORA ? clamp(avance * 2, 0, 1).toFixed(2) : 0.45);
+      [horaD, horaM].forEach(function (t) {
+        t.filas[VALLE][2].setAttribute('opacity', (1 - e.pl).toFixed(2));
+        t.filas[PICO][3].setAttribute('opacity', e.pl.toFixed(2));
+        t.v.textContent = fmt(e.sinAtender) + '%';
+        t.v.setAttribute('fill', e.pl > 0.5 ? PETRO : TINTA);
+        t.antes.setAttribute('opacity', e.pl > 0.5 ? 1 : 0);
+      });
+
+      filasP.forEach(function (f, i) {
+        f.g.setAttribute('opacity', w >= REVELA[i] ? 1 : 0);
+        f.tr.textContent = fmt(es.s[i] * 100) + '%';
+        f.co.textContent = fmt(es.c[i] * 100) + ' de 100';
+      });
+      leyenda.forEach(function (g, i) { g.setAttribute('opacity', w >= REVELA[i] ? 1 : 0); });
+      filasD.forEach(function (f, i) {
+        f.g.setAttribute('opacity', w >= 1.6 + i * 0.25 ? 1 : 0);
+        f.uso.textContent = fmt(es.uso[i]) + '%';
+        if (f.tacha) {
+          f.tacha.setAttribute('x2', 48 + 222 * e.tr);
+          estilo(f.tx, e.tr > 0.95 ? 't-gris t13 w5' : 't-tinta t13 w5');
+        }
+      });
+      filasN.forEach(function (f, i) { f.g.setAttribute('opacity', w >= 2.7 + i * 0.3 ? 1 : 0); f.v.textContent = fmt(es.piden[i]); });
+      pasanT.setAttribute('opacity', w >= 2.6 ? 1 : 0);
+      pasanT.textContent = 'Pasan frente: ' + fmt(Math.round(es.pasan / 10) * 10) + ' · entran: ' + fmt(Math.round(es.entran));
+      for (var a = 0; a < apTinta.length; a++) apTinta[a].setAttribute('opacity', (0.6 * e.ap).toFixed(2));
+      apTxt.setAttribute('opacity', e.ap > 0.2 ? 1 : 0);
+
+      // Mapa de calor: aparece con Floor Signal y crece con las semanas y los cambios.
+      MANCHAS.forEach(function (m) {
+        if (!on || w < REVELA[m.p]) { m.el.setAttribute('opacity', 0); return; }
+        var base = rampa(w, REVELA[m.p], REVELA[m.p] + 1.2) * (0.5 + 1.6 * e.s[m.p]);
+        if (m.p === 2) base *= 1 + 0.5 * e.ap;
+        if (m.surtido) base = e.su;
+        m.el.setAttribute('opacity', clamp(base, 0, 0.7).toFixed(2));
+        m.el.setAttribute('r', (m.r * (0.8 + 0.2 * rampa(w, 1, 12))).toFixed(1));
+      });
+
+      // Gente: no existe antes de Floor Signal; después, por perfil.
+      var iIn = 0, iQ = 0;
+      if (on) for (var n = 0; n < adentro.length && iIn < poolIn.length; n++) {
+        var ag = adentro[n], f0 = (w - ag.t0) / ag.dur;
+        if (f0 < 0 || f0 > 1) continue;
+        var pos = posicion(ag, f0), c = poolIn[iIn++];
+        c.setAttribute('cx', pos[0].toFixed(1)); c.setAttribute('cy', pos[1].toFixed(1));
+        c.setAttribute('fill', colorDe(ag.p, w)); c.setAttribute('opacity', 0.95);
+        var aro = ag.compra && pos[2] >= 5;
+        c.setAttribute('stroke', aro ? TINTA : 'none'); c.setAttribute('stroke-width', aro ? 2.4 : 0);
+        if (w >= 2.7 && ag.pide && pos[2] === 4 && iQ < poolQ.length) {
+          poolQ[iQ].setAttribute('transform', 'translate(' + pos[0].toFixed(1) + ' ' + pos[1].toFixed(1) + ')');
+          poolQ[iQ++].setAttribute('opacity', 1);
+        }
+      }
+      for (; iIn < poolIn.length; iIn++) poolIn[iIn].setAttribute('opacity', 0);
+      for (; iQ < poolQ.length; iQ++) poolQ[iQ].setAttribute('opacity', 0);
+      var iO = 0;
+      if (on) for (var m2 = 0; m2 < afuera.length && iO < poolOut.length; m2++) {
+        var pa = afuera[m2], f1 = (w - pa.t0) / pa.dur;
+        if (f1 < 0 || f1 > 1) continue;
+        var co = poolOut[iO++];
+        co.setAttribute('cx', (pa.izq ? lerp(-20, 783, f1) : lerp(783, -20, f1)).toFixed(1));
+        co.setAttribute('cy', pa.y.toFixed(1));
+        co.setAttribute('fill', colorDe(pa.p, w)); co.setAttribute('opacity', 0.55);
+      }
+      for (; iO < poolOut.length; iO++) poolOut[iO].setAttribute('opacity', 0);
+
+      if (mTab) {
+        mTab.setAttribute('viewBox', '882 ' + (138 + FRANJA[paso]) + ' 446 130');
+        // En un <svg> `hidden` solo funciona como atributo.
+        mTab.toggleAttribute('hidden', paso === PASO_HORA);
+        mHora.toggleAttribute('hidden', paso !== PASO_HORA);
+      }
+    }
+
+    // ---------------------------------------------------------- scroll
+    var topFijo = 72;
+    function medir() {
+      var vh = window.innerHeight, h = fijo.offsetHeight;
+      topFijo = window.innerWidth <= 900 ? 76 : Math.max(72, (vh - h) / 2 + 30);
+      fijo.style.top = topFijo + 'px';
+      wrap.style.height = reduce ? '' : h + vh * 4.5 + 'px';
+    }
+    function alScroll() {
+      var b = wrap.getBoundingClientRect();
+      var recorrido = wrap.offsetHeight - fijo.offsetHeight;
+      pintar(reduce || recorrido <= 0 ? 1 : clamp((topFijo - b.top) / recorrido, 0, 1));
+    }
+    var fija = null;
+    try { var v = parseFloat(new URLSearchParams(location.search).get('escena')); if (!isNaN(v)) fija = clamp(v, 0, 1); } catch (er) {}
+    medir();
+    if (fija !== null) { pintar(fija); return; }
+    alScroll();
+    window.addEventListener('resize', function () { medir(); ultimo = -1; alScroll(); });
+    window.addEventListener('load', function () { medir(); alScroll(); });
+    var t = false;
+    window.addEventListener('scroll', function () {
+      if (t) return;
+      t = true;
+      requestAnimationFrame(function () { t = false; alScroll(); });
+    }, { passive: true });
+  })();
+</script>

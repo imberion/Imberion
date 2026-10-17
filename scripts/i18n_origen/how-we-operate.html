@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8"/><link rel="icon" type="image/png" href="brand_assets/favicon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title id="page-title">How We Operate — Imberion</title>
+  <meta name="description" content="Principles that shape how Imberion builds, decides, and executes."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --navy:#1b2a3b;--navy-80:rgba(27,42,59,.8);--navy-40:rgba(27,42,59,.4);
+      --navy-12:rgba(27,42,59,.12);--navy-06:rgba(27,42,59,.06);
+      --paper:#f6f4f0;--paper-alt:#edeae4;--white:#fff;
+      --signal:#1b4332;--signal-lt:#d8ede1;--slate:#64748b;
+      --max:1140px;--r:4px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--navy);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%} a{color:inherit;text-decoration:none} ul{list-style:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 36px}
+    .section{padding:96px 0}
+    .section--dark{background:var(--navy);color:var(--white)}
+    .section--tint{background:var(--paper-alt)}
+    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.12;font-weight:400}
+    h2{font-size:clamp(2.1rem,4vw,3.2rem)}
+    .eyebrow{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);margin-bottom:14px}
+    .section--dark .eyebrow{color:rgba(255,255,255,.55)}
+    .lead{font-size:clamp(1.05rem,1.7vw,1.2rem);color:var(--navy-80);max-width:620px;line-height:1.7}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);padding:0 36px}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+    .nav-logo img{height:36px;width:auto}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a:not(.btn):not(.lang-btn){color:rgba(255,255,255,.65);font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+    .nav-links a.active-page{color:#fff}
+    .nav-right{display:flex;gap:14px;align-items:center}
+    .lang-toggle{display:flex;gap:2px;background:rgba(255,255,255,.08);border-radius:var(--r);padding:3px}
+    .lang-btn{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:2px;cursor:pointer;color:rgba(255,255,255,.4);transition:all .18s;border:none;background:transparent}
+    .lang-btn.active{background:rgba(255,255,255,.15);color:#fff}
+    .lang-btn:hover:not(.active){color:rgba(255,255,255,.7)}
+    .btn{display:inline-flex;align-items:center;padding:10px 22px;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+    .btn-primary{background:var(--white);color:var(--navy)}
+    .btn-primary:hover{background:var(--paper)}
+    /* PAGE HERO */
+    .page-hero{background:var(--navy);padding:140px 36px 88px;position:relative;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 60%,rgba(100,116,139,.18) 0%,transparent 60%);pointer-events:none}
+    .page-hero-content{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+    .page-hero .back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:13px;font-weight:500;margin-bottom:48px;transition:color .2s}
+    .page-hero .back:hover{color:#fff}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:300;color:#fff;line-height:1.05;max-width:680px;letter-spacing:-.01em}
+    .page-hero .sub{margin-top:28px;max-width:540px;font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(255,255,255,.55);line-height:1.7}
+    /* PRINCIPLES GRID */
+    .principles-section{padding:96px 0;background:var(--paper)}
+    .principles-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:64px;border-top:1px solid var(--navy-12)}
+    .principle-item{padding:36px 40px 36px 0;border-bottom:1px solid var(--navy-12)}
+    .principle-item:nth-child(even){padding-left:40px;padding-right:0;border-left:1px solid var(--navy-12)}
+    .principle-item .principle-label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);margin-bottom:6px}
+    .principle-item h4{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--navy);margin-bottom:8px}
+    .principle-item p{font-size:15px;color:var(--navy-80);line-height:1.65;max-width:420px}
+    /* DIVIDER */
+    .imb-divider{display:block;width:100%;height:90px;background:url('assets/textures/04_diagonal_section_divider.png') center/cover no-repeat;font-size:0;line-height:0;}
+    /* PRACTICAL SECTION */
+    .practical-section{padding:88px 0;background:var(--white)}
+    .practical-section h2{margin-bottom:48px;max-width:560px}
+    .practical-list{list-style:none;display:flex;flex-direction:column;gap:0;max-width:720px}
+    .practical-list li{font-size:clamp(1rem,1.4vw,1.1rem);color:var(--navy-80);line-height:1.7;padding:22px 0;border-bottom:1px solid var(--navy-12);display:flex;gap:20px;align-items:baseline}
+    .practical-list li::before{content:', ';color:var(--navy-12);flex-shrink:0;font-weight:300}
+    /* FOOTER */
+    footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:48px 0 36px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+    #footer-links a{font-size:13px;color:rgba(255,255,255,.4);transition:color .2s}
+    #footer-links a:hover{color:rgba(255,255,255,.85)}
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .principles-grid{grid-template-columns:1fr}
+      .principle-item:nth-child(even){padding-left:0;border-left:none}
+    }
+    @media(max-width:600px){
+      .container{padding:0 20px} nav{padding:0 20px} .nav-links{display:none}
+      .page-hero{padding:120px 20px 64px}
+      .principles-section{padding:72px 0}
+      .principles-section .container{padding:0 20px}
+      .practical-section{padding:64px 0}
+      .practical-section .container{padding:0 20px}
+      .principle-item{padding:28px 0}
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/css/imberion-textures-v2.css"/>
+  <link rel="stylesheet" href="assets/css/imberion-site.css"/>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="brand_assets/logo-white.png" alt="Imberion"/></a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html#how-it-works" id="nav-how">How It Works</a>
+      <a href="estrategia.html" id="nav-estrat">Strategy</a>
+      <a href="index.html#who" id="nav-who">Who It's For</a>
+      <a href="how-we-operate.html" id="nav-operate" class="active-page">How We Operate</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+      </div>
+      <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" id="nav-cta">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero hero-section">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <a href="index.html" class="back" id="hero-back">← Imberion</a>
+    <h1 id="hero-h1">How we operate.</h1>
+    <p class="sub" id="hero-sub">Principles that shape how we build, decide, and execute.</p>
+  </div>
+</section>
+
+<section class="principles-section section-paper">
+  <div class="container">
+    <div class="eyebrow" id="principles-eyebrow">Our principles</div>
+    <div class="principles-grid" id="principles-grid"></div>
+  </div>
+</section>
+
+<div class="imb-divider" aria-hidden="true"></div>
+
+<section class="practical-section section-white">
+  <div class="container">
+    <h2 id="practical-h2">What this means in practice</h2>
+    <ul class="practical-list" id="practical-list"></ul>
+  </div>
+</section>
+
+<footer class="section-dark-signal">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div><img src="brand_assets/logo-white.png" alt="Imberion" style="height:28px;width:auto;opacity:.7"/></div>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px;" id="footer-copy">© 2026 Imberion. All rights reserved.</div>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;" id="footer-links"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  "en": {
+    "lang": "en",
+    "page_title": "How We Operate — Imberion",
+    "nav_how": "How It Works",
+    "nav_estrat": "Strategy",
+    "nav_who": "Who It's For",
+    "nav_dist": "For Distributors",
+    "nav_operate": "How We Operate",
+    "nav_cta": "Book a Call",
+    "hero_back": "← Imberion",
+    "hero_h1": "How we operate.",
+    "hero_sub": "Principles that shape how we build, decide, and execute.",
+    "principles_eyebrow": "Our principles",
+    "principles": [
+      ["Impact", "We exist to elevate outcomes", "We are not here to deliver reports, models, or recommendations. We are here to make something better: a decision the client wouldn't have made, an approach they wouldn't have considered, growth where there was none. If nothing improves, we did nothing."],
+      ["Candor", "The full truth, delivered with judgment", "We present what we find, not what is convenient. We don't shape conclusions to protect relationships, fees, or egos. But we choose carefully how and when to say it. Truth without judgment can cause as much damage as silence. Trust is built this way: delivery after delivery, without a single act of dishonesty."],
+      ["Integrity", "We do the right thing, even when it costs us", "When ethics and business conflict, ethics wins. We reject work that contradicts our values. We point out what others prefer to ignore. We don't participate in decisions that harm third parties, even when they are legal and profitable. Our reputation is built on the decisions no one sees."],
+      ["Alignment", "Challenge without ego, execute without reservation", "The best idea wins, regardless of who it comes from. Debate is rigorous, open, and without hierarchy. But once a decision is made, alignment is total and execution is immediate. There is no such thing as half-commitment."],
+      ["Bias for Action", "Move with what you have", "We distinguish between decisions that deserve rigor and those that require speed. When it's irreversible, we think deeply and understand the implications before deciding. When it's reversible, we move with imperfect information and adjust along the way. Analysis paralysis is as costly as recklessness. The default is to act."],
+      ["Focus", "We know where we play", "We know what we're good at and we stay there. Our value comes from depth, not breadth. We can support, connect, or manage on adjacent topics, but we don't pretend to be experts in what we're not. Taking on everything is the fastest path to irrelevance. When something is not our game, we say so, even when there is money on the table."],
+      ["Excellence", "The highest standard is the internal one", "We demand more of ourselves than any client ever would. We give direct feedback, assume good intent, and hold each other to a level we don't negotiate. We are selective about who joins the team and who we partner with. Mistakes are expected and used: do a quick postmortem, learn, move on. But when the pattern is clear and the fit isn't there, we act fast. Every person who passes through Imberion should leave a better professional than they arrived, in judgment, in rigor, and in capability. Internal mediocrity destroys external credibility."],
+      ["Continuous Improvement", "We compete with our last version", "We don't compete against others. Every project is an opportunity to raise what we consider good enough. The ambition is not to win a market, it is to build a firm that becomes increasingly difficult to match. That is achieved through a passion for improving, not comfort with what has been accomplished."]
+    ],
+    "practical_h2": "What this means in practice",
+    "practical": [
+      "We don't stop at recommendations, we stay until value is captured",
+      "We say what others won't, and stand behind it",
+      "We don't overextend, we partner where needed",
+      "We move fast, but never blindly",
+      "We improve every engagement, systematically"
+    ],
+    "footer_copy": "© 2026 Imberion. All rights reserved.",
+    "footer_links": [
+      ["How It Works", "index.html#how-it-works"],
+      ["Who It's For", "index.html#who"],
+      ["For Distributors", "distribuidores.html"],
+      ["How We Operate", "how-we-operate.html"],
+      ["Book a Call", "https://zcal.co/rodrigoimberion/30min"],
+      ["Contact", "mailto:hola@imberion.com"]
+    ]
+  },
+  "es": {
+    "lang": "es",
+    "page_title": "Cómo Operamos, Imberion",
+    "nav_how": "Cómo Funciona",
+    "nav_estrat": "Estrategia",
+    "nav_who": "Para Quién",
+    "nav_dist": "Para Distribuidores",
+    "nav_operate": "Cómo operamos",
+    "nav_cta": "Agendar llamada",
+    "hero_back": "← Imberion",
+    "hero_h1": "Cómo operamos.",
+    "hero_sub": "Principios que definen cómo construimos, decidimos y ejecutamos.",
+    "principles_eyebrow": "Nuestros principios",
+    "principles": [
+      ["Impacto", "Existimos para elevar resultados", "No estamos aquí para entregar reportes, modelos o recomendaciones. Estamos para que algo mejore: que el cliente tome una decisión que no habría tomado, que opere de una forma que no habría considerado, que crezca donde no estaba creciendo. Si nada mejora, nada hicimos."],
+      ["Candor", "La verdad completa, dicha con prudencia", "Presentamos lo que encontramos, no lo que conviene. No moldeamos conclusiones para proteger relaciones, fees o egos. Pero elegimos bien cómo y cuándo decirlo. La verdad sin juicio puede dañar tanto como el silencio. Así se construye confianza: entrega tras entrega, sin un solo acto de deshonestidad."],
+      ["Integridad", "Hacemos lo correcto, aunque cueste", "Cuando la ética y el negocio entran en conflicto, la ética gana. Rechazamos trabajo que contradiga nuestros valores. Señalamos lo que otros prefieren ignorar. No participamos en decisiones que perjudiquen a terceros, incluso cuando son legales y rentables. Nuestra reputación se construye en las decisiones que nadie ve."],
+      ["Alineación", "Cuestiona sin ego, ejecuta sin reserva", "La mejor idea gana, sin importar de quién venga. El debate es riguroso, abierto y sin jerarquía. Pero una vez tomada la decisión, la alineación es total y la ejecución es inmediata. No existe el compromiso a medias."],
+      ["Sesgo hacia la acción", "Avanza con lo que tienes", "Diferenciamos entre decisiones que merecen rigor y las que merecen velocidad. Cuando es irreversible, pensamos con profundidad y entendemos bien sus implicaciones. Cuando es reversible, avanzamos con información imperfecta y corregimos en el camino. La parálisis por análisis es tan costosa como la imprudencia. El default es actuar."],
+      ["Enfoque", "Sabemos dónde jugamos", "Sabemos en qué somos buenos y nos mantenemos ahí. Nuestro valor está en la profundidad, no en la amplitud. Podemos acompañar, conectar o gestionar en temas adyacentes, pero no pretendemos ser expertos en lo que no somos. Entrarle a todo es el camino más rápido a la irrelevancia. Cuando algo no es nuestro juego, lo decimos, aunque haya dinero en la mesa."],
+      ["Excelencia", "El estándar más alto es el interno", "Nos exigimos más de lo que cualquier cliente nos exigiría. Damos retroalimentación directa, asumimos buena intención, y nos sostenemos mutuamente a un nivel que no negociamos. Somos selectivos con quién entra al equipo y con quién nos asociamos. Los errores se esperan y se aprovechan: se hace un postmortem rápido, se aprende, y se avanza. Pero cuando el patrón es claro y el fit no está, actuamos rápido. Cada persona que pase por Imberion debe salir siendo mejor profesional de lo que llegó, en criterio, en rigor y en capacidad. La mediocridad interna destruye la credibilidad externa."],
+      ["Mejora continua", "Competimos con nuestra última versión", "No competimos contra otros. Cada proyecto es una oportunidad de elevar lo que consideramos suficiente. La ambición no es ganar un mercado, es construir una firma cada vez más difícil de igualar. Eso se logra con pasión por mejorar, no con conformidad con lo logrado."]
+    ],
+    "practical_h2": "Lo que esto significa en la práctica",
+    "practical": [
+      "No nos detenemos en recomendaciones, nos quedamos hasta capturar valor",
+      "Decimos lo que otros no dirían, y lo sostenemos",
+      "No nos sobreextendemos, nos apoyamos en partners cuando hace falta",
+      "Nos movemos rápido, pero nunca a ciegas",
+      "Mejoramos cada engagement, de forma sistemática"
+    ],
+    "footer_copy": "© 2026 Imberion. Todos los derechos reservados.",
+    "footer_links": [
+      ["Cómo Funciona", "index.html#how-it-works"],
+      ["Para Quién", "index.html#who"],
+      ["Para Distribuidores", "distribuidores.html"],
+      ["Cómo operamos", "how-we-operate.html"],
+      ["Agendar llamada", "https://zcal.co/rodrigoimberion/30min"],
+      ["Contacto", "mailto:hola@imberion.com"]
+    ]
+  },
+  "pt": {
+    "lang": "pt",
+    "page_title": "Como Operamos, Imberion",
+    "nav_how": "Como Funciona",
+    "nav_estrat": "Estratégia",
+    "nav_who": "Para Quem",
+    "nav_dist": "Para Distribuidores",
+    "nav_operate": "Como operamos",
+    "nav_cta": "Agendar chamada",
+    "hero_back": "← Imberion",
+    "hero_h1": "Como operamos.",
+    "hero_sub": "Princípios que definem como construímos, decidimos e executamos.",
+    "principles_eyebrow": "Nossos princípios",
+    "principles": [
+      ["Impacto", "Existimos para elevar resultados", "Não estamos aqui para entregar relatórios, modelos ou recomendações. Estamos aqui para que algo melhore: uma decisão que o cliente não teria tomado, uma abordagem que não teria considerado, crescimento onde não havia. Se nada melhorar, nada fizemos."],
+      ["Candor", "A verdade completa, dita com prudência", "Apresentamos o que encontramos, não o que é conveniente. Não moldamos conclusões para proteger relacionamentos, fees ou egos. Mas escolhemos bem como e quando dizê-la. A verdade sem julgamento pode causar tanto dano quanto o silêncio. É assim que se constrói confiança: entrega após entrega, sem um único ato de desonestidade."],
+      ["Integridade", "Fazemos o que é certo, mesmo que custe", "Quando ética e negócio entram em conflito, a ética vence. Recusamos trabalho que contradiga nossos valores. Apontamos o que outros preferem ignorar. Não participamos de decisões que prejudiquem terceiros, mesmo quando são legais e rentáveis. Nossa reputação se constrói nas decisões que ninguém vê."],
+      ["Alinhamento", "Questione sem ego, execute sem reservas", "A melhor ideia vence, independentemente de quem ela venha. O debate é rigoroso, aberto e sem hierarquia. Mas uma vez tomada a decisão, o alinhamento é total e a execução é imediata. Não existe meio comprometimento."],
+      ["Viés para Ação", "Avance com o que você tem", "Distinguimos entre decisões que merecem rigor e as que requerem velocidade. Quando é irreversível, pensamos profundamente e entendemos as implicações antes de decidir. Quando é reversível, avançamos com informação imperfeita e ajustamos no caminho. A paralisia por análise é tão custosa quanto a imprudência. O padrão é agir."],
+      ["Foco", "Sabemos onde jogamos", "Sabemos no que somos bons e nos mantemos nisso. Nosso valor vem da profundidade, não da amplitude. Podemos apoiar, conectar ou gerenciar em tópicos adjacentes, mas não fingimos ser especialistas no que não somos. Entrar em tudo é o caminho mais rápido para a irrelevância. Quando algo não é nosso jogo, dizemos isso, mesmo quando há dinheiro na mesa."],
+      ["Excelência", "O padrão mais alto é o interno", "Exigimos mais de nós mesmos do que qualquer cliente jamais exigiria. Damos feedback direto, assumimos boa intenção e nos mantemos mutuamente em um nível que não negociamos. Somos seletivos quanto a quem entra na equipe e com quem nos associamos. Erros são esperados e aproveitados: faz-se um postmortem rápido, aprende-se e segue-se em frente. Mas quando o padrão é claro e o fit não está lá, agimos rápido. Cada pessoa que passe pela Imberion deve sair sendo um profissional melhor do que chegou, em julgamento, em rigor e em capacidade. A mediocridade interna destrói a credibilidade externa."],
+      ["Melhoria Contínua", "Competimos com nossa última versão", "Não competimos contra outros. Cada projeto é uma oportunidade de elevar o que consideramos suficiente. A ambição não é ganhar um mercado, é construir uma firma cada vez mais difícil de igualar. Isso se alcança com paixão por melhorar, não com conformidade com o que foi conquistado."]
+    ],
+    "practical_h2": "O que isso significa na prática",
+    "practical": [
+      "Não paramos em recomendações, seguimos até capturar valor",
+      "Dizemos o que outros não diriam, e sustentamos isso",
+      "Não nos estendemos além do necessário, trabalhamos com parceiros quando faz sentido",
+      "Nos movemos rápido, mas nunca às cegas",
+      "Melhoramos cada engagement, de forma sistemática"
+    ],
+    "footer_copy": "© 2026 Imberion. Todos os direitos reservados.",
+    "footer_links": [
+      ["Como Funciona", "index.html#how-it-works"],
+      ["Para Quem", "index.html#who"],
+      ["Para Distribuidores", "distribuidores.html"],
+      ["Como operamos", "how-we-operate.html"],
+      ["Agendar chamada", "https://zcal.co/rodrigoimberion/30min"],
+      ["Contato", "mailto:hola@imberion.com"]
+    ]
+  }
+};
+
+function setLang(lang) {
+  const t = T[lang] || T['en'];
+  document.getElementById('html-root').setAttribute('lang', t.lang);
+  document.getElementById('page-title').textContent = t.page_title;
+
+  const fields = {
+    'hero-back': 'hero_back',
+    'hero-h1': 'hero_h1',
+    'hero-sub': 'hero_sub',
+    'principles-eyebrow': 'principles_eyebrow',
+    'practical-h2': 'practical_h2',
+    'footer-copy': 'footer_copy',
+    'nav-how': 'nav_how',
+    'nav-estrat': 'nav_estrat',
+    'nav-who': 'nav_who',
+    'nav-operate': 'nav_operate',
+    'nav-cta': 'nav_cta'
+  };
+  Object.entries(fields).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if(el && t[key] !== undefined) el.textContent = t[key];
+  });
+
+  const pg = document.getElementById('principles-grid');
+  if(pg && t.principles)
+    pg.innerHTML = t.principles.map(p =>
+      `<div class="principle-item"><div class="principle-label">${p[0]}</div><h4>${p[1]}</h4><p>${p[2]}</p></div>`
+    ).join('');
+
+  const pl = document.getElementById('practical-list');
+  if(pl && t.practical)
+    pl.innerHTML = t.practical.map(item =>
+      `<li>${item}</li>`
+    ).join('');
+
+  const fl = document.getElementById('footer-links');
+  if(fl && t.footer_links)
+    fl.innerHTML = t.footer_links.map(l => `<a href="${l[1]}">${l[0]}</a>`).join('');
+
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang)
+  );
+  try{localStorage.setItem('imb_lang',lang);}catch(e){}
+}
+
+function detectLang() {
+  return ['en','es','pt'].includes((navigator.language||'es').slice(0,2))
+    ? (navigator.language||'es').slice(0,2)
+    : 'es';
+}
+
+setLang((function(){try{var s=localStorage.getItem('imb_lang');if(['en','es','pt'].indexOf(s)>-1)return s;}catch(e){}return detectLang();})());
+
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.getAttribute('data-lang')))
+);
+</script>
+
+<!-- ── UX Layer: scroll-reveal · nav elevation ── -->
+<style>
+.imb-reveal{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .42s cubic-bezier(.2,.8,.2,1),
+             transform .42s cubic-bezier(.2,.8,.2,1);
+}
+.imb-reveal.imb-in{opacity:1;transform:none}
+.imb-reveal[data-d="1"]{transition-delay:.07s}
+.imb-reveal[data-d="2"]{transition-delay:.14s}
+.imb-reveal[data-d="3"]{transition-delay:.21s}
+.imb-reveal[data-d="4"]{transition-delay:.28s}
+.imb-reveal[data-d="5"]{transition-delay:.35s}
+@media(prefers-reduced-motion:reduce){
+  .imb-reveal{opacity:1;transform:none;transition:none}
+}
+nav{transition:border-bottom-color .22s cubic-bezier(.4,0,.2,1),
+              box-shadow .22s cubic-bezier(.4,0,.2,1)}
+nav.imb-elevated{
+  border-bottom-color:rgba(255,255,255,.18);
+  box-shadow:0 2px 24px rgba(0,0,0,.26)
+}
+</style>
+<script>
+(function(){
+  /* ── Nav elevation on scroll ── */
+  var nav = document.querySelector('nav');
+  function syncNav(){ if(nav) nav.classList.toggle('imb-elevated', window.scrollY > 80); }
+  window.addEventListener('scroll', syncNav, {passive:true});
+  syncNav();
+
+  /* Guard: skip animation setup if user prefers reduced motion */
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+  /* ── IntersectionObserver ── */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('imb-in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.07, rootMargin: '0px 0px -28px 0px'});
+
+  function reveal(el, delay){
+    if(!el || el.classList.contains('imb-reveal')) return;
+    el.classList.add('imb-reveal');
+    if(delay) el.setAttribute('data-d', delay);
+    io.observe(el);
+  }
+
+  /* ── Page hero ── */
+  ['.page-hero .back', '.page-hero h1', '.page-hero .sub'].forEach(function(sel){
+    var el = document.querySelector(sel);
+    if(el) reveal(el);
+  });
+
+  /* ── Section headers ── */
+  var eyebrow = document.querySelector('.principles-section .eyebrow');
+  if(eyebrow) reveal(eyebrow);
+
+  var practicalH2 = document.querySelector('.practical-section h2');
+  if(practicalH2) reveal(practicalH2);
+
+  /* ── Divider ── */
+  var divider = document.querySelector('.imb-divider');
+  if(divider) reveal(divider);
+
+  /* ── Principle items: staggered, reset every 5 ── */
+  document.querySelectorAll('.principle-item').forEach(function(el, i){
+    reveal(el, (i % 5) + 1);
+  });
+
+  /* ── Practical list items: staggered ── */
+  document.querySelectorAll('.practical-list li').forEach(function(el, i){
+    reveal(el, Math.min(i + 1, 5));
+  });
+})();
+</script>
+<script src="assets/js/imberion-site.js"></script>
+</body>
+</html>

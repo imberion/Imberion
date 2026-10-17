@@ -1,0 +1,77 @@
+/* Cómo operamos: rejilla de principios + lista de práctica. Port del <style>
+   inline de how-we-operate.html. */
+
+.principles-section { padding: 96px 0; }
+/* Rejilla de hairlines: el contenedor pinta arriba e izquierda, cada celda
+   derecha y abajo. Así la línea se dibuja una sola vez y la rejilla puede
+   cambiar de número de columnas sin que ningún nth-child se desalinee. */
+.principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 64px;
+  border-top: 1px solid var(--navy-12);
+  border-left: 1px solid var(--navy-12);
+}
+.principle-item {
+  padding: clamp(28px, 2.2vw, 44px) clamp(26px, 2vw, 40px);
+  border-right: 1px solid var(--navy-12);
+  border-bottom: 1px solid var(--navy-12);
+}
+.principle-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gray-blue);
+  margin-bottom: 6px;
+}
+.principle-item h4 {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.principle-item p { font-size: clamp(14.5px, 0.85vw, 16px); color: var(--navy-72); line-height: 1.65; max-width: 46ch; }
+
+.practical-section { padding: 88px 0; }
+.practical-section h2 { margin-bottom: 48px; max-width: 18ch; }
+.practical-list { display: flex; flex-direction: column; width: min(100%, 68ch); }
+.practical-list li {
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--navy-72);
+  line-height: 1.7;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--navy-12);
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+/* El rombo del divisor de marca, en chico. En how-we-operate.html este ::before
+   traía la cadena ", " literal, un glifo que se corrompió en algún momento. */
+.practical-list li::before {
+  content: "";
+  width: 5px; height: 5px;
+  border: 1px solid var(--gray-blue);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  position: relative;
+  top: -2px;
+}
+
+/* Ocho principios: en monitor grande son dos filas de cuatro, no cuatro de dos. */
+@media (min-width: 1600px) {
+  .principles-grid { grid-template-columns: repeat(4, 1fr); }
+  .principles-section { padding: 150px 0; }
+  .practical-section { padding: 140px 0; }
+}
+@media (max-width: 960px) {
+  .principles-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .principles-section { padding: 72px 0; }
+  .practical-section { padding: 64px 0; }
+  .principle-item { padding: 26px 22px; }
+}

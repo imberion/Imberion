@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import { meta } from '../../lib/meta';
+
+const locale = 'en' as const;
+const m = meta('home', locale);
+---
+
+<Base title={m.title} description={m.description} locale={locale} rutaEs="">
+  <Home locale={locale} />
+</Base>

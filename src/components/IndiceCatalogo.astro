@@ -1,0 +1,372 @@
+---
+// Índice del catálogo. Las tres rutas (/catalogo/, /en/catalog/, /pt/catalogo/)
+// sólo pasan el locale; toda la lógica vive aquí.
+import type { Locale } from '../i18n/index';
+import Base from '../layouts/Base.astro';
+import {
+  FAMILIAS,
+  FAMILIAS_SIN_FICHA,
+  SECCIONES_EXTRA,
+  contenidoFicha,
+  contenidoIndice,
+  herramientasDeFamilia,
+  herramientasDeSeccion,
+  hrefFicha,
+  porLocale,
+} from '../lib/catalogo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = contenidoIndice(locale);
+
+interface Tarjeta {
+  slug: string;
+  nombre: string;
+  lead: string;
+  href: string;
+}
+
+function tarjetas(slugs: { slug: string }[]): Tarjeta[] {
+  return slugs.map(({ slug }) => {
+    const ficha = contenidoFicha(slug, locale);
+    return { slug, nombre: ficha.nombre, lead: ficha.hero_lead, href: hrefFicha(locale, slug) };
+  });
+}
+
+interface Grupo {
+  id: string;
+  num: string;
+  titulo: string;
+  etiqueta: string | null;
+  intro: string;
+  tarjetas: Tarjeta[];
+  nota: string | null;
+  oscuro: boolean;
+  parejas: boolean;
+}
+
+// La línea de una familia sin ficha a veces coincide con su intro. Repetir la
+// misma frase dos veces seguidas se lee como un error de armado, así que en ese
+// caso la nota no se pinta.
+function notaSiAporta(nota: string | null, intro: string): string | null {
+  if (nota === null) return null;
+  const normaliza = (v: string) => v.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  return normaliza(nota) === normaliza(intro) ? null : nota;
+}
+
+const grupos: Grupo[] = [];
+
+FAMILIAS.forEach((f, i) => {
+  const sinFicha = FAMILIAS_SIN_FICHA[f.id];
+  grupos.push({
+    id: f.id,
+    num: String(i + 1).padStart(2, '0'),
+    titulo: f.nombre,
+    etiqueta: porLocale(f, 'verbo', locale),
+    intro: c.familia_intro[f.id],
+    tarjetas: tarjetas(herramientasDeFamilia(f.id)),
+    nota: notaSiAporta(sinFicha ? porLocale(sinFicha, 'linea', locale) : null, c.familia_intro[f.id]),
+    oscuro: false,
+    parejas: false,
+  });
+});
+
+SECCIONES_EXTRA.forEach((s, i) => {
+  grupos.push({
+    id: s.id,
+    num: String(FAMILIAS.length + i + 1).padStart(2, '0'),
+    titulo: porLocale(s, 'titulo', locale),
+    etiqueta: null,
+    intro: c.seccion_intro[s.id],
+    tarjetas: tarjetas(herramientasDeSeccion(s.id)),
+    nota: null,
+    // Estrategia de Crecimiento es una oferta distinta del resto del catálogo,
+    // y la banda oscura es lo que lo dice sin necesidad de explicarlo.
+    oscuro: s.id === 'estrategia',
+    parejas: s.id === 'estrategia',
+  });
+});
+---
+
+<Base title={c.__title} description={c.hero_lead} locale={locale} rutaEs="catalogo">
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="eyebrow">{c.hero_eyebrow}</div>
+      <h1 set:html={c.hero_h1} />
+      <p class="lead" set:html={c.hero_lead} />
+    </div>
+  </section>
+
+  {
+    grupos.map((g, i) => (
+      <section
+        class:list={['grupo', { 'grupo--dark': g.oscuro, 'grupo--primero': i === 0 }]}
+        id={g.id}
+      >
+        <div class="container">
+          <div class="fila">
+            <div class="cabecera">
+              <div class="sec-head">
+                <span class="sec-num">{g.num}</span>
+                {g.etiqueta && <span class="eyebrow">{g.etiqueta}</span>}
+              </div>
+              <h2>{g.titulo}</h2>
+              <p class="intro" set:html={g.intro} />
+            </div>
+
+            <div class="cuerpo">
+              {g.tarjetas.length > 0 && (
+                <div
+                  class:list={['rejilla', { 'rejilla--parejas': g.parejas }]}
+                  style={`--n:${g.tarjetas.length}`}
+                >
+                  {g.tarjetas.map((t) => (
+                    <a class="tarjeta" href={t.href}>
+                      <h3>{t.nombre}</h3>
+                      <p set:html={t.lead} />
+                      <span class="ver">
+                        {c.ver_ficha}
+                        <span class="btn-arrow" aria-hidden="true">
+                          →
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {g.nota && <p class="nota" set:html={g.nota} />}
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  /* site.css pinta .lead en navy-72, que sobre el hero navy queda ilegible.
+     Los HTML del sitio viejo lo corregían en su <style> por página; el shell
+     de v2 todavía no, así que se corrige aquí. */
+  .page-hero .lead {
+    color: var(--white-65);
+  }
+
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    line-height: 1.12;
+    font-weight: 300;
+  }
+
+  .grupo {
+    padding: clamp(52px, 5vw, 108px) 0;
+    border-top: 1px solid var(--navy-12);
+  }
+  .grupo--primero {
+    padding-top: clamp(64px, 6vw, 128px);
+    border-top: none;
+  }
+
+  .grupo h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  }
+
+  .sec-head {
+    /* .sec-num ya viene en DM Sans con cifras tabulares desde site.css. */
+    margin-bottom: 12px;
+  }
+  .sec-head .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+
+  .intro {
+    margin-top: 16px;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--navy-72);
+  }
+
+  /* Rejilla de hairlines: el contenedor pinta el borde superior e izquierdo y
+     cada tarjeta el derecho e inferior, así cada línea se dibuja una sola vez
+     y una fila incompleta no deja huecos de color. */
+  /* La rejilla llena siempre el ancho de su columna: ya no hay tope por número
+     de tarjetas, porque la columna derecha es la que acota. Una ficha ocupa la
+     columna completa, dos la parten a la mitad, cuatro se reparten según quepa.
+     Sin background propio: las celdas sobrantes de la última fila muestran el
+     papel de la sección en vez de un hueco blanco. */
+  .rejilla {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    border-top: 1px solid var(--navy-12);
+    border-left: 1px solid var(--navy-12);
+  }
+  /* Estrategia de Crecimiento se lee en pares: tarjetas más anchas, dos por
+     hilera en monitor grande. */
+  .rejilla--parejas {
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  }
+
+  /* La familia es una fila, no un bloque apilado: cabecera a la izquierda y
+     fichas a la derecha, el mismo patrón del índice de industrias. Apilada,
+     una familia de dos fichas dejaba más de medio monitor vacío a la derecha
+     (invariante 16). Debajo de 1100px no hay ancho para dos columnas y vuelve
+     al apilado. */
+  @media (min-width: 1100px) {
+    .fila {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+      gap: clamp(40px, 3.6vw, 88px);
+      align-items: start;
+    }
+    /* La columna de fichas puede ser mucho más alta que la cabecera; pegada,
+       el nombre de la familia sigue visible mientras se recorren sus fichas.
+       El 70px del nav fijo más aire. */
+    .cabecera {
+      position: sticky;
+      top: 104px;
+    }
+    .intro {
+      max-width: 42ch;
+    }
+    .rejilla {
+      margin-top: 0;
+    }
+  }
+
+  .tarjeta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: clamp(26px, 1.8vw, 38px) clamp(26px, 1.8vw, 34px) clamp(22px, 1.5vw, 30px);
+    border-right: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+    background: var(--white);
+    transition: background 0.25s var(--ease);
+  }
+  .tarjeta:hover {
+    background: var(--paper);
+  }
+  .tarjeta h3 {
+    font-size: 1.32rem;
+    font-weight: 400;
+    color: var(--navy);
+  }
+  .tarjeta p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--navy-72);
+    flex: 1;
+  }
+  .ver {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .ver .btn-arrow {
+    transition: transform 0.35s var(--ease);
+  }
+  .tarjeta:hover .ver {
+    color: var(--navy);
+  }
+  .tarjeta:hover .ver .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .nota {
+    margin-top: 36px;
+    padding: 26px 28px;
+    border: 1px solid var(--navy-12);
+    background: var(--white);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--navy-72);
+    max-width: 74ch;
+  }
+  .rejilla + .nota {
+    margin-top: 22px;
+  }
+
+  /* ---------- banda oscura (Estrategia de Crecimiento) ---------- */
+  .grupo--dark {
+    background: var(--navy);
+    color: #fff;
+    border-top: none;
+  }
+  .grupo--dark h2 {
+    color: #fff;
+  }
+  /* site.css aclara .sec-num sobre .section--dark; esta banda usa otra clase. */
+  .grupo--dark .sec-num {
+    color: var(--white-45);
+  }
+  .grupo--dark .sec-num::after {
+    background: var(--white-25);
+  }
+  .grupo--dark .eyebrow {
+    color: var(--slate-soft);
+  }
+  .grupo--dark .intro {
+    color: var(--white-65);
+  }
+  .grupo--dark .rejilla {
+    border-top-color: var(--white-12);
+    border-left-color: var(--white-12);
+    background: transparent;
+  }
+  .grupo--dark .tarjeta {
+    background: rgba(255, 255, 255, 0.04);
+    border-right-color: var(--white-12);
+    border-bottom-color: var(--white-12);
+  }
+  .grupo--dark .tarjeta:hover {
+    background: rgba(255, 255, 255, 0.09);
+  }
+  .grupo--dark .tarjeta h3 {
+    color: #fff;
+  }
+  .grupo--dark .tarjeta p {
+    color: var(--white-65);
+  }
+  .grupo--dark .ver {
+    color: var(--slate-soft);
+  }
+  .grupo--dark .tarjeta:hover .ver {
+    color: #fff;
+  }
+
+  /* Apilada (por debajo de 1100px) la rejilla no tiene columna que la acote,
+     así que conserva el tope por número de tarjetas: sin él, una familia de una
+     sola herramienta estiraba esa tarjeta a todo el ancho del contenedor. */
+  @media (max-width: 1099.98px) {
+    .rejilla {
+      width: min(100%, calc(var(--n, 4) * 520px));
+    }
+    .rejilla--parejas {
+      width: min(100%, calc(var(--n, 2) * 620px));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .rejilla,
+    .rejilla--parejas {
+      width: 100%;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><link rel="icon" type="image/png" href="brand_assets/favicon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Imberion — Market Signal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0A1828;--navy-deep:#06101C;--navy-soft:#13263b;--navy-80:rgba(10,24,40,.8);--navy-60:rgba(10,24,40,.6);--navy-72:rgba(10,24,40,.72);--navy-40:rgba(10,24,40,.4);--navy-12:rgba(10,24,40,.12);--navy-06:rgba(10,24,40,.06);--gray-blue:#6F859C;--slate-soft:#8FA3B8;--white-65:rgba(255,255,255,.65);--white-45:rgba(255,255,255,.45);--white-12:rgba(255,255,255,.12);--paper:#EDEAE4;--paper-alt:#E2DED7;--white:#fff;--max:1140px;--r:3px;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',-apple-system,sans-serif;--ease:cubic-bezier(.19,1,.22,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);background:var(--paper);color:var(--navy);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 36px}
+    .section{padding:96px 0}
+    .section--dark{background:var(--navy);color:#fff}
+    .section--dark h2{color:#fff}
+    h1,h2,h3,h4{font-family:var(--font-serif);line-height:1.12;font-weight:400;letter-spacing:-.012em}
+    h2{font-size:clamp(2rem,3.6vw,3rem);font-weight:300}
+    .eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:14px}
+    .section--dark .eyebrow{color:var(--slate-soft)}
+    .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--navy-80);max-width:640px;line-height:1.7}
+    .section--dark .lead{color:var(--white-65)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,18,30,.72);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--white-12);padding:0 36px}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-logo img{height:34px;width:auto}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a:not(.btn):not(.lang-btn){color:var(--white-65);font-size:13.5px;font-weight:500;transition:color .2s}
+    .nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+    .nav-right{display:flex;gap:14px;align-items:center}
+    .lang-toggle{display:flex;gap:1px;background:var(--white-12);border-radius:var(--r);padding:3px}
+    .lang-btn{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:2px;cursor:pointer;color:var(--white-45);transition:all .2s;border:none;background:transparent}
+    .lang-btn.active{background:var(--white-12);color:#fff}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:var(--r);font-family:var(--font-sans);font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .25s var(--ease)}
+    .btn-primary{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+    .btn-primary:hover{background:#fff}
+    .page-hero{background:var(--navy);padding:150px 36px 92px;position:relative;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 46%,rgba(111,133,156,.22) 0%,transparent 60%);pointer-events:none}
+    .page-hero-content{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+    .page-hero .back{display:inline-flex;align-items:center;gap:8px;color:var(--white-45);font-size:13px;font-weight:500;margin-bottom:38px;transition:color .2s}
+    .page-hero .back:hover{color:#fff}
+    .page-hero .eyebrow{color:var(--slate-soft)}
+    .page-hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);font-weight:300;color:#fff;line-height:1.06;max-width:840px;letter-spacing:-.02em}
+    .page-hero .lead{margin-top:24px;max-width:620px;color:var(--white-65)}
+    .cta-strip{background:var(--navy-deep);padding:88px 0;text-align:center}
+    .cta-strip h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px;font-weight:300}
+    .cta-strip p{color:var(--white-65);font-size:15px;margin-bottom:30px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7}
+    @media(max-width:600px){.container{padding:0 20px}nav{padding:0 20px}.nav-links{display:none}.page-hero{padding:120px 20px 64px}}
+
+    .reads-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:56px;background:var(--navy-12);border:1px solid var(--navy-12)}
+    .read-item{background:var(--white);padding:32px 30px;display:flex;gap:18px;align-items:flex-start;transition:background .25s var(--ease)}
+    .read-item:hover{background:var(--paper)}
+    .read-n{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--gray-blue);font-variant-numeric:tabular-nums;padding-top:4px}
+    .read-item h4{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:8px;line-height:1.15}
+    .read-item p{font-family:var(--font-sans);font-size:13.5px;color:var(--navy-72);line-height:1.6}
+    .flow{margin-top:56px;border-top:1px solid var(--navy-12)}
+    .flow-head{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;padding:14px 0;font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-blue);border-bottom:1px solid var(--navy-12)}
+    .flow-row{display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;padding:22px 0;border-bottom:1px solid var(--navy-12)}
+    .flow-sig .flow-k{display:block;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:5px}
+    .flow-sig{font-size:14.5px;color:var(--navy-80);line-height:1.5;padding-right:20px}
+    .flow-sig b{color:var(--navy);font-weight:600}
+    .flow-arrow{text-align:center;color:var(--gray-blue);font-size:18px}
+    .flow-act{font-size:14px;color:var(--navy-72);line-height:1.5;display:flex;gap:9px;align-items:flex-start;padding-left:4px}
+    .flow-check{color:var(--gray-blue);font-weight:700;flex-shrink:0}
+    .pipe{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:stretch;gap:0;margin-top:56px}
+    .pipe-stage{background:rgba(255,255,255,.04);border:1px solid var(--white-12);padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+    .pipe-stage.hot{background:rgba(143,163,184,.12);border-color:var(--slate-soft)}
+    .pipe-name{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.12}
+    .pipe-desc{font-family:var(--font-sans);font-size:13px;color:var(--white-65);line-height:1.55}
+    .pipe-arrow{display:flex;align-items:center;justify-content:center;color:var(--slate-soft);font-size:20px}
+    .pipe-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--white-12);border:1px solid var(--white-12);border-top:none}
+    .pipe-note{background:var(--navy);padding:24px 26px}
+    .pipe-note b{display:block;font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:6px}
+    .pipe-note span{font-family:var(--font-sans);font-size:12.5px;color:var(--white-45);line-height:1.55}
+    @media(max-width:860px){.reads-grid{grid-template-columns:1fr}.pipe{grid-template-columns:1fr}.pipe-arrow{padding:8px 0;transform:rotate(90deg)}.pipe-notes{grid-template-columns:1fr}.flow-head,.flow-row{grid-template-columns:1fr}.flow-arrow{display:none}.flow-act{padding-top:10px}}
+</style>
+  <link rel="stylesheet" href="assets/css/imberion-site.css"/>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="index.html"><img src="brand_assets/logo-white.png" alt="Imberion"/></a>
+  <div class="nav-links"><a href="index.html" data-i18n="back">← Volver al inicio</a></div>
+  <div class="nav-right">
+    <div class="lang-toggle"><button class="lang-btn active" data-lang="es">ES</button><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="pt">PT</button></div>
+    <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" id="nav-cta" data-i18n="nav_cta">Agendar llamada</a>
+  </div>
+</div></nav>
+<section class="page-hero"><div class="page-hero-bg"></div><div class="page-hero-content">
+  <a href="index.html" class="back" data-i18n="back">← Volver al inicio</a>
+  <div class="eyebrow" data-i18n="hero_eyebrow">Market Signal · Familia Signal</div>
+  <h1 data-i18n="hero_h1">Levantamos información del mercado<br>que antes era inaccesible.</h1>
+  <p class="lead" data-i18n="hero_lead">El radar de mercado de Imberion lee el punto de venta real: precios y promociones en piso, diálogos de valor del canal, competidores y entrantes, white spaces. La puerta de entrada del assessment.</p>
+</div></section>
+<section class="section">
+  <div class="container">
+    <div class="eyebrow" data-i18n="s1_eyebrow">01 · Lo que levanta</div>
+    <h2 data-i18n="s1_h2">Cuatro lecturas del piso de venta, vivas y por geografía.</h2>
+    <div class="reads-grid"><div class="read-item"><span class="read-n">01</span><div><h4 data-i18n="read1_b">Precios y promociones reales</h4><p data-i18n="read1_d">A qué precio se vende de verdad el producto propio y el de los competidores, y qué promociones corren en el canal.</p></div></div><div class="read-item"><span class="read-n">02</span><div><h4 data-i18n="read2_b">Diálogos de valor</h4><p data-i18n="read2_d">Si el canal comunica y empuja la marca propia, o posiciona la del competidor frente al cliente final.</p></div></div><div class="read-item"><span class="read-n">03</span><div><h4 data-i18n="read3_b">Competidores y entrantes</h4><p data-i18n="read3_d">Qué marcas se empujan y quién está entrando en mercados donde hoy no hay visibilidad.</p></div></div><div class="read-item"><span class="read-n">04</span><div><h4 data-i18n="read4_b">White spaces</h4><p data-i18n="read4_d">Donde deberías estar y no estás, y donde estás pero te falta portafolio.</p></div></div></div>
+  </div>
+</section><section class="section" style="background:var(--paper-alt);">
+  <div class="container">
+    <div class="eyebrow" data-i18n="s2_eyebrow">02 · De la señal a la decisión</div>
+    <h2 data-i18n="s2_h2">Cada lectura habilita una decisión que hoy no se puede tomar.</h2>
+    <div class="flow"><div class="flow-head"><span data-i18n="flow_head_l">Señal · lo que el radar levanta</span><span></span><span data-i18n="flow_head_r">Acción que habilita</span></div><div class="flow-row"><div class="flow-sig"><span class="flow-k" data-i18n="flow1_k">Precio</span><span data-i18n="flow1_sig"><b>18% por debajo de la lista</b> en una zona del mercado.</span></div><div class="flow-arrow">→</div><div class="flow-act"><span class="flow-check">✓</span><span data-i18n="flow1_act">Se ajusta precio y promoción donde el mercado se aleja de la lista.</span></div></div><div class="flow-row"><div class="flow-sig"><span class="flow-k" data-i18n="flow2_k">Diálogos de valor</span><span data-i18n="flow2_sig"><b>1 de cada 3</b> distribuidores empuja al competidor en el mostrador.</span></div><div class="flow-arrow">→</div><div class="flow-act"><span class="flow-check">✓</span><span data-i18n="flow2_act">Se acciona con quien no comunica la propuesta o empuja al rival.</span></div></div><div class="flow-row"><div class="flow-sig"><span class="flow-k" data-i18n="flow3_k">Competencia</span><span data-i18n="flow3_sig"><b>Una marca nueva</b> entra en un mercado sin visibilidad propia.</span></div><div class="flow-arrow">→</div><div class="flow-act"><span class="flow-check">✓</span><span data-i18n="flow3_act">Respondes a tiempo, antes de perder participación.</span></div></div><div class="flow-row"><div class="flow-sig"><span class="flow-k" data-i18n="flow4_k">White spaces</span><span data-i18n="flow4_sig"><b>124 puntos de venta</b> donde deberías estar y no estás.</span></div><div class="flow-arrow">→</div><div class="flow-act"><span class="flow-check">✓</span><span data-i18n="flow4_act">La fuerza de ventas se enfoca en la oportunidad de volumen real.</span></div></div></div>
+  </div>
+</section><section class="section section--dark">
+  <div class="container">
+    <div class="eyebrow" data-i18n="s3_eyebrow">03 · Cómo opera</div>
+    <h2 data-i18n="s3_h2">Imberion opera el radar. Del lado del cliente, nada que operar.</h2>
+    <div class="pipe"><div class="pipe-stage"><div class="pipe-name" data-i18n="pipe1_n">El mercado</div><div class="pipe-desc" data-i18n="pipe1_d">Cientos de puntos de venta, precios y conversaciones dispersas.</div></div><div class="pipe-arrow">→</div><div class="pipe-stage hot"><div class="pipe-name" data-i18n="pipe2_n">Imberion opera el radar</div><div class="pipe-desc" data-i18n="pipe2_d">Levantamos, depuramos y mantenemos la data viva. Del lado del cliente, nada que operar.</div></div><div class="pipe-arrow">→</div><div class="pipe-stage"><div class="pipe-name" data-i18n="pipe3_n">El tablero</div><div class="pipe-desc" data-i18n="pipe3_d">Inteligencia accionable, lista para decidir.</div></div></div>
+    <div class="pipe-notes"><div class="pipe-note"><b data-i18n="note1_h">Sin carga operativa</b><span data-i18n="note1_d">El equipo del cliente recibe; no monta una operación interna.</span></div><div class="pipe-note"><b data-i18n="note2_h">Sin integrarte a nada</b><span data-i18n="note2_d">No se conecta a sistemas internos; se habilita rápido.</span></div><div class="pipe-note"><b data-i18n="note3_h">A escala con AI</b><span data-i18n="note3_d">Cobertura y frecuencia que ningún equipo de campo alcanza.</span></div></div>
+  </div>
+</section>
+<div class="cta-strip"><div class="container">
+  <h2 data-i18n="ctastrip_h2">¿Qué señales estás dejando de ver?</h2>
+  <p data-i18n="ctastrip_p">Una conversación de 30 minutos, sin compromiso. Entendemos la situación actual y vemos juntos qué señales podrían estar quedando fuera del radar.</p>
+  <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" style="font-size:15px;padding:14px 32px;" data-i18n="ctastrip_btn">Agendar llamada</a>
+</div></div>
+<footer><div class="container"><div class="footer-inner">
+  <div><div><img src="brand_assets/logo-white.png" alt="Imberion" style="height:28px;width:auto;"/></div>
+  <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px;" id="footer-copy">© 2026 Imberion. Todos los derechos reservados.</div></div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;" id="footer-links"></div>
+</div></div></footer>
+<style>footer{background:var(--navy-deep);border-top:1px solid var(--white-12);padding:48px 0 36px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}#footer-links a{font-size:13px;color:rgba(255,255,255,.4);transition:color .2s}#footer-links a:hover{color:rgba(255,255,255,.85)}</style>
+<script>window.IMB_I18N = {
+  "es": {
+    "__title": "Imberion — Market Signal",
+    "nav_cta": "Agendar llamada",
+    "back": "← Volver al inicio",
+    "ctastrip_h2": "¿Qué señales estás dejando de ver?",
+    "ctastrip_p": "Una conversación de 30 minutos, sin compromiso. Entendemos la situación actual y vemos juntos qué señales podrían estar quedando fuera del radar.",
+    "ctastrip_btn": "Agendar llamada",
+    "s1_eyebrow": "01 · Lo que levanta",
+    "s1_h2": "Cuatro lecturas del piso de venta, vivas y por geografía.",
+    "read1_b": "Precios y promociones reales",
+    "read1_d": "A qué precio se vende de verdad el producto propio y el de los competidores, y qué promociones corren en el canal.",
+    "read2_b": "Diálogos de valor",
+    "read2_d": "Si el canal comunica y empuja la marca propia, o posiciona la del competidor frente al cliente final.",
+    "read3_b": "Competidores y entrantes",
+    "read3_d": "Qué marcas se empujan y quién está entrando en mercados donde hoy no hay visibilidad.",
+    "read4_b": "White spaces",
+    "read4_d": "Donde deberías estar y no estás, y donde estás pero te falta portafolio.",
+    "s2_eyebrow": "02 · De la señal a la decisión",
+    "s2_h2": "Cada lectura habilita una decisión que hoy no se puede tomar.",
+    "flow_head_l": "Señal · lo que el radar levanta",
+    "flow_head_r": "Acción que habilita",
+    "flow1_k": "Precio",
+    "flow1_sig": "<b>18% por debajo de la lista</b> en una zona del mercado.",
+    "flow1_act": "Se ajusta precio y promoción donde el mercado se aleja de la lista.",
+    "flow2_k": "Diálogos de valor",
+    "flow2_sig": "<b>1 de cada 3</b> distribuidores empuja al competidor en el mostrador.",
+    "flow2_act": "Se acciona con quien no comunica la propuesta o empuja al rival.",
+    "flow3_k": "Competencia",
+    "flow3_sig": "<b>Una marca nueva</b> entra en un mercado sin visibilidad propia.",
+    "flow3_act": "Respondes a tiempo, antes de perder participación.",
+    "flow4_k": "White spaces",
+    "flow4_sig": "<b>124 puntos de venta</b> donde deberías estar y no estás.",
+    "flow4_act": "La fuerza de ventas se enfoca en la oportunidad de volumen real.",
+    "s3_eyebrow": "03 · Cómo opera",
+    "s3_h2": "Imberion opera el radar. Del lado del cliente, nada que operar.",
+    "pipe1_n": "El mercado",
+    "pipe1_d": "Cientos de puntos de venta, precios y conversaciones dispersas.",
+    "pipe2_n": "Imberion opera el radar",
+    "pipe2_d": "Levantamos, depuramos y mantenemos la data viva. Del lado del cliente, nada que operar.",
+    "pipe3_n": "El tablero",
+    "pipe3_d": "Inteligencia accionable, lista para decidir.",
+    "note1_h": "Sin carga operativa",
+    "note1_d": "El equipo del cliente recibe; no monta una operación interna.",
+    "note2_h": "Sin integrarte a nada",
+    "note2_d": "No se conecta a sistemas internos; se habilita rápido.",
+    "note3_h": "A escala con AI",
+    "note3_d": "Cobertura y frecuencia que ningún equipo de campo alcanza.",
+    "hero_eyebrow": "Market Signal · Familia Signal",
+    "hero_h1": "Levantamos información del mercado<br>que antes era inaccesible.",
+    "hero_lead": "El radar de mercado de Imberion lee el punto de venta real: precios y promociones en piso, diálogos de valor del canal, competidores y entrantes, white spaces. La puerta de entrada del assessment."
+  },
+  "en": {
+    "__title": "Imberion — Market Signal",
+    "nav_cta": "Book a Call",
+    "back": "← Back to home",
+    "ctastrip_h2": "What signals are you missing?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We understand your current situation and look together at what you might not be seeing.",
+    "ctastrip_btn": "Book a Call",
+    "s1_eyebrow": "01 · What it surfaces",
+    "s1_h2": "Four readings of the sales floor, live and by geography.",
+    "read1_b": "Real prices and promotions",
+    "read1_d": "The price your product and your competitors' actually sell at, and what promotions run in the channel.",
+    "read2_b": "Value dialogues",
+    "read2_d": "Whether the channel communicates and pushes your brand, or positions the competitor's to the end customer.",
+    "read3_b": "Competitors and entrants",
+    "read3_d": "Which brands get pushed and who is entering markets where you have no eyes today.",
+    "read4_b": "White spaces",
+    "read4_d": "Where you should be and aren't, and where you are but lack portfolio.",
+    "s2_eyebrow": "02 · From signal to decision",
+    "s2_h2": "Each reading enables a decision you can't make today.",
+    "flow_head_l": "Signal · what the radar surfaces",
+    "flow_head_r": "Action it enables",
+    "flow1_k": "Price",
+    "flow1_sig": "<b>18% below your list price</b> in one market zone.",
+    "flow1_act": "You adjust price and promotion where the market drifts from your list.",
+    "flow2_k": "Value dialogues",
+    "flow2_sig": "<b>1 in 3</b> distributors pushes the competitor at the counter.",
+    "flow2_act": "You act on whoever doesn't communicate your value or pushes the rival.",
+    "flow3_k": "Competition",
+    "flow3_sig": "<b>A new brand</b> enters a market without your visibility.",
+    "flow3_act": "You respond in time, before losing share.",
+    "flow4_k": "White spaces",
+    "flow4_sig": "<b>124 points of sale</b> where you should be and aren't.",
+    "flow4_act": "You direct your salesforce to the real volume opportunity.",
+    "s3_eyebrow": "03 · How it operates",
+    "s3_h2": "Imberion operates the radar. You operate nothing.",
+    "pipe1_n": "The market",
+    "pipe1_d": "Hundreds of points of sale, prices, and conversations, scattered.",
+    "pipe2_n": "Imberion operates the radar",
+    "pipe2_d": "We surface, clean, and keep the data live. You operate nothing.",
+    "pipe3_n": "Your dashboard",
+    "pipe3_d": "Actionable intelligence, ready to decide.",
+    "note1_h": "No operational load",
+    "note1_d": "Your team receives; it doesn't stand up an internal operation.",
+    "note2_h": "No integration needed",
+    "note2_d": "It doesn't connect to your systems; it's enabled fast.",
+    "note3_h": "At scale with AI",
+    "note3_d": "Coverage and frequency no field team can reach.",
+    "hero_eyebrow": "Market Signal · Signal family",
+    "hero_h1": "We surface market information<br>that used to be inaccessible.",
+    "hero_lead": "Imberion's market radar reads the real point of sale: in-store prices and promotions, channel value dialogues, competitors and new entrants, white spaces. The entry point of the assessment."
+  },
+  "pt": {
+    "__title": "Imberion — Market Signal",
+    "nav_cta": "Agendar chamada",
+    "back": "← Voltar ao início",
+    "ctastrip_h2": "Que sinais você está deixando de ver?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Entendemos sua situação atual e vemos juntos o que você pode estar deixando de ver.",
+    "ctastrip_btn": "Agendar chamada",
+    "s1_eyebrow": "01 · O que levanta",
+    "s1_h2": "Quatro leituras do piso de venda, vivas e por geografia.",
+    "read1_b": "Preços e promoções reais",
+    "read1_d": "A que preço seu produto e o dos concorrentes realmente vendem, e que promoções rodam no canal.",
+    "read2_b": "Diálogos de valor",
+    "read2_d": "Se o canal comunica e empurra sua marca, ou posiciona a do concorrente para o cliente final.",
+    "read3_b": "Concorrentes e entrantes",
+    "read3_d": "Quais marcas são empurradas e quem está entrando em mercados onde hoje você não tem olhos.",
+    "read4_b": "White spaces",
+    "read4_d": "Onde você deveria estar e não está, e onde está mas falta portfólio.",
+    "s2_eyebrow": "02 · Do sinal à decisão",
+    "s2_h2": "Cada leitura habilita uma decisão que hoje você não pode tomar.",
+    "flow_head_l": "Sinal · o que o radar levanta",
+    "flow_head_r": "Ação que habilita",
+    "flow1_k": "Preço",
+    "flow1_sig": "<b>18% abaixo da sua lista</b> em uma zona do mercado.",
+    "flow1_act": "Você ajusta preço e promoção onde o mercado se afasta da sua lista.",
+    "flow2_k": "Diálogos de valor",
+    "flow2_sig": "<b>1 em cada 3</b> distribuidores empurra o concorrente no balcão.",
+    "flow2_act": "Você aciona quem não comunica sua proposta ou empurra o rival.",
+    "flow3_k": "Concorrência",
+    "flow3_sig": "<b>Uma marca nova</b> entra num mercado sem a sua visibilidade.",
+    "flow3_act": "Você responde a tempo, antes de perder participação.",
+    "flow4_k": "White spaces",
+    "flow4_sig": "<b>124 pontos de venda</b> onde você deveria estar e não está.",
+    "flow4_act": "Você direciona sua força de vendas à oportunidade real de volume.",
+    "s3_eyebrow": "03 · Como opera",
+    "s3_h2": "A Imberion opera o radar. Você não opera nada.",
+    "pipe1_n": "O mercado",
+    "pipe1_d": "Centenas de pontos de venda, preços e conversas dispersas.",
+    "pipe2_n": "A Imberion opera o radar",
+    "pipe2_d": "Levantamos, depuramos e mantemos o dado vivo. Você não opera nada.",
+    "pipe3_n": "Seu painel",
+    "pipe3_d": "Inteligência acionável, pronta para decidir.",
+    "note1_h": "Sem carga operacional",
+    "note1_d": "Seu time recebe; não monta uma operação interna.",
+    "note2_h": "Sem integrar a nada",
+    "note2_d": "Não se conecta aos seus sistemas; é habilitado rápido.",
+    "note3_h": "Em escala com AI",
+    "note3_d": "Cobertura e frequência que nenhum time de campo alcança.",
+    "hero_eyebrow": "Market Signal · Família Signal",
+    "hero_h1": "Levantamos informação do mercado<br>que antes era inacessível.",
+    "hero_lead": "O radar de mercado da Imberion lê o ponto de venda real: preços e promoções no piso, diálogos de valor do canal, concorrentes e entrantes, white spaces. A porta de entrada do assessment."
+  }
+};</script>
+<script src="assets/js/imberion-site.js"></script>
+</body></html>

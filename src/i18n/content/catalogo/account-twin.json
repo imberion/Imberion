@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Account Twin",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Account Twin · Familia Twin",
+    "hero_h1": "Llegar a cada negociación clave con las objeciones ya ensayadas.",
+    "hero_lead": "Account Twin permite al equipo comercial ensayar la negociación con un key account, distribuidor o comprador de canal antes de la reunión real, contra una contraparte que pide y presiona como esa cuenta lo ha hecho en su historial. Los errores de práctica se cometen en el ensayo y no quedan fijos en condiciones por años.",
+    "que_hace_h2": "Lo que resuelve en la negociación",
+    "que_hace_p": "El KAM llega a la mesa sabiendo en qué puntos suele presionar esa cuenta y qué argumentos ya sostuvieron el margen con ella.",
+    "que_hace_items": [
+      "Objeciones de cada cuenta clave, ensayadas antes de la reunión",
+      "Concesiones decididas de antemano, cada una con su límite",
+      "KAM nuevos que practican una cuenta grande sin arriesgar sus condiciones",
+      "Registro de los argumentos que sostuvieron el margen y de los que lo cedieron"
+    ],
+    "valor_h2": "Lo que se aprende antes de sentarse con la cuenta",
+    "valor_p": "Un KAM aprende a negociar una cuenta grande negociándola, y cada error se paga en condiciones que después quedan fijas por años. Ensayar contra el gemelo permite cometer esos errores antes de la reunión, sin costo en margen.",
+    "sowhat": "Define qué concesiones se llevan preparadas a la mesa y cuáles no se ponen sobre ella.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Es la contraparte contra la que Training Signal entrena la negociación B2B de la fuerza de ventas.",
+    "ctastrip_h2": "¿Cuánto margen se concede por llegar sin preparación a la mesa?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Account Twin",
+    "familia_label": "Twin · simulate",
+    "hero_eyebrow": "Account Twin · Twin family",
+    "hero_h1": "Digital twins of the accounts on the other side of the table.",
+    "hero_lead": "Account Twin rebuilds key accounts, distributors and channel buyers from their history and behavior, so the negotiation can be rehearsed before the real table.",
+    "que_hace_h2": "The account, rebuilt as a counterpart",
+    "que_hace_p": "The twin is built from the account's purchase history, the terms it already obtained and its negotiation patterns. In a rehearsal session it raises objections, asks for concessions and pushes on the same points that account usually pushes on.",
+    "que_hace_items": [
+      "One twin per account: key account, distributor or channel buyer",
+      "Built from purchase history and terms already granted",
+      "Objections, concessions and closes with the real account's pattern",
+      "A record of which arguments held margin and which gave it away"
+    ],
+    "valor_h2": "The learning curve moves off the real table",
+    "valor_p": "A KAM learns to negotiate a large account by negotiating it, and every mistake is paid in terms that then stay fixed for years. Rehearsing against the twin moves that practice somewhere being wrong costs no margin.",
+    "sowhat": "It settles which concessions are taken to the table prepared and which are never put on it.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It is the counterpart Training Signal uses to train the sales force on B2B negotiation.",
+    "ctastrip_h2": "How much margin is given away by arriving at the table unprepared?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Account Twin",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Account Twin · Família Twin",
+    "hero_h1": "Gêmeos digitais das contas com as quais se negocia.",
+    "hero_lead": "Account Twin reconstrói key accounts, distribuidores e compradores de canal a partir do histórico e do comportamento deles, para ensaiar a negociação antes da mesa real.",
+    "que_hace_h2": "A conta, reconstruída como contraparte",
+    "que_hace_p": "O gêmeo é montado com o histórico de compra da conta, as condições que ela já obteve e os padrões de negociação que mostrou. Na sessão de ensaio ele levanta objeções, pede concessões e pressiona nos mesmos pontos em que aquela conta costuma pressionar.",
+    "que_hace_items": [
+      "Um gêmeo por conta: key account, distribuidor ou comprador de canal",
+      "Construído com histórico de compra e condições já concedidas",
+      "Objeções, concessões e fechamentos com o padrão da conta real",
+      "Registro de quais argumentos sustentaram a margem e quais a cederam"
+    ],
+    "valor_h2": "A curva de aprendizado sai da mesa real",
+    "valor_p": "Um KAM aprende a negociar uma conta grande negociando-a, e cada erro é pago em condições que depois ficam fixas por anos. Ensaiar contra o gêmeo move essa prática para um lugar onde errar não custa margem.",
+    "sowhat": "Define quais concessões vão preparadas para a mesa e quais não são colocadas nela.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "É a contraparte contra a qual o Training Signal treina a negociação B2B da força de vendas.",
+    "ctastrip_h2": "Quanta margem é cedida por chegar sem preparo à mesa?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

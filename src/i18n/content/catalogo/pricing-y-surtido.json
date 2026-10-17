@@ -1,0 +1,77 @@
+{
+  "es": {
+    "__title": "Imberion — Pricing & Surtido",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Pricing & Surtido · Familia Engine",
+    "hero_h1": "Más margen donde el comprador valora el producto, y fuera lo que no rota.",
+    "hero_lead": "Pricing & Surtido identifica los productos con los que el comprador juzga si la marca es cara (KVI, Key Value Items) para protegerlos, y ajusta el precio del resto según cuánto cae su venta al subirlo. También ordena el surtido por rotación y aporte de margen, y escalona las presentaciones para que una no le quite venta a la de al lado.",
+    "que_hace_h2": "Lo que resuelve en precio y portafolio",
+    "que_hace_p": "El margen sube en los productos donde el comprador no compara precio, y la imagen de precio se sostiene en los que sí compara.",
+    "que_hace_items": [
+      "Cuánto se puede mover el precio de cada producto en cada tipo de tienda",
+      "Productos que forman la imagen de precio, identificados y protegidos",
+      "Escalones de precio entre presentaciones que evitan que una canibalice a otra",
+      "Mix por canal con más margen",
+      "Precio fijado según lo que el comprador está dispuesto a pagar"
+    ],
+    "valor_h2": "Margen recuperado sin perder imagen de precio",
+    "valor_p": "Sabiendo qué puñado de productos forma la imagen de precio, se protege ese grupo y se recupera margen en el resto, donde el comprador no compara. La arquitectura precio-empaque evita que una presentación canibalice a la de al lado por un escalón mal puesto.",
+    "sowhat": "Dice qué producto sube, cuál se protege y qué presentación sobra en el lineal.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se apoya en Value-Attribute Compass y Price Value Compass para la lectura de valor, y sus jugadas se prueban en conjunto dentro de Scenario Engine.",
+    "ctastrip_h2": "¿Cuánto margen se está dejando en la lista de precios?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Pricing & Assortment",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Pricing & Surtido · Engine family",
+    "hero_h1": "Price tied to value, and assortment tied to what actually moves.",
+    "hero_lead": "Pricing & Surtido estimates elasticity by product and by cluster, identifies KVIs (Key Value Items, the products that form price image), designs price pack architecture (PPA) and sets price against perceived value.",
+    "que_hace_h2": "Elasticity, price image, and portfolio architecture",
+    "que_hace_p": "Elasticity is estimated from own history and from willingness-to-pay research, and cross-checked against value attributes. Assortment is ranked by rotation and margin contribution, and price pack architecture closes the gaps between formats.",
+    "que_hace_items": [
+      "Elasticity by product and by store cluster",
+      "The handful of products that actually form price image",
+      "Price pack and price portfolio architecture",
+      "Mix improvements by channel",
+      "Value pricing built on attributes and willingness to pay"
+    ],
+    "valor_h2": "Margin recovered without losing price image",
+    "valor_p": "Once the handful of products that form price image is known, that group is protected and margin is recovered on the rest, where the shopper does not compare. Price pack architecture keeps one format from cannibalizing the next because of a badly placed step.",
+    "sowhat": "It says which product goes up, which one is protected, and which format is redundant on the shelf.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It leans on Value-Attribute Compass and Price Value Compass for the value reading, and its plays are tested together inside Scenario Engine.",
+    "ctastrip_h2": "How much margin is the price list leaving behind?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Pricing & Sortimento",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Pricing & Surtido · Família Engine",
+    "hero_h1": "O preço atado ao valor, e o sortimento ao que de fato gira.",
+    "hero_lead": "Pricing & Surtido calcula elasticidade por produto e por cluster, identifica os KVI (Key Value Items, os produtos que formam a imagem de preço), desenha a arquitetura preço-embalagem (PPA, price pack architecture) e fixa o preço pelo valor percebido.",
+    "que_hace_h2": "Elasticidade, imagem de preço e arquitetura de portfólio",
+    "que_hace_p": "A elasticidade é estimada com histórico próprio e com estudos de disposição a pagar, e cruzada com os atributos de valor. O sortimento é ordenado por giro e contribuição de margem, e a arquitetura preço-embalagem fecha os vãos entre formatos.",
+    "que_hace_items": [
+      "Elasticidade por produto e por cluster de loja",
+      "Os produtos que de fato formam a imagem de preço",
+      "Arquitetura preço-embalagem e preço-portfólio",
+      "Melhorias de mix por canal",
+      "Preço a valor sobre atributos e disposição a pagar"
+    ],
+    "valor_h2": "Margem recuperada sem perder imagem de preço",
+    "valor_p": "Sabendo qual punhado de produtos forma a imagem de preço, esse grupo é protegido e a margem é recuperada no restante, onde o comprador não compara. A arquitetura preço-embalagem evita que um formato canibalize o vizinho por um degrau mal posicionado.",
+    "sowhat": "Diz que produto sobe, qual é protegido e que formato sobra na gôndola.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Apoia-se em Value-Attribute Compass e Price Value Compass para a leitura de valor, e as jogadas são testadas em conjunto dentro do Scenario Engine.",
+    "ctastrip_h2": "Quanta margem a tabela de preços está deixando para trás?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

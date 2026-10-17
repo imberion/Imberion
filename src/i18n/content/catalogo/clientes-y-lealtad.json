@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Clientes & Lealtad",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Clientes & Lealtad · Familia Engine",
+    "hero_h1": "Retener a los clientes que más valen, sin regalar margen.",
+    "hero_lead": "Clientes & Lealtad identifica qué clientes generan más valor a lo largo del tiempo (CLTV, customer lifetime value) y cuáles están en riesgo de dejar de comprar, y diseña el programa de lealtad con su costo calculado antes de lanzarlo. Cada grupo de clientes recibe la acción de retención que le corresponde.",
+    "que_hace_h2": "Lo que resuelve en la base de clientes",
+    "que_hace_p": "La marca sabe a qué clientes dirigir cada beneficio y cuánto cuesta el programa de lealtad antes de lanzarlo.",
+    "que_hace_items": [
+      "Clientes agrupados por el valor que generan y por su frecuencia de compra",
+      "Valor de vida estimado por grupo, para decidir cuánto invertir en retener a cada uno",
+      "Programa de lealtad con mecánica, niveles y beneficios cuyo costo se conoce antes de lanzarlo",
+      "Clientes en riesgo de abandono detectados antes de que dejen de comprar, con su acción de retención"
+    ],
+    "valor_h2": "Retención que paga su costo",
+    "valor_p": "Un mismo ticket promedio puede venir de clientes frecuentes de bajo margen o de compradores esporádicos de alto valor, y cada grupo se retiene con una acción distinta. Poner economía al programa de lealtad antes de lanzarlo evita regalar margen a quien ya iba a volver.",
+    "sowhat": "Dice a qué cliente vale la pena retener, con qué beneficio y hasta qué costo.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se apoya en la base que arma Integración de datos y su diseño se ejecuta en el canal a través de Imberion Concierge.",
+    "ctastrip_h2": "¿Cuánto vale el cliente que hoy se está yendo?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Customers & Loyalty",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Clientes & Lealtad · Engine family",
+    "hero_h1": "Who is behind the ticket, and how they stay.",
+    "hero_lead": "Clientes & Lealtad segments by value, estimates customer lifetime value (CLTV), designs the loyalty program and works on churn prevention.",
+    "que_hace_h2": "Value segmentation, loyalty, and retention",
+    "que_hace_p": "The base is segmented by value and behavior rather than accumulated spend alone, and lifetime value and churn risk are estimated on those groups. The loyalty program is designed to fit: mechanics, tiers, benefits and program economics.",
+    "que_hace_items": [
+      "Segmentation by value and behavior",
+      "Customer lifetime value by segment",
+      "Loyalty program design: mechanics, tiers, benefits and economics",
+      "Churn risk model and retention actions"
+    ],
+    "valor_h2": "Retention with economics, not giveaways",
+    "valor_p": "The same average ticket can come from frequent low-margin customers or from occasional high-value buyers, and each group is retained with a different action. Putting economics on the loyalty program before launch avoids giving margin away to customers who were coming back anyway.",
+    "sowhat": "It says which customer is worth retaining, with what benefit, and up to what cost.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It rests on the base built by Integración de datos, and its design is executed in the channel through Imberion Concierge.",
+    "ctastrip_h2": "What is the customer who is leaving today actually worth?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Clientes & Fidelidade",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Clientes & Lealtad · Família Engine",
+    "hero_h1": "Quem está por trás do ticket, e como permanece.",
+    "hero_lead": "Clientes & Lealtad segmenta por valor, estima o valor do ciclo de vida do cliente (CLTV, customer lifetime value), desenha o programa de fidelidade e trabalha a prevenção de churn.",
+    "que_hace_h2": "Segmentação por valor, fidelidade e retenção",
+    "que_hace_p": "A base é segmentada por valor e comportamento, não só por gasto acumulado, e sobre esses grupos se estima o valor do ciclo de vida e o risco de churn. O programa de fidelidade é desenhado sob medida: mecânica, níveis, benefícios e economia do programa.",
+    "que_hace_items": [
+      "Segmentação por valor e comportamento",
+      "Valor do ciclo de vida por segmento",
+      "Desenho do programa de fidelidade: mecânica, níveis, benefícios e economia",
+      "Modelo de risco de churn e ações de retenção"
+    ],
+    "valor_h2": "Retenção com economia, não com brinde",
+    "valor_p": "Um mesmo ticket médio pode vir de clientes frequentes de baixa margem ou de compradores esporádicos de alto valor, e cada grupo se retém com uma ação diferente. Colocar economia no programa de fidelidade antes de lançá-lo evita dar margem a quem já voltaria.",
+    "sowhat": "Diz que cliente vale a pena reter, com que benefício e até que custo.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Apoia-se na base construída por Integración de datos e o desenho é executado no canal por meio do Imberion Concierge.",
+    "ctastrip_h2": "Quanto vale o cliente que está saindo hoje?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

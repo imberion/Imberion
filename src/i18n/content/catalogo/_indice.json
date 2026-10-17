@@ -1,0 +1,68 @@
+{
+  "es": {
+    "__title": "Imberion — Catálogo",
+    "hero_eyebrow": "Catálogo",
+    "hero_h1": "El menú completo de Imberion.",
+    "hero_lead": "Siete familias ordenadas por la cadena de valor comercial, del sensado del mercado a la ejecución en el canal, más el sustrato de datos que las sostiene, la puerta de entrada, el método transversal y la oferta de estrategia. Cada engagement toma de aquí lo que el problema pide.",
+    "familia_intro": {
+      "signal": "Capta señal viva del mercado y del piso de venta, con una frecuencia que ningún equipo de campo sostiene.",
+      "twin": "Gemelos digitales del comprador y de la contraparte para ensayar antes de la mesa real.",
+      "compass": "Ubica la posición: dónde hay espacio, qué tan alineado está el liderazgo y cuánto vale cada atributo.",
+      "bridge": "Descompone un cambio en sus drivers para dirigir la acción a la causa y no al síntoma.",
+      "engine": "Computa la mejor jugada en cada palanca comercial: precio, promoción, surtido, canal, cliente e inversión.",
+      "operator": "Ejecuta la acción comercial en mercado, en el canal donde está el cliente.",
+      "enabler": "Instala la capacidad en el equipo del cliente para que el modelo siga operando al terminar el proyecto."
+    },
+    "seccion_intro": {
+      "sustrato": "El piso de datos sobre el que corren los motores de decisión.",
+      "entrada": "El diagnóstico de bajo riesgo que ordena por dónde empezar.",
+      "transversal": "Método de experimentación que cruza etapas, no una palanca de dominio.",
+      "estrategia": "Dónde crecer y si se puede ganar, antes de que opere el motor comercial."
+    },
+    "ver_ficha": "Ver ficha"
+  },
+  "en": {
+    "__title": "Imberion — Catalog",
+    "hero_eyebrow": "Catalog",
+    "hero_h1": "Imberion's full menu.",
+    "hero_lead": "Seven families ordered along the commercial value chain, from sensing the market to executing in the channel, plus the data foundation underneath them, the entry point, the cross-cutting method and the strategy offer. Each engagement takes from here whatever the problem calls for.",
+    "familia_intro": {
+      "signal": "Captures live signal from the market and the sales floor, at a frequency no field team sustains.",
+      "twin": "Digital twins of the buyer and of the counterpart, to rehearse before the real table.",
+      "compass": "Locates the position: where the space is, how aligned leadership is, and what each attribute is worth.",
+      "bridge": "Breaks a change into its drivers, to aim action at the cause instead of the symptom.",
+      "engine": "Computes the best play on each commercial lever: price, promotion, assortment, channel, customer and investment.",
+      "operator": "Executes the commercial action in market, on the channel where the customer is.",
+      "enabler": "Installs the capability inside the client's team so the model keeps running once the project ends."
+    },
+    "seccion_intro": {
+      "sustrato": "The data floor the decision engines run on.",
+      "entrada": "The low-risk diagnosis that sets the order of what comes first.",
+      "transversal": "An experimentation method that cuts across stages, not a domain lever.",
+      "estrategia": "Where to grow and whether it can be won, before the commercial engine runs."
+    },
+    "ver_ficha": "See details"
+  },
+  "pt": {
+    "__title": "Imberion — Catálogo",
+    "hero_eyebrow": "Catálogo",
+    "hero_h1": "O menu completo da Imberion.",
+    "hero_lead": "Sete famílias ordenadas pela cadeia de valor comercial, do sensoriamento do mercado à execução no canal, mais o substrato de dados que as sustenta, a porta de entrada, o método transversal e a oferta de estratégia. Cada engagement pega daqui o que o problema pede.",
+    "familia_intro": {
+      "signal": "Capta sinal vivo do mercado e do piso de venda, com uma frequência que nenhum time de campo sustenta.",
+      "twin": "Gêmeos digitais do comprador e da contraparte para ensaiar antes da mesa real.",
+      "compass": "Localiza a posição: onde há espaço, o quanto a liderança está alinhada e quanto vale cada atributo.",
+      "bridge": "Decompõe uma variação nos drivers para dirigir a ação à causa e não ao sintoma.",
+      "engine": "Calcula a melhor jogada em cada alavanca comercial: preço, promoção, sortimento, canal, cliente e investimento.",
+      "operator": "Executa a ação comercial no mercado, no canal onde o cliente está.",
+      "enabler": "Instala a capacidade no time do cliente para que o modelo siga operando quando o projeto terminar."
+    },
+    "seccion_intro": {
+      "sustrato": "A base de dados sobre a qual rodam os motores de decisão.",
+      "entrada": "O diagnóstico de baixo risco que define por onde começar.",
+      "transversal": "Método de experimentação que cruza etapas, não uma alavanca de domínio.",
+      "estrategia": "Onde crescer e se dá para ganhar, antes de o motor comercial operar."
+    },
+    "ver_ficha": "Ver ficha"
+  }
+}

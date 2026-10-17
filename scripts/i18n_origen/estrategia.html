@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><link rel="icon" type="image/png" href="brand_assets/favicon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Imberion — Estrategia de Crecimiento</title>
+  <meta name="description" content="Imberion. Estrategia de crecimiento: dónde competir, qué premio hay y si existe el derecho a ganarlo."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0A1828;--navy-80:rgba(10,24,40,.8);--navy-40:rgba(10,24,40,.4);--navy-12:rgba(10,24,40,.12);--navy-06:rgba(10,24,40,.06);--paper:#EDEAE4;--paper-alt:#E2DED7;--white:#fff;--signal:#0A1828;--slate:#6F859C;--max:1140px;--r:3px;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',-apple-system,sans-serif;--ease:cubic-bezier(.19,1,.22,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);background:var(--paper);color:var(--navy);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%} a{color:inherit;text-decoration:none} ul{list-style:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 36px}
+    .section{padding:96px 0}
+    h1,h2,h3,h4{font-family:var(--font-serif);line-height:1.12;font-weight:400;letter-spacing:-.012em}
+    h2{font-size:clamp(2.1rem,4vw,3.2rem);font-weight:300}
+    .eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:14px}
+    .lead{font-size:clamp(1.05rem,1.7vw,1.2rem);color:var(--navy-80);max-width:620px;line-height:1.7}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,18,30,.72);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.06);padding:0 36px}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;position:relative}
+    .nav-logo img{height:34px;width:auto}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a:not(.btn):not(.lang-btn){color:rgba(255,255,255,.6);font-size:13px;font-weight:500;transition:color .2s}
+    .nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+    .nav-right{display:flex;gap:14px;align-items:center}
+    .lang-toggle{display:flex;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);padding:3px}
+    .lang-btn{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:2px;cursor:pointer;color:rgba(255,255,255,.45);transition:all .2s;border:none;background:transparent}
+    .lang-btn.active{background:rgba(255,255,255,.12);color:#fff}
+    .lang-btn:hover:not(.active){color:rgba(255,255,255,.85)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:var(--r);font-family:var(--font-sans);font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .25s var(--ease)}
+    .btn-primary{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+    .btn-primary:hover{background:#fff;border-color:#fff}
+    .page-hero{background:var(--navy);padding:150px 36px 96px;position:relative;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 50%,rgba(111,133,156,.22) 0%,transparent 60%);pointer-events:none}
+    .page-hero-content{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+    .page-hero .back{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:13px;font-weight:500;margin-bottom:40px;transition:color .2s}
+    .page-hero .back:hover{color:#fff}
+    .page-hero .eyebrow{color:rgba(255,255,255,.55)}
+    .page-hero h1{font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:300;color:#fff;line-height:1.06;max-width:760px;letter-spacing:-.02em}
+    .page-hero h1 em{font-style:italic;color:var(--slate)}
+    .page-hero .lead{margin-top:26px;max-width:600px;font-size:clamp(1rem,1.5vw,1.18rem);color:rgba(255,255,255,.65);line-height:1.75}
+    .mod-row{display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start}
+    .mod-glyph{font-size:3rem;margin:8px 0 18px;color:var(--navy-12);font-family:var(--font-serif);font-weight:300;line-height:1}
+    .mod-row h2{font-size:clamp(1.8rem,3vw,2.6rem)}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--navy-12);border:1px solid var(--navy-12)}
+    .detail-item{background:var(--white);padding:24px 26px;transition:background .25s var(--ease)}
+    .detail-item:hover{background:var(--paper)}
+    .detail-item h5{font-family:var(--font-sans);font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.01em}
+    .detail-item p{font-size:13px;color:var(--navy-80);line-height:1.6}
+    .cta-strip{background:var(--navy);padding:88px 0;text-align:center}
+    .cta-strip h2{color:#fff;font-size:clamp(1.9rem,3.6vw,2.9rem);margin-bottom:20px;font-weight:300}
+    .cta-strip p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+    @media(max-width:960px){.mod-row{grid-template-columns:1fr;gap:32px} .detail-grid{grid-template-columns:1fr}}
+    @media(max-width:600px){.container{padding:0 20px} nav{padding:0 20px} .nav-links{display:none} .page-hero{padding:124px 20px 64px}}
+  </style>
+  <link rel="stylesheet" href="assets/css/imberion-site.css"/>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="brand_assets/logo-white.png" alt="Imberion"/></a>
+    <div class="nav-links">
+      <a href="index.html#estrategia" data-i18n="back">← Volver al inicio</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle"><button class="lang-btn active" data-lang="es">ES</button><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="pt">PT</button></div>
+      <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" id="nav-cta" data-i18n="nav_cta">Agendar llamada</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <a href="index.html#estrategia" class="back" data-i18n="back">← Volver al inicio</a>
+    <div class="eyebrow" data-i18n="hero_eyebrow">Estrategia de Crecimiento</div>
+    <h1 data-i18n="hero_h1">Dónde crecer,<br>y si se puede ganar.</h1>
+    <p class="lead" data-i18n="hero_lead">Antes de operar el crecimiento está la decisión estratégica: en qué mercados competir, qué premio hay y si existe el derecho a ganarlo. Es donde más capital se compromete con menos certeza.</p>
+  </div>
+</section>
+
+<section class="section" id="sizing" style="">
+  <div class="container">
+    <div class="mod-row">
+      <div>
+        <div class="eyebrow" data-i18n="m_sizing_eyebrow">01</div>
+        <div class="mod-glyph">◍</div>
+        <h2 data-i18n="m_sizing_h2">Market Sizing &amp; Right-to-Win</h2>
+        <p class="lead" style="margin-top:16px;" data-i18n="m_sizing_lead">Dimensionamos la oportunidad y probamos si realmente se puede ganar, antes de invertir.</p>
+      </div>
+      <div class="detail-grid"><div class="detail-item"><h5 data-i18n="m_sizing_c1_h5">Dimensionamiento de mercado (TAM / SAM / SOM)</h5><p data-i18n="m_sizing_c1_p">Triangulación top-down y bottom-up de la oportunidad direccionable.</p></div><div class="detail-item"><h5 data-i18n="m_sizing_c2_h5">Evaluación del right-to-win</h5><p data-i18n="m_sizing_c2_p">Probabilidad realista de ganar un segmento dadas las capacidades y la posición.</p></div><div class="detail-item"><h5 data-i18n="m_sizing_c3_h5">Mapa de dónde competir</h5><p data-i18n="m_sizing_c3_p">Dónde está el premio, y dónde hay permiso para competir.</p></div><div class="detail-item"><h5 data-i18n="m_sizing_c4_h5">Priorización de oportunidades</h5><p data-i18n="m_sizing_c4_p">Apuestas secuenciadas, ordenadas por valor, factibilidad y ajuste.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="entry" style="background:var(--paper-alt);">
+  <div class="container">
+    <div class="mod-row">
+      <div>
+        <div class="eyebrow" data-i18n="m_entry_eyebrow">02</div>
+        <div class="mod-glyph">◳</div>
+        <h2 data-i18n="m_entry_h2">Market Entry &amp; Go-to-Market</h2>
+        <p class="lead" style="margin-top:16px;" data-i18n="m_entry_lead">Evaluamos atractivo, ruta al mercado y modelo operativo antes de comprometer capital en un mercado nuevo.</p>
+      </div>
+      <div class="detail-grid"><div class="detail-item"><h5 data-i18n="m_entry_c1_h5">Atractivo por ocasión y segmento</h5><p data-i18n="m_entry_c1_p">Tamaño y competencia dentro de cada ocasión de consumo, no del mercado en bloque.</p></div><div class="detail-item"><h5 data-i18n="m_entry_c2_h5">Ruta al mercado</h5><p data-i18n="m_entry_c2_p">Importación, co-empaque o capacidad propia: la economía de cada opción de suministro y cobertura.</p></div><div class="detail-item"><h5 data-i18n="m_entry_c3_h5">Riesgo fiscal, regulatorio y cambiario</h5><p data-i18n="m_entry_c3_p">Su impacto explícito en economía unitaria y capital de trabajo.</p></div><div class="detail-item"><h5 data-i18n="m_entry_c4_h5">Decisión go / no-go</h5><p data-i18n="m_entry_c4_p">Un caso de grado de decisión que habilita entrar, esperar o descartar.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="value" style="">
+  <div class="container">
+    <div class="mod-row">
+      <div>
+        <div class="eyebrow" data-i18n="m_value_eyebrow">03</div>
+        <div class="mod-glyph">◈</div>
+        <h2 data-i18n="m_value_h2">Value Creation &amp; Capital Allocation</h2>
+        <p class="lead" style="margin-top:16px;" data-i18n="m_value_lead">Cuantificamos el tamaño del premio y dónde se crea valor, para asignar capital con disciplina.</p>
+      </div>
+      <div class="detail-grid"><div class="detail-item"><h5 data-i18n="m_value_c1_h5">Tamaño del premio y pools de ganancias</h5><p data-i18n="m_value_c1_p">Dónde se concentra el margen por canal, categoría y geografía.</p></div><div class="detail-item"><h5 data-i18n="m_value_c2_h5">Crecimiento inorgánico</h5><p data-i18n="m_value_c2_p">Tamizado de objetivos, sinergias y modelos de integración por tiers.</p></div><div class="detail-item"><h5 data-i18n="m_value_c3_h5">Casos de grado de decisión</h5><p data-i18n="m_value_c3_p">TIR, VPN y payback por escenario, listos para directorio.</p></div><div class="detail-item"><h5 data-i18n="m_value_c4_h5">Asignación de capital</h5><p data-i18n="m_value_c4_p">Trade-offs de CapEx, riesgo y retorno antes de comprometer.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="model" style="background:var(--paper-alt);">
+  <div class="container">
+    <div class="mod-row">
+      <div>
+        <div class="eyebrow" data-i18n="m_model_eyebrow">04</div>
+        <div class="mod-glyph">⊟</div>
+        <h2 data-i18n="m_model_h2">Commercial &amp; Operating Model</h2>
+        <p class="lead" style="margin-top:16px;" data-i18n="m_model_lead">Rediseñamos el modelo comercial y operativo para que la estrategia se sostenga en la organización.</p>
+      </div>
+      <div class="detail-grid"><div class="detail-item"><h5 data-i18n="m_model_c1_h5">Reset estratégico y comercial</h5><p data-i18n="m_model_c1_p">Segmentación, propuesta de valor y prioridades alineadas a la ambición.</p></div><div class="detail-item"><h5 data-i18n="m_model_c2_h5">Rediseño RTM y distribución</h5><p data-i18n="m_model_c2_p">Cobertura, especialización de rutas y economía de costo de servicio.</p></div><div class="detail-item"><h5 data-i18n="m_model_c3_h5">Modelo operativo y gobernanza</h5><p data-i18n="m_model_c3_p">OKRs, derechos de decisión y responsabilidad de margen interfuncional.</p></div><div class="detail-item"><h5 data-i18n="m_model_c4_h5">Gestión del desempeño</h5><p data-i18n="m_model_c4_p">Cadencia y tableros para que las mejoras no se degraden con el tiempo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="container">
+    <h2 data-i18n="ctastrip_h2">¿Listos para decidir dónde crecer?</h2>
+    <p data-i18n="ctastrip_p">Agenden una llamada de 30 minutos. Mapeamos el premio, el derecho a ganar y la mejor ruta para su negocio.</p>
+    <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" style="font-size:15px;padding:14px 32px;" data-i18n="ctastrip_btn">Agendar llamada</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div><img src="brand_assets/logo-white.png" alt="Imberion" style="height:28px;width:auto;"/></div>
+        <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px;" id="footer-copy">© 2026 Imberion. Todos los derechos reservados.</div>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;" id="footer-links"></div>
+    </div>
+  </div>
+</footer>
+<style>
+footer{background:var(--navy-deep,#06101C);border-top:1px solid rgba(255,255,255,.08);padding:48px 0 36px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+#footer-links a{font-size:13px;color:rgba(255,255,255,.4);transition:color .2s}
+#footer-links a:hover{color:rgba(255,255,255,.85)}
+</style>
+<script>window.IMB_I18N = {
+  "es": {
+    "__title": "Imberion — Estrategia de Crecimiento",
+    "nav_cta": "Agendar llamada",
+    "back": "← Volver al inicio",
+    "hero_eyebrow": "Estrategia de Crecimiento",
+    "hero_h1": "Dónde crecer,<br>y si se puede ganar.",
+    "hero_lead": "Antes de operar el crecimiento está la decisión estratégica: en qué mercados competir, qué premio hay y si existe el derecho a ganarlo. Es donde más capital se compromete con menos certeza.",
+    "ctastrip_h2": "¿Listos para decidir dónde crecer?",
+    "ctastrip_p": "Agenden una llamada de 30 minutos. Mapeamos el premio, el derecho a ganar y la mejor ruta para su negocio.",
+    "ctastrip_btn": "Agendar llamada",
+    "m_sizing_eyebrow": "01",
+    "m_sizing_h2": "Market Sizing & Right-to-Win",
+    "m_sizing_lead": "Dimensionamos la oportunidad y probamos si realmente se puede ganar, antes de invertir.",
+    "m_sizing_c1_h5": "Dimensionamiento de mercado (TAM / SAM / SOM)",
+    "m_sizing_c1_p": "Triangulación top-down y bottom-up de la oportunidad direccionable.",
+    "m_sizing_c2_h5": "Evaluación del right-to-win",
+    "m_sizing_c2_p": "Probabilidad realista de ganar un segmento dadas las capacidades y la posición.",
+    "m_sizing_c3_h5": "Mapa de dónde competir",
+    "m_sizing_c3_p": "Dónde está el premio, y dónde hay permiso para competir.",
+    "m_sizing_c4_h5": "Priorización de oportunidades",
+    "m_sizing_c4_p": "Apuestas secuenciadas, ordenadas por valor, factibilidad y ajuste.",
+    "m_entry_eyebrow": "02",
+    "m_entry_h2": "Market Entry & Go-to-Market",
+    "m_entry_lead": "Evaluamos atractivo, ruta al mercado y modelo operativo antes de comprometer capital en un mercado nuevo.",
+    "m_entry_c1_h5": "Atractivo por ocasión y segmento",
+    "m_entry_c1_p": "Tamaño y competencia dentro de cada ocasión de consumo, no del mercado en bloque.",
+    "m_entry_c2_h5": "Ruta al mercado",
+    "m_entry_c2_p": "Importación, co-empaque o capacidad propia: la economía de cada opción de suministro y cobertura.",
+    "m_entry_c3_h5": "Riesgo fiscal, regulatorio y cambiario",
+    "m_entry_c3_p": "Su impacto explícito en economía unitaria y capital de trabajo.",
+    "m_entry_c4_h5": "Decisión go / no-go",
+    "m_entry_c4_p": "Un caso de grado de decisión que habilita entrar, esperar o descartar.",
+    "m_value_eyebrow": "03",
+    "m_value_h2": "Value Creation & Capital Allocation",
+    "m_value_lead": "Cuantificamos el tamaño del premio y dónde se crea valor, para asignar capital con disciplina.",
+    "m_value_c1_h5": "Tamaño del premio y pools de ganancias",
+    "m_value_c1_p": "Dónde se concentra el margen por canal, categoría y geografía.",
+    "m_value_c2_h5": "Crecimiento inorgánico",
+    "m_value_c2_p": "Tamizado de objetivos, sinergias y modelos de integración por tiers.",
+    "m_value_c3_h5": "Casos de grado de decisión",
+    "m_value_c3_p": "TIR, VPN y payback por escenario, listos para directorio.",
+    "m_value_c4_h5": "Asignación de capital",
+    "m_value_c4_p": "Trade-offs de CapEx, riesgo y retorno antes de comprometer.",
+    "m_model_eyebrow": "04",
+    "m_model_h2": "Commercial & Operating Model",
+    "m_model_lead": "Rediseñamos el modelo comercial y operativo para que la estrategia se sostenga en la organización.",
+    "m_model_c1_h5": "Reset estratégico y comercial",
+    "m_model_c1_p": "Segmentación, propuesta de valor y prioridades alineadas a la ambición.",
+    "m_model_c2_h5": "Rediseño RTM y distribución",
+    "m_model_c2_p": "Cobertura, especialización de rutas y economía de costo de servicio.",
+    "m_model_c3_h5": "Modelo operativo y gobernanza",
+    "m_model_c3_p": "OKRs, derechos de decisión y responsabilidad de margen interfuncional.",
+    "m_model_c4_h5": "Gestión del desempeño",
+    "m_model_c4_p": "Cadencia y tableros para que las mejoras no se degraden con el tiempo."
+  },
+  "en": {
+    "__title": "Imberion — Growth Strategy",
+    "nav_cta": "Book a Call",
+    "back": "← Back to home",
+    "hero_eyebrow": "Growth Strategy",
+    "hero_h1": "Where to grow,<br>and whether you can win.",
+    "hero_lead": "Before growth is operated comes the strategic decision: which markets to compete in, what prize is there, and whether the right to win exists. It is where the most capital is committed with the least certainty.",
+    "ctastrip_h2": "Ready to decide where to grow?",
+    "ctastrip_p": "Book a 30-minute call. We map the prize, the right to win, and the best route for your business.",
+    "ctastrip_btn": "Book a Call",
+    "m_sizing_eyebrow": "01",
+    "m_sizing_h2": "Market Sizing & Right-to-Win",
+    "m_sizing_lead": "We size the opportunity and test whether you can actually win it, before you invest.",
+    "m_sizing_c1_h5": "Market sizing (TAM / SAM / SOM)",
+    "m_sizing_c1_p": "Top-down and bottom-up triangulation of the addressable opportunity.",
+    "m_sizing_c2_h5": "Right-to-win assessment",
+    "m_sizing_c2_p": "Realistic probability of winning a segment given capabilities and position.",
+    "m_sizing_c3_h5": "Where-to-play map",
+    "m_sizing_c3_p": "Where the prize is, and where you have permission to compete.",
+    "m_sizing_c4_h5": "Opportunity prioritization",
+    "m_sizing_c4_p": "Sequenced bets, ordered by value, feasibility, and fit.",
+    "m_entry_eyebrow": "02",
+    "m_entry_h2": "Market Entry & Go-to-Market",
+    "m_entry_lead": "We assess attractiveness, route to market, and operating model before committing capital to a new market.",
+    "m_entry_c1_h5": "Attractiveness by occasion and segment",
+    "m_entry_c1_p": "Size and competition within each consumption occasion, not the market in bulk.",
+    "m_entry_c2_h5": "Route to market",
+    "m_entry_c2_p": "Import, co-packing, or owned capacity: the economics of each supply and coverage option.",
+    "m_entry_c3_h5": "Fiscal, regulatory, and FX risk",
+    "m_entry_c3_p": "Their explicit impact on unit economics and working capital.",
+    "m_entry_c4_h5": "Go / no-go decision",
+    "m_entry_c4_p": "A decision-grade case that enables entering, waiting, or walking away.",
+    "m_value_eyebrow": "03",
+    "m_value_h2": "Value Creation & Capital Allocation",
+    "m_value_lead": "We quantify the size of the prize and where value is created, to allocate capital with discipline.",
+    "m_value_c1_h5": "Size of the prize and profit pools",
+    "m_value_c1_p": "Where margin concentrates by channel, category, and geography.",
+    "m_value_c2_h5": "Inorganic growth",
+    "m_value_c2_p": "Target screening, synergies, and tiered integration models.",
+    "m_value_c3_h5": "Decision-grade cases",
+    "m_value_c3_p": "IRR, NPV, and payback by scenario, board-ready.",
+    "m_value_c4_h5": "Capital allocation",
+    "m_value_c4_p": "CapEx, risk, and return trade-offs before you commit.",
+    "m_model_eyebrow": "04",
+    "m_model_h2": "Commercial & Operating Model",
+    "m_model_lead": "We redesign the commercial and operating model so the strategy holds inside the organization.",
+    "m_model_c1_h5": "Strategic and commercial reset",
+    "m_model_c1_p": "Segmentation, value proposition, and priorities aligned to the ambition.",
+    "m_model_c2_h5": "RTM and distribution redesign",
+    "m_model_c2_p": "Coverage, route specialization, and cost-to-serve economics.",
+    "m_model_c3_h5": "Operating model and governance",
+    "m_model_c3_p": "OKRs, decision rights, and cross-functional margin accountability.",
+    "m_model_c4_h5": "Performance management",
+    "m_model_c4_p": "Cadence and dashboards so improvements do not decay over time."
+  },
+  "pt": {
+    "__title": "Imberion — Estratégia de Crescimento",
+    "nav_cta": "Agendar chamada",
+    "back": "← Voltar ao início",
+    "hero_eyebrow": "Estratégia de Crescimento",
+    "hero_h1": "Onde crescer,<br>e se dá para ganhar.",
+    "hero_lead": "Antes de operar o crescimento vem a decisão estratégica: em quais mercados competir, qual prêmio existe e se há direito a ganhá-lo. É onde mais capital se compromete com menos certeza.",
+    "ctastrip_h2": "Prontos para decidir onde crescer?",
+    "ctastrip_p": "Agendem uma chamada de 30 minutos. Mapeamos o prêmio, o direito a ganhar e a melhor rota para o seu negócio.",
+    "ctastrip_btn": "Agendar chamada",
+    "m_sizing_eyebrow": "01",
+    "m_sizing_h2": "Market Sizing & Right-to-Win",
+    "m_sizing_lead": "Dimensionamos a oportunidade e testamos se você realmente pode ganhá-la, antes de investir.",
+    "m_sizing_c1_h5": "Dimensionamento de mercado (TAM / SAM / SOM)",
+    "m_sizing_c1_p": "Triangulação top-down e bottom-up da oportunidade endereçável.",
+    "m_sizing_c2_h5": "Avaliação do right-to-win",
+    "m_sizing_c2_p": "Probabilidade realista de ganhar um segmento dadas as capacidades e a posição.",
+    "m_sizing_c3_h5": "Mapa de onde competir",
+    "m_sizing_c3_p": "Onde está o prêmio, e onde você tem permissão para competir.",
+    "m_sizing_c4_h5": "Priorização de oportunidades",
+    "m_sizing_c4_p": "Apostas sequenciadas, ordenadas por valor, viabilidade e fit.",
+    "m_entry_eyebrow": "02",
+    "m_entry_h2": "Market Entry & Go-to-Market",
+    "m_entry_lead": "Avaliamos atratividade, rota ao mercado e modelo operacional antes de comprometer capital em um novo mercado.",
+    "m_entry_c1_h5": "Atratividade por ocasião e segmento",
+    "m_entry_c1_p": "Tamanho e concorrência dentro de cada ocasião de consumo, não do mercado em bloco.",
+    "m_entry_c2_h5": "Rota ao mercado",
+    "m_entry_c2_p": "Importação, co-packing ou capacidade própria: a economia de cada opção de suprimento e cobertura.",
+    "m_entry_c3_h5": "Risco fiscal, regulatório e cambial",
+    "m_entry_c3_p": "Seu impacto explícito na economia unitária e no capital de giro.",
+    "m_entry_c4_h5": "Decisão go / no-go",
+    "m_entry_c4_p": "Um caso de grau de decisão que habilita entrar, esperar ou descartar.",
+    "m_value_eyebrow": "03",
+    "m_value_h2": "Value Creation & Capital Allocation",
+    "m_value_lead": "Quantificamos o tamanho do prêmio e onde o valor é criado, para alocar capital com disciplina.",
+    "m_value_c1_h5": "Tamanho do prêmio e profit pools",
+    "m_value_c1_p": "Onde a margem se concentra por canal, categoria e geografia.",
+    "m_value_c2_h5": "Crescimento inorgânico",
+    "m_value_c2_p": "Triagem de alvos, sinergias e modelos de integração por tiers.",
+    "m_value_c3_h5": "Casos de grau de decisão",
+    "m_value_c3_p": "TIR, VPL e payback por cenário, prontos para o conselho.",
+    "m_value_c4_h5": "Alocação de capital",
+    "m_value_c4_p": "Trade-offs de CapEx, risco e retorno antes de comprometer.",
+    "m_model_eyebrow": "04",
+    "m_model_h2": "Commercial & Operating Model",
+    "m_model_lead": "Redesenhamos o modelo comercial e operacional para que a estratégia se sustente na organização.",
+    "m_model_c1_h5": "Reset estratégico e comercial",
+    "m_model_c1_p": "Segmentação, proposta de valor e prioridades alinhadas à ambição.",
+    "m_model_c2_h5": "Redesenho RTM e distribuição",
+    "m_model_c2_p": "Cobertura, especialização de rotas e economia de custo de servir.",
+    "m_model_c3_h5": "Modelo operacional e governança",
+    "m_model_c3_p": "OKRs, direitos de decisão e responsabilidade de margem interfuncional.",
+    "m_model_c4_h5": "Gestão de desempenho",
+    "m_model_c4_p": "Cadência e painéis para que as melhorias não se degradem ao longo do tempo."
+  }
+};</script>
+<script src="assets/js/imberion-site.js"></script>
+</body>
+</html>

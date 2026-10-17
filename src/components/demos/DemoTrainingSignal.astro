@@ -1,0 +1,861 @@
+---
+// Mini-demo de Training Signal: práctica con un cliente simulado.
+//
+// Se elige un producto; cada uno trae un cliente con perfil definido
+// (`practica.clientes[p]`) que lleva la conversación durante tres turnos. Cada
+// opción trae la reacción del cliente y la retroalimentación; el cierre sale
+// del número de respuestas buenas (3 compra, 2 pide tiempo, 0 o 1 se va).
+//
+// Voz: cada globo del cliente tiene un botón para escucharlo con la síntesis
+// de voz del navegador (speechSynthesis, es-MX si existe). Si el navegador no
+// la tiene, el botón no aparece. En el producto real el asesor contesta en voz
+// alta; aquí escoge entre tres respuestas, y la interfaz lo dice.
+//
+// Es determinista igual que Virtual Buyer Personas: todo el diálogo está
+// escrito en el JSON de contenido y viaja como JSON en la página.
+//
+// El panel lleva `data-dialogo` porque los globos y las opciones son habla
+// citada entre cliente y asesor en una tienda: ahí el trato de usted es del
+// personaje, no del sitio.
+
+export interface DemoTrainingSignalContenido {
+  eyebrow: string;
+  titulo: string;
+  intro: string;
+  producto_label: string;
+  app: { producto: string; sku_label: string; estado: string };
+  productos: Array<{ nombre: string; detalle: string; sku: string; precio: string }>;
+  simulacion: string;
+  practica: {
+    perfil_label: string;
+    quien_cliente: string;
+    quien_asesor: string;
+    voz_label: string;
+    voz_nota: string;
+    escuchar: string;
+    detener: string;
+    turno_label: string;
+    de: string;
+    pregunta: string;
+    nota_buena: string;
+    nota_mala: string;
+    mejor_label: string;
+    btn_seguir: string;
+    btn_resultado: string;
+    btn_otra: string;
+    resultado_label: string;
+    repaso_label: string;
+    resultados: { compra: string; duda: string; se_va: string };
+    marcador: string;
+    clientes: Array<{
+      perfil: string;
+      rasgos: string[];
+      turnos: Array<{
+        cliente: string;
+        dur: string;
+        opciones: Array<{ texto: string; reaccion: string; nota: string; buena: boolean }>;
+      }>;
+      cierre: { compra: string; duda: string; se_va: string };
+    }>;
+  };
+}
+
+interface Props {
+  contenido: DemoTrainingSignalContenido;
+}
+
+const { contenido: d } = Astro.props;
+const pr = d.practica;
+// El diálogo viaja como JSON; `<` escapado para que ningún texto pueda cerrar
+// la etiqueta <script>.
+const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
+---
+
+<section class="demo-bloque" id="mini-demo">
+  <div class="container">
+    <div class="demo-head">
+      <div class="eyebrow demo-eyebrow">{d.eyebrow}</div>
+      <h2>{d.titulo}</h2>
+      <p class="cuerpo">{d.intro}</p>
+    </div>
+
+    <div class="ts-wrap" data-demo-ts role="group" aria-label={d.titulo}>
+      <div class="ts-ctrl">
+        <div class="ts-grupo">
+          <span class="ts-k" id="ts-k-prod">{d.producto_label}</span>
+          <div class="ts-prods" role="group" aria-labelledby="ts-k-prod">
+            {
+              d.productos.map((p, i) => (
+                <button
+                  type="button"
+                  class={`ts-prod${i === 0 ? ' on' : ''}`}
+                  data-prod-btn={i}
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                >
+                  <span class="ts-scan" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                      <path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" />
+                      <path d="M8 8.5v7M10.5 8.5v7M13 8.5v7M15.5 8.5v7" />
+                    </svg>
+                  </span>
+                  <span class="ts-prod-txt">
+                    <span class="ts-prod-n">{p.nombre}</span>
+                    <span class="ts-prod-d">{p.detalle}</span>
+                  </span>
+                  <span class="ts-prod-p">{p.precio}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="ts-grupo">
+          <span class="ts-k">{pr.perfil_label}</span>
+          {
+            pr.clientes.map((c, i) => (
+              <div class={`ts-perfil${i === 0 ? ' on' : ''}`} data-perfil={i}>
+                <span class="ts-perfil-n">{c.perfil}</span>
+                <ul>
+                  {c.rasgos.map((r) => (
+                    <li>{r}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="ts-app" data-dialogo>
+        <div class="ts-barra">
+          <span class="ts-marca"><span class="ts-marca-o" aria-hidden="true"></span>{d.app.producto}</span>
+          <span class="ts-estado"><span class="ts-estado-dot" aria-hidden="true"></span>{d.app.estado}</span>
+        </div>
+
+        <div class="ts-practica" data-practica aria-live="polite">
+          <div class="ts-voz">
+            <span class="ts-voz-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                <rect x="9" y="3" width="6" height="11" rx="3" />
+                <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" />
+              </svg>
+              {pr.voz_label}
+            </span>
+            <span class="ts-voz-nota">{pr.voz_nota}</span>
+            <span class="ts-turnos" data-turnos aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ts-hilo" data-hilo></div>
+          <div class="ts-turno" data-turno>
+            <p class="ts-preg" data-preg></p>
+            <div class="ts-opcs" data-opcs></div>
+          </div>
+          <div class="ts-coach" data-coach hidden>
+            <span class="ts-coach-k" data-coach-k></span>
+            <p data-coach-nota></p>
+            <div class="ts-coach-mejor" data-coach-mejor hidden>
+              <span class="ts-lbl">{pr.mejor_label}</span>
+              <p data-coach-mejor-t></p>
+            </div>
+            <button type="button" class="ts-btn" data-seguir></button>
+          </div>
+          <div class="ts-final" data-final hidden>
+            <span class="ts-lbl">{pr.resultado_label}</span>
+            <p class="ts-final-r" data-final-r></p>
+            <p class="ts-final-m" data-final-m></p>
+            <div class="ts-repaso" data-repaso hidden>
+              <span class="ts-lbl">{pr.repaso_label}</span>
+              <ol data-repaso-l></ol>
+            </div>
+            <button type="button" class="ts-btn" data-otra>{pr.btn_otra}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="application/json" data-ts-practica set:html={practicaJson}></script>
+    <p class="demo-nota">{d.simulacion}</p>
+  </div>
+</section>
+
+<style is:inline>
+  /* Tokens del sitio (site.css / shell.css). Navy sobre papel; el petróleo
+     solo marca la respuesta buena y la venta cerrada. Selectores prefijados por
+     `.demo-bloque` porque el <style is:inline> no lleva scope de Astro. */
+  .demo-bloque {
+    scroll-margin-top: 86px;
+    padding: clamp(70px, 6.5vw, 150px) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .demo-head h2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.12;
+    font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+    max-width: 22ch;
+    margin-top: 12px;
+  }
+  .demo-bloque .demo-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .demo-bloque .demo-head .cuerpo {
+    margin-top: 20px;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 1.72;
+    color: var(--navy-72);
+  }
+
+  .demo-bloque .ts-wrap {
+    margin-top: 46px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+    gap: clamp(20px, 3vw, 44px);
+    align-items: start;
+  }
+
+  /* ---------- controles ---------- */
+  .demo-bloque .ts-ctrl {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
+  }
+  .demo-bloque .ts-k,
+  .demo-bloque .ts-lbl,
+  .demo-bloque .ts-sku-k,
+  .demo-bloque .ts-opc-k {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .ts-prods {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .demo-bloque .ts-prod {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+    padding: 13px 16px;
+    border: 1px solid var(--navy-12);
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition:
+      background 0.28s var(--ease),
+      border-color 0.28s var(--ease),
+      color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-prod:hover { border-color: var(--navy-20); }
+  .demo-bloque .ts-prod.on {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper-warm);
+  }
+  .demo-bloque .ts-scan {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--navy-60);
+  }
+  .demo-bloque .ts-scan svg { width: 18px; height: 18px; display: block; }
+  .demo-bloque .ts-prod.on .ts-scan { background: rgba(255, 255, 255, 0.1); color: var(--paper-warm); }
+  .demo-bloque .ts-prod-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .demo-bloque .ts-prod-n { font-size: 14px; font-weight: 600; line-height: 1.3; }
+  .demo-bloque .ts-prod-d { font-size: 12px; color: var(--navy-60); }
+  .demo-bloque .ts-prod.on .ts-prod-d { color: var(--slate-mist); }
+  .demo-bloque .ts-prod-p,
+  .demo-bloque .ts-sku-p,
+  .demo-bloque .ts-sku-v {
+    /* Cifra suelta: DM Sans, nunca el "1" de Cormorant. */
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- el panel de la herramienta ---------- */
+  .demo-bloque .ts-app {
+    min-width: 0;
+    background: var(--white);
+    border: 1px solid var(--navy-12);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 24px 60px rgba(6, 16, 28, 0.12),
+      0 4px 12px rgba(6, 16, 28, 0.06);
+    color: var(--navy);
+  }
+  .demo-bloque .ts-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 44px;
+    padding: 0 16px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .ts-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .demo-bloque .ts-marca-o {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    box-sizing: border-box;
+  }
+  .demo-bloque .ts-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .ts-estado-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--slate); }
+
+  .demo-bloque .ts-bub {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 11px 15px;
+    border-radius: 14px;
+    max-width: 88%;
+  }
+  .demo-bloque .ts-bub .who {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 3px;
+  }
+  .demo-bloque .ts-bub.cli {
+    align-self: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--navy-12);
+    border-bottom-left-radius: 4px;
+  }
+  .demo-bloque .ts-bub.ase {
+    align-self: flex-end;
+    background: var(--navy);
+    color: var(--paper-warm);
+    border-bottom-right-radius: 4px;
+  }
+
+  /* ---------- perfil del cliente simulado ---------- */
+  .demo-bloque .ts-perfil { display: none; margin-top: 12px; padding: 16px 18px; background: var(--white); border: 1px solid var(--navy-12); }
+  .demo-bloque .ts-perfil.on { display: block; }
+  .demo-bloque .ts-perfil-n {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .demo-bloque .ts-perfil ul { margin: 10px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .demo-bloque .ts-perfil li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--navy-72);
+  }
+  .demo-bloque .ts-perfil li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--navy-40);
+  }
+
+  /* ---------- práctica ---------- */
+  .demo-bloque .ts-practica { display: flex; flex-direction: column; gap: 14px; }
+  .demo-bloque .ts-voz {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--navy-12);
+  }
+  .demo-bloque .ts-voz-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 8px;
+    border-radius: 999px;
+    background: var(--navy);
+    color: var(--paper-warm);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .demo-bloque .ts-voz-pill svg { width: 14px; height: 14px; display: block; }
+  .demo-bloque .ts-voz-nota { font-size: 12px; color: var(--navy-60); }
+  .demo-bloque .ts-turnos { margin-left: auto; display: inline-flex; gap: 5px; }
+  .demo-bloque .ts-turnos i {
+    width: 18px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--navy-12);
+    transition: background 0.28s var(--ease);
+  }
+  .demo-bloque .ts-turnos i.actual { background: var(--navy-40); }
+  .demo-bloque .ts-turnos i.bien { background: var(--navy); }
+  .demo-bloque .ts-turnos i.mal { background: var(--slate-mist); }
+
+  /* El hilo crece hacia abajo con tope de alto; el último globo queda a la vista. */
+  .demo-bloque .ts-hilo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 340px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+  .demo-bloque .ts-hilo .ts-bub { animation: ts-entra 0.34s var(--ease-io) both; }
+  @keyframes ts-entra {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  .demo-bloque .ts-bub .who { display: flex; align-items: center; gap: 8px; }
+  .demo-bloque .ts-onda { display: inline-flex; align-items: center; gap: 2px; height: 10px; }
+  .demo-bloque .ts-onda b { display: block; width: 2px; border-radius: 1px; background: currentColor; }
+  .demo-bloque .ts-dur { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+  /* Botón de escuchar en cada globo del cliente: la voz es la del navegador. */
+  .demo-bloque .ts-oir {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px 3px 7px;
+    border: 1px solid var(--navy-20);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 1;
+    cursor: pointer;
+  }
+  .demo-bloque .ts-oir svg { width: 10px; height: 10px; display: block; }
+  .demo-bloque .ts-oir:hover { border-color: var(--navy); }
+  .demo-bloque .ts-oir.sonando { background: var(--navy); color: var(--paper-warm); border-color: var(--navy); }
+  .demo-bloque .ts-bub.cli .who { opacity: 1; }
+  .demo-bloque .ts-bub.cli .who > span:first-child { opacity: 0.6; }
+  .demo-bloque .ts-bub.cli .ts-onda, .demo-bloque .ts-bub.cli .ts-dur { opacity: 0.6; }
+  .demo-bloque .ts-practica { padding: 16px 18px 22px; }
+
+  .demo-bloque .ts-turno { display: flex; flex-direction: column; gap: 12px; }
+  .demo-bloque .ts-preg {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .demo-bloque .ts-opcs { display: flex; flex-direction: column; gap: 8px; }
+  .demo-bloque .ts-opc-btn {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border: 1px solid var(--navy-12);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.48;
+    cursor: pointer;
+    transition: border-color 0.28s var(--ease);
+  }
+  .demo-bloque .ts-opc-btn:hover { border-color: var(--navy-40); }
+  .demo-bloque .ts-opc-l {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--navy-20);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy-60);
+  }
+
+  .demo-bloque .ts-coach,
+  .demo-bloque .ts-final {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 16px;
+    background: var(--paper-warm);
+    border: 1px solid var(--navy-12);
+    border-radius: 4px;
+  }
+  .demo-bloque .ts-turno[hidden],
+  .demo-bloque .ts-coach[hidden],
+  .demo-bloque .ts-final[hidden],
+  .demo-bloque .ts-coach-mejor[hidden] { display: none; }
+  .demo-bloque .ts-coach-k {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--navy-60);
+  }
+  .demo-bloque .ts-coach.bien .ts-coach-k { color: var(--petrol-deep); }
+  .demo-bloque .ts-coach.bien { border-color: var(--petrol); background: var(--petrol-06); }
+  .demo-bloque .ts-coach p,
+  .demo-bloque .ts-coach-mejor p { font-size: 13px; line-height: 1.58; color: var(--navy-72); }
+  .demo-bloque .ts-coach-mejor { padding-left: 12px; border-left: 2px solid var(--slate-mist); }
+  .demo-bloque .ts-coach-mejor p { margin-top: 3px; color: var(--navy); }
+  .demo-bloque .ts-final-r {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .demo-bloque .ts-final.compra { border-color: var(--petrol); background: var(--petrol-06); }
+  .demo-bloque .ts-final.compra .ts-final-r { color: var(--petrol-deep); }
+  .demo-bloque .ts-final-m { font-size: 13px; color: var(--navy-72); }
+  .demo-bloque .ts-repaso { margin-top: 6px; width: 100%; }
+  .demo-bloque .ts-repaso[hidden] { display: none; }
+  .demo-bloque .ts-repaso ol { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .demo-bloque .ts-repaso li { display: flex; flex-direction: column; gap: 3px; padding-left: 12px; border-left: 2px solid var(--slate-mist); }
+  .demo-bloque .ts-repaso-c { font-size: 12px; color: var(--navy-60); }
+  .demo-bloque .ts-repaso-m { font-size: 13px; line-height: 1.5; color: var(--navy); }
+
+  .demo-bloque .ts-btn {
+    margin-top: 4px;
+    padding: 10px 18px;
+    border-radius: var(--r);
+    border: 1px solid var(--navy);
+    background: var(--navy);
+    color: var(--paper-warm);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.28s var(--ease);
+  }
+  .demo-bloque .ts-btn:hover { opacity: 0.88; }
+
+  .demo-bloque .demo-nota {
+    margin-top: 20px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--navy-40);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-bloque .ts-prod,
+    .demo-bloque .ts-opc-btn,
+    .demo-bloque .ts-btn,
+    .demo-bloque .ts-turnos i {
+      transition: none;
+    }
+    .demo-bloque .ts-hilo { scroll-behavior: auto; }
+    .demo-bloque .ts-hilo .ts-bub { animation: none; }
+  }
+
+  @media (max-width: 900px) {
+    .demo-bloque .ts-wrap { grid-template-columns: 1fr; }
+    .demo-bloque .ts-ctrl { gap: 22px; }
+  }
+  @media (max-width: 600px) {
+    /* En celular la conversación tiene que verse pronto: productos en una fila
+       compacta y el perfil solo con su nombre. */
+    .demo-bloque .ts-ctrl { gap: 14px; }
+    .demo-bloque .ts-prods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+    .demo-bloque .ts-prod { grid-template-columns: 1fr; gap: 2px; padding: 9px 10px; }
+    .demo-bloque .ts-scan,
+    .demo-bloque .ts-prod-d,
+    .demo-bloque .ts-perfil ul { display: none; }
+    .demo-bloque .ts-prod-n { font-size: 12.5px; }
+    .demo-bloque .ts-prod-p { font-size: 11.5px; font-weight: 500; }
+    .demo-bloque .ts-perfil { padding: 10px 14px; margin-top: 8px; }
+    .demo-bloque .ts-perfil-n { font-size: 1.1rem; }
+    .demo-bloque .ts-bub { max-width: 94%; }
+    .demo-bloque .ts-practica { padding: 14px 14px 18px; }
+    .demo-bloque .ts-turnos { margin-left: 0; }
+  }
+</style>
+
+<script is:inline>
+  // Motor de la práctica. Sin dependencias: arma el hilo de la conversación a
+  // partir del JSON de la página (cliente, respuesta elegida, reacción y
+  // retroalimentación, turno por turno). Todo el texto entra con textContent.
+  // La voz no arranca sola: el visitante pide escuchar cada globo.
+  (function () {
+    var raices = document.querySelectorAll('[data-demo-ts]');
+    for (var r = 0; r < raices.length; r++) montar(raices[r]);
+
+    function montar(raiz) {
+      var prods = raiz.querySelectorAll('[data-prod-btn]');
+      var perfiles = raiz.querySelectorAll('[data-perfil]');
+      var datos = null;
+      try {
+        var nodo = raiz.parentNode.querySelector('[data-ts-practica]');
+        datos = nodo ? JSON.parse(nodo.textContent) : null;
+      } catch (e) {}
+      if (!prods.length || !datos) return;
+
+      var q = function (sel) { return raiz.querySelector(sel); };
+      var hilo = q('[data-hilo]');
+      var turnoBox = q('[data-turno]');
+      var preg = q('[data-preg]');
+      var opcsBox = q('[data-opcs]');
+      var coach = q('[data-coach]');
+      var coachK = q('[data-coach-k]');
+      var coachNota = q('[data-coach-nota]');
+      var coachMejor = q('[data-coach-mejor]');
+      var coachMejorT = q('[data-coach-mejor-t]');
+      var seguir = q('[data-seguir]');
+      var fin = q('[data-final]');
+      var finR = q('[data-final-r]');
+      var finM = q('[data-final-m]');
+      var otra = q('[data-otra]');
+      var ticks = raiz.querySelectorAll('[data-turnos] i');
+
+      var p = 0;
+      var t = 0;
+      var aciertos = 0;
+      var fallas = [];
+      var repaso = q('[data-repaso]');
+      var repasoL = q('[data-repaso-l]');
+
+      // ---- voz del navegador ----
+      var sintesis = 'speechSynthesis' in window ? window.speechSynthesis : null;
+      var vozMx = null;
+      function elegirVoz() {
+        if (!sintesis) return;
+        var voces = sintesis.getVoices() || [];
+        vozMx =
+          voces.filter(function (v) { return /^es[-_]MX/i.test(v.lang); })[0] ||
+          voces.filter(function (v) { return /^es[-_](US|419)/i.test(v.lang); })[0] ||
+          voces.filter(function (v) { return /^es/i.test(v.lang); })[0] ||
+          null;
+      }
+      if (sintesis) {
+        elegirVoz();
+        if (typeof sintesis.addEventListener === 'function') sintesis.addEventListener('voiceschanged', elegirVoz);
+      }
+      var sonando = null;
+      function callar() {
+        if (sintesis) sintesis.cancel();
+        if (sonando) {
+          sonando.classList.remove('sonando');
+          sonando.lastChild.textContent = datos.escuchar;
+          sonando = null;
+        }
+      }
+      function decir(texto, boton) {
+        if (!sintesis) return;
+        var mismo = sonando === boton;
+        callar();
+        if (mismo) return;
+        var u = new SpeechSynthesisUtterance(texto);
+        u.lang = vozMx ? vozMx.lang : 'es-MX';
+        if (vozMx) u.voice = vozMx;
+        u.rate = 1;
+        u.onend = u.onerror = function () { if (sonando === boton) callar(); };
+        sonando = boton;
+        boton.classList.add('sonando');
+        boton.lastChild.textContent = datos.detener;
+        sintesis.speak(u);
+      }
+
+      function el(tag, cls, txt) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (txt != null) n.textContent = txt;
+        return n;
+      }
+
+      // Onda decorativa; alturas fijas a partir del texto.
+      function onda(texto) {
+        var w = el('span', 'ts-onda');
+        w.setAttribute('aria-hidden', 'true');
+        for (var i = 0; i < 9; i++) {
+          var b = el('b');
+          var c = texto.charCodeAt((i * 7) % texto.length) || 0;
+          b.style.height = 3 + (c % 8) + 'px';
+          w.appendChild(b);
+        }
+        return w;
+      }
+
+      function globo(quien, texto, dur) {
+        var cli = quien === 'cli';
+        var g = el('div', 'ts-bub ' + quien);
+        var who = el('span', 'who');
+        who.appendChild(el('span', null, cli ? datos.quien_cliente : datos.quien_asesor));
+        who.appendChild(onda(texto));
+        if (dur) who.appendChild(el('span', 'ts-dur', dur));
+        if (cli && sintesis) {
+          var b = el('button', 'ts-oir');
+          b.type = 'button';
+          b.innerHTML = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2v7.6L8.6 5z" fill="currentColor"/></svg>';
+          b.appendChild(el('span', null, datos.escuchar));
+          b.addEventListener('click', function () { decir(texto, b); });
+          who.appendChild(b);
+        }
+        g.appendChild(who);
+        g.appendChild(document.createTextNode(texto));
+        hilo.appendChild(g);
+        hilo.scrollTop = hilo.scrollHeight;
+      }
+
+      function cliente() { return datos.clientes[p] || datos.clientes[0]; }
+
+      function mostrarTurno() {
+        var turno = cliente().turnos[t];
+        globo('cli', turno.cliente, turno.dur);
+        preg.textContent = datos.pregunta + ' · ' + datos.turno_label + ' ' + (t + 1) + ' ' + datos.de + ' ' + cliente().turnos.length;
+        opcsBox.textContent = '';
+        turno.opciones.forEach(function (op, k) {
+          var b = el('button', 'ts-opc-btn');
+          b.type = 'button';
+          b.appendChild(el('span', 'ts-opc-l', 'ABC'.charAt(k)));
+          b.appendChild(el('span', 'ts-opc-t', op.texto));
+          b.addEventListener('click', function () { responder(op, turno); });
+          opcsBox.appendChild(b);
+        });
+        turnoBox.hidden = false;
+        coach.hidden = true;
+        for (var i = 0; i < ticks.length; i++) ticks[i].classList.toggle('actual', i === t);
+      }
+
+      function responder(op, turno) {
+        callar();
+        turnoBox.hidden = true;
+        globo('ase', op.texto, null);
+        globo('cli', op.reaccion, null);
+        if (op.buena) aciertos++;
+        if (ticks[t]) {
+          ticks[t].classList.remove('actual');
+          ticks[t].classList.add(op.buena ? 'bien' : 'mal');
+        }
+        coach.classList.toggle('bien', !!op.buena);
+        coachK.textContent = op.buena ? datos.nota_buena : datos.nota_mala;
+        coachNota.textContent = op.nota;
+        var mejor = null;
+        turno.opciones.forEach(function (x) { if (x.buena) mejor = x; });
+        coachMejor.hidden = !!op.buena || !mejor;
+        if (mejor) coachMejorT.textContent = mejor.texto;
+        if (!op.buena && mejor) fallas.push({ cliente: turno.cliente, mejor: mejor.texto });
+        seguir.textContent = t >= cliente().turnos.length - 1 ? datos.btn_resultado : datos.btn_seguir;
+        coach.hidden = false;
+      }
+
+      function cerrar() {
+        coach.hidden = true;
+        var total = cliente().turnos.length;
+        var r = aciertos >= total ? 'compra' : aciertos === total - 1 ? 'duda' : 'se_va';
+        globo('cli', cliente().cierre[r], null);
+        fin.classList.toggle('compra', r === 'compra');
+        finR.textContent = datos.resultados[r];
+        finM.textContent = datos.marcador.replace('{n}', aciertos).replace('{t}', total);
+        // Repaso: en cada turno fallado, la objeción y lo que dijo el mejor asesor.
+        repasoL.textContent = '';
+        fallas.forEach(function (f) {
+          var li = el('li');
+          li.appendChild(el('span', 'ts-repaso-c', '“' + f.cliente + '”'));
+          li.appendChild(el('span', 'ts-repaso-m', f.mejor));
+          repasoL.appendChild(li);
+        });
+        repaso.hidden = fallas.length === 0;
+        fin.hidden = false;
+      }
+
+      function iniciar() {
+        callar();
+        t = 0;
+        aciertos = 0;
+        fallas = [];
+        hilo.textContent = '';
+        fin.hidden = true;
+        for (var i = 0; i < ticks.length; i++) ticks[i].className = '';
+        mostrarTurno();
+      }
+
+      seguir.addEventListener('click', function () {
+        if (t >= cliente().turnos.length - 1) return cerrar();
+        t++;
+        mostrarTurno();
+      });
+      otra.addEventListener('click', function () {
+        iniciar();
+        var b = opcsBox.querySelector('button');
+        if (b) b.focus();
+      });
+
+      function marcar(lista, attr, valor) {
+        for (var i = 0; i < lista.length; i++) {
+          var activo = lista[i].getAttribute(attr) === String(valor);
+          lista[i].classList.toggle('on', activo);
+          if (lista[i].tagName === 'BUTTON') lista[i].setAttribute('aria-pressed', activo ? 'true' : 'false');
+        }
+      }
+      for (var i = 0; i < prods.length; i++)
+        prods[i].addEventListener('click', function () {
+          p = parseInt(this.getAttribute('data-prod-btn'), 10) || 0;
+          marcar(prods, 'data-prod-btn', p);
+          marcar(perfiles, 'data-perfil', p);
+          // Otro producto es otro cliente: la práctica empieza de nuevo.
+          iniciar();
+        });
+
+      // Parámetro de QA: ?demo=<producto> (1 = el primero) fija el producto.
+      try {
+        var v = parseInt(new URLSearchParams(window.location.search).get('demo'), 10);
+        if (!isNaN(v)) p = Math.max(0, Math.min(prods.length - 1, v - 1));
+      } catch (e) {}
+      marcar(prods, 'data-prod-btn', p);
+      marcar(perfiles, 'data-perfil', p);
+      iniciar();
+    }
+  })();
+</script>

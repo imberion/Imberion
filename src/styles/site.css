@@ -1,0 +1,125 @@
+/* ============================================================
+   Imberion — shared site chrome
+   Elevates the interior pages to the home "Editorial Instrument"
+   system. Link AFTER each page's own <style>; it re-skins the
+   design tokens (navy anchor, slate accent, no green) and unifies
+   nav, buttons, footer, dividers and motion.
+   ============================================================ */
+:root{
+  --navy:#0A1828; --navy-deep:#06101C; --navy-soft:#14293F;
+  --navy-80:rgba(10,24,40,.8); --navy-60:rgba(10,24,40,.6);--navy-72:rgba(10,24,40,.72); --navy-40:rgba(10,24,40,.4);
+  --navy-20:rgba(10,24,40,.2); --navy-12:rgba(10,24,40,.12); --navy-08:rgba(10,24,40,.08); --navy-06:rgba(10,24,40,.06);
+  --gray-blue:#6F859C; --slate:#6F859C; --slate-soft:#8FA3B8; --slate-mist:#C8D2DC;
+  --paper:#EDEAE4; --paper-alt:#E2DED7; --paper-warm:#F2F0EC; --beige:#EDEAE4; --white:#fff;
+  --white-85:rgba(255,255,255,.85); --white-65:rgba(255,255,255,.65); --white-45:rgba(255,255,255,.45);
+  --white-25:rgba(255,255,255,.25); --white-12:rgba(255,255,255,.12); --white-06:rgba(255,255,255,.06);
+  /* legacy green accent -> navy (backgrounds/borders); accents go slate per element */
+  --signal:#0A1828; --signal-lt:#E2DED7;
+  /* Accents de marca. Fuente de verdad: imberion-brand/imberion-tokens.json.
+     Contencion deliberada: el petroleo aparece SOLO donde un acento adicional es
+     indispensable, hoy el anillo de foco y la linea del eyebrow del hero (el
+     gesto de marca). El ochre no se usa en el sitio. --signal sigue apuntando a
+     navy: el sitio es monocromo por decision, no por olvido. */
+  --petrol:#1C5F6B; --petrol-deep:#11454E; --petrol-bright:#52A0AC;
+  --petrol-12:rgba(28,95,107,.12); --petrol-06:rgba(28,95,107,.06);
+  --ochre:#A88A3A; --ochre-deep:#7E641F; --ochre-bright:#C7A85A; --ochre-12:rgba(168,138,58,.14);
+  --accent:var(--petrol); --accent-data:var(--ochre);
+  --ease:cubic-bezier(.19,1,.22,1); --ease-io:cubic-bezier(.4,0,.2,1);
+  --font-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --r:4px;
+}
+
+body{background:var(--paper);color:var(--navy);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--navy);color:var(--paper)}
+:focus-visible{outline:2px solid var(--petrol-deep);outline-offset:3px;border-radius:1px}
+/* El anillo cambia de valor segun la superficie, no de color. petrol-bright
+   sobre papel da 2.4:1, por debajo del minimo de un indicador de foco;
+   petrol-deep sobre navy da 1.9:1. Cada uno en su fondo pasa de sobra. */
+.hero :focus-visible,nav :focus-visible,footer :focus-visible,
+.section--dark :focus-visible,.mat-section :focus-visible,
+.cta-section :focus-visible{outline-color:var(--petrol-bright)}
+h1,h2,h3,h4{letter-spacing:-.012em}
+h2{font-weight:300}
+
+/* ---------- eyebrow + lead ---------- */
+.eyebrow{font-family:var(--font-sans);font-weight:600;letter-spacing:.2em;color:var(--gray-blue)}
+.section--dark .eyebrow,.section--signal .eyebrow{color:var(--slate-soft)}
+.lead{color:var(--navy-72)}
+.section--dark .lead,.section--signal .lead{color:var(--white-65)}
+
+/* ---------- section index ---------- */
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sec-num{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--navy-40);font-variant-numeric:tabular-nums;position:relative;padding-right:16px}
+.sec-num::after{content:"";position:absolute;right:0;top:50%;width:8px;height:1px;background:var(--navy-20)}
+.section--dark .sec-num,.section--signal .sec-num{color:var(--white-45)}
+.section--dark .sec-num::after,.section--signal .sec-num::after{background:var(--white-25)}
+
+/* ---------- NAV ---------- */
+/* :not(.footer-links) porque en index.html el pie usa <nav> para sus enlaces:
+   sin acotar, el nav del pie tambien recibia el fondo blureado y la hairline
+   de la barra superior. */
+nav:not(.footer-links){background:rgba(8,18,30,.72)!important;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--white-06)!important;transition:border-color .3s var(--ease-io),box-shadow .3s var(--ease-io)}
+nav:not(.footer-links).imb-elevated{border-bottom-color:var(--white-12)!important;box-shadow:0 2px 24px rgba(0,0,0,.26)}
+.nav-inner{height:70px;position:relative}
+.nav-progress{position:absolute;left:0;bottom:-1px;height:1.5px;width:0;background:linear-gradient(90deg,transparent,var(--slate-soft) 24%,#fff);box-shadow:0 0 8px rgba(143,163,184,.5);pointer-events:none}
+.nav-links a:not(.btn):not(.lang-btn){color:var(--white-65);font-size:13.5px;font-weight:500}
+.nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+.lang-toggle{background:var(--white-06);border:1px solid var(--white-06)}
+.lang-btn{font-size:10.5px;letter-spacing:.1em;color:var(--white-45)}
+.lang-btn.active{background:var(--white-12);color:#fff}
+.lang-btn:hover:not(.active){color:var(--white-85)}
+
+/* ---------- BUTTONS ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;border-radius:var(--r);font-family:var(--font-sans);font-weight:600;letter-spacing:.02em;border:1px solid transparent;transition:background .28s var(--ease),color .28s var(--ease),border-color .28s var(--ease),transform .3s var(--ease);will-change:transform}
+.btn .btn-arrow{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .btn-arrow{transform:translateX(4px)}
+.btn-primary{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+.btn-primary:hover{background:#fff;border-color:#fff}
+.btn-outline{background:transparent;border-color:var(--white-25);color:var(--white-85)}
+.btn-outline:hover{border-color:var(--white-65);background:var(--white-06);color:#fff}
+.btn-signal{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-signal:hover{background:var(--navy-soft);border-color:var(--navy-soft)}
+.inline-cta{color:var(--gray-blue);gap:8px}
+.inline-cta:hover{color:var(--navy);opacity:1}
+.inline-cta.white{color:var(--white-65)}
+.inline-cta.white:hover{color:#fff}
+.tag{font-family:var(--font-sans);background:var(--navy-06);color:var(--navy-72);border:1px solid var(--navy-08)}
+.tag-light{background:var(--white-12);color:var(--white-85);border-color:var(--white-12)}
+
+/* ---------- SIGNAL DIVIDER (replaces muddy texture bands) ---------- */
+.imb-divider{position:relative;height:1px;width:100%;max-width:var(--max,1180px);margin:0 auto;background:none!important;overflow:visible}
+.imb-divider::before{content:"";position:absolute;left:36px;right:36px;top:0;height:1px;
+  background:
+    linear-gradient(90deg,transparent,var(--navy-20) 50%,transparent) right/52% 1px no-repeat,
+    repeating-linear-gradient(90deg,var(--navy-20) 0 2px,transparent 2px 9px) left/46% 1px no-repeat;}
+.imb-divider::after{content:"";position:absolute;left:49%;top:-2.5px;width:5px;height:5px;border:1px solid var(--gray-blue);background:var(--paper);transform:rotate(45deg)}
+
+/* ---------- FOOTER (editorial + ghost wordmark) ---------- */
+footer{position:relative;background:var(--navy-deep)!important;border-top:1px solid var(--white-06)!important;padding:88px 0 40px!important;overflow:hidden}
+footer::before{display:none;content:"Imberion";position:absolute;left:50%;bottom:-2.6vw;transform:translateX(-50%);font-family:var(--font-serif);font-weight:300;font-size:23vw;line-height:.78;color:var(--white-06);letter-spacing:-.03em;pointer-events:none;white-space:nowrap;-webkit-user-select:none;user-select:none}
+footer .container{position:relative;z-index:1}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;padding-bottom:42px;border-bottom:1px solid var(--white-12)}
+.footer-inner img{height:32px!important}
+#footer-copy{font-size:12px!important;color:var(--white-25)!important;margin-top:14px!important}
+.footer-links,#footer-links{display:flex;gap:14px 28px;flex-wrap:wrap;max-width:560px;justify-content:flex-end}
+#footer-links a{position:relative;font-size:13px;color:var(--white-45);transition:color .25s var(--ease)}
+#footer-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1px;background:var(--slate-soft);transition:right .35s var(--ease)}
+#footer-links a:hover{color:#fff}
+#footer-links a:hover::after{right:0}
+
+/* ---------- PRODUCT MOCKUP ---------- */
+.mockup-band{background:var(--paper);padding:84px 0}
+.mockup-figure{margin:0 auto;max-width:var(--max,1140px);border:1px solid var(--navy-12);border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 22px 60px rgba(10,24,40,.12)}
+.mockup-figure img{display:block;width:100%;height:auto}
+.mockup-figure figcaption{padding:13px 20px;font-family:var(--font-sans);font-size:12px;color:var(--gray-blue);letter-spacing:.02em;background:var(--paper);border-top:1px solid var(--navy-08)}
+.mockup-lead{max-width:var(--max,1140px);margin:0 auto 28px;display:flex;align-items:baseline;gap:14px}
+.mockup-lead .eyebrow{margin:0}
+
+/* ---------- REVEAL ---------- */
+.imb-reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.imb-reveal.imb-in{opacity:1;transform:none}
+.imb-reveal[data-d="1"]{transition-delay:.06s}.imb-reveal[data-d="2"]{transition-delay:.12s}
+.imb-reveal[data-d="3"]{transition-delay:.18s}.imb-reveal[data-d="4"]{transition-delay:.24s}
+.imb-reveal[data-d="5"]{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.imb-reveal{opacity:1;transform:none;transition:none}.nav-progress{display:none}}
