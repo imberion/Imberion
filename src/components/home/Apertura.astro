@@ -85,7 +85,7 @@ const { c, agendar, como } = Astro.props;
 
     <div class="ap-riel" aria-hidden="true">
       {c.ap_recorrido.map((r: string, i: number) => (
-        <span class="ap-riel-paso mono" data-ap-riel={i + 1}><b>{String(i + 1).padStart(2, '0')}</b>{r}</span>
+        <span class="ap-riel-paso mono" data-ap-riel={i + 1}><b>{String(i + 1).padStart(2, '0')}</b>{r}{i === 0 && <i class="ap-pista"></i>}</span>
       ))}
       <span class="ap-riel-barra"><i data-ap-barra></i></span>
     </div>
@@ -258,6 +258,7 @@ const { c, agendar, como } = Astro.props;
     /* en celular no caben juntas: la ficha sale cuando entran los nodos */
     if (movil) fOn *= 1 - ss(0.68, 0.72, p);
     raiz.classList.toggle('is-portada', activo === 0);
+    if (p > 0.002) raiz.classList.add('ap--movido');
     if (ficha) {
       ficha.style.opacity = fOn.toFixed(3);
       ficha.style.transform = 'translateY(' + ((1 - fOn) * 14).toFixed(1) + 'px)';
