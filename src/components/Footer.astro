@@ -17,7 +17,8 @@ const c = comun[locale];
 
 const enlaces = [
   { href: ruta(locale, 'que-resolvemos'), texto: c.nav_que_resolvemos },
-  { href: ruta(locale, 'como-funciona'), texto: c.nav_como_funciona },
+  // /como-funciona/ se retiró en español (ver Nav.astro).
+  ...(locale === 'es' ? [] : [{ href: ruta(locale, 'como-funciona'), texto: c.nav_como_funciona }]),
   { href: ruta(locale, 'como-operamos'), texto: c.nav_como_operamos },
   // Sin índice de industrias (CP11c): baja a la rejilla del home.
   { href: `${ruta(locale, '')}#sectors`, texto: c.nav_industrias },

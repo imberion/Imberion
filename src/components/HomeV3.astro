@@ -26,6 +26,7 @@ import Apertura from './home/Apertura.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import v3 from '../i18n/content/home-v3.json';
+import catalogo from '../data/catalogo.json';
 
 import '../styles/home-v3.css';
 
@@ -33,6 +34,9 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const c = (v3 as any).es;
 const ficha = (slug: string) => ruta(locale, `catalogo/${slug}`);
+const nombreHerramienta: Record<string, string> = Object.fromEntries(
+  (catalogo as any).herramientas.map((h: any) => [h.slug, h.nombre]),
+);
 const n2 = (i: number) => String(i + 1).padStart(2, '0');
 const globFotos = import.meta.glob<ImageMetadata>('../assets/home/*.jpg', { import: 'default', eager: true });
 const fotos: Record<string, ImageMetadata> = Object.fromEntries(
@@ -41,7 +45,7 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
 ---
 
 <div class="v3">
-  <Apertura c={c} agendar={ZCAL_30MIN} como="#how-it-works" />
+  <Apertura c={c} agendar={ZCAL_30MIN} como="#who" />
 
   <!-- Para quién: va primero para que cada comprador encuentre su problema pronto (revisión a ciegas 2, 2026-10-08) -->
   <section class="v3-sec v3-papel" id="who">
@@ -53,8 +57,10 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
       <!-- Escena: la lista corre con el scroll y la foto de la derecha se queda
            fija; la industria más cercana al centro de la pantalla se enciende y
            manda la foto. Cada industria trae su problema, los indicadores que se
-           mueven y en qué se trabaja, tomados del marco de la industria en el
-           brain. En celular cada industria trae su propia foto y no hay panel. -->
+           mueven y algunas preguntas del comprador, cada una con la herramienta
+           que la responde y liga a su ficha (Rodrigo, 2026-10-17: llegar a las
+           soluciones desde el home). Las que no tienen ficha van sin liga. En
+           celular cada industria trae su propia foto y no hay panel. -->
       <div class="ind-esc" data-ind-esc>
         <ol class="ind-lista">
           {c.ind_items.map((it: any, i: number) => (
@@ -70,11 +76,28 @@ const fotos: Record<string, ImageMetadata> = Object.fromEntries(
               <ul class="ind-mueve">
                 {it.mueve.map((m: string) => <li>{m}</li>)}
               </ul>
-              <p class="ind-l mono">{c.ind_trab_label}</p>
-              <ul class="ind-trab">
-                {it.trabajamos.map((t: string) => <li>{t}</li>)}
+              <p class="ind-l mono">{c.ind_preg_label}</p>
+              <ul class="ind-preg">
+                {it.preguntas.map((q: any) => (
+                  <li>
+                    {q.h ? (
+                      <a class="ind-preg-fila" href={ficha(q.h)}>
+                        <span class="ind-preg-q">{q.q}</span>
+                        <span class="ind-preg-h mono">{nombreHerramienta[q.h]} →</span>
+                      </a>
+                    ) : (
+                      <span class="ind-preg-fila">
+                        <span class="ind-preg-q">{q.q}</span>
+                        {q.metodo && <span class="ind-preg-h ind-preg-h--sin mono">{q.metodo}</span>}
+                      </span>
+                    )}
+                  </li>
+                ))}
               </ul>
-              <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)}>{c.ind_ver} →</a>
+              <p class="ind-ligas">
+                <a class="ind-ver mono" href={ruta(locale, `industrias/${it.slug}`)}>{c.ind_ver} →</a>
+                <a class="ind-ver mono" href={ruta(locale, 'catalogo')}>{c.ind_catalogo} →</a>
+              </p>
             </li>
           ))}
         </ol>

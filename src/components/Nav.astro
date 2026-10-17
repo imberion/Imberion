@@ -28,7 +28,9 @@ const c = comun[locale];
 // enlace como activo, porque el lector está dentro de esa familia.
 const enlaces = [
   { seg: 'que-resolvemos', texto: c.nav_que_resolvemos, href: ruta(locale, 'que-resolvemos') },
-  { seg: 'como-funciona', texto: c.nav_como_funciona, href: ruta(locale, 'como-funciona') },
+  // /como-funciona/ se retiró en español (Rodrigo, 2026-10-17): repetía la apertura
+  // del home. EN y PT la conservan hasta traducir el home v3.
+  ...(locale === 'es' ? [] : [{ seg: 'como-funciona', texto: c.nav_como_funciona, href: ruta(locale, 'como-funciona') }]),
   { seg: 'como-operamos', texto: c.nav_como_operamos, href: ruta(locale, 'como-operamos') },
   { seg: 'industrias', texto: c.nav_industrias, href: `${ruta(locale, '')}#sectors` },
   { seg: 'catalogo', texto: c.nav_catalogo, href: ruta(locale, 'catalogo') },

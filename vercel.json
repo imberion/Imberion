@@ -41,7 +41,17 @@
     },
     {
       "source": "/how-it-works.html",
-      "destination": "/como-funciona/",
+      "destination": "/#how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/como-funciona",
+      "destination": "/#how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/como-funciona/",
+      "destination": "/#how-it-works",
       "permanent": true
     },
     {
