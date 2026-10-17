@@ -293,6 +293,14 @@
             "h": "market-signal"
           },
           {
+            "q": "¿En qué cadenas y tiendas se agota mi producto?",
+            "h": "canales-y-tiendas"
+          },
+          {
+            "q": "¿Qué rutas a tienda tradicional y mayoreo dejan margen después del costo de servir?",
+            "h": "commercial-y-operating-model"
+          },
+          {
             "q": "¿Cuánto margen gano y cuánto volumen arriesgo con el plan comercial del año, antes de aprobarlo?",
             "h": "scenario-engine"
           },

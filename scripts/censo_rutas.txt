@@ -4,6 +4,7 @@
 /
 /en/
 /pt/
+# /que-resolvemos/ se retiró en español (2026-10-17): resuelve por redirect a /#who.
 /que-resolvemos/
 /en/what-we-solve/
 /pt/o-que-resolvemos/

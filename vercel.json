@@ -55,6 +55,16 @@
       "permanent": true
     },
     {
+      "source": "/que-resolvemos",
+      "destination": "/#who",
+      "permanent": true
+    },
+    {
+      "source": "/que-resolvemos/",
+      "destination": "/#who",
+      "permanent": true
+    },
+    {
       "source": "/how-we-operate.html",
       "destination": "/como-operamos/",
       "permanent": true
@@ -106,7 +116,7 @@
     },
     {
       "source": "/distribuidores.html",
-      "destination": "/que-resolvemos/",
+      "destination": "/#who",
       "permanent": true
     },
     {

@@ -16,7 +16,8 @@ const { locale } = Astro.props;
 const c = comun[locale];
 
 const enlaces = [
-  { href: ruta(locale, 'que-resolvemos'), texto: c.nav_que_resolvemos },
+  // /que-resolvemos/ se retiró en español (ver Nav.astro).
+  { href: locale === 'es' ? `${ruta(locale, '')}#who` : ruta(locale, 'que-resolvemos'), texto: c.nav_que_resolvemos },
   // /como-funciona/ se retiró en español (ver Nav.astro).
   ...(locale === 'es' ? [] : [{ href: ruta(locale, 'como-funciona'), texto: c.nav_como_funciona }]),
   { href: ruta(locale, 'como-operamos'), texto: c.nav_como_operamos },

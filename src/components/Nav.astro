@@ -27,7 +27,9 @@ const c = comun[locale];
 // individuales /industrias/<slug>/ siguen existiendo y siguen marcando el
 // enlace como activo, porque el lector está dentro de esa familia.
 const enlaces = [
-  { seg: 'que-resolvemos', texto: c.nav_que_resolvemos, href: ruta(locale, 'que-resolvemos') },
+  // /que-resolvemos/ se retiró en español (Rodrigo, 2026-10-17): sus preguntas viven en
+  // "Para quién" del home. EN y PT conservan la página hasta traducir el home v3.
+  { seg: 'que-resolvemos', texto: c.nav_que_resolvemos, href: locale === 'es' ? `${ruta(locale, '')}#who` : ruta(locale, 'que-resolvemos') },
   // /como-funciona/ se retiró en español (Rodrigo, 2026-10-17): repetía la apertura
   // del home. EN y PT la conservan hasta traducir el home v3.
   ...(locale === 'es' ? [] : [{ seg: 'como-funciona', texto: c.nav_como_funciona, href: ruta(locale, 'como-funciona') }]),

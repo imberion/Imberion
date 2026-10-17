@@ -232,6 +232,14 @@
   .ap.is-portada .ap-texto { bottom: calc(var(--riel-abajo) + 30px); }
 }
 
+/* celulares de 320 px (iPhone SE de primera generación): los dos botones caben en una línea (va después de la regla de celulares bajos para ganarle) */
+@media (max-width: 359px) {
+  .ap-btns { gap: 8px; }
+  .ap-btns .btn { padding: 10px 12px; font-size: 13px; }
+  .ap-h1 { font-size: 1.6rem; }
+  .ap-panel--portada .ap-lead { font-size: .8rem; line-height: 1.5; }
+}
+
 /* ================= 02 TRAYECTORIA ================= */
 .tray { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--linea-fuerte); }
 .tray-caso { padding: 36px 32px 8px 0; display: flex; flex-direction: column; }

@@ -106,6 +106,27 @@ const EscenaPropia = contenidoEscena ? (ESCENAS[slug] ?? null) : null;
   }
 
   {
+    // Ejemplo en un giro concreto (clave `ejemplo`, misma forma que `entrega`): las
+    // preguntas que contesta la herramienta en ese tipo de tienda.
+    (c as any).ejemplo && (
+      <section class="bloque entrega">
+        <div class="container">
+          <h2>{(c as any).ejemplo.h2}</h2>
+          {(c as any).ejemplo.p && <p class="cuerpo">{(c as any).ejemplo.p}</p>}
+          <div class="entrega-rejilla">
+            {(c as any).ejemplo.items.map((it: any) => (
+              <article class="entrega-item">
+                <h3>{it.titulo}</h3>
+                <p>{it.texto}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
     // Con demo, la demo es la pieza visual de la ficha; la imagen fija sobra.
     pieza && !Demo && !escena && !EscenaPropia && (
       <section class="pieza" aria-label={c.nombre}>

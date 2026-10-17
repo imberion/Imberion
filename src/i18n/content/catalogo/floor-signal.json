@@ -48,6 +48,12 @@
           "unidad": "de prospectos al mes, sin personal extra",
           "ctx": "Marca global de cuidado personal · autoservicio en CDMX",
           "p": "Tráfico por hora en una isla de demostración, cruzado contra la cobertura del promotor; sin video y sin datos personales."
+        },
+        {
+          "cifra": "84%",
+          "unidad": "de las llegadas de la hora pico, sin personal cerca",
+          "ctx": "Marca deportiva · tienda de evento de 120 m²",
+          "p": "7,345 visitas en dos días en una expo de maratón, por hora y por zona de la tienda, cruzadas con la presencia del personal; el refuerzo se calculó por hora."
         }
       ],
       "pie": ""
@@ -94,6 +100,36 @@
         {
           "titulo": "Ejecución acompañada",
           "texto": "Imberion ayuda a ejecutar cada acción y mide su efecto en las semanas siguientes. Cuando el mercado cambia, la medición lo marca y se vuelve a ajustar."
+        }
+      ]
+    },
+    "ejemplo": {
+      "h2": "En una tienda de calzado",
+      "p": "Las seis preguntas que contesta un piloto en una cadena de calzado, cada una por tienda y con la acción sugerida.",
+      "items": [
+        {
+          "titulo": "¿Quién entra y a qué hora?",
+          "texto": "Personas por hora y por día, con rango de edad y género."
+        },
+        {
+          "titulo": "¿Cuánto espera para ser atendido?",
+          "texto": "Tiempo desde que entra hasta que lo atiende un vendedor, y quién se va sin atención."
+        },
+        {
+          "titulo": "¿Se sigue el protocolo de servicio?",
+          "texto": "Bienvenida, pregunta de necesidad, búsqueda, prueba y cierre, en cada atención."
+        },
+        {
+          "titulo": "¿Se ofrecen los complementos?",
+          "texto": "Productos de cuidado del calzado y venta adicional ofrecidos, cruzados con el ticket."
+        },
+        {
+          "titulo": "¿Qué piden los clientes que no hay?",
+          "texto": "Modelo, color o talla que el cliente pidió y la tienda no tenía."
+        },
+        {
+          "titulo": "¿Alcanza el personal en las horas pico?",
+          "texto": "Clientes en piso por hora frente a vendedores en piso."
         }
       ]
     },
