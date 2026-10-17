@@ -1,0 +1,32 @@
+{
+  "es": {
+    "__title": "Imberion — Contacto",
+    "hero_eyebrow": "Contacto",
+    "hero_h1": "Una conversación<br>de 30 minutos.",
+    "hero_lead": "Treinta minutos para ubicar dónde está la brecha entre información, inteligencia y ejecución, y qué haría falta para cerrarla.",
+    "cta_btn": "Agendar llamada",
+    "alt_h2": "Por correo",
+    "alt_p": "Si la agenda no acomoda, el mensaje también llega por el buzón de contacto de la firma.",
+    "alt_btn": "Escribir por correo"
+  },
+  "en": {
+    "__title": "Imberion — Contact",
+    "hero_eyebrow": "Contact",
+    "hero_h1": "A 30-minute<br>conversation.",
+    "hero_lead": "Thirty minutes to locate where the gap sits between information, intelligence, and execution, and what it would take to close it.",
+    "cta_btn": "Book a Call",
+    "alt_h2": "By email",
+    "alt_p": "If the calendar does not fit, the message also arrives through the firm's contact mailbox.",
+    "alt_btn": "Send an email"
+  },
+  "pt": {
+    "__title": "Imberion — Contato",
+    "hero_eyebrow": "Contato",
+    "hero_h1": "Uma conversa<br>de 30 minutos.",
+    "hero_lead": "Trinta minutos para localizar onde está a lacuna entre informação, inteligência e execução, e o que seria preciso para fechá-la.",
+    "cta_btn": "Agendar chamada",
+    "alt_h2": "Por e-mail",
+    "alt_p": "Se a agenda não ajudar, a mensagem também chega pela caixa de contato da firma.",
+    "alt_btn": "Escrever por e-mail"
+  }
+}

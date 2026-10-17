@@ -1,0 +1,77 @@
+{
+  "es": {
+    "__title": "Imberion — Commercial & Operating Model",
+    "familia_label": "Estrategia de Crecimiento",
+    "hero_eyebrow": "Commercial & Operating Model · Estrategia de Crecimiento",
+    "hero_h1": "Cada decisión sobre el margen con dueño, también al terminar el proyecto.",
+    "hero_lead": "Commercial & Operating Model define a qué clientes atender con qué oferta, por qué ruta llegar a ellos y a qué costo de servir, y quién decide sobre el margen. Las mejoras quedan escritas como derechos de decisión, objetivos y resultados clave (OKR, objectives and key results) y una cadencia de gestión que el equipo opera.",
+    "que_hace_h2": "Lo que resuelve en la organización comercial",
+    "que_hace_p": "Cada segmento de clientes recibe la oferta y la ruta que le corresponde, y cada decisión sobre el margen tiene un responsable explícito.",
+    "que_hace_items": [
+      "Oferta de valor definida para cada segmento de clientes",
+      "Cobertura y rutas ajustadas al costo de servir cada segmento",
+      "Estructura y roles comerciales acordes a la nueva ruta al mercado",
+      "Responsable explícito de cada decisión sobre el margen, con objetivos y resultados clave",
+      "Tableros y cadencia de revisión del desempeño que el equipo opera"
+    ],
+    "valor_h2": "La estrategia con dueño y cadencia",
+    "valor_p": "Una estrategia sin dueño del margen se diluye en el primer trimestre porque cada función optimiza lo suyo. Escribir los derechos de decisión y la cadencia hace que las mejoras tengan quién las sostenga cuando el proyecto termina.",
+    "sowhat": "Deja la estrategia convertida en responsabilidades, cadencia y tableros que alguien opera.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Aterriza las decisiones de Market Sizing & Right-to-Win y de Value Creation & Capital Allocation, y en el terreno de la operación comercial se apoya en Habilitadores.",
+    "ctastrip_h2": "¿Quién responde por el margen en la estructura actual?",
+    "ctastrip_p": "Una conversación sin compromiso. Mapeamos el premio, el derecho a ganar y la mejor ruta.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Commercial & Operating Model",
+    "familia_label": "Growth Strategy",
+    "hero_eyebrow": "Commercial & Operating Model · Growth Strategy",
+    "hero_h1": "The commercial model redesigned down to decision rights.",
+    "hero_lead": "Commercial & Operating Model redesigns the commercial and operating model: strategic reset, segmentation and value offer, route-to-market and distribution redesign, operating model, objectives and key results (OKRs) and governance.",
+    "que_hace_h2": "Segmentation, route to market, and governance",
+    "que_hace_p": "Customer segmentation and the offer that matches each segment are defined first, and from there coverage, route specialization and cost to serve. Governance is written as decision rights, cadence and explicit accountability for margin.",
+    "que_hace_items": [
+      "Strategic and commercial reset: segmentation and value offer",
+      "Route-to-market, coverage and cost-to-serve redesign",
+      "Operating model and structure",
+      "Objectives and key results, decision rights and governance",
+      "Cadence and performance management dashboards"
+    ],
+    "valor_h2": "Strategy with an owner and a cadence",
+    "valor_p": "A strategy with no owner for margin dilutes in the first quarter because each function optimizes its own metric. Writing decision rights and cadence gives improvements someone to sustain them once the project ends.",
+    "sowhat": "It leaves strategy converted into accountabilities, cadence and dashboards that someone runs.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It lands the decisions from Market Sizing & Right-to-Win and Value Creation & Capital Allocation, and in the commercial operation itself it leans on Habilitadores.",
+    "ctastrip_h2": "Who answers for margin in the current structure?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We map the prize, the right to win, and the best route.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Commercial & Operating Model",
+    "familia_label": "Estratégia de Crescimento",
+    "hero_eyebrow": "Commercial & Operating Model · Estratégia de Crescimento",
+    "hero_h1": "O modelo comercial redesenhado até os direitos de decisão.",
+    "hero_lead": "Commercial & Operating Model redesenha o modelo comercial e operacional: reset estratégico, segmentação e oferta de valor, redesenho da rota ao mercado e da distribuição, modelo operacional, objetivos e resultados-chave (OKR, objectives and key results) e governança.",
+    "que_hace_h2": "Segmentação, rota ao mercado e governança",
+    "que_hace_p": "Define-se a segmentação de clientes e a oferta correspondente a cada segmento, e a partir daí a cobertura, a especialização de rotas e o custo de servir. A governança é escrita como direitos de decisão, cadência e responsabilidade explícita sobre a margem.",
+    "que_hace_items": [
+      "Reset estratégico e comercial: segmentação e oferta de valor",
+      "Redesenho de rota ao mercado, cobertura e custo de servir",
+      "Modelo operacional e estrutura",
+      "Objetivos e resultados-chave, direitos de decisão e governança",
+      "Cadência e painéis de gestão do desempenho"
+    ],
+    "valor_h2": "A estratégia com dono e cadência",
+    "valor_p": "Uma estratégia sem dono da margem se dilui no primeiro trimestre porque cada função otimiza o próprio indicador. Escrever os direitos de decisão e a cadência dá às melhorias alguém que as sustente quando o projeto termina.",
+    "sowhat": "Deixa a estratégia convertida em responsabilidades, cadência e painéis que alguém opera.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Aterrissa as decisões de Market Sizing & Right-to-Win e de Value Creation & Capital Allocation, e no terreno da operação comercial se apoia em Habilitadores.",
+    "ctastrip_h2": "Quem responde pela margem na estrutura atual?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Mapeamos o prêmio, o direito de ganhar e a melhor rota.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><link rel="icon" type="image/png" href="/favicon.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Imberion — Aviso de privacidad</title>
+  <meta name="description" content="Aviso de privacidad integral de Imberion."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0A1828;--navy-deep:#06101C;--navy-soft:#13263b;--navy-80:rgba(10,24,40,.8);--navy-60:rgba(10,24,40,.6);--navy-72:rgba(10,24,40,.72);--navy-40:rgba(10,24,40,.4);--navy-12:rgba(10,24,40,.12);--navy-06:rgba(10,24,40,.06);--gray-blue:#6F859C;--slate-soft:#8FA3B8;--white-65:rgba(255,255,255,.65);--white-45:rgba(255,255,255,.45);--white-12:rgba(255,255,255,.12);--paper:#EDEAE4;--paper-alt:#E2DED7;--white:#fff;--max:1140px;--r:3px;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',-apple-system,sans-serif;--ease:cubic-bezier(.19,1,.22,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);background:var(--paper);color:var(--navy);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 36px}
+    .section{padding:96px 0}
+    .section--dark{background:var(--navy);color:#fff}
+    .section--dark h2{color:#fff}
+    h1,h2,h3,h4{font-family:var(--font-serif);line-height:1.12;font-weight:400;letter-spacing:-.012em}
+    h2{font-size:clamp(2rem,3.6vw,3rem);font-weight:300}
+    .eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:14px}
+    .section--dark .eyebrow{color:var(--slate-soft)}
+    .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--navy-80);max-width:660px;line-height:1.7}
+    .section--dark .lead{color:var(--white-65)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,18,30,.72);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--white-12);padding:0 36px}
+    .nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+    .nav-logo img{height:34px;width:auto}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a:not(.btn):not(.lang-btn){color:var(--white-65);font-size:13.5px;font-weight:500;transition:color .2s}
+    .nav-links a:not(.btn):not(.lang-btn):hover{color:#fff}
+    .nav-right{display:flex;gap:14px;align-items:center}
+    .lang-toggle{display:flex;gap:1px;background:var(--white-12);border-radius:var(--r);padding:3px}
+    .lang-btn{font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:2px;cursor:pointer;color:var(--white-45);transition:all .2s;border:none;background:transparent}
+    .lang-btn.active{background:var(--white-12);color:#fff}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:var(--r);font-family:var(--font-sans);font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .25s var(--ease)}
+    .btn-primary{background:var(--paper);color:var(--navy);border-color:var(--paper)}
+    .btn-primary:hover{background:#fff}
+    .page-hero{background:var(--navy);padding:150px 36px 92px;position:relative;overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 28% 46%,rgba(111,133,156,.22) 0%,transparent 60%);pointer-events:none}
+    .page-hero-content{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+    .page-hero .back{display:inline-flex;align-items:center;gap:8px;color:var(--white-45);font-size:13px;font-weight:500;margin-bottom:38px;transition:color .2s}
+    .page-hero .back:hover{color:#fff}
+    .page-hero .eyebrow{color:var(--slate-soft)}
+    .page-hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);font-weight:300;color:#fff;line-height:1.06;max-width:840px;letter-spacing:-.02em}
+    .page-hero .lead{margin-top:24px;max-width:640px;color:var(--white-65)}
+    .cta-strip{background:var(--navy-deep);padding:88px 0;text-align:center}
+    .cta-strip h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.8rem);margin-bottom:18px;font-weight:300}
+    .cta-strip p{color:var(--white-65);font-size:15px;margin-bottom:30px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7}
+    @media(max-width:600px){.container{padding:0 20px}nav{padding:0 20px}.nav-links{display:none}.page-hero{padding:120px 20px 64px}}
+
+    .reads-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:56px;background:var(--navy-12);border:1px solid var(--navy-12)}
+    .read-item{background:var(--white);padding:32px 30px;display:flex;gap:18px;align-items:flex-start;transition:background .25s var(--ease)}
+    .read-item:hover{background:var(--paper)}
+    .read-n{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--gray-blue);font-variant-numeric:tabular-nums;padding-top:4px}
+    .read-item h4{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:8px;line-height:1.15}
+    .read-item p{font-family:var(--font-sans);font-size:13.5px;color:var(--navy-72);line-height:1.6}
+    .flow{margin-top:56px;border-top:1px solid var(--navy-12)}
+    .flow-head{display:grid;grid-template-columns:1fr 40px 1fr;padding:14px 0;font-family:var(--font-sans);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-blue);border-bottom:1px solid var(--navy-12)}
+    .flow-row{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;padding:22px 0;border-bottom:1px solid var(--navy-12)}
+    .flow-sig .flow-k{display:block;font-family:var(--font-sans);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-blue);margin-bottom:5px}
+    .flow-sig{font-size:14.5px;color:var(--navy-80);line-height:1.5;padding-right:20px}
+    .flow-sig b{color:var(--navy);font-weight:600}
+    .flow-arrow{text-align:center;color:var(--gray-blue);font-size:18px}
+    .flow-act{font-size:14px;color:var(--navy-72);line-height:1.5;display:flex;gap:9px;align-items:flex-start;padding-left:4px}
+    .flow-check{color:var(--gray-blue);font-weight:700;flex-shrink:0}
+    .pipe{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:stretch;margin-top:56px}
+    .pipe-stage{background:rgba(255,255,255,.04);border:1px solid var(--white-12);padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+    .pipe-stage.hot{background:rgba(143,163,184,.12);border-color:var(--slate-soft)}
+    .pipe-name{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.12}
+    .pipe-desc{font-family:var(--font-sans);font-size:13px;color:var(--white-65);line-height:1.55}
+    .pipe-arrow{display:flex;align-items:center;justify-content:center;color:var(--slate-soft);font-size:20px}
+    .pipe-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:1px;background:var(--white-12);border:1px solid var(--white-12);border-top:none}
+    .pipe-note{background:var(--navy);padding:24px 26px}
+    .pipe-note b{display:block;font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:#fff;margin-bottom:6px}
+    .pipe-note span{font-family:var(--font-sans);font-size:12.5px;color:var(--white-45);line-height:1.55}
+    .channels{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;align-items:center}
+    .chan-label{font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-blue);margin-right:6px}
+    .chan-chip{font-family:var(--font-sans);font-size:13.5px;color:var(--navy-80);background:var(--white);border:1px solid var(--navy-12);border-radius:2px;padding:9px 16px;transition:all .2s var(--ease)}
+    .chan-chip:hover{border-color:var(--gray-blue);color:var(--navy)}
+    .arch{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:56px}
+    .arch-col{background:rgba(255,255,255,.04);border:1px solid var(--white-12);padding:28px 24px;display:flex;flex-direction:column}
+    .arch-col.hot{background:rgba(143,163,184,.12);border-color:var(--slate-soft)}
+    .arch-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+    .arch-num{font-family:var(--font-sans);font-size:11px;font-weight:600;color:var(--slate-soft)}
+    .arch-label{font-family:var(--font-serif);font-size:1.3rem;color:#fff;line-height:1.1}
+    .arch-item{font-family:var(--font-sans);font-size:13px;color:var(--white-65);line-height:1.5;padding:10px 0;border-top:1px solid var(--white-12);display:flex;gap:9px}
+    .arch-item::before{content:"›";color:var(--slate-soft);flex-shrink:0}
+    .arch-col .arch-item:first-of-type{border-top:none}
+    .arch-conn{display:flex;align-items:center;justify-content:center;color:var(--slate-soft);font-size:20px}
+    @media(max-width:860px){.reads-grid{grid-template-columns:1fr}.pipe,.arch{grid-template-columns:1fr}.pipe-arrow,.arch-conn{padding:8px 0;transform:rotate(90deg)}.pipe-notes{grid-template-columns:1fr}.flow-head,.flow-row{grid-template-columns:1fr}.flow-arrow{display:none}.flow-act{padding-top:10px}}
+
+    .legal{padding:72px 0 104px}
+    .legal .container{max-width:760px}
+    .legal h2{font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:400;margin:52px 0 16px}
+    .legal h2:first-child{margin-top:0}
+    .legal p,.legal li{font-size:16px;color:var(--navy-80);line-height:1.75}
+    .legal p{margin-bottom:16px}
+    .legal ul,.legal ol{margin:0 0 18px 24px}
+    .legal li{margin-bottom:8px}
+    .legal strong{color:var(--navy);font-weight:600}
+    .legal a{color:var(--navy);text-decoration:underline;text-underline-offset:3px}
+</style>
+  <link rel="stylesheet" href="/legado/css/imberion-site.css"/>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="/"><img src="/brand/logo-white.png" alt="Imberion"/></a>
+  <div class="nav-links"><a href="/">← Volver al inicio</a></div>
+  <div class="nav-right">
+    <a href="https://zcal.co/rodrigoimberion/30min" class="btn btn-primary" id="nav-cta">Agendar llamada</a>
+  </div>
+</div></nav>
+<section class="page-hero"><div class="page-hero-bg"></div><div class="page-hero-content">
+  <a href="/" class="back">← Volver al inicio</a>
+  <div class="eyebrow">Legal</div>
+  <h1>Aviso de privacidad integral</h1>
+  <p class="lead">Última actualización: 15 de octubre de 2026 · <a href="/privacy.html" style="color:inherit;text-decoration:underline">English version</a></p>
+</div></section>
+<main class="legal"><div class="container">
+<h2>1. Quién es el responsable</h2>
+<p>Rodrigo Garrido Espíndola, persona física con actividad empresarial que opera con el nombre comercial <strong>Imberion</strong> ("Imberion", "nosotros"), con domicilio en Privada Jacarandas 5, Bosque Real, Huixquilucan de Degollado, Estado de México, C.P. 52774, es responsable del tratamiento de los datos personales que se describen en las secciones 2(a), 2(b) y 2(c) de este aviso, en los términos de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares publicada en el Diario Oficial de la Federación el 20 de marzo de 2025 (la "Ley").</p>
+<p>La persona designada para atender cualquier asunto relacionado con este aviso o con sus datos personales, incluidas las solicitudes para ejercer sus derechos, es Rodrigo Garrido Espíndola, en el correo <strong><a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a></strong>.</p>
+<h2>2. Qué datos tratamos y de dónde vienen</h2>
+<p><strong>a) Personas que nos contactan o agendan una reunión</strong> por el sitio www.imberion.com, por correo, por WhatsApp o en persona: nombre, correo electrónico, teléfono, empresa, puesto y el contenido de lo que nos escriben, incluidas las conversaciones con nuestro asistente automático y con nuestros agentes de demostración. Nuestro número de WhatsApp lo atiende un asistente automático con inteligencia artificial. En una demostración, el agente puede pedirle un documento, como la carátula de una póliza de seguro, y lo lee con inteligencia artificial para mostrarle cómo funciona. Antes de pedirlo le dice para qué lo usará. Del documento sólo extraemos los datos que la demostración usa (por ejemplo, aseguradora, número de póliza, titular y vigencia), y no conservamos la imagen ni el archivo. Los datos extraídos, y las respuestas del agente que los mencionan, se conservan con la conversación de la demostración, en el plazo de la sección 8 para datos de contacto. Si nos lo envía después de recibir esa explicación, nos autoriza a leerlo con esa finalidad.</p>
+<p><strong>b) Clientes y sus colaboradores:</strong> datos de contacto y de facturación (nombre, RFC, domicilio fiscal, correo y teléfono) y los que intercambiamos durante la relación de trabajo, incluidas grabaciones de reuniones cuando así se acuerda.</p>
+<p><strong>c) Personas que visitan el sitio:</strong> datos técnicos de navegación (páginas visitadas, página de origen, tipo de dispositivo, sistema operativo y navegador, ubicación aproximada) y, si envía el formulario de contacto, la relación entre sus visitas al sitio y los datos que capturó en el formulario. Ver la sección 9.</p>
+<p>Para las finalidades de los incisos (a), (b) y (c) no solicitamos datos personales sensibles. Le pedimos no compartirlos por estos medios. No solicitamos información sobre su salud en los documentos que nos envía en una demostración, y el sistema está diseñado para no extraerla ni conservarla aunque el documento la contenga.</p>
+<p><strong>d) Personas con las que hablamos o nos escribimos al prestar un servicio a un cliente:</strong> número de teléfono o identificador de WhatsApp, nombre si la persona lo da, grabación de voz, transcripción y contenido de las conversaciones telefónicas y de mensajería, y los datos que la persona comparta en ellas. Estas conversaciones las realizan agentes de voz y de texto con inteligencia artificial que operamos por encargo de nuestros clientes, en servicios de atención y seguimiento por teléfono y WhatsApp, entrenamiento de equipos de venta y servicio, investigación de mercado y estudios de cliente incógnito (sección 4). En servicios de entrenamiento en tienda también grabamos la voz de los colaboradores del cliente con un dispositivo de audio que portan durante su turno, con su autorización por escrito. De sus conversaciones con los clientes de la tienda sólo conservamos la intención de compra, sin la voz del cliente.</p>
+<p>En el caso del inciso (d), <strong>Imberion actúa como persona encargada</strong>: trata los datos por cuenta del cliente que contrata el servicio y sólo conforme a sus instrucciones. El cliente es el responsable frente a esas personas y es quien debe darles a conocer su propio aviso de privacidad, en el que constan sus finalidades. La sección 5 explica qué hacemos con esos datos.</p>
+<p>Según el giro del cliente, esas conversaciones pueden contener <strong>datos personales sensibles</strong>, como información sobre el estado de salud, o datos patrimoniales. Los tratamos sólo conforme a las instrucciones del cliente y con las medidas de seguridad de la sección 8.</p>
+<h2>3. Para qué usamos los datos de los que somos responsables</h2>
+<p>Estas finalidades aplican a los datos de las secciones 2(a), 2(b) y 2(c).</p>
+<p><strong>Finalidades necesarias</strong> para la relación que usted tiene con nosotros. No requieren su consentimiento porque derivan de la relación jurídica entre usted e Imberion o de una obligación legal:</p>
+<ol>
+<li>Responder a sus mensajes, agendar y dar seguimiento a reuniones, y darle acceso a las demostraciones de nuestros agentes que usted solicite, con registro de su uso (clave utilizada, número desde el que se usó, fecha y número de mensajes).</li>
+<li>Preparar propuestas, celebrar y ejecutar contratos de servicios.</li>
+<li>Facturar y cumplir obligaciones fiscales y legales.</li>
+<li>Mantener la seguridad y el funcionamiento de nuestros sistemas.</li>
+</ol>
+<p><strong>Finalidades secundarias</strong>, que requieren su consentimiento y que puede rechazar sin que eso afecte la relación con nosotros:</p>
+<ol start="5">
+<li>Enviarle información sobre nuestros servicios, publicaciones e invitaciones a eventos.</li>
+<li>Medir el uso del sitio y relacionar sus visitas con los datos de contacto que nos dio, para mejorar el sitio y dar seguimiento comercial.</li>
+</ol>
+<p>Si no está de acuerdo con las finalidades 5 o 6, escriba a <a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a> con el asunto "Finalidades secundarias", en cualquier momento. También puede darse de baja con la liga incluida en cada correo informativo y desactivar las cookies como se explica en la sección 9.</p>
+<h2>4. Estudios de cliente incógnito</h2>
+<p>Esta sección aplica <strong>sólo</strong> a nuestro servicio de estudios de cliente incógnito, y no a ningún otro servicio de Imberion. Algunos clientes nos contratan para evaluar cómo atienden los puntos de venta o los proveedores de un mercado (estudios de cliente incógnito). En esos estudios un agente se comunica como cliente potencial y registra la información comercial que recibe: disponibilidad, precios, tiempos de respuesta y calidad de la atención.</p>
+<p>El objeto del estudio es el servicio del negocio. El agente no pide datos personales a la persona que atiende. Los resultados se entregan al cliente agregados por negocio o punto de venta, y los entregables no incluyen el nombre ni la voz de quien atiende, por lo que no permiten identificar ni tomar decisiones sobre personas en lo individual. Las grabaciones de este servicio se eliminan dentro de los 90 días siguientes a la entrega del estudio.</p>
+<h2>5. Datos que tratamos como encargado</h2>
+<p>Respecto de los datos de la sección 2(d):</p>
+<ul>
+<li>Los tratamos sólo para prestar al cliente el servicio contratado y conforme a sus instrucciones.</li>
+<li>No los usamos para enviar publicidad de Imberion, para medir el sitio ni para entrenar modelos de inteligencia artificial.</li>
+<li>Cuando el cliente lo instruye, usamos sus conversaciones para construir casos de práctica para el entrenamiento de su propia fuerza de ventas o de servicio.</li>
+<li>Los conservamos durante el plazo que establezca el contrato con el cliente y, al terminar el servicio, los devolvemos o los eliminamos según lo que el cliente instruya.</li>
+</ul>
+<h2>6. Con quién compartimos los datos</h2>
+<p><strong>Proveedores que nos prestan servicios (personas encargadas).</strong> Para operar usamos proveedores de infraestructura en la nube y bases de datos (Fly.io, Neon, Vercel), correo electrónico y documentos (Google Workspace), gestión de clientes y formularios (HubSpot), agenda (Zcal), telefonía (Twilio), mensajería (WhatsApp Business de Meta), transcripción y síntesis de voz (Deepgram, ElevenLabs) y modelos de inteligencia artificial, tanto de proveedores externos como modelos que operamos en equipos propios, y grabación y transcripción de reuniones (Fathom, Plaud). Algunos están ubicados o procesan datos fuera de México, principalmente en Estados Unidos y la Unión Europea. Tratan los datos sólo para prestarnos el servicio, bajo obligaciones de confidencialidad y seguridad. Comunicar datos a una persona encargada no constituye una transferencia y no requiere su consentimiento.</p>
+<p><strong>Entrega al cliente responsable.</strong> Los datos de la sección 2(d) se entregan al cliente que contrató el servicio, porque es su responsable. Esa entrega tampoco constituye una transferencia.</p>
+<p><strong>Transferencias.</strong> No vendemos datos personales. Sólo transferimos datos personales a terceros en los casos que la Ley permite sin su consentimiento: a autoridades competentes cuando una ley o un tratado lo prevea, cuando sea necesario para la procuración o administración de justicia, o cuando sea necesario para reconocer, ejercer o defender un derecho en un proceso judicial. No realizamos transferencias que requieran su consentimiento. Si en el futuro quisiéramos hacerlo, actualizaríamos este aviso y le pediríamos su aceptación antes de transferir.</p>
+<h2>7. Sus derechos y cómo ejercerlos</h2>
+<p>Usted puede <strong>acceder</strong> a sus datos, pedir que se <strong>rectifiquen</strong> si son inexactos o están incompletos, pedir que se <strong>cancelen</strong> (que se eliminen de nuestros registros) u <strong>oponerse</strong> a su tratamiento (derechos ARCO). También puede <strong>revocar su consentimiento</strong> o <strong>limitar</strong> el uso de sus datos.</p>
+<p>Envíe su solicitud a <strong><a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a></strong> con:</p>
+<ol>
+<li>Su nombre y un correo, domicilio u otro medio para responderle.</li>
+<li>Un documento que acredite su identidad o, en su caso, la identidad y la representación de quien actúa en su nombre.</li>
+<li>La descripción clara de los datos sobre los que quiere ejercer su derecho (no es necesaria si pide acceso).</li>
+<li>El derecho que quiere ejercer o lo que solicita.</li>
+<li>Cualquier dato que ayude a localizarlos (por ejemplo, el número de teléfono desde el que recibió una llamada o el número de WhatsApp con el que conversó).</li>
+</ol>
+<p>Si pide la rectificación, indique qué cambio debe hacerse y adjunte el documento que lo respalde.</p>
+<p>Para revocar su consentimiento o pedir que eliminemos sus datos, use el mismo correo con el asunto "Revocación" o "Eliminación de datos". Le confirmaremos por el mismo medio cuándo quedó atendida. La revocación no tiene efectos retroactivos. Si algún dato se necesita para cumplir una obligación legal o un contrato vigente con usted, se lo explicaremos en la respuesta.</p>
+<p>Le comunicaremos nuestra respuesta en un plazo máximo de 20 días hábiles contados desde que recibamos su solicitud y, si resulta procedente, la haremos efectiva dentro de los 15 días hábiles siguientes a la fecha de la respuesta. Cuando las circunstancias del caso lo justifiquen, cada plazo podrá ampliarse una sola vez por un periodo igual. Le responderemos por el mismo medio por el que recibimos su solicitud. Si pide acceso, le entregaremos sus datos en documentos electrónicos o copias simples, después de verificar su identidad. El ejercicio de estos derechos es gratuito; sólo podrá cobrarse el costo de reproducción, copias o envío.</p>
+<p>Si sus datos fueron tratados por Imberion como encargado de un cliente (sección 2(d)), le informaremos que el responsable es el cliente y le enviaremos su solicitud a ese cliente para que la atienda. En los servicios de entrenamiento le diremos qué cliente es; en los estudios de cliente incógnito no revelamos la identidad del cliente, pero sí canalizamos su solicitud. Le daremos al cliente el apoyo que necesite para responderle en plazo.</p>
+<h2>8. Cómo protegemos los datos</h2>
+<p>Aplicamos medidas administrativas, técnicas y físicas para proteger los datos contra daño, pérdida, alteración, destrucción o uso, acceso o tratamiento no autorizado. Entre ellas: cifrado de las comunicaciones, separación de la información de cada cliente en nuestras bases de datos, acceso restringido por credenciales y conservación limitada al tiempo que requiere la finalidad o que el contrato con el cliente establezca. Quienes intervienen en el tratamiento están obligados a guardar confidencialidad, aun después de terminar su relación con Imberion.</p>
+<p><strong>Conservación.</strong> Datos de contacto sin relación comercial: hasta 24 meses desde el último contacto. Datos de facturación: el plazo que exijan las disposiciones fiscales. Grabaciones y transcripciones de la sección 2(d): el plazo del contrato con cada cliente y, en estudios de cliente incógnito, el de la sección 4.</p>
+<h2>9. Cookies y tecnologías similares</h2>
+<p>El sitio www.imberion.com usa dos herramientas de medición:</p>
+<ul>
+<li><strong>Vercel Web Analytics</strong>, que registra de forma agregada la página visitada, la página de origen, el país y la región aproximados, el tipo de dispositivo, el sistema operativo y el navegador. Según su proveedor, no usa cookies: distingue visitas con un valor calculado a partir de la solicitud, que se descarta a las 24 horas. Lo usamos para la finalidad 6.</li>
+<li><strong>El código de seguimiento de HubSpot</strong>, que se carga en el sitio y en el formulario de contacto. Usa cookies para reconocer su navegador, registrar las páginas que visita y, si envía el formulario, asociar esas visitas a sus datos de contacto. Lo usamos para registrar su solicitud (finalidad 1) y para la finalidad 6.</li>
+</ul>
+<p>Puede bloquear o borrar las cookies desde la configuración de su navegador. Si las bloquea, el sitio sigue mostrando su contenido; el formulario de contacto podría no funcionar, y en ese caso puede escribirnos a <a href="mailto:privacidad@imberion.com">privacidad@imberion.com</a>.</p>
+<h2>10. Cambios a este aviso</h2>
+<p>Publicaremos cualquier cambio en www.imberion.com/privacidad.html, con la fecha de la última actualización al inicio de este documento. Si el cambio afecta las finalidades o las transferencias, también lo avisaremos por correo a los clientes y contactos con los que tengamos una relación vigente.</p>
+<h2>11. Autoridad</h2>
+<p>Si considera que su derecho a la protección de datos personales fue vulnerado, puede presentar una solicitud de protección de datos ante la Secretaría Anticorrupción y Buen Gobierno dentro de los 15 días hábiles siguientes a la fecha en que le comuniquemos nuestra respuesta, o a partir de que venza el plazo de respuesta si no la recibe.</p>
+</div></main>
+<footer><div class="container"><div class="footer-inner">
+  <div><div><img src="/brand/logo-white.png" alt="Imberion" style="height:28px;width:auto;"/></div>
+  <div style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px;" id="footer-copy">© 2026 Imberion. Todos los derechos reservados.</div></div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;" id="footer-links"></div>
+</div></div></footer>
+<style>footer{background:var(--navy-deep);border-top:1px solid var(--white-12);padding:48px 0 36px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}#footer-links a{font-size:13px;color:rgba(255,255,255,.4);transition:color .2s}#footer-links a:hover{color:rgba(255,255,255,.85)}</style>
+<script src="/legado/js/imberion-site.js"></script>
+</body></html>

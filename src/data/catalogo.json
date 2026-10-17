@@ -1,0 +1,48 @@
+{
+  "_nota": "Lista blanca pública del catálogo (CP2, aprobada por Rodrigo el 2026-09-06). Solo lo que está aquí sale al sitio. La fuente de la decisión vive en el Brain, no en este repo. Los nombres comerciales no se traducen.",
+  "familias": [
+    { "id": "signal",   "nombre": "Signal",   "verbo_es": "sensar",   "verbo_en": "sense",   "verbo_pt": "sentir" },
+    { "id": "twin",     "nombre": "Twin",     "verbo_es": "simular",  "verbo_en": "simulate","verbo_pt": "simular" },
+    { "id": "compass",  "nombre": "Compass",  "verbo_es": "orientar", "verbo_en": "orient",  "verbo_pt": "orientar" },
+    { "id": "bridge",   "nombre": "Bridge",   "verbo_es": "explicar", "verbo_en": "explain", "verbo_pt": "explicar" },
+    { "id": "engine",   "nombre": "Engine",   "verbo_es": "decidir",  "verbo_en": "decide",  "verbo_pt": "decidir" },
+    { "id": "operator", "nombre": "Operator", "verbo_es": "actuar",   "verbo_en": "act",     "verbo_pt": "agir" },
+    { "id": "enabler",  "nombre": "Enabler",  "verbo_es": "habilitar","verbo_en": "enable",  "verbo_pt": "habilitar" }
+  ],
+  "secciones_extra": [
+    { "id": "sustrato",    "titulo_es": "Sustrato",                 "titulo_en": "Foundation",        "titulo_pt": "Substrato" },
+    { "id": "entrada",     "titulo_es": "Puerta de entrada",        "titulo_en": "Entry point",       "titulo_pt": "Porta de entrada" },
+    { "id": "transversal", "titulo_es": "Método transversal",       "titulo_en": "Cross-cutting method","titulo_pt": "Método transversal" },
+    { "id": "estrategia",  "titulo_es": "Estrategia de Crecimiento","titulo_en": "Growth Strategy",   "titulo_pt": "Estratégia de Crescimento" }
+  ],
+  "herramientas": [
+    { "slug": "market-signal",                "nombre": "Market Signal",                    "familia": "signal",   "pagina_vieja": "market-signal" },
+    { "slug": "floor-signal",                 "nombre": "Floor Signal",                     "familia": "signal",   "pagina_vieja": "floor-signal" },
+    { "slug": "street-signal",                "nombre": "Street Signal",                    "familia": "signal" },
+    { "slug": "virtual-buyer-personas",       "nombre": "Virtual Buyer Personas",           "familia": "twin" },
+    { "slug": "account-twin",                 "nombre": "Account Twin",                     "familia": "twin" },
+    { "slug": "whitespace-compass",           "nombre": "Whitespace Compass",               "familia": "compass" },
+    { "slug": "leadership-alignment-compass", "nombre": "Leadership Alignment Compass",     "familia": "compass" },
+    { "slug": "value-attribute-compass",      "nombre": "Value-Attribute Compass",          "familia": "compass" },
+    { "slug": "price-value-compass",          "nombre": "Price Value Compass",              "familia": "compass" },
+    { "slug": "growth-bridge-analysis",       "nombre": "Growth Bridge Analysis",           "familia": "bridge" },
+    { "slug": "pricing-y-surtido",            "nombre": "Pricing & Surtido", "nombre_en": "Pricing & Assortment", "nombre_pt": "Pricing & Sortimento",                "familia": "engine" },
+    { "slug": "politica-comercial",           "nombre": "Política Comercial", "nombre_en": "Commercial Policy", "nombre_pt": "Política Comercial",               "familia": "engine" },
+    { "slug": "promociones",                  "nombre": "Promociones", "nombre_en": "Promotions", "nombre_pt": "Promoções",                      "familia": "engine" },
+    { "slug": "marketing-y-romi",             "nombre": "Marketing & ROMI",                 "familia": "engine" },
+    { "slug": "clientes-y-lealtad",           "nombre": "Clientes & Lealtad", "nombre_en": "Customers & Loyalty", "nombre_pt": "Clientes & Fidelidade",               "familia": "engine" },
+    { "slug": "canales-y-tiendas",            "nombre": "Canales & Tiendas", "nombre_en": "Channels & Stores", "nombre_pt": "Canais & Lojas",                "familia": "engine" },
+    { "slug": "scenario-engine",              "nombre": "Scenario Engine",                  "familia": "engine" },
+    { "slug": "concierge",                    "nombre": "Imberion Concierge",               "familia": "operator", "pagina_vieja": "concierge" },
+    { "slug": "training-signal",              "nombre": "Training Signal",                  "familia": "operator" },
+    { "slug": "habilitadores",                "nombre": "Habilitadores", "nombre_en": "Enablers", "nombre_pt": "Habilitadores",                    "familia": "enabler" },
+    { "slug": "integracion-de-datos",         "nombre": "Integración de datos", "nombre_en": "Data Integration", "nombre_pt": "Integração de dados",             "seccion": "sustrato" },
+    { "slug": "checkup",                      "nombre": "Imberion Checkup",                 "seccion": "entrada" },
+    { "slug": "growth-hacking",               "nombre": "Growth Hacking",                   "seccion": "transversal" },
+    { "slug": "market-sizing-y-right-to-win",         "nombre": "Market Sizing & Right-to-Win",         "seccion": "estrategia", "pagina_vieja": "estrategia" },
+    { "slug": "market-entry-y-go-to-market",          "nombre": "Market Entry & Go-to-Market",          "seccion": "estrategia", "pagina_vieja": "estrategia" },
+    { "slug": "value-creation-y-capital-allocation",  "nombre": "Value Creation & Capital Allocation",  "seccion": "estrategia", "pagina_vieja": "estrategia" },
+    { "slug": "commercial-y-operating-model",         "nombre": "Commercial & Operating Model",         "seccion": "estrategia", "pagina_vieja": "estrategia" }
+  ],
+  "familias_sin_ficha": {}
+}

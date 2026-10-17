@@ -1,0 +1,203 @@
+{
+  "es": {
+    "__title": "Imberion — Floor Signal",
+    "familia_label": "Signal · sensar",
+    "hero_eyebrow": "Floor Signal · Familia Signal",
+    "hero_h1": "Por qué el que entra a la tienda no compra, y cómo corregirlo.",
+    "hero_lead": "Floor Signal instrumenta la tienda y mide lo que el reporte de caja no explica: quién pasa y quién entra, de qué perfil, qué recorre, qué pide, qué diálogos de valor venden y dónde se va sin comprar. No se guarda imagen de las personas.",
+    "pieza": {
+      "alt": "Tablero de Floor Signal con el embudo de una tienda (pasa frente, entra, se acerca al anaquel, se prueba, compra), la composición del tráfico y cuatro lecturas al pie.",
+      "pie": "El tablero de Floor Signal: el embudo del piso, quién pasa y las lecturas que disparan una decisión, por tienda. Vista del material del producto, con datos ilustrativos."
+    },
+    "que_hace_h2": "Lo que resuelve en la tienda",
+    "que_hace_p": "La tienda deja de ver solo el resultado de la caja y ve qué lo produjo, por tienda y por hora.",
+    "que_hace_items": [
+      "Saber si la venta se cae por tráfico o por conversión",
+      "Personal en piso a la hora en que entra la gente que compra",
+      "Anaqueles que atraen y no logran que el cliente pruebe, identificados",
+      "Surtido por tipo de tienda, según el perfil de quien entra",
+      "Productos agotados en piso, detectados el mismo día"
+    ],
+    "valor_h2": "",
+    "valor_p": "",
+    "sowhat": "",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Alimenta a Canales & Tiendas para surtido por cluster y estándares de ejecución, y a Pricing & Surtido cuando la duda del comprador se concentra en un rango de precio.",
+    "ctastrip_h2": "¿Qué pasa en la tienda que el reporte de ventas no explica?",
+    "ctastrip_p": "Una conversación sin compromiso para revisar qué se sabe hoy de lo que pasa en las tiendas. Se puede arrancar con un piloto acotado que ya entrega resultados y deja listo el caso de negocio para extenderlo.",
+    "ctastrip_btn": "Agendar llamada",
+    "casos": {
+      "titulo": "Casos de éxito de la tecnología de piso",
+      "tag": "No exhaustivo",
+      "items": [
+        {
+          "cifra": "+7%",
+          "unidad": "de ticket promedio y 250% de retorno a tres meses",
+          "ctx": "Retailer de electrónica de consumo · 92 tiendas",
+          "p": "Perfil y comportamiento del visitante medidos en continuo; piloto en cinco tiendas y escalamiento a la red completa."
+        },
+        {
+          "cifra": "+12%",
+          "unidad": "de ventas en tiendas piloto y 290% de retorno",
+          "ctx": "Cadena de retail de belleza · 230 tiendas",
+          "p": "Analítica de audiencia con contenido dirigido por perfil de visitante en toda la red."
+        },
+        {
+          "cifra": "+10%",
+          "unidad": "de prospectos al mes, sin personal extra",
+          "ctx": "Marca global de cuidado personal · autoservicio en CDMX",
+          "p": "Tráfico por hora en una isla de demostración, cruzado contra la cobertura del promotor; sin video y sin datos personales."
+        }
+      ],
+      "pie": ""
+    },
+    "escena_tienda": {
+      "paso_label": "Paso {n} de {t}",
+      "semana_label": "Semana",
+      "nota": "Ilustración con datos sintéticos: así cambia una tienda con Floor Signal y el acompañamiento de Imberion.",
+      "perfiles": [
+        "Familia que renueva la sala",
+        "Comparador con el celular",
+        "Pareja que equipa su casa",
+        "Reposición urgente",
+        "Cazador de ofertas (nuevo)"
+      ],
+      "pasos": [
+        "Así se ve la tienda hoy: un contador en la entrada y otro en la caja. En la semana entraron 1,000 personas y hubo 120 ventas. Nada más.",
+        "Se instala Floor Signal, y se queda. La tienda se ve a color: quién entra, de qué perfil, por dónde camina y qué compra cada perfil.",
+        "Se ve lo que antes no: de 6,400 que pasan frente a la tienda entran 1,000, y cada semana 34 piden una pantalla de 85 pulgadas que no hay.",
+        "Se cambia el aparador para la pareja que equipa su casa, el perfil que más pasa y menos entra. Entran más de ese perfil.",
+        "Se ve qué dicen los asesores que más venden: si preguntan qué ve el cliente en su sala, compra 31%; si ofrecen descuento sin que lo pidan, 8%. Con Training Signal, todo el equipo se entrena en esos diálogos de valor.",
+        "Se ajusta el surtido a lo que piden y compran los perfiles: entra la pantalla de 85 pulgadas. Más rotación de inventario y menos saldos.",
+        "Se mueve un asesor de 10 a 12 h, donde había tres para nueve clientes, a 18 a 20 h: ahí hay más del triple de clientes y se iban sin que nadie los atendiera.",
+        "El mercado no se detiene: en la semana 16 abre un competidor enfrente, baja la entrada y aparece un perfil nuevo. Floor Signal lo marca y el ajuste vuelve a empezar."
+      ],
+      "alt": "Plano de una tienda y tablero de Floor Signal sobre una mesa. Primero en gris, solo con entradas y compras; luego los clientes se colorean por perfil, el tablero se llena con compras por perfil, diálogos de valor, los que pasan sin entrar y lo que piden y no hay, y a lo largo de doce semanas suben la conversión, el attach rate y la rotación y bajan los saldos."
+    },
+    "entrega": {
+      "h2": "Cómo se trabaja con Floor Signal",
+      "p": "Floor Signal se contrata como servicio. Imberion instrumenta la tienda, analiza lo que pasa en ella y acompaña a la dirección a decidir y ejecutar los ajustes en cada tienda.",
+      "items": [
+        {
+          "titulo": "Medición en la tienda",
+          "texto": "Imberion instrumenta la tienda, opera la captura y cuida la calidad del dato."
+        },
+        {
+          "titulo": "Tablero disponible siempre",
+          "texto": "La dirección y los gerentes consultan a cualquier hora un tablero con los indicadores y los hallazgos de cada tienda."
+        },
+        {
+          "titulo": "Sesiones de seguimiento",
+          "texto": "Reuniones de dirección, con la frecuencia que acuerda cada cliente. Imberion presenta hallazgos y recomendaciones para mover los indicadores del negocio, con acciones específicas por tienda: aparador, plantilla por hora, diálogos que se entrenan o surtido."
+        },
+        {
+          "titulo": "Ejecución acompañada",
+          "texto": "Imberion ayuda a ejecutar cada acción y mide su efecto en las semanas siguientes. Cuando el mercado cambia, la medición lo marca y se vuelve a ajustar."
+        }
+      ]
+    },
+    "cumplimiento": {
+      "h2": "Privacidad y cumplimiento",
+      "p": "La medición detecta atributos generales de quien visita la tienda (edad, sexo, tiempo de permanencia) y no identifica a nadie. El cálculo ocurre en el equipo instalado en la tienda: no se guarda ni se transmite imagen de las personas. Cada tienda lleva en la entrada un aviso de que hay medición.",
+      "sellos": [
+        {
+          "ley": "GDPR · Unión Europea",
+          "texto": "Evaluación de impacto de la tecnología de medición, hecha por el despacho DZP en 2023: cumple el reglamento de protección de datos de la UE con el aviso en tienda."
+        },
+        {
+          "ley": "AI Act · Unión Europea",
+          "texto": "Análisis de 2025 de la consultora Priority Quality Consultants: no cae en las prácticas prohibidas ni en la categoría de alto riesgo."
+        }
+      ]
+    },
+    "notas": {
+      "items": [
+        "Privacidad: no se guarda imagen de las personas. Del audio de los clientes tampoco se guarda nada; solo se registra qué buscaban y si su comentario fue positivo o negativo. La voz de los asesores sí se graba, con su consentimiento por escrito, porque es material de su entrenamiento."
+      ],
+      "powered_by": {
+        "label": "Powered by",
+        "logo": "/marcas/xpatial/xpatial-logo-negro.svg",
+        "alt": "Xpatial.ai"
+      }
+    }
+  },
+  "en": {
+    "__title": "Imberion — Floor Signal",
+    "familia_label": "Signal · sense",
+    "hero_eyebrow": "Floor Signal · Signal family",
+    "hero_h1": "Traffic, path and shelf, measured with in-store cameras: existing or new.",
+    "hero_lead": "Floor Signal instruments the sales floor with in-store cameras, existing or new, and artificial intelligence running on site: traffic, path, shelf attention, product trial, attach rate and availability. The output is anonymized data; no image is stored.",
+    "pieza": {
+      "alt": "Floor Signal dashboard with a store funnel (walks by, enters, approaches the shelf, tries on, buys), traffic composition and four readings along the bottom.",
+      "pie": "The Floor Signal dashboard: the floor funnel, who walks by and the readings that trigger a decision, per store. A view of the product material, with illustrative data."
+    },
+    "que_hace_h2": "What happens on the floor and never reaches the report",
+    "que_hace_p": "The model runs on the video on site and emits attributes and paths, never images. The store stops seeing only the checkout result and starts seeing the traffic composition that produced it.",
+    "que_hace_items": [
+      "Traffic composition by hour and by store",
+      "Path through the floor and where visitors stop",
+      "Shelf attention: exposure versus trial",
+      "Product trial and attach rate",
+      "On-floor availability"
+    ],
+    "valor_h2": "From the checkout result to the cause on the floor",
+    "valor_p": "With high exposure and low trial, the problem is the shelf and not the traffic, so the fix is execution rather than spend on bringing people in. With traffic composition by hour, stores can be clustered and assortment stops being uniform across the network.",
+    "sowhat": "It separates a traffic problem from a conversion problem, and says in which store and at what hour to correct it.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It feeds Canales & Tiendas for cluster assortment and execution standards, and Pricing & Surtido when shopper hesitation concentrates in one price range.",
+    "ctastrip_h2": "What happens in the store that the sales report does not explain?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it makes possible.",
+    "ctastrip_btn": "Book a Call",
+    "notas": {
+      "items": [
+        "Privacy: no images of people are stored. No customer audio is stored either; only what they were looking for and whether their comment was positive or negative are recorded. Sales associates' voices are recorded, with their written consent, as material for their training."
+      ],
+      "powered_by": {
+        "label": "Powered by",
+        "logo": "/marcas/xpatial/xpatial-logo-negro.svg",
+        "alt": "Xpatial.ai"
+      }
+    }
+  },
+  "pt": {
+    "__title": "Imberion — Floor Signal",
+    "familia_label": "Signal · sentir",
+    "hero_eyebrow": "Floor Signal · Família Signal",
+    "hero_h1": "Tráfego, percurso e gôndola, medidos com câmeras na loja: as que já existem ou novas.",
+    "hero_lead": "Floor Signal instrumenta o piso com câmeras na loja, as que já existem ou novas, e inteligência artificial rodando no próprio local: tráfego, percurso, atenção à gôndola, experimentação de produto, venda casada e disponibilidade. A saída é dado anonimizado; nenhuma imagem é guardada.",
+    "pieza": {
+      "alt": "Painel do Floor Signal com o funil de uma loja (passa em frente, entra, se aproxima da gôndola, experimenta, compra), a composição do tráfego e quatro leituras no rodapé.",
+      "pie": "O painel do Floor Signal: o funil do piso, quem passa e as leituras que disparam uma decisão, por loja. Vista do material do produto, com dados ilustrativos."
+    },
+    "que_hace_h2": "O que acontece no piso e não chega ao relatório",
+    "que_hace_p": "O modelo roda sobre o vídeo no local e emite atributos e trajetórias, nunca imagens. A loja deixa de ver só o resultado do caixa e passa a ver a composição do tráfego que o produziu.",
+    "que_hace_items": [
+      "Composição do tráfego por hora e por loja",
+      "Percurso e onde o visitante para",
+      "Atenção à gôndola: exposição contra experimentação",
+      "Experimentação de produto e venda casada",
+      "Disponibilidade no piso"
+    ],
+    "valor_h2": "Do resultado no caixa à causa no piso",
+    "valor_p": "Com exposição alta e experimentação baixa, o problema é a gôndola e não o tráfego, e a correção é de execução, não de investimento em atrair gente. Com a composição do tráfego por hora dá para agrupar lojas e o sortimento deixa de ser uniforme para toda a rede.",
+    "sowhat": "Separa o problema de tráfego do problema de conversão, e diz em que loja e em que horário corrigir.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Alimenta Canales & Tiendas para sortimento por cluster e padrões de execução, e Pricing & Surtido quando a dúvida do comprador se concentra em uma faixa de preço.",
+    "ctastrip_h2": "O que acontece na loja que o relatório de vendas não explica?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso permite tomar.",
+    "ctastrip_btn": "Agendar chamada",
+    "notas": {
+      "items": [
+        "Privacidade: nenhuma imagem das pessoas é guardada. Do áudio dos clientes também não se guarda nada; só se registra o que procuravam e se o comentário foi positivo ou negativo. A voz dos vendedores é gravada, com o consentimento por escrito deles, porque é material do seu treinamento."
+      ],
+      "powered_by": {
+        "label": "Powered by",
+        "logo": "/marcas/xpatial/xpatial-logo-negro.svg",
+        "alt": "Xpatial.ai"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+/* ============================================================
+   Imberion — sistema de texturas (port de assets/css/imberion-textures-v2.css)
+
+   Los archivos viven en public/texturas/ y se sirven desde /texturas/. Son
+   los mismos assets que sirve el sitio en /assets/textures/, recomprimidos de
+   PNG a WebP: 11.3 MB a 1.0 MB sin perder el grano, que es lo que hacía que
+   el home descargara 12 MB. La calidad va por textura y está justificada con
+   medición en scripts/texturas_optimizar.mjs; regenerarlos con
+   `npm run texturas:optimizar`, no a mano.
+
+   Solo se portan las clases que usan las cinco rutas del núcleo. Las tres que
+   no usa nadie (section-focus, section-left-panel, section-right-panel) y el
+   divisor diagonal quedan fuera: site.css ya apaga el fondo de .imb-divider.
+   ============================================================ */
+
+:root {
+  --texture-hero-dust: url('/texturas/01_hero_dust_navy.webp');
+  --texture-paper: url('/texturas/02_paper_grain_visible.webp');
+  --texture-white: url('/texturas/03_white_editorial_grain.webp');
+  --texture-signal-light: url('/texturas/04_directional_signal_light.webp');
+  --texture-dark-flow: url('/texturas/06_dark_editorial_flow.webp');
+  --texture-dark-signal: url('/texturas/07_dark_signal_field.webp');
+  --texture-data-haze: url('/texturas/10_gridless_data_haze.webp');
+  --texture-cta-dust: url('/texturas/11_cta_dust_navy.webp');
+}
+
+.hero,
+.hero-section { background-image: var(--texture-hero-dust); background-size: cover; background-position: center; }
+.section-paper { background-image: var(--texture-paper); background-size: cover; background-position: center; }
+.section-white { background-color: #fff; background-image: var(--texture-white); background-size: cover; background-position: center; }
+.section-signal-light { background-image: var(--texture-signal-light); background-size: cover; background-position: center; }
+.section-dark-flow { background-image: var(--texture-dark-flow); background-size: cover; background-position: center; }
+.section-dark-signal { background-image: var(--texture-dark-signal); background-size: cover; background-position: center; }
+.section-data-haze { background-image: var(--texture-data-haze); background-size: cover; background-position: center; }
+.section-cta-dust { background-image: var(--texture-cta-dust); background-size: cover; background-position: center; }

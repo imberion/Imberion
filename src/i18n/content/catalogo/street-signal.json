@@ -1,0 +1,757 @@
+{
+  "es": {
+    "__title": "Imberion — Street Signal",
+    "familia_label": "Signal · sensar",
+    "hero_eyebrow": "Street Signal · Familia Signal",
+    "hero_h1": "Qué comprar, importar y exhibir según lo que la gente viste en la calle.",
+    "hero_lead": "Street Signal mide qué trae puesto la gente que camina en áreas públicas (prenda, calzado, estilo y, cuando se alcanza a leer, marca) y el perfil aparente de quien lo usa: edad, sexo, nivel socioeconómico y, cuando la ropa la delata (uniforme de enfermería, bata, traje), ocupación. Las tomas se levantan en áreas públicas con tránsito de personas (zonas de corporativos, centros comerciales, aeropuertos, corredores peatonales, campus y muchas más), en distintos horarios, días y climas. Los datos salen anonimizados: se registran el perfil aparente y lo que la persona trae puesto, sin datos personales ni biométricos. Aplica a moda, indumentaria y calzado.",
+    "que_hace_h2": "Lo que resuelve en el surtido",
+    "que_hace_p": "El equipo de compras decide con lo que la gente trae puesto en la calle de cada zona, además de lo que ya se vendió en tienda.",
+    "que_hace_items": [
+      "Participación de cada marca en la calle, por zona y por perfil",
+      "Guardarropa por perfil de cliente (edad, sexo, nivel socioeconómico y ocupación aparentes): qué prendas, qué calzado y qué estilos usa",
+      "Prendas y estilos que conviene comprar e importar, ubicados por zona",
+      "Lo que va al aparador, según quién camina frente a la tienda",
+      "Venta dirigida por perfil: qué ofrecerle a cada tipo de cliente"
+    ],
+    "valor_h2": "De la calle al surtido",
+    "valor_p": "Con la participación de marcas en la calle por zona, compras ve qué marca y qué prenda usa la gente de esa zona y ajusta lo que compra e importa para las tiendas que están ahí. Con el guardarropa por perfil, el aparador y la venta dirigida parten de lo que ese perfil ya usa.",
+    "sowhat": "Dice qué comprar, qué importar y qué poner en el aparador en cada zona, a partir de lo que la gente de esa zona usa en la calle.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Alimenta a Pricing & Surtido con la demanda observada en la calle, por zona y por perfil. Se complementa con Floor Signal: la calle dice qué usa la gente de la zona y el piso dice cuánto de eso entra a la tienda, se prueba y se compra.",
+    "ctastrip_h2": "¿Qué trae puesto la gente que camina frente a sus tiendas?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos qué señal existe hoy, cuál falta y qué decisión permite tomar.",
+    "ctastrip_btn": "Agendar llamada",
+    "escena_calle": {
+      "eyebrow": "Cómo se ve Street Signal",
+      "h2": "De la toma en la calle al tablero de compras",
+      "nota": "Ilustración con imágenes y datos sintéticos. Las caras se difuminan y no se guarda imagen de las personas. Nivel socioeconómico (NSE) y ocupación son aparentes; la ocupación se cuenta solo cuando la ropa la delata.",
+      "tablero": "Tablero",
+      "personas": "Personas observadas",
+      "lecturas": "Últimas lecturas",
+      "marcas": "Calzado · participación de marca",
+      "perfiles": "Por perfil · lo que más se repite",
+      "accesorios": "Accesorios",
+      "toma": "Toma de 10 min",
+      "no_legible": "marca no legible",
+      "pausa": "Pausar",
+      "reanudar": "Reanudar",
+      "lugares_titulo": "Las tres tomas son ejemplos. Street Signal se levanta en cualquier área pública por donde pase el público que se quiere medir, por ejemplo:",
+      "lugares": [
+        "Corredores peatonales y centros históricos",
+        "Calles comerciales",
+        "Campus universitarios",
+        "Hospitales y clínicas",
+        "Estaciones de metro, tren y autobús",
+        "Parques y circuitos para correr",
+        "Mercados y tianguis",
+        "Museos y centros culturales",
+        "Recintos feriales y exposiciones",
+        "Zonas turísticas y de playa",
+        "Estadios y arenas en eventos de día",
+        "Plazas comerciales abiertas"
+      ],
+      "ocasiones": [
+        {
+          "id": "ccomercial",
+          "nombre": "Fin de semana",
+          "lugar": "Centro comercial",
+          "hora": "Sábado 13:00",
+          "video": "/stop-motion/street-signal/ccomercial.mp4",
+          "poster": "/stop-motion/street-signal/ccomercial.jpg",
+          "pistas": "/stop-motion/street-signal/ccomercial.json",
+          "acelerado": [
+            "/stop-motion/street-signal/acelerado/ccomercial_01.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_02.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_03.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_04.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_05.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_06.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_07.jpg",
+            "/stop-motion/street-signal/acelerado/ccomercial_08.jpg"
+          ],
+          "personas": 2416,
+          "etiquetas": [
+            {
+              "id": 1,
+              "desde": 0.15,
+              "hasta": 1.75,
+              "perfil": "Mujer · 18 a 24 · casual",
+              "prenda": "Top negro · jeans amplios claros",
+              "calzado": "Tenis negros de suela blanca",
+              "marca": "Adidas",
+              "extra": "Bolsa de tela",
+              "nse": "C",
+              "ocupacion": ""
+            },
+            {
+              "id": 2,
+              "desde": 1.95,
+              "hasta": 3.9,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Playera verde olivo · jeans",
+              "calzado": "Tenis grises de running",
+              "marca": "New Balance",
+              "extra": "",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 40,
+              "desde": 4.1,
+              "hasta": 6.2,
+              "perfil": "Mujer · 35 a 44 · casual",
+              "prenda": "Blusa blanca holgada · leggings negros",
+              "calzado": "Tenis blancos",
+              "marca": "Nike",
+              "extra": "",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 91,
+              "desde": 6.4,
+              "hasta": 8.4,
+              "perfil": "Hombre · 35 a 44 · casual",
+              "prenda": "Playera gris · jeans",
+              "calzado": "Zapato casual negro",
+              "marca": "",
+              "extra": "Celular en mano",
+              "nse": "C",
+              "ocupacion": ""
+            },
+            {
+              "id": 107,
+              "desde": 8.6,
+              "hasta": 10.4,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Camisa de manga corta azul cielo · bermuda caqui",
+              "calzado": "Tenis blancos",
+              "marca": "On",
+              "extra": "Celular en mano",
+              "nse": "A/B",
+              "ocupacion": ""
+            },
+            {
+              "id": 134,
+              "desde": 10.6,
+              "hasta": 12.6,
+              "perfil": "Hombre · 18 a 24 · deportivo",
+              "prenda": "Playera verde menta · pants negro",
+              "calzado": "Tenis negros sin agujetas",
+              "marca": "",
+              "extra": "",
+              "nse": "C-",
+              "ocupacion": ""
+            },
+            {
+              "id": 69,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Mujer · 18 a 24 · casual",
+              "prenda": "Blusa amarilla · pantalón negro",
+              "calzado": "Tenis blancos",
+              "marca": "Nike",
+              "extra": "",
+              "nse": "C",
+              "ocupacion": ""
+            },
+            {
+              "id": 15,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Camisa blanca · jeans oscuros",
+              "calzado": "Tenis negros",
+              "marca": "",
+              "extra": "Celular en mano",
+              "nse": "C",
+              "ocupacion": ""
+            }
+          ],
+          "marcas": [
+            [
+              "Nike",
+              21
+            ],
+            [
+              "Adidas",
+              14
+            ],
+            [
+              "New Balance",
+              10
+            ],
+            [
+              "On",
+              4
+            ],
+            [
+              "Otras legibles",
+              24
+            ],
+            [
+              "No legible",
+              27
+            ]
+          ],
+          "perfiles": [
+            [
+              "Familia con niños · C",
+              "jeans + playera + tenis",
+              34
+            ],
+            [
+              "Mujer 18 a 24 · C",
+              "jeans amplios + top + tenis",
+              29
+            ],
+            [
+              "Hombre 25 a 34 · C+",
+              "playera + jeans + tenis",
+              22
+            ]
+          ],
+          "accesorios": [
+            [
+              "Bolsa de compras",
+              38
+            ],
+            [
+              "Celular en mano",
+              33
+            ],
+            [
+              "Gorra",
+              17
+            ]
+          ],
+          "velocidad": 1.6,
+          "nse": [
+            [
+              "A/B",
+              12
+            ],
+            [
+              "C+",
+              29
+            ],
+            [
+              "C",
+              38
+            ],
+            [
+              "C- y D+",
+              21
+            ]
+          ],
+          "ocupaciones": [
+            [
+              "Estudiante",
+              8
+            ],
+            [
+              "Sin distinguir",
+              92
+            ]
+          ]
+        },
+        {
+          "id": "aeropuerto",
+          "nombre": "Viaje",
+          "lugar": "Aeropuerto",
+          "hora": "Jueves 11:00",
+          "video": "/stop-motion/street-signal/aeropuerto.mp4",
+          "poster": "/stop-motion/street-signal/aeropuerto.jpg",
+          "pistas": "/stop-motion/street-signal/aeropuerto.json",
+          "acelerado": [
+            "/stop-motion/street-signal/acelerado/aeropuerto_01.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_02.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_03.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_04.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_05.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_06.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_07.jpg",
+            "/stop-motion/street-signal/acelerado/aeropuerto_08.jpg"
+          ],
+          "personas": 1037,
+          "etiquetas": [
+            {
+              "id": 2,
+              "desde": 0.15,
+              "hasta": 1.95,
+              "perfil": "Mujer · 25 a 34 · cómodo de viaje",
+              "prenda": "Chamarra negra · jeans",
+              "calzado": "Tenis blancos",
+              "marca": "Nike",
+              "extra": "Mochila · almohada de viaje",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 3,
+              "desde": 2.0,
+              "hasta": 3.2,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Sudadera gris · jeans",
+              "calzado": "Tenis negros",
+              "marca": "",
+              "extra": "Mochila · maleta de rueditas",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 51,
+              "desde": 3.4,
+              "hasta": 5.0,
+              "perfil": "Mujer · 25 a 34 · cómodo de viaje",
+              "prenda": "Sudadera gris · pantalón negro",
+              "calzado": "Tenis blancos",
+              "marca": "",
+              "extra": "Mochila · maleta de rueditas",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 96,
+              "desde": 5.1,
+              "hasta": 6.3,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Playera gris · pantalón negro",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "Mochila · celular en mano",
+              "nse": "C+",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 93,
+              "desde": 6.5,
+              "hasta": 8.6,
+              "perfil": "Mujer · 35 a 44 · cómodo de viaje",
+              "prenda": "Chamarra verde olivo · pants beige",
+              "calzado": "Tenis blancos",
+              "marca": "New Balance",
+              "extra": "Mochila",
+              "nse": "A/B",
+              "ocupacion": ""
+            },
+            {
+              "id": 134,
+              "desde": 8.8,
+              "hasta": 10.3,
+              "perfil": "Hombre · 25 a 34 · casual",
+              "prenda": "Playera verde oscuro · pantalón negro",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "Mochila · celular en mano",
+              "nse": "C+",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 155,
+              "desde": 10.5,
+              "hasta": 12.6,
+              "perfil": "Hombre · 35 a 44 · cómodo de viaje",
+              "prenda": "Playera verde · pants negro",
+              "calzado": "Tenis negros",
+              "marca": "On",
+              "extra": "Mochila · celular en mano",
+              "nse": "A/B",
+              "ocupacion": ""
+            },
+            {
+              "id": 143,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Hombre · 25 a 34 · cómodo de viaje",
+              "prenda": "Playera gris verdoso · pantalón negro",
+              "calzado": "Tenis blancos",
+              "marca": "Nike",
+              "extra": "Maleta de rueditas",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 129,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Mujer · 25 a 34 · casual",
+              "prenda": "Sudadera negra · jeans",
+              "calzado": "Tenis blancos",
+              "marca": "Adidas",
+              "extra": "Mochila · celular en mano",
+              "nse": "C+",
+              "ocupacion": ""
+            }
+          ],
+          "marcas": [
+            [
+              "Nike",
+              17
+            ],
+            [
+              "New Balance",
+              12
+            ],
+            [
+              "Adidas",
+              11
+            ],
+            [
+              "On",
+              9
+            ],
+            [
+              "Otras legibles",
+              22
+            ],
+            [
+              "No legible",
+              29
+            ]
+          ],
+          "perfiles": [
+            [
+              "Mujer 25 a 34 · C+",
+              "pants + sudadera + tenis",
+              31
+            ],
+            [
+              "Hombre 35 a 44 · A/B",
+              "sudadera + pants + tenis",
+              26
+            ],
+            [
+              "Hombre 45 a 54 · A/B",
+              "traje + zapato de vestir",
+              14
+            ]
+          ],
+          "accesorios": [
+            [
+              "Maleta de rueditas",
+              62
+            ],
+            [
+              "Mochila",
+              48
+            ],
+            [
+              "Almohada de viaje",
+              9
+            ]
+          ],
+          "velocidad": 1.6,
+          "nse": [
+            [
+              "A/B",
+              34
+            ],
+            [
+              "C+",
+              47
+            ],
+            [
+              "C",
+              16
+            ],
+            [
+              "C- y D+",
+              3
+            ]
+          ],
+          "ocupaciones": [
+            [
+              "Oficina",
+              21
+            ],
+            [
+              "Tripulación",
+              4
+            ],
+            [
+              "Sin distinguir",
+              75
+            ]
+          ]
+        },
+        {
+          "id": "oficina",
+          "nombre": "Oficina",
+          "lugar": "Zona de corporativos",
+          "hora": "Martes 8:40",
+          "video": "/stop-motion/street-signal/oficina.mp4",
+          "poster": "/stop-motion/street-signal/oficina.jpg",
+          "pistas": "/stop-motion/street-signal/oficina.json",
+          "acelerado": [
+            "/stop-motion/street-signal/acelerado/oficina_01.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_02.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_03.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_04.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_05.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_06.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_07.jpg",
+            "/stop-motion/street-signal/acelerado/oficina_08.jpg"
+          ],
+          "personas": 1284,
+          "etiquetas": [
+            {
+              "id": 3,
+              "desde": 0.15,
+              "hasta": 1.6,
+              "perfil": "Hombre · 25 a 34 · casual de oficina",
+              "prenda": "Camisa azul claro · pantalón gris oscuro",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "Mochila · celular en mano",
+              "nse": "C+",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 6,
+              "desde": 1.7,
+              "hasta": 3.2,
+              "perfil": "Mujer · 25 a 34 · casual de oficina",
+              "prenda": "Saco beige · pantalón negro",
+              "calzado": "Tenis blancos",
+              "marca": "On",
+              "extra": "Bolsa al hombro · vaso de café",
+              "nse": "C+",
+              "ocupacion": "Empleada de oficina"
+            },
+            {
+              "id": 27,
+              "desde": 3.4,
+              "hasta": 5.3,
+              "perfil": "Mujer · 25 a 34 · casual de oficina",
+              "prenda": "Suéter blanco · pantalón negro",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 108,
+              "desde": 5.8,
+              "hasta": 7.6,
+              "perfil": "Hombre · 35 a 44 · formal",
+              "prenda": "Traje negro",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "",
+              "nse": "A/B",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 131,
+              "desde": 7.8,
+              "hasta": 9.6,
+              "perfil": "Hombre · 25 a 34 · formal",
+              "prenda": "Traje azul marino",
+              "calzado": "Tenis blancos",
+              "marca": "Adidas",
+              "extra": "",
+              "nse": "A/B",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 139,
+              "desde": 9.7,
+              "hasta": 11.2,
+              "perfil": "Hombre · 25 a 34 · casual de oficina",
+              "prenda": "Saco azul · pantalón azul",
+              "calzado": "Tenis blancos",
+              "marca": "New Balance",
+              "extra": "Mochila",
+              "nse": "C+",
+              "ocupacion": "Empleado de oficina"
+            },
+            {
+              "id": 128,
+              "desde": 11.3,
+              "hasta": 12.5,
+              "perfil": "Hombre · 25 a 34 · casual de oficina",
+              "prenda": "Camisa blanca · pantalón negro",
+              "calzado": "Zapato café",
+              "marca": "",
+              "extra": "",
+              "nse": "C+",
+              "ocupacion": ""
+            },
+            {
+              "id": 1,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Mujer · 25 a 34 · formal",
+              "prenda": "Saco negro · pantalón negro",
+              "calzado": "Botín negro",
+              "marca": "",
+              "extra": "Bolsa tote · celular en mano",
+              "nse": "A/B",
+              "ocupacion": "Empleada de oficina"
+            },
+            {
+              "id": 48,
+              "desde": 99,
+              "hasta": 99,
+              "perfil": "Hombre · 35 a 44 · formal",
+              "prenda": "Traje azul marino · camisa blanca",
+              "calzado": "Zapato negro",
+              "marca": "",
+              "extra": "Bolsa de papel",
+              "nse": "A/B",
+              "ocupacion": "Empleado de oficina"
+            }
+          ],
+          "marcas": [
+            [
+              "Nike",
+              12
+            ],
+            [
+              "Adidas",
+              8
+            ],
+            [
+              "New Balance",
+              6
+            ],
+            [
+              "On",
+              5
+            ],
+            [
+              "Otras legibles",
+              23
+            ],
+            [
+              "No legible",
+              46
+            ]
+          ],
+          "perfiles": [
+            [
+              "Hombre 35 a 44 · A/B",
+              "traje + zapato de vestir",
+              38
+            ],
+            [
+              "Mujer 25 a 34 · C+",
+              "saco + pantalón amplio + botín",
+              31
+            ],
+            [
+              "Hombre 25 a 34 · C+",
+              "camisa + pantalón + tenis",
+              27
+            ]
+          ],
+          "accesorios": [
+            [
+              "Celular en mano",
+              41
+            ],
+            [
+              "Audífonos inalámbricos",
+              36
+            ],
+            [
+              "Mochila",
+              29
+            ]
+          ],
+          "velocidad": 1.6,
+          "nse": [
+            [
+              "A/B",
+              31
+            ],
+            [
+              "C+",
+              52
+            ],
+            [
+              "C",
+              14
+            ],
+            [
+              "C- y D+",
+              3
+            ]
+          ],
+          "ocupaciones": [
+            [
+              "Oficina",
+              63
+            ],
+            [
+              "Seguridad",
+              3
+            ],
+            [
+              "Sin distinguir",
+              34
+            ]
+          ]
+        }
+      ],
+      "aparente": "Aparente",
+      "perfil_k": "Perfil aparente",
+      "nse_k": "NSE",
+      "ocup_k": "Ocupación"
+    }
+  },
+  "en": {
+    "__title": "Imberion — Street Signal",
+    "familia_label": "Signal · sense",
+    "hero_eyebrow": "Street Signal · Signal family",
+    "hero_h1": "What to buy, import and display, based on what people wear on the street.",
+    "hero_lead": "Street Signal measures what people walking down the street are wearing: garment, style and, when it can be read, brand, along with the apparent profile of the person wearing it. Footage is captured at different points, hours, days and weather. Data comes out anonymized: the system records the apparent profile and what the person is wearing, with no personal or biometric data. It applies to fashion and apparel.",
+    "que_hace_h2": "What it solves in the assortment",
+    "que_hace_p": "The buying team decides with what people wear on the street in each area, in addition to what has already sold in store.",
+    "que_hace_items": [
+      "Share of each brand on the street, by area and by profile",
+      "Wardrobe by customer profile: which garments and styles they wear",
+      "Garments and styles worth buying and importing, located by area",
+      "What goes in the shop window, based on who walks past the store",
+      "Profile-led selling: what to offer each type of customer"
+    ],
+    "valor_h2": "From the street to the assortment",
+    "valor_p": "With brand share on the street by area, buying sees which brand and which garment people in that area wear, and adjusts what it buys and imports for the stores located there. With the wardrobe by profile, the shop window and profile-led selling start from what that profile already wears.",
+    "sowhat": "It says what to buy, what to import and what to put in the shop window in each area, based on what people in that area wear on the street.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It feeds Pricing & Surtido with the demand observed on the street, by area and by profile. It complements Floor Signal: the street says what people in the area wear, and the floor says how much of that walks into the store, gets tried on and gets bought.",
+    "ctastrip_h2": "What are the people walking past your stores wearing?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what signal exists today, what is missing, and which decision it makes possible.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Street Signal",
+    "familia_label": "Signal · sentir",
+    "hero_eyebrow": "Street Signal · Família Signal",
+    "hero_h1": "O que comprar, importar e expor segundo o que as pessoas vestem na rua.",
+    "hero_lead": "Street Signal mede o que vestem as pessoas que caminham pela rua: peça, estilo e, quando dá para ler, marca, junto com o perfil aparente de quem usa. As tomadas são feitas em diferentes pontos, horários, dias e climas. Os dados saem anonimizados: registram-se o perfil aparente e o que a pessoa está vestindo, sem dados pessoais nem biométricos. Aplica-se a moda e vestuário.",
+    "que_hace_h2": "O que resolve no sortimento",
+    "que_hace_p": "O time de compras decide com o que as pessoas vestem na rua de cada zona, além do que já foi vendido na loja.",
+    "que_hace_items": [
+      "Participação de cada marca na rua, por zona e por perfil",
+      "Guarda-roupa por perfil de cliente: que peças e que estilos usa",
+      "Peças e estilos que convém comprar e importar, localizados por zona",
+      "O que vai para a vitrine, segundo quem passa em frente à loja",
+      "Venda dirigida por perfil: o que oferecer a cada tipo de cliente"
+    ],
+    "valor_h2": "Da rua ao sortimento",
+    "valor_p": "Com a participação de marcas na rua por zona, compras vê que marca e que peça as pessoas daquela zona usam e ajusta o que compra e importa para as lojas que estão ali. Com o guarda-roupa por perfil, a vitrine e a venda dirigida partem do que esse perfil já usa.",
+    "sowhat": "Diz o que comprar, o que importar e o que colocar na vitrine em cada zona, a partir do que as pessoas daquela zona usam na rua.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Alimenta Pricing & Surtido com a demanda observada na rua, por zona e por perfil. Complementa o Floor Signal: a rua diz o que as pessoas da zona usam e o piso diz quanto disso entra na loja, é experimentado e é comprado.",
+    "ctastrip_h2": "O que vestem as pessoas que passam em frente às suas lojas?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos que sinal existe hoje, qual falta e que decisão isso permite tomar.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

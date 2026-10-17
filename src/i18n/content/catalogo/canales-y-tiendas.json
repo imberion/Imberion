@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Canales & Tiendas",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Canales & Tiendas · Familia Engine",
+    "hero_h1": "El surtido que pide cada tienda, ejecutado como se definió.",
+    "hero_lead": "Canales & Tiendas reduce los faltantes en las tiendas que sí venden un producto y el sobreinventario en las que no, con un surtido por grupo de tiendas de demanda parecida. Define qué es una tienda bien ejecutada en una lista que se audita, y acelera la venta omnicanal y por comercio electrónico.",
+    "que_hace_h2": "Lo que resuelve en la red de tiendas",
+    "que_hace_p": "Cada tienda recibe el surtido y el acomodo de su grupo, y la ejecución se revisa con la misma lista en toda la red.",
+    "que_hace_items": [
+      "Menos faltantes y menos sobreinventario, tienda por tienda",
+      "Espacio en anaquel asignado según lo que vende cada grupo de tiendas",
+      "Ejecución en tienda verificada con una lista auditable, con responsable y frecuencia",
+      "Crecimiento de la venta omnicanal y por comercio electrónico"
+    ],
+    "valor_h2": "La misma ejecución en toda la red",
+    "valor_p": "Un surtido único para toda la red deja faltantes en las tiendas que sí venden un producto y sobreinventario en las que no. Al agrupar por demanda y auditar el estándar, la ejecución deja de depender del criterio de cada gerente de tienda.",
+    "sowhat": "Dice qué se pone en cada tienda y cómo se verifica que quedó puesto.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Toma la prioridad de Whitespace Compass y, en piso físico, la lectura de tráfico de Floor Signal.",
+    "ctastrip_h2": "¿Qué tan parecido es lo que se planeó a lo que está en el anaquel?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Channels & Stores",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Canales & Tiendas · Engine family",
+    "hero_h1": "Measurable execution, repeatable across the network.",
+    "hero_lead": "Canales & Tiendas defines assortment by store cluster, the perfect store standard, and the acceleration of omnichannel and e-commerce.",
+    "que_hace_h2": "Assortment by cluster and perfect store standard",
+    "que_hace_p": "Stores are grouped by observed demand rather than by size or administrative region, and each cluster gets its own assortment and layout. The perfect store standard is written as a verifiable checklist, with who measures it and how often.",
+    "que_hace_items": [
+      "Store clustering by observed demand",
+      "Assortment and shelf space by cluster",
+      "Perfect store standard, measurable and auditable",
+      "Omnichannel and e-commerce acceleration"
+    ],
+    "valor_h2": "Execution that does not depend on each manager's judgment",
+    "valor_p": "A single assortment for the whole network leaves stockouts in the stores that do sell a product and overstock in those that do not. Grouping by demand and auditing the standard takes execution out of each store manager's discretion.",
+    "sowhat": "It says what goes into each store and how it is verified that it got there.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It takes priorities from Whitespace Compass and, on the physical floor, the traffic reading from Floor Signal.",
+    "ctastrip_h2": "How close is the plan to what is actually on the shelf?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Canais & Lojas",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Canales & Tiendas · Família Engine",
+    "hero_h1": "Execução mensurável, repetível em toda a rede.",
+    "hero_lead": "Canales & Tiendas define o sortimento por cluster de loja, o padrão de loja perfeita e a aceleração de omnicanal e comércio eletrônico.",
+    "que_hace_h2": "Sortimento por cluster e padrão de loja perfeita",
+    "que_hace_p": "As lojas são agrupadas por demanda observada e não por tamanho ou região administrativa, e cada cluster recebe sortimento e layout próprios. O padrão de loja perfeita é escrito como lista verificável, com quem mede e com que frequência.",
+    "que_hace_items": [
+      "Clusterização de lojas por demanda observada",
+      "Sortimento e espaço de gôndola por cluster",
+      "Padrão de loja perfeita, mensurável e auditável",
+      "Aceleração de omnicanal e comércio eletrônico"
+    ],
+    "valor_h2": "Execução que não depende do critério de cada gerente",
+    "valor_p": "Um sortimento único para toda a rede gera ruptura nas lojas que vendem o produto e excesso de estoque nas que não vendem. Ao agrupar por demanda e auditar o padrão, a execução deixa de depender do critério de cada gerente de loja.",
+    "sowhat": "Diz o que entra em cada loja e como se verifica que entrou.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Toma a prioridade de Whitespace Compass e, no piso físico, a leitura de tráfego de Floor Signal.",
+    "ctastrip_h2": "O quanto o plano se parece com o que está na gôndola?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

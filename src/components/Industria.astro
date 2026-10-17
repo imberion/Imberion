@@ -1,0 +1,265 @@
+---
+// Cuerpo de una página de industria. Markup y clases portados de retail.html
+// y b2b.html: hero navy, matriz de madurez, retícula de capacidades y franja
+// de cierre. El nav y el pie los pone Base.astro.
+
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN } from '../lib/enlaces';
+import { contenido, type Industria } from '../lib/industrias';
+import comun from '../i18n/content/common.json';
+import MiniDiagnostico from './MiniDiagnostico.astro';
+import CorteCatalogo from './industria/CorteCatalogo.astro';
+
+interface Props {
+  locale: Locale;
+  industria: Industria;
+}
+
+const { locale, industria } = Astro.props;
+const { txt, niveles, dimensiones, capacidades } = contenido(industria, locale);
+
+// La misma foto de sector del índice, aquí a todo el ancho detrás del hero. El
+// navy encima no es decoración: es lo que deja el texto en contraste AA.
+const fotos = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
+  import: 'default',
+  eager: true,
+});
+const foto = fotos[`../assets/industrias/${industria.slug}.jpg`];
+if (!foto) {
+  throw new Error(
+    `industrias: falta la foto de sector de ${industria.slug}. Se esperaba src/assets/industrias/${industria.slug}.jpg.`
+  );
+}
+
+// La foto describe la industria, no decora: lleva alt en los tres idiomas y por
+// eso su contenedor no va aria-hidden. El velo de encima sí es decoración.
+const fotoAlt = (comun[locale].industrias_foto_alt as Record<string, string>)?.[industria.slug];
+if (!fotoAlt) {
+  throw new Error(
+    `industrias: falta el alt de la foto de ${industria.slug} (${locale}) en "industrias_foto_alt" de src/i18n/content/common.json.`
+  );
+}
+---
+
+<section class="page-hero page-hero--foto">
+  <div class="hero-foto">
+    <Image
+      src={foto}
+      alt={fotoAlt}
+      widths={[900, 1600]}
+      sizes="100vw"
+      format="webp"
+      quality={58}
+      loading="eager"
+      decoding="sync"
+    />
+  </div>
+  <div class="hero-velo" aria-hidden="true"></div>
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <a href={ruta(locale, '')} class="back">{txt.back}</a>
+    <div class="eyebrow">{txt.hero_eyebrow}</div>
+    <h1 set:html={txt.hero_h1} />
+    <p class="lead">{txt.hero_lead}</p>
+  </div>
+</section>
+
+<section class="section" id="diagnostico">
+  <div class="container">
+    <div class="eyebrow">{txt.s1_eyebrow}</div>
+    <h2>{txt.s1_h2}</h2>
+    <p class="lead lead--bajo-h2">{txt.s1_lead}</p>
+    <MiniDiagnostico
+      niveles={niveles}
+      dimensiones={dimensiones}
+      corner={txt.diag_corner}
+      nota={txt.diag_note}
+      contadorLabel={txt.diag_count_l}
+      ctaTexto={txt.diag_cta}
+      ctaHref={ZCAL_30MIN}
+    />
+  </div>
+</section>
+
+<section class="section section--paper-alt">
+  <div class="container">
+    <div class="eyebrow">{txt.s2_eyebrow}</div>
+    <h2>{txt.s2_h2}</h2>
+    <p class="lead lead--bajo-h2">{txt.s2_lead}</p>
+    <div class="caps-grid">
+      {
+        capacidades.map((cap) => (
+          <div class="cap-card">
+            <h4>{cap.titulo}</h4>
+            <p>{cap.parrafo}</p>
+            {cap.enlace && (
+              <a class="cap-link" href={ruta(locale, `catalogo/${cap.enlace.slugCatalogo}`)}>
+                {cap.enlace.texto} <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<CorteCatalogo industria={industria} locale={locale} />
+
+<div class="cta-strip">
+  <div class="container">
+    <h2>{txt.ctastrip_h2}</h2>
+    <p>{txt.ctastrip_p}</p>
+    <a href={ZCAL_30MIN} class="btn btn-primary cta-strip-btn" target="_blank" rel="noopener">
+      {txt.ctastrip_btn}
+    </a>
+  </div>
+</div>
+
+<style>
+  /* ---------- foto de sector del hero ---------- */
+  /* Va a todo el ancho del viewport, no del contenedor: el fondo es full-bleed
+     y quien lleva el ancho es .page-hero-content. */
+  .page-hero--foto { background: var(--navy-deep); }
+  .hero-foto { position: absolute; inset: 0; }
+  .hero-foto :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Proporción intacta: cover recorta, nunca deforma. */
+    object-position: center 42%;
+    filter: saturate(.6);
+  }
+  /* El texto vive en el tercio izquierdo, así que ahí el velo es casi opaco y
+     se abre hacia la derecha, donde no hay nada que leer. */
+  .hero-velo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(100deg,
+        rgba(6, 16, 28, .97) 0%,
+        rgba(6, 16, 28, .95) 40%,
+        rgba(10, 24, 40, .78) 74%,
+        rgba(10, 24, 40, .62) 100%),
+      linear-gradient(to top, rgba(6, 16, 28, .85) 0%, transparent 46%);
+  }
+
+  /* Los HTML del root traían este layout en su <style> por página. En v2 no
+     existe ese bloque, así que vive aquí, calificado por clase para que gane
+     sobre las reglas de elemento de site.css sin depender del orden. */
+  .section { padding: 96px 0; }
+  .section--paper-alt { background: var(--paper-alt); }
+
+  .section h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    font-weight: 300;
+    line-height: 1.12;
+  }
+  .section .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .section .lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+  /* El ancho del lead del hero lo fija shell.css (640px). Aquí solo el tamaño. */
+  .page-hero .lead {
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.7;
+  }
+  .lead--bajo-h2 { margin-top: 16px; }
+
+  .page-hero .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white-45);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 38px;
+    transition: color .2s var(--ease);
+  }
+  .page-hero .back:hover { color: #fff; }
+
+  /* ---------- capacidades ---------- */
+  .caps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 56px;
+    background: var(--navy-12);
+    border: 1px solid var(--navy-12);
+  }
+  .cap-card {
+    background: var(--white);
+    padding: clamp(30px, 2.2vw, 46px) clamp(26px, 2vw, 42px);
+    display: flex;
+    flex-direction: column;
+    transition: background .25s var(--ease);
+  }
+  .cap-card:hover { background: var(--paper); }
+  .cap-card h4 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 1.3vw, 1.7rem);
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.12;
+  }
+  .cap-card p {
+    font-family: var(--font-sans);
+    font-size: clamp(13.5px, 0.8vw, 15px);
+    color: var(--navy-72);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .cap-link {
+    margin-top: auto;
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--gray-blue);
+    display: inline-flex;
+    gap: 6px;
+    transition: gap .25s var(--ease), color .2s var(--ease);
+  }
+  .cap-link:hover { color: var(--navy); gap: 9px; }
+
+  /* ---------- franja de cierre ---------- */
+  .cta-strip { background: var(--navy-deep); padding: 88px 0; text-align: center; }
+  .cta-strip h2 {
+    font-family: var(--font-serif);
+    color: #fff;
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+  .cta-strip p {
+    color: var(--white-65);
+    font-size: 15px;
+    margin: 0 auto 30px;
+    max-width: 580px;
+    line-height: 1.7;
+  }
+  .cta-strip-btn { font-size: 15px; padding: 14px 32px; }
+
+  @media (max-width: 860px) {
+    .caps-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .section { padding: 68px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cap-card,
+    .cap-link,
+    .page-hero .back { transition: none; }
+  }
+</style>

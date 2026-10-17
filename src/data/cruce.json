@@ -1,0 +1,840 @@
+{
+  "_nota": "El cruce industria x herramienta como dato (D3 del spec: la industria es la puerta, el catalogo es el menu). Fuente: el artefacto aprobado por Rodrigo el 2026-09-06 (113 celdas con evidencia archivo:linea en el Brain), mas las tres fichas nuevas que el censo ya cruzaba (Virtual Buyer Personas, Account Twin, Training Signal) y la fila transversal (las 4 de Estrategia de Crecimiento, Price Value Compass y Scenario Engine), que aplica a las nueve industrias publicadas. El angulo en espanol es literal del artefacto; EN y PT se tradujeron por sentido. Esta es la unica fuente de la relacion industria-herramienta: las fichas del catalogo la derivan de aqui, no la repiten. Street Signal (2026-10-12) cruza solo con retail porque aplica solo a moda e indumentaria.",
+  "herramientas": [
+    {
+      "slug": "market-signal",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Captura sistemática de precio y disponibilidad de la competencia, en unidad y refacción, por territorio.",
+          "en": "Systematic capture of competitor price and availability, across vehicles and parts, by territory.",
+          "pt": "Captura sistemática de preço e disponibilidade da concorrência, em veículo e peças, por território."
+        },
+        "b2b": {
+          "es": "Captura cotizaciones y precios rivales en el CRM, con producto equivalente y condiciones.",
+          "en": "Captures rival quotes and prices inside the CRM, with equivalent product and terms.",
+          "pt": "Captura cotações e preços rivais no CRM, com produto equivalente e condições."
+        },
+        "construccion": {
+          "es": "Recupera la visibilidad de precio de calle, competencia y cobertura que se pierde al vender por canal.",
+          "en": "Recovers the street price, competitor and coverage visibility that is lost when selling through the channel.",
+          "pt": "Recupera a visibilidade de preço de rua, concorrência e cobertura que se perde ao vender pelo canal."
+        },
+        "cpg": {
+          "es": "Captura precio y promoción de la competencia en el punto de venta real.",
+          "en": "Captures competitor price and promotion at the real point of sale.",
+          "pt": "Captura preço e promoção da concorrência no ponto de venda real."
+        },
+        "farma": {
+          "es": "Captura precio y promoción de marca y genérico en anaquel, más participación de exhibición.",
+          "en": "Captures branded and generic price and promotion on shelf, plus share of display.",
+          "pt": "Captura preço e promoção de marca e genérico na gôndola, mais participação de exposição."
+        },
+        "retail": {
+          "es": "Señal externa de precios y promociones reales en piso, competidores, entrantes y espacios.",
+          "en": "External signal of real in-store prices and promotions, competitors, new entrants and open space.",
+          "pt": "Sinal externo de preços e promoções reais no piso, concorrentes, entrantes e espaços."
+        },
+        "servicios-b2b": {
+          "es": "Calibra la tarifa contra lo que el mercado paga por rol y seniority.",
+          "en": "Calibrates rates against what the market pays by role and seniority.",
+          "pt": "Calibra a tarifa contra o que o mercado paga por papel e senioridade."
+        },
+        "servicios-b2c": {
+          "es": "Captura precios, planes, promociones y disponibilidad de la competencia de la zona.",
+          "en": "Captures prices, plans, promotions and availability from competitors in the area.",
+          "pt": "Captura preços, planos, promoções e disponibilidade da concorrência da região."
+        },
+        "telco": {
+          "es": "Captura precios, ofertas y portabilidad de la competencia, más espacios de portafolio.",
+          "en": "Captures competitor prices, offers and portability, plus portfolio gaps.",
+          "pt": "Captura preços, ofertas e portabilidade da concorrência, mais espaços de portfólio."
+        }
+      }
+    },
+    {
+      "slug": "floor-signal",
+      "transversal": false,
+      "industrias": {
+        "cpg": {
+          "es": "Cierra la ceguera al sell-out y al anaquel después de embarcar al canal.",
+          "en": "Closes the blind spot on sell-out and shelf after shipping to the channel.",
+          "pt": "Fecha a cegueira sobre sell-out e gôndola depois do embarque ao canal."
+        },
+        "retail": {
+          "es": "Captura los diálogos de valor de los mejores vendedores en el piso propio.",
+          "en": "Captures the value dialogues of the best sellers on the floor of the business itself.",
+          "pt": "Captura os diálogos de valor dos melhores vendedores no piso próprio."
+        }
+      }
+    },
+    {
+      "slug": "street-signal",
+      "transversal": false,
+      "industrias": {
+        "retail": {
+          "es": "Mide qué marcas y prendas usa la gente en la calle, por zona y perfil, para decidir surtido, importación y aparador en moda.",
+          "en": "Measures which brands and garments people wear on the street, by area and profile, to decide assortment, imports and shop windows in fashion.",
+          "pt": "Mede que marcas e peças as pessoas usam na rua, por zona e perfil, para decidir sortimento, importação e vitrine em moda."
+        }
+      }
+    },
+    {
+      "slug": "virtual-buyer-personas",
+      "transversal": false,
+      "industrias": {
+        "cpg": {
+          "es": "Avatares entrenados con la data de compra prueban concepto, empaque y surtido antes de producirlos.",
+          "en": "Avatars trained on purchase data test concept, pack and assortment before they are produced.",
+          "pt": "Avatares treinados com o dado de compra testam conceito, embalagem e sortimento antes de produzi-los."
+        },
+        "farma": {
+          "es": "Avatares por segmento responden a presentación, claim y precio antes de llegar al anaquel.",
+          "en": "Segment avatars respond to presentation, claim and price before reaching the shelf.",
+          "pt": "Avatares por segmento respondem a apresentação, claim e preço antes de chegar à gôndola."
+        },
+        "retail": {
+          "es": "Avatares construidos con el historial de compra comparan surtido y concepto entre segmentos en horas.",
+          "en": "Avatars built from purchase history compare assortment and concept across segments in hours.",
+          "pt": "Avatares construídos com o histórico de compra comparam sortimento e conceito entre segmentos em horas."
+        },
+        "servicios-b2c": {
+          "es": "Avatares por segmento reaccionan a planes, niveles y promesas de servicio antes del lanzamiento.",
+          "en": "Segment avatars react to plans, tiers and service promises before launch.",
+          "pt": "Avatares por segmento reagem a planos, níveis e promessas de serviço antes do lançamento."
+        },
+        "telco": {
+          "es": "Avatares por segmento contrastan empaquetados y ofertas de renovación antes de salir al mercado.",
+          "en": "Segment avatars contrast bundles and renewal offers before going to market.",
+          "pt": "Avatares por segmento contrastam pacotes e ofertas de renovação antes de ir ao mercado."
+        }
+      }
+    },
+    {
+      "slug": "account-twin",
+      "transversal": false,
+      "industrias": {
+        "b2b": {
+          "es": "Reconstruye la cuenta clave con su historial y sus patrones para ensayar la negociación antes de la mesa real.",
+          "en": "Rebuilds the key account from its history and its patterns, so the negotiation is rehearsed before the real table.",
+          "pt": "Reconstrói a conta-chave com o histórico e os padrões dela para ensaiar a negociação antes da mesa real."
+        },
+        "construccion": {
+          "es": "Reconstruye al distribuidor con las condiciones que ya obtuvo, para ensayar la mesa antes de sentarse.",
+          "en": "Rebuilds the distributor with the terms it already obtained, to rehearse the table before sitting down.",
+          "pt": "Reconstrói o distribuidor com as condições que ele já obteve, para ensaiar a mesa antes de sentar."
+        },
+        "servicios-b2b": {
+          "es": "Reconstruye al comprador de la cuenta y ensaya objeciones, concesiones y cierre de la renovación.",
+          "en": "Rebuilds the account buyer and rehearses objections, concessions and the renewal close.",
+          "pt": "Reconstrói o comprador da conta e ensaia objeções, concessões e o fechamento da renovação."
+        }
+      }
+    },
+    {
+      "slug": "whitespace-compass",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Detecta líneas de refacción y territorios que crecen y el aftermarket no cubre.",
+          "en": "Spots parts lines and territories that grow and the aftermarket does not cover.",
+          "pt": "Detecta linhas de peças e territórios que crescem e o aftermarket não cobre."
+        },
+        "b2b": {
+          "es": "Identifica espacios que crecen y cuentas que deberían comprar y no compran.",
+          "en": "Identifies growing space and accounts that should be buying and are not.",
+          "pt": "Identifica espaços que crescem e contas que deveriam comprar e não compram."
+        },
+        "construccion": {
+          "es": "Abre espacios por línea y territorio más allá del commodity de volumen.",
+          "en": "Opens space by line and territory beyond the volume commodity.",
+          "pt": "Abre espaços por linha e território além do commodity de volume."
+        },
+        "cpg": {
+          "es": "Abre espacios por rol de empaque, territorio y canal donde el mercado crece.",
+          "en": "Opens space by pack role, territory and channel where the market grows.",
+          "pt": "Abre espaços por papel de embalagem, território e canal onde o mercado cresce."
+        },
+        "farma": {
+          "es": "Espacios que crecen por categoría y canal, con evidencia de crecimiento y no de vacío.",
+          "en": "Growing space by category and channel, with evidence of growth and not merely of absence.",
+          "pt": "Espaços que crescem por categoria e canal, com evidência de crescimento e não de vazio."
+        },
+        "retail": {
+          "es": "Espacios de mercado que crecen y el surtido actual no cubre.",
+          "en": "Market space that grows and the current assortment does not cover.",
+          "pt": "Espaços de mercado que crescem e o sortimento atual não cobre."
+        },
+        "servicios-b2b": {
+          "es": "Abre líneas de servicio y espacios que crecen más allá del portafolio de inercia.",
+          "en": "Opens service lines and growing space beyond the portfolio built by inertia.",
+          "pt": "Abre linhas de serviço e espaços que crescem além do portfólio de inércia."
+        },
+        "servicios-b2c": {
+          "es": "Espacios que crecen en portafolio de planes y en cobertura de segmentos o zonas.",
+          "en": "Growing space in the plan portfolio and in segment or area coverage.",
+          "pt": "Espaços que crescem no portfólio de planos e na cobertura de segmentos ou regiões."
+        }
+      }
+    },
+    {
+      "slug": "leadership-alignment-compass",
+      "transversal": false,
+      "industrias": {
+        "b2b": {
+          "es": "Mide el alineamiento real del equipo de liderazgo, desagregado por subgrupos.",
+          "en": "Measures the real alignment of the leadership team, broken out by subgroup.",
+          "pt": "Mede o alinhamento real do time de liderança, desagregado por subgrupos."
+        },
+        "cpg": {
+          "es": "Alinea a ventas, finanzas y trade marketing sobre quién es dueño del ingreso neto.",
+          "en": "Aligns sales, finance and trade marketing on who owns net revenue.",
+          "pt": "Alinha vendas, finanças e trade marketing sobre quem é dono da receita líquida."
+        },
+        "farma": {
+          "es": "Alinea a ventas, finanzas, trade y marketing sobre la marca frente al genérico.",
+          "en": "Aligns sales, finance, trade and marketing on brand versus generic.",
+          "pt": "Alinha vendas, finanças, trade e marketing sobre a marca frente ao genérico."
+        },
+        "retail": {
+          "es": "Mide el alineamiento del equipo de liderazgo más allá de los indicadores comerciales.",
+          "en": "Measures leadership alignment beyond the commercial indicators.",
+          "pt": "Mede o alinhamento do time de liderança além dos indicadores comerciais."
+        }
+      }
+    },
+    {
+      "slug": "value-attribute-compass",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Ancla el precio de hora-taller y paquetes de servicio en la disposición a pagar.",
+          "en": "Anchors workshop hour and service package prices to willingness to pay.",
+          "pt": "Ancora o preço da hora-oficina e dos pacotes de serviço na disposição a pagar."
+        },
+        "b2b": {
+          "es": "Fija el precio al valor percibido del diferenciador, atributo por atributo.",
+          "en": "Sets price to the perceived value of the differentiator, attribute by attribute.",
+          "pt": "Fixa o preço ao valor percebido do diferencial, atributo por atributo."
+        },
+        "construccion": {
+          "es": "Defiende el premium del especificado con evidencia de valor y disposición a pagar.",
+          "en": "Defends the premium of the specified product with evidence of value and willingness to pay.",
+          "pt": "Defende o prêmio do especificado com evidência de valor e disposição a pagar."
+        },
+        "cpg": {
+          "es": "Mapea importancia para el shopper y disposición a pagar, atributo por atributo.",
+          "en": "Maps shopper importance and willingness to pay, attribute by attribute.",
+          "pt": "Mapeia importância para o shopper e disposição a pagar, atributo por atributo."
+        },
+        "farma": {
+          "es": "Ancla el premium de la marca en la disposición a pagar por atributo.",
+          "en": "Anchors the brand premium to willingness to pay by attribute.",
+          "pt": "Ancora o prêmio da marca na disposição a pagar por atributo."
+        },
+        "retail": {
+          "es": "Fija precio y surtido al valor percibido, no solo a la sensibilidad observada.",
+          "en": "Sets price and assortment to perceived value, not only to observed sensitivity.",
+          "pt": "Fixa preço e sortimento ao valor percebido, não só à sensibilidade observada."
+        },
+        "servicios-b2b": {
+          "es": "Fija el precio al valor del resultado entregado, con disposición a pagar por atributo.",
+          "en": "Sets price to the value of the delivered outcome, with willingness to pay by attribute.",
+          "pt": "Fixa o preço ao valor do resultado entregue, com disposição a pagar por atributo."
+        },
+        "servicios-b2c": {
+          "es": "Construye la escalera de planes sobre el valor percibido y la disposición a pagar.",
+          "en": "Builds the plan ladder on perceived value and willingness to pay.",
+          "pt": "Constrói a escada de planos sobre o valor percebido e a disposição a pagar."
+        },
+        "telco": {
+          "es": "Monetiza el valor nuevo por lo que el cliente valora, no a costo.",
+          "en": "Monetizes new value by what the customer values, not by cost.",
+          "pt": "Monetiza o valor novo pelo que o cliente valoriza, não a custo."
+        }
+      }
+    },
+    {
+      "slug": "price-value-compass",
+      "transversal": true,
+      "angulo": {
+        "es": "Ubica precio y valor percibido en un mismo mapa para ver dónde el portafolio está fuera de línea.",
+        "en": "Places price and perceived value on one map to see where the portfolio sits off the line.",
+        "pt": "Coloca preço e valor percebido no mesmo mapa para ver onde o portfólio está fora da linha."
+      }
+    },
+    {
+      "slug": "growth-bridge-analysis",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Separa el movimiento del resultado entre precio, volumen, mix, posventa y financiamiento.",
+          "en": "Splits the move in results across price, volume, mix, aftersales and financing.",
+          "pt": "Separa o movimento do resultado entre preço, volume, mix, pós-venda e financiamento."
+        },
+        "b2b": {
+          "es": "Descompone el movimiento en precio, volumen, mix y cuentas base contra nuevas.",
+          "en": "Breaks the move into price, volume, mix and base versus new accounts.",
+          "pt": "Decompõe o movimento em preço, volume, mix e contas base contra novas."
+        },
+        "construccion": {
+          "es": "Separa el movimiento entre precio, volumen, mix, territorio y proyecto.",
+          "en": "Splits the move across price, volume, mix, territory and project.",
+          "pt": "Separa o movimento entre preço, volume, mix, território e projeto."
+        },
+        "cpg": {
+          "es": "Descompone el ingreso neto en precio, volumen, mix y distribución, por marca y canal.",
+          "en": "Breaks net revenue into price, volume, mix and distribution, by brand and channel.",
+          "pt": "Decompõe a receita líquida em preço, volume, mix e distribuição, por marca e canal."
+        },
+        "farma": {
+          "es": "Separa precio, mix, genérico y pico estacional del síntoma dentro del movimiento.",
+          "en": "Separates price, mix, generic and the seasonal symptom peak inside the move.",
+          "pt": "Separa preço, mix, genérico e pico sazonal do sintoma dentro do movimento."
+        },
+        "retail": {
+          "es": "Descompone el ingreso en precio, volumen, mix y distribución, categoría por categoría.",
+          "en": "Breaks revenue into price, volume, mix and distribution, category by category.",
+          "pt": "Decompõe a receita em preço, volume, mix e distribuição, categoria por categoria."
+        },
+        "servicios-b2b": {
+          "es": "Separa tarifa, realización, utilización y mix de servicio dentro del movimiento de margen.",
+          "en": "Separates rate, realization, utilization and service mix inside the margin move.",
+          "pt": "Separa tarifa, realização, utilização e mix de serviço dentro do movimento de margem."
+        },
+        "servicios-b2c": {
+          "es": "Descompone el ingreso en ticket, frecuencia, altas, churn y mix de plan.",
+          "en": "Breaks revenue into ticket, frequency, activations, churn and plan mix.",
+          "pt": "Decompõe a receita em tíquete, frequência, ativações, churn e mix de plano."
+        },
+        "telco": {
+          "es": "Descompone el ingreso en ingreso por usuario, base, mix, altas y churn.",
+          "en": "Breaks revenue into revenue per user, base, mix, activations and churn.",
+          "pt": "Decompõe a receita em receita por usuário, base, mix, ativações e churn."
+        }
+      }
+    },
+    {
+      "slug": "pricing-y-surtido",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Gobierna el descuento de unidad y cobra la refacción por el rol que cumple.",
+          "en": "Governs vehicle discount and prices parts by the role they play.",
+          "pt": "Governa o desconto da unidade e cobra a peça pelo papel que cumpre."
+        },
+        "b2b": {
+          "es": "Política de precio por valor y segmento, con regla de traslado de costos volátiles.",
+          "en": "Pricing policy by value and segment, with a pass-through rule for volatile costs.",
+          "pt": "Política de preço por valor e segmento, com regra de repasse de custos voláteis."
+        },
+        "construccion": {
+          "es": "Arquitectura de lista, niveles de canal y precio sugerido al punto de venta.",
+          "en": "List architecture, channel tiers and suggested price at the point of sale.",
+          "pt": "Arquitetura de lista, níveis de canal e preço sugerido ao ponto de venda."
+        },
+        "cpg": {
+          "es": "Arquitectura precio-empaque por ocasión y canal, con referencias de imagen de precio.",
+          "en": "Price-pack architecture by occasion and channel, with price image references.",
+          "pt": "Arquitetura preço-embalagem por ocasião e canal, com referências de imagem de preço."
+        },
+        "farma": {
+          "es": "Escalera de precio por presentación, con referencias de imagen de precio por canal.",
+          "en": "Price ladder by presentation, with price image references by channel.",
+          "pt": "Escada de preço por apresentação, com referências de imagem de preço por canal."
+        },
+        "retail": {
+          "es": "Elasticidad por producto y cluster, referencias de imagen de precio y mix por retorno de inventario.",
+          "en": "Elasticity by product and cluster, price image references and mix by inventory return.",
+          "pt": "Elasticidade por produto e cluster, referências de imagem de preço e mix por retorno de estoque."
+        },
+        "servicios-b2b": {
+          "es": "La tarifa opera como piso de margen y el cobro se hace por el valor del resultado.",
+          "en": "The rate works as a margin floor and billing follows the value of the outcome.",
+          "pt": "A tarifa opera como piso de margem e a cobrança se faz pelo valor do resultado."
+        },
+        "servicios-b2c": {
+          "es": "Planes y niveles por valor, con precio por franja horaria y renovación por valor.",
+          "en": "Plans and tiers by value, with time-slot pricing and value-based renewal.",
+          "pt": "Planos e níveis por valor, com preço por faixa horária e renovação por valor."
+        },
+        "telco": {
+          "es": "Empaquetado por segmento y precio de renovación por valor y riesgo, no descuento automático.",
+          "en": "Bundling by segment and renewal price by value and risk, not automatic discount.",
+          "pt": "Empacotamento por segmento e preço de renovação por valor e risco, não desconto automático."
+        }
+      }
+    },
+    {
+      "slug": "politica-comercial",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Gobierna el traslado del incentivo de armadora y el apoyo al canal.",
+          "en": "Governs the pass-through of the manufacturer incentive and channel support.",
+          "pt": "Governa o repasse do incentivo da montadora e o apoio ao canal."
+        },
+        "b2b": {
+          "es": "Descuentos, plazos y rebates con contraprestación verificable y aplicación en el sistema.",
+          "en": "Discounts, terms and rebates with verifiable counterpart and enforcement in the system.",
+          "pt": "Descontos, prazos e rebates com contrapartida verificável e aplicação no sistema."
+        },
+        "construccion": {
+          "es": "Cascada de descuentos de lista a calle, con contraprestación medida al distribuidor.",
+          "en": "Discount cascade from list to street, with counterpart measured at the distributor.",
+          "pt": "Cascata de descontos da lista à rua, com contrapartida medida ao distribuidor."
+        },
+        "cpg": {
+          "es": "Condiciones de canal con pago por desempeño y trade spend medido por retorno.",
+          "en": "Channel terms with pay for performance and trade spend measured by return.",
+          "pt": "Condições de canal com pagamento por desempenho e trade spend medido por retorno."
+        },
+        "farma": {
+          "es": "Condiciones de canal con pago por desempeño y descuento visible por cliente y producto.",
+          "en": "Channel terms with pay for performance and discount visible by customer and product.",
+          "pt": "Condições de canal com pagamento por desempenho e desconto visível por cliente e produto."
+        },
+        "retail": {
+          "es": "Arquitectura de lista, escaleras, crédito, condiciones de canal y reglas de acceso.",
+          "en": "List architecture, ladders, credit, channel terms and access rules.",
+          "pt": "Arquitetura de lista, escadas, crédito, condições de canal e regras de acesso."
+        },
+        "servicios-b2b": {
+          "es": "Descuento con guardrails, escalamiento anual y recotización cuando el alcance crece.",
+          "en": "Discount within guardrails, annual escalation and requoting when scope grows.",
+          "pt": "Desconto com guardrails, reajuste anual e recotação quando o escopo cresce."
+        },
+        "servicios-b2c": {
+          "es": "Descuentos con guardrails y pago a socios por calidad del alta, no por volumen.",
+          "en": "Discounts within guardrails and partner payment for activation quality, not for volume.",
+          "pt": "Descontos com guardrails e pagamento a parceiros pela qualidade da ativação, não por volume."
+        },
+        "telco": {
+          "es": "Gobierna la oferta de retención y paga al canal por calidad del alta.",
+          "en": "Governs the retention offer and pays the channel for activation quality.",
+          "pt": "Governa a oferta de retenção e paga ao canal pela qualidade da ativação."
+        }
+      }
+    },
+    {
+      "slug": "promociones",
+      "transversal": false,
+      "industrias": {
+        "cpg": {
+          "es": "Separa incremental de canibalización antes de lanzar y optimiza el calendario por retorno.",
+          "en": "Separates incremental from cannibalization before launch and optimizes the calendar by return.",
+          "pt": "Separa incremental de canibalização antes de lançar e otimiza o calendário por retorno."
+        },
+        "farma": {
+          "es": "Predice incrementalidad sobre una línea base ajustada por la curva estacional del síntoma.",
+          "en": "Predicts incrementality over a baseline adjusted for the seasonal symptom curve.",
+          "pt": "Prevê incrementalidade sobre uma linha base ajustada pela curva sazonal do sintoma."
+        },
+        "retail": {
+          "es": "Separa incremental de canibalización y clasifica cada promoción en destructora o generadora.",
+          "en": "Separates incremental from cannibalization and sorts each promotion into value destroying or value generating.",
+          "pt": "Separa incremental de canibalização e classifica cada promoção em destruidora ou geradora."
+        },
+        "servicios-b2c": {
+          "es": "Calendario con objetivo cuantificado, incrementalidad medida y post-mortem por promoción.",
+          "en": "A calendar with a quantified target, measured incrementality and a post-mortem per promotion.",
+          "pt": "Calendário com objetivo quantificado, incrementalidade medida e post-mortem por promoção."
+        }
+      }
+    },
+    {
+      "slug": "marketing-y-romi",
+      "transversal": false,
+      "industrias": {
+        "retail": {
+          "es": "Modelo de mezcla de marketing y optimizador que asignan presupuesto por retorno real.",
+          "en": "Marketing mix model and optimizer that allocate budget by real return.",
+          "pt": "Modelo de mix de marketing e otimizador que alocam orçamento por retorno real."
+        }
+      }
+    },
+    {
+      "slug": "clientes-y-lealtad",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Retiene al comprador de unidad hacia la posventa y captura el margen del cierre.",
+          "en": "Retains the vehicle buyer into aftersales and captures the margin of the close.",
+          "pt": "Retém o comprador da unidade rumo ao pós-venda e captura a margem do fechamento."
+        },
+        "b2b": {
+          "es": "Segmenta cuentas por potencial, ordena el pipeline y previene el churn silencioso.",
+          "en": "Segments accounts by potential, orders the pipeline and prevents silent churn.",
+          "pt": "Segmenta contas por potencial, ordena o pipeline e previne o churn silencioso."
+        },
+        "construccion": {
+          "es": "Segmenta distribuidores y puntos de venta por potencial y previene el churn de canal.",
+          "en": "Segments distributors and points of sale by potential and prevents channel churn.",
+          "pt": "Segmenta distribuidores e pontos de venda por potencial e previne o churn de canal."
+        },
+        "cpg": {
+          "es": "Segmenta clientes de canal y diferencia la propuesta de valor por cuenta.",
+          "en": "Segments channel customers and differentiates the value proposition by account.",
+          "pt": "Segmenta clientes de canal e diferencia a proposta de valor por conta."
+        },
+        "farma": {
+          "es": "Convierte la recomendación de mostrador en palanca de canal medida contra el sell-out.",
+          "en": "Turns the counter recommendation into a channel lever measured against sell-out.",
+          "pt": "Converte a recomendação de balcão em alavanca de canal medida contra o sell-out."
+        },
+        "retail": {
+          "es": "Segmentación por valor, valor de vida del cliente, lealtad y prevención de churn.",
+          "en": "Segmentation by value, customer lifetime value, loyalty and churn prevention.",
+          "pt": "Segmentação por valor, valor de vida do cliente, fidelidade e prevenção de churn."
+        },
+        "servicios-b2b": {
+          "es": "Segmenta cuentas por potencial, expande la cuenta ganada y previene el churn silencioso.",
+          "en": "Segments accounts by potential, expands the account already won and prevents silent churn.",
+          "pt": "Segmenta contas por potencial, expande a conta ganha e previne o churn silencioso."
+        },
+        "servicios-b2c": {
+          "es": "Programa de lealtad y descuento de retención gobernados con piso de margen.",
+          "en": "Loyalty program and retention discount governed with a margin floor.",
+          "pt": "Programa de fidelidade e desconto de retenção governados com piso de margem."
+        },
+        "telco": {
+          "es": "Segmenta por valor y riesgo de churn, con siguiente mejor acción por cliente.",
+          "en": "Segments by value and churn risk, with a next best action per customer.",
+          "pt": "Segmenta por valor e risco de churn, com próxima melhor ação por cliente."
+        }
+      }
+    },
+    {
+      "slug": "canales-y-tiendas",
+      "transversal": false,
+      "industrias": {
+        "cpg": {
+          "es": "Diseña la ruta al mercado por economía de canal, con ejecución y cobertura medibles.",
+          "en": "Designs route to market by channel economics, with measurable execution and coverage.",
+          "pt": "Desenha a rota ao mercado por economia de canal, com execução e cobertura mensuráveis."
+        },
+        "farma": {
+          "es": "Ruta al mercado por economía de canal, con gestión de mayoristas atada al sell-out.",
+          "en": "Route to market by channel economics, with wholesaler management tied to sell-out.",
+          "pt": "Rota ao mercado por economia de canal, com gestão de atacadistas atrelada ao sell-out."
+        },
+        "retail": {
+          "es": "Surtido por cluster de tienda, ejecución en piso y aceleración de omnicanal.",
+          "en": "Assortment by store cluster, floor execution and omnichannel acceleration.",
+          "pt": "Sortimento por cluster de loja, execução no piso e aceleração do omnicanal."
+        },
+        "servicios-b2c": {
+          "es": "Integra local, aplicación, web, call center y agregadores para que reserva e historial se hablen.",
+          "en": "Integrates venue, app, web, call center and aggregators so booking and history talk to each other.",
+          "pt": "Integra local, aplicativo, web, call center e agregadores para que reserva e histórico conversem."
+        },
+        "telco": {
+          "es": "Armoniza producto, precio y mensaje entre tienda propia, distribuidores, digital y call center.",
+          "en": "Harmonizes product, price and message across own stores, distributors, digital and call center.",
+          "pt": "Harmoniza produto, preço e mensagem entre loja própria, distribuidores, digital e call center."
+        }
+      }
+    },
+    {
+      "slug": "scenario-engine",
+      "transversal": true,
+      "angulo": {
+        "es": "Simula el efecto de un cambio de precio, mezcla o política antes de ejecutarlo.",
+        "en": "Simulates the effect of a price, mix or policy change before it is executed.",
+        "pt": "Simula o efeito de uma mudança de preço, mix ou política antes de executá-la."
+      }
+    },
+    {
+      "slug": "concierge",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Opera la conversación del lead, la agenda de taller y la retención.",
+          "en": "Runs the lead conversation, the workshop calendar and retention.",
+          "pt": "Opera a conversa do lead, a agenda da oficina e a retenção."
+        },
+        "b2b": {
+          "es": "Formaliza el canal de servicio: clasifica, enruta y escala la mensajería entrante.",
+          "en": "Formalizes the service channel: classifies, routes and escalates inbound messaging.",
+          "pt": "Formaliza o canal de serviço: classifica, roteia e escala as mensagens de entrada."
+        },
+        "construccion": {
+          "es": "Atiende disponibilidad, especificación técnica y pedido del canal y del instalador.",
+          "en": "Handles availability, technical specification and orders from channel and installer.",
+          "pt": "Atende disponibilidade, especificação técnica e pedido do canal e do instalador."
+        },
+        "cpg": {
+          "es": "Toma pedidos del canal y atiende al shopper de forma continua sobre los sistemas del negocio.",
+          "en": "Takes channel orders and serves the shopper continuously on top of the business systems.",
+          "pt": "Recebe pedidos do canal e atende o shopper de forma contínua sobre os sistemas do negócio."
+        },
+        "farma": {
+          "es": "Toma pedidos y orienta sobre síntoma y producto dentro del claim permitido.",
+          "en": "Takes orders and guides on symptom and product within the permitted claim.",
+          "pt": "Recebe pedidos e orienta sobre sintoma e produto dentro do claim permitido."
+        },
+        "retail": {
+          "es": "Atención omnicanal que vende, recomienda y da servicio sobre punto de venta, lealtad y comercio electrónico.",
+          "en": "Omnichannel service that sells, recommends and supports on top of point of sale, loyalty and e-commerce.",
+          "pt": "Atendimento omnicanal que vende, recomenda e dá serviço sobre ponto de venda, fidelidade e comércio eletrônico."
+        },
+        "servicios-b2b": {
+          "es": "Mesa de servicio conversacional con acuerdos de nivel que saca a los seniors del switchboard.",
+          "en": "Conversational service desk with service levels that takes senior staff out of the switchboard.",
+          "pt": "Mesa de serviço conversacional com acordos de nível que tira os seniores do switchboard."
+        },
+        "servicios-b2c": {
+          "es": "Conversación que sostiene la frecuencia y la siguiente mejor acción sobre la base.",
+          "en": "Conversation that sustains frequency and the next best action over the base.",
+          "pt": "Conversa que sustenta a frequência e a próxima melhor ação sobre a base."
+        },
+        "telco": {
+          "es": "La conversación es el momento de la verdad y donde la inteligencia se vuelve acción.",
+          "en": "The conversation is the moment of truth and where intelligence turns into action.",
+          "pt": "A conversa é o momento da verdade e onde a inteligência vira ação."
+        }
+      }
+    },
+    {
+      "slug": "training-signal",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Convierte los diálogos de valor de los mejores asesores en argumento por modelo y por servicio de taller.",
+          "en": "Turns the value dialogues of the best advisors into arguments by model and by workshop service.",
+          "pt": "Converte os diálogos de valor dos melhores consultores em argumento por modelo e por serviço de oficina."
+        },
+        "b2b": {
+          "es": "Ensaya la negociación contra Account Twin y devuelve el argumento que sí terminó en venta.",
+          "en": "Rehearses the negotiation against Account Twin and returns the argument that did end in a sale.",
+          "pt": "Ensaia a negociação contra o Account Twin e devolve o argumento que de fato terminou em venda."
+        },
+        "construccion": {
+          "es": "Arma el argumento técnico por línea y ensaya la negociación con el distribuidor.",
+          "en": "Builds the technical argument by line and rehearses the negotiation with the distributor.",
+          "pt": "Monta o argumento técnico por linha e ensaia a negociação com o distribuidor."
+        },
+        "cpg": {
+          "es": "Lleva el argumento de valor por marca y empaque al vendedor de ruta, y mide cuál cerró.",
+          "en": "Brings the value argument by brand and pack to the route seller, and measures which one closed.",
+          "pt": "Leva o argumento de valor por marca e embalagem ao vendedor de rota, e mede qual fechou."
+        },
+        "farma": {
+          "es": "Entrega al visitador y al mostrador el argumento por presentación dentro del claim permitido.",
+          "en": "Gives the rep and the counter the argument by presentation within the permitted claim.",
+          "pt": "Entrega ao representante e ao balcão o argumento por apresentação dentro do claim permitido."
+        },
+        "retail": {
+          "es": "Escala el diálogo de los mejores vendedores del piso al resto de las tiendas, producto por producto.",
+          "en": "Scales the dialogue of the best floor sellers to the rest of the stores, product by product.",
+          "pt": "Escala o diálogo dos melhores vendedores do piso ao resto das lojas, produto a produto."
+        },
+        "servicios-b2b": {
+          "es": "Ensaya la conversación de alcance y tarifa antes de la mesa, con el argumento que ya funcionó.",
+          "en": "Rehearses the scope and rate conversation before the table, with the argument that already worked.",
+          "pt": "Ensaia a conversa de escopo e tarifa antes da mesa, com o argumento que já funcionou."
+        },
+        "servicios-b2c": {
+          "es": "Estandariza el argumento de plan y renovación en piso y call center, y mide cuál convierte.",
+          "en": "Standardizes the plan and renewal argument in store and call center, and measures which one converts.",
+          "pt": "Padroniza o argumento de plano e renovação no piso e no call center, e mede qual converte."
+        },
+        "telco": {
+          "es": "Alinea el argumento de empaquetado y retención entre tienda, distribuidor y call center.",
+          "en": "Aligns the bundle and retention argument across store, distributor and call center.",
+          "pt": "Alinha o argumento de pacote e retenção entre loja, distribuidor e call center."
+        }
+      }
+    },
+    {
+      "slug": "habilitadores",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Instala gobierno, foro y forecast que gestionan la red y el aftermarket juntos.",
+          "en": "Installs governance, forum and forecast that manage the network and the aftermarket together.",
+          "pt": "Instala governança, fórum e forecast que gerem a rede e o aftermarket juntos."
+        },
+        "b2b": {
+          "es": "Instala objetivos, comités, forecast de facturación, margen y mix, y tableros operables.",
+          "en": "Installs targets, committees, a forecast of billing, margin and mix, and operable dashboards.",
+          "pt": "Instala objetivos, comitês, forecast de faturamento, margem e mix, e painéis operáveis."
+        },
+        "construccion": {
+          "es": "Instala gobierno, forecast por territorio y tableros que el equipo opera.",
+          "en": "Installs governance, forecast by territory and dashboards the team operates.",
+          "pt": "Instala governança, forecast por território e painéis que o time opera."
+        },
+        "cpg": {
+          "es": "Monta la función de RGM con dueño del ingreso neto y forecast a tres dimensiones.",
+          "en": "Stands up the RGM function with an owner of net revenue and a three-dimension forecast.",
+          "pt": "Monta a função de RGM com dono da receita líquida e forecast em três dimensões."
+        },
+        "farma": {
+          "es": "Monta la función de RGM y rediseña la compensación variable de la fuerza de ventas.",
+          "en": "Stands up the RGM function and redesigns variable compensation for the sales force.",
+          "pt": "Monta a função de RGM e redesenha a remuneração variável da força de vendas."
+        },
+        "retail": {
+          "es": "Monta o fortalece el área de RGM, sus formas de trabajo, tableros y gobierno comercial.",
+          "en": "Stands up or strengthens the RGM area, its ways of working, dashboards and commercial governance.",
+          "pt": "Monta ou fortalece a área de RGM, as formas de trabalho, os painéis e a governança comercial."
+        },
+        "servicios-b2b": {
+          "es": "Gobierno, tableros de margen por proyecto y gestión de capacidad contra demanda anticipada.",
+          "en": "Governance, margin dashboards by project and capacity management against anticipated demand.",
+          "pt": "Governança, painéis de margem por projeto e gestão de capacidade contra demanda antecipada."
+        },
+        "servicios-b2c": {
+          "es": "Gobierno con forecast de demanda contra cupo por franja y tableros de churn.",
+          "en": "Governance with demand forecast against slot capacity and churn dashboards.",
+          "pt": "Governança com forecast de demanda contra capacidade por faixa e painéis de churn."
+        },
+        "telco": {
+          "es": "Gobierno y forecast de altas, base e ingreso por usuario sobre sistemas heredados.",
+          "en": "Governance and forecast of activations, base and revenue per user on legacy systems.",
+          "pt": "Governança e forecast de ativações, base e receita por usuário sobre sistemas legados."
+        }
+      }
+    },
+    {
+      "slug": "integracion-de-datos",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Une los sistemas de venta, taller y refacciones para ver el margen total del cliente.",
+          "en": "Joins the sales, workshop and parts systems to see the total margin of the customer.",
+          "pt": "Une os sistemas de venda, oficina e peças para ver a margem total do cliente."
+        },
+        "cpg": {
+          "es": "Une sell-in, sell-out, panel, trade spend y costo en una fuente confiable.",
+          "en": "Joins sell-in, sell-out, panel, trade spend and cost into one reliable source.",
+          "pt": "Une sell-in, sell-out, painel, trade spend e custo em uma fonte confiável."
+        },
+        "farma": {
+          "es": "Une el sell-in con la señal de sell-out, anaquel y mostrador que hoy falta.",
+          "en": "Joins sell-in with the sell-out, shelf and counter signal that is missing today.",
+          "pt": "Une o sell-in com o sinal de sell-out, gôndola e balcão que hoje falta."
+        },
+        "retail": {
+          "es": "Une punto de venta, comercio electrónico, CRM y lealtad, y genera la fuente faltante.",
+          "en": "Joins point of sale, e-commerce, CRM and loyalty, and generates the missing source.",
+          "pt": "Une ponto de venda, comércio eletrônico, CRM e fidelidade, e gera a fonte que falta."
+        },
+        "servicios-b2b": {
+          "es": "Cierra el hueco entre el sistema de horas y el contable, sin esperar al cierre.",
+          "en": "Closes the gap between the time system and the accounting system, without waiting for month end.",
+          "pt": "Fecha a lacuna entre o sistema de horas e o contábil, sem esperar o fechamento."
+        },
+        "servicios-b2c": {
+          "es": "Une reservas, transacciones y CRM en una sola fuente confiable.",
+          "en": "Joins bookings, transactions and CRM into a single reliable source.",
+          "pt": "Une reservas, transações e CRM em uma única fonte confiável."
+        },
+        "telco": {
+          "es": "Convierte la data de suscriptor en señal que llega al punto de contacto.",
+          "en": "Turns subscriber data into a signal that reaches the point of contact.",
+          "pt": "Converte o dado de assinante em sinal que chega ao ponto de contato."
+        }
+      }
+    },
+    {
+      "slug": "checkup",
+      "transversal": false,
+      "industrias": {
+        "automotriz": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "b2b": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "construccion": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "cpg": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "farma": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "retail": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "servicios-b2b": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "servicios-b2c": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        },
+        "telco": {
+          "es": "Diagnóstico de arranque con roadmap priorizado, costo y retorno por iniciativa.",
+          "en": "Starting diagnostic with a prioritized roadmap, cost and return per initiative.",
+          "pt": "Diagnóstico de arranque com roadmap priorizado, custo e retorno por iniciativa."
+        }
+      }
+    },
+    {
+      "slug": "growth-hacking",
+      "transversal": false,
+      "industrias": {
+        "retail": {
+          "es": "Experimentación rápida que balancea costo de adquisición y valor de vida del cliente.",
+          "en": "Fast experimentation that balances acquisition cost and customer lifetime value.",
+          "pt": "Experimentação rápida que equilibra custo de aquisição e valor de vida do cliente."
+        }
+      }
+    },
+    {
+      "slug": "market-sizing-y-right-to-win",
+      "transversal": true,
+      "angulo": {
+        "es": "Dimensiona el mercado y define dónde la empresa tiene derecho a ganar.",
+        "en": "Sizes the market and defines where the company has a right to win.",
+        "pt": "Dimensiona o mercado e define onde a empresa tem direito de ganhar."
+      }
+    },
+    {
+      "slug": "market-entry-y-go-to-market",
+      "transversal": true,
+      "angulo": {
+        "es": "Diseña la entrada y el modelo de salida al mercado de una geografía o categoría nueva.",
+        "en": "Designs entry and the go-to-market model for a new geography or category.",
+        "pt": "Desenha a entrada e o modelo de ida ao mercado de uma geografia ou categoria nova."
+      }
+    },
+    {
+      "slug": "value-creation-y-capital-allocation",
+      "transversal": true,
+      "angulo": {
+        "es": "Ordena las iniciativas por valor creado y asigna el capital donde rinde.",
+        "en": "Ranks initiatives by value created and allocates capital where it pays off.",
+        "pt": "Ordena as iniciativas por valor criado e aloca o capital onde rende."
+      }
+    },
+    {
+      "slug": "commercial-y-operating-model",
+      "transversal": true,
+      "angulo": {
+        "es": "Rediseña el modelo comercial y operativo que sostiene la estrategia.",
+        "en": "Redesigns the commercial and operating model that sustains the strategy.",
+        "pt": "Redesenha o modelo comercial e operacional que sustenta a estratégia."
+      }
+    }
+  ]
+}

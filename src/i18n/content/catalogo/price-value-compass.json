@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Price Value Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Price Value Compass · Familia Compass",
+    "hero_h1": "Qué producto está caro o barato frente al valor que percibe el comprador.",
+    "hero_lead": "Price Value Compass ubica cada producto propio y de la competencia según su precio y el valor que percibe el comprador. Muestra cuáles sostienen un premium, cuáles están en paridad, cuáles dejan margen sobre la mesa y cuáles pierden volumen por estar caros.",
+    "que_hace_h2": "Lo que resuelve en la fijación de precio",
+    "que_hace_p": "La decisión de subir, sostener o bajar un precio se toma contra el valor que el comprador percibe en ese producto y en los de la competencia.",
+    "que_hace_items": [
+      "Valor percibido de cada producto, medido en un solo índice",
+      "Posición de precio frente a la competencia, ajustada por valor",
+      "Productos caros o baratos respecto de lo que entregan, identificados",
+      "Premium o descuento justificable para cada producto"
+    ],
+    "valor_h2": "Premium o descuento, justificado",
+    "valor_p": "Un producto por debajo del corredor de consistencia deja margen sobre la mesa y admite una subida sin perder posición relativa. Uno por encima del corredor explica la caída de volumen por precio, antes de atribuirla a la promoción.",
+    "sowhat": "Dice qué producto admite subida de precio y cuál necesita más valor antes de sostener el suyo.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Consume el detalle por atributo de Value-Attribute Compass y entrega la posición de precio a Pricing & Surtido.",
+    "ctastrip_h2": "¿El precio actual corresponde al valor que percibe el cliente?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Price Value Compass",
+    "familia_label": "Compass · orient",
+    "hero_eyebrow": "Price Value Compass · Compass family",
+    "hero_h1": "Where price sits against perceived value.",
+    "hero_lead": "Price Value Compass aggregates value attributes into a perceived value index and crosses it against price, with a consistency corridor that locates premium, parity and justifiable discount.",
+    "que_hace_h2": "The price versus perceived value plane",
+    "que_hace_p": "Every own and competing product is placed on the price versus value plane. The consistency corridor marks the band where price and value travel together; whatever falls outside is expensive or cheap relative to what it delivers.",
+    "que_hace_items": [
+      "Perceived value index by product",
+      "Price versus value plane, own products and competitors",
+      "Consistency corridor",
+      "Justifiable premium or discount by product"
+    ],
+    "valor_h2": "Premium or discount, justified",
+    "valor_p": "A product below the corridor leaves margin on the table and can take an increase without losing relative position. One above it explains a volume drop without having to assume the problem was the promotion.",
+    "sowhat": "It says which product can take a price increase and which needs more value before it can hold its own.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It consumes the attribute-level detail from Value-Attribute Compass and hands the price position to Pricing & Surtido.",
+    "ctastrip_h2": "Does today's price match the value the customer perceives?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Price Value Compass",
+    "familia_label": "Compass · orientar",
+    "hero_eyebrow": "Price Value Compass · Família Compass",
+    "hero_h1": "Onde está o preço frente ao valor percebido.",
+    "hero_lead": "Price Value Compass agrega os atributos de valor em um índice de valor percebido e o cruza contra preço, com um corredor de consistência que localiza premium, paridade e desconto justificável.",
+    "que_hace_h2": "O plano preço contra valor percebido",
+    "que_hace_p": "Cada produto próprio e da concorrência é posicionado no plano preço contra valor. O corredor de consistência marca a faixa onde preço e valor andam juntos; o que cai fora está caro ou barato em relação ao que entrega.",
+    "que_hace_items": [
+      "Índice de valor percebido por produto",
+      "Plano preço contra valor, próprios e concorrentes",
+      "Corredor de consistência",
+      "Premium ou desconto justificável por produto"
+    ],
+    "valor_h2": "Premium ou desconto, justificado",
+    "valor_p": "Um produto abaixo do corredor deixa margem na mesa e aceita um aumento sem perder posição relativa. Um acima explica a queda de volume sem precisar supor que o problema estava na promoção.",
+    "sowhat": "Diz que produto aceita aumento de preço e qual precisa de mais valor antes de sustentar o dele.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Consome o detalhe por atributo de Value-Attribute Compass e entrega a posição de preço a Pricing & Surtido.",
+    "ctastrip_h2": "O preço atual corresponde ao valor que o cliente percebe?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

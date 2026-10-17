@@ -1,0 +1,62 @@
+---
+// Cómo operamos. Port de how-we-operate.html: hero, los ocho principios en dos
+// columnas y la lista de lo que significan en la práctica.
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { contenido } from '../lib/meta';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/como-operamos.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('como-operamos', locale);
+const principios = c.principles as string[][];
+const practica = c.practical as string[];
+---
+
+<section class="page-hero hero-section">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <a href={ruta(locale, '')} class="back">{c.hero_back}</a>
+    <h1 set:html={c.hero_h1} />
+    <p class="lead">{c.hero_sub}</p>
+  </div>
+</section>
+
+<section class="principles-section section-paper">
+  <div class="container">
+    <div class="eyebrow">{c.principles_eyebrow}</div>
+    <div class="principles-grid">
+      {principios.map((p) => (
+        <div class="principle-item">
+          <div class="principle-label">{p[0]}</div>
+          <h4>{p[1]}</h4>
+          <p>{p[2]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider" aria-hidden="true"></div>
+
+<style>
+  /* site.css le da al divisor max-width var(--max) con 36px de sangría fija.
+     Aquí se alinea con la convención de anchos del shell. */
+  .imb-divider {
+    width: min(100% - 2 * var(--gutter), var(--max-ancho));
+    max-width: none;
+  }
+  .imb-divider::before { left: 0; right: 0; }
+</style>
+
+<section class="practical-section section-white">
+  <div class="container">
+    <h2>{c.practical_h2}</h2>
+    <ul class="practical-list">
+      {practica.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>

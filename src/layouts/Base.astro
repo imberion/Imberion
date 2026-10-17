@@ -1,0 +1,80 @@
+---
+import type { Locale } from '../i18n/index';
+import { LOCALES_PUBLICADOS, LOCALE_RAIZ, ruta, urlAbsoluta } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SiteScript from '../components/SiteScript.astro';
+
+// shell.css trae el layout (reset, .container, nav fijo, pie) y site.css el
+// skin vendorizado del sitio actual. El orden importa: el skin va después.
+import '../styles/shell.css';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: Locale;
+  /** Segmento canónico en español de esta página. '' es el home. */
+  rutaEs?: string;
+}
+
+const {
+  title,
+  description,
+  locale = (Astro.currentLocale as Locale) ?? LOCALE_RAIZ,
+  rutaEs = '',
+} = Astro.props;
+
+const c = comun[locale];
+const OG_LOCALE: Record<Locale, string> = { es: 'es_MX', en: 'en_US', pt: 'pt_BR' };
+// El atributo lang lleva región donde el copy la tiene (español de México, portugués de Brasil).
+const LANG_HTML: Record<Locale, string> = { es: 'es-MX', en: 'en', pt: 'pt-BR' };
+const origen = Astro.site?.origin ?? 'https://www.imberion.com';
+const canonical = urlAbsoluta(origen, ruta(locale, rutaEs));
+const publicado = LOCALES_PUBLICADOS.includes(locale);
+const alternas = (LOCALES_PUBLICADOS.length > 1 ? LOCALES_PUBLICADOS : []).map((l) => ({
+  hreflang: l,
+  href: urlAbsoluta(origen, ruta(l, rutaEs)),
+}));
+---
+
+<html lang={LANG_HTML[locale]} data-imberion-site="v2">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {alternas.length > 0 && <link rel="alternate" hreflang="x-default" href={urlAbsoluta(origen, ruta(LOCALE_RAIZ, rutaEs))} />}
+    {!publicado && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Imberion" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    <meta property="og:image" content={urlAbsoluta(origen, '/brand/og.png')} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">{c.skip_to_content}</a>
+    <Nav locale={locale} rutaEs={rutaEs} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <SiteScript />
+    {/* Tracking. HubSpot es el portal de Imberion (51273309), el mismo que usaba el home viejo; ahora va en todas las páginas. El script de Vercel Web Analytics devuelve 404 en silencio hasta que se encienda en el proyecto. */}
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51273309.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>

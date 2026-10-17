@@ -1,0 +1,810 @@
+/* ============================================================
+   Imberion — home
+
+   Port del <style> inline de index.html. Fuera quedan los bloques que ya
+   cubren shell.css (reset, .container, nav, pie), site.css (tokens, botones,
+   divisor, reveal) y base-pagina.css (tipografía, .section, .tag, .inline-cta).
+   Lo que sigue es lo propio de la home.
+   ============================================================ */
+
+/* ============================================================ ANCHO (invariante 16)
+   La convención de ancho y sus tokens (--gutter, --max-ancho) viven en
+   shell.css, que ya cubre .container, .nav-inner y .page-hero-content. Aquí
+   solo se suma .hero-content, que es propio del home y no está en esa lista.
+   No se redeclaran los tokens: un solo ancho, un solo lugar donde cambiarlo. */
+.home-v2 .hero-content {
+  width: min(100% - 2 * var(--gutter), var(--max-ancho));
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+/* ============================================================ LA COLUMNA (spec §8.1)
+   Un solo elemento continuo: el hero es la etapa de ruido y las dos etapas que
+   siguen son señal y resultado. El lienzo es sticky y ocupa el viewport; el
+   contenido pasa por encima. margin-bottom negativo para que el sticky no
+   consuma alto propio en el flujo. */
+/* La textura de polvo pasa del hero al lienzo sticky de la columna. Si se queda
+   en el hero (texturas.css la pone ahí) se pinta encima del lienzo y tapa las
+   partículas justo en la etapa de ruido. En el lienzo queda debajo del canvas,
+   ya viene del tamaño del viewport y acompaña las tres etapas sin
+   background-attachment: fixed, que en pantallas grandes repinta de más. */
+.columna { position: relative; background-color: var(--navy); }
+.home-v2 .hero { background-image: none; }
+.columna-lienzo {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--texture-hero-dust);
+  background-size: cover;
+  background-position: center;
+}
+.columna-canvas { display: block; width: 100%; height: 100%; opacity: .82; }
+/* El rail va en su propia capa sticky: el lienzo abre contexto de apilamiento
+   en z-index 0 y las etapas pasan por encima, así que dentro del lienzo el
+   rail quedaba tapado por el hero. */
+.columna-rail-capa {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-bottom: -100vh;
+  z-index: 2;
+  pointer-events: none;
+}
+/* Va a la derecha, no a la izquierda: el texto de las etapas vive en la
+   columna izquierda y a media transición se encimaban. */
+.columna-rail {
+  position: absolute;
+  right: var(--gutter, 36px);
+  bottom: 46px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  text-align: right;
+}
+.columna-rail-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white-45);
+  transition: color .6s var(--ease), opacity .6s var(--ease);
+  opacity: .8;
+}
+.columna-rail-item.pasada { color: var(--white-65); opacity: .9; }
+.columna-rail-item.on { color: #fff; opacity: 1; }
+.columna-rail-num { font-variant-numeric: tabular-nums; color: inherit; opacity: .6; }
+.columna-rail-item.on .columna-rail-num { opacity: 1; }
+.columna-rail-txt { position: relative; }
+.columna-rail-item.on .columna-rail-txt::after {
+  content: "";
+  position: absolute;
+  left: -14px; right: 0; bottom: -6px;
+  height: 1px;
+  background: var(--white-45);
+}
+
+.col-etapa {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0;
+}
+.col-etapa-txt { max-width: 30ch; }
+.col-etapa h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 3.5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: #fff;
+}
+.col-etapa .lead {
+  margin-top: 26px;
+  max-width: 44ch;
+  font-family: var(--font-sans);
+  font-size: clamp(.95rem, 1.25vw, 1.1rem);
+  line-height: 1.8;
+  color: var(--white-65);
+}
+
+/* ============================================================ HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 72px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap: 72px;
+  align-items: center;
+}
+.hero-left { position: relative; }
+.hero-right { display: flex; flex-direction: column; align-items: flex-start; justify-self: end; max-width: 440px; }
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--slate-soft);
+  margin-bottom: 38px;
+  max-width: 420px;
+  line-height: 1.5;
+}
+.hero-label .line { width: 30px; height: 1px; background: var(--white-25); flex-shrink: 0; position: relative; overflow: hidden; }
+/* Barrido de la línea del eyebrow: es el gesto de marca, del ruido a la señal.
+   Va en slate, no en petróleo: §8.6 reserva el petróleo para el instante de
+   transformación dentro del lienzo de la columna y para nada más. */
+.hero-label .line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--slate-soft);
+  animation: hl-sweep 3.4s var(--ease-io) infinite;
+}
+@keyframes hl-sweep { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3.3rem, 8.4vw, 7rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.02;
+  max-width: 9ch;
+  letter-spacing: -.02em;
+}
+.hero h1 em { font-style: italic; color: var(--slate-soft); position: relative; }
+.hero-sub {
+  margin-top: 44px;
+  max-width: 480px;
+  font-size: clamp(.95rem, 1.35vw, 1.08rem);
+  color: var(--white-65);
+  line-height: 1.8;
+}
+.hero-sub span { display: block; }
+.hero-sub span + span { margin-top: 24px; }
+.hero-rule { width: 46px; height: 1px; background: var(--white-25); margin-bottom: 30px; }
+.hero-close {
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -.01em;
+}
+.hero-actions { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-scroll {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--white-25);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.hero-scroll-line { width: 1px; height: 46px; background: linear-gradient(var(--white-45), transparent); position: relative; overflow: hidden; }
+.hero-scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 50%;
+  background: var(--slate-soft);
+  animation: sp 2.4s var(--ease-io) infinite;
+}
+@keyframes sp { 0% { transform: translateY(-100%); } 70%, 100% { transform: translateY(220%); } }
+
+/* ============================================================ LO QUE RESOLVEMOS */
+.solve-section { padding: 128px 0 0; position: relative; overflow: hidden; }
+.solve-inner { max-width: none; }
+.solve-section h2 { margin-bottom: 26px; }
+.solve-body { font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--navy-72); line-height: 1.75; margin-bottom: 34px; max-width: 600px; }
+.q-list { display: flex; flex-direction: column; border-top: 1px solid var(--navy-12); }
+.q-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 6px 16px 0;
+  border-bottom: 1px solid var(--navy-12);
+  transition: background .3s var(--ease);
+}
+.q-row:hover { background: linear-gradient(90deg, rgba(10, 24, 40, .045), transparent); }
+.q-num { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--gray-blue); font-variant-numeric: tabular-nums; width: 18px; flex: none; }
+.q-ico {
+  width: 38px; height: 38px;
+  flex: none;
+  border: 1px solid var(--navy-12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+}
+.q-ico svg { width: 21px; height: 21px; }
+.q-row:hover .q-ico { border-color: var(--gray-blue); background: var(--navy); color: #fff; }
+.q-txt { font-size: clamp(1rem, 1.4vw, 1.14rem); color: var(--navy-80); line-height: 1.4; }
+.q-row:hover .q-txt { color: var(--navy); }
+.solve-bridge {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid var(--navy-12);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1.9vw, 1.6rem);
+  color: var(--navy);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  max-width: 620px;
+}
+.solve-close { margin-top: 14px; font-family: var(--font-sans); font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--gray-blue); }
+/* ============================================================ EL LOOP
+   Banda navy a todo el ancho: cuatro nodos en fila, chevrón en cada hueco y la
+   vuelta de retorno por debajo, con la frase del loop montada sobre esa vuelta.
+   Antes era un círculo de 344 px flotando en un panel de 520 px de alto donde
+   solo se leían dos etiquetas: el resto era navy muerto (invariante 16). */
+.loop-banda {
+  margin-top: clamp(72px, 7vw, 128px);
+  background: var(--navy);
+  color: #fff;
+  padding: clamp(64px, 6vw, 104px) 0 clamp(56px, 5vw, 92px);
+}
+.loop-banda .lb-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--slate-soft);
+  margin-bottom: clamp(34px, 3.4vw, 56px);
+}
+.lb-nodos {
+  --lb-gap: clamp(24px, 3vw, 64px);
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--lb-gap);
+}
+.lb-nodo { position: relative; }
+/* Chevrón centrado en el hueco, a la altura del centro del icono. Marca la
+   dirección sin dibujar un riel que se rompa al cambiar de columnas. */
+.lb-nodo:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: calc(100% + var(--lb-gap) / 2 - 5px);
+  width: 9px; height: 9px;
+  border-top: 1.5px solid var(--slate-soft);
+  border-right: 1.5px solid var(--slate-soft);
+  transform: rotate(45deg);
+}
+.lb-marca { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.lb-ico {
+  width: 44px; height: 44px;
+  flex: none;
+  border: 1px solid var(--white-25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.lb-ico svg { width: 22px; height: 22px; }
+.lb-num {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--white-45);
+  font-variant-numeric: tabular-nums;
+}
+.lb-label {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.lb-linea {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, .95vw, 16px);
+  line-height: 1.65;
+  color: var(--white-65);
+  max-width: 34ch;
+}
+/* La vuelta: dos patas que suben hacia la fila de nodos y el travesaño donde va
+   la frase. La punta de flecha regresa al nodo 01. */
+.lb-retorno {
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr);
+  align-items: center;
+  gap: clamp(18px, 2vw, 44px);
+  margin-top: clamp(36px, 3.4vw, 60px);
+}
+.lb-ret-linea { height: clamp(28px, 3vw, 46px); border-bottom: 1px solid var(--white-25); position: relative; }
+.lb-ret-izq { border-left: 1px solid var(--white-25); }
+.lb-ret-der { border-right: 1px solid var(--white-25); }
+.lb-ret-izq::after {
+  content: "";
+  position: absolute;
+  left: -5px; top: -1px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--slate-soft);
+}
+.lb-cap {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.7vw, 1.7rem);
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-align: center;
+  align-self: end;
+  transform: translateY(50%);
+}
+@media (max-width: 1100px) {
+  .lb-nodos { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: clamp(38px, 5vw, 56px); }
+  .lb-nodo:nth-child(2)::after { display: none; }
+  .lb-linea { max-width: none; }
+}
+@media (max-width: 620px) {
+  .lb-nodos { grid-template-columns: 1fr; row-gap: 34px; }
+  .lb-nodo::after { display: none !important; }
+  .lb-nodo { padding-left: 22px; border-left: 1px solid var(--white-12); }
+  .lb-marca { margin-bottom: 14px; }
+  .lb-retorno { grid-template-columns: 28px auto; gap: 14px; }
+  .lb-ret-der { display: none; }
+  .lb-cap { text-align: left; transform: none; align-self: center; }
+}
+
+/* ============================================================ TRES BRAZOS */
+.arms-section { padding: 128px 0; position: relative; }
+.arms-section > .container > .lead { margin-top: 22px; }
+.three-arms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 72px; background: var(--navy-12); border: 1px solid var(--navy-12); }
+.arm-card {
+  background: var(--beige);
+  padding: 48px 38px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background .35s var(--ease), transform .4s var(--ease);
+  overflow: hidden;
+}
+.arm-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gray-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .5s var(--ease);
+  z-index: 2;
+}
+.arm-card:hover::before { transform: scaleX(1); }
+.arm-card:hover { background: var(--white); }
+/* D7: numeración, no letras ornamentales. Número suelto, así que DM Sans. */
+.arm-num {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  font-variant-numeric: tabular-nums;
+  color: var(--gray-blue);
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--navy-12);
+  transition: color .4s var(--ease), border-color .4s var(--ease);
+}
+.arm-card:hover .arm-num { color: var(--navy); border-bottom-color: var(--gray-blue); }
+.arm-card .eyebrow { margin-bottom: 12px; display: block; }
+.arm-card h3 { font-size: clamp(1.3rem, 1.9vw, 1.7rem); margin-bottom: 16px; line-height: 1.12; }
+.arm-card p { font-family: var(--font-sans); font-size: 14.5px; color: var(--navy-72); line-height: 1.72; margin-bottom: 20px; }
+.arm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; margin-bottom: 26px; }
+.arm-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gray-blue);
+  letter-spacing: .03em;
+  transition: gap .3s var(--ease), color .25s var(--ease);
+}
+.arm-cta-link .btn-arrow { transition: transform .35s var(--ease); }
+.arm-cta-link:hover { color: var(--navy); }
+.arm-cta-link:hover .btn-arrow { transform: translateX(4px); }
+
+/* ============================================================ PARA QUIÉN */
+/* Tres tarjetas de texto, sin imagen: los tres PNG genéricos salieron del repo.
+   La tarjeta se estira a la altura de la fila para que ninguna quede corta y el
+   padding crece con la ventana en vez de dejar hueco. */
+.serve-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 34px);
+  margin-top: 64px;
+  align-items: stretch;
+}
+.serve-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--navy-08);
+  border-top: 2px solid var(--navy-12);
+  padding: clamp(34px, 3vw, 52px) clamp(28px, 2.4vw, 46px);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-top-color .3s var(--ease);
+}
+.serve-card:hover { transform: translateY(-5px); box-shadow: 0 18px 50px rgba(10, 24, 40, .12); border-top-color: var(--gray-blue); }
+.serve-card h3 { font-size: clamp(1.3rem, 1.9vw, 1.75rem); margin-bottom: 16px; }
+.serve-card p { font-family: var(--font-sans); font-size: clamp(14.5px, .95vw, 16px); color: var(--navy-72); line-height: 1.72; }
+
+/* ============================================================ MADUREZ */
+.mat-section { padding: 128px 0; background-color: var(--navy); color: var(--white); }
+.mat-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+.mat-inner h2 { color: #fff; font-size: clamp(2.1rem, 3.6vw, 3.1rem); }
+.mat-section .eyebrow { color: var(--slate-soft); }
+.mat-body { display: flex; flex-direction: column; }
+.mat-setup p { font-family: var(--font-sans); font-size: 15px; color: var(--white-45); line-height: 1.78; margin-bottom: 10px; }
+.mat-setup p:last-child { color: var(--white-85); font-weight: 500; margin-bottom: 0; }
+.mat-resolution-block { border-top: 1px solid var(--white-12); border-bottom: 1px solid var(--white-12); margin: 30px 0; padding: 30px 0; }
+.mat-resolution { font-family: var(--font-serif); font-size: clamp(1.3rem, 2.3vw, 1.6rem); color: #fff; font-weight: 400; line-height: 1.4; letter-spacing: -.01em; margin-bottom: 0; }
+.mat-evidence p { font-family: var(--font-sans); font-size: 15px; color: var(--white-45); line-height: 1.78; margin-bottom: 10px; }
+.mat-evidence p:last-child { margin-bottom: 0; color: var(--white-85); }
+
+/* ============================================================ CHECKUP */
+.checkup-inner { max-width: 780px; }
+.checkup-inner .lead { margin-top: 18px; max-width: 700px; }
+.checkup-actions { margin-top: 34px; }
+
+/* ============================================================ SECTORES */
+#sectors { position: relative; overflow: hidden; }
+#sectors .container { position: relative; z-index: 2; }
+/* La puerta de industria (§8.4): 01-09 con la foto del sector mandando el
+   bloque, misma familia que /industrias/ (velo navy multiply + desaturación,
+   que se retiran en hover). Reemplaza los chips de texto, que no decían nada
+   de la industria y no llevaban a ninguna parte en cuatro de siete casos. */
+.sect-rejilla {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 2.6vw, 48px) clamp(24px, 2.2vw, 40px);
+  margin-top: clamp(48px, 4vw, 72px);
+}
+.sect-card { display: block; }
+/* 3:2 fijo: object-fit cover recorta, nunca deforma. */
+.sect-foto {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--paper-alt);
+}
+.sect-foto img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(.62) contrast(1.06) brightness(.94);
+  transform: scale(1.01);
+  transition: transform .7s var(--ease), filter .5s var(--ease);
+}
+.sect-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  opacity: .24;
+  mix-blend-mode: multiply;
+  transition: opacity .5s var(--ease);
+}
+.sect-card:hover .sect-foto img { transform: scale(1.05); filter: saturate(.95) contrast(1.02) brightness(1); }
+.sect-card:hover .sect-foto::after { opacity: .05; }
+.sect-pie { display: block; padding-top: 20px; border-top: 1px solid var(--navy-12); margin-top: 20px; }
+.sect-num {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--navy-40);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+  transition: color .25s var(--ease);
+}
+.sect-card:hover .sect-num { color: var(--navy); }
+.sect-nombre {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.9vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.sect-linea {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(13.5px, .9vw, 15.5px);
+  line-height: 1.6;
+  color: var(--navy-72);
+  max-width: 40ch;
+}
+@media (max-width: 1100px) {
+  .sect-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Nueve en dos columnas dejan una sola al final: se abre a todo el ancho en
+     vez de quedar como tarjeta huérfana. */
+  .sect-item:last-child { grid-column: 1 / -1; }
+  .sect-item:last-child .sect-foto { aspect-ratio: 21 / 9; }
+}
+@media (max-width: 640px) {
+  .sect-rejilla { grid-template-columns: 1fr; gap: 34px; }
+  .sect-item:last-child { grid-column: auto; }
+  .sect-item:last-child .sect-foto { aspect-ratio: 3 / 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sect-foto img, .sect-foto::after, .sect-num { transition: none; }
+  .sect-card:hover .sect-foto img { transform: scale(1.01); }
+}
+
+/* ============================================================ EQUIPO */
+.team-text p { font-family: var(--font-sans); font-size: 1.05rem; color: var(--navy-72); line-height: 1.85; margin-bottom: 22px; }
+.team-inner { max-width: 680px; margin-top: 32px; }
+
+/* ============================================================ ESTRATEGIA DE CRECIMIENTO */
+.estrat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 60px; background: var(--white-12); border: 1px solid var(--white-12); }
+.estrat-card { background: var(--navy); padding: 34px 26px; position: relative; overflow: hidden; transition: background .35s var(--ease); }
+.estrat-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--slate-soft);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .5s var(--ease);
+  z-index: 2;
+}
+.estrat-card:hover::before { transform: scaleX(1); }
+.estrat-card:hover { background: var(--navy-soft); }
+.estrat-card h4 { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; color: #fff; line-height: 1.18; margin-bottom: 12px; letter-spacing: -.01em; }
+.estrat-card p { font-family: var(--font-sans); font-size: 13.5px; color: var(--white-65); line-height: 1.6; }
+.estrat-lead { margin-top: 18px; }
+@media (max-width: 960px) { .estrat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .estrat-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================ PERSPECTIVAS */
+.persp-section { padding: 128px 0; position: relative; }
+.persp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 64px; background: var(--navy-12); border: 1px solid var(--navy-12); }
+.persp-card {
+  background: var(--beige);
+  padding: 42px 34px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background .35s var(--ease);
+}
+.persp-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--gray-blue);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .5s var(--ease);
+  z-index: 2;
+}
+.persp-card:hover::before { transform: scaleX(1); }
+.persp-card:hover { background: var(--white); }
+.persp-pillar {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gray-blue);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.persp-pillar::before { content: ""; width: 14px; height: 1px; background: var(--gray-blue); flex-shrink: 0; }
+.persp-card h3 { font-size: clamp(1.25rem, 1.7vw, 1.5rem); line-height: 1.18; margin-bottom: 16px; color: var(--navy); font-weight: 400; }
+.persp-card p { font-family: var(--font-sans); font-size: 14px; color: var(--navy-72); line-height: 1.7; margin-bottom: 26px; }
+.persp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gray-blue);
+  letter-spacing: .02em;
+  transition: gap .3s var(--ease), color .25s var(--ease);
+}
+.persp-link .btn-arrow { transition: transform .35s var(--ease); }
+.persp-link:hover { color: var(--navy); }
+.persp-link:hover .btn-arrow { transform: translateX(4px); }
+.persp-follow { margin-top: 44px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+@media (max-width: 960px) { .persp-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================ CTA */
+.cta-section { padding: 148px 0; text-align: center; background-color: var(--navy); position: relative; overflow: hidden; }
+.cta-section .container { position: relative; z-index: 2; }
+.cta-section h2 { color: #fff; font-size: clamp(2.5rem, 5.4vw, 4.2rem); max-width: 14ch; margin: 0 auto 24px; font-weight: 300; line-height: 1.04; }
+.cta-section .eyebrow { color: var(--white-45); }
+.cta-section .lead { margin: 0 auto 42px; color: var(--white-65); max-width: 540px; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.cta-section .btn { padding: 14px 28px; font-size: 15px; }
+
+/* ============================================================ RESPONSIVE */
+@media (prefers-reduced-motion: reduce) {
+  .hero-label .line::after,
+  .hero-scroll-line::after { animation: none !important; }
+  /* La columna no se anima: el script la dibuja una sola vez en su estado
+     resuelto y el rail se queda en la última fase. */
+  .columna-rail-item { transition: none; }
+}
+@media (max-width: 960px) {
+  .arms-section, .mat-section, .persp-section { padding: 96px 0; }
+  /* Sin padding abajo: la banda del loop cierra la sección a todo el ancho. */
+  .solve-section { padding: 96px 0 0; }
+  .three-arms, .serve-grid, .mat-inner { grid-template-columns: 1fr; }
+  .hero-content { grid-template-columns: 1fr; gap: 52px; }
+  .hero-right { justify-self: stretch; max-width: none; }
+  .hero h1 { max-width: none; }
+}
+@media (max-width: 600px) {
+  .arms-section, .mat-section, .persp-section { padding: 80px 0; }
+  .solve-section { padding: 80px 0 0; }
+  .hero { padding: 108px 0 84px; }
+  .hero h1 { font-size: clamp(3rem, 13vw, 4.2rem); }
+  .arm-card { padding: 38px 28px; }
+  .cta-section { padding: 104px 0; }
+}
+
+/* El nav fijo mide 70px: sin este margen, el enlace Industrias del nav (que
+   desde CP11c baja a #sectors) dejaba el título de la sección debajo de la barra. */
+#sectors { scroll-margin-top: 70px; }
+
+/* ============================================================ CIERRE DE LA COLUMNA */
+.columna::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  background: linear-gradient(to bottom, transparent, var(--navy-deep));
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================================ MONITOR GRANDE
+   A partir de 1400px el ancho disponible se gasta en columnas y en tipo, no en
+   márgenes. Los bloques que eran una sola columna de texto se abren a dos. */
+@media (min-width: 1400px) {
+  .checkup-inner {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    column-gap: 72px;
+    row-gap: 0;
+    align-items: end;
+  }
+  .checkup-inner .eyebrow,
+  .checkup-inner h2 { grid-column: 1; }
+  .checkup-inner .lead { grid-column: 1; max-width: 42ch; margin-top: 20px; }
+  .checkup-actions { grid-column: 2; grid-row: 2 / 4; justify-self: end; margin-top: 0; }
+  .team-inner { max-width: none; }
+  .team-text { columns: 2; column-gap: 72px; }
+  .team-text p { break-inside: avoid; max-width: 46ch; }
+  .col-etapa-txt { max-width: 24ch; }
+  .col-etapa .lead { max-width: 40ch; }
+  /* La sección ya no comparte fila con el panel del loop. Para que la mitad
+     derecha no quede muerta (invariante 16), la entradilla sube al costado del
+     h2 y la lista de decisiones se abre a dos columnas. */
+  .solve-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    column-gap: clamp(48px, 4vw, 112px);
+  }
+  .solve-inner > .eyebrow { grid-column: 1; grid-row: 1; }
+  .solve-inner > h2 { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+  .solve-body { grid-column: 2; grid-row: 2; align-self: end; max-width: 46ch; margin-bottom: 0; }
+  .q-list { grid-column: 1 / -1; grid-row: 3; margin-top: clamp(48px, 4vw, 76px); }
+  .solve-bridge { grid-column: 1 / -1; grid-row: 4; }
+  .solve-close { grid-column: 1 / -1; grid-row: 5; }
+  .q-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(48px, 4vw, 112px);
+    border-top: 0;
+  }
+  .q-row { border-top: 1px solid var(--navy-12); border-bottom: 0; }
+  .q-row:nth-last-child(-n + 2) { border-bottom: 1px solid var(--navy-12); }
+}
+@media (min-width: 1600px) {
+  .arms-section, .mat-section, .persp-section { padding: 168px 0; }
+  .solve-section { padding: 168px 0 0; }
+  .cta-section { padding: 200px 0; }
+  .arm-card { padding: 62px 54px; }
+  .arm-card p { max-width: 42ch; }
+  .persp-card { padding: 56px 46px; }
+  .persp-card p { max-width: 40ch; }
+  .estrat-card { padding: 46px 36px; }
+  .estrat-card p { max-width: 34ch; }
+  .q-txt { font-size: 1.22rem; }
+  .q-ico { width: 44px; height: 44px; }
+  .q-ico svg { width: 24px; height: 24px; }
+  .team-text p { font-size: 1.14rem; }
+  .columna-rail { bottom: 64px; }
+
+  /* La tipografía de display sigue creciendo hasta el monitor grande: con el
+     tope de 3.9rem/7rem el hero se veía chico dentro de 1800px de columna. */
+  .home-v2 h2 { font-size: clamp(2.4rem, 4.6vw, 5rem); }
+  .home-v2 .lead { font-size: 1.2rem; }
+  .hero h1 { font-size: clamp(3.3rem, 8.4vw, 9.4rem); max-width: 11ch; }
+  .hero-sub { font-size: 1.18rem; max-width: 560px; }
+  .hero-right { max-width: 580px; }
+  .hero-close { font-size: 2.7rem; }
+  .col-etapa h2 { font-size: 4.5rem; }
+  .col-etapa .lead { font-size: 1.2rem; }
+  .cta-section h2 { font-size: clamp(2.5rem, 5.4vw, 5.6rem); }
+  .mat-inner h2 { font-size: clamp(2.1rem, 3.6vw, 4rem); }
+}
+/* Nota: las rejillas del home no pueden "sumar columnas" en monitor grande
+   porque tienen exactamente 3 y 4 elementos (pilares, perspectivas,
+   estrategia). El ancho extra se gasta en tipo y en padding de tarjeta, arriba. */
+
+/* ============================================================ COLUMNA EN PANTALLA CHICA */
+@media (max-width: 960px) {
+  .col-etapa { min-height: 92vh; padding: 96px 0; }
+  .columna-canvas { opacity: .6; }
+  .columna-rail { bottom: 28px; gap: 9px; }
+  .columna-rail-item { font-size: 9.5px; letter-spacing: .18em; }
+}
+/* En pantalla chica el texto ocupa todo el ancho y el rail no tiene dónde
+   vivir sin encimarse. La animación sigue contando el arco sin él. */
+@media (max-width: 700px) {
+  .columna-rail-capa { display: none; }
+}
+@media (max-width: 600px) {
+  .col-etapa { min-height: 88vh; padding: 80px 0; }
+  .col-etapa-txt { max-width: none; }
+  .col-etapa h2 { font-size: clamp(1.85rem, 8vw, 2.5rem); }
+}

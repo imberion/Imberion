@@ -1,0 +1,77 @@
+{
+  "es": {
+    "__title": "Imberion — Política Comercial",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Política Comercial · Familia Engine",
+    "hero_h1": "Cada descuento al canal, atado a volumen, mix o cumplimiento.",
+    "hero_lead": "Política Comercial ordena precio de lista, descuentos, condiciones de pago y crédito, trade terms y rebates bajo reglas escritas por canal y tipo de cliente. Las condiciones que hoy se dan parejo pasan a ganarse contra desempeño verificable (pago por desempeño, P4P), y las excepciones discrecionales quedan registradas como tales.",
+    "que_hace_h2": "Lo que resuelve en la relación con el canal",
+    "que_hace_p": "El equipo comercial sabe qué condición corresponde a cada cliente y qué tiene que cumplir el canal para recibirla.",
+    "que_hace_items": [
+      "Descuentos con escalera y regla escrita, sin negociación caso por caso",
+      "Plazos de pago y crédito asignados por tipo de cliente",
+      "Trade terms y rebates que se pagan solo contra resultado del canal",
+      "Beneficios atados a volumen, mix, cobertura o cumplimiento verificable",
+      "Acceso definido a cada condición por canal y tipo de cliente"
+    ],
+    "valor_h2": "Cada punto concedido compra una conducta",
+    "valor_p": "Las condiciones discrecionales siguen vigentes porque nadie las registró como excepción, y cada una resta margen. Con la regla escrita y el beneficio atado a desempeño verificable, cada punto de descuento corresponde a una conducta concreta del canal.",
+    "sowhat": "Convierte descuentos heredados en condiciones que el canal tiene que ganar cada periodo.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Toma de Market Signal el precio y las condiciones observadas en el canal, y se coordina con Pricing & Surtido para que lista y condiciones no se contradigan.",
+    "ctastrip_h2": "¿Cuánto del descuento vigente compra algo a cambio?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Commercial Policy",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Política Comercial · Engine family",
+    "hero_h1": "Value concessions, under governance.",
+    "hero_lead": "Política Comercial designs the terms architecture: list price, discount ladders, payment and credit terms, trade terms and rebates, and pay for performance (P4P), terms the channel earns against verifiable performance.",
+    "que_hace_h2": "The architecture of commercial terms",
+    "que_hace_p": "It defines who gets which term by channel and customer type, and under which written rule. Flat terms become earned terms, tied to volume, mix, coverage or measurable compliance.",
+    "que_hace_items": [
+      "List price and discount ladders",
+      "Payment and credit terms",
+      "Trade terms and rebates by channel",
+      "Pay for performance against verifiable metrics",
+      "Access rules by channel and customer type"
+    ],
+    "valor_h2": "Every point granted buys a behavior",
+    "valor_p": "Margin leaks through discretionary terms that nobody reverses because nobody logged them as exceptions. Writing the rule and tying the benefit to verifiable performance makes every point granted buy a specific channel behavior.",
+    "sowhat": "It turns inherited discounts into terms the channel has to earn each period.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It takes prices and channel terms observed by Market Signal, and coordinates with Pricing & Surtido so that list and terms do not contradict each other.",
+    "ctastrip_h2": "How much of the current discount buys anything in return?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Política Comercial",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Política Comercial · Família Engine",
+    "hero_h1": "A concessão de valor, sob governança.",
+    "hero_lead": "Política Comercial desenha a arquitetura de condições: preço de tabela, escadas de desconto, condições de pagamento e crédito, trade terms e rebates, e o pagamento por desempenho (P4P), condições que o canal ganha contra desempenho verificável.",
+    "que_hace_h2": "A arquitetura das condições comerciais",
+    "que_hace_p": "Define quem acessa cada condição por canal e tipo de cliente, e sob que regra escrita. Condições planas viram condições ganhas contra volume, mix, cobertura ou cumprimento mensurável.",
+    "que_hace_items": [
+      "Preço de tabela e escadas de desconto",
+      "Condições de pagamento e crédito",
+      "Trade terms e rebates por canal",
+      "Pagamento por desempenho contra métricas verificáveis",
+      "Regras de acesso por canal e tipo de cliente"
+    ],
+    "valor_h2": "Cada ponto concedido compra um comportamento",
+    "valor_p": "A margem vaza em condições discricionárias que ninguém reverte porque ninguém as registrou como exceção. Ao escrever a regra e atar o benefício a desempenho verificável, cada ponto concedido compra um comportamento concreto do canal.",
+    "sowhat": "Converte descontos herdados em condições que o canal precisa ganhar a cada período.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Toma de Market Signal os preços e condições observados no canal, e se coordena com Pricing & Surtido para que tabela e condições não se contradigam.",
+    "ctastrip_h2": "Quanto do desconto vigente compra algo em troca?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

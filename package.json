@@ -1,0 +1,26 @@
+{
+  "name": "imberion-website",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "i18n:extraer": "node scripts/i18n_extraer.mjs",
+    "i18n:gate": "node scripts/i18n_gate.mjs",
+    "rutas:check": "node scripts/rutas_check.mjs",
+    "gate:terceros": "node scripts/gate_terceros.mjs",
+    "gate:acentos": "node scripts/gate_acentos.mjs",
+    "gate:cruce": "node scripts/gate_cruce.mjs",
+    "gate:rangos": "node scripts/gate_rangos.mjs",
+    "texturas:optimizar": "node scripts/texturas_optimizar.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.1"
+  }
+}

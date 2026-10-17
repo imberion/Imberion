@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import QueResolvemos from '../components/QueResolvemos.astro';
+import { meta } from '../lib/meta';
+
+const locale = 'es' as const;
+const m = meta('que-resolvemos', locale);
+---
+
+<Base title={m.title} description={m.description} locale={locale} rutaEs="que-resolvemos">
+  <QueResolvemos locale={locale} />
+</Base>

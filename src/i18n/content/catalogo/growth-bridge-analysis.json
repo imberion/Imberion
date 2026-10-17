@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Growth Bridge Analysis",
+    "familia_label": "Bridge · explicar",
+    "hero_eyebrow": "Growth Bridge Analysis · Familia Bridge",
+    "hero_h1": "Qué movió el ingreso o el margen, y en qué palanca actuar.",
+    "hero_lead": "Growth Bridge Analysis mide cuánto del cambio en ingreso, volumen o margen vino de precio, volumen, mix, distribución y clientes nuevos. Cada efecto se abre por producto, canal o geografía hasta llegar a quien puede actuar.",
+    "que_hace_h2": "Lo que resuelve en la revisión de resultados",
+    "que_hace_p": "La junta de resultados discute causas con número, y cada causa tiene un responsable por producto, canal o geografía.",
+    "que_hace_items": [
+      "Cuánto del cambio de ingreso, volumen o margen explica cada palanca",
+      "Precio y mix medidos por separado, para no corregir precio cuando el problema está en qué se vende",
+      "El crecimiento que vino de abrir puntos de venta, separado del que vino de vender más en los existentes",
+      "Venta de clientes existentes y de clientes nuevos, por separado"
+    ],
+    "valor_h2": "La acción dirigida a la causa",
+    "valor_p": "Un ingreso plano puede esconder precio al alza compensado por mix a la baja, y cada causa pide una acción distinta. Separarlas evita que se corrija el precio cuando el problema estaba en qué se está vendiendo.",
+    "sowhat": "Dice qué palanca movió el resultado del periodo y en qué producto, canal o geografía corregirla.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Explica el resultado que producen Pricing & Surtido, Promociones y Canales & Tiendas, y su lectura de mix calibra los supuestos de Scenario Engine.",
+    "ctastrip_h2": "¿De dónde vino en realidad el número del trimestre?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Growth Bridge Analysis",
+    "familia_label": "Bridge · explain",
+    "hero_eyebrow": "Growth Bridge Analysis · Bridge family",
+    "hero_h1": "Where the growth came from, and where the decline came from.",
+    "hero_lead": "Growth Bridge Analysis breaks a change in revenue, volume or margin into its real drivers: price, volume, mix, distribution, and installed base versus new customers.",
+    "que_hace_h2": "The change broken into its drivers",
+    "que_hace_p": "The bridge rebuilds the period piece by piece until the sum of the effects equals the observed change. Each effect is opened by product, channel or geography down to the level where someone can act.",
+    "que_hace_items": [
+      "Revenue, volume or margin bridge between two periods",
+      "Price effect separated from mix effect",
+      "Contribution of distribution and coverage",
+      "Installed base versus new customers"
+    ],
+    "valor_h2": "Action aimed at the cause",
+    "valor_p": "Flat revenue can hide rising price offset by declining mix, and each cause calls for a different action. Separating them prevents a price correction when the problem was what is being sold.",
+    "sowhat": "It points action at the cause of the movement rather than the aggregate symptom.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It explains the result produced by Pricing & Surtido, Promociones and Canales & Tiendas, and its mix reading calibrates the assumptions in Scenario Engine.",
+    "ctastrip_h2": "Where did the quarter's number actually come from?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Growth Bridge Analysis",
+    "familia_label": "Bridge · explicar",
+    "hero_eyebrow": "Growth Bridge Analysis · Família Bridge",
+    "hero_h1": "De onde veio o crescimento, e de onde veio a queda.",
+    "hero_lead": "Growth Bridge Analysis decompõe a variação de receita, volume ou margem nos drivers reais: preço, volume, mix, distribuição e base instalada contra clientes novos.",
+    "que_hace_h2": "A variação decomposta nos drivers",
+    "que_hace_p": "A ponte reconstrói o período peça por peça até que a soma dos efeitos iguale a variação observada. Cada efeito é aberto por produto, canal ou geografia até o nível em que alguém consegue agir.",
+    "que_hace_items": [
+      "Ponte de receita, volume ou margem entre dois períodos",
+      "Efeito preço separado do efeito mix",
+      "Contribuição de distribuição e de cobertura",
+      "Base instalada contra clientes novos"
+    ],
+    "valor_h2": "A ação dirigida à causa",
+    "valor_p": "Uma receita estável pode esconder preço em alta compensado por mix em queda, e cada causa pede uma ação diferente. Separá-las evita corrigir o preço quando o problema estava no que se vende.",
+    "sowhat": "Dirige a ação à causa do movimento e não ao sintoma agregado.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Explica o resultado produzido por Pricing & Surtido, Promociones e Canales & Tiendas, e a leitura de mix calibra as premissas do Scenario Engine.",
+    "ctastrip_h2": "De onde veio de fato o número do trimestre?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

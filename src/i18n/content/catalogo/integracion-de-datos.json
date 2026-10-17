@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Integración de datos",
+    "familia_label": "Sustrato",
+    "hero_eyebrow": "Integración de datos · Sustrato",
+    "hero_h1": "Una sola cifra de venta, que coincide con el cierre contable.",
+    "hero_lead": "Integración de datos junta en una sola base la venta de punto de venta (POS, point of sale), comercio electrónico, gestión de clientes (CRM, customer relationship management) y lealtad, para decidir precio, promoción y surtido con cifras que cuadran con el cierre contable. Cuando un canal no registra nada, se instrumenta la captura.",
+    "que_hace_h2": "Lo que resuelve en los datos comerciales",
+    "que_hace_p": "Un mismo producto, tienda o cliente se reconoce igual en todas las fuentes, y las decisiones de precio, promoción y surtido se toman sobre esa base.",
+    "que_hace_items": [
+      "Venta de todos los canales y del programa de lealtad en una sola base",
+      "El mismo producto, tienda y cliente reconocido igual en todas las fuentes",
+      "Errores de captura detectados antes de llegar al tablero",
+      "Dato de los canales que hoy no registran nada"
+    ],
+    "valor_h2": "Una sola versión de los números",
+    "valor_p": "Un motor de decisión alimentado con fuentes que no cuadran entrega recomendaciones sobre cifras equivocadas. Emparejar los códigos de producto, tienda y cliente entre fuentes y fijar reglas de limpieza permite que las cifras del tablero coincidan con las del cierre contable.",
+    "sowhat": "Permite decidir precio, promoción y surtido sobre una sola versión de los números.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Es el sustrato de Pricing & Surtido, Promociones, Clientes & Lealtad y Marketing & ROMI.",
+    "ctastrip_h2": "¿Cuántas versiones del mismo número circulan hoy?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos la operación comercial actual y por dónde conviene empezar.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Data Integration",
+    "familia_label": "Foundation",
+    "hero_eyebrow": "Integración de datos · Foundation",
+    "hero_h1": "The data floor the decision engines run on.",
+    "hero_lead": "Integración de datos joins point of sale (POS), e-commerce, customer relationship management (CRM) and loyalty, and creates the source where none exists.",
+    "que_hace_h2": "Sources joined by a common key",
+    "que_hace_p": "Sources are matched on a common product, store and customer key, which is where most attempts break. When a channel records nothing, capture is instrumented instead of estimating the gap.",
+    "que_hace_items": [
+      "Unification of point of sale, e-commerce, customer management and loyalty",
+      "Common product, store and customer keys",
+      "Cleaning rules and data quality control",
+      "Creation of the source where none exists today"
+    ],
+    "valor_h2": "A single version of the numbers",
+    "valor_p": "A badly fed decision engine produces a precise recommendation on the wrong data, and nobody audits it. Matching the keys and fixing cleaning rules is what makes dashboard figures agree with the accounting close.",
+    "sowhat": "It allows price, promotion and assortment to be decided on a single version of the numbers.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It is the foundation under Pricing & Surtido, Promociones, Clientes & Lealtad and Marketing & ROMI.",
+    "ctastrip_h2": "How many versions of the same number are circulating today?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review the current commercial operation and where it makes sense to start.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Integração de dados",
+    "familia_label": "Substrato",
+    "hero_eyebrow": "Integración de datos · Substrato",
+    "hero_h1": "A base de dados sobre a qual rodam os motores de decisão.",
+    "hero_lead": "Integración de datos une ponto de venda (POS, point of sale), comércio eletrônico, gestão de clientes (CRM, customer relationship management) e fidelidade, e gera a fonte quando ela não existe.",
+    "que_hace_h2": "Fontes unidas por uma chave comum",
+    "que_hace_p": "As fontes são casadas por uma chave comum de produto, loja e cliente, que é onde a maioria das tentativas quebra. Quando um canal não registra nada, a captura é instrumentada em vez de estimar a lacuna.",
+    "que_hace_items": [
+      "Unificação de ponto de venda, comércio eletrônico, gestão de clientes e fidelidade",
+      "Chaves comuns de produto, loja e cliente",
+      "Regras de limpeza e controle de qualidade do dado",
+      "Geração da fonte onde hoje não existe"
+    ],
+    "valor_h2": "Uma só versão dos números",
+    "valor_p": "Um motor de decisão mal alimentado produz uma recomendação precisa sobre dados errados, e ninguém audita. Casar as chaves e fixar regras de limpeza é o que faz os números do painel baterem com os do fechamento contábil.",
+    "sowhat": "Permite decidir preço, promoção e sortimento sobre uma só versão dos números.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "É o substrato de Pricing & Surtido, Promociones, Clientes & Lealtad e Marketing & ROMI.",
+    "ctastrip_h2": "Quantas versões do mesmo número circulam hoje?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos a operação comercial atual e por onde convém começar.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

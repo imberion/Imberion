@@ -1,0 +1,497 @@
+---
+// Panel de control de Street Signal (encargo de Rodrigo, 2026-10-14): tres tomas
+// (oficina, centro comercial, aeropuerto) y, al lado, el tablero que se llena con
+// lo que se lee de cada persona.
+//
+// Ciclo por toma: ritmo natural (video o foto fija) con recuadros que siguen a
+// cada persona y etiquetas que se abren sobre 3 o 4; cada etiqueta viaja a
+// "Últimas lecturas" al cerrarse. Luego avance rápido (cortes de otra gente
+// sobre el mismo fondo) con el reloj de la toma corriendo a 10 minutos y el
+// tablero llenándose. Después pasa a la siguiente toma.
+// Amarrado al scroll (Rodrigo, 2026-10-15): el panel se queda fijo y el scroll
+// mueve el video cuadro por cuadro, hacia adelante y hacia atrás. Debajo, la
+// lista de otros lugares donde se levanta (las tres tomas son ejemplos).
+//
+// Los recuadros salen del detector corrido en local sobre cada clip
+// (docs/_home_v3/guiones_stop_motion_fichas.md, SM5); el video ya trae las caras
+// difuminadas. Todo lo legible es texto real.
+
+interface Etiqueta { id: number; desde: number; hasta: number; perfil: string; prenda: string; calzado: string; marca: string; extra: string; nse?: string; ocupacion?: string }
+interface Ocasion {
+  id: string; nombre: string; lugar: string; hora: string; video: string; poster: string; pistas: string; velocidad?: number;
+  acelerado: string[]; personas: number; etiquetas: Etiqueta[];
+  marcas: [string, number][]; perfiles: [string, string, number][]; accesorios: [string, number][];
+  nse?: [string, number][]; ocupaciones?: [string, number][];
+}
+export interface EscenaCalleContenido {
+  eyebrow: string; h2: string; nota: string; tablero: string; personas: string; lecturas: string;
+  marcas: string; perfiles: string; accesorios: string; toma: string; no_legible: string;
+  aparente?: string; perfil_k?: string; nse_k?: string; ocup_k?: string;
+  pausa: string; reanudar: string; lugares_titulo: string; lugares: string[]; ocasiones: Ocasion[];
+}
+interface Props { contenido: EscenaCalleContenido }
+const { contenido: e } = Astro.props;
+---
+
+<section class="ss" data-ss>
+  <div class="ss-wrap">
+    <header class="ss-head">
+      <div><p class="ss-eyebrow">{e.eyebrow}</p>
+      <h2>{e.h2}</h2></div>
+      <p class="ss-nota">{e.nota}</p>
+    </header>
+
+    <div class="ss-scroll" data-wrap>
+    <div class="ss-panel" data-fijo>
+      <div class="ss-izq">
+        <div class="ss-pantalla" data-pantalla>
+          {e.ocasiones.map((o, i) => <video data-video={i} src={o.video} poster={o.poster} muted playsinline preload="auto" aria-hidden="true"></video>)}
+          <img data-acel alt="" />
+          <svg data-cajas viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="ss-etiquetas" data-etiquetas aria-hidden="true"></div>
+          <div class="ss-hud" aria-hidden="true">
+            <span class="ss-rec"></span>
+            <span data-lugar></span>
+            <span class="ss-reloj"><span>{e.toma}</span> <b data-reloj>00:00</b></span>
+            <span class="ss-vel" data-vel>× 75</span>
+          </div>
+        </div>
+        <div class="ss-monitores">
+          {
+            e.ocasiones.map((o, i) => (
+              <button type="button" class="ss-monitor" data-monitor={i}>
+                <img src={o.poster} alt="" loading="lazy" />
+                <span class="ss-mon-txt">
+                  <b>{o.nombre}</b>
+                  <small>{o.lugar} · {o.hora}</small>
+                </span>
+                <i class="ss-mon-barra"><i data-mon-avance={i}></i></i>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <aside class="ss-tablero" aria-live="off">
+        <div class="ss-t-cab">
+          <span class="ss-k">Street Signal · {e.tablero}</span>
+          <div class="ss-tabs">{e.ocasiones.map((o, i) => <span data-tab={i}>{o.nombre}</span>)}</div>
+        </div>
+        <div class="ss-big"><span class="ss-k">{e.personas}</span><strong data-personas>0</strong></div>
+        <div class="ss-sec ss-sec-lect">
+          <div class="ss-k">{e.lecturas}</div>
+          <ol class="ss-lecturas" data-lecturas></ol>
+        </div>
+        <div class="ss-sec"><div class="ss-k">{e.marcas}</div><div data-marcas></div></div>
+        {e.perfil_k && (
+          <div class="ss-sec ss-sec-perfil" data-sec-perfil>
+            <div class="ss-k">{e.perfil_k}</div>
+            <div class="ss-ap"><small>{e.nse_k}</small><div data-nse></div></div>
+            <div class="ss-ap"><small>{e.ocup_k}</small><div data-ocup></div></div>
+          </div>
+        )}
+        <div class="ss-sec ss-sec-extra"><div class="ss-k">{e.perfiles}</div><div data-perfiles></div></div>
+        <div class="ss-sec ss-sec-extra"><div class="ss-k">{e.accesorios}</div><div data-accesorios></div></div>
+      </aside>
+    </div>
+    </div>
+
+    <div class="ss-lugares">
+      <p>{e.lugares_titulo}</p>
+      <ul>{e.lugares.map((l) => <li>{l}</li>)}</ul>
+    </div>
+  </div>
+  <script type="application/json" data-ss-datos set:html={JSON.stringify(e).replace(/</g, '\\u003c')}></script>
+</section>
+
+<style is:inline>
+  .ss { background: var(--navy-deep); color: #fff; padding: clamp(36px, 4vw, 64px) 0; }
+  .ss-wrap { width: min(100% - 32px, 1440px); margin: 0 auto; }
+  .ss-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; margin-bottom: clamp(14px, 1.6vw, 22px); }
+  .ss-head > div { flex: 1 1 520px; }
+  .ss-eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--petrol-bright); margin: 0 0 10px; }
+  .ss-head h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; margin: 0; color: #fff; }
+  .ss-nota { margin: 0; flex: 0 1 420px; font-size: 12.5px; line-height: 1.45; color: var(--white-65); }
+
+  .ss-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 0.36fr); gap: clamp(14px, 1.6vw, 24px); align-items: start; }
+  .ss-izq { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .ss-pantalla { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 4px; overflow: hidden; container-type: inline-size; box-shadow: 0 0 0 1px var(--white-12); }
+  .ss-scroll { position: relative; }
+  .ss-panel { position: sticky; top: 72px; }
+  .ss-pantalla video, .ss-pantalla img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ss-pantalla video { opacity: 0; }
+  .ss-pantalla video.on { opacity: 1; }
+  .ss-pantalla img[data-acel] { opacity: 0; }
+  .ss-pantalla.acel img[data-acel] { opacity: 1; }
+  .ss-pantalla svg[data-cajas] { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ss-etiquetas { position: absolute; inset: 0; pointer-events: none; }
+
+  .ss-hud { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: center; gap: 1.4cqw; padding: 1.1cqw 1.4cqw; font-family: var(--font-sans); font-size: max(10px, 1.05cqw); letter-spacing: 0.04em; background: linear-gradient(rgba(6, 16, 28, 0.72), rgba(6, 16, 28, 0)); }
+  .ss-rec { width: 0.8cqw; height: 0.8cqw; min-width: 7px; min-height: 7px; border-radius: 50%; background: #E0574A; animation: ss-rec 1.4s steps(2) infinite; }
+  @keyframes ss-rec { 50% { opacity: 0.25; } }
+  .ss-reloj { margin-left: auto; color: var(--white-85); }
+  .ss-reloj b { font-variant-numeric: tabular-nums; color: #fff; font-weight: 600; }
+  .ss-vel { font-weight: 700; color: var(--navy); background: var(--petrol-bright); padding: 0.2cqw 0.7cqw; border-radius: 3px; opacity: 0; transition: opacity 0.2s; }
+  .ss-pantalla.acel .ss-vel { opacity: 1; }
+  /* En la pausa final se queda el último corte del avance rápido, sin el sello de velocidad. */
+  .ss-pantalla.fin .ss-vel { opacity: 0; }
+
+  .ss-tag { position: absolute; width: 21cqw; min-width: 170px; background: rgba(6, 16, 28, 0.9); border-left: 2px solid var(--petrol-bright); padding: 0.8cqw 1cqw; font-family: var(--font-sans); font-size: max(10.5px, 1.1cqw); line-height: 1.4; color: #fff; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4); opacity: 0; transform: translateY(6px); transition: opacity 0.25s, transform 0.25s; }
+  .ss-tag.on { opacity: 1; transform: none; }
+  .ss-tag b { display: block; font-size: max(9px, 0.85cqw); letter-spacing: 0.1em; text-transform: uppercase; color: var(--petrol-bright); margin-bottom: 0.2cqw; }
+  .ss-tag .nl { color: var(--slate-soft); }
+  .ss-tag .mk { font-weight: 700; }
+
+  .ss-monitores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .ss-monitor { position: relative; display: grid; grid-template-columns: 34% 1fr; gap: 10px; align-items: center; padding: 6px; background: var(--white-06); border: 1px solid var(--white-12); border-radius: 4px; cursor: pointer; text-align: left; color: #fff; font-family: var(--font-sans); }
+  .ss-monitor img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 2px; filter: grayscale(0.6) brightness(0.75); }
+  .ss-monitor.on { border-color: var(--petrol-bright); background: rgba(82, 160, 172, 0.12); }
+  .ss-monitor.on img { filter: none; }
+  .ss-mon-txt b { display: block; font-size: 13px; font-weight: 600; }
+  .ss-mon-txt small { display: block; font-size: 11px; color: var(--white-65); margin-top: 2px; }
+  .ss-mon-barra { position: absolute; left: 6px; right: 6px; bottom: 3px; height: 2px; background: var(--white-12); }
+  .ss-mon-barra i { display: block; height: 100%; width: 0; background: var(--petrol-bright); }
+
+  .ss-tablero { background: var(--paper-warm); color: var(--navy); border-radius: 4px; padding: 14px 16px; font-family: var(--font-sans); min-width: 0; }
+  .ss-k { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b737d; font-weight: 600; }
+  .ss-t-cab { display: flex; flex-direction: column; gap: 8px; }
+  .ss-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ss-tabs span { font-size: 11.5px; padding: 3px 8px; border: 1px solid #c4c9cf; border-radius: 3px; color: #6b737d; transition: background 0.3s, color 0.3s; }
+  .ss-tabs span.on { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .ss-big { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid #d7dbe0; margin-top: 10px; padding-top: 6px; }
+  .ss-big strong { font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ss-sec { border-top: 1px solid #d7dbe0; margin-top: 6px; padding-top: 6px; }
+  .ss-lecturas { list-style: none; margin: 6px 0 0; padding: 0; }
+  .ss-lecturas li { font-size: 12px; line-height: 1.3; padding: 3px 0 3px 8px; border-left: 2px solid var(--petrol); margin-bottom: 3px; background: var(--petrol-06); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ss-lecturas li em { font-style: normal; color: #6b737d; }
+  .ss-lecturas li.nuevo { animation: ss-entra 0.5s var(--ease, ease) both; }
+  @keyframes ss-entra { from { background: rgba(82, 160, 172, 0.45); } }
+  .ss-lecturas { min-height: 66px; }
+  .ss-bar { display: grid; grid-template-columns: 96px 1fr 34px; align-items: center; gap: 8px; font-size: 12px; margin: 2px 0; }
+  .ss-bar i { display: block; height: 8px; background: var(--petrol); transform-origin: left; }
+  .ss-bar i.g { background: #b9bec4; }
+  .ss-bar em { font-style: normal; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ss-fila { display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 12px; padding: 1px 0; }
+  .ss-fila small { color: #6b737d; font-size: 11.5px; }
+  .ss-fila small::before { content: ' · '; }
+  .ss-fila em { font-style: normal; font-weight: 600; font-variant-numeric: tabular-nums; align-self: center; }
+  [data-accesorios] { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .ss-chip { font-size: 11.5px; padding: 3px 7px; border: 1px solid #c4c9cf; border-radius: 3px; }
+  .ss-chip em { font-style: normal; font-weight: 600; }
+  .ss-ap { display: grid; grid-template-columns: 62px 1fr; gap: 4px; font-size: 12px; padding: 2px 0; }
+  .ss-ap small { font-size: 11.5px; color: #6b737d; }
+  .ss-ap span + span::before { content: ' · '; color: #6b737d; font-weight: 400; }
+  .ss-ap em { font-style: normal; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ss-ap .g { color: #6b737d; }
+  .ss-tag .ap { color: var(--white-65); }
+  .ss-vuela { position: fixed; z-index: 50; pointer-events: none; margin: 0; }
+
+  .ss-lugares { margin-top: clamp(22px, 2.4vw, 36px); border-top: 1px solid var(--white-12); padding-top: 16px; font-family: var(--font-sans); }
+  .ss-lugares p { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--white-85); max-width: 70ch; }
+  .ss-lugares ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 16px; }
+  .ss-lugares li { font-size: 13px; line-height: 1.35; color: var(--white-65); padding-left: 12px; position: relative; }
+  .ss-lugares li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; background: var(--petrol-bright); }
+
+  @media (max-width: 960px) {
+    .ss-panel { grid-template-columns: 1fr; gap: 10px; }
+    .ss-sec-extra { display: none; }
+    .ss-tablero { padding: 10px 12px; }
+    .ss-lugares ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ss-monitor { grid-template-columns: 1fr; gap: 4px; }
+    .ss-mon-txt small { display: none; }
+    .ss-tag { width: 44cqw; min-width: 0; font-size: max(10px, 2.6cqw); padding: 1.4cqw 1.8cqw; }
+    .ss-tag b { font-size: max(8.5px, 2cqw); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ss-rec { animation: none; }
+    .ss-tag, .ss-lecturas li.nuevo { transition: none; animation: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var sec = document.querySelector('[data-ss]');
+    if (!sec) return;
+    var q = function (s) { return sec.querySelector(s); };
+    var D = JSON.parse(q('[data-ss-datos]').textContent);
+    var O = D.ocasiones;
+    var wrap = q('[data-wrap]'), fijo = q('[data-fijo]');
+    var pant = q('[data-pantalla]'), acel = q('[data-acel]');
+    var videos = [].slice.call(sec.querySelectorAll('[data-video]'));
+    var svg = q('[data-cajas]'), capaTag = q('[data-etiquetas]'), reloj = q('[data-reloj]'), lugar = q('[data-lugar]');
+    var elPers = q('[data-personas]'), elLect = q('[data-lecturas]');
+    var elMarcas = q('[data-marcas]'), elPerf = q('[data-perfiles]'), elAcc = q('[data-accesorios]');
+    var elNse = q('[data-nse]'), elOcup = q('[data-ocup]'), elSecPerf = q('[data-sec-perfil]');
+    var monitores = [].slice.call(sec.querySelectorAll('[data-monitor]'));
+    var avances = [].slice.call(sec.querySelectorAll('[data-mon-avance]'));
+    var tabs = [].slice.call(sec.querySelectorAll('[data-tab]'));
+    var NS = 'http://www.w3.org/2000/svg';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Duración en pantalla de cada fase, en segundos de ritmo normal: el ritmo natural dura lo que
+    // el clip a su velocidad (12.8 s a 1.6x = 8 s); el scroll recorre POR_TOMA pantallas por toma.
+    var T_ACEL = 3.4, T_FIN = 2.2, FPS = 12, POR_TOMA = 2.4;
+
+    function fmt(n) { return Math.round(n).toLocaleString('es-MX'); }
+    function mmss(s) { s = Math.max(0, Math.round(s)); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+    function el(tag, cls, txt) { var n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; }
+
+    // ------------------------------------------------------------ estado
+    var oc = -1, t = 0, fase = 'nat', pistas = {}, acum = {}, preCarga = {};
+    var tags = [], barras = [], cerradas = '', haciaAdelante = true;
+    // La etiqueta solo vuela al tablero con el panel en pantalla y un scroll de poco a poco:
+    // en un salto (carga a media página, clic en un monitor) se cierran de golpe sin animación.
+    var uAntes = -1, suave = false, enRango = false;
+
+    function vel(i) { return O[i].velocidad || 1; }
+    // Segundos de clip del ritmo natural; mientras no carga el video se toma de las pistas o 12.8.
+    function durClip(i) { var v = videos[i]; return (v && v.duration) || (pistas[i] ? pistas[i].n / FPS : 12.8); }
+    function largoToma(i) { return durClip(i) / vel(i) + T_ACEL + T_FIN; }
+
+    function cargarPistas(i, cb) {
+      if (pistas[i]) return cb && cb(pistas[i]);
+      fetch(O[i].pistas).then(function (r) { return r.json(); }).then(function (j) {
+        pistas[i] = j;
+        // Personas distintas vistas hasta cada cuadro, para el contador.
+        var vistos = {}, a = [];
+        j.cuadros.forEach(function (c) { c.forEach(function (b) { vistos[b[0]] = 1; }); a.push(Object.keys(vistos).length); });
+        acum[i] = a;
+        cb && cb(j);
+      }).catch(function () { pistas[i] = { n: 1, cuadros: [[]] }; acum[i] = [0]; cb && cb(pistas[i]); });
+    }
+    function precargar(i) {
+      if (preCarga[i]) return;
+      preCarga[i] = O[i].acelerado.map(function (src) { var im = new Image(); im.src = src; return im; });
+    }
+
+    function montarTablero() {
+      var o = O[oc];
+      tabs.forEach(function (x, i) { x.classList.toggle('on', i === oc); });
+      monitores.forEach(function (x, i) { x.classList.toggle('on', i === oc); });
+      elMarcas.innerHTML = ''; barras = [];
+      o.marcas.forEach(function (m) {
+        var f = el('div', 'ss-bar'), i = el('i', m[0] === 'No legible' ? 'g' : ''), v = el('em', '', '0%');
+        f.appendChild(el('span', '', m[0])); var w = el('span'); w.appendChild(i); f.appendChild(w); f.appendChild(v);
+        elMarcas.appendChild(f); barras.push({ i: i, v: v, max: m[1] });
+      });
+      var mx = Math.max.apply(null, o.marcas.map(function (m) { return m[1]; }));
+      barras.forEach(function (b) { b.ancho = b.max / mx; });
+      elPerf.innerHTML = '';
+      o.perfiles.forEach(function (p) { var f = el('div', 'ss-fila'); var a = el('span', '', p[0]); a.appendChild(el('small', '', p[1])); f.appendChild(a); f.appendChild(el('em', '', p[2] + '%')); elPerf.appendChild(f); });
+      elAcc.innerHTML = '';
+      o.accesorios.forEach(function (p) { var f = el('span', 'ss-chip'); f.appendChild(document.createTextNode(p[0] + ' ')); f.appendChild(el('em', '', p[1] + '%')); elAcc.appendChild(f); });
+      // Perfil aparente: la ocupación solo cuenta cuando la ropa la delata; el resto va como "No se distingue".
+      [[elNse, o.nse], [elOcup, o.ocupaciones]].forEach(function (par) {
+        if (!par[0]) return;
+        par[0].innerHTML = '';
+        (par[1] || []).forEach(function (p, k, arr) { var f = el('span', par[0] === elOcup && k === arr.length - 1 ? 'g' : ''); f.appendChild(document.createTextNode(p[0] + ' ')); f.appendChild(el('em', '', p[1] + '%')); par[0].appendChild(f); });
+      });
+    }
+
+    function montarToma(i) {
+      if (oc === i) return;
+      oc = i; cerradas = ''; elLect.innerHTML = '';
+      var o = O[i];
+      lugar.textContent = o.lugar + ' · ' + o.hora;
+      videos.forEach(function (v, k) { v.classList.toggle('on', k === i); });
+      capaTag.innerHTML = '';
+      tags = o.etiquetas.map(function (et) {
+        var d = el('div', 'ss-tag');
+        d.appendChild(el('b', '', et.perfil));
+        d.appendChild(el('div', '', et.prenda));
+        var c = el('div', '', et.calzado + ' · ');
+        c.appendChild(et.marca ? el('span', 'mk', et.marca) : el('span', 'nl', D.no_legible));
+        d.appendChild(c);
+        if (et.extra) d.appendChild(el('div', '', et.extra));
+        if (et.nse) d.appendChild(el('div', 'ap', (D.aparente || '') + ': NSE ' + et.nse + (et.ocupacion ? ' · ' + et.ocupacion : '')));
+        capaTag.appendChild(d);
+        return d;
+      });
+      precargar(i);
+      if (i + 1 < O.length) precargar(i + 1);
+      montarTablero();
+    }
+
+    // ------------------------------------------------------------ video al cuadro pedido
+    // Se pide un segundo y, si el video está buscando otro, se guarda el último pedido.
+    var pedido = {};
+    function irA(i, seg) {
+      var v = videos[i]; if (!v) return;
+      pedido[i] = seg;
+      if (v.readyState < 1 || v.seeking) return;
+      if (Math.abs(v.currentTime - seg) > 0.02) v.currentTime = seg;
+    }
+    videos.forEach(function (v, i) {
+      v.addEventListener('seeked', function () { if (pedido[i] != null && Math.abs(v.currentTime - pedido[i]) > 0.02) v.currentTime = pedido[i]; });
+      v.addEventListener('loadedmetadata', function () { medir(); if (pedido[i] != null) v.currentTime = pedido[i]; if (enScroll) alScroll(); });
+      // Safari en iPhone no carga sin pedirlo.
+      try { v.load(); } catch (er) {}
+    });
+
+    // ------------------------------------------------------------ dibujo
+    function cajasEn(seg) {
+      var p = pistas[oc];
+      if (!p) return [];
+      if (p.n <= 1) return p.cuadros[0] || [];
+      var k = clamp(seg * FPS, 0, p.n - 1), a = Math.floor(k), b = Math.min(p.n - 1, a + 1), f = k - a;
+      var B = {};
+      (p.cuadros[b] || []).forEach(function (c) { B[c[0]] = c; });
+      return (p.cuadros[a] || []).map(function (c) {
+        var d = B[c[0]]; if (!d) return c;
+        return [c[0], c[1] + (d[1] - c[1]) * f, c[2] + (d[2] - c[2]) * f, c[3] + (d[3] - c[3]) * f, c[4] + (d[4] - c[4]) * f];
+      });
+    }
+    function vistosHasta(seg) { var a = acum[oc]; if (!a || !a.length) return 0; return a[clamp(Math.floor(seg * FPS), 0, a.length - 1)]; }
+
+    function dibujar() {
+      var o = O[oc], nat = durClip(oc);
+      var seg = fase === 'nat' ? t : nat;
+      pant.classList.toggle('acel', fase !== 'nat' && (preCarga[oc] || []).length > 0);
+      pant.classList.toggle('fin', fase === 'fin');
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      var activa = null;
+      o.etiquetas.forEach(function (et, i) { if (fase === 'nat' && seg >= et.desde && seg < et.hasta) activa = i; });
+      var cajas = fase === 'nat' ? cajasEn(seg) : [];
+      cajas.forEach(function (c) {
+        var r = document.createElementNS(NS, 'rect');
+        var es = activa !== null && o.etiquetas[activa].id === c[0];
+        r.setAttribute('x', c[1] * 1280); r.setAttribute('y', c[2] * 720); r.setAttribute('width', c[3] * 1280); r.setAttribute('height', c[4] * 720);
+        r.setAttribute('fill', 'none'); r.setAttribute('stroke', es ? '#52A0AC' : 'rgba(255,255,255,0.55)'); r.setAttribute('stroke-width', es ? 3 : 1.4);
+        r.setAttribute('vector-effect', 'non-scaling-stroke');
+        svg.appendChild(r);
+        if (es) {
+          var d = tags[activa];
+          var der = c[1] + c[3] < 0.66;
+          d.style.left = der ? (c[1] + c[3]) * 100 + 1 + '%' : 'auto';
+          d.style.right = der ? 'auto' : (1 - c[1]) * 100 + 1 + '%';
+          d.style.top = clamp(c[2] * 100 + 8, 10, 70) + '%';
+        }
+      });
+      tags.forEach(function (d, i) { d.classList.toggle('on', i === activa); });
+
+      // Etiquetas que ya cerraron: van a "Últimas lecturas" (las 3 más recientes arriba).
+      var lista = [];
+      o.etiquetas.forEach(function (et, i) { if (fase !== 'nat' || seg >= et.hasta) lista.push(i); });
+      var clave = lista.join(',');
+      if (clave !== cerradas) {
+        var antes = cerradas ? cerradas.split(',').map(Number) : [];
+        var nuevas = haciaAdelante ? lista.filter(function (i) { return antes.indexOf(i) < 0; }) : [];
+        cerradas = clave;
+        elLect.innerHTML = '';
+        lista.slice(-3).reverse().forEach(function (i) {
+          var et = o.etiquetas[i], li = el('li', nuevas.indexOf(i) >= 0 ? 'nuevo' : '');
+          li.appendChild(document.createTextNode(et.perfil.split(' · ').slice(0, 2).join(' ') + (et.nse ? ' · ' + et.nse : '') + ' · '));
+          li.appendChild(el('em', '', et.calzado + (et.marca ? ' · ' + et.marca : ' · ' + D.no_legible)));
+          elLect.appendChild(li);
+        });
+        // Solo vuela la que se acaba de cerrar a la vista (la que tenía su recuadro en pantalla).
+        if (!reduce && suave && enRango && nuevas.length === 1 && fase === 'nat') volar(tags[nuevas[0]]);
+      }
+
+      // Tablero: personas, barras y secciones según el avance de la toma.
+      var fNat = clamp(seg / nat, 0, 1), fAcel = fase === 'acel' ? clamp(t / T_ACEL, 0, 1) : fase === 'fin' ? 1 : 0;
+      var vistos = vistosHasta(seg);
+      elPers.textContent = fmt(fase === 'nat' ? vistos : vistos + (o.personas - vistos) * fAcel);
+      var lleno = fase === 'nat' ? 0.08 + 0.22 * fNat : 0.3 + 0.7 * fAcel;
+      barras.forEach(function (b) { b.i.style.transform = 'scaleX(' + (b.ancho * lleno).toFixed(3) + ')'; b.v.textContent = fmt(b.max * (fase === 'fin' ? 1 : lleno)) + '%'; });
+      elPerf.style.opacity = elAcc.style.opacity = fase === 'nat' ? clamp((fNat - 0.5) * 2, 0, 1) * 0.6 : 1;
+      if (elSecPerf) elSecPerf.style.opacity = fase === 'nat' ? 0.35 + 0.65 * clamp((fNat - 0.3) * 2, 0, 1) : 1;
+
+      var segToma = fase === 'nat' ? seg : fase === 'acel' ? nat + (600 - nat) * fAcel : 600;
+      reloj.textContent = mmss(segToma);
+
+      if (fase !== 'nat') {
+        var cortes = preCarga[oc] || [];
+        if (cortes.length) { var n = fase === 'fin' ? cortes.length - 1 : Math.floor(t * 5) % cortes.length; if (acel.getAttribute('src') !== cortes[n].src) acel.src = cortes[n].src; }
+      }
+    }
+
+    var enVuelo = null;
+    function quitarVuelo() { if (enVuelo) { enVuelo.remove(); enVuelo = null; } }
+    function volar(d) {
+      // Una a la vez: con un scroll rápido se omiten las demás (la lista igual se actualiza).
+      if (enVuelo || !d || !d.getBoundingClientRect().width) return;
+      var r0 = d.getBoundingClientRect(), r1 = elLect.getBoundingClientRect();
+      var c = d.cloneNode(true); c.classList.add('on', 'ss-vuela');
+      c.style.left = r0.left + 'px'; c.style.top = r0.top + 'px'; c.style.width = r0.width + 'px'; c.style.right = 'auto';
+      document.body.appendChild(c); enVuelo = c;
+      var dx = r1.left - r0.left, dy = r1.top - r0.top, s = r1.width / r0.width;
+      c.animate([{ transform: 'none', opacity: 1 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')', opacity: 0.2 }], { duration: 650, easing: 'cubic-bezier(.4,0,.2,1)' }).onfinish = function () { c.remove(); if (enVuelo === c) enVuelo = null; };
+    }
+
+    // ------------------------------------------------------------ posición -> toma, fase y segundo
+    function pintar(p) {
+      var total = 0, largos = O.map(function (_, i) { var l = largoToma(i); total += l; return l; });
+      var u = clamp(p, 0, 1) * total, i = 0;
+      suave = uAntes >= 0 && Math.abs(u - uAntes) < 1.2; uAntes = u; enRango = p > 0 && p < 1;
+      if (!enRango || !suave) quitarVuelo();
+      while (i < O.length - 1 && u > largos[i]) { u -= largos[i]; i++; }
+      montarToma(i);
+      var natPant = durClip(i) / vel(i);
+      if (u < natPant) { fase = 'nat'; t = u * vel(i); irA(i, t); }
+      else if (u < natPant + T_ACEL) { fase = 'acel'; t = u - natPant; irA(i, durClip(i) - 0.05); }
+      else { fase = 'fin'; t = u - natPant - T_ACEL; }
+      var hecho = fase === 'nat' ? u : fase === 'acel' ? natPant + t : natPant + T_ACEL + t;
+      avances.forEach(function (a, k) { a.style.width = k === i ? clamp(hecho / largos[i], 0, 1) * 100 + '%' : k < i ? '100%' : '0'; });
+      if (pistas[i]) dibujar(); else cargarPistas(i, function () { if (oc === i) dibujar(); });
+      if (i + 1 < O.length) cargarPistas(i + 1);
+    }
+
+    // ------------------------------------------------------------ scroll
+    var topFijo = 72, ultimaP = -1, enScroll = false;
+    function medir() {
+      var vh = window.innerHeight, h = fijo.offsetHeight;
+      topFijo = window.innerWidth <= 960 ? 76 : Math.max(72, (vh - h) / 2 + 30);
+      fijo.style.top = topFijo + 'px';
+      wrap.style.height = reduce ? '' : h + vh * POR_TOMA * O.length + 'px';
+    }
+    function alScroll() {
+      var b = wrap.getBoundingClientRect();
+      var recorrido = wrap.offsetHeight - fijo.offsetHeight;
+      var p = recorrido <= 0 ? 0 : clamp((topFijo - b.top) / recorrido, 0, 1);
+      haciaAdelante = p >= ultimaP; ultimaP = p;
+      pintar(p);
+    }
+    // Un clic en un monitor lleva el scroll al arranque de esa toma.
+    monitores.forEach(function (m, i) {
+      m.addEventListener('click', function () {
+        var total = 0, antes = 0;
+        O.forEach(function (_, k) { var l = largoToma(k); if (k < i) antes += l; total += l; });
+        if (reduce) { ultimaP = -1; pintar((antes + durClip(i) / vel(i) + T_ACEL + T_FIN - 0.01) / total); return; }
+        var recorrido = wrap.offsetHeight - fijo.offsetHeight;
+        var y = wrap.getBoundingClientRect().top + window.scrollY - topFijo + recorrido * (antes / total) + 2;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
+
+    // ------------------------------------------------------------ arranque
+    var fija = null;
+    try { var v = new URLSearchParams(location.search).get('calle'); if (v) fija = v.split(',').map(Number); } catch (er) {}
+    O.forEach(function (_, i) { cargarPistas(i); });
+    medir();
+    if (fija) {
+      // QA: ?calle=<toma>,<fase 0 natural|1 acelerado|2 final>,<segundo de clip o de fase>
+      var tm = fija[0] || 0, fs = fija[1] || 0, sg = fija[2] || 0;
+      cargarPistas(tm, function () {
+        var total = 0, antes = 0;
+        O.forEach(function (_, k) { var l = largoToma(k); if (k < tm) antes += l; total += l; });
+        var natPant = durClip(tm) / vel(tm);
+        var u = antes + (fs === 0 ? sg / vel(tm) : fs === 1 ? natPant + sg : natPant + T_ACEL + sg);
+        pintar(u / total);
+        videos[tm].addEventListener('seeked', function () { dibujar(); }, { once: true });
+      });
+      return;
+    }
+    if (reduce) { pintar((largoToma(0) - 0.01) / O.reduce(function (s, _, i) { return s + largoToma(i); }, 0)); return; }
+    enScroll = true;
+    alScroll();
+    window.addEventListener('resize', function () { medir(); alScroll(); });
+    window.addEventListener('load', function () { medir(); alScroll(); });
+    var pend = false;
+    window.addEventListener('scroll', function () {
+      if (pend) return;
+      pend = true;
+      requestAnimationFrame(function () { pend = false; alScroll(); });
+    }, { passive: true });
+  })();
+</script>

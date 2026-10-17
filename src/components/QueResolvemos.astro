@@ -1,0 +1,79 @@
+---
+// Qué resolvemos. Página nueva de v2: no tiene original en el root, así que el
+// layout se arma con las piezas que ya existen (page-hero, rejilla a un pixel
+// de separación, franja de CTA), no con un lenguaje visual propio.
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN } from '../lib/enlaces';
+import { contenido } from '../lib/meta';
+import comun from '../i18n/content/common.json';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/que-resolvemos.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('que-resolvemos', locale);
+const decisiones = c.decisiones as { t: string; q: string; p: string; sowhat: string }[];
+// El JSON de la página no trae etiqueta para este enlace y es una etiqueta de
+// navegación, así que se toma la del shell en vez de inventar una nueva.
+const etiquetaComoFunciona = comun[locale].nav_como_funciona;
+---
+
+<section class="page-hero hero-section">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="eyebrow">{c.hero_eyebrow}</div>
+    <h1 set:html={c.hero_h1} />
+    <p class="lead">{c.hero_lead}</p>
+  </div>
+</section>
+
+<section class="dec-section section-paper">
+  <div class="container">
+    <div class="eyebrow">{c.dec_eyebrow}</div>
+    <h2 set:html={c.dec_h2} />
+    <p class="lead">{c.dec_intro}</p>
+    <div class="dec-grid">
+      {decisiones.map((d, i) => (
+        <article class="dec-card">
+          <div class="dec-num">{`0${i + 1}`}</div>
+          <h3>{d.t}</h3>
+          <p class="dec-q">{d.q}</p>
+          <p class="dec-p">{d.p}</p>
+          <p class="dec-sowhat">{d.sowhat}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pil-section section--dark section-dark-signal">
+  <div class="container">
+    <div class="pil-inner">
+      <div class="pil-titulo">
+        <div class="eyebrow">{c.pil_eyebrow}</div>
+        <h2 set:html={c.pil_h2} />
+      </div>
+      <div class="pil-texto">
+        <p class="pil-p">{c.pil_p}</p>
+        <div class="pil-cta">
+          <a href={ruta(locale, 'como-funciona')} class="inline-cta white">
+            {etiquetaComoFunciona} <span class="btn-arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip section-cta-dust">
+  <div class="container">
+    <h2>{c.ctastrip_h2}</h2>
+    <p>{c.ctastrip_p}</p>
+    <div class="cta-actions">
+      <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.ctastrip_btn}</a>
+    </div>
+  </div>
+</section>
