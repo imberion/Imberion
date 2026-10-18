@@ -1,0 +1,204 @@
+---
+// Stop motion de ficha amarrado al scroll, con la frase de cada tiempo en grande
+// junto al cuadro. Es el formato del Checkup del home llevado a las fichas
+// (propuesta aprobada por Rodrigo el 2026-10-12, en
+// docs/_home_v3/guiones_stop_motion_fichas.md): el texto lleva el mensaje y el
+// cuadro lo ilustra; el lector avanza la historia con el scroll.
+//
+// Contenido en la clave `escena` del JSON de la ficha:
+//   base   carpeta de la secuencia (NNNN.avif y NNNN.webp, desde 0001)
+//   n      número de cuadros
+//   cortes último cuadro de cada tiempo menos el último (p. ej. [12, 32])
+//   pasos  una frase por tiempo
+//   alt, nota, paso_label ("Paso {n} de {t}")
+// Lo legible del cuadro está compuesto con código, nunca generado.
+
+export interface EscenaContenido {
+  base: string;
+  n: number;
+  cortes: number[];
+  pasos: string[];
+  alt: string;
+  nota: string;
+  paso_label: string;
+}
+
+interface Props {
+  escena: EscenaContenido;
+}
+
+const { escena: e } = Astro.props;
+const total = e.pasos.length;
+---
+
+<section class="escena" data-escena data-n={e.n} data-base={e.base} data-cortes={e.cortes.join(',')}>
+  <div class="container">
+    <div class="esc-wrap" data-esc-wrap>
+      <div class="esc-fijo" data-esc-fijo>
+        <div class="esc-guia">
+          <p class="esc-nota">{e.nota}</p>
+          <p class="esc-avance" aria-hidden="true">
+            {e.pasos.map((_, i) => <i data-esc-tick={i}></i>)}
+          </p>
+          <ol class="esc-pasos">
+            {
+              e.pasos.map((t, i) => (
+                <li data-esc-paso={i} class={i === 0 ? 'is-on' : ''}>
+                  <span>{e.paso_label.replace('{n}', String(i + 1)).replace('{t}', String(total))}</span>
+                  {t}
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+        <figure class="esc-film">
+          <img src={`${e.base}0001.webp`} alt={e.alt} width="1280" height="720" loading="lazy" data-esc-img />
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .escena {
+    padding: clamp(56px, 6vw, 110px) 0 clamp(40px, 4vw, 70px);
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .esc-wrap { position: relative; }
+  .esc-fijo {
+    position: sticky;
+    top: 80px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    gap: clamp(28px, 3.5vw, 56px);
+    align-items: center;
+  }
+  /* El cuadro se recorta a las dos hojas: así el texto impreso se lee más grande. */
+  .esc-film {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 1280 / 640;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #b9bcc0;
+  }
+  .esc-film img {
+    position: absolute;
+    left: -3.5%;
+    top: -16%;
+    width: 123%;
+    max-width: none;
+    height: auto;
+  }
+  .esc-avance {
+    display: grid;
+    grid-template-columns: repeat(var(--n, 3), 1fr);
+    gap: 6px;
+    margin: 0 0 26px;
+  }
+  .esc-avance i { height: 2px; background: var(--navy-12); transition: background 0.3s; }
+  .esc-avance i.is-on { background: var(--navy); }
+  .esc-pasos { list-style: none; margin: 0; padding: 0; display: grid; }
+  .esc-pasos li {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 1.9vw, 1.9rem);
+    line-height: 1.22;
+    color: var(--navy);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s, transform 0.35s;
+  }
+  .esc-pasos li span {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .esc-pasos li.is-on { opacity: 1; transform: none; }
+  .esc-nota { margin: 0 0 18px; font-size: 12px; color: var(--navy-60); }
+
+  @media (max-width: 900px) {
+    .esc-fijo { grid-template-columns: 1fr; gap: 16px; }
+    /* En celular el cuadro se acerca al reporte y al pasillo marcado, para que se lean. */
+    .esc-film { aspect-ratio: 1.29; }
+    .esc-film img { width: 189%; left: -58.6%; top: -17.8%; }
+    .esc-nota { margin-bottom: 10px; }
+    .esc-avance { margin-bottom: 12px; }
+    .esc-pasos li { font-size: 1.3rem; min-height: 4.9em; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .esc-pasos li { transition: none; transform: none; }
+  }
+</style>
+
+<script is:inline>
+  // Amarra la secuencia al scroll: la envoltura mide el bloque fijo más 120vh de
+  // recorrido, y cada posición elige un cuadro y el tiempo que le toca.
+  (function () {
+    var sec = document.querySelector('[data-escena]');
+    if (!sec) return;
+    var img = sec.querySelector('[data-esc-img]');
+    var wrap = sec.querySelector('[data-esc-wrap]');
+    var fijo = sec.querySelector('[data-esc-fijo]');
+    var pasos = [].slice.call(sec.querySelectorAll('[data-esc-paso]'));
+    var ticks = [].slice.call(sec.querySelectorAll('[data-esc-tick]'));
+    sec.querySelector('.esc-avance').style.setProperty('--n', ticks.length);
+    var N = +sec.getAttribute('data-n');
+    var base = sec.getAttribute('data-base');
+    var cortes = sec.getAttribute('data-cortes').split(',').map(Number);
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ext = 'webp', cache = [], actual = -1, topFijo = 80, cargado = false;
+
+    var prueba = new Image();
+    prueba.onload = function () { if (prueba.width > 0) ext = 'avif'; precargar(); };
+    prueba.onerror = precargar;
+    prueba.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+
+    function precargar() {
+      if (cargado) return;
+      cargado = true;
+      for (var i = 1; i <= N; i++) {
+        var im = new Image();
+        im.src = base + String(i).padStart(4, '0') + '.' + ext;
+        cache[i] = im;
+      }
+      pintar();
+    }
+    function medir() {
+      var vh = window.innerHeight, h = fijo.offsetHeight;
+      // En celular el bloque va pegado arriba: centrarlo deja un hueco que se lee como página rota.
+      topFijo = window.innerWidth <= 900 ? 76 : Math.max(80, (vh - h) / 2 + 20);
+      fijo.style.top = topFijo + 'px';
+      wrap.style.height = reduce ? '' : h + vh * 1.2 + 'px';
+    }
+    function pintar() {
+      var b = wrap.getBoundingClientRect();
+      var recorrido = wrap.offsetHeight - fijo.offsetHeight;
+      var p = reduce || recorrido <= 0 ? 1 : Math.min(1, Math.max(0, (topFijo - b.top) / recorrido));
+      var k = Math.max(1, Math.round(p * (N - 1)) + 1);
+      var paso = 0;
+      while (paso < cortes.length && k > cortes[paso]) paso++;
+      pasos.forEach(function (el, i) { el.classList.toggle('is-on', i === paso); });
+      ticks.forEach(function (el, i) { el.classList.toggle('is-on', i <= paso); });
+      if (k === actual || !cache[k]) return;
+      if (cache[k].complete) { img.src = cache[k].src; actual = k; }
+      else cache[k].onload = function () { if (Math.abs(k - actual) > 0) pintar(); };
+    }
+    medir();
+    window.addEventListener('resize', function () { medir(); pintar(); });
+    window.addEventListener('load', function () { medir(); pintar(); });
+    var t = false;
+    window.addEventListener('scroll', function () {
+      if (t) return;
+      t = true;
+      requestAnimationFrame(function () { t = false; pintar(); });
+    }, { passive: true });
+  })();
+</script>

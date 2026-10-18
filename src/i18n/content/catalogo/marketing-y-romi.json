@@ -1,0 +1,74 @@
+{
+  "es": {
+    "__title": "Imberion — Marketing & ROMI",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Marketing & ROMI · Familia Engine",
+    "hero_h1": "El presupuesto de marketing en los medios que generan venta.",
+    "hero_lead": "Marketing & ROMI mide cuánta venta aporta cada medio, aislada del efecto de precio, estacionalidad y distribución, y propone cómo repartir el presupuesto para obtener más retorno sobre la inversión en marketing (ROMI, return on marketing investment).",
+    "que_hace_h2": "Lo que resuelve en el presupuesto de marketing",
+    "que_hace_p": "El presupuesto se reparte según la venta incremental que aporta cada medio, con un escenario de asignación para cada monto disponible.",
+    "que_hace_items": [
+      "Venta que aporta cada medio, separada del efecto de precio y estacionalidad",
+      "Medios que ya no generan venta adicional con más inversión, identificados",
+      "Medios con retorno por capturar, donde conviene invertir más",
+      "Reparto recomendado del presupuesto para cada escenario de monto"
+    ],
+    "valor_h2": "Inversión asignada por retorno real",
+    "valor_p": "Cuando el presupuesto se asigna por alcance e interacción, se concentra en los medios fáciles de medir, aunque ya estén saturados. Con el aporte incremental de cada medio medido, el dinero se mueve al que todavía tiene retorno por capturar.",
+    "sowhat": "Dice qué medio recibe la siguiente unidad de inversión y cuál ya dejó de generar venta adicional.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se coordina con Promociones para no atribuir dos veces el mismo volumen, y su efecto se verifica en Growth Bridge Analysis.",
+    "ctastrip_h2": "¿Qué medio está recibiendo inversión que ya no rinde?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos cómo se decide hoy esta palanca y dónde se está dejando margen.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Marketing & ROMI",
+    "familia_label": "Engine · decide",
+    "hero_eyebrow": "Marketing & ROMI · Engine family",
+    "hero_h1": "Marketing budget allocated by return.",
+    "hero_lead": "Marketing & ROMI combines marketing mix modeling (MMM) with a budget allocation optimizer, so investment is split by return on marketing investment (ROMI).",
+    "que_hace_h2": "Mix modeling and budget optimizer",
+    "que_hace_p": "The model separates each medium's contribution from the effects of price, seasonality and distribution. On that base, the optimizer proposes the mix that maximizes return within the available budget.",
+    "que_hace_items": [
+      "Marketing mix modeling on own history",
+      "Contribution of each medium, isolated from price and seasonality",
+      "Saturation curves by medium",
+      "Optimal budget allocation by scenario"
+    ],
+    "valor_h2": "Investment allocated by real return",
+    "valor_p": "Measuring by reach and interaction rewards the medium that is easy to measure rather than the one that moves sales, so budget concentrates where saturation has already set in. Measuring each medium's incremental contribution moves money to the one with return still to capture.",
+    "sowhat": "It says which medium gets the next unit of investment and which one has hit its ceiling.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It coordinates with Promociones so the same volume is not credited twice, and its effect is verified in Growth Bridge Analysis.",
+    "ctastrip_h2": "Which medium is absorbing investment that no longer pays back?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review how this lever is decided today and where margin is being left behind.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Marketing & ROMI",
+    "familia_label": "Engine · decidir",
+    "hero_eyebrow": "Marketing & ROMI · Família Engine",
+    "hero_h1": "O orçamento de marketing alocado por retorno.",
+    "hero_lead": "Marketing & ROMI combina modelagem de mix de marketing (MMM, marketing mix modeling) com um otimizador de alocação de orçamento, para dividir o investimento por retorno sobre o investimento em marketing (ROMI, return on marketing investment).",
+    "que_hace_h2": "Modelagem de mix e otimizador de orçamento",
+    "que_hace_p": "O modelo separa a contribuição de cada meio dos efeitos de preço, sazonalidade e distribuição. Sobre essa base, o otimizador propõe o mix que maximiza retorno dentro do orçamento disponível.",
+    "que_hace_items": [
+      "Modelagem de mix de marketing sobre histórico próprio",
+      "Contribuição de cada meio, isolada de preço e sazonalidade",
+      "Curvas de saturação por meio",
+      "Alocação ótima de orçamento por cenário"
+    ],
+    "valor_h2": "Investimento alocado por retorno real",
+    "valor_p": "Medir por alcance e interação premia o meio fácil de medir e não o que move venda, então o orçamento se concentra onde já há saturação. Ao medir a contribuição incremental de cada meio, o dinheiro migra para o que ainda tem retorno a capturar.",
+    "sowhat": "Diz que meio recebe a próxima unidade de investimento e qual já chegou ao teto.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Coordena-se com Promociones para não atribuir o mesmo volume duas vezes, e o efeito é verificado em Growth Bridge Analysis.",
+    "ctastrip_h2": "Que meio está absorvendo investimento que já não rende?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos como essa alavanca é decidida hoje e onde há margem sendo deixada para trás.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

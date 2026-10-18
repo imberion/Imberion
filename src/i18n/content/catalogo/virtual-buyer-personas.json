@@ -1,0 +1,554 @@
+{
+  "es": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Virtual Buyer Personas · Familia Twin",
+    "hero_h1": "Qué concepto, empaque o surtido elegirían los compradores, antes de producirlo.",
+    "hero_lead": "Virtual Buyer Personas muestra en horas qué atrae a cada segmento de compradores, antes de gastar en producción o en un focus group. Los conceptos que ningún segmento elige se descartan pronto y la investigación con compradores reales se reserva para los que pasan el filtro.",
+    "que_hace_h2": "Lo que resuelve en el desarrollo de catálogo",
+    "que_hace_p": "El catálogo se prueba con cada segmento de compradores antes de comprometer presupuesto de producción o de investigación.",
+    "que_hace_items": [
+      "Conceptos que ningún segmento elegiría, descartados antes de producirlos",
+      "Qué atributo atrae a cada segmento de compradores",
+      "Empaques y surtidos comparados entre segmentos en horas",
+      "Focus groups reservados para las opciones que pasaron el filtro"
+    ],
+    "valor_h2": "Un filtro antes del gasto grande",
+    "valor_p": "Producir un surtido o convocar un focus group cuesta semanas y presupuesto. Correr el concepto contra los compradores simulados descarta antes lo que nadie quiere, y deja la investigación con compradores reales para las opciones que sobreviven al filtro.",
+    "sowhat": "Define qué conceptos llegan a producción y cuáles se descartan antes de gastar en ellos.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Valida los atributos de valor que levanta Value-Attribute Compass y alimenta los argumentos que Training Signal lleva a la fuerza de ventas.",
+    "ctastrip_h2": "¿Cuánto cuesta hoy descubrir tarde que un concepto no funcionaba?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos qué se sabe hoy y qué análisis cierra la brecha.",
+    "ctastrip_btn": "Agendar llamada",
+    "demo": {
+      "eyebrow": "Escenario · panel sintético · reacción",
+      "titulo": "Las personas responden antes de mover la palanca",
+      "intro": "Cuatro compradores sintéticos de una categoría de consumo en tienda física, cada uno con los atributos que pesan en la decisión. Se elige un movimiento comercial y cada persona responde con su reacción y la consecuencia que deja. Las respuestas están escritas de antemano: lo que se enseña es el método, no una corrida en vivo.",
+      "escenarios_label": "Movimiento comercial",
+      "atributos_label": "Peso en la decisión",
+      "consecuencia_label": "Consecuencia",
+      "escenarios": [
+        {
+          "titulo": "Sube 5 % el precio de la línea principal"
+        },
+        {
+          "titulo": "La promoción pasa de 2x1 a 20 % de descuento"
+        },
+        {
+          "titulo": "Falta el producto en anaquel una semana"
+        }
+      ],
+      "personas": [
+        {
+          "nombre": "Renata",
+          "perfil": "Sensible al precio",
+          "atributos": [
+            {
+              "k": "Precio",
+              "v": 85
+            },
+            {
+              "k": "Promoción",
+              "v": 62
+            },
+            {
+              "k": "Marca",
+              "v": 24
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Compara contra la marca propia de la tienda y cambia cuando la brecha aparece en la etiqueta.",
+              "consecuencia": "El volumen se mueve dentro del mismo anaquel, sin que el comprador salga de la tienda."
+            },
+            {
+              "reaccion": "Calcula el ahorro por unidad y ve que el descuento rinde menos que llevarse dos.",
+              "consecuencia": "Cae la carga por visita justo en el segmento que sostiene el volumen."
+            },
+            {
+              "reaccion": "Toma la alternativa más barata que encuentra ese mismo día.",
+              "consecuencia": "El faltante paga la prueba de producto de la marca competidora."
+            }
+          ]
+        },
+        {
+          "nombre": "Alonso",
+          "perfil": "Leal a la marca",
+          "atributos": [
+            {
+              "k": "Marca",
+              "v": 90
+            },
+            {
+              "k": "Atención",
+              "v": 54
+            },
+            {
+              "k": "Precio",
+              "v": 22
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Paga el aumento sin comparar mientras la marca siga en el anaquel de siempre.",
+              "consecuencia": "El alza se convierte en margen, no en pérdida de volumen."
+            },
+            {
+              "reaccion": "La mecánica le da lo mismo: compra la misma cantidad de siempre.",
+              "consecuencia": "El descuento se entrega a quien iba a comprar igual."
+            },
+            {
+              "reaccion": "Espera a la siguiente visita antes de considerar otra marca.",
+              "consecuencia": "La venta se pospone, no se pierde, si el faltante no se repite."
+            }
+          ]
+        },
+        {
+          "nombre": "Beatriz",
+          "perfil": "Compra por conveniencia",
+          "atributos": [
+            {
+              "k": "Disponibilidad",
+              "v": 88
+            },
+            {
+              "k": "Atención",
+              "v": 48
+            },
+            {
+              "k": "Precio",
+              "v": 36
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Apenas registra el cambio: decide por lo que está a la mano en el trayecto de siempre.",
+              "consecuencia": "El alza pasa sin fricción mientras el producto siga donde ya lo buscan."
+            },
+            {
+              "reaccion": "Ignora la mecánica porque no planea la compra.",
+              "consecuencia": "La inversión promocional no mueve a quien compra por cercanía."
+            },
+            {
+              "reaccion": "Resuelve con lo que encuentra y no regresa a buscar la marca.",
+              "consecuencia": "El faltante cuesta la recompra, no solo la venta de la semana."
+            }
+          ]
+        },
+        {
+          "nombre": "Damián",
+          "perfil": "Compra en promoción",
+          "atributos": [
+            {
+              "k": "Promoción",
+              "v": 92
+            },
+            {
+              "k": "Precio",
+              "v": 71
+            },
+            {
+              "k": "Marca",
+              "v": 28
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Sale del precio regular y espera la siguiente oferta.",
+              "consecuencia": "El volumen se concentra en semanas promocionales y el precio regular pierde tracción."
+            },
+            {
+              "reaccion": "Compara el descuento contra el 2x1 y se lleva una sola pieza.",
+              "consecuencia": "Baja el volumen que la mecánica anterior sostenía."
+            },
+            {
+              "reaccion": "Cambia de marca sin costo y se queda con la que sí encontró en oferta.",
+              "consecuencia": "El segmento más volátil se va con quien tenía producto."
+            }
+          ]
+        }
+      ],
+      "pie": [
+        {
+          "k": "Cada segmento por separado",
+          "v": "Cada segmento se lee por separado, porque el mismo movimiento sube el volumen en uno y lo tira en otro."
+        },
+        {
+          "k": "Antes de mover la palanca",
+          "v": "La conversación con las personas ocurre en horas, cuando el precio o la mecánica todavía se pueden reescribir."
+        }
+      ],
+      "simulacion": "Personas y respuestas ilustrativas sobre datos sintéticos."
+    }
+  },
+  "en": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "familia_label": "Twin · simulate",
+    "hero_eyebrow": "Virtual Buyer Personas · Twin family",
+    "hero_h1": "Simulated buyers that react to the catalog before it is produced.",
+    "hero_lead": "Virtual Buyer Personas builds dozens of avatars that behave like the company's real buyers, trained on its transactional data and its own research. Catalog or concepts are shown to them, and what they pick is observed.",
+    "que_hace_h2": "A panel of simulated buyers",
+    "que_hace_p": "Each persona is built from purchase history, the current segmentation and the research that already exists, and answers as the segment it represents. A run takes hours: the concept, pack or assortment is shown, what appeals to whom is recorded, and answers are compared across segments.",
+    "que_hace_items": [
+      "Avatars trained on transactional data and the company's own research",
+      "Dozens of profiles, one per relevant segment",
+      "Exposure to catalog, concept or packaging",
+      "A reading of which attribute moves which segment"
+    ],
+    "valor_h2": "A filter ahead of the large spend",
+    "valor_p": "Producing an assortment or convening a focus group costs weeks and budget. Running the concept against simulated personas discards early what nobody wants, and leaves research with real people for the options that survive the filter.",
+    "sowhat": "It settles which concepts reach production and which are dropped before money goes into them.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It validates the value attributes surfaced by Value-Attribute Compass and feeds the arguments Training Signal takes to the sales force.",
+    "ctastrip_h2": "What does it cost today to find out late that a concept did not work?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call",
+    "demo": {
+      "eyebrow": "Scenario · synthetic panel · reaction",
+      "titulo": "The panel answers before the lever moves",
+      "intro": "Four synthetic buyers of a consumer category sold in physical stores, each one with the attributes that weigh on the decision. A commercial move is picked and every persona answers with its expected reaction and the consequence it leaves. The answers are written in advance: what this shows is the method, not a live run.",
+      "escenarios_label": "Commercial move",
+      "atributos_label": "Weight in the decision",
+      "consecuencia_label": "Consequence",
+      "escenarios": [
+        {
+          "titulo": "The main line's price goes up 5%"
+        },
+        {
+          "titulo": "The promotion moves from 2-for-1 to 20% off"
+        },
+        {
+          "titulo": "The product is out of shelf for a week"
+        }
+      ],
+      "personas": [
+        {
+          "nombre": "Renata",
+          "perfil": "Price sensitive",
+          "atributos": [
+            {
+              "k": "Price",
+              "v": 85
+            },
+            {
+              "k": "Promotion",
+              "v": 62
+            },
+            {
+              "k": "Brand",
+              "v": 24
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Compares against the store brand and switches as soon as the gap shows on the shelf tag.",
+              "consecuencia": "Volume moves inside the same shelf, without the shopper leaving the store."
+            },
+            {
+              "reaccion": "Works out the saving per unit and sees the discount pays less than taking two.",
+              "consecuencia": "Units per visit fall in the very segment that carries the volume."
+            },
+            {
+              "reaccion": "Takes the cheapest alternative on the shelf that same day.",
+              "consecuencia": "The stockout pays for a competitor's product trial."
+            }
+          ]
+        },
+        {
+          "nombre": "Alonso",
+          "perfil": "Brand loyal",
+          "atributos": [
+            {
+              "k": "Brand",
+              "v": 90
+            },
+            {
+              "k": "Service",
+              "v": 54
+            },
+            {
+              "k": "Price",
+              "v": 22
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Pays the increase without comparing, as long as the brand stays on its usual shelf.",
+              "consecuencia": "The increase turns into margin, not into lost volume."
+            },
+            {
+              "reaccion": "The mechanic makes no difference: buys the same quantity as always.",
+              "consecuencia": "The discount goes to someone who was going to buy anyway."
+            },
+            {
+              "reaccion": "Waits for the next visit before considering another brand.",
+              "consecuencia": "The sale is postponed, not lost, if the stockout does not repeat."
+            }
+          ]
+        },
+        {
+          "nombre": "Beatriz",
+          "perfil": "Convenience driven",
+          "atributos": [
+            {
+              "k": "Availability",
+              "v": 88
+            },
+            {
+              "k": "Service",
+              "v": 48
+            },
+            {
+              "k": "Price",
+              "v": 36
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Barely registers the change: decides by what is at hand along the usual route.",
+              "consecuencia": "The increase passes without friction while the product stays where it is already looked for."
+            },
+            {
+              "reaccion": "Ignores the mechanic because the trip is not planned.",
+              "consecuencia": "Promotional spend does not move a shopper who buys by proximity."
+            },
+            {
+              "reaccion": "Solves it with whatever is there and does not come back for the brand.",
+              "consecuencia": "The stockout costs the repeat purchase, not just the week's sale."
+            }
+          ]
+        },
+        {
+          "nombre": "Damián",
+          "perfil": "Promotion driven",
+          "atributos": [
+            {
+              "k": "Promotion",
+              "v": 92
+            },
+            {
+              "k": "Price",
+              "v": 71
+            },
+            {
+              "k": "Brand",
+              "v": 28
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Steps out of regular price and waits for the next offer.",
+              "consecuencia": "Volume concentrates in promo weeks and regular price loses traction."
+            },
+            {
+              "reaccion": "Compares the discount against the 2-for-1 and takes a single unit.",
+              "consecuencia": "The volume the previous mechanic sustained comes down."
+            },
+            {
+              "reaccion": "Switches brand at no cost and stays with the one found on offer.",
+              "consecuencia": "The most volatile segment leaves with whoever had product."
+            }
+          ]
+        }
+      ],
+      "pie": [
+        {
+          "k": "Each segment on its own",
+          "v": "Each segment is read on its own, because the same move lifts volume in one and sinks it in another."
+        },
+        {
+          "k": "Before the lever moves",
+          "v": "The conversation with the personas takes hours, while the price or the mechanic can still be rewritten."
+        }
+      ],
+      "simulacion": "Illustrative personas and answers over synthetic data."
+    }
+  },
+  "pt": {
+    "__title": "Imberion — Virtual Buyer Personas",
+    "familia_label": "Twin · simular",
+    "hero_eyebrow": "Virtual Buyer Personas · Família Twin",
+    "hero_h1": "Compradores simulados que reagem ao catálogo antes de produzi-lo.",
+    "hero_lead": "Virtual Buyer Personas constrói dezenas de avatares que se comportam como os compradores reais da empresa, treinados com os dados transacionais e os estudos dela. Catálogo ou conceitos são apresentados a eles, e o que escolhem é observado.",
+    "que_hace_h2": "Um painel de compradores simulados",
+    "que_hace_p": "Cada persona é montada com o histórico de compra, a segmentação vigente e os estudos que já existem, e responde como o segmento que representa. A rodada leva horas: mostra-se o conceito, a embalagem ou o sortimento, registra-se o que atrai quem e comparam-se as respostas entre segmentos.",
+    "que_hace_items": [
+      "Avatares treinados com dados transacionais e estudos próprios",
+      "Dezenas de perfis, um por segmento relevante",
+      "Exposição a catálogo, conceito ou embalagem",
+      "Leitura de qual atributo move qual segmento"
+    ],
+    "valor_h2": "Um filtro antes do gasto grande",
+    "valor_p": "Produzir um sortimento ou convocar um focus group custa semanas e orçamento. Rodar o conceito contra as personas simuladas descarta antes o que ninguém quer, e deixa a pesquisa com pessoas reais para as opções que sobrevivem ao filtro.",
+    "sowhat": "Define quais conceitos chegam à produção e quais são descartados antes de haver gasto neles.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Valida os atributos de valor que o Value-Attribute Compass levanta e alimenta os argumentos que o Training Signal leva à força de vendas.",
+    "ctastrip_h2": "Quanto custa hoje descobrir tarde que um conceito não funcionava?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada",
+    "demo": {
+      "eyebrow": "Cenário · painel sintético · reação",
+      "titulo": "As personas respondem antes de mover a alavanca",
+      "intro": "Quatro compradores sintéticos de uma categoria de consumo em loja física, cada um com os atributos que pesam na decisão. Escolhe-se um movimento comercial e cada persona responde com a reação esperada e a consequência que deixa. As respostas estão escritas de antemão: o que se mostra é o método, não uma rodada ao vivo.",
+      "escenarios_label": "Movimento comercial",
+      "atributos_label": "Peso na decisão",
+      "consecuencia_label": "Consequência",
+      "escenarios": [
+        {
+          "titulo": "O preço da linha principal sobe 5 %"
+        },
+        {
+          "titulo": "A promoção passa de 2x1 para 20 % de desconto"
+        },
+        {
+          "titulo": "O produto falta na gôndola por uma semana"
+        }
+      ],
+      "personas": [
+        {
+          "nombre": "Renata",
+          "perfil": "Sensível ao preço",
+          "atributos": [
+            {
+              "k": "Preço",
+              "v": 85
+            },
+            {
+              "k": "Promoção",
+              "v": 62
+            },
+            {
+              "k": "Marca",
+              "v": 24
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Compara com a marca própria da loja e troca quando a diferença aparece na etiqueta.",
+              "consecuencia": "O volume migra dentro da mesma gôndola, sem o comprador sair da loja."
+            },
+            {
+              "reaccion": "Calcula a economia por unidade e vê que o desconto rende menos do que levar duas.",
+              "consecuencia": "Cai a carga por visita justamente no segmento que sustenta o volume."
+            },
+            {
+              "reaccion": "Leva a alternativa mais barata que encontra no mesmo dia.",
+              "consecuencia": "A falta paga o teste de produto da marca concorrente."
+            }
+          ]
+        },
+        {
+          "nombre": "Alonso",
+          "perfil": "Fiel à marca",
+          "atributos": [
+            {
+              "k": "Marca",
+              "v": 90
+            },
+            {
+              "k": "Atendimento",
+              "v": 54
+            },
+            {
+              "k": "Preço",
+              "v": 22
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Paga o aumento sem comparar enquanto a marca seguir na gôndola de sempre.",
+              "consecuencia": "A alta vira margem, não perda de volume."
+            },
+            {
+              "reaccion": "A mecânica é indiferente: compra a mesma quantidade de sempre.",
+              "consecuencia": "O desconto vai para quem já ia comprar igual."
+            },
+            {
+              "reaccion": "Espera a próxima visita antes de considerar outra marca.",
+              "consecuencia": "A venda é adiada, não perdida, se a falta não se repetir."
+            }
+          ]
+        },
+        {
+          "nombre": "Beatriz",
+          "perfil": "Compra por conveniência",
+          "atributos": [
+            {
+              "k": "Disponibilidade",
+              "v": 88
+            },
+            {
+              "k": "Atendimento",
+              "v": 48
+            },
+            {
+              "k": "Preço",
+              "v": 36
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Mal percebe a mudança: decide pelo que está à mão no trajeto de sempre.",
+              "consecuencia": "A alta passa sem atrito enquanto o produto seguir onde já é procurado."
+            },
+            {
+              "reaccion": "Ignora a mecânica porque não planeja a compra.",
+              "consecuencia": "O investimento promocional não move quem compra por proximidade."
+            },
+            {
+              "reaccion": "Resolve com o que encontra e não volta para procurar a marca.",
+              "consecuencia": "A falta custa a recompra, não só a venda da semana."
+            }
+          ]
+        },
+        {
+          "nombre": "Damián",
+          "perfil": "Compra em promoção",
+          "atributos": [
+            {
+              "k": "Promoção",
+              "v": 92
+            },
+            {
+              "k": "Preço",
+              "v": 71
+            },
+            {
+              "k": "Marca",
+              "v": 28
+            }
+          ],
+          "respuestas": [
+            {
+              "reaccion": "Sai do preço regular e espera a próxima oferta.",
+              "consecuencia": "O volume se concentra nas semanas promocionais e o preço regular perde tração."
+            },
+            {
+              "reaccion": "Compara o desconto com o 2x1 e leva uma única peça.",
+              "consecuencia": "Cai o volume que a mecânica anterior sustentava."
+            },
+            {
+              "reaccion": "Troca de marca sem custo e fica com a que encontrou em oferta.",
+              "consecuencia": "O segmento mais volátil vai com quem tinha produto."
+            }
+          ]
+        }
+      ],
+      "pie": [
+        {
+          "k": "Cada segmento em separado",
+          "v": "Cada segmento é lido separadamente, porque o mesmo movimento sobe o volume em um e derruba em outro."
+        },
+        {
+          "k": "Antes de mover a alavanca",
+          "v": "A conversa com as personas leva horas, quando o preço ou a mecânica ainda podem ser reescritos."
+        }
+      ],
+      "simulacion": "Personas e respostas ilustrativas sobre dados sintéticos."
+    }
+  }
+}

@@ -1,0 +1,397 @@
+---
+// La columna del home (spec §8.1): un solo campo de partículas, ligado al
+// progreso de scroll de este bloque, que recorre ruido -> señal -> resultado.
+// Absorbe el canvas que antes vivía suelto en el hero: no conviven dos.
+// El hero entra por <slot /> y abre el arco; las tres etapas con texto (ruido,
+// señal, resultado) viven aquí. El lienzo es sticky y el contenido pasa por
+// encima.
+interface Props {
+  etiquetas: string[];
+  ruido: { h: string; p: string };
+  senal: { h: string; p: string };
+  resultado: { h: string; p: string };
+}
+const { etiquetas, ruido, senal, resultado } = Astro.props;
+---
+
+<div class="columna" data-columna>
+  <div class="columna-lienzo">
+    <canvas class="columna-canvas" data-columna-canvas aria-hidden="true"></canvas>
+  </div>
+  <div class="columna-rail-capa">
+    <ol class="columna-rail" data-columna-rail>
+      {etiquetas.map((e, i) => (
+        <li class="columna-rail-item" data-fase={i}>
+          <span class="columna-rail-num">{`0${i + 1}`}</span>
+          <span class="columna-rail-txt">{e}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <slot />
+
+  <section class="col-etapa" id="etapa-ruido" data-etapa="ruido">
+    <div class="container">
+      <div class="col-etapa-txt">
+        <h2>{ruido.h}</h2>
+        <p class="lead">{ruido.p}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-etapa" id="etapa-senal" data-etapa="senal">
+    <div class="container">
+      <div class="col-etapa-txt">
+        <h2>{senal.h}</h2>
+        <p class="lead">{senal.p}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-etapa" id="etapa-resultado" data-etapa="resultado">
+    <div class="container">
+      <div class="col-etapa-txt">
+        <h2>{resultado.h}</h2>
+        <p class="lead">{resultado.p}</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  /* Columna del home. Canvas 2D sin dependencias, técnica del snippet de marca
+     anim_noise_to_signal.html, con dos cambios: la dirección es de afuera hacia
+     adentro (el ruido nace en todo el viewport y converge al eje) y la
+     convergencia cuelga del scroll, no de un ciclo de tiempo.
+
+     El bloque son 4 pantallas de 100vh (hero + ruido + señal + resultado), así
+     que el scroll total es 3 pantallas y cada bloque de texto queda encuadrado
+     en p = 0, 1/3, 2/3 y 1. Un bloque está EN CUADRO (parcial o completo) desde
+     p = k/3 - 1/3 hasta k/3 + 1/3. Regla de CP11b: cada transformación corre
+     mientras el texto de su etapa está en cuadro, no en el hueco entre textos.
+     Antes conv era 0.42-0.65 y res 0.74-0.96: la conversión terminaba antes de
+     que el texto de Señal (0.667) llegara a cuadro y empezaba después de que el
+     de Ruido (0.333) saliera; el lector iba a media rodada y no veía nada.
+
+     Fases por progreso p del bloque (0 = arriba del hero, 1 = fin de resultado):
+       p 0.00-0.47  ruido      campo entero moteado, agitado y parpadeante;
+                               sostenido a través del hero y de la etapa Ruido (1/3)
+       p 0.47-0.68  convergen  Señal ya está en cuadro (entra en 0.333, mitad en
+                               0.50, completa en 0.667): el ruido se filtra (tres
+                               de cada cuatro partículas se apagan) y el resto se
+                               ordena en una serie sobre un eje; al encuadre exacto
+                               de Señal la serie ya está resuelta
+       p 0.68-0.82  señal      serie y eje sostenidos
+       p 0.82-0.98  resuelven  Resultado entra en 0.667 y queda completo en 1:
+                               la serie se vuelve la curva con punto de decisión
+       p 0.98-1.00  resultado  curva y punto de decisión sostenidos
+
+     Contraste de estado (CP11b): el ruido es todo el viewport, con menos
+     densidad sobre la columna de texto; la señal es un cuarto de las partículas,
+     más grandes, más brillantes y en petróleo, sobre un eje con marcas. Una
+     senoidal decía "los puntos se alinearon"; una serie con eje dice "el ruido
+     se volvió una lectura".
+
+     El petróleo (§8.6) entra SOLO aquí y solo en la ventana de transformación:
+     sube con la convergencia, se sostiene mientras hay señal y se apaga al
+     resolverse en resultado. petro = conv * (1 - res). En ningún otro elemento. */
+  (function () {
+    var raiz = document.querySelector('[data-columna]');
+    if (!raiz) return;
+    var canvas = raiz.querySelector('[data-columna-canvas]');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var items = raiz.querySelectorAll('.columna-rail-item');
+    var estatico = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var CONV_INI = 0.47, CONV_LARGO = 0.21;
+    var RES_INI = 0.82, RES_LARGO = 0.16;
+
+    var W = 0, H = 0, cx = 0, cy = 0, ancho = 0, alto = 0, amp = 0, piso = 0;
+    var pts = [], progreso = 0, cuadro = 0, corriendo = false, faseVista = -1;
+
+    var BLANCO = [255, 255, 255];
+    var PAPEL = [237, 234, 228];       /* --paper  */
+    var PETROLEO = [82, 160, 172];     /* --petrol-bright */
+
+    function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+    function mezcla(a, b, t) {
+      return [
+        Math.round(a[0] + (b[0] - a[0]) * t),
+        Math.round(a[1] + (b[1] - a[1]) * t),
+        Math.round(a[2] + (b[2] - a[2]) * t),
+      ];
+    }
+    function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a.toFixed(3) + ')'; }
+
+    /* Señal: una serie de 48 lecturas sobre un eje. La serie sale de un
+       generador con semilla fija para que sea la misma en cada carga y en cada
+       resize: es una lectura, no un dibujo distinto cada vez. */
+    var NODOS = 48;
+    var serie = (function () {
+      var v = [], x = 20250906, k, prev = 0;
+      for (k = 0; k < NODOS; k++) {
+        x = (x * 1103515245 + 12345) % 2147483648;
+        var r = x / 2147483648 * 2 - 1;
+        /* Paseo con retorno al centro: oscila, no se va. */
+        prev = prev * 0.55 + r * 0.75;
+        v.push(prev);
+      }
+      var m = 0;
+      for (k = 0; k < NODOS; k++) if (Math.abs(v[k]) > m) m = Math.abs(v[k]);
+      for (k = 0; k < NODOS; k++) v[k] = v[k] / m;
+      return v;
+    })();
+    function senalX(u) { return cx - ancho / 2 + u * ancho; }
+    function senalY(u) {
+      var f = u * (NODOS - 1), k = Math.floor(f), t = f - k;
+      var a = serie[k], b = serie[k + 1 < NODOS ? k + 1 : k];
+      return cy + (a + (b - a) * t) * amp;
+    }
+    /* Resultado: la serie se resuelve en una tendencia que sube con un rizo
+       corto. Es la lectura concreta, no una ilustración: curva + punto de decisión. */
+    function resX(u) { return cx - ancho / 2 + u * ancho; }
+    function resY(u) {
+      var e = u * u * (3 - 2 * u);
+      return cy + alto * (0.46 - e) + Math.sin(u * Math.PI * 2) * alto * 0.055;
+    }
+    var U_DECISION = 0.74;
+
+    function geometria() {
+      var angosto = W < 760;
+      cx = W >= 1024 ? W * 0.615 : W * 0.5;
+      /* En pantalla angosta el texto ocupa el ancho completo y va centrado:
+         la figura baja para no quedar encima de la lectura. */
+      cy = angosto ? H * 0.78 : H * 0.5;
+      ancho = angosto ? W * 0.74 : Math.min(W * 0.54, 1000);
+      /* La amplitud cuelga del ancho, no del alto del viewport: atada al alto,
+         en 390px la serie se cerraba en un rizo en vez de leerse como lectura. */
+      amp = Math.min(ancho * 0.11, 96);
+      alto = Math.min(ancho * 0.34, 300);
+      piso = cy + alto * 0.56;
+    }
+
+    function sembrar() {
+      var angosto = W < 760;
+      var n = angosto ? 320 : 900;
+      var vivos = 0;
+      pts = [];
+      for (var i = 0; i < n; i++) {
+        /* Ruido: todo el viewport, incluidos los bordes. La columna de texto
+           (izquierda en desktop) recibe un cuarto de la densidad para que el
+           texto de las etapas no salga moteado. */
+        var x, y, intentos = 0;
+        do {
+          x = (Math.random() * 1.08 - 0.04) * W;
+          y = (Math.random() * 1.08 - 0.04) * H;
+          intentos++;
+        } while (!angosto && x < W * 0.36 && Math.random() < 0.75 && intentos < 8);
+        pts.push({
+          nx: x, ny: y,
+          vivo: i % 4 === 0,
+          u: 0, sx: 0, sy: 0, rx: 0, ry: 0,
+          ph: Math.random() * 6.283,
+          r: Math.random() * 1.3 + 0.6,
+          al: Math.random() * 0.45 + 0.35,
+        });
+        if (pts[i].vivo) vivos++;
+      }
+      /* Las que sobreviven al filtro se reparten a lo largo de la serie. */
+      var k = 0;
+      for (var j = 0; j < n; j++) {
+        var p = pts[j];
+        if (!p.vivo) continue;
+        p.u = vivos === 1 ? 0.5 : k / (vivos - 1);
+        p.sx = senalX(p.u); p.sy = senalY(p.u);
+        p.rx = resX(p.u); p.ry = resY(p.u);
+        k++;
+      }
+    }
+
+    /* Gancho de QA visual: ?columna=0.45 congela el progreso en ese valor para
+       poder capturar cualquier punto del arco en headless, donde no hay scroll.
+       Sin el parámetro no cambia nada. */
+    var forzado = null;
+    var mQA = /[?&]columna=([01](?:\.\d+)?)/.exec(window.location.search);
+    if (mQA) forzado = parseFloat(mQA[1]);
+
+    function medir() {
+      if (forzado !== null) { progreso = forzado; return; }
+      var r = raiz.getBoundingClientRect();
+      var total = r.height - window.innerHeight;
+      progreso = total <= 0 ? 1 : clamp01(-r.top / total);
+    }
+
+    function rail(fase) {
+      if (fase === faseVista) return;
+      faseVista = fase;
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.toggle('on', i === fase);
+        items[i].classList.toggle('pasada', i < fase);
+      }
+    }
+
+    function eje(alpha) {
+      if (alpha <= 0.004) return;
+      var x0 = cx - ancho / 2, x1 = cx + ancho / 2;
+      ctx.beginPath();
+      ctx.moveTo(x0, piso);
+      ctx.lineTo(x1, piso);
+      for (var m = 0; m <= 8; m++) {
+        var xm = x0 + (x1 - x0) * (m / 8);
+        ctx.moveTo(xm, piso);
+        ctx.lineTo(xm, piso + 7);
+      }
+      ctx.strokeStyle = rgba(PAPEL, alpha);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    function dibujar() {
+      var conv = estatico ? 1 : ease(clamp01((progreso - CONV_INI) / CONV_LARGO));
+      var res = estatico ? 1 : ease(clamp01((progreso - RES_INI) / RES_LARGO));
+      var petro = conv * (1 - res);
+      rail(res > 0.5 ? 2 : conv > 0.45 ? 1 : 0);
+
+      var base = mezcla(BLANCO, PAPEL, res);
+      var color = mezcla(base, PETROLEO, petro);
+      var t = cuadro * 0.008;
+      var ampRuido = 30 * (1 - conv);
+      var ampSenal = 2.4 * conv * (1 - res);
+      /* El ruido se filtra: las partículas que no sobreviven se apagan en el
+         primer tramo de la convergencia, mientras se ve el texto de Señal. */
+      var muerte = 1 - clamp01(conv / 0.7);
+
+      ctx.clearRect(0, 0, W, H);
+
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        /* Parpadeo solo en el estado de ruido: se lee como interferencia. */
+        var parpadeo = 0.6 + 0.4 * Math.sin(t * 1.9 + p.ph * 3.1);
+        var aRuido = p.al * parpadeo;
+        var x, y, radio, alpha;
+        if (p.vivo) {
+          var bx = p.nx + (p.sx - p.nx) * conv;
+          var by = p.ny + (p.sy - p.ny) * conv;
+          x = bx + (p.rx - bx) * res;
+          y = by + (p.ry - by) * res;
+          radio = p.r * (1 - conv) + (1.75 + p.r * 0.35) * conv;
+          radio *= 1 - res * 0.18;
+          alpha = aRuido + (0.95 - aRuido) * conv;
+        } else {
+          x = p.nx + (cx - p.nx) * conv * 0.18;
+          y = p.ny + (cy - p.ny) * conv * 0.18;
+          radio = p.r * muerte;
+          alpha = aRuido * muerte;
+        }
+        if (alpha < 0.01) continue;
+        if (!estatico) {
+          var a1 = ampRuido + ampSenal;
+          x += Math.sin(t * 0.62 + p.ph) * a1 + Math.sin(t * 0.27 + p.ph * 0.7) * a1 * 0.42;
+          y += Math.cos(t * 0.78 + p.ph * 1.15) * a1 * 0.72 + Math.cos(t * 0.33 + p.ph) * a1 * 0.3;
+        }
+        ctx.beginPath();
+        ctx.arc(x, y, radio, 0, 6.283);
+        ctx.fillStyle = rgba(color, alpha);
+        ctx.fill();
+      }
+
+      /* Eje: aparece con la señal y se queda para el resultado; el punto de
+         decisión cae sobre él. */
+      eje(clamp01((conv - 0.55) / 0.3) * 0.3);
+
+      /* Traza de la señal: aparece cuando ya convergió y se apaga al resolverse. */
+      var aSenal = clamp01((conv - 0.5) / 0.3) * 0.42 * (1 - res);
+      if (aSenal > 0.004) {
+        ctx.beginPath();
+        for (var s = 0; s <= 120; s++) {
+          var us = s / 120;
+          if (s === 0) ctx.moveTo(senalX(us), senalY(us));
+          else ctx.lineTo(senalX(us), senalY(us));
+        }
+        ctx.strokeStyle = rgba(color, aSenal);
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+      }
+
+      /* Resultado: la curva se traza sola conforme se resuelve. */
+      if (res > 0.02) {
+        var hasta = Math.min(1, res * 1.18);
+        ctx.beginPath();
+        for (var q = 0; q <= 90; q++) {
+          var uq = (q / 90) * hasta;
+          if (q === 0) ctx.moveTo(resX(uq), resY(uq));
+          else ctx.lineTo(resX(uq), resY(uq));
+        }
+        ctx.strokeStyle = rgba(base, res * 0.62);
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        if (hasta >= U_DECISION) {
+          var aD = clamp01((hasta - U_DECISION) / 0.18);
+          var dx = resX(U_DECISION), dy = resY(U_DECISION);
+          ctx.beginPath();
+          ctx.moveTo(dx, dy);
+          ctx.lineTo(dx, piso);
+          ctx.strokeStyle = rgba(base, aD * 0.3);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(dx, dy, 3.6, 0, 6.283);
+          ctx.fillStyle = rgba(base, aD * 0.95);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(dx, dy, 9.5, 0, 6.283);
+          ctx.strokeStyle = rgba(base, aD * 0.28);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    function dimensionar() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = canvas.clientWidth || window.innerWidth;
+      H = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      geometria();
+      sembrar();
+      if (!estatico) medir();
+      dibujar();
+    }
+
+    function bucle() {
+      if (!corriendo) return;
+      cuadro++;
+      medir();
+      dibujar();
+      requestAnimationFrame(bucle);
+    }
+
+    dimensionar();
+
+    var reajuste;
+    window.addEventListener('resize', function () {
+      clearTimeout(reajuste);
+      reajuste = setTimeout(dimensionar, 160);
+    });
+
+    if (estatico) return;
+
+    /* El bucle solo corre mientras la columna está en pantalla. */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entradas) {
+        var dentro = entradas[0].isIntersecting;
+        if (dentro && !corriendo) { corriendo = true; requestAnimationFrame(bucle); }
+        else if (!dentro) { corriendo = false; }
+      }, { rootMargin: '80px' }).observe(raiz);
+    } else {
+      corriendo = true;
+      requestAnimationFrame(bucle);
+    }
+  })();
+</script>

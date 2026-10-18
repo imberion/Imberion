@@ -1,0 +1,817 @@
+---
+// Mini-demo de Concierge: la misma conversación de tres momentos (queja y
+// reposición → venta cruzada con lealtad → cierre) narrada paso a paso, ahora
+// dentro del chrome de una aplicación real (CP11e): barra de ventana, hilo de
+// conversación con compositor, y un panel lateral donde el cerebro lee al
+// cliente y dispara las acciones. Antes era el diagrama de tres columnas con
+// flechas portado tal cual de la lámina del deck, y por eso no se sentía
+// producto.
+//
+// Sigue enseñando las tres capas (decisión comercial registrada en
+// 00_imberion/comercial/concierge/README.md): 01 front omnicanal es el hilo
+// de la conversación, 02 el cerebro y 03 las acciones son el panel lateral.
+// Mismos 12 `data-step` y mismo motor que la versión anterior.
+//
+// El fondo desenfocado detrás de la ventana es la foto real de sector de
+// retail (src/assets/industrias/retail.jpg), no un degradado inventado.
+//
+// El contenedor lleva `data-dialogo` porque los globos son habla citada entre
+// un cliente y el servicio de atención: ahí la segunda persona es del
+// personaje, no del sitio, y el grep de segunda persona debe excluir el bloque.
+import { Image } from 'astro:assets';
+import fondo from '../../assets/industrias/retail.jpg';
+
+export interface DemoConciergeContenido {
+  titulo: string;
+  intro: string;
+  capas: Array<{ num: string; label: string }>;
+  globos: Array<{ paso: number; lado: 'cli' | 'bot'; quien: string; texto: string }>;
+  senales: Array<{ paso: number; clave: string; valor: string; vp?: boolean }>;
+  acciones: Array<{ paso: number; texto: string; soft?: boolean }>;
+  pie: Array<{ k: string; v: string }>;
+  paso_label: string;
+  btn_siguiente: string;
+  btn_reiniciar: string;
+  simulacion: string;
+  /** Chrome de la aplicación (CP11e): textos que solo existen en la ventana. */
+  app: { producto: string; contacto: string; canal: string; estado: string; compositor: string; fondo_alt: string };
+}
+
+interface Props {
+  contenido: DemoConciergeContenido;
+}
+
+const { contenido: d } = Astro.props;
+
+const pasos = [
+  ...d.globos.map((g) => g.paso),
+  ...d.senales.map((s) => s.paso),
+  ...d.acciones.map((a) => a.paso),
+];
+const maxPaso = Math.max(...pasos);
+
+// Iniciales del contacto para el avatar, como las pinta cualquier mensajería.
+const iniciales = d.app.contacto
+  .split(/\s+/)
+  .map((w) => w[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+
+// Glifos de canal del front omnicanal (voz, WhatsApp, correo, SMS, Instagram,
+// TikTok, LinkedIn, Facebook). Monocromos, heredados del material comercial:
+// marcas reales, nada de iconografía de juguete.
+const canales = [
+  {
+    n: 'Voz',
+    d: '<path d="M6.6 3.5c.5 0 .9.3 1 .8l.8 3c.12.5-.05 1-.45 1.3L6.5 9.9a12 12 0 0 0 5.6 5.6l1.3-1.45c.3-.4.8-.55 1.3-.45l3 .8c.5.12.8.5.8 1V19c0 1.1-.9 2-2 2A15 15 0 0 1 4 6.5c0-1.1.9-2 2-2z"/>',
+    fill: true,
+  },
+  {
+    n: 'WhatsApp',
+    d: '<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3zm0 1.9a7.1 7.1 0 1 1-3.7 13.2l-.3-.2-2.5.65.66-2.4-.2-.3A7.1 7.1 0 0 1 12 4.9z"/><path d="M9.3 7.9c.18 0 .38.01.54.4l.6 1.45c.08.2.02.42-.1.55l-.45.55c.5 1 1.3 1.7 2.3 2.2l.55-.6c.13-.16.34-.2.52-.12l1.45.6c.3.13.4.32.4.55.02 1-.85 1.75-1.8 1.65A6.1 6.1 0 0 1 8 9.5c-.1-.85.45-1.6 1.3-1.6z" fill="var(--paper-warm)"/>',
+    fill: true,
+  },
+  {
+    n: 'Correo',
+    d: '<rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
+    fill: false,
+  },
+  {
+    n: 'SMS',
+    d: '<path d="M4 5h16v11H9l-4 3v-3H4z"/><circle cx="9" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12" cy="10.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r=".9" fill="currentColor" stroke="none"/>',
+    fill: false,
+  },
+  {
+    n: 'Instagram',
+    d: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>',
+    fill: false,
+  },
+  {
+    n: 'TikTok',
+    d: '<path d="M14.2 3c.32 2.2 1.6 3.7 3.8 3.95v2.5c-1.3.08-2.5-.3-3.8-1.05V15a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6.02.9.07v2.6a2.6 2.6 0 1 0 1.8 2.5V3h2.5z"/>',
+    fill: true,
+  },
+  {
+    n: 'LinkedIn',
+    d: '<rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M8 10.6v6"/><path d="M8 7.6v.01"/><path d="M12 16.6v-3.4a2 2 0 0 1 4 0v3.4"/><path d="M12 16.6v-6"/>',
+    fill: false,
+  },
+  {
+    n: 'Facebook',
+    d: '<path d="M13.6 21v-7h2.35l.42-2.75h-2.77V9.45c0-.8.22-1.34 1.36-1.34l1.5-.01V5.66c-.26-.03-1.16-.11-2.2-.11-2.18 0-3.67 1.33-3.67 3.77v2.1H8.2V14h2.4v7h3z"/>',
+    fill: true,
+  },
+];
+---
+
+<section class="demo-bloque" id="mini-demo">
+  <div class="container">
+    <div class="demo-head">
+      <div>
+        <div class="eyebrow demo-eyebrow">{d.capas.map((c) => c.label).join(' · ')}</div>
+        <h2>{d.titulo}</h2>
+        <p class="cuerpo">{d.intro}</p>
+      </div>
+    </div>
+
+    <div class="app-escena">
+      <div class="app-fondo" aria-hidden="true">
+        <Image src={fondo} alt="" widths={[720, 1400]} sizes="(max-width: 900px) 100vw, 1400px" format="webp" quality={40} loading="lazy" decoding="async" />
+      </div>
+
+      <div
+        class="app-ventana"
+        data-dialogo
+        data-demo-concierge
+        data-max={maxPaso}
+        role="group"
+        aria-label={d.titulo}
+      >
+        <div class="app-barra">
+          <span class="app-marca"><span class="app-marca-o" aria-hidden="true"></span>{d.app.producto}</span>
+          <span class="app-titulo">{d.app.contacto} · {d.app.canal}</span>
+          <span class="app-estado"><span class="app-estado-dot" aria-hidden="true"></span>{d.app.estado}</span>
+        </div>
+
+        <div class="app-cuerpo">
+          <section class="chat" aria-label={d.capas[0].label}>
+            <header class="chat-cab">
+              <span class="chat-av" aria-hidden="true">{iniciales}</span>
+              <span class="chat-quien">
+                <span class="chat-nombre">{d.app.contacto}</span>
+                <span class="chat-meta">{d.app.canal} · {d.app.estado}</span>
+              </span>
+              <span class="chat-canales" aria-hidden="true">
+                {
+                  canales.map((c) => (
+                    <span class:list={['chat-ch', { on: c.n === 'WhatsApp' }]} title={c.n}>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill={c.fill ? 'currentColor' : 'none'}
+                        stroke={c.fill ? 'none' : 'currentColor'}
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                        set:html={c.d}
+                      />
+                    </span>
+                  ))
+                }
+              </span>
+              <span class="chat-capa" aria-hidden="true">{d.capas[0].num}</span>
+            </header>
+            <div class="chat-hilo">
+              {
+                d.globos.map((g) => (
+                  <div class={`bub ${g.lado} demo-ai`} data-step={g.paso}>
+                    <span class="who">{g.quien}</span>
+                    {g.texto}
+                  </div>
+                ))
+              }
+            </div>
+            <div class="chat-compositor" aria-hidden="true">
+              <span class="chat-input">{d.app.compositor}</span>
+              <span class="chat-enviar">↑</span>
+            </div>
+          </section>
+
+          <aside class="lateral">
+            <section class="lat" aria-label={d.capas[1].label}>
+              <header class="lat-cab">
+                <span class="lat-num">{d.capas[1].num}</span>
+                <span class="lat-label">{d.capas[1].label}</span>
+                <span class="lat-proc" aria-hidden="true"></span>
+              </header>
+              <div class="lat-in">
+                {
+                  d.senales.map((s) => (
+                    <div class={`sig demo-ai${s.vp ? ' vp' : ''}`} data-step={s.paso}>
+                      <span class="tk">{s.clave}</span>
+                      <span class="tv">{s.valor}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </section>
+            <section class="lat lat--acc" aria-label={d.capas[2].label}>
+              <header class="lat-cab">
+                <span class="lat-num">{d.capas[2].num}</span>
+                <span class="lat-label">{d.capas[2].label}</span>
+              </header>
+              <div class="lat-in">
+                {
+                  d.acciones.map((a) => (
+                    <div class={`act demo-ai${a.soft ? ' soft' : ''}`} data-step={a.paso}>
+                      <span class="ck" aria-hidden="true">✓</span>
+                      {a.texto}
+                    </div>
+                  ))
+                }
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-ctrl">
+      <button type="button" class="arch-btn" data-demo-next>
+        {d.btn_siguiente}
+        <span class="arch-btn-arrow" aria-hidden="true">→</span>
+      </button>
+      <button type="button" class="arch-btn arch-btn--ghost" data-demo-reset>
+        {d.btn_reiniciar}
+      </button>
+      <span class="arch-step" aria-live="polite">
+        <span class="arch-step-k">{d.paso_label}</span>
+        <span class="arch-step-n" data-demo-count>{`00 / ${String(maxPaso).padStart(2, '0')}`}</span>
+      </span>
+    </div>
+
+    <div class="arch-foot">
+      {
+        d.pie.map((f) => (
+          <div class="arch-fitem">
+            <div class="fk">{f.k}</div>
+            <div class="fv">{f.v}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="demo-nota">{d.simulacion}</p>
+  </div>
+</section>
+
+<style is:inline>
+  /* Tokens del sitio (site.css / shell.css). Monocromo navy sobre papel: sin
+     petróleo, sin ochre y sin verde. El punto de "en línea" va en slate. */
+  .demo-bloque {
+    scroll-margin-top: 86px;
+    padding: clamp(70px, 6.5vw, 150px) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .demo-head h2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.12;
+    font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+    max-width: 22ch;
+    margin-top: 12px;
+  }
+  .demo-bloque .demo-eyebrow { font-size: 11px; text-transform: uppercase; }
+  .demo-bloque .demo-head .cuerpo {
+    margin-top: 20px;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 1.72;
+    color: var(--navy-72);
+  }
+
+  /* ---------- la escena: foto desenfocada y la ventana encima ---------- */
+  .demo-bloque .app-escena {
+    position: relative;
+    margin-top: 46px;
+    padding: clamp(22px, 4vw, 64px) clamp(16px, 4vw, 64px);
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--navy-deep);
+    isolation: isolate;
+  }
+  .demo-bloque .app-fondo {
+    position: absolute;
+    inset: -40px;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .demo-bloque .app-fondo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(22px) saturate(0.55) brightness(0.62);
+    transform: scale(1.06);
+  }
+  .demo-bloque .app-fondo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(10, 24, 40, 0.55), rgba(6, 16, 28, 0.78));
+  }
+
+  .demo-bloque .app-ventana {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 40px 90px rgba(6, 16, 28, 0.5),
+      0 6px 18px rgba(6, 16, 28, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    color: var(--navy);
+  }
+
+  /* barra de ventana */
+  .demo-bloque .app-barra {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    height: 44px;
+    padding: 0 16px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .app-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+  .demo-bloque .app-marca-o {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    box-sizing: border-box;
+  }
+  .demo-bloque .app-titulo {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--navy-60);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .demo-bloque .app-estado {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .app-estado-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--slate);
+  }
+
+  .demo-bloque .app-cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr);
+    min-height: 520px;
+  }
+
+  /* ---------- 01 · la conversación ---------- */
+  .demo-bloque .chat {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--navy-12);
+    min-width: 0;
+  }
+  .demo-bloque .chat-cab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--navy-06);
+  }
+  .demo-bloque .chat-av {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--paper-warm);
+    font-family: var(--font-serif);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .demo-bloque .chat-quien { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .demo-bloque .chat-nombre { font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; }
+  .demo-bloque .chat-meta { font-family: var(--font-sans); font-size: 11px; color: var(--navy-60); }
+  .demo-bloque .chat-canales {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    color: var(--navy-40);
+  }
+  .demo-bloque .chat-ch {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  .demo-bloque .chat-ch svg { width: 13px; height: 13px; display: block; }
+  .demo-bloque .chat-ch.on { color: var(--navy); background: var(--paper); }
+  .demo-bloque .chat-capa,
+  .demo-bloque .lat-num {
+    /* Cifra suelta: DM Sans, nunca el "1" de Cormorant. */
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gray-blue);
+    font-variant-numeric: tabular-nums;
+  }
+  .demo-bloque .chat-hilo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 18px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(111, 133, 156, 0.08), transparent 55%),
+      var(--white);
+  }
+  .demo-bloque .bub {
+    font-size: 13.5px;
+    line-height: 1.45;
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 78%;
+    box-shadow: 0 1px 2px rgba(6, 16, 28, 0.06);
+  }
+  .demo-bloque .bub.cli {
+    align-self: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--navy-12);
+    border-bottom-left-radius: 4px;
+    color: var(--navy);
+  }
+  .demo-bloque .bub.bot {
+    align-self: flex-end;
+    background: var(--navy);
+    color: var(--paper-warm);
+    border-bottom-right-radius: 4px;
+  }
+  .demo-bloque .bub .who {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 3px;
+  }
+  .demo-bloque .chat-compositor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 14px;
+    border-top: 1px solid var(--navy-06);
+    background: var(--white);
+  }
+  .demo-bloque .chat-input {
+    flex: 1;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid var(--navy-20);
+    border-radius: 19px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--navy-40);
+  }
+  .demo-bloque .chat-enviar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- 02 y 03 · el panel lateral ---------- */
+  .demo-bloque .lateral {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper-warm);
+    min-width: 0;
+  }
+  .demo-bloque .lat { display: flex; flex-direction: column; }
+  .demo-bloque .lat:first-child { flex: 1; border-bottom: 1px solid var(--navy-12); }
+  .demo-bloque .lat-cab {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 18px 11px;
+    border-bottom: 1px solid var(--navy-06);
+  }
+  .demo-bloque .lat-label {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .demo-bloque .lat-proc {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--slate-soft);
+    margin-left: auto;
+  }
+  .demo-bloque .lat-in {
+    padding: 14px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .demo-bloque .sig {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 9px 12px;
+    background: var(--white);
+    border: 1px solid var(--navy-06);
+    border-left: 2px solid var(--slate-soft);
+    border-radius: 3px;
+  }
+  .demo-bloque .sig.vp { border-left-color: var(--navy); background: var(--paper-alt); }
+  .demo-bloque .sig .tk {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .sig .tv { font-size: 13px; line-height: 1.4; }
+  .demo-bloque .act {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    font-size: 13px;
+    line-height: 1.42;
+  }
+  .demo-bloque .act .ck {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .demo-bloque .act.soft { color: var(--navy-60); }
+  .demo-bloque .act.soft .ck { background: var(--slate-mist); color: var(--navy); }
+
+  /* ---------- control ---------- */
+  .demo-bloque .arch-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .demo-bloque .arch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 20px;
+    border-radius: var(--r);
+    border: 1px solid var(--navy);
+    background: var(--navy);
+    color: var(--paper-warm);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition:
+      background 0.28s var(--ease),
+      color 0.28s var(--ease),
+      border-color 0.28s var(--ease);
+  }
+  .demo-bloque .arch-btn:hover { background: var(--navy-soft); border-color: var(--navy-soft); }
+  .demo-bloque .arch-btn .arch-btn-arrow { display: inline-block; transition: transform 0.35s var(--ease); }
+  .demo-bloque .arch-btn:hover .arch-btn-arrow { transform: translateX(4px); }
+  .demo-bloque .arch-btn--ghost { background: transparent; color: var(--navy); border-color: var(--navy-20); }
+  .demo-bloque .arch-btn--ghost:hover { background: transparent; border-color: var(--navy); color: var(--navy); }
+  .demo-bloque .arch-step { display: inline-flex; align-items: baseline; gap: 8px; margin-left: auto; }
+  .demo-bloque .arch-step-k {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .arch-step-n {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+  }
+
+  /* ---------- pie ---------- */
+  .demo-bloque .arch-foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 22px;
+    margin-top: 24px;
+    border-top: 1px solid var(--navy-12);
+  }
+  .demo-bloque .arch-foot .fk { font-family: var(--font-sans); font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+  .demo-bloque .arch-foot .fv { font-size: 13px; line-height: 1.6; color: var(--navy-72); }
+  .demo-bloque .demo-nota { margin-top: 20px; font-size: 11.5px; line-height: 1.5; color: var(--navy-40); }
+
+  /* ---------- secuencia paso a paso ---------- */
+  .demo-bloque .demo-ai {
+    opacity: 0;
+    transform: translateY(5px);
+    transition:
+      opacity 0.45s var(--ease-io),
+      transform 0.45s var(--ease-io);
+  }
+  .demo-bloque .demo-ai.shown { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-bloque .demo-ai { opacity: 1; transform: none; transition: none; }
+    .arch-btn,
+    .demo-bloque .arch-btn .arch-btn-arrow { transition: none; }
+  }
+
+  @media (max-width: 900px) {
+    .demo-bloque .app-escena { padding: 14px; border-radius: 0; margin-left: calc(-1 * var(--gutter, 24px)); margin-right: calc(-1 * var(--gutter, 24px)); }
+    .demo-bloque .app-cuerpo { grid-template-columns: 1fr; min-height: 0; }
+    .demo-bloque .chat { border-right: 0; border-bottom: 1px solid var(--navy-12); }
+    .demo-bloque .chat-hilo { min-height: 320px; }
+    .demo-bloque .chat-canales { display: none; }
+    .demo-bloque .app-titulo { display: none; }
+    .demo-bloque .app-barra { grid-template-columns: 1fr auto; }
+    .demo-bloque .bub { max-width: 88%; }
+    .demo-bloque .arch-step { margin-left: 0; }
+  }
+</style>
+
+<script is:inline>
+  // Motor de la mini-demo. Sin dependencias: revela los elementos cuyo
+  // `data-step` ya pasó. Si nadie interactúa, avanza solo cada 2.5 s; en
+  // cuanto alguien toca un botón el avance automático se apaga.
+  (function () {
+    var raices = document.querySelectorAll('[data-demo-concierge]');
+    for (var r = 0; r < raices.length; r++) montar(raices[r]);
+
+    function montar(raiz) {
+      var items = raiz.querySelectorAll('.demo-ai');
+      var btnNext = raiz.querySelector('[data-demo-next]');
+      var btnReset = raiz.querySelector('[data-demo-reset]');
+      var contador = raiz.querySelector('[data-demo-count]');
+      var max = parseInt(raiz.getAttribute('data-max'), 10) || 0;
+      if (!items.length || !max) return;
+
+      var quieto =
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Arranca con el primer mensaje ya puesto: tres tarjetas vacías son una
+      // mala primera impresión mientras corre el primer intervalo.
+      var INICIO = 1;
+      var paso = INICIO;
+      var timer = null;
+      var pausado = false;
+      var automatico = !quieto;
+
+      // Parámetro de QA: ?demo=<paso> congela la demo en ese paso para poder
+      // capturarla. No cambia nada para quien navega el sitio.
+      var qa = null;
+      try {
+        var v = new URLSearchParams(window.location.search).get('demo');
+        if (v !== null && v !== '') {
+          var n = parseInt(v, 10);
+          if (!isNaN(n)) qa = Math.max(0, Math.min(max, n));
+        }
+      } catch (e) {
+        qa = null;
+      }
+
+      function dosDigitos(n) {
+        return (n < 10 ? '0' : '') + n;
+      }
+
+      function pintar() {
+        for (var i = 0; i < items.length; i++) {
+          var s = parseInt(items[i].getAttribute('data-step'), 10) || 0;
+          if (s <= paso) items[i].classList.add('shown');
+          else items[i].classList.remove('shown');
+        }
+        if (contador) contador.textContent = dosDigitos(paso) + ' / ' + dosDigitos(max);
+      }
+
+      function avanzar() {
+        if (paso < max) {
+          paso++;
+          pintar();
+          return true;
+        }
+        return false;
+      }
+
+      function detener() {
+        automatico = false;
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      function arrancar() {
+        if (!automatico || timer) return;
+        timer = setInterval(function () {
+          if (pausado) return;
+          if (!avanzar()) detener();
+        }, 2500);
+      }
+
+      if (btnNext)
+        btnNext.addEventListener('click', function () {
+          detener();
+          if (!avanzar()) {
+            paso = INICIO;
+            pintar();
+          }
+        });
+      if (btnReset)
+        btnReset.addEventListener('click', function () {
+          detener();
+          paso = INICIO;
+          pintar();
+        });
+
+      raiz.addEventListener('mouseenter', function () {
+        pausado = true;
+      });
+      raiz.addEventListener('mouseleave', function () {
+        pausado = false;
+      });
+      raiz.addEventListener('focusin', function () {
+        pausado = true;
+      });
+
+      if (qa !== null) {
+        detener();
+        paso = qa;
+        pintar();
+        return;
+      }
+
+      if (quieto) {
+        paso = max;
+        pintar();
+        return;
+      }
+
+      pintar();
+
+      // No arranca hasta que el bloque está a la vista: si arrancara al cargar,
+      // la conversación terminaría antes de que alguien llegue a leerla.
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(
+          function (entradas) {
+            for (var i = 0; i < entradas.length; i++) {
+              if (entradas[i].isIntersecting) {
+                arrancar();
+                obs.disconnect();
+              }
+            }
+          },
+          { threshold: 0.25 }
+        );
+        obs.observe(raiz);
+      } else {
+        arrancar();
+      }
+    }
+  })();
+</script>

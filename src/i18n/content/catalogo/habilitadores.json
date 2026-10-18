@@ -1,0 +1,77 @@
+{
+  "es": {
+    "__title": "Imberion — Habilitadores",
+    "familia_label": "Enabler · habilitar",
+    "hero_eyebrow": "Habilitadores · Familia Enabler",
+    "hero_h1": "Mejoras comerciales que el equipo del cliente sostiene al terminar el proyecto.",
+    "hero_lead": "Habilitadores deja en el cliente el área de gestión de crecimiento de ingresos (RGM, revenue growth management), las reuniones, los tableros y el esquema variable de ventas con los que se siguen tomando las decisiones de precio, mix y ejecución. El esquema variable se simula contra el histórico antes de anunciarlo.",
+    "que_hace_h2": "Lo que resuelve en la operación comercial",
+    "que_hace_p": "Cada decisión comercial tiene dueño, dato y reunión donde se toma, y la fuerza de ventas cobra por margen, mix y ejecución.",
+    "que_hace_items": [
+      "Un área de gestión de crecimiento de ingresos con roles y dueños definidos",
+      "Reuniones con fecha fija donde se deciden precio, mix y promociones",
+      "Tableros que se usan en esas reuniones",
+      "Claridad sobre quién aprueba cada decisión comercial",
+      "Un esquema variable que paga margen, mix y ejecución, con quién gana y quién pierde conocido antes del anuncio"
+    ],
+    "valor_h2": "Mejoras que el equipo sostiene al terminar el proyecto",
+    "valor_p": "Las mejoras de un proyecto se degradan cuando nadie del lado del cliente tiene el dato ni el mandato para sostenerlas al mes siguiente. Simular el esquema variable contra el histórico muestra quién gana y quién pierde antes del anuncio, que es donde estos rediseños se caen.",
+    "sowhat": "Deja al equipo del cliente con dueño, dato y reunión para cada decisión comercial cuando el proyecto termina.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Sostiene en el tiempo lo que deciden Pricing & Surtido y Política Comercial, y opera a nivel de área dentro del alcance mayor de Commercial & Operating Model.",
+    "ctastrip_h2": "¿Quién sostiene el modelo cuando termina el proyecto?",
+    "ctastrip_p": "Una conversación sin compromiso. Revisamos la operación comercial actual y por dónde conviene empezar.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Enablers",
+    "familia_label": "Enabler · enable",
+    "hero_eyebrow": "Habilitadores · Enabler family",
+    "hero_h1": "The client's team running the model, with Imberion out of the seat.",
+    "hero_lead": "Habilitadores builds or strengthens the client's revenue growth management (RGM) function: ways of working, dashboards, commercial governance, and the redesign of variable pay for the sales force.",
+    "que_hace_h2": "Function, governance, dashboards, and variable pay",
+    "que_hace_p": "It defines who decides what, on which data, and in which meeting, and dashboards are built for that cadence rather than for the year-end report. Variable pay is redesigned to reward margin, mix and execution, and the transition is simulated against history before it is announced.",
+    "que_hace_items": [
+      "Design of the revenue growth management function and its roles",
+      "Ways of working and decision cadence",
+      "Dashboards tied to the decisions actually taken",
+      "Commercial governance and decision rights",
+      "Redesign of the sales force variable pay scheme"
+    ],
+    "valor_h2": "Improvements that do not decay when the project ends",
+    "valor_p": "Project improvements decay when nobody on the client side holds the data or the mandate to sustain them the following month. Simulating the variable scheme against history shows who wins and who loses before the announcement, which is where these redesigns usually fail.",
+    "sowhat": "It leaves the capability to run the model installed once the project ends.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It sustains over time what Pricing & Surtido and Política Comercial decide, and works at function level inside the broader scope of Commercial & Operating Model.",
+    "ctastrip_h2": "Who sustains the model once the project ends?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review the current commercial operation and where it makes sense to start.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Habilitadores",
+    "familia_label": "Enabler · habilitar",
+    "hero_eyebrow": "Habilitadores · Família Enabler",
+    "hero_h1": "O time do cliente operando o modelo, com a Imberion fora da cadeira.",
+    "hero_lead": "Habilitadores monta ou fortalece a área de gestão de crescimento de receita (RGM, revenue growth management) do cliente: formas de trabalho, painéis, governança comercial e o redesenho da remuneração variável da força de vendas.",
+    "que_hace_h2": "Área, governança, painéis e remuneração variável",
+    "que_hace_p": "Define quem decide o quê, com que dado e em que reunião, e os painéis são construídos para essa cadência e não para o relatório de fim de ano. A remuneração variável é redesenhada para premiar margem, mix e execução, e a transição é simulada contra o histórico antes do anúncio.",
+    "que_hace_items": [
+      "Desenho da área de gestão de crescimento de receita e dos papéis que a compõem",
+      "Formas de trabalho e cadência de decisão",
+      "Painéis atados às decisões que de fato acontecem",
+      "Governança comercial e direitos de decisão",
+      "Redesenho do esquema variável da força de vendas"
+    ],
+    "valor_h2": "As melhorias que não se degradam ao terminar",
+    "valor_p": "As melhorias de um projeto se degradam quando ninguém do lado do cliente tem o dado nem o mandato para sustentá-las no mês seguinte. Simular o esquema variável contra o histórico mostra quem ganha e quem perde antes do anúncio, que é onde esses redesenhos costumam cair.",
+    "sowhat": "Deixa instalada a capacidade de operar o modelo quando o projeto termina.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Sustenta ao longo do tempo o que Pricing & Surtido e Política Comercial decidem, e opera em nível de área dentro do escopo maior de Commercial & Operating Model.",
+    "ctastrip_h2": "Quem sustenta o modelo quando o projeto termina?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos a operação comercial atual e por onde convém começar.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "framework": "astro",
+  "buildCommand": "astro build",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/industrias",
+      "destination": "/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/industrias/",
+      "destination": "/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/en/industries",
+      "destination": "/en/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/en/industries/",
+      "destination": "/en/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/pt/industrias",
+      "destination": "/pt/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/pt/industrias/",
+      "destination": "/pt/#sectors",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works.html",
+      "destination": "/#how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/como-funciona",
+      "destination": "/#how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/como-funciona/",
+      "destination": "/#how-it-works",
+      "permanent": true
+    },
+    {
+      "source": "/que-resolvemos",
+      "destination": "/#who",
+      "permanent": true
+    },
+    {
+      "source": "/que-resolvemos/",
+      "destination": "/#who",
+      "permanent": true
+    },
+    {
+      "source": "/how-we-operate.html",
+      "destination": "/como-operamos/",
+      "permanent": true
+    },
+    {
+      "source": "/estrategia.html",
+      "destination": "/catalogo/#estrategia",
+      "permanent": true
+    },
+    {
+      "source": "/market-signal.html",
+      "destination": "/catalogo/market-signal/",
+      "permanent": true
+    },
+    {
+      "source": "/floor-signal.html",
+      "destination": "/catalogo/floor-signal/",
+      "permanent": true
+    },
+    {
+      "source": "/concierge.html",
+      "destination": "/catalogo/concierge/",
+      "permanent": true
+    },
+    {
+      "source": "/retail.html",
+      "destination": "/industrias/retail/",
+      "permanent": true
+    },
+    {
+      "source": "/b2b.html",
+      "destination": "/industrias/b2b/",
+      "permanent": true
+    },
+    {
+      "source": "/cpg.html",
+      "destination": "/industrias/cpg/",
+      "permanent": true
+    },
+    {
+      "source": "/farma.html",
+      "destination": "/industrias/farma/",
+      "permanent": true
+    },
+    {
+      "source": "/construccion.html",
+      "destination": "/industrias/construccion/",
+      "permanent": true
+    },
+    {
+      "source": "/distribuidores.html",
+      "destination": "/#who",
+      "permanent": true
+    },
+    {
+      "source": "/imberion-one-pager.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/imberion-one-pager-standalone.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/imberion-one-pager-propuesta.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}

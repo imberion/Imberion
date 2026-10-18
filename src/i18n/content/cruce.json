@@ -1,0 +1,27 @@
+{
+  "_nota": "Cadenas de la sección del corte del catálogo en la página de industria (src/components/industria/CorteCatalogo.astro). Van aquí y no en common.json para no compartir archivo con otras secciones. {ind} se sustituye con el nombre de la industria en el locale.",
+  "es": {
+    "eyebrow": "El catálogo, cortado por industria",
+    "h2": "Las herramientas que aplican en {ind}",
+    "lead": "La selección del catálogo que Imberion despliega en {ind}, agrupada por lo que hace cada familia. Las demás se activan cuando el diagnóstico las pide.",
+    "transversal_t": "Oferta transversal",
+    "transversal_p": "Aplica igual en las nueve industrias.",
+    "conteo_l": "herramientas"
+  },
+  "en": {
+    "eyebrow": "The catalog, cut by industry",
+    "h2": "The tools that apply in {ind}",
+    "lead": "The part of the catalog Imberion deploys in {ind}, grouped by what each family does. The rest come in when the diagnostic calls for them.",
+    "transversal_t": "Cross-industry offer",
+    "transversal_p": "Applies the same across all nine industries.",
+    "conteo_l": "tools"
+  },
+  "pt": {
+    "eyebrow": "O catálogo, cortado por indústria",
+    "h2": "{ind}: as ferramentas que se aplicam",
+    "lead": "A parte do catálogo que a Imberion aplica em {ind}, agrupada pelo que cada família faz. As demais entram quando o diagnóstico pede.",
+    "transversal_t": "Oferta transversal",
+    "transversal_p": "Aplica-se igual nas nove indústrias.",
+    "conteo_l": "ferramentas"
+  }
+}

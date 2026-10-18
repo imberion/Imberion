@@ -1,0 +1,77 @@
+{
+  "es": {
+    "__title": "Imberion — Value Creation & Capital Allocation",
+    "familia_label": "Estrategia de Crecimiento",
+    "hero_eyebrow": "Value Creation & Capital Allocation · Estrategia de Crecimiento",
+    "hero_h1": "El siguiente peso de capital, a donde más retorno deja.",
+    "hero_lead": "Value Creation & Capital Allocation dice dónde se concentra hoy la ganancia por canal, categoría y geografía, y compara crecer con lo propio contra adquirir otra empresa con los mismos supuestos. Cada opción llega a la dirección con su tasa interna de retorno (TIR), valor presente neto (VPN) y periodo de recuperación por escenario.",
+    "que_hace_h2": "Lo que resuelve en la asignación de capital",
+    "que_hace_p": "La dirección elige entre crecer con lo propio y adquirir comparando las opciones con los mismos supuestos y el mismo cálculo de retorno.",
+    "que_hace_items": [
+      "Canales, categorías y geografías donde se concentra la ganancia y donde se encoge",
+      "Empresas candidatas a adquirir, filtradas por las sinergias que aportarían",
+      "Costo y alcance de integrar una adquisición según el nivel de ambición",
+      "Retorno esperado de cada opción por escenario: TIR, VPN y periodo de recuperación",
+      "La opción con más retorno para el riesgo y la inversión que exige"
+    ],
+    "valor_h2": "Capital asignado con disciplina",
+    "valor_p": "Un negocio que crece en ingreso puede estar consumiendo capital dentro de un pool de ganancias que se está encogiendo. Mapear dónde está el margen, y comparar lo orgánico contra lo inorgánico con los mismos supuestos, permite decidir sin defender la opción preferida de antemano.",
+    "sowhat": "Dice a qué apuesta se le asigna el siguiente monto de capital y con qué retorno esperado.",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Toma el premio dimensionado por Market Sizing & Right-to-Win y su decisión aterriza en Commercial & Operating Model.",
+    "ctastrip_h2": "¿Dónde se está creando margen y dónde solo ingreso?",
+    "ctastrip_p": "Una conversación sin compromiso. Mapeamos el premio, el derecho a ganar y la mejor ruta.",
+    "ctastrip_btn": "Agendar llamada"
+  },
+  "en": {
+    "__title": "Imberion — Value Creation & Capital Allocation",
+    "familia_label": "Growth Strategy",
+    "hero_eyebrow": "Value Creation & Capital Allocation · Growth Strategy",
+    "hero_h1": "Capital directed to where value is actually created.",
+    "hero_lead": "Value Creation & Capital Allocation quantifies the size of the prize and the profit pools, assesses inorganic growth, and builds decision-grade cases with internal rate of return (IRR), net present value (NPV) and payback by scenario.",
+    "que_hace_h2": "Profit pools and scenario cases",
+    "que_hace_p": "Margin is mapped by channel, category and geography to see where profit concentrates rather than only revenue. Organic and inorganic options are compared in the same table, with explicit assumptions and sensitivity on the critical ones.",
+    "que_hace_items": [
+      "Size of the prize and profit pools by channel and category",
+      "Acquisition target screening and synergies",
+      "Integration models by level of ambition",
+      "Scenario cases with internal rate of return, net present value and payback",
+      "Investment, risk and return trade-offs"
+    ],
+    "valor_h2": "Capital allocated with discipline",
+    "valor_p": "A business growing in revenue can be consuming capital inside a profit pool that is shrinking. Mapping where margin sits, and comparing organic against inorganic on the same assumptions, allows a decision without defending the preferred option in advance.",
+    "sowhat": "It says which bet gets the next block of capital and at what expected return.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It takes the prize sized by Market Sizing & Right-to-Win, and its decision lands in Commercial & Operating Model.",
+    "ctastrip_h2": "Where is margin being created, and where only revenue?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We map the prize, the right to win, and the best route.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Value Creation & Capital Allocation",
+    "familia_label": "Estratégia de Crescimento",
+    "hero_eyebrow": "Value Creation & Capital Allocation · Estratégia de Crescimento",
+    "hero_h1": "O capital dirigido a onde o valor é de fato criado.",
+    "hero_lead": "Value Creation & Capital Allocation quantifica o tamanho do prêmio e os pools de lucro, avalia o crescimento inorgânico e monta casos de nível diretivo com taxa interna de retorno (TIR), valor presente líquido (VPL) e payback por cenário.",
+    "que_hace_h2": "Pools de lucro e casos por cenário",
+    "que_hace_p": "A margem é mapeada por canal, categoria e geografia para ver onde o lucro se concentra, e não apenas a receita. As opções orgânicas e inorgânicas são comparadas na mesma tabela, com premissas explícitas e sensibilidade sobre as críticas.",
+    "que_hace_items": [
+      "Tamanho do prêmio e pools de lucro por canal e categoria",
+      "Triagem de alvos de aquisição e sinergias",
+      "Modelos de integração por nível de ambição",
+      "Casos por cenário com taxa interna de retorno, valor presente líquido e payback",
+      "Trade-offs de investimento, risco e retorno"
+    ],
+    "valor_h2": "Capital alocado com disciplina",
+    "valor_p": "Um negócio que cresce em receita pode estar consumindo capital dentro de um pool de lucro que encolhe. Mapear onde está a margem, e comparar orgânico contra inorgânico com as mesmas premissas, permite decidir sem defender de antemão a opção preferida.",
+    "sowhat": "Diz a que aposta vai o próximo bloco de capital e com que retorno esperado.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Toma o prêmio dimensionado por Market Sizing & Right-to-Win e a decisão aterrissa em Commercial & Operating Model.",
+    "ctastrip_h2": "Onde está sendo criada margem e onde apenas receita?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Mapeamos o prêmio, o direito de ganhar e a melhor rota.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

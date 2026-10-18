@@ -1,0 +1,64 @@
+---
+// Pie del shell. Estructura .footer-inner / #footer-copy / #footer-links, que es
+// la que la hoja vendorizada (site.css) ya sabe pintar, más la fila inferior y
+// el botón de volver arriba del pie de index.html. El "Imberion" fantasma del
+// fondo lo pone site.css con footer::before, así que aquí no va ningún div.
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+import { ZCAL_30MIN, CONTACTO_MAIL, LOGO } from '../lib/enlaces';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = comun[locale];
+
+const enlaces = [
+  // /que-resolvemos/ se retiró en español (ver Nav.astro).
+  { href: locale === 'es' ? `${ruta(locale, '')}#who` : ruta(locale, 'que-resolvemos'), texto: c.nav_que_resolvemos },
+  // /como-funciona/ se retiró en español (ver Nav.astro).
+  ...(locale === 'es' ? [] : [{ href: ruta(locale, 'como-funciona'), texto: c.nav_como_funciona }]),
+  { href: ruta(locale, 'como-operamos'), texto: c.nav_como_operamos },
+  // Sin índice de industrias (CP11c): baja a la rejilla del home.
+  { href: `${ruta(locale, '')}#sectors`, texto: c.nav_industrias },
+  { href: ruta(locale, 'catalogo'), texto: c.nav_catalogo },
+  { href: CONTACTO_MAIL, texto: c.footer_contacto, externo: true },
+  // El aviso vive como HTML estático en public/ con su URL de siempre (lo ligan el asistente de WhatsApp y los correos).
+  { href: locale === 'es' ? '/privacidad.html' : '/privacy.html', texto: c.footer_privacidad },
+  { href: ZCAL_30MIN, texto: c.nav_cta, externo: true, nuevaPestana: true },
+];
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <a class="footer-brand" href={ruta(locale, '')} aria-label="Imberion">
+          <img class="footer-logo" src={LOGO.src} alt="Imberion" width={LOGO.ancho} height={LOGO.alto} />
+        </a>
+        <p class="footer-tagline">{c.footer_tagline}</p>
+      </div>
+      <nav class="footer-links" id="footer-links" aria-label={c.footer_nav_label}>
+        {
+          enlaces.map((e) => (
+            <a
+              href={e.href}
+              target={e.nuevaPestana ? '_blank' : undefined}
+              rel={e.nuevaPestana ? 'noopener' : undefined}
+            >
+              {e.texto}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+    <div class="footer-base">
+      <div id="footer-copy">{c.footer_legal}</div>
+      <a class="footer-back" href="#top" aria-label={c.volver_arriba}>
+        <span class="btn-arrow" aria-hidden="true">↑</span>
+      </a>
+    </div>
+  </div>
+</footer>

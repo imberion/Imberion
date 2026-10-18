@@ -1,0 +1,411 @@
+---
+// Home. Port de index.html del root: mismas secciones, mismos id (hay deep
+// links vivos apuntando a #how-it-works, #who, #estrategia, #perspectivas) y
+// el mismo orden. Fuera queda el muro de logos de cliente, que en index.html
+// está oculto por instrucción desde 2026-06-01.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Locale } from '../i18n/index';
+import { ruta } from '../lib/rutas';
+import { ZCAL_30MIN, CONTACTO_MAIL } from '../lib/enlaces';
+import { contenido } from '../lib/meta';
+import Columna from './home/Columna.astro';
+import MotorEscenarios from './home/MotorEscenarios.astro';
+import catalogoData from '../data/catalogo.json';
+import industriasData from '../data/industrias.json';
+import comun from '../i18n/content/common.json';
+import { INDUSTRIAS as INDUSTRIAS_PUBLICADAS, titulo as tituloIndustria } from '../lib/industrias';
+
+import '../styles/base-pagina.css';
+import '../styles/texturas.css';
+import '../styles/home.css';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const c = contenido('home', locale);
+
+// Lista blanca del catálogo: un tag solo se vuelve enlace si su ficha existe.
+const FICHAS = new Set((catalogoData.herramientas as { slug: string }[]).map((h) => h.slug));
+// Solo las industrias publicadas: una en borrador no tiene página y no se enlaza.
+const INDUSTRIAS = new Set(
+  (industriasData.industrias as { slug: string; borrador?: boolean }[]).filter((i) => !i.borrador).map((i) => i.slug),
+);
+// Los anclajes viejos del home (#arm-a/b/c) son solo origen de redirect (D7): el
+// navegador conserva el hash tras el redirect de index.html, así que se resuelve aquí.
+const REDIRECT_ANCLAS = JSON.stringify({
+  '#arm-a': ruta(locale, 'como-funciona') + '#informacion',
+  '#arm-b': ruta(locale, 'como-funciona') + '#capacidades-analiticas',
+  '#arm-c': ruta(locale, 'como-funciona') + '#ejecucion',
+});
+
+// El mapeo es por posición, no por nombre: los arreglos son paralelos en los
+// tres idiomas y los nombres de los tags no lo son. null = sin ficha, sin enlace.
+const SLUGS_TAGS: Record<'a' | 'b' | 'c', (string | null)[]> = {
+  a: ['market-signal', 'floor-signal', 'integracion-de-datos', null],
+  b: [
+    'value-attribute-compass', 'price-value-compass', 'whitespace-compass',
+    'growth-bridge-analysis', 'virtual-buyer-personas', 'pricing-y-surtido', 'promociones', 'politica-comercial',
+  ],
+  c: ['concierge', null, 'training-signal', 'account-twin', 'habilitadores', null, null, null],
+};
+function hrefFicha(slug: string | null): string | null {
+  return slug && FICHAS.has(slug) ? ruta(locale, `catalogo/${slug}`) : null;
+}
+function hrefIndustria(slug: string | null): string | null {
+  return slug && INDUSTRIAS.has(slug) ? ruta(locale, `industrias/${slug}`) : null;
+}
+
+const tags = (llave: string, mapa: (string | null)[]) =>
+  (c[llave] as string[]).map((texto, i) => ({ texto, href: hrefFicha(mapa[i] ?? null) }));
+
+// D7: los pilares se numeran, no se letrean. Una letra no dice nada; el 01/02/03
+// en DM Sans marca orden sin fingir significado.
+const brazos = [
+  { num: '01', k: 'arm_a', ancla: 'informacion', tags: tags('arm_a_tags', SLUGS_TAGS.a), parrafos: ['arm_a_p'] },
+  { num: '02', k: 'arm_b', ancla: 'capacidades-analiticas', tags: tags('arm_b_tags', SLUGS_TAGS.b), parrafos: ['arm_b_p', 'arm_b_p2'] },
+  { num: '03', k: 'arm_c', ancla: 'ejecucion', tags: tags('arm_c_tags', SLUGS_TAGS.c), parrafos: ['arm_c_p'] },
+];
+
+// La puerta de industria es esta rejilla (#sectors): desde CP11c no hay índice
+// /industrias/ aparte y el enlace del nav y del pie bajan aquí. Mismo roster
+// (sin borradores), número 01-09 y foto de sector con el mismo tratamiento que
+// el hero de cada industria. La bajada es la línea corta de sect_industrias del
+// JSON del home: el hero_lead completo (200 a 410 caracteres) ahogaría la foto.
+const fotosIndustria = import.meta.glob<ImageMetadata>('../assets/industrias/*.jpg', {
+  import: 'default',
+  eager: true,
+});
+const lineasSector = c.sect_industrias as Record<string, string>;
+const altsSector = comun[locale].industrias_foto_alt as Record<string, string>;
+
+const filasIndustria = INDUSTRIAS_PUBLICADAS.map((ind, i) => {
+  const foto = fotosIndustria[`../assets/industrias/${ind.slug}.jpg`];
+  if (!foto) {
+    throw new Error(
+      `home: falta la foto de sector de ${ind.slug}. Se esperaba src/assets/industrias/${ind.slug}.jpg.`
+    );
+  }
+  const linea = lineasSector?.[ind.slug];
+  if (!linea) {
+    throw new Error(
+      `home (${locale}): falta la línea de ${ind.slug} en "sect_industrias" de src/i18n/content/home.json.`
+    );
+  }
+  const alt = altsSector?.[ind.slug];
+  if (!alt) {
+    throw new Error(
+      `home (${locale}): falta el alt de la foto de ${ind.slug} en "industrias_foto_alt" de src/i18n/content/common.json.`
+    );
+  }
+  return {
+    num: String(i + 1).padStart(2, '0'),
+    nombre: tituloIndustria(ind, locale),
+    href: ruta(locale, `industrias/${ind.slug}`),
+    linea,
+    alt,
+    foto,
+  };
+});
+
+// Iconos del índice de decisiones. Son independientes del idioma.
+const ICONOS_SOLVE = [
+  '<ellipse cx="12" cy="6" rx="8" ry="2.5"/><path d="M4 6v12c0 1.4 3.6 2.5 8 2.5s8 -1.1 8 -2.5V6"/><path d="M4 12c0 1.4 3.6 2.5 8 2.5s8 -1.1 8 -2.5"/>',
+  '<path d="M4 18l5-5 3 3 8-8"/><path d="M15 8h5v5"/>',
+  '<line x1="12" y1="3" x2="12" y2="21"/><path d="M17 7.5c0 -2 -2 -3.5 -5 -3.5s-5 1.5 -5 3.5S9 11 12 11s5 1.5 5 3.5s-2 3.5 -5 3.5s-5 -1.5 -5 -3.5"/>',
+  '<rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/>',
+  '<path d="M5 8h14l-1.5 11h-11z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>',
+  '<path d="M4 19V9"/><path d="M9 19V5"/><path d="M14 19v-8"/><path d="M19 19v-12"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="M5 12c1.8 0 1.8 -4 3.5 -4S10.3 16 12 16s1.8 -8 3.5 -8S17.2 12 19 12"/>',
+];
+
+// Iconos de los cuatro nodos del loop, mismo trazo que los .ic de arriba: la
+// bifurcación con una rama elegida, la flecha que llega al piso, la lectura en
+// barras sobre su eje y los controles que se corren. Independientes del idioma.
+const ICONOS_LOOP = [
+  '<path d="M12 21v-7"/><path d="M12 14 5 7"/><path d="m12 14 7-7"/><circle cx="19" cy="7" r="2"/>',
+  '<path d="M4 12h10"/><path d="m11 7 5 5-5 5"/><path d="M20 4v16"/>',
+  '<path d="M4 4v16h16"/><path d="M8 20v-5"/><path d="M13 20v-9"/><path d="M18 20v-3"/>',
+  '<path d="M4 8h8"/><path d="M16 8h4"/><circle cx="14" cy="8" r="2"/><path d="M4 16h4"/><path d="M12 16h8"/><circle cx="10" cy="16" r="2"/>',
+];
+---
+
+<div class="home-v2">
+
+<!-- LA COLUMNA: hero + ruido + señal + resultado, un solo campo de partículas -->
+<Columna
+  etiquetas={[c.col_ruido as string, c.col_senal as string, c.col_resultado as string]}
+  ruido={{ h: c.col_ruido_h as string, p: c.col_ruido_p as string }}
+  senal={{ h: c.col_senal_h as string, p: c.col_senal_p as string }}
+  resultado={{ h: c.col_resultado_h as string, p: c.col_resultado_p as string }}
+>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-label"><span class="line" aria-hidden="true"></span><span>{c.hero_eyebrow}</span></div>
+      <h1 set:html={c.hero_h1} />
+      <p class="hero-sub"><span>{c.hero_p1}</span><span>{c.hero_p2}</span></p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-close">{c.hero_close}</p>
+      <div class="hero-actions">
+        <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.hero_btn1}</a>
+        <a href="#how-it-works" class="btn btn-outline">{c.hero_btn2}</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><div class="hero-scroll-line"></div><span>scroll</span></div>
+</section>
+</Columna>
+
+<div class="imb-divider" aria-hidden="true"></div>
+
+<!-- LO QUE RESOLVEMOS -->
+<section class="solve-section section-paper" id="what-we-solve">
+  <div class="container">
+    <div class="solve-inner">
+      <div class="eyebrow">{c.solve_eyebrow}</div>
+      <h2 set:html={c.solve_h2} />
+      <p class="solve-body" set:html={c.solve_body} />
+      <div class="q-list">
+        {(c.solve_bullets as string[]).map((b, i) => (
+          <div class="q-row">
+            <span class="q-num">{`0${i + 1}`}</span>
+            <span class="q-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" set:html={ICONOS_SOLVE[i] ?? ''} /></span>
+            <span class="q-txt">{b}</span>
+          </div>
+        ))}
+      </div>
+      <p class="solve-bridge">{c.solve_bridge}</p>
+      <p class="solve-close">{c.solve_close}</p>
+    </div>
+  </div>
+
+  <!-- EL LOOP: banda de cuatro nodos a todo el ancho, con la vuelta de retorno
+       por debajo. Lleva texto que informa, así que no va aria-hidden. -->
+  <div class="loop-banda" id="el-loop">
+    <div class="container">
+      <span class="lb-eyebrow">{c.loop_eyebrow}</span>
+      <ol class="lb-nodos">
+        {(c.loop_nodos as string[][]).map((n, i) => (
+          <li class="lb-nodo">
+            <span class="lb-marca">
+              <span class="lb-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" set:html={ICONOS_LOOP[i] ?? ''} /></span>
+              <span class="lb-num" aria-hidden="true">{`0${i + 1}`}</span>
+            </span>
+            <h3 class="lb-label">{n[0]}</h3>
+            <p class="lb-linea">{n[1]}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="lb-retorno">
+        <span class="lb-ret-linea lb-ret-izq" aria-hidden="true"></span>
+        <p class="lb-cap">{c.loop_cap}</p>
+        <span class="lb-ret-linea lb-ret-der" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRATEGIA DE CRECIMIENTO -->
+<section class="section section--dark" id="estrategia">
+  <div class="container">
+    <div class="eyebrow">{c.estrat_eyebrow}</div>
+    <h2 set:html={c.estrat_h2} />
+    <p class="lead estrat-lead">{c.estrat_lead}</p>
+    <div class="estrat-grid">
+      {(c.estrat_cards as string[][]).map((e) => (
+        <div class="estrat-card"><h4>{e[0]}</h4><p>{e[1]}</p></div>
+      ))}
+    </div>
+    <div class="estrat-cta">
+      <a href={ruta(locale, 'catalogo')} class="inline-cta white">{c.estrat_link}</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRES PILARES -->
+<section class="arms-section section-signal-light" id="how-it-works">
+  <div class="container">
+    <div class="eyebrow">{c.arms_eyebrow}</div>
+    <h2 set:html={c.arms_h2} />
+    <p class="lead" style="margin-top:20px;">{c.arms_lead}</p>
+    <div class="three-arms">
+      {brazos.map((b) => (
+        <div class="arm-card">
+          <div class="arm-num" aria-hidden="true">{b.num}</div>
+          <div class="eyebrow">{c[`${b.k}_eyebrow`]}</div>
+          <h3 set:html={c[`${b.k}_h3`]} />
+          {b.parrafos.map((p) => (c[p] ? <p>{c[p]}</p> : null))}
+          <div class="arm-tags">
+            {b.tags.map((t) => (t.href ? <a class="tag" href={t.href}>{t.texto}</a> : <span class="tag">{t.texto}</span>))}
+          </div>
+          <a href={`${ruta(locale, 'como-funciona')}#${b.ancla}`} class="arm-cta-link">{c[`${b.k}_cta`]}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- PARA QUIÉN -->
+<section class="section section-white" id="who">
+  <div class="container">
+    <div class="eyebrow">{c.who_eyebrow}</div>
+    <h2 set:html={c.who_h2} />
+    <p class="lead" style="margin-top:16px;">{c.who_lead}</p>
+    <div class="serve-grid">
+      {(c.who_cards as (string | null)[][]).map((card) => (
+        <div class="serve-card">
+          <h3>{card[0]}</h3>
+          <p>{card[1]}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- MADUREZ -->
+<section class="mat-section section-dark-signal" id="maturity">
+  <div class="container">
+    <div class="mat-inner">
+      <div>
+        <div class="eyebrow">{c.mat_eyebrow}</div>
+        <h2 set:html={c.mat_h2} />
+      </div>
+      <div class="mat-body">
+        <div class="mat-setup"><p>{c.mat_p1}</p><p>{c.mat_p2}</p></div>
+        <div class="mat-resolution-block"><p class="mat-resolution">{c.mat_p3}</p></div>
+        <div class="mat-evidence"><p>{c.mat_p4}</p><p>{c.mat_p5}</p><p>{c.mat_p6}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- CHECKUP -->
+<section class="section section-paper" id="checkup">
+  <div class="container">
+    <div class="checkup-inner">
+      <div class="eyebrow">{c.checkup_eyebrow}</div>
+      <h2>{c.checkup_h2}</h2>
+      <p class="lead">{c.checkup_lead}</p>
+      <div class="checkup-actions">
+        <a href={ZCAL_30MIN} class="btn btn-dark" target="_blank" rel="noopener">{c.checkup_cta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section class="section section-data-haze" id="sectors">
+  <div class="container">
+    <div class="eyebrow">{c.sect_eyebrow}</div>
+    <h2>{c.sect_h2}</h2>
+    <p class="lead" style="margin-top:16px;">{c.sect_lead}</p>
+    <ol class="sect-rejilla">
+      {filasIndustria.map((f) => (
+        <li class="sect-item">
+          <a class="sect-card" href={f.href}>
+            <span class="sect-foto">
+              <Image
+                src={f.foto}
+                alt={f.alt}
+                widths={[540, 1080]}
+                sizes="(max-width: 640px) 92vw, (max-width: 1100px) 44vw, 30vw"
+                format="webp"
+                quality={58}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="sect-pie">
+              <span class="sect-num" aria-hidden="true">{f.num}</span>
+              <span class="sect-nombre">{f.nombre}</span>
+              <span class="sect-linea">{f.linea}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="section section-paper" id="team">
+  <div class="container">
+    <div class="eyebrow">{c.team_eyebrow}</div>
+    <h2 set:html={c.team_h2} />
+    <div class="team-inner">
+      <div class="team-text"><p>{c.team_p1}</p><p>{c.team_p2}</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="imb-divider imb-divider--flip" aria-hidden="true"></div>
+
+<!-- PERSPECTIVAS -->
+<section class="persp-section section-paper" id="perspectivas">
+  <div class="container">
+    <div class="eyebrow">{c.persp_eyebrow}</div>
+    <h2 set:html={c.persp_h2} />
+    <p class="lead" style="margin-top:16px;">{c.persp_lead}</p>
+    <div class="persp-grid">
+      {(c.persp_cards as string[][]).map((p) => (
+        <article class="persp-card">
+          <div class="persp-pillar">{p[0]}</div>
+          <h3>{p[1]}</h3>
+          <p>{p[2]}</p>
+          <a href={p[4]} target="_blank" rel="noopener" class="persp-link">{p[3]} <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </article>
+      ))}
+    </div>
+    <div class="persp-follow">
+      <a href="https://www.linkedin.com/company/imberion/" target="_blank" rel="noopener" class="btn btn-dark">{c.persp_cta}</a>
+    </div>
+  </div>
+</section>
+
+<!-- EL MOTOR CORRIENDO: último bloque de contenido, antes del cierre -->
+<MotorEscenarios
+  locale={locale}
+  contenido={{
+    eyebrow: c.motor_eyebrow as string,
+    h2: c.motor_h2 as string,
+    lead: c.motor_lead as string,
+    escenario_label: c.motor_escenario_label as string,
+    precio_label: c.motor_precio_label as string,
+    precio_aria: c.motor_precio_aria as string,
+    referencia_label: c.motor_referencia_label as string,
+    referencia_pie: c.motor_referencia_pie as string,
+    delta_label: c.motor_delta_label as string,
+    skus: c.motor_skus as string[],
+    kpis: c.motor_kpis as string[],
+    extrapolacion: c.motor_extrapolacion as string,
+    declaracion: c.motor_declaracion as string,
+  }}
+/>
+
+<!-- CTA -->
+<section class="cta-section section-cta-dust">
+  <div class="container">
+    <div class="eyebrow">{c.cta_eyebrow}</div>
+    <h2 set:html={c.cta_h2} />
+    <p class="lead">{c.cta_lead}</p>
+    <div class="cta-actions">
+      <a href={ZCAL_30MIN} class="btn btn-primary" target="_blank" rel="noopener">{c.cta_btn1}</a>
+      <a href={CONTACTO_MAIL} class="btn btn-outline">{c.cta_btn2}</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script is:inline define:vars={{ REDIRECT_ANCLAS }}>
+  (function () {
+    var destino = REDIRECT_ANCLAS[location.hash];
+    if (destino) location.replace(destino);
+  })();
+</script>

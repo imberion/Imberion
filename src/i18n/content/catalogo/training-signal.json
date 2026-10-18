@@ -1,0 +1,406 @@
+{
+  "es": {
+    "__title": "Imberion — Training Signal",
+    "familia_label": "Operator · actuar",
+    "hero_eyebrow": "Training Signal · Familia Operator",
+    "hero_h1": "Asesores nuevos vendiendo como los mejores antes de que cambie el catálogo.",
+    "hero_lead": "Training Signal toma lo que dicen los mejores vendedores frente a cada objeción y pone a los nuevos a practicarlo por voz, desde el celular, contra clientes simulados que se comportan como clientes reales. Las respuestas del asesor se procesan para darle retroalimentación y no quedan grabadas. Cuando el mejor vendedor se va, su argumento se queda en la empresa.",
+    "pieza": {
+      "alt": "Panel de Training Signal: un vendedor escanea un SKU y el agente responde con los argumentos de valor y cómo manejar la objeción de precio.",
+      "pie": "Training Signal en el piso: se escanea el SKU y el agente entrega los argumentos que sí cierran, con la objeción resuelta. Vista del material del producto, con un diálogo ilustrativo."
+    },
+    "que_hace_h2": "Lo que resuelve en la fuerza de ventas",
+    "que_hace_p": "",
+    "que_hace_items": [
+      "El asesor nuevo vende con el argumento probado desde su primera semana, aunque el surtido cambie cada cuatro a seis meses",
+      "Las objeciones de todos los días (está caro, en internet está más barato, ya tengo uno) se practican antes de que las diga un cliente real, en tienda y frente a compradores de cuentas grandes",
+      "El material de capacitación se ordena por los argumentos que terminaron en venta y se actualiza con cada producto nuevo"
+    ],
+    "valor_h2": "",
+    "valor_p": "",
+    "sowhat": "",
+    "industrias_h2": "Dónde aplica",
+    "relacion_h2": "Con qué se conecta",
+    "relacion_p": "Se alimenta de los diálogos de valor que captura Floor Signal, ensaya negociación contra Account Twin y toma de Virtual Buyer Personas qué atributos mueven a cada segmento.",
+    "ctastrip_h2": "¿Cuánto tarda un vendedor nuevo en argumentar el catálogo completo?",
+    "ctastrip_p": "Una conversación para revisar cuánto tarda hoy un asesor nuevo y cómo se vería un piloto en pocas tiendas.",
+    "ctastrip_btn": "Agendar llamada",
+    "demo": {
+      "eyebrow": "Demo",
+      "titulo": "Una práctica con cliente simulado, en tres turnos",
+      "intro": "Se elige un producto y se contesta al cliente. Al final se ve si compró y qué dijo el mejor asesor en cada turno.",
+      "producto_label": "Producto",
+      "app": {
+        "producto": "Training Signal",
+        "sku_label": "SKU",
+        "estado": "Piso de venta"
+      },
+      "productos": [
+        {
+          "nombre": "Pantalla de 55 pulgadas",
+          "detalle": "4K · 120 Hz",
+          "sku": "TV-5508",
+          "precio": "$11,499"
+        },
+        {
+          "nombre": "Tenis para correr",
+          "detalle": "Amortiguación de espuma",
+          "sku": "TN-2041",
+          "precio": "$2,899"
+        },
+        {
+          "nombre": "Licuadora de alta potencia",
+          "detalle": "1,500 W · vaso de 2 L",
+          "sku": "LC-1500",
+          "precio": "$3,299"
+        }
+      ],
+      "practica": {
+        "perfil_label": "Cliente simulado",
+        "quien_cliente": "Cliente simulado",
+        "quien_asesor": "Asesor",
+        "voz_label": "Modo voz",
+        "voz_nota": "El cliente simulado habla. En el producto, el asesor le contesta en voz alta; en esta demo escoge entre tres respuestas.",
+        "turno_label": "Turno",
+        "de": "de",
+        "pregunta": "¿Qué contesta el asesor?",
+        "nota_buena": "Como el mejor asesor",
+        "nota_mala": "Retroalimentación",
+        "mejor_label": "El mejor asesor dijo",
+        "btn_seguir": "Siguiente turno",
+        "btn_resultado": "Ver cómo terminó",
+        "btn_otra": "Practicar otra vez",
+        "resultado_label": "Cómo terminó",
+        "resultados": {
+          "compra": "Compró",
+          "duda": "Pidió tiempo para pensarlo",
+          "se_va": "Se fue sin comprar"
+        },
+        "marcador": "{n} de {t} respuestas como las del mejor asesor",
+        "clientes": [
+          {
+            "perfil": "Pareja que equipa la sala",
+            "rasgos": [
+              "Deciden entre los dos",
+              "Ven futbol y el hijo juega en consola",
+              "Les pesa el monto de un solo pago"
+            ],
+            "turnos": [
+              {
+                "cliente": "Queremos una pantalla grande, pero esta está más cara que la de al lado.",
+                "dur": "0:04",
+                "opciones": [
+                  {
+                    "texto": "Esta es 4K a 120 Hz, con HDR y atenuación local.",
+                    "reaccion": "No sé qué es eso.",
+                    "nota": "Recita la ficha técnica sin traducirla a lo que el cliente va a ver en su casa.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "La de al lado también está buena; si quieren, llévense esa.",
+                    "reaccion": "Ok… ¿y entonces cuál es la diferencia?",
+                    "nota": "Renuncia a la diferencia de $2,500 sin haber preguntado nada.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "¿Qué ven más en la sala: películas, deportes o videojuegos?",
+                    "reaccion": "Futbol, sobre todo. Y nuestro hijo juega en consola.",
+                    "nota": "Pregunta por el uso. Futbol y consola son justo lo que distingue a la pantalla de 120 Hz.",
+                    "buena": true
+                  }
+                ]
+              },
+              {
+                "cliente": "¿Y de verdad se nota la diferencia?",
+                "dur": "0:02",
+                "opciones": [
+                  {
+                    "texto": "Pongamos el mismo partido en las dos. Fíjense en el balón cuando va rápido: en esta no deja estela, y en consola el juego corre a 120 cuadros.",
+                    "reaccion": "Sí se ve más limpio. A ver, ven a ver esto.",
+                    "nota": "Le enseña la diferencia en la tienda, con el uso que el cliente acaba de decir.",
+                    "buena": true
+                  },
+                  {
+                    "texto": "Sí, se nota bastante, créanme.",
+                    "reaccion": "Pues yo las veo iguales.",
+                    "nota": "Pide que le crean en lugar de enseñarlo.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Depende de qué tan buena vista tengan.",
+                    "reaccion": "Entonces no vale la pena.",
+                    "nota": "Le quita valor al producto que está vendiendo.",
+                    "buena": false
+                  }
+                ]
+              },
+              {
+                "cliente": "Lo vamos a pensar. Es mucho dinero de una vez.",
+                "dur": "0:03",
+                "opciones": [
+                  {
+                    "texto": "Claro, aquí los espero.",
+                    "reaccion": "Gracias, muy amable.",
+                    "nota": "Deja ir la venta sin atender la objeción real, que es el monto de un solo pago.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "La promoción se termina hoy.",
+                    "reaccion": "Siempre dicen eso.",
+                    "nota": "Mete urgencia que el cliente no cree y pierde la confianza que ya tenía.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "A 12 meses sin intereses son unos $960 al mes, unos $210 más que la otra. ¿Quieren que se la aparte mientras lo platican?",
+                    "reaccion": "Visto por mes, cambia.",
+                    "nota": "Resuelve el monto, que es la objeción real, y propone un siguiente paso concreto.",
+                    "buena": true
+                  }
+                ]
+              }
+            ],
+            "cierre": {
+              "compra": "Nos la llevamos. ¿La pueden entregar el sábado?",
+              "duda": "Apártenosla, regresamos en la tarde.",
+              "se_va": "Gracias, vamos a ver en otra tienda."
+            }
+          },
+          {
+            "perfil": "Corredora de fin de semana",
+            "rasgos": [
+              "Compara precios en el celular mientras habla",
+              "Decide sola, en la misma visita",
+              "Le importa más el dolor de rodilla que la marca"
+            ],
+            "turnos": [
+              {
+                "cliente": "Nada más estoy viendo. Estos están caros, ¿no?",
+                "dur": "0:03",
+                "opciones": [
+                  {
+                    "texto": "Tenemos 10% de descuento con tarjeta participante.",
+                    "reaccion": "Ah, ok. Aun así se me hace mucho. Déjeme ver otros.",
+                    "nota": "Ofrece descuento antes de saber para qué los quiere. Entrega margen y no mueve la decisión.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "¿Cuántas veces a la semana sale a correr, y en qué distancia?",
+                    "reaccion": "Como 5 kilómetros, tres veces por semana. Con los que tengo me empezó a doler la rodilla.",
+                    "nota": "Pregunta por el uso antes de hablar del precio. El dato de la rodilla es el que va a cerrar la venta.",
+                    "buena": true
+                  },
+                  {
+                    "texto": "Son de la línea alta de la marca; la calidad se paga.",
+                    "reaccion": "Eso dicen en todas las tiendas.",
+                    "nota": "Defiende el precio con una afirmación general que el cliente no puede comprobar.",
+                    "buena": false
+                  }
+                ]
+              },
+              {
+                "cliente": "En línea vi estos mismos como 400 pesos más baratos.",
+                "dur": "0:04",
+                "opciones": [
+                  {
+                    "texto": "Déjeme ver si el gerente se lo iguala.",
+                    "reaccion": "Si me lo igualan, sí. Si no, los pido en línea.",
+                    "nota": "Iguala sin confirmar que sea el mismo modelo y le enseña al cliente a pedir descuento en cada visita.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "En línea muchas veces venden imitaciones.",
+                    "reaccion": "La tienda en línea es la oficial de la marca.",
+                    "nota": "Descalifica el canal con algo que en este caso es falso. Pierde credibilidad para el resto de la venta.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Puede ser. Aquí le medimos la pisada en la caminadora y sale con la talla correcta; con el dolor de rodilla que me dice, conviene probarlos antes.",
+                    "reaccion": "No sabía que medían la pisada. ¿Cuánto tarda eso?",
+                    "nota": "Usa el dato que el cliente dio en el turno anterior y le pone valor a lo que solo resuelve la tienda.",
+                    "buena": true
+                  }
+                ]
+              },
+              {
+                "cliente": "¿Y si me duran poco?",
+                "dur": "0:02",
+                "opciones": [
+                  {
+                    "texto": "Con 15 kilómetros por semana le duran unos 700, casi un año. Sale en unos 20 pesos por salida.",
+                    "reaccion": "Visto así, no está tan caro.",
+                    "nota": "Convierte el precio en costo por salida con los números del propio cliente.",
+                    "buena": true
+                  },
+                  {
+                    "texto": "Todos los tenis duran más o menos lo mismo.",
+                    "reaccion": "Entonces no le veo caso pagar más.",
+                    "nota": "Iguala el producto con los baratos justo cuando el cliente busca una razón para pagar más.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Si quiere, le enseño unos más baratos.",
+                    "reaccion": "¿Pero esos traen la misma amortiguación?",
+                    "nota": "Baja de producto cuando el cliente ya tenía la razón para comprar el correcto.",
+                    "buena": false
+                  }
+                ]
+              }
+            ],
+            "cierre": {
+              "compra": "Va. Mídame la pisada y me los llevo.",
+              "duda": "Déjeme pensarlo y regreso el sábado.",
+              "se_va": "Gracias, mejor los pido en línea."
+            }
+          },
+          {
+            "perfil": "Compra de reemplazo",
+            "rasgos": [
+              "Su licuadora se descompuso esta semana",
+              "Cocina todos los días para la familia",
+              "Quiere gastar lo menos posible"
+            ],
+            "turnos": [
+              {
+                "cliente": "Se me descompuso la licuadora y quiero algo sencillo. Esta se ve muy cara.",
+                "dur": "0:04",
+                "opciones": [
+                  {
+                    "texto": "¿Qué le pasó a la anterior, y qué prepara más seguido?",
+                    "reaccion": "Se le quemó el motor con los licuados de hielo. Los hago todas las mañanas.",
+                    "nota": "Pregunta por qué falló la anterior. La respuesta dice qué tiene que resolver la nueva.",
+                    "buena": true
+                  },
+                  {
+                    "texto": "Tenemos una de $899 en el pasillo de enfrente.",
+                    "reaccion": "¿Y esa aguanta hielo?",
+                    "nota": "Manda al cliente a un producto parecido al que ya le falló, sin saber por qué falló.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Esta tiene 1,500 watts.",
+                    "reaccion": "¿Y eso qué quiere decir?",
+                    "nota": "Da un número que el cliente no sabe leer.",
+                    "buena": false
+                  }
+                ]
+              },
+              {
+                "cliente": "Ya tengo un procesador en casa. No sé si necesito tanta licuadora.",
+                "dur": "0:03",
+                "opciones": [
+                  {
+                    "texto": "El procesador no sirve para licuados.",
+                    "reaccion": "Pues yo los he hecho y salen.",
+                    "nota": "Contradice al cliente en algo que él ya probó.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Con 1,500 watts el hielo se tritura sin forzar el motor, que es lo que quemó la anterior. Y el vaso de 2 litros alcanza para toda la familia de una vez.",
+                    "reaccion": "Eso sí. Con la otra tenía que hacerlo en dos tandas.",
+                    "nota": "Traduce la potencia al problema que el cliente contó en el turno anterior.",
+                    "buena": true
+                  },
+                  {
+                    "texto": "Si quiere, llévese la sencilla.",
+                    "reaccion": "Bueno… ¿pero aguanta hielo o no?",
+                    "nota": "Abandona el argumento cuando el cliente todavía no decidía.",
+                    "buena": false
+                  }
+                ]
+              },
+              {
+                "cliente": "¿Y cuánto me va a durar?",
+                "dur": "0:02",
+                "opciones": [
+                  {
+                    "texto": "Muchos años; es muy buena marca.",
+                    "reaccion": "Eso decía la otra.",
+                    "nota": "Promete con una afirmación general, igual a la que ya le falló al cliente.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "Si se descompone, aquí tenemos servicio técnico.",
+                    "reaccion": "Ya no quiero andar llevándola a servicio.",
+                    "nota": "Pone sobre la mesa la descompostura, que es justo lo que el cliente quiere evitar.",
+                    "buena": false
+                  },
+                  {
+                    "texto": "El motor trae siete años de garantía. Una de $899 que dure año y medio, en siete años son casi cinco: unos $4,200.",
+                    "reaccion": "Visto así, sale más barata esta.",
+                    "nota": "Compara el costo en el tiempo con el problema que el cliente ya vivió.",
+                    "buena": true
+                  }
+                ]
+              }
+            ],
+            "cierre": {
+              "compra": "Me la llevo. ¿Me la envuelve?",
+              "duda": "La voy a pensar, gracias.",
+              "se_va": "Mejor me llevo la sencilla en otra tienda."
+            }
+          }
+        ],
+        "escuchar": "Escuchar",
+        "detener": "Detener",
+        "repaso_label": "Lo que dijo el mejor asesor donde se falló"
+      },
+      "simulacion": "Ejemplo ilustrativo con clientes sintéticos. La voz de esta página es la del navegador."
+    }
+  },
+  "en": {
+    "__title": "Imberion — Training Signal",
+    "familia_label": "Operator · act",
+    "hero_eyebrow": "Training Signal · Operator family",
+    "hero_h1": "Sales force training built from the arguments that actually close.",
+    "hero_lead": "Training Signal runs in two modes. Product pitch: a SKU is scanned and the agent returns technical detail and value arguments. B2B negotiation: the seller rehearses against Account Twin, with objections, concessions and closes.",
+    "pieza": {
+      "alt": "Training Signal panel: a salesperson scans a SKU and the agent replies with the value arguments and how to handle the price objection.",
+      "pie": "Training Signal on the floor: the SKU is scanned and the agent returns the arguments that actually close, objection handled. A view of the product material, with an illustrative dialogue."
+    },
+    "que_hace_h2": "Two modes on one base",
+    "que_hace_p": "The base is the value dialogues: how the best sellers open, argue, handle objections and close, captured and anonymized. Product arguments and negotiation rehearsals are built on top of that, and a loop measures which argument ended in a sale and reorders what gets taught.",
+    "que_hace_items": [
+      "Product pitch: a SKU is scanned, technical detail and value arguments come back",
+      "B2B negotiation: rehearsal against Account Twin, with objections and closes",
+      "Value dialogues from the best sellers, captured and anonymized",
+      "A loop that measures which argument converts and reorders the material"
+    ],
+    "valor_h2": "The catalog turns faster than the ramp",
+    "valor_p": "When assortment changes every four to six months, a new seller finishes learning it once it has already changed. Having the argument built per product shortens that ramp, and standardizing the best seller's argument raises the floor for everyone else instead of leaving it in each person's head.",
+    "sowhat": "It turns the best seller's argument into trainable material rather than knowledge that leaves with the person.",
+    "industrias_h2": "Where it applies",
+    "relacion_h2": "What it connects to",
+    "relacion_p": "It feeds on the value dialogues Floor Signal captures, rehearses negotiation against Account Twin, and takes from Virtual Buyer Personas which attributes move each segment.",
+    "ctastrip_h2": "How long does a new seller take to argue the full catalog?",
+    "ctastrip_p": "A 30-minute conversation, no commitment. We review what is known today and which analysis closes the gap.",
+    "ctastrip_btn": "Book a Call"
+  },
+  "pt": {
+    "__title": "Imberion — Training Signal",
+    "familia_label": "Operator · agir",
+    "hero_eyebrow": "Training Signal · Família Operator",
+    "hero_h1": "Capacitação da força de vendas construída com os argumentos que de fato fecham.",
+    "hero_lead": "Training Signal opera em dois modos. Pitch de produto: escaneia-se um SKU e o agente entrega detalhe técnico e argumentos de valor. Negociação B2B: o vendedor ensaia contra o Account Twin, com objeções, concessões e fechamentos.",
+    "pieza": {
+      "alt": "Painel do Training Signal: um vendedor escaneia um SKU e o agente responde com os argumentos de valor e como lidar com a objeção de preço.",
+      "pie": "Training Signal no piso: escaneia-se o SKU e o agente entrega os argumentos que de fato fecham, com a objeção resolvida. Vista do material do produto, com um diálogo ilustrativo."
+    },
+    "que_hace_h2": "Dois modos sobre a mesma base",
+    "que_hace_p": "A base são os diálogos de valor: como os melhores vendedores abrem, argumentam, tratam objeções e fecham, capturados e anonimizados. Sobre isso são construídos os argumentos por produto e os ensaios de negociação, e um loop mede qual argumento terminou em venda e reordena o que se ensina.",
+    "que_hace_items": [
+      "Pitch de produto: escaneia-se o SKU e chegam detalhe técnico e argumentos de valor",
+      "Negociação B2B: ensaio contra o Account Twin, com objeções e fechamentos",
+      "Diálogos de valor dos melhores vendedores, capturados e anonimizados",
+      "Loop que mede qual argumento converte e reordena o material"
+    ],
+    "valor_h2": "O catálogo gira mais rápido que a rampa",
+    "valor_p": "Quando o sortimento muda a cada quatro a seis meses, o vendedor novo termina de aprendê-lo quando ele já mudou. Ter o argumento construído por produto encurta essa rampa, e padronizar o do melhor vendedor eleva o piso dos demais em vez de deixá-lo na cabeça de cada um.",
+    "sowhat": "Transforma o argumento do melhor vendedor em material treinável, em vez de conhecimento que vai embora com a pessoa.",
+    "industrias_h2": "Onde se aplica",
+    "relacion_h2": "Com o que se conecta",
+    "relacion_p": "Alimenta-se dos diálogos de valor que o Floor Signal captura, ensaia negociação contra o Account Twin e toma do Virtual Buyer Personas quais atributos movem cada segmento.",
+    "ctastrip_h2": "Quanto tempo um vendedor novo leva para argumentar o catálogo inteiro?",
+    "ctastrip_p": "Uma conversa de 30 minutos, sem compromisso. Revisamos o que se sabe hoje e que análise fecha a lacuna.",
+    "ctastrip_btn": "Agendar chamada"
+  }
+}

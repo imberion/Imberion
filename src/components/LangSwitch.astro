@@ -1,0 +1,39 @@
+---
+// Selector de idioma. En v2 el idioma es la ruta, así que cada opción es un
+// enlace a la misma página en el otro idioma, no un botón que reescribe el DOM.
+import type { Locale } from '../i18n/index';
+import { ruta, rutaEquivalente, LOCALES_RUTA } from '../lib/rutas';
+import comun from '../i18n/content/common.json';
+
+interface Props {
+  locale: Locale;
+  /** Segmento canónico en español de la página. Sin él se deduce del path. */
+  rutaEs?: string;
+}
+
+const { locale, rutaEs } = Astro.props;
+const c = comun[locale];
+
+const opciones = LOCALES_RUTA.map((destino) => ({
+  codigo: destino,
+  etiqueta: comun[destino][`lang_${destino}` as 'lang_es'],
+  href: rutaEs === undefined ? rutaEquivalente(Astro.url.pathname, destino) : ruta(destino, rutaEs),
+  activo: destino === locale,
+}));
+---
+
+<div class="lang-toggle" role="group" aria-label={c.lang_label}>
+  {
+    opciones.map((o) => (
+      <a
+        class:list={['lang-btn', { active: o.activo }]}
+        href={o.href}
+        hreflang={o.codigo}
+        lang={o.codigo}
+        aria-current={o.activo ? 'true' : undefined}
+      >
+        {o.etiqueta}
+      </a>
+    ))
+  }
+</div>

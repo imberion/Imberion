@@ -1,0 +1,557 @@
+---
+// Mini-demo de Virtual Buyer Personas: el método, jugable (§8.5c del spec).
+//
+// A diferencia de Concierge, aquí no había componente visual que portar (§8.5d:
+// "no hay componente visual. Se diseña de cero y sin tocar el material de
+// cliente"). Lo sustantivo de la herramienta vive en presales, que es
+// confidencial, así que el bloque se construye sobre un panel sintético de una
+// categoría de consumo genérica y lo declara al pie.
+//
+// Lo que enseña es el método, no el producto: se elige un movimiento comercial
+// y cada persona sintética responde con su reacción y la consecuencia que deja.
+// Es determinista por diseño: cada combinación escenario × persona está escrita
+// en el JSON de contenido y ya viene en el HTML. El navegador solo cambia cuál
+// se ve; no calcula, no genera y no llama a nada.
+//
+// `respuestas` es paralelo por índice a `escenarios`: la respuesta i de cada
+// persona corresponde al escenario i. Agregar un escenario obliga a agregar su
+// respuesta en las cuatro personas, en los tres locales.
+
+export interface DemoVbpContenido {
+  eyebrow: string;
+  titulo: string;
+  intro: string;
+  escenarios_label: string;
+  atributos_label: string;
+  consecuencia_label: string;
+  escenarios: Array<{ titulo: string }>;
+  personas: Array<{
+    nombre: string;
+    perfil: string;
+    atributos: Array<{ k: string; v: number }>;
+    respuestas: Array<{ reaccion: string; consecuencia: string }>;
+  }>;
+  pie: Array<{ k: string; v: string }>;
+  simulacion: string;
+}
+
+interface Props {
+  contenido: DemoVbpContenido;
+}
+
+const { contenido: d } = Astro.props;
+---
+
+<section class="demo-bloque" id="mini-demo">
+  <div class="container">
+    <div class="demo-head">
+      <div class="eyebrow demo-eyebrow">{d.eyebrow}</div>
+      <h2>{d.titulo}</h2>
+      <p class="cuerpo">{d.intro}</p>
+    </div>
+
+    <div class="vbp-wrap" data-demo-vbp data-n={d.escenarios.length} role="group" aria-label={d.titulo}>
+      <div class="vbp-esc">
+        <span class="vbp-esc-k">{d.escenarios_label}</span>
+        <div class="vbp-esc-btns">
+          {
+            d.escenarios.map((e, i) => (
+              <button
+                type="button"
+                class={`vbp-esc-btn${i === 0 ? ' on' : ''}`}
+                data-esc-btn={i}
+                aria-pressed={i === 0 ? 'true' : 'false'}
+              >
+                <span class="vbp-esc-n">{String(i + 1).padStart(2, '0')}</span>
+                <span class="vbp-esc-t">{e.titulo}</span>
+                <span class="vbp-prog" aria-hidden="true" />
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="vbp-grid" aria-live="polite">
+        {
+          d.personas.map((p) => (
+            <article class="vbp-card">
+              <div class="vbp-card-head">
+                <span class="vbp-perfil">{p.perfil}</span>
+                <h3 class="vbp-nombre">{p.nombre}</h3>
+              </div>
+
+              <div class="vbp-attrs">
+                <span class="vbp-attrs-k">{d.atributos_label}</span>
+                {p.atributos.map((a) => (
+                  <div class="vbp-attr">
+                    <span class="vbp-attr-n">{a.k}</span>
+                    <span class="vbp-bar">
+                      <span class="vbp-bar-f" style={`width:${a.v}%`} />
+                    </span>
+                    <span class="vbp-attr-v">{a.v}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="vbp-resp">
+                {p.respuestas.map((r, i) => (
+                  <div class={`vbp-r${i === 0 ? ' on' : ''}`} data-esc={i}>
+                    <p class="vbp-reac">{r.reaccion}</p>
+                    <p class="vbp-cons">
+                      <span class="vbp-cons-k">{d.consecuencia_label}</span>
+                      {r.consecuencia}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="vbp-foot">
+        {
+          d.pie.map((f) => (
+            <div class="vbp-fitem">
+              <div class="fk">{f.k}</div>
+              <div class="fv">{f.v}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="demo-nota">{d.simulacion}</p>
+  </div>
+</section>
+
+<style is:inline>
+  /* Tokens del sitio (site.css / shell.css). Monocromo navy sobre papel: sin
+     petróleo, sin ochre y sin verde. Selectores prefijados por `.demo-bloque`
+     porque el <style is:inline> se emite tal cual y no lleva scope de Astro. */
+  .demo-bloque {
+    /* La barra superior es fija: sin este margen, un salto a #mini-demo deja el
+       encabezado del bloque debajo de la barra. */
+    scroll-margin-top: 86px;
+    padding: clamp(70px, 6.5vw, 150px) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+  }
+  .demo-bloque .demo-head h2 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    line-height: 1.12;
+    font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+    max-width: 22ch;
+    margin-top: 12px;
+  }
+  .demo-bloque .demo-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .demo-bloque .demo-head .cuerpo {
+    margin-top: 20px;
+    max-width: 66ch;
+    font-size: 1.02rem;
+    line-height: 1.72;
+    color: var(--navy-72);
+  }
+
+  .demo-bloque .vbp-wrap {
+    margin-top: 46px;
+  }
+
+  /* ---------- selector de escenario ---------- */
+  .demo-bloque .vbp-esc-k,
+  .demo-bloque .vbp-attrs-k {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .vbp-esc-btns {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .demo-bloque .vbp-esc-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    padding: 15px 18px 16px;
+    border: 1px solid var(--navy-12);
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    line-height: 1.42;
+    cursor: pointer;
+    transition:
+      background 0.28s var(--ease),
+      border-color 0.28s var(--ease),
+      color 0.28s var(--ease);
+  }
+  .demo-bloque .vbp-esc-btn:hover {
+    border-color: var(--navy-20);
+  }
+  .demo-bloque .vbp-esc-btn.on {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper-warm);
+  }
+  .demo-bloque .vbp-esc-n {
+    /* Cifra suelta: DM Sans, nunca el "1" de Cormorant. */
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gray-blue);
+    font-variant-numeric: tabular-nums;
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .demo-bloque .vbp-esc-btn.on .vbp-esc-n {
+    color: var(--slate-mist);
+  }
+  .demo-bloque .vbp-esc-t {
+    font-weight: 500;
+  }
+  .demo-bloque .vbp-prog {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: var(--slate-soft);
+  }
+  .demo-bloque .vbp-esc-btn.on .vbp-prog.corre {
+    animation: vbp-fill 4s linear forwards;
+  }
+  @keyframes vbp-fill {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* ---------- panel de personas ---------- */
+  .demo-bloque .vbp-grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    border-top: 1px solid var(--navy-12);
+    border-left: 1px solid var(--navy-12);
+  }
+  .demo-bloque .vbp-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-right: 1px solid var(--navy-12);
+    border-bottom: 1px solid var(--navy-12);
+    padding: 22px 22px 24px;
+  }
+  .demo-bloque .vbp-perfil {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+  }
+  .demo-bloque .vbp-nombre {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.42rem;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-top: 6px;
+  }
+
+  .demo-bloque .vbp-attrs {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--navy-08);
+  }
+  .demo-bloque .vbp-attr {
+    display: grid;
+    grid-template-columns: 1fr 74px 26px;
+    align-items: center;
+    gap: 10px;
+    margin-top: 9px;
+  }
+  .demo-bloque .vbp-attr-n {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--navy-72);
+  }
+  .demo-bloque .vbp-bar {
+    display: block;
+    height: 2px;
+    background: var(--navy-08);
+  }
+  .demo-bloque .vbp-bar-f {
+    display: block;
+    height: 2px;
+    background: var(--navy);
+  }
+  .demo-bloque .vbp-attr-v {
+    /* Cifra suelta: DM Sans, tabular para que la columna no baile. */
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--navy);
+  }
+
+  /* Las respuestas de los escenarios se apilan en la misma celda: el alto de la
+     tarjeta lo fija la más larga y no salta al cambiar de escenario. */
+  .demo-bloque .vbp-resp {
+    display: grid;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--navy-08);
+    flex: 1;
+  }
+  .demo-bloque .vbp-r {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition:
+      opacity 0.34s var(--ease-io),
+      transform 0.34s var(--ease-io);
+  }
+  .demo-bloque .vbp-r.on {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .demo-bloque .vbp-reac {
+    font-size: 13.5px;
+    line-height: 1.58;
+    color: var(--navy);
+  }
+  .demo-bloque .vbp-cons {
+    margin-top: 14px;
+    padding-left: 13px;
+    border-left: 2px solid var(--slate-mist);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--navy-72);
+  }
+  .demo-bloque .vbp-cons-k {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-blue);
+    margin-bottom: 4px;
+  }
+
+  /* ---------- pie ---------- */
+  .demo-bloque .vbp-foot {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 22px;
+    margin-top: 26px;
+    border-top: 1px solid var(--navy-12);
+  }
+  .demo-bloque .vbp-foot .fk {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 5px;
+  }
+  .demo-bloque .vbp-foot .fv {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--navy-72);
+  }
+
+  .demo-bloque .demo-nota {
+    margin-top: 20px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--navy-40);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Sin movimiento y sin rotación: el escenario activo se cambia con clic. */
+    .demo-bloque .vbp-r {
+      transition: none;
+    }
+    .demo-bloque .vbp-esc-btn {
+      transition: none;
+    }
+    .demo-bloque .vbp-prog,
+    .demo-bloque .vbp-esc-btn.on .vbp-prog.corre {
+      animation: none;
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .demo-bloque .vbp-grid {
+      grid-template-columns: 1fr;
+    }
+    .demo-bloque .vbp-attr {
+      grid-template-columns: 1fr 60px 26px;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Motor de la mini-demo. Sin dependencias y sin cálculo: cada respuesta ya
+  // está en el HTML y esto solo decide cuál lleva la clase `on`. Si nadie toca
+  // nada, el escenario rota cada 4 s; el cursor encima lo pausa y el primer
+  // clic lo apaga para siempre.
+  (function () {
+    var raices = document.querySelectorAll('[data-demo-vbp]');
+    for (var r = 0; r < raices.length; r++) montar(raices[r]);
+
+    function montar(raiz) {
+      var botones = raiz.querySelectorAll('[data-esc-btn]');
+      var respuestas = raiz.querySelectorAll('[data-esc]');
+      var n = parseInt(raiz.getAttribute('data-n'), 10) || 0;
+      if (!botones.length || !respuestas.length || !n) return;
+
+      var quieto =
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var actual = 0;
+      var timer = null;
+      var pausado = false;
+      var automatico = !quieto;
+
+      // Parámetro de QA: ?demo=<n> fija el escenario (1 = el primero) para poder
+      // capturarlo. No cambia nada para quien navega el sitio.
+      var qa = null;
+      try {
+        var v = new URLSearchParams(window.location.search).get('demo');
+        if (v !== null && v !== '') {
+          var k = parseInt(v, 10);
+          if (!isNaN(k)) qa = Math.max(0, Math.min(n - 1, k - 1));
+        }
+      } catch (e) {
+        qa = null;
+      }
+
+      function pintar() {
+        for (var i = 0; i < botones.length; i++) {
+          var activo = parseInt(botones[i].getAttribute('data-esc-btn'), 10) === actual;
+          botones[i].classList.toggle('on', activo);
+          botones[i].setAttribute('aria-pressed', activo ? 'true' : 'false');
+        }
+        for (var j = 0; j < respuestas.length; j++) {
+          var s = parseInt(respuestas[j].getAttribute('data-esc'), 10);
+          respuestas[j].classList.toggle('on', s === actual);
+        }
+        if (automatico) reiniciarBarra();
+      }
+
+      // La barra del botón activo cuenta los 4 s de la rotación. Se reinicia
+      // quitando la clase y forzando un reflow, que es la única forma de
+      // rearrancar una animación CSS sobre el mismo elemento.
+      function reiniciarBarra() {
+        for (var i = 0; i < botones.length; i++) {
+          var b = botones[i].querySelector('.vbp-prog');
+          if (!b) continue;
+          b.classList.remove('corre');
+          if (botones[i].classList.contains('on')) {
+            void b.offsetWidth;
+            b.classList.add('corre');
+          }
+        }
+      }
+
+      function detener() {
+        automatico = false;
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+        for (var i = 0; i < botones.length; i++) {
+          var b = botones[i].querySelector('.vbp-prog');
+          if (b) b.classList.remove('corre');
+        }
+      }
+
+      function arrancar() {
+        if (!automatico || timer) return;
+        reiniciarBarra();
+        timer = setInterval(function () {
+          if (pausado) return;
+          actual = (actual + 1) % n;
+          pintar();
+        }, 4000);
+      }
+
+      for (var b0 = 0; b0 < botones.length; b0++) {
+        botones[b0].addEventListener('click', function () {
+          detener();
+          actual = parseInt(this.getAttribute('data-esc-btn'), 10) || 0;
+          pintar();
+        });
+      }
+
+      raiz.addEventListener('mouseenter', function () {
+        pausado = true;
+      });
+      raiz.addEventListener('mouseleave', function () {
+        pausado = false;
+      });
+      raiz.addEventListener('focusin', function () {
+        pausado = true;
+      });
+
+      if (qa !== null) {
+        detener();
+        actual = qa;
+        pintar();
+        return;
+      }
+
+      if (quieto) {
+        pintar();
+        return;
+      }
+
+      pintar();
+
+      // No arranca hasta que el bloque está a la vista: si arrancara al cargar,
+      // los tres escenarios habrían pasado antes de que alguien llegue a leerlos.
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(
+          function (entradas) {
+            for (var i = 0; i < entradas.length; i++) {
+              if (entradas[i].isIntersecting) {
+                arrancar();
+                obs.disconnect();
+              }
+            }
+          },
+          { threshold: 0.25 }
+        );
+        obs.observe(raiz);
+      } else {
+        arrancar();
+      }
+    }
+  })();
+</script>
