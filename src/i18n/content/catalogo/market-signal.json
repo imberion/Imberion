@@ -3,24 +3,24 @@
     "__title": "Imberion — Market Signal",
     "familia_label": "Signal · sensar",
     "hero_eyebrow": "Market Signal · Familia Signal",
-    "hero_h1": "El precio y el argumento con que se vende en cada punto de venta.",
-    "hero_lead": "Market Signal muestra el precio y la promoción reales en piso, la marca que recomienda el mostrador y los competidores que entran en cada zona. Con eso el equipo comercial sabe dónde ajustar precio y a qué distribuidor visitar.",
+    "hero_h1": "El precio, la exhibición y el argumento con que se vende en cada punto de venta.",
+    "hero_lead": "Market Signal levanta en campo lo que pasa donde se vende el producto. En autoservicio y tiendas de conveniencia: precio en anaquel contra el precio sugerido, promoción activa, frentes, exhibición y agotados. En mostrador (ferreterías, refaccionarias, farmacias y distribuidores): precio, promoción y la marca que recomienda el vendedor. Con eso el equipo comercial sabe en qué zona, cadena o distribuidor actuar primero.",
     "pieza": {
       "alt": "Ventana del Companion de Market Signal: una pregunta sobre la competencia en la red de un distribuidor y la respuesta con los movimientos detectados y un briefing listo para la reunión.",
       "pie": "El radar, preguntado en lenguaje natural: qué hace la competencia en la red de un distribuidor y con qué llegar a la siguiente negociación. Vista del material del producto, con datos ilustrativos."
     },
     "que_hace_h2": "Lo que resuelve en el punto de venta",
-    "que_hace_p": "El equipo comercial decide con el precio, la promoción y la recomendación observados en cientos de puntos de venta, separados por geografía.",
+    "que_hace_p": "El equipo comercial decide con el precio, la exhibición y la recomendación observados en cientos de puntos de venta, separados por canal y por geografía.",
     "que_hace_items": [
-      "Zonas y productos donde el precio de piso se aleja de la lista",
+      "Cadenas, zonas y productos donde el precio en anaquel se aleja del sugerido",
+      "Tiendas con agotados, pocos frentes o exhibición fuera de lo acordado con la cadena",
       "Distribuidores cuyo mostrador recomienda a otra marca, identificados por nombre",
       "Competidores y entrantes detectados en mercados donde hoy no hay visibilidad",
-      "Mercados sin presencia propia o con portafolio insuficiente, ubicados",
-      "Prioridad de acción por zona, en un tablero por geografía"
+      "Prioridad de acción por canal y por zona, en un tablero por geografía"
     ],
     "valor_h2": "De la señal a la acción comercial",
-    "valor_p": "Cuando el precio de piso se aleja de la lista, la señal dice en qué zona y en qué producto, y el ajuste se limita a esa zona y ese producto. Cuando el mostrador empuja a otra marca, la señal identifica al distribuidor y el equipo comercial lo trabaja con nombre y apellido.",
-    "sowhat": "Dice dónde ajustar precio, a qué distribuidor visitar y en qué mercado responder antes de perder participación.",
+    "valor_p": "Cuando el precio en anaquel se aleja del sugerido, la señal dice en qué cadena, en qué zona y en qué producto, y el ajuste o la conversación con la cadena se limita a eso. Cuando una tienda tiene agotados o menos frentes de los acordados, el equipo de campo sabe a cuál ir. Cuando el mostrador empuja a otra marca, la señal identifica al distribuidor y el equipo comercial lo trabaja con nombre y apellido.",
+    "sowhat": "Dice dónde ajustar precio, qué tiendas surtir o corregir y a qué distribuidor visitar antes de perder participación.",
     "demo": {
       "eyebrow": "Mini-demo · señal y acción",
       "titulo": "El tablero, por dentro",
