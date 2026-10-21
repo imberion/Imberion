@@ -13,6 +13,47 @@
       "Programa de lealtad con mecánica, niveles y beneficios cuyo costo se conoce antes de lanzarlo",
       "Clientes en riesgo de abandono detectados antes de que dejen de comprar, con su acción de retención"
     ],
+    "casos": {
+      "titulo": "Lo que el equipo ha movido en retención y lealtad",
+      "tag": "Trayectoria",
+      "items": [
+        {
+          "cifra": "17.5% → 27.3%",
+          "unidad": "de margen EBITDA entre 2015 y 2018",
+          "ctx": "Operador de telecomunicaciones · Costa Rica",
+          "p": "Segmentación de clientes y un plan para los que estaban por cancelar, dentro de la reestructura comercial que siguió a la apertura del mercado. El equipo dirigió el estado de resultados durante 18 meses."
+        },
+        {
+          "cifra": "+2 pts",
+          "unidad": "de EBITDA en el caso de negocio",
+          "ctx": "Materiales de construcción · seis países de Centroamérica y el Caribe",
+          "p": "Programa de lealtad para la red de distribuidores: descuentos que cada distribuidor gana al cumplir sus metas y precios más altos en los productos que más valora cada perfil de cliente."
+        }
+      ],
+      "pie": "Proyectos dirigidos por miembros del equipo en sus empresas anteriores. Los resultados son de esos proyectos."
+    },
+    "datos": {
+      "h2": "Con qué datos se trabaja",
+      "p": "El análisis necesita compras ligadas a un cliente: un consumidor con monedero o, para un fabricante, cada distribuidor y tienda que le compra. Si la venta no se identifica hoy, el primer paso es diseñar cómo identificar al cliente.",
+      "items": [
+        {
+          "titulo": "Compras por cliente",
+          "texto": "Tickets del monedero, del CRM o de la tienda en línea; para un fabricante, pedidos por distribuidor o por tienda. Con fecha, monto y productos."
+        },
+        {
+          "titulo": "Margen por producto",
+          "texto": "Margen por producto o por categoría, para calcular el valor de cada cliente en margen y no solo en venta."
+        },
+        {
+          "titulo": "Reglas y costo del programa actual",
+          "texto": "Acumulación, canje, caducidad y lo que se redimió, si ya hay un programa."
+        },
+        {
+          "titulo": "Contacto y permisos",
+          "texto": "Para un retailer, qué clientes aceptaron en su aviso de privacidad recibir mensajes y por qué canal: correo, SMS o WhatsApp."
+        }
+      ]
+    },
     "valor_h2": "Retención que paga su costo",
     "valor_p": "Un mismo ticket promedio puede venir de clientes frecuentes de bajo margen o de compradores esporádicos de alto valor, y cada grupo se retiene con una acción distinta. Poner economía al programa de lealtad antes de lanzarlo evita regalar margen a quien ya iba a volver.",
     "sowhat": "Dice a qué cliente vale la pena retener, con qué beneficio y hasta qué costo.",

@@ -203,6 +203,26 @@ const EscenaPropia = contenidoEscena ? (ESCENAS[slug] ?? null) : null;
   }
 
   {
+    // Datos que pide la ficha al cliente (clave `datos`, misma forma que `entrega`).
+    (c as any).datos && (
+      <section class="bloque entrega">
+        <div class="container">
+          <h2>{(c as any).datos.h2}</h2>
+          {(c as any).datos.p && <p class="cuerpo">{(c as any).datos.p}</p>}
+          <div class="entrega-rejilla">
+            {(c as any).datos.items.map((it: any) => (
+              <article class="entrega-item">
+                <h3>{it.titulo}</h3>
+                <p>{it.texto}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
     c.valor_h2 && (
       <section class="bloque bloque--dark">
         <div class="container">
