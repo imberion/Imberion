@@ -13,6 +13,47 @@
       "Ejecución en tienda verificada con una lista auditable, con responsable y frecuencia",
       "Crecimiento de la venta omnicanal y por comercio electrónico"
     ],
+    "casos": {
+      "titulo": "Lo que el equipo ha movido en canales y puntos de venta",
+      "tag": "Trayectoria",
+      "items": [
+        {
+          "cifra": "−69%",
+          "unidad": "de rutas sobrecargadas y USD 30 M al año de ingreso adicional identificado",
+          "ctx": "Embotelladora global · México",
+          "p": "Puntos de venta agrupados por frecuencia de compra y contribución, rutas especializadas por grupo y la actividad dentro de cada punto de venta rediseñada con medición de tiempos."
+        },
+        {
+          "cifra": "7%",
+          "unidad": "de mejora en el costo de atender a cada cliente",
+          "ctx": "Lácteos y frescos · México",
+          "p": "Cobertura y nivel de servicio definidos por la rentabilidad de cada segmento de clientes, sin afectar la relación con las cadenas."
+        }
+      ],
+      "pie": "Proyectos dirigidos por miembros del equipo en sus empresas anteriores. Los resultados son de esos proyectos."
+    },
+    "datos": {
+      "h2": "Con qué datos se trabaja",
+      "p": "Se arranca con lo que la empresa ya tiene; ningún dato de esta lista es requisito para empezar. Lo que falte del anaquel lo levanta Imberion en tienda.",
+      "items": [
+        {
+          "titulo": "Venta por tienda y producto",
+          "texto": "Del punto de venta o del ERP, por semana, con al menos 12 meses de historia. Si la venta llega por distribuidor, se trabaja por ruta o por zona."
+        },
+        {
+          "titulo": "Inventario por tienda",
+          "texto": "Existencias y faltantes por producto, para separar lo que no se vendió de lo que no había. Si no hay inventario por tienda, los faltantes se estiman con los días sin venta y con visitas a tienda."
+        },
+        {
+          "titulo": "Espacio y planogramas",
+          "texto": "Metros de anaquel, frentes y acomodo por tienda o por formato. Si no existen, se levantan."
+        },
+        {
+          "titulo": "Venta en línea o en cadenas",
+          "texto": "Para un retailer, la venta de su tienda en línea y de marketplaces. Para un fabricante, la venta al consumidor que publican las cadenas en sus portales de proveedores."
+        }
+      ]
+    },
     "valor_h2": "La misma ejecución en toda la red",
     "valor_p": "Un surtido único para toda la red deja faltantes en las tiendas que sí venden un producto y sobreinventario en las que no. Al agrupar por demanda y auditar el estándar, la ejecución deja de depender del criterio de cada gerente de tienda.",
     "sowhat": "Dice qué se pone en cada tienda y cómo se verifica que quedó puesto.",

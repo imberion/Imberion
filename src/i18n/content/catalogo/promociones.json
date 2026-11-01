@@ -13,6 +13,41 @@
       "Lista de promociones a repetir y a cortar, por mecánica y por canal",
       "Presupuesto de las promociones cortadas, reasignado a las que traen venta nueva"
     ],
+    "casos": {
+      "titulo": "Lo que el equipo ha movido en promociones",
+      "tag": "Trayectoria",
+      "items": [
+        {
+          "cifra": "USD 3 M",
+          "unidad": "de margen incremental en un trimestre",
+          "ctx": "Confitería global · México",
+          "p": "Cada evento del calendario se clasificó por su retorno. El 36% del gasto estaba en mecánicas que restaban valor y se movió a eventos de mayor rendimiento. El margen se midió contra el plan que se habría ejecutado sin el cambio."
+        }
+      ],
+      "pie": "Proyectos dirigidos por miembros del equipo en sus empresas anteriores. Los resultados son de esos proyectos."
+    },
+    "datos": {
+      "h2": "Con qué datos se trabaja",
+      "p": "Se trabaja con el calendario y la venta que la empresa ya registra, de los últimos 12 a 24 meses. Si esos datos viven en archivos de distintas áreas, Imberion los concilia.",
+      "items": [
+        {
+          "titulo": "Calendario ejecutado",
+          "texto": "Cada promoción o campaña de rebajas con su mecánica, fechas, productos y canal o cadena."
+        },
+        {
+          "titulo": "Venta por semana",
+          "texto": "Por producto y por tienda o canal. Un fabricante suma, si la tiene, la venta al consumidor de las cadenas o de un panel como Nielsen."
+        },
+        {
+          "titulo": "Precio regular y promocional",
+          "texto": "El precio de lista y el precio al consumidor durante cada promoción."
+        },
+        {
+          "titulo": "Costo de cada promoción",
+          "texto": "Descuento, producto regalado, material en punto de venta y, para un fabricante, lo que se pagó a la cadena."
+        }
+      ]
+    },
     "valor_h2": "El calendario depurado",
     "valor_p": "Una mecánica que mueve mucho volumen puede estar comprando compras que ya iban a ocurrir, y el reporte de venta al consumidor no lo distingue. Al separarlo, la inversión sale de esa mecánica y entra en la que sí trae demanda nueva.",
     "sowhat": "Dice qué promoción se repite, cuál se corta y cuánto presupuesto se libera al cortarla.",
