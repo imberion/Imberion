@@ -1,0 +1,206 @@
+---
+// Floor Signal para ropa y calzado (spec docs/_home_v3/_spec_floor_signal_moda.md, copy v3 aprobado por
+// Rodrigo el 2026-11-01). Página aparte de la ficha pública: se manda por liga a dueños de tiendas de
+// ropa y calzado y se usa en presentaciones comerciales. noindex, fuera del sitemap y sin liga desde el
+// menú ni el catálogo. Solo español.
+//
+// Seis bloques, cada uno de una pantalla 16:9 salvo los dos amarrados al scroll (panel y plano).
+// Con ?presentar: sin barra de navegación; flechas, barra espaciadora y AvPág saltan de bloque en
+// bloque, y en los bloques amarrados al scroll la primera pulsación recorre el bloque solo.
+import Base from '../../../layouts/Base.astro';
+import { ZCAL_30MIN } from '../../../lib/enlaces';
+import contenido from '../../../i18n/content/floor-signal-moda.json';
+import EscenaFloorSignalPanel from '../../../components/escenas/EscenaFloorSignalPanel.astro';
+import EscenaFloorSignalModa from '../../../components/escenas/EscenaFloorSignalModa.astro';
+import DialogosFloorSignal from '../../../components/escenas/DialogosFloorSignal.astro';
+import VistaFloorSignal from '../../../components/demos/VistaFloorSignal.astro';
+
+const c = contenido.es as Record<string, any>;
+const r = c.resumen;
+---
+
+<Base title={c.__title} description={c.description} locale="es" rutaEs="catalogo/floor-signal/ropa-y-calzado" noindex>
+  <div class="fsm" data-fsm>
+    <section class="fsm-b fsm-resumen" data-bloque id="resumen">
+      <div class="fsm-w">
+        <p class="fsm-eyebrow">{r.eyebrow}</p>
+        <h1>{r.h1}</h1>
+        <p class="fsm-lead">{r.lead}</p>
+        <div class="fsm-cifras">
+          {r.cifras.map((x: string[], i: number) => (
+            <div class={i === 2 ? 'fin' : ''}><b>{x[0]}</b><span>{x[1]}</span></div>
+          ))}
+        </div>
+        <p class="fsm-periodo">{r.periodo}</p>
+        <p class="fsm-walkout">{r.walkout}</p>
+        <ol class="fsm-indice">{r.indice.map((t: string, i: number) => <li><span>{String(i + 1).padStart(2, '0')}</span>{t}</li>)}</ol>
+        <p class="fsm-nota">{r.nota}</p>
+      </div>
+    </section>
+
+    <EscenaFloorSignalPanel contenido={c.panel} />
+
+    <section class="fsm-b fsm-claro" data-bloque id="tablero">
+      <div class="fsm-w">
+        <p class="fsm-eyebrow">{c.tablero.eyebrow}</p>
+        <h2>{c.tablero.h2}</h2>
+        <VistaFloorSignal contenido={c.tablero} />
+        <p class="fsm-nota">{c.tablero.nota}</p>
+      </div>
+    </section>
+
+    <section class="fsm-b fsm-alt" data-bloque id="dialogos">
+      <div class="fsm-w">
+        <p class="fsm-eyebrow">{c.dialogos.eyebrow}</p>
+        <h2>{c.dialogos.h2}</h2>
+        <DialogosFloorSignal contenido={c.dialogos} />
+      </div>
+    </section>
+
+    <section class="fsm-plano" data-bloque id="plano">
+      <div class="fsm-w fsm-plano-cab">
+        <p class="fsm-eyebrow">{c.plano.eyebrow}</p>
+        <h2>{c.plano.h2}</h2>
+      </div>
+      <EscenaFloorSignalModa contenido={c.plano} />
+    </section>
+
+    <section class="fsm-b fsm-claro" data-bloque id="evidencia">
+      <div class="fsm-w">
+        <p class="fsm-eyebrow">{c.evidencia.eyebrow}</p>
+        <div class="fsm-ev">
+          <div>
+            <h3>{c.evidencia.casos_k}</h3>
+            {c.evidencia.casos.map((k: any) => (
+              <div class="fsm-caso"><b>{k.cifra}</b><span>{k.unidad}</span><small>{k.ctx}</small></div>
+            ))}
+            <p class="fsm-nota">{c.evidencia.casos_nota}</p>
+            <h3 class="fsm-sep">{c.evidencia.trabajo_k}</h3>
+            <dl class="fsm-trabajo">{c.evidencia.trabajo.map((t: string[]) => <div><dt>{t[0]}</dt><dd>{t[1]}</dd></div>)}</dl>
+          </div>
+          <div>
+            <h3>{c.evidencia.privacidad_k}</h3>
+            <ul class="fsm-priv">{c.evidencia.privacidad.map((p: string) => <li>{p}</li>)}</ul>
+          </div>
+        </div>
+        <div class="fsm-cta">
+          <p>{c.evidencia.cierre}</p>
+          <a class="btn btn-primary" href={ZCAL_30MIN} target="_blank" rel="noopener">{c.evidencia.boton}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .fsm { font-family: var(--font-sans); }
+  .fsm-w { width: min(100% - 32px, 1280px); margin: 0 auto; }
+  .fsm-b { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 86px 0 clamp(24px, 3vw, 44px); box-sizing: border-box; }
+  .fsm-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--petrol); margin: 0 0 10px; }
+  .fsm h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.1; margin: 0 0 clamp(14px, 1.6vw, 22px); color: var(--navy); max-width: 46ch; }
+  .fsm-nota { margin: 12px 0 0; font-size: 12px; color: #6b737d; }
+
+  .fsm-resumen { background: var(--navy-deep); color: #fff; }
+  .fsm-resumen .fsm-eyebrow { color: var(--petrol-bright); }
+  .fsm-resumen h1 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(2rem, 3.6vw, 3.3rem); line-height: 1.05; margin: 0 0 18px; max-width: 24ch; color: #fff; }
+  .fsm-lead { font-size: clamp(15px, 1.2vw, 17px); line-height: 1.55; color: var(--white-85); max-width: 70ch; margin: 0 0 26px; }
+  .fsm-cifras { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--white-12); border-bottom: 1px solid var(--white-12); }
+  .fsm-cifras > div { flex: 1 1 180px; padding: 16px 20px 16px 0; display: flex; flex-direction: column; gap: 4px; }
+  .fsm-cifras > div + div { padding-left: 20px; border-left: 1px solid var(--white-12); }
+  .fsm-cifras b { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .fsm-cifras .fin b { color: var(--petrol-bright); }
+  .fsm-cifras span { font-size: 13px; color: var(--white-65); }
+  .fsm-periodo { margin: 8px 0 0; font-size: 12px; color: var(--white-65); }
+  .fsm-walkout { margin: 18px 0 0; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.5; max-width: 72ch; color: #fff; }
+  .fsm-indice { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px; color: var(--white-65); }
+  .fsm-indice span { color: var(--petrol-bright); font-weight: 600; margin-right: 6px; font-variant-numeric: tabular-nums; }
+  .fsm-resumen .fsm-nota { color: var(--white-45); }
+
+  .fsm-claro { background: var(--paper); }
+  .fsm-alt { background: var(--paper-alt); }
+
+
+  .fsm-plano { background: var(--paper); padding-top: clamp(56px, 6vw, 88px); }
+  .fsm-plano-cab { margin-bottom: 8px; }
+
+  .fsm-ev { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(20px, 3vw, 44px); }
+  .fsm-ev h3 { margin: 0 0 12px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b737d; font-weight: 600; }
+  .fsm-sep { margin-top: 24px !important; }
+  .fsm-caso { display: grid; grid-template-columns: 84px 1fr; column-gap: 12px; padding: 8px 0; border-top: 1px solid var(--navy-08); }
+  .fsm-caso b { grid-row: span 2; font-size: 26px; font-weight: 600; color: var(--petrol); font-variant-numeric: tabular-nums; }
+  .fsm-caso span { font-size: 14px; color: var(--navy); }
+  .fsm-caso small { font-size: 12px; color: #6b737d; }
+  .fsm-trabajo { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
+  .fsm-trabajo dt { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .fsm-trabajo dd { margin: 3px 0 0; font-size: 12.5px; line-height: 1.45; color: #4a535e; }
+  .fsm-priv { margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; line-height: 1.5; color: var(--navy); }
+  .fsm-cta { margin-top: clamp(24px, 3vw, 40px); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 18px 22px; background: var(--navy); border-radius: 4px; }
+  .fsm-cta p { margin: 0; font-family: var(--font-serif); font-size: 1.5rem; color: #fff; }
+
+  /* Presentación: sin barra de navegación, cada bloque a pantalla completa. */
+  :global(html.presentar nav), :global(html.presentar header.nav), :global(html.presentar .site-nav) { display: none !important; }
+  :global(html.presentar) .fsm-b { padding-top: clamp(36px, 4vw, 56px); }
+
+  /* Pantallas de poca altura (1440×900): el título y el margen se encogen para que el bloque quepa. */
+  @media (min-width: 961px) and (max-height: 960px) {
+    .fsm-b { padding-top: 76px; padding-bottom: 14px; }
+    .fsm h2 { font-size: 1.7rem; margin-bottom: 12px; }
+  }
+
+  @media (max-width: 960px) {
+    .fsm-b { min-height: 0; }
+    .fsm-ev, .fsm-trabajo { grid-template-columns: 1fr; }
+    .fsm-cifras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .fsm-cifras > div { padding: 12px 8px 12px 0; }
+    .fsm-cifras > div + div { padding-left: 10px; }
+    .fsm-cifras b { font-size: 1.9rem; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var p;
+    try { p = new URLSearchParams(location.search).has('presentar'); } catch (e) { p = false; }
+    if (!p) return;
+    document.documentElement.classList.add('presentar');
+    var bloques = [].slice.call(document.querySelectorAll('[data-fsm] [data-bloque]'));
+    var anim = null;
+    function y(el) { return el.getBoundingClientRect().top + window.scrollY; }
+    function actual() {
+      var m = window.scrollY + 4, k = 0;
+      bloques.forEach(function (b, i) { if (y(b) <= m) k = i; });
+      return k;
+    }
+    function parar() { if (anim) { cancelAnimationFrame(anim.id); anim = null; } }
+    function ir(i) { parar(); i = Math.max(0, Math.min(bloques.length - 1, i)); window.scrollTo({ top: y(bloques[i]), behavior: 'instant' }); }
+    // Un bloque más alto que la pantalla (panel y plano, amarrados al scroll) se recorre solo:
+    // unos 5 segundos por pantalla de recorrido.
+    function recorrer(b) {
+      var ini = window.scrollY, fin = y(b) + b.offsetHeight - window.innerHeight;
+      if (fin - ini < 40) return false;
+      var dur = (fin - ini) / window.innerHeight * 5000, t0 = performance.now();
+      anim = { id: 0 };
+      (function paso(t) {
+        var f = Math.min(1, (t - t0) / dur);
+        // 'instant': el sitio trae scroll suave en CSS y cada cuadro lo reiniciaría.
+        window.scrollTo({ top: ini + (fin - ini) * f, behavior: 'instant' });
+        if (f < 1 && anim) anim.id = requestAnimationFrame(paso); else anim = null;
+      })(t0);
+      return true;
+    }
+    window.addEventListener('keydown', function (ev) {
+      if (ev.target && /input|textarea|select|button/i.test(ev.target.tagName)) return;
+      var sig = ['ArrowDown', 'ArrowRight', 'PageDown', ' '].indexOf(ev.key) >= 0;
+      var ant = ['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(ev.key) >= 0;
+      if (!sig && !ant) return;
+      ev.preventDefault();
+      var i = actual();
+      if (ant) return ir(i - 1);
+      if (anim) return ir(i + 1);
+      var b = bloques[i];
+      var alto = b.offsetHeight > window.innerHeight * 1.2;
+      if (alto && window.scrollY + window.innerHeight < y(b) + b.offsetHeight - 40 && recorrer(b)) return;
+      ir(i + 1);
+    });
+  })();
+</script>

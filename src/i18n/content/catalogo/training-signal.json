@@ -178,9 +178,9 @@
                 "dur": "0:03",
                 "opciones": [
                   {
-                    "texto": "Tenemos 10% de descuento con tarjeta participante.",
-                    "reaccion": "Ah, ok. Aun así se me hace mucho. Déjeme ver otros.",
-                    "nota": "Ofrece descuento antes de saber para qué los quiere. Entrega margen y no mueve la decisión.",
+                    "texto": "Son de los más vendidos. ¿Qué número calza?",
+                    "reaccion": "El 25… pero sí se me hacen caros.",
+                    "nota": "Va directo a la talla sin saber para qué los quiere, y el precio se queda sin respuesta.",
                     "buena": false
                   },
                   {

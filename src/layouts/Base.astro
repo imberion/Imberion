@@ -17,6 +17,8 @@ interface Props {
   locale?: Locale;
   /** Segmento canónico en español de esta página. '' es el home. */
   rutaEs?: string;
+  /** Página que se manda por liga y no se indexa (también va fuera del sitemap en astro.config). */
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   description,
   locale = (Astro.currentLocale as Locale) ?? LOCALE_RAIZ,
   rutaEs = '',
+  noindex = false,
 } = Astro.props;
 
 const c = comun[locale];
@@ -49,7 +52,7 @@ const alternas = (LOCALES_PUBLICADOS.length > 1 ? LOCALES_PUBLICADOS : []).map((
     <link rel="canonical" href={canonical} />
     {alternas.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
     {alternas.length > 0 && <link rel="alternate" hreflang="x-default" href={urlAbsoluta(origen, ruta(LOCALE_RAIZ, rutaEs))} />}
-    {!publicado && <meta name="robots" content="noindex" />}
+    {(!publicado || noindex) && <meta name="robots" content="noindex" />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Imberion" />
     <meta property="og:title" content={title} />
