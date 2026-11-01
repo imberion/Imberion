@@ -11,7 +11,8 @@ export default defineConfig({
     // segmentos EN van traducidos (/en/catalog/ contra /catalogo/), así que
     // emitía hreflang incompletos. Los hreflang correctos salen de Base.astro.
     // Solo el español está publicado (ver LOCALES_PUBLICADOS en src/lib/rutas.ts).
-    sitemap({ filter: (url) => !/\/(en|pt)\//.test(new URL(url).pathname) }),
+    // Las páginas que se mandan por liga (Base con noindex) tampoco entran.
+    sitemap({ filter: (url) => !/\/(en|pt)\/|^\/catalogo\/floor-signal\/ropa-y-calzado\//.test(new URL(url).pathname) }),
   ],
   i18n: {
     defaultLocale: 'es',
