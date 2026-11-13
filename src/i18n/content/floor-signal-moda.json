@@ -105,21 +105,21 @@
               "hasta": 1.4,
               "titulo": "Pasa · Hombre 25 a 34",
               "lineas": [
-                "Perfil: Joven que va directo a ofertas",
-                "Acompañado · mira el aparador 2 s"
+                "Acompañado · camina hacia el fondo del pasillo",
+                "No voltea al aparador"
               ],
-              "registro": "Pasa · Joven que va directo a ofertas · 13:01"
+              "registro": "Pasa · pareja · no voltea · 13:01"
             },
             {
               "id": 1,
               "desde": 1.5,
               "hasta": 2.9,
-              "titulo": "Entra · Hombre 35 a 44",
+              "titulo": "Pasa · Hombre 35 a 44",
               "lineas": [
-                "Perfil: Running",
-                "Solo · va directo a calzado"
+                "Lleva bolsa de otra tienda",
+                "Camina junto al aparador y sigue de largo"
               ],
-              "registro": "Entra · Running · 13:02"
+              "registro": "Pasa junto al aparador sin entrar · 13:02"
             },
             {
               "id": 4,
@@ -127,10 +127,10 @@
               "hasta": 4.3,
               "titulo": "Pasa · Mujer 25 a 34",
               "lineas": [
-                "Perfil: Regalo",
-                "Sola · no voltea al aparador"
+                "Sola · con mochila",
+                "Camina sin detenerse"
               ],
-              "registro": "Pasa · Regalo · 13:02"
+              "registro": "Pasa · sola · no se detiene · 13:02"
             }
           ]
         },
@@ -205,12 +205,12 @@
               "id": 3,
               "desde": 0.2,
               "hasta": 1.4,
-              "titulo": "Toma prenda · Mujer 25 a 34",
+              "titulo": "Revisa el perchero · Mujer 25 a 34",
               "lineas": [
-                "Sudadera técnica gris, talla M",
-                "Perfil: Running · zona de ropa"
+                "Chamarras de running · 40 s frente al perchero",
+                "No descuelga ninguna"
               ],
-              "registro": "Toma prenda · Sudadera técnica gris, talla M · Running"
+              "registro": "Revisa chamarras de running · no descuelga · 13:10"
             },
             {
               "id": 2,
@@ -229,10 +229,10 @@
               "hasta": 4.1,
               "titulo": "Sin atender 3 min · Hombre 18 a 24",
               "lineas": [
-                "Perfil: Joven que va directo a ofertas",
-                "Zona de tenis · ningún vendedor cerca"
+                "Frente a la pared de tenis",
+                "Ningún vendedor a menos de 5 m"
               ],
-              "registro": "Sin atender 3 min · Joven · zona de tenis"
+              "registro": "Sin atender 3 min · pared de tenis"
             }
           ]
         },
@@ -311,18 +311,18 @@
               "titulo": "Vendedor 03 · zona de calzado",
               "lineas": [
                 "“¿Para qué los va a usar, para correr o para diario?”",
-                "Cliente: compara dos modelos · interesada"
+                "Clienta sentada · se prueba el primer par"
               ],
-              "registro": "Vendedor 03: “¿Para qué los va a usar?” · clienta interesada"
+              "registro": "Vendedor 03: “¿Para qué los va a usar?” · primer par"
             },
             {
               "id": 3,
               "desde": 2.4,
               "hasta": 4.0,
-              "titulo": "Hombre 25 a 34 · zona de calzado",
+              "titulo": "Acompañante · Hombre 25 a 34",
               "lineas": [
-                "Pide calcetas de compresión",
-                "No hay en inventario · venta perdida"
+                "Toma un modelo de la pared para la clienta",
+                "Pregunta por calcetas de compresión · no hay"
               ],
               "registro": "Venta perdida por falta de producto · calcetas de compresión"
             },
@@ -330,12 +330,12 @@
               "id": 2,
               "desde": 4.2,
               "hasta": 6.0,
-              "titulo": "Clienta · prueba tenis de running",
+              "titulo": "Clienta · tenis de running",
               "lineas": [
-                "Prueba de pisada · segundo par",
-                "El vendedor ofrece calcetas · compra"
+                "Se prueba el segundo par que le pasan",
+                "Compra los tenis · sin calcetas, no había"
               ],
-              "registro": "Compra · tenis y calcetas · $2,890"
+              "registro": "Compra · tenis de running · sin complemento"
             }
           ]
         }
