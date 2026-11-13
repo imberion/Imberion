@@ -6,9 +6,9 @@
 // opción trae la reacción del cliente y la retroalimentación; el cierre sale
 // del número de respuestas buenas (3 compra, 2 pide tiempo, 0 o 1 se va).
 //
-// Voz: cada globo del cliente tiene un botón para escucharlo con la síntesis
-// de voz del navegador (speechSynthesis, es-MX si existe). Si el navegador no
-// la tiene, el botón no aparece. En el producto real el asesor contesta en voz
+// Voz: cada globo del cliente tiene un botón para escucharlo. El audio está
+// grabado con ElevenLabs, un mp3 por frase (ver `audios` abajo); una frase sin
+// mp3 no lleva botón. En el producto real el asesor contesta en voz
 // alta; aquí escoge entre tres respuestas, y la interfaz lo dice.
 //
 // Es determinista igual que Virtual Buyer Personas: todo el diálogo está
@@ -17,6 +17,10 @@
 // El panel lleva `data-dialogo` porque los globos y las opciones son habla
 // citada entre cliente y asesor en una tienda: ahí el trato de usted es del
 // personaje, no del sitio.
+
+import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 export interface DemoTrainingSignalContenido {
   eyebrow: string;
@@ -66,9 +70,28 @@ interface Props {
 
 const { contenido: d } = Astro.props;
 const pr = d.practica;
+
+// Audio de cada frase del cliente: public/audio/training-signal/<sha1 del
+// texto, 10 caracteres>.mp3, grabado con ElevenLabs. Una frase sin mp3 (texto
+// editado después de grabar) se queda sin botón de escuchar.
+const audios: Record<string, string> = {};
+for (const c of pr.clientes) {
+  const textos = [
+    ...c.turnos.map((t) => t.cliente),
+    ...c.turnos.flatMap((t) => t.opciones.map((o) => o.reaccion)),
+    ...Object.values(c.cierre),
+  ];
+  for (const texto of textos) {
+    const archivo = `${createHash('sha1').update(texto).digest('hex').slice(0, 10)}.mp3`;
+    if (existsSync(join(process.cwd(), 'public/audio/training-signal', archivo))) {
+      audios[texto] = `/audio/training-signal/${archivo}`;
+    }
+  }
+}
+
 // El diálogo viaja como JSON; `<` escapado para que ningún texto pueda cerrar
 // la etiqueta <script>.
-const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
+const practicaJson = JSON.stringify({ ...pr, audios }).replace(/</g, '\\u003c');
 ---
 
 <section class="demo-bloque" id="mini-demo">
@@ -455,7 +478,7 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
   .demo-bloque .ts-onda { display: inline-flex; align-items: center; gap: 2px; height: 10px; }
   .demo-bloque .ts-onda b { display: block; width: 2px; border-radius: 1px; background: currentColor; }
   .demo-bloque .ts-dur { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
-  /* Botón de escuchar en cada globo del cliente: la voz es la del navegador. */
+  /* Botón de escuchar en cada globo del cliente: reproduce el mp3 de la frase. */
   .demo-bloque .ts-oir {
     margin-left: auto;
     display: inline-flex;
@@ -666,45 +689,32 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
       var repaso = q('[data-repaso]');
       var repasoL = q('[data-repaso-l]');
 
-      // ---- voz del navegador ----
-      var sintesis = 'speechSynthesis' in window ? window.speechSynthesis : null;
-      var vozMx = null;
-      function elegirVoz() {
-        if (!sintesis) return;
-        var voces = sintesis.getVoices() || [];
-        vozMx =
-          voces.filter(function (v) { return /^es[-_]MX/i.test(v.lang); })[0] ||
-          voces.filter(function (v) { return /^es[-_](US|419)/i.test(v.lang); })[0] ||
-          voces.filter(function (v) { return /^es/i.test(v.lang); })[0] ||
-          null;
-      }
-      if (sintesis) {
-        elegirVoz();
-        if (typeof sintesis.addEventListener === 'function') sintesis.addEventListener('voiceschanged', elegirVoz);
-      }
+      // ---- voz grabada (mp3 por frase) ----
+      var audios = datos.audios || {};
+      var reproductor = null;
       var sonando = null;
       function callar() {
-        if (sintesis) sintesis.cancel();
+        if (reproductor) {
+          reproductor.pause();
+          reproductor = null;
+        }
         if (sonando) {
           sonando.classList.remove('sonando');
           sonando.lastChild.textContent = datos.escuchar;
           sonando = null;
         }
       }
-      function decir(texto, boton) {
-        if (!sintesis) return;
+      function decir(url, boton) {
         var mismo = sonando === boton;
         callar();
         if (mismo) return;
-        var u = new SpeechSynthesisUtterance(texto);
-        u.lang = vozMx ? vozMx.lang : 'es-MX';
-        if (vozMx) u.voice = vozMx;
-        u.rate = 1;
-        u.onend = u.onerror = function () { if (sonando === boton) callar(); };
+        var a = new Audio(url);
+        a.onended = a.onerror = function () { if (sonando === boton) callar(); };
+        reproductor = a;
         sonando = boton;
         boton.classList.add('sonando');
         boton.lastChild.textContent = datos.detener;
-        sintesis.speak(u);
+        a.play().catch(function () { if (sonando === boton) callar(); });
       }
 
       function el(tag, cls, txt) {
@@ -734,12 +744,12 @@ const practicaJson = JSON.stringify(pr).replace(/</g, '\\u003c');
         who.appendChild(el('span', null, cli ? datos.quien_cliente : datos.quien_asesor));
         who.appendChild(onda(texto));
         if (dur) who.appendChild(el('span', 'ts-dur', dur));
-        if (cli && sintesis) {
+        if (cli && audios[texto]) {
           var b = el('button', 'ts-oir');
           b.type = 'button';
           b.innerHTML = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1.2v7.6L8.6 5z" fill="currentColor"/></svg>';
           b.appendChild(el('span', null, datos.escuchar));
-          b.addEventListener('click', function () { decir(texto, b); });
+          b.addEventListener('click', function () { decir(audios[texto], b); });
           who.appendChild(b);
         }
         g.appendChild(who);
