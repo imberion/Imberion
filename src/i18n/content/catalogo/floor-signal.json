@@ -104,8 +104,12 @@
       ]
     },
     "ejemplo": {
-      "h2": "En una tienda de calzado",
-      "p": "Las seis preguntas que contesta un piloto en una cadena de calzado, cada una por tienda y con la acción sugerida.",
+      "h2": "Lo que contesta un piloto en una tienda",
+      "p": "Seis preguntas que contesta un piloto de Floor Signal, cada una por tienda y con la acción sugerida.",
+      "liga": {
+        "texto": "Floor Signal en una tienda de ropa y calzado, con video y tablero",
+        "href": "/catalogo/floor-signal/ropa-y-calzado/"
+      },
       "items": [
         {
           "titulo": "¿Quién entra y a qué hora?",
@@ -121,7 +125,7 @@
         },
         {
           "titulo": "¿Se ofrecen los complementos?",
-          "texto": "Productos de cuidado del calzado y venta adicional ofrecidos, cruzados con el ticket."
+          "texto": "Complementos y venta adicional ofrecidos, cruzados con el ticket."
         },
         {
           "titulo": "¿Qué piden los clientes que no hay?",

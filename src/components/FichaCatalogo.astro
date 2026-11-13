@@ -121,6 +121,11 @@ const EscenaPropia = contenidoEscena ? (ESCENAS[slug] ?? null) : null;
               </article>
             ))}
           </div>
+          {(c as any).ejemplo.liga && (
+            <p class="cuerpo cuerpo--enlaces ejemplo-liga">
+              <a href={(c as any).ejemplo.liga.href}>{(c as any).ejemplo.liga.texto} →</a>
+            </p>
+          )}
         </div>
       </section>
     )
@@ -548,4 +553,5 @@ const EscenaPropia = contenidoEscena ? (ESCENAS[slug] ?? null) : null;
   .entrega-item h3 { font-family: var(--font-serif); font-weight: 500; font-size: 1.45rem; line-height: 1.2; color: var(--navy); }
   .entrega-item p { margin-top: 10px; font-size: 14.5px; line-height: 1.6; color: var(--navy-72); }
   @media (max-width: 800px) { .entrega-rejilla { grid-template-columns: 1fr; } }
+  .ejemplo-liga { margin-top: 36px; }
 </style>
