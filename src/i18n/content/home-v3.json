@@ -55,7 +55,6 @@
       }
     ],
     "ap_decision": {
-      "folio": "Decisión 014",
       "titulo": "Lista de precios, canal mayoreo",
       "filas": [
         [
@@ -77,34 +76,34 @@
         [
           "Vigencia",
           "1 nov – 31 ene"
-        ],
-        [
-          "Autoriza",
-          "Dirección comercial"
         ]
       ],
-      "pie": "Ejemplo ilustrativo con datos sintéticos."
+      "pie": "Ejemplo ilustrativo con datos sintéticos.",
+      "firma": [
+        "Autoriza",
+        "Dirección comercial"
+      ]
     },
     "ap_nodos": [
       [
-        "Lista de precios",
-        "42 SKU actualizados en el ERP"
+        "Pricing",
+        "Sube los 42 SKU a la lista del ERP"
       ],
       [
-        "Anaquel",
-        "Precio y exhibición verificados en tienda"
+        "Promotoría",
+        "Verifica precio y exhibición en tienda"
       ],
       [
-        "Ruta del asesor",
-        "Visitas ordenadas por oportunidad"
+        "Asesores",
+        "Visitan los puntos en orden de oportunidad"
       ],
       [
-        "Guion de venta",
-        "Argumento por SKU y por objeción"
+        "Equipo de ventas",
+        "Ensaya el argumento por SKU y por objeción"
       ],
       [
-        "Medición",
-        "Resultado contra la línea base"
+        "Dirección comercial e Imberion",
+        "Miden el resultado contra la línea base"
       ]
     ],
     "ap_fuentes": [

@@ -7,16 +7,14 @@
 //   p 0.42-0.68  decisión   el campo baja a un residuo; tres cifras por cada
 //                           valor de la ficha se alinean en su fila y la ficha
 //                           aparece encima, con cada valor donde estaban ellas
-//   p 0.68-1.00  valor      de la ficha salen líneas a cinco puntos de la
-//                           operación; un pulso petróleo recorre cada línea
+//   p 0.68-1.00  valor      de la ficha salen líneas a las cinco personas o
+//                           equipos que la ejecutan; las líneas quedan quietas
+//                           (un pulso viajando se leía como integración de software)
 //
 // Las partículas son texto (cifras tabulares, códigos, nombres de fuente), no
 // puntos: el ruido es información. Se pintan desde un atlas pre-renderizado
 // con drawImage, no con fillText por cuadro, que es lo que permite ~1,400 en
 // escritorio a 60 fps.
-//
-// El petróleo aparece solo en los pulsos de la etapa valor. Ningún otro
-// elemento del bloque lo usa.
 //
 // prefers-reduced-motion: no hay recorrido; los tres pasos se apilan, la ficha
 // y los nodos quedan visibles y el canvas pinta un solo cuadro.
@@ -60,17 +58,18 @@ const { c, agendar, como } = Astro.props;
 
     <div class="ap-escena" data-ap-escena>
       <article class="ap-ficha" data-ap-ficha aria-label={c.ap_decision.titulo}>
-        <header class="ap-ficha-head mono">
-          <span>{c.ap_decision.folio}</span>
-          <span class="ap-ficha-estado"><i></i>Lista para junta</span>
-        </header>
         <h3 class="ap-ficha-titulo">{c.ap_decision.titulo}</h3>
         <dl class="ap-ficha-filas">
           {c.ap_decision.filas.map((f: string[]) => (
-            <div><dt class="mono">{f[0]}</dt><dd>{f[1]}</dd></div>
+            <div><dt>{f[0]}</dt><dd>{f[1]}</dd></div>
           ))}
         </dl>
-        <p class="ap-ficha-pie mono">{c.ap_decision.pie}</p>
+        <div class="ap-ficha-firma">
+          <span class="ap-ficha-firma-linea" aria-hidden="true"></span>
+          <span class="ap-ficha-firma-rol">{c.ap_decision.firma[1]}</span>
+          <span class="ap-ficha-firma-dt">{c.ap_decision.firma[0]}</span>
+        </div>
+        <p class="ap-ficha-pie">{c.ap_decision.pie}</p>
       </article>
 
       <ol class="ap-nodos" data-ap-nodos>
@@ -371,15 +370,6 @@ const { c, agendar, como } = Astro.props;
           if (s === 0) ctx.moveTo(pt[0], pt[1]); else ctx.lineTo(pt[0], pt[1]);
         }
         ctx.stroke();
-        if (loc >= 1) {
-          var ciclo = ((t * 0.42) + k * 0.19) % 1;
-          var pp = bez(ox, oy, mx, oy, mx, n.y, n.x - 10, n.y, ciclo);
-          ctx.fillStyle = '#52A0AC';
-          ctx.globalAlpha = 0.25;
-          ctx.beginPath(); ctx.arc(pp[0], pp[1], 6, 0, 6.283); ctx.fill();
-          ctx.globalAlpha = 1;
-          ctx.beginPath(); ctx.arc(pp[0], pp[1], 2.2, 0, 6.283); ctx.fill();
-        }
       }
       /* el regreso: de la medición a la ficha, punteado */
       var vuelta = ss(0.88, 0.97, p);

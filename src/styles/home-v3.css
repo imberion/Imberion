@@ -106,23 +106,25 @@
 
 /* escena de la derecha: ficha de decisión y nodos de la operación */
 .ap-escena { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+/* La ficha se ve como un documento firmado, no como la tarjeta de una app:
+   papel, sin estado ni folio, y quién autoriza en una línea de firma. */
 .ap-ficha {
   width: min(372px, 56%); align-self: flex-start;
-  background: rgba(10, 24, 40, .9);
-  border: 1px solid var(--linea-dark);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  padding: 22px 24px 18px; border-radius: 4px;
-  opacity: 0; will-change: opacity, transform;
+  background: var(--paper); color: var(--navy);
+  padding: 26px 28px 20px; border-radius: 2px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .38);
+  opacity: 0; will-change: opacity;
 }
-.ap-ficha-head { display: flex; justify-content: space-between; font-size: 11px; color: var(--on-dark-62); }
-.ap-ficha-estado { display: inline-flex; align-items: center; gap: 7px; }
-.ap-ficha-estado i { width: 6px; height: 6px; border-radius: 50%; background: #fff; }
-.ap-ficha-titulo { font-family: var(--font-serif); font-weight: 400; font-size: 1.55rem; line-height: 1.15; margin: 14px 0 16px; }
+.ap-ficha-titulo { font-family: var(--font-serif); font-weight: 400; font-size: 1.55rem; line-height: 1.15; margin: 0 0 16px; }
 .ap-ficha-filas { margin: 0; }
-.ap-ficha-filas div { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid var(--linea-dark); }
-.ap-ficha-filas dt { font-size: 11px; color: var(--on-dark-62); padding-top: 2px; }
-.ap-ficha-filas dd { margin: 0; font-size: 14px; color: #fff; font-feature-settings: 'tnum' 1; }
-.ap-ficha-pie { font-size: 10.5px; color: var(--on-dark-46); margin: 12px 0 0; }
+.ap-ficha-filas div { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 9px 0; border-top: 1px solid rgba(10, 24, 40, .12); }
+.ap-ficha-filas dt { font-size: 12px; color: rgba(10, 24, 40, .56); padding-top: 1px; }
+.ap-ficha-filas dd { margin: 0; font-size: 14px; color: var(--navy); font-feature-settings: 'tnum' 1; }
+.ap-ficha-firma { margin: 26px 0 0; display: grid; justify-items: start; }
+.ap-ficha-firma-linea { width: 190px; height: 1px; background: rgba(10, 24, 40, .5); margin-bottom: 8px; }
+.ap-ficha-firma-rol { font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.2; }
+.ap-ficha-firma-dt { font-size: 11px; color: rgba(10, 24, 40, .56); margin-top: 2px; }
+.ap-ficha-pie { font-size: 10.5px; color: rgba(10, 24, 40, .46); margin: 16px 0 0; }
 
 .ap-nodos {
   list-style: none; margin: 0; padding: 0;
@@ -200,7 +202,9 @@
   .ap-btns { margin-top: clamp(16px, 3vh, 26px); }
   .ap-marca { margin-bottom: 20px; }
   .ap-ficha { width: 100%; padding: 16px 16px 12px; }
-  .ap-ficha-titulo { font-size: 1.25rem; margin: 10px 0 8px; }
+  .ap-ficha-titulo { font-size: 1.25rem; margin: 0 0 8px; }
+  .ap-ficha-firma { margin-top: 14px; }
+  .ap-ficha-pie { margin-top: 10px; }
   .ap-ficha-filas div { grid-template-columns: 104px 1fr; padding: 6px 0; }
   .ap-ficha-filas div:nth-child(n+5) { display: none; }
   .ap-ficha-filas dd { font-size: 13px; }
