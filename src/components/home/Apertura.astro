@@ -211,7 +211,12 @@ const { c, agendar, como } = Astro.props;
   }
 
   function resize() {
-    W = stage.clientWidth; H = stage.clientHeight;
+    var w = stage.clientWidth, h = stage.clientHeight;
+    /* En iOS la barra de la URL se esconde al primer scroll y dispara resize
+       sin que el stage (100svh) cambie. Reasignar canvas.width lo borra y deja
+       un cuadro en negro: si el tamaño es el mismo, solo se vuelve a medir. */
+    if (w === W && h === H && parts.length) { medir(); asignarDestinos(); return; }
+    W = w; H = h;
     movil = W < 820;
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
@@ -272,12 +277,25 @@ const { c, agendar, como } = Astro.props;
 
   /* ---------- dibujo ---------- */
   var t0 = performance.now();
+  var tPrev = null, pSuave = null, fasePulso = 0;
   function dibujar(now) {
     var t = (now - t0) / 1000;
-    var p = progreso();
+    var dt = tPrev === null ? 0 : Math.min(0.1, (now - tPrev) / 1000);
+    tPrev = now;
+    /* El progreso sigue al scroll con un retraso corto (~0.1 s): la rueda del
+       mouse avanza a saltos de 100 px y sin esto la escena brinca con cada uno. */
+    var pObj = progreso();
+    if (pSuave === null) pSuave = pObj;
+    pSuave += (pObj - pSuave) * (1 - Math.exp(-dt * 10));
+    if (Math.abs(pObj - pSuave) < 0.0004) pSuave = pObj;
+    var p = pSuave;
     actualizarDom(p);
 
     var ruido = ss(0.14, 0.34, p) * (1 - ss(0.46, 0.56, p));   // saturación de la etapa datos
+    /* La fase del parpadeo se acumula cuadro a cuadro. Con sin(t * frecuencia),
+       cambiar la frecuencia con el scroll movía la fase t·Δf de golpe y todas
+       las cifras parpadeaban al azar en cuanto empezaba la etapa datos. */
+    fasePulso += dt * (1.4 + ruido * 5);
     var conv = ss(0.42, 0.57, p);                               // convergencia a la ficha
     var ejec = ss(0.70, 0.84, p);                               // líneas a la operación
     var cubre = ss(0.56, 0.64, p);                              // la ficha tapa a los convergidos
@@ -295,7 +313,7 @@ const { c, agendar, como } = Astro.props;
       if (d2 < 14400 && conv < 0.5) { var f = (1 - d2 / 14400) * 1.6; q.x += dx / Math.sqrt(d2 + 1) * f; q.y += dy / Math.sqrt(d2 + 1) * f; }
 
       var x = q.x, y = q.y, a = q.a;
-      var parpadeo = 0.65 + 0.35 * Math.sin(t * (1.4 + ruido * 5) + q.fase);
+      var parpadeo = 0.65 + 0.35 * Math.sin(fasePulso + q.fase);
       a = a * (0.32 + ruido * 1.1) * parpadeo;
       if (q.fuente) a = Math.min(1, a * (1.2 + ruido * 1.4));
 
@@ -384,7 +402,7 @@ const { c, agendar, como } = Astro.props;
     dibujar(now);
     requestAnimationFrame(bucle);
   }
-  function arrancar() { if (!corriendo && visible) { corriendo = true; requestAnimationFrame(bucle); } }
+  function arrancar() { if (!corriendo && visible) { corriendo = true; tPrev = null; pSuave = null; requestAnimationFrame(bucle); } }
 
   stage.addEventListener('pointermove', function (e) {
     var s = stage.getBoundingClientRect();
@@ -393,7 +411,7 @@ const { c, agendar, como } = Astro.props;
   stage.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
 
   var rt;
-  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(resize, 120); });
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { resize(); if (corriendo) dibujar(performance.now()); }, 120); });
 
   function iniciar() {
     resize();
