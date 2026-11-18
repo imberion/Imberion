@@ -4,8 +4,9 @@
 //
 //   p 0.00-0.16  portada    campo tranquilo, titular y botones
 //   p 0.16-0.42  datos      el campo se satura: cifras, códigos y fuentes
-//   p 0.42-0.68  decisión   tres de cada cuatro cifras se apagan; el resto
-//                           converge a la ficha de decisión, que aparece
+//   p 0.42-0.68  decisión   el campo baja a un residuo; tres cifras por cada
+//                           valor de la ficha se alinean en su fila y la ficha
+//                           aparece encima, con cada valor donde estaban ellas
 //   p 0.68-1.00  valor      de la ficha salen líneas a cinco puntos de la
 //                           operación; un pulso petróleo recorre cada línea
 //
@@ -159,7 +160,7 @@ const { c, agendar, como } = Astro.props;
   var W = 0, H = 0, movil = false;
   var parts = [];
   var mouse = { x: -9999, y: -9999 };
-  var cajaFicha = null, centrosNodos = [], zonaTexto = null;
+  var cajaFicha = null, centrosNodos = [], zonaTexto = null, valoresFicha = [];
 
   function crear() {
     var n = movil ? 480 : 1250;
@@ -174,7 +175,7 @@ const { c, agendar, como } = Astro.props;
         a: r(0.18, 0.55),
         g: glifo(txt, esFuente),
         fuente: esFuente,
-        sobrevive: i % 4 === 0,
+        sobrevive: false,
         tx: 0, ty: 0, ox: 0, oy: 0
       });
     }
@@ -186,6 +187,10 @@ const { c, agendar, como } = Astro.props;
     if (ficha) {
       var f = ficha.getBoundingClientRect();
       cajaFicha = { x: f.left - s.left, y: f.top - s.top, w: f.width, h: f.height };
+      valoresFicha = [].slice.call(ficha.querySelectorAll('.ap-ficha-filas dd')).map(function (dd) {
+        var b = dd.getBoundingClientRect();
+        return { x: b.left - s.left, y: b.top - s.top + b.height / 2, w: b.width, h: b.height };
+      }).filter(function (v) { return v.h > 0; });
     }
     centrosNodos = nodos.map(function (n) {
       var b = n.getBoundingClientRect();
@@ -195,18 +200,24 @@ const { c, agendar, como } = Astro.props;
     zonaTexto = { x: t.left - s.left, y: t.top - s.top, w: t.width, h: t.height };
   }
 
-  /* Los sobrevivientes van a una retícula dentro de la ficha: filas de cifras
-     que se leen como el contenido de la decisión antes de que la ficha cubra. */
+  /* Sobreviven tres cifras por cada valor de la ficha. Llegan alineadas a la
+     fila de ese valor y se apagan cuando el valor aparece: el ruido se vuelve
+     esas filas. Antes llegaban ~310 a una retícula donde no cabían y quedaban
+     encimadas debajo de la ficha. */
+  var POR_FILA = 3;
   function asignarDestinos() {
-    if (!cajaFicha) return;
-    var sob = parts.filter(function (p) { return p.sobrevive; });
-    var cols = movil ? 6 : 9, filas = Math.ceil(sob.length / cols);
-    var padX = 22, padY = 64;
-    var cw = (cajaFicha.w - padX * 2) / cols;
-    var ch = Math.max(8, (cajaFicha.h - padY - 30) / filas);
-    sob.forEach(function (p, i) {
-      p.tx = cajaFicha.x + padX + (i % cols) * cw + r(-2, 2);
-      p.ty = cajaFicha.y + padY + Math.floor(i / cols) * ch;
+    parts.forEach(function (p) { p.sobrevive = false; });
+    if (!cajaFicha || !valoresFicha.length) return;
+    var cand = parts.filter(function (p) { return !p.fuente && p.g.w < 64; });
+    var k = 0;
+    valoresFicha.forEach(function (v) {
+      var paso = v.w / POR_FILA;
+      for (var j = 0; j < POR_FILA && k < cand.length; j++, k++) {
+        var p = cand[k];
+        p.sobrevive = true;
+        p.tx = v.x + j * paso;
+        p.ty = v.y;
+      }
     });
   }
 
@@ -259,14 +270,14 @@ const { c, agendar, como } = Astro.props;
       riel.forEach(function (el, i) { el.classList.toggle('is-on', i + 1 <= activo); el.classList.toggle('is-actual', i + 1 === activo); });
     }
     if (barra) barra.style.transform = 'scaleX(' + ss(0.16, 1, p).toFixed(3) + ')';
-    var fOn = ss(0.52, 0.62, p);
+    var fOn = ss(0.545, 0.62, p);
     /* en celular no caben juntas: la ficha sale cuando entran los nodos */
     if (movil) fOn *= 1 - ss(0.68, 0.72, p);
     raiz.classList.toggle('is-portada', activo === 0);
     if (p > 0.002) raiz.classList.add('ap--movido');
     if (ficha) {
       ficha.style.opacity = fOn.toFixed(3);
-      ficha.style.transform = 'translateY(' + ((1 - fOn) * 14).toFixed(1) + 'px)';
+      /* sin desplazamiento: cada valor aparece donde están sus cifras */
     }
     nodos.forEach(function (n, i) {
       var a = ss(0.72 + i * 0.035, 0.78 + i * 0.035, p);
@@ -296,21 +307,24 @@ const { c, agendar, como } = Astro.props;
        cambiar la frecuencia con el scroll movía la fase t·Δf de golpe y todas
        las cifras parpadeaban al azar en cuanto empezaba la etapa datos. */
     fasePulso += dt * (1.4 + ruido * 5);
-    var conv = ss(0.42, 0.57, p);                               // convergencia a la ficha
+    /* El movimiento se mide en tiempo, no en cuadros: a 120 Hz (MacBook Pro,
+       iPhone Pro) el campo iba al doble de velocidad que en un monitor de 60. */
+    var paso60 = dt * 60;
+    var conv = ss(0.42, 0.54, p);                               // convergencia a las filas de la ficha
     var ejec = ss(0.70, 0.84, p);                               // líneas a la operación
-    var cubre = ss(0.56, 0.64, p);                              // la ficha tapa a los convergidos
+    var cubre = ss(0.545, 0.585, p);                            // los valores reemplazan a las cifras
 
     ctx.clearRect(0, 0, W, H);
 
     for (var i = 0; i < parts.length; i++) {
       var q = parts[i];
-      var agit = 1 + ruido * 2.2;
+      var agit = (1 + ruido * 2.2) * paso60;
       q.x += q.vx * agit; q.y += q.vy * agit;
       if (q.x < -60) q.x = W + 20; else if (q.x > W + 60) q.x = -20;
       if (q.y < -20) q.y = H + 10; else if (q.y > H + 20) q.y = -10;
 
       var dx = q.x - mouse.x, dy = q.y - mouse.y, d2 = dx * dx + dy * dy;
-      if (d2 < 14400 && conv < 0.5) { var f = (1 - d2 / 14400) * 1.6; q.x += dx / Math.sqrt(d2 + 1) * f; q.y += dy / Math.sqrt(d2 + 1) * f; }
+      if (d2 < 14400 && conv < 0.5) { var f = (1 - d2 / 14400) * 1.6 * paso60; q.x += dx / Math.sqrt(d2 + 1) * f; q.y += dy / Math.sqrt(d2 + 1) * f; }
 
       var x = q.x, y = q.y, a = q.a;
       var parpadeo = 0.65 + 0.35 * Math.sin(fasePulso + q.fase);
@@ -327,10 +341,10 @@ const { c, agendar, como } = Astro.props;
         x = q.x + (q.tx - q.x) * e;
         y = q.y + (q.ty - q.y) * e;
         a = a + (0.9 - a) * e;
-        a *= 1 - cubre * 0.92;
+        a *= 1 - cubre;
       } else {
         /* el ruido no desaparece: baja a un residuo tranquilo */
-        a *= 1 - conv * 0.8;
+        a *= 1 - conv * 0.85;
       }
       if (a < 0.015) continue;
       ctx.globalAlpha = a;
